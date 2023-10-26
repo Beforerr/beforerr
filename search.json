@@ -18,14 +18,14 @@
     "href": "courses/epss265/hw02.html",
     "title": "Homework 02",
     "section": "",
-    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\n\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
   },
   {
     "objectID": "courses/epss265/hw02.html#question-1",
     "href": "courses/epss265/hw02.html#question-1",
     "title": "Homework 02",
     "section": "",
-    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\n\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
   },
   {
     "objectID": "courses/epss265/hw02.html#question-2",
@@ -39,6 +39,6 @@
     "href": "courses/epss265/hw02.html#question-3",
     "title": "Homework 02",
     "section": "Question 3",
-    "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here"
+    "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here\nIt is also possible to use SSC Locator Graphics, which is also more general."
   }
 ]
