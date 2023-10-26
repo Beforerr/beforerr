@@ -176,3 +176,5 @@ checklink/cookies.txt
 # Quarto
 .quarto
 .Rproj.user
+
+/.quarto/
