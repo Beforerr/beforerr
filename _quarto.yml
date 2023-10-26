@@ -1,0 +1,22 @@
+project:
+  type: website
+
+execute:
+  freeze: auto
+
+website:
+  title: "beforerr"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+  sidebar:
+    contents:
+      - auto: "**/*.ipynb"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
