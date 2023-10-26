@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "courses/epss265/hw02.html",
+    "href": "courses/epss265/hw02.html",
+    "title": "Homework 02",
+    "section": "",
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\n\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
+  },
+  {
+    "objectID": "courses/epss265/hw02.html#question-1",
+    "href": "courses/epss265/hw02.html#question-1",
+    "title": "Homework 02",
+    "section": "",
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\n\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
+  },
+  {
+    "objectID": "courses/epss265/hw02.html#question-2",
+    "href": "courses/epss265/hw02.html#question-2",
+    "title": "Homework 02",
+    "section": "Question 2",
+    "text": "Question 2\n\nProcess your data: compute the total field from its components and plot it in the same panel as the three components using colors b/g/r/black for x/y/z/t.\n\n\nfrom xarray_einstats import linalg\nfrom pytplot import split_vec, join_vec\n\nWe define a utility function to compute the total field from its components, see below\n\n\ndef _tvectot(tvar: str, new_name: str, join_component: bool):\n    data = get_data(tvar, xarray=True)\n    new_data = linalg.norm(data, dims=\"v_dim\")\n    store_data(new_name, new_data, xarray=True)\n    \n    if join_vec:\n        join_vec(split_vec(tvar)+[new_name], new_name)\n        options(new_name, 'legend_names', ['x', 'y', 'z', 'Magnitude'])\n    else:\n        options(new_name, 'legend_names', 'Magnitude')\n    return new_name\n\ndef tvectot(tvars: str | list[str], newnames: str | list[str] = None, suffix=\"_mag\", join_component=False) -&gt; str | list[str]:\n    \"\"\"\n    Computes the magnitude of a vector time series.\n\n    Parameters\n    ----------\n    - tvars : Names of the tplot variables.\n    - new_names: Names for the resultant magnitude tplot variables. If not provided, it appends the suffix to `tvars`.\n    - suffix: The suffix to append to tensor_names to form new_names if new_names is not provided.\n    - join_component: If True, the magnitude tplot variable is joined with the component tplot variables.\n\n    Returns\n    -------\n    Names of the magnitude tplot variables.\n    \"\"\"\n    tvars_type = type(tvars)\n    if tvars_type == str:\n        tvars = [tvars]\n    if join_vec:\n        suffix = \"_tot\"\n\n    if newnames is None:\n        newnames = [tvar + suffix for tvar in tvars]\n\n    for tvar, newname in zip(tvars, newnames):\n        _tvectot(tvar, newname, join_component)\n    \n    if tvars_type == str:\n        return newnames[0]\n    else:\n        return newnames\n\n\ntvar_tots = tvectot(tvars, join_component=True)\ntplot(tvar_tots)\n\nTypeError: store_data() got an unexpected keyword argument 'xarray'"
+  },
+  {
+    "objectID": "courses/epss265/hw02.html#question-3",
+    "href": "courses/epss265/hw02.html#question-3",
+    "title": "Homework 02",
+    "section": "Question 3",
+    "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "beforerr",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]
