@@ -7,13 +7,6 @@
     "text": "Empty is not always empty:)\nHomepage\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "courses/epss265/hw02.html",
     "href": "courses/epss265/hw02.html",
     "title": "Homework 02",
@@ -40,5 +33,12 @@
     "title": "Homework 02",
     "section": "Question 3",
     "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here\nIt is also possible to use SSC Locator Graphics, which is also more general."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
   }
 ]
