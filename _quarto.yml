@@ -12,8 +12,7 @@ website:
         text: Home
       - about.qmd
   sidebar:
-    contents:
-      - auto: "**/*.ipynb"
+    contents: auto
 
 format:
   html:
