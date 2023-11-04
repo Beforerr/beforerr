@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/Beforerr/beforerr/index.html</loc>
-    <lastmod>2023-10-31T18:01:15.325Z</lastmod>
+    <loc>https://github.com/Beforerr/beforerr/courses/epss265/hw03.html</loc>
+    <lastmod>2023-11-04T07:02:33.787Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/Beforerr/beforerr/courses/epss265/hw02.html</loc>
-    <lastmod>2023-10-31T18:01:14.729Z</lastmod>
+    <loc>https://github.com/Beforerr/beforerr/index.html</loc>
+    <lastmod>2023-11-04T07:02:32.279Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/Beforerr/beforerr/about.html</loc>
-    <lastmod>2023-10-31T18:01:13.989Z</lastmod>
+    <lastmod>2023-11-04T07:02:32.787Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/Beforerr/beforerr/courses/epss265/hw02.html</loc>
+    <lastmod>2023-11-04T07:02:33.363Z</lastmod>
   </url>
 </urlset>
