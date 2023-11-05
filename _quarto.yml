@@ -11,8 +11,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+    tools:
+      - icon: github
+        href: "https://github.com/Beforerr/beforerr"
   sidebar:
     contents: auto
+  page-navigation: true
 
 format:
   html:

@@ -1,5 +1,13 @@
 ---
 title: "About"
+about:
+  template: jolla
+  image: images/profile.png
 ---
 
-About this site
+- 🪐 A graduate student at UCLA, majoring in space science & planetary science.
+
+## Education
+
+University of California, Los Angeles | Los Angeles, CA
+PhD in Planetary Science | Sept 2022 - Present
