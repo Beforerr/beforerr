@@ -1,0 +1,22 @@
+user: beforerr
+project: EPSS265
+run: 1699990533
+base_url: "https://www.spenvis.oma.be/spenvis/htusers/b"
+url_pattern: "{base_url}/{user}/{project}/{run}/{filename}"
+files:
+  output:
+    filename: spenvis_mlo.txt
+    description: Outputs for the selected analysis type
+  report:
+    filename: spenvis_mul-rmt.txt
+    description: Report file
+  log:
+    filename: spenvis_mul-rmt.g4log
+    # filename: spenvis_mlp.txt
+    description: Log file
+  vrml:
+    filename: spenvis_mul.wrl
+    description: VRML representation of the geometry
+  view:
+    filename: spenvis_mul.eps
+    description: Cross section view of the geometry
