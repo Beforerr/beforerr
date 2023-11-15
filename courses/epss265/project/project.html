@@ -20,27 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../courses/phys231/phys231_hw04.html" rel="next">
-<link href="../../courses/epss265/hw03.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../courses/phys231/phys231_hw04.html" rel="next">
+<link href="../../../courses/epss265/hw03.html" rel="prev">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -63,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -73,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">beforerr</span>
     </a>
   </div>
@@ -84,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../about.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../../about.html" rel="" target="" aria-current="page">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -103,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Courses</li><li class="breadcrumb-item"><a href="../../courses/epss265/hw02.html">Epss265</a></li><li class="breadcrumb-item"><a href="../../courses/epss265/project.html">Objective</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Courses</li><li class="breadcrumb-item"><a href="../../../courses/epss265/hw02.html">Epss265</a></li><li class="breadcrumb-item"><a href="../../../courses/epss265/project/project.html">Project</a></li><li class="breadcrumb-item"><a href="../../../courses/epss265/project/project.html">Objective</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -117,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -141,36 +175,47 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/epss265/hw02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../courses/epss265/hw02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework 02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/epss265/hw03.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../courses/epss265/hw03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework 03</span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/epss265/project.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../courses/epss265/project/project.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Objective</span></a>
   </div>
 </li>
       </ul>
   </li>
+      </ul>
+  </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Phys231</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phys231 Hw04</span></a>
   </div>
 </li>
@@ -212,11 +257,16 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>If a thin Aluminum layer is deposited over a solid-state detector active area, the energy loss by the particle in that Al layer will not be recorded. The shorter the range of a particle the more the relative energy that will be missed. The range depends on mass near the last portion of the flight: heavier ions stop earlier. Two detectors, a bare one and one with an Al layer, measuring the same beam could give very different results for He+ or O+. Plot the energy recorded (past the Al) versus the incident energy, for beams of various energies, and for different thickness (10nm, 100nm, …). Use H+, He+, O+. Demonstrate that with a sufficient number of detectors you could differentiate monoenergetic protons, He+ and O+. Use SPENVIS or GEANT-4 for your modeling.</p>
+<p>If a thin Aluminum layer is deposited over a solid-state detector active area, the energy loss by the particle in that Al layer will not be recorded. The shorter the range of a particle the more the relative energy that will be missed. The range depends on mass near the last portion of the flight: heavier ions stop earlier. Two detectors, a bare one and one with an Al layer, measuring the same beam could give very different results for He+ or O+.</p>
+<p>Plot the energy recorded (past the Al) versus the incident energy, for beams of various energies, and for different thickness (10nm, 100nm, …). Use H+, He+, O+. Demonstrate that with a sufficient number of detectors you could differentiate monoenergetic protons, He+ and O+. Use SPENVIS or GEANT-4 for your modeling.</p>
 <p>Bonus: simulate the number of detectors required to deconvolve the effects of a single, thermalized (not beam) distribution with dE/E~100%.</p>
 <section id="directions" class="level3">
 <h3 class="anchored" data-anchor-id="directions">Directions</h3>
-<p>This will be done by creating a plot of energy deposited in Si as function of input energy. You will use freeware Geant-4 which simulates particle interaction with matter, through a portal: <a href="https://www.spenvis.oma.be">SPENVIS</a>. Various models exist there (very useful site!). First you have to register, then create a project, then input your model input and output parameters, then make a run and get results one-energy-at-a-time. Once you know how to do that, then you must create an array of inputs and outputs outside of SPENVIS in your favorite plotting package (e.g., excel, python or other). You will then record those results and plot them, one array for protons, another for He+ and another for O+. You can try other species as well, for example O2+ which may be present in the low altitude ionosphere. Assume monoenergetic beams. The program allows you to use a simple ion spectrum. (For the bonus question you have to make a guess on the instrument response function, model it in a simple analytical form, then prove it can be done using Geant-4. You do not have to do the bonus.)</p>
+<p>This will be done by creating a plot of energy deposited in Si as function of input energy. You will use freeware Geant-4 which simulates particle interaction with matter, through a portal: <a href="https://www.spenvis.oma.be">SPENVIS</a>. Various models exist there (very useful site!).</p>
+<p>First you have to register, then create a project, then input your model input and output parameters, then make a run and get results one-energy-at-a-time. Once you know how to do that, then you must create an array of inputs and outputs outside of SPENVIS in your favorite plotting package (e.g., excel, python or other). You will then record those results and plot them, one array for protons, another for He+ and another for O+. You can try other species as well, for example O2+ which may be present in the low altitude ionosphere.</p>
+<ul>
+<li>Assume monoenergetic beams. The program allows you to use a simple ion spectrum. (For the bonus question you have to make a guess on the instrument response function, model it in a simple analytical form, then prove it can be done using Geant-4. You do not have to do the bonus.)</li>
+</ul>
 <p>For your outline, make sure you can obtain results, understand the problem enough to present the requested report structure, before actually doing the plots. Present a statement of task, the process and the expected results to be plotted.</p>
 <p>For your report, you should not repeat the steps I mention below, but just execute your outline above and go right to the findings, plots and discussion. In the discussion explain how you use the model to design a detector system (how many detectors, thicknesses, orientations etc) that does the job.</p>
 <ol type="1">
@@ -232,6 +282,61 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Plot results for one species and then (in different color) for other species.</p></li>
 <li><p>Repeat for different Al thicknesses.</p></li>
 </ol>
+<ul>
+<li><p>Geometry Definition</p></li>
+<li><p>Source particles</p>
+<ul>
+<li>He+
+<ul>
+<li>Atomic number: 2</li>
+<li>Nucleon number: 4</li>
+</ul></li>
+</ul></li>
+<li><p>Material Definition</p></li>
+</ul>
+<p>https://www.spenvis.oma.be/spenvis/htusers/b/beforerr/EPSS265/1699989981/spenvis_mlo.txt</p>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"config.yaml"</span>, <span class="st">'r'</span>) <span class="im">as</span> stream:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> yaml.safe_load(stream)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> config[<span class="st">"user"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>project <span class="op">=</span> config[<span class="st">"project"</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>run <span class="op">=</span> config[<span class="st">"run"</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> config[<span class="st">"files"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> files[<span class="st">"output"</span>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>report <span class="op">=</span> files[<span class="st">"report"</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> config[<span class="st">"base_url"</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>url_pattern <span class="op">=</span> config[<span class="st">"url_pattern"</span>]</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    url_pattern.<span class="bu">format</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        base_url<span class="op">=</span>base_url,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        user<span class="op">=</span>user,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        project<span class="op">=</span>project,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        run<span class="op">=</span>run,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        filename<span class="op">=</span>output[<span class="st">"filename"</span>],</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    url_pattern.<span class="bu">format</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        base_url<span class="op">=</span>base_url,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        user<span class="op">=</span>user,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        project<span class="op">=</span>project,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        run<span class="op">=</span>run,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        filename<span class="op">=</span>report[<span class="st">"filename"</span>],</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>https://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mlo.txt
+https://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mul-rmt.txt</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -472,12 +577,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../courses/epss265/hw03.html" class="pagination-link">
+      <a href="../../../courses/epss265/hw03.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework 03</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../courses/phys231/phys231_hw04.html" class="pagination-link">
+      <a href="../../../courses/phys231/phys231_hw04.html" class="pagination-link">
         <span class="nav-page-text">Phys231 Hw04</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
