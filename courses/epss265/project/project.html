@@ -234,6 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#directions" id="toc-directions" class="nav-link active" data-scroll-target="#directions">Directions</a></li>
+  <li><a href="#spenvis-generated-macrofile-for-mulassis" id="toc-spenvis-generated-macrofile-for-mulassis" class="nav-link" data-scroll-target="#spenvis-generated-macrofile-for-mulassis">SPENVIS generated macrofile for MULASSIS</a></li>
   </ul>
 </nav>
     </div>
@@ -271,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For your report, you should not repeat the steps I mention below, but just execute your outline above and go right to the findings, plots and discussion. In the discussion explain how you use the model to design a detector system (how many detectors, thicknesses, orientations etc) that does the job.</p>
 <ol type="1">
 <li><p>On SPENVIS after registration, name your project and proceed to use Geant-4 “MULASSIS”. You can save your run, and come back to it later.</p></li>
-<li><p>Your system will be a 3 layer system, where the first layer is air, the second Al of variable thickness and the third Silicon of a mm or two… enough to stop the highest energy of interest. You shoot some particles (10,000 is a good number), and record how much energy is deposited in Si. Excluding losses in the Si (phonons) the lost energy is mainly due to losses in the Aluminum. Pick the source parameters: How many/which ions, charge angle (-22 deg -&gt; 22 deg).</p></li>
+<li><p>Your system will be a 3 layer system, where the first layer is air, the second Al of variable thickness and the third Silicon of <strong>a mm or two.</strong>.. enough to stop the highest energy of interest. You shoot some particles (10,000 is a good number), and <em>record how much energy is deposited in Si</em>. Excluding losses in the Si (phonons) the lost energy is mainly due to losses in the Aluminum. Pick the source parameters: How many/which ions, charge angle (-22 deg -&gt; 22 deg).</p></li>
 <li><p>For Geometry you pick the layers above, and for Al choose 0, 1, 10 100 nm, one thickness at a time.</p></li>
 <li><p>Specify the input as monoenergetic beam.</p></li>
 <li><p>Specify analysis parameters as mean energy (the mean energy deposited based on the 10,000 particle run)</p></li>
@@ -282,6 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Plot results for one species and then (in different color) for other species.</p></li>
 <li><p>Repeat for different Al thicknesses.</p></li>
 </ol>
+<p><img src="./figures/simple_plot.png" class="img-fluid"></p>
 <ul>
 <li><p>Geometry Definition</p></li>
 <li><p>Source particles</p>
@@ -293,8 +295,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul></li>
 <li><p>Material Definition</p></li>
+<li><p>https://www.spenvis.oma.be/restricted/load_result.php/EPSS265/spenvis_mul-rmt.txt</p></li>
+<li><p>https://www.spenvis.oma.be/spenvis/htusers/b/beforerr/EPSS265/1699989981/spenvis_mlo.txt</p></li>
 </ul>
-<p>https://www.spenvis.oma.be/spenvis/htusers/b/beforerr/EPSS265/1699989981/spenvis_mlo.txt</p>
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -337,6 +340,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 https://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mul-rmt.txt</code></pre>
 </div>
 </div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>’*‘, 10, 4, 0, 0, 5, 5, 3, 0 ’DOSE ANALYSIS’ ‘MULASSIS v1.23’ ‘geant4-09-05-patch-02 (22-October-2012)’ ‘File Created: Wed Nov 15 23:11:52 2023’</p>
+<p>‘End of File’</p>
+</section>
+<section id="spenvis-generated-macrofile-for-mulassis" class="level1">
+<h1>SPENVIS generated macrofile for MULASSIS</h1>
+<p>/geometry/layer/delete 0 /geometry/material/addNIST G4_Al /geometry/material/addNIST G4_Si /geometry/layer/shape slab /geometry/layer/add 0 Vacuum 1 1.000E+00 mm /geometry/layer/add 1 G4_Al 2 1.000E-03 um /geometry/layer/add 2 G4_Si 3 1.000E+00 mm # Total thickness = 2.000 mm /analysis/file spenvis # # Analysis definition #</p>
 
 
 </section>
