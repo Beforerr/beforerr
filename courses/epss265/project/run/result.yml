@@ -1,0 +1,28 @@
+# 'Layer',   ,  1,'Layer number'
+# 'Thickness',  'cm',  1,'Thickness of layer'
+# 'Density',  'g/cm3',  1,'Density of layer'
+# 'Dose','keV',  1,'Dose/energy deposition'
+# 'Error','keV',  1,'Error dose/energy deposition'
+- run: 01
+  layer.Al.thickness: 1.000E-03 um
+  source:
+    energy: 1.000000E-03 MeV
+    particle: proton
+  result: |
+    1,1.000000e-01,1.000000e-25,9.890538e-21,1.978974e-22
+    2,1.000000e-07,2.699000e+00,2.833155e-02,1.241212e-03
+    3,1.000000e-01,2.330000e+00,9.189861e-01,2.459686e-03
+- run: 02
+  layer.Al.thickness: 1.000E-03 um
+  source:
+    energy: 1.000000E-02 MeV
+    particle: proton
+  result: |
+    1,1.000000e-01,1.000000e-25,2.551539e-20,2.613763e-23
+    2,1.000000e-07,2.699000e+00,8.613867e-02,1.646033e-03
+    3,1.000000e-01,2.330000e+00,9.896683e+00,4.043036e-03
+- run: 03
+  result:
+    1,1.000000e-01,1.000000e-25,3.753180e-20,2.466871e-28
+    2,1.000000e-07,2.699000e+00,1.316478e-01,1.703331e-03
+    3,1.000000e-01,2.330000e+00,9.986835e+01,1.703331e-03
