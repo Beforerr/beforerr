@@ -9,17 +9,20 @@ using YAML
 
 # ╔═╡ 3e49a193-88b3-4c4e-93c8-13e1236c4882
 function parse_result_line(line)
-    # Split the line by comma and convert each part to the correct type
-    parts = split(line, ",")
-    return (parse(Int, parts[1]), parse(Float64, parts[2]), parse(Float64, parts[3]), parse(Float64, parts[4]), try parse(Float64, parts[5]) catch; NaN end)
-end
+    values = split(line, ',')
+    Layer = parse(Int, values[1])
+    Thickness = parse(Float64, values[2])  # Assuming thickness in cm
+    Density = parse(Float64, values[3])    # Assuming density in g/cm3
+    Dose = parse(Float64, values[4])       # Assuming dose in keV
+    Error = try parse(Float64, values[5]) catch _ NaN end  # Handle '-nan' and other errors
 
+    return (Layer, Thickness, Density, Dose, Error)
+end
 
 # ╔═╡ 1316aeb7-6e41-4df3-9670-1d6939f09c02
 function convert_data(yaml_data)
     # Iterate through the data and convert each field
     for entry in yaml_data
-        # entry["run"] = parse(Int, entry["run"])
 		entry["layer.Al.thickness"] = parse(Float64, replace(entry["layer.Al.thickness"], " um" => ""))
         entry["source"]["energy"] = parse(Float64, replace(entry["source"]["energy"], " MeV" => ""))
         entry["result"] = [parse_result_line(line) for line in split(entry["result"], '\n') if line != ""]
