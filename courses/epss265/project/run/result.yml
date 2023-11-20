@@ -1,9 +1,9 @@
-# 'Layer',   ,  1,'Layer number'
-# 'Thickness',  'cm',  1,'Thickness of layer'
-# 'Density',  'g/cm3',  1,'Density of layer'
-# 'Dose','keV',  1,'Dose/energy deposition'
-# 'Error','keV',  1,'Error dose/energy deposition'
-- run: 01
+# # 'Layer',   ,  1,'Layer number'
+# # 'Thickness',  'cm',  1,'Thickness of layer'
+# # 'Density',  'g/cm3',  1,'Density of layer'
+# # 'Dose','keV',  1,'Dose/energy deposition'
+# # 'Error','keV',  1,'Error dose/energy deposition'8
+- run: 1
   layer.Al.thickness: 1.000E-03 um
   source:
     energy: 1.000000E-03 MeV
@@ -12,7 +12,7 @@
     1,1.000000e-01,1.000000e-25,9.890538e-21,1.978974e-22
     2,1.000000e-07,2.699000e+00,2.833155e-02,1.241212e-03
     3,1.000000e-01,2.330000e+00,9.189861e-01,2.459686e-03
-- run: 02
+- run: 2
   layer.Al.thickness: 1.000E-03 um
   source:
     energy: 1.000000E-02 MeV
@@ -21,8 +21,59 @@
     1,1.000000e-01,1.000000e-25,2.551539e-20,2.613763e-23
     2,1.000000e-07,2.699000e+00,8.613867e-02,1.646033e-03
     3,1.000000e-01,2.330000e+00,9.896683e+00,4.043036e-03
-- run: 03
+- run: 3
+  layer.Al.thickness: 1.000E-03 um
+  source:
+    energy: 1.000000E-01 MeV
+    particle: proton
   result:
     1,1.000000e-01,1.000000e-25,3.753180e-20,2.466871e-28
     2,1.000000e-07,2.699000e+00,1.316478e-01,1.703331e-03
     3,1.000000e-01,2.330000e+00,9.986835e+01,1.703331e-03
+- run: 4
+  layer.Al.thickness: 1.000E-03 um
+  source:
+    energy: 1.000000E+00 MeV
+    particle: proton
+  result:
+    1,1.000000e-01,1.000000e-25,6.748868e-21,        -nan
+    2,1.000000e-07,2.699000e+00,5.197667e-02,1.734696e-03
+    3,1.000000e-01,2.330000e+00,9.999480e+02,1.734696e-03
+
+- run: 5
+  layer.Al.thickness: 1.000E-02 um
+  source:
+    energy: 1.000000E-02 MeV
+    particle: proton
+  result: |
+    1,1.000000e-01,1.000000e-25,2.556383e-20,3.433882e-23
+    2,1.000000e-06,2.699000e+00,8.439217e-01,5.214358e-03
+    3,1.000000e-01,2.330000e+00,9.133472e+00,6.737109e-03
+- run: 6
+  layer.Al.thickness: 1.000E-02 um
+  source:
+    energy: 1.000000E+00 MeV
+    particle: proton
+  result:
+    1,1.000000e-01,1.000000e-25,6.763532e-21,1.466397e-23
+    2,1.000000e-06,2.699000e+00,4.953312e-01,5.311861e-03
+    3,1.000000e-01,2.330000e+00,9.994952e+02,1.141402e-02
+
+- run: 7
+  layer.Al.thickness: 1.000E-01 um
+  source:
+    energy: 1.000000E-02 MeV
+    particle: proton
+  result: |
+    1,1.000000e-01,1.000000e-25,2.550282e-20,2.762337e-23
+    2,1.000000e-05,2.699000e+00,5.770608e+00,3.491223e-02
+    3,1.000000e-01,2.330000e+00,4.215574e+00,3.494209e-02
+- run: 8
+  layer.Al.thickness: 1.000E-01 um
+  source:
+    energy: 1.000000E+00 MeV
+    particle: proton
+  result: |
+    1,1.000000e-01,1.000000e-25,6.748868e-21,        -nan
+    2,1.000000e-05,2.699000e+00,5.007634e+00,1.670868e-02
+    3,1.000000e-01,2.330000e+00,9.949924e+02,1.670868e-02
