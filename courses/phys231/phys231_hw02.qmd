@@ -1,0 +1,137 @@
+## 5. Power series
+
+> Consider a power series of the form
+>
+> $$
+> a=1+ \sum_{n=1}^{\infty} a_n z^n
+> $$
+>
+> Show that there is another power series
+>
+> $$
+> b = \sum_{n=0}^{\infty} b_n z^n
+> $$
+>
+> such that, as a formal expression
+>
+> $$
+> ab = 1
+> $$
+>
+> Do this by giving a recurrence relation for the coefficients $b_n$. Solve this recurrence relation for $1/e^z$ and show it gives the power series for $e^{−z}$.
+
+The product $ ab $ can be written as:
+
+$$
+ab = \left(1 + \sum_{n=1}^{\infty} a_n z^n \right) \left( \sum_{n=0}^{\infty} b_n z^n \right) = 1
+$$
+
+By expanding, we get:
+
+$$
+ab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \dots + \left( \sum_{k=0}^{n} a_k b_{n-k} \right) z^n + \dots
+$$
+
+For $ ab = 1 $, all the coefficients of $ z^n $ (for $ n \geq 1 $) must be zero, and the constant term (the coefficient of $ z^0 $) must be 1. This gives us the following conditions:
+
+1. $ b_0 = 1 $ (since the constant term of $ ab $ must be 1).
+2. For $ n \geq 1 $, we have $ \sum_{k=0}^{n} a_k b_{n-k} = 0 $.
+
+For $ a_k $, we have $ a_0 = 1 $ and $ a_n $ for $ n \geq 1 $. Thus, the recurrence relation for $ b_n $ becomes:
+
+$$
+b_n = -\sum_{k=1}^{n} a_k b_{n-k} \quad \text{for } n \geq 1
+$$
+
+For $ a = e^z $. The power series for $b=  1/e^z $ is given by:
+
+1. $ b_0 = 1 $ (from the initial condition).
+2. For $ n \geq 1 $:
+
+$$
+b_n = -\sum_{k=1}^{n} \frac{1}{k!} b_{n-k}
+$$
+
+And if $ b_n = \frac{(-1)^n}{n!} $. Then, it is exactly the power series for $ e^{-z} $:
+
+$$
+e^{-z} = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!}
+$$
+
+To prove $b_n = \frac{(-1)^n}{n!}$, we use induction method. Suppose it is true for $n$, then using
+
+$$
+(1 + (-1))^{n+1} = \sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \sum_{k=0}^{n+1} \frac{(-1)^{n+1-k}}{k! (n+1-k)!}
+$$
+
+By substituting $b_k = \frac{(-1)^k}{k!}$ for $k \le n$, we have
+
+$$
+(-1)^{n+1} / (n+1)~! = -\sum_{k=1}^{n+1} \frac{1}{k!} b_{n-k}
+$$
+
+So $b_{n+1} = \frac{(-1)^{n+1}}{(n+1)!}$. Q.E.D
+
+## 6. Expansion near pole
+
+> Assuming the result of problem 5 and the bonus problem, show that if $f (z) = g(z)/h(z)$ has a pole at $z = 0$, that we can expand $f(z)$ in a series
+>
+> $$
+> f (z) = \sum_{n=-m}^{\infty} a_n z^n
+> $$
+>
+> for some $m$, and that this converges in a “punctured disc” $\{ z | |z| < R, z \ne 0 \}$. Make such an expansion for $f (z) = z/(1 + z^2)$ around $z = i$ (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).
+
+Since $ f(z) $ has a pole at $ z = 0 $, $ h(z) $ must have a zero of order $ m $ at $ z = 0 $
+
+Given this, $ h(z) $ can be written as $ z^m k(z) $ where $ k(z) $ is analytic and non-zero at $ z = 0 $. Therefore, $ f(z) $ can be written as:
+
+$$
+f(z) = \frac{g(z)}{z^m k(z)}
+$$
+
+Since $ k(z) $ is analytic and non-zero at $ z = 0 $, there exists a power series $ \sum_{n=0}^{\infty} b_n z^n $ such that $ \frac{1}{k(z)} = \sum_{n=0}^{\infty} b_n z^n $ . This leads to:
+
+$$
+f(z) = \frac{g(z)}{z^m} \sum_{n=0}^{\infty} b_n z^n = \sum_{n=0}^{\infty} b_n g(z) z^{n-m}
+$$
+
+for $z \ne 0$. As $ g(z) $ is analytic at $ z = 0 $, it can also be expanded into a power series around $ z = 0 $. Thus, the product of these two series results in a series of the form:
+
+$$
+f(z) = \sum_{n=-m}^{\infty} a_n z^n
+$$
+
+This series converges in some punctured disc $ \{ z \,|\, |z| < R, z \ne 0 \} $ because it is the product of two convergent power series in that region.
+
+For the specific function $ f(z) = \frac{z}{1 + z^2} $, we want to expand around $ z = i $
+
+$$
+f(z) = \frac{z}{(z - i)(z + i)}
+$$
+
+To expand around $ z = i $, let's set $ w = z - i $, so $ z = w + i $. Then:
+
+$$
+f(w + i) = \frac{w + i}{ w (w + 2i)}
+$$
+
+Now, observe that:
+
+$$
+\frac{1}{w + 2i} = \frac{1}{2i} \cdot \frac{1}{1 + \frac{w}{2i}}
+$$
+
+Since $ |\frac{w}{2i}| < 1 $ for $ |w| < 2 $, we can use the geometric series expansion:
+
+$$
+\frac{1}{1 + \frac{w}{2i}} = \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+$$
+
+Thus, we get:
+
+$$
+f(z) = \frac{w + i}{2i w } \cdot \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+$$
+
+which will be valid in a punctured disc around $ z = i $, specifically for $ |z - i| < 2 $ (or $ |w| < 2 $).
