@@ -1,0 +1,4 @@
+---
+title: EPSS 265
+subtitle: Instrumentation, Data Processing and Data Analysis in Space Physics
+---

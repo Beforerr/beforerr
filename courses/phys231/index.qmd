@@ -1,0 +1,7 @@
+---
+title: PHYSICS 231A
+subtitle: Methods of Mathematical Physics
+---
+
+## About
+In this course, we will cover a selection of analytic methods useful in a wide variety of physics topics. This includes complex analysis, asymptotic approximation of integrals, summing divergent series, manifold topology and de Rham cohomology, Fourier analysis, linear differential equations and Green's functions, and perturbation theory for nonlinear problems.

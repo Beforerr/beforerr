@@ -17,9 +17,12 @@ website:
   sidebar:
     contents: auto
   page-navigation: true
+  repo-url: "https://github.com/Beforerr/beforerr"
+  repo-actions: [source, issue]
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    # code-tools: true
