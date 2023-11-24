@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr – phys231_hw04</title>
+<title>beforerr – phys231_hw02</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,6 +61,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -102,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Courses</li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw04.html">Phys231</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw04.html">Phys231 Hw04</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Courses</li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">Phys231</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">5. Power series</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -180,8 +182,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Phys231 Hw04</span></a>
+  <a href="../../courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5. Power series</span></a>
   </div>
 </li>
       </ul>
@@ -194,15 +196,123 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#power-series" id="toc-power-series" class="nav-link active" data-scroll-target="#power-series">5. Power series</a></li>
+  <li><a href="#expansion-near-pole" id="toc-expansion-near-pole" class="nav-link" data-scroll-target="#expansion-near-pole">6. Expansion near pole</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
+<section id="power-series" class="level2">
+<h2 class="anchored" data-anchor-id="power-series">5. Power series</h2>
+<blockquote class="blockquote">
+<p>Consider a power series of the form</p>
+<p><span class="math display">\[
+a=1+ \sum_{n=1}^{\infty} a_n z^n
+\]</span></p>
+<p>Show that there is another power series</p>
+<p><span class="math display">\[
+b = \sum_{n=0}^{\infty} b_n z^n
+\]</span></p>
+<p>such that, as a formal expression</p>
+<p><span class="math display">\[
+ab = 1
+\]</span></p>
+<p>Do this by giving a recurrence relation for the coefficients <span class="math inline">\(b_n\)</span>. Solve this recurrence relation for <span class="math inline">\(1/e^z\)</span> and show it gives the power series for <span class="math inline">\(e^{−z}\)</span>.</p>
+</blockquote>
+<p>The product $ ab $ can be written as:</p>
+<p><span class="math display">\[
+ab = \left(1 + \sum_{n=1}^{\infty} a_n z^n \right) \left( \sum_{n=0}^{\infty} b_n z^n \right) = 1
+\]</span></p>
+<p>By expanding, we get:</p>
+<p><span class="math display">\[
+ab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \dots + \left( \sum_{k=0}^{n} a_k b_{n-k} \right) z^n + \dots
+\]</span></p>
+<p>For $ ab = 1 $, all the coefficients of $ z^n $ (for $ n $) must be zero, and the constant term (the coefficient of $ z^0 $) must be 1. This gives us the following conditions:</p>
+<ol type="1">
+<li>$ b_0 = 1 $ (since the constant term of $ ab $ must be 1).</li>
+<li>For $ n $, we have $ <em>{k=0}^{n} a_k b</em>{n-k} = 0 $.</li>
+</ol>
+<p>For $ a_k $, we have $ a_0 = 1 $ and $ a_n $ for $ n $. Thus, the recurrence relation for $ b_n $ becomes:</p>
+<p><span class="math display">\[
+b_n = -\sum_{k=1}^{n} a_k b_{n-k} \quad \text{for } n \geq 1
+\]</span></p>
+<p>For $ a = e^z $. The power series for $b= 1/e^z $ is given by:</p>
+<ol type="1">
+<li>$ b_0 = 1 $ (from the initial condition).</li>
+<li>For $ n $:</li>
+</ol>
+<p><span class="math display">\[
+b_n = -\sum_{k=1}^{n} \frac{1}{k!} b_{n-k}
+\]</span></p>
+<p>And if $ b_n = $. Then, it is exactly the power series for $ e^{-z} $:</p>
+<p><span class="math display">\[
+e^{-z} = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!}
+\]</span></p>
+<p>To prove <span class="math inline">\(b_n = \frac{(-1)^n}{n!}\)</span>, we use induction method. Suppose it is true for <span class="math inline">\(n\)</span>, then using</p>
+<p><span class="math display">\[
+(1 + (-1))^{n+1} = \sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \sum_{k=0}^{n+1} \frac{(-1)^{n+1-k}}{k! (n+1-k)!}
+\]</span></p>
+<p>By substituting <span class="math inline">\(b_k = \frac{(-1)^k}{k!}\)</span> for <span class="math inline">\(k \le n\)</span>, we have</p>
+<p><span class="math display">\[
+(-1)^{n+1} / (n+1)~! = -\sum_{k=1}^{n+1} \frac{1}{k!} b_{n-k}
+\]</span></p>
+<p>So <span class="math inline">\(b_{n+1} = \frac{(-1)^{n+1}}{(n+1)!}\)</span>. Q.E.D</p>
+</section>
+<section id="expansion-near-pole" class="level2">
+<h2 class="anchored" data-anchor-id="expansion-near-pole">6. Expansion near pole</h2>
+<blockquote class="blockquote">
+<p>Assuming the result of problem 5 and the bonus problem, show that if <span class="math inline">\(f (z) = g(z)/h(z)\)</span> has a pole at <span class="math inline">\(z = 0\)</span>, that we can expand <span class="math inline">\(f(z)\)</span> in a series</p>
+<p><span class="math display">\[
+f (z) = \sum_{n=-m}^{\infty} a_n z^n
+\]</span></p>
+<p>for some <span class="math inline">\(m\)</span>, and that this converges in a “punctured disc” <span class="math inline">\(\{ z | |z| &lt; R, z \ne 0 \}\)</span>. Make such an expansion for <span class="math inline">\(f (z) = z/(1 + z^2)\)</span> around <span class="math inline">\(z = i\)</span> (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).</p>
+</blockquote>
+<p>Since $ f(z) $ has a pole at $ z = 0 $, $ h(z) $ must have a zero of order $ m $ at $ z = 0 $</p>
+<p>Given this, $ h(z) $ can be written as $ z^m k(z) $ where $ k(z) $ is analytic and non-zero at $ z = 0 $. Therefore, $ f(z) $ can be written as:</p>
+<p><span class="math display">\[
+f(z) = \frac{g(z)}{z^m k(z)}
+\]</span></p>
+<p>Since $ k(z) $ is analytic and non-zero at $ z = 0 $, there exists a power series $ <em>{n=0}^{} b_n z^n $ such that $ = </em>{n=0}^{} b_n z^n $ . This leads to:</p>
+<p><span class="math display">\[
+f(z) = \frac{g(z)}{z^m} \sum_{n=0}^{\infty} b_n z^n = \sum_{n=0}^{\infty} b_n g(z) z^{n-m}
+\]</span></p>
+<p>for <span class="math inline">\(z \ne 0\)</span>. As $ g(z) $ is analytic at $ z = 0 $, it can also be expanded into a power series around $ z = 0 $. Thus, the product of these two series results in a series of the form:</p>
+<p><span class="math display">\[
+f(z) = \sum_{n=-m}^{\infty} a_n z^n
+\]</span></p>
+<p>This series converges in some punctured disc $ { z ,|, |z| &lt; R, z } $ because it is the product of two convergent power series in that region.</p>
+<p>For the specific function $ f(z) = $, we want to expand around $ z = i $</p>
+<p><span class="math display">\[
+f(z) = \frac{z}{(z - i)(z + i)}
+\]</span></p>
+<p>To expand around $ z = i $, let’s set $ w = z - i $, so $ z = w + i $. Then:</p>
+<p><span class="math display">\[
+f(w + i) = \frac{w + i}{ w (w + 2i)}
+\]</span></p>
+<p>Now, observe that:</p>
+<p><span class="math display">\[
+\frac{1}{w + 2i} = \frac{1}{2i} \cdot \frac{1}{1 + \frac{w}{2i}}
+\]</span></p>
+<p>Since $ || &lt; 1 $ for $ |w| &lt; 2 $, we can use the geometric series expansion:</p>
+<p><span class="math display">\[
+\frac{1}{1 + \frac{w}{2i}} = \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+\]</span></p>
+<p>Thus, we get:</p>
+<p><span class="math display">\[
+f(z) = \frac{w + i}{2i w } \cdot \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+\]</span></p>
+<p>which will be valid in a punctured disc around $ z = i $, specifically for $ |z - i| &lt; 2 $ (or $ |w| &lt; 2 $).</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
