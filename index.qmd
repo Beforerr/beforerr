@@ -2,12 +2,4 @@
 title: "beforerr"
 ---
 
-Empty is not always empty:)
-
-Homepage
-
-
-
-
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Form is emptiness, emptiness is form
