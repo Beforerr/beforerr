@@ -1,168 +1,115 @@
 [
   {
+    "objectID": "courses/phys231/phys231_hw02.html",
+    "href": "courses/phys231/phys231_hw02.html",
+    "title": "Homework 02",
+    "section": "",
+    "text": "Mathematica notebook"
+  },
+  {
+    "objectID": "courses/phys231/phys231_hw02.html#power-series",
+    "href": "courses/phys231/phys231_hw02.html#power-series",
+    "title": "Homework 02",
+    "section": "5. Power series",
+    "text": "5. Power series\n\nConsider a power series of the form\n\\[\na=1+ \\sum_{n=1}^{\\infty} a_n z^n\n\\]\nShow that there is another power series\n\\[\nb = \\sum_{n=0}^{\\infty} b_n z^n\n\\]\nsuch that, as a formal expression\n\\[\nab = 1\n\\]\nDo this by giving a recurrence relation for the coefficients \\(b_n\\). Solve this recurrence relation for \\(1/e^z\\) and show it gives the power series for \\(e^{−z}\\).\n\nThe product \\(ab\\) can be written as:\n\\[\nab = \\left(1 + \\sum_{n=1}^{\\infty} a_n z^n \\right) \\left( \\sum_{n=0}^{\\infty} b_n z^n \\right) = 1\n\\]\nBy expanding, we get:\n\\[\nab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \\dots + \\left( \\sum_{k=0}^{n} a_k b_{n-k} \\right) z^n + \\dots\n\\]\nFor \\(ab = 1\\), all the coefficients of \\(z^n\\) (for \\(n \\geq 1\\)) must be zero, and the constant term (the coefficient of \\(z^0\\)) must be 1. This gives us the following conditions:\n\n\\(b_0 = 1\\) (since the constant term of \\(ab\\) must be 1).\nFor \\(n \\geq 1\\), we have \\(\\sum_{k=0}^{n} a_k b_{n-k} = 0\\).\n\nFor \\(a_k\\), we have \\(a_0 = 1\\) and \\(a_n\\) for \\(n \\geq 1\\). Thus, the recurrence relation for \\(b_n\\) becomes:\n\\[\nb_n = -\\sum_{k=1}^{n} a_k b_{n-k} \\quad \\text{for } n \\geq 1\n\\]\nFor \\(a = e^z\\). The power series for \\(b= 1/e^z\\) is given by:\n\n\\(b_0 = 1\\) (from the initial condition).\nFor \\(n \\geq 1\\):\n\n\\[\nb_n = -\\sum_{k=1}^{n} \\frac{1}{k!} b_{n-k}\n\\]\nAnd if \\(b_n = \\frac{(-1)^n}{n!}\\). Then, it is exactly the power series for \\(e^{-z}\\):\n\\[\ne^{-z} = \\sum_{n=0}^{\\infty} \\frac{(-z)^n}{n!}\n\\]\nTo prove \\(b_n = \\frac{(-1)^n}{n!}\\), we use induction method. Suppose it is true for \\(n\\), then using\n\\[\n(1 + (-1))^{n+1} = \\sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \\sum_{k=0}^{n+1} \\frac{(-1)^{n+1-k}}{k! (n+1-k)!}\n\\]\nBy substituting \\(b_k = \\frac{(-1)^k}{k!}\\) for \\(k \\le n\\), we have\n\\[\n(-1)^{n+1} / (n+1)~! = -\\sum_{k=1}^{n+1} \\frac{1}{k!} b_{n-k}\n\\]\nSo \\(b_{n+1} = \\frac{(-1)^{n+1}}{(n+1)!}\\). Q.E.D"
+  },
+  {
+    "objectID": "courses/phys231/phys231_hw02.html#expansion-near-pole",
+    "href": "courses/phys231/phys231_hw02.html#expansion-near-pole",
+    "title": "Homework 02",
+    "section": "6. Expansion near pole",
+    "text": "6. Expansion near pole\n\nAssuming the result of problem 5 and the bonus problem, show that if \\(f (z) = g(z)/h(z)\\) has a pole at \\(z = 0\\), that we can expand \\(f(z)\\) in a series\n\\[\nf (z) = \\sum_{n=-m}^{\\infty} a_n z^n\n\\]\nfor some \\(m\\), and that this converges in a “punctured disc” \\(\\{ z | |z| &lt; R, z \\ne 0 \\}\\). Make such an expansion for \\(f (z) = z/(1 + z^2)\\) around \\(z = i\\) (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).\n\nSince \\(f(z)\\) has a pole at \\(z = 0\\), \\(h(z)\\) must have a zero of order \\(m\\) at \\(z = 0\\)\nGiven this, \\(h(z)\\) can be written as \\(z^m k(z)\\) where \\(k(z)\\) is analytic and non-zero at \\(z = 0\\). Therefore, \\(f(z)\\) can be written as:\n\\[\nf(z) = \\frac{g(z)}{z^m k(z)}\n\\]\nSince \\(k(z)\\) is analytic and non-zero at \\(z = 0\\), there exists a power series \\(\\sum_{n=0}^{\\infty} b_n z^n\\) such that \\(\\frac{1}{k(z)} = \\sum_{n=0}^{\\infty} b_n z^n\\) . This leads to:\n\\[\nf(z) = \\frac{g(z)}{z^m} \\sum_{n=0}^{\\infty} b_n z^n = \\sum_{n=0}^{\\infty} b_n g(z) z^{n-m}\n\\]\nfor \\(z \\ne 0\\). As \\(g(z)\\) is analytic at \\(z = 0\\), it can also be expanded into a power series around \\(z = 0\\). Thus, the product of these two series results in a series of the form:\n\\[\nf(z) = \\sum_{n=-m}^{\\infty} a_n z^n\n\\]\nThis series converges in some punctured disc \\(\\{ z \\,|\\, |z| &lt; R, z \\ne 0 \\}\\) because it is the product of two convergent power series in that region.\nFor the specific function \\(f(z) = \\frac{z}{1 + z^2}\\), we want to expand around \\(z = i\\)\n\\[\nf(z) = \\frac{z}{(z - i)(z + i)}\n\\]\nTo expand around \\(z = i\\), let’s set \\(w = z - i\\), so \\(z = w + i\\). Then:\n\\[\nf(w + i) = \\frac{w + i}{ w (w + 2i)}\n\\]\nNow, observe that:\n\\[\n\\frac{1}{w + 2i} = \\frac{1}{2i} \\cdot \\frac{1}{1 + \\frac{w}{2i}}\n\\]\nSince \\(|\\frac{w}{2i}| &lt; 1\\) for \\(|w| &lt; 2\\), we can use the geometric series expansion:\n\\[\n\\frac{1}{1 + \\frac{w}{2i}} = \\sum_{n=0}^{\\infty} \\left(-\\frac{w}{2i}\\right)^n\n\\]\nThus, we get:\n\\[\nf(z) = \\frac{w + i}{2i w } \\cdot \\sum_{n=0}^{\\infty} \\left(-\\frac{w}{2i}\\right)^n\n\\]\nwhich will be valid in a punctured disc around \\(z = i\\), specifically for \\(|z - i| &lt; 2\\) (or \\(|w| &lt; 2\\))."
+  },
+  {
+    "objectID": "courses/epss265/project/project.html",
+    "href": "courses/epss265/project/project.html",
+    "title": "Objective",
+    "section": "",
+    "text": "If a thin Aluminum layer is deposited over a solid-state detector active area, the energy loss by the particle in that Al layer will not be recorded. The shorter the range of a particle the more the relative energy that will be missed. The range depends on mass near the last portion of the flight: heavier ions stop earlier. Two detectors, a bare one and one with an Al layer, measuring the same beam could give very different results for He+ or O+.\nPlot the energy recorded (past the Al) versus the incident energy, for beams of various energies, and for different thickness (10nm, 100nm, …). Use H+, He+, O+. Demonstrate that with a sufficient number of detectors you could differentiate monoenergetic protons, He+ and O+. Use SPENVIS or GEANT-4 for your modeling.\nBonus: simulate the number of detectors required to deconvolve the effects of a single, thermalized (not beam) distribution with dE/E~100%.\n\nDirections\nThis will be done by creating a plot of energy deposited in Si as function of input energy. You will use freeware Geant-4 which simulates particle interaction with matter, through a portal: SPENVIS. Various models exist there (very useful site!).\nFirst you have to register, then create a project, then input your model input and output parameters, then make a run and get results one-energy-at-a-time. Once you know how to do that, then you must create an array of inputs and outputs outside of SPENVIS in your favorite plotting package (e.g., excel, python or other). You will then record those results and plot them, one array for protons, another for He+ and another for O+. You can try other species as well, for example O2+ which may be present in the low altitude ionosphere.\n\nAssume monoenergetic beams. The program allows you to use a simple ion spectrum. (For the bonus question you have to make a guess on the instrument response function, model it in a simple analytical form, then prove it can be done using Geant-4. You do not have to do the bonus.)\n\nFor your outline, make sure you can obtain results, understand the problem enough to present the requested report structure, before actually doing the plots. Present a statement of task, the process and the expected results to be plotted.\nFor your report, you should not repeat the steps I mention below, but just execute your outline above and go right to the findings, plots and discussion. In the discussion explain how you use the model to design a detector system (how many detectors, thicknesses, orientations etc) that does the job.\n\nOn SPENVIS after registration, name your project and proceed to use Geant-4 “MULASSIS”. You can save your run, and come back to it later.\nYour system will be a 3 layer system, where the first layer is air, the second Al of variable thickness and the third Silicon of a mm or two... enough to stop the highest energy of interest. You shoot some particles (10,000 is a good number), and record how much energy is deposited in Si. Excluding losses in the Si (phonons) the lost energy is mainly due to losses in the Aluminum. Pick the source parameters: How many/which ions, charge angle (-22 deg -&gt; 22 deg).\nFor Geometry you pick the layers above, and for Al choose 0, 1, 10 100 nm, one thickness at a time.\nSpecify the input as monoenergetic beam.\nSpecify analysis parameters as mean energy (the mean energy deposited based on the 10,000 particle run)\nCreate a macro (a bunch of commands that tell Geant-4 what to do) and Run.\nSee the plot\nOutput results (2 numbers) into your program next to input energy to build the in/out energy curve.\nRepeat, one point at a time.\nPlot results for one species and then (in different color) for other species.\nRepeat for different Al thicknesses.\n\n\n\nGeometry Definition\nSource particles\n\nHe+\n\nAtomic number: 2\nNucleon number: 4\n\n\nMaterial Definition\nhttps://www.spenvis.oma.be/restricted/load_result.php/EPSS265/spenvis_mul-rmt.txt\nhttps://www.spenvis.oma.be/spenvis/htusers/b/beforerr/EPSS265/1699989981/spenvis_mlo.txt\n\n\n\nCode\nimport yaml\n\nwith open(\"config.yaml\", 'r') as stream:\n    config = yaml.safe_load(stream)\n\n\n\n\nCode\nuser = config[\"user\"]\nproject = config[\"project\"]\nrun = config[\"run\"]\nfiles = config[\"files\"]\n\noutput = files[\"output\"]\nreport = files[\"report\"]\n\nbase_url = config[\"base_url\"]\nurl_pattern = config[\"url_pattern\"]\n\nprint(\n    url_pattern.format(\n        base_url=base_url,\n        user=user,\n        project=project,\n        run=run,\n        filename=output[\"filename\"],\n    )\n)\n\nprint(\n    url_pattern.format(\n        base_url=base_url,\n        user=user,\n        project=project,\n        run=run,\n        filename=report[\"filename\"],\n    )\n)\n\n\nhttps://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mlo.txt\nhttps://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mul-rmt.txt\n\n\n\n’*‘, 10, 4, 0, 0, 5, 5, 3, 0 ’DOSE ANALYSIS’ ‘MULASSIS v1.23’ ‘geant4-09-05-patch-02 (22-October-2012)’ ‘File Created: Wed Nov 15 23:11:52 2023’\n‘End of File’\n\n\nSPENVIS generated macrofile for MULASSIS\n/geometry/layer/delete 0 /geometry/material/addNIST G4_Al /geometry/material/addNIST G4_Si /geometry/layer/shape slab /geometry/layer/add 0 Vacuum 1 1.000E+00 mm /geometry/layer/add 1 G4_Al 2 1.000E-03 um /geometry/layer/add 2 G4_Si 3 1.000E+00 mm # Total thickness = 2.000 mm /analysis/file spenvis # # Analysis definition #"
+  },
+  {
     "objectID": "courses/epss265/homeworks/epss265_hw03.html",
     "href": "courses/epss265/homeworks/epss265_hw03.html",
     "title": "03 - SCM Noise Curves",
     "section": "",
-    "text": "NASA’s Science Mission Directorate (SMD) held its Fall Quarterly town hall meeting with the public. The event was led by NASA’s Associate Administrator for Science, Dr. Nicky Fox, and representatives of all SMD Divisions who answered questions submitted by the public on October 19. This one-hour event was advertised in advance at smd@listsrv2.nasaprs.com (enlist if you like). Watch the recorded video from that here.\n\nHow does NASA deal with starts for new missions, like UOP, if budgets are tight?\nHow does NASA deal with continuing resolutions (CRs) and with government shutdowns?\nHow will NASA/Biological Physical sciences respond to its recent NAS Decadal Survey?\nWhat are the 2 most interesting science highlights presented by the various divisions?\n\n\n\nGenerally, NASA will reallocate budget: it may adjust its portfolio to prioritize high-priority missions. This could mean delaying or scaling back other projects or seeking additional funds specifically earmarked for the mission. For Uranus Orbiter and Probe (UOP) specifically, NASA most likely will not initialize it in the next few years.\nDuring a Continuing Resolution, NASA can generally continue its operations at funding levels approved in the previous fiscal year but cannot start new projects and pend the amount of fundings. In the case of a government shutdown, non-essential operations are suspended, and only critical mission operations, like support for the International Space Station and maintaining mission properties. Scheduled launches will be postponed and administrative functions will be suspended.\nNASA’s Biological and Physical Sciences division would typically use the recommendations from the National Academies of Sciences (NAS) Decadal Survey to shape its research agenda. The division will hold a townhall which shares and discusses their responds. The survey is influential in determining funding priorities and research directions. The agency may: adjust its research priorities, reallocate resources and personnel as identified in the survey.\nHighlights\n\nAstro highlight:\n\nWebb Discovers Methane, Carbon Dioxide in Atmosphere of K2-18 b\nLaunch of XRISM and Euclid missions\n\nBiological and Physical Sciences highlight:\n\nGene transcription (gravity variable)\n\nPlanetary highlight:\n\nSample return OSIRIS-REx and first analysis\nCelebration of DART success\nLaunch of Psyche mission\nDinkinesh Flyby of Lucy mission\n\nHeliophysics highlight:\n\nHeliophysics Big Year, a global celebration of solar science\nSolar Eclipse\nLaunch of AWE (Atmospheric Waves Experiment) mission\n\nEarth highlight:\n\nLaunch of TEMPO (Tropospheric Emissions: Monitoring of Pollution) mission\nLaunch of Earth Surface Mineral Dust Source Investigation (EMIT) and OCO-3 instruments",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "03 - SCM Noise Curves"
-    ]
+    "text": "NASA’s Science Mission Directorate (SMD) held its Fall Quarterly town hall meeting with the public. The event was led by NASA’s Associate Administrator for Science, Dr. Nicky Fox, and representatives of all SMD Divisions who answered questions submitted by the public on October 19. This one-hour event was advertised in advance at smd@listsrv2.nasaprs.com (enlist if you like). Watch the recorded video from that here.\n\nHow does NASA deal with starts for new missions, like UOP, if budgets are tight?\nHow does NASA deal with continuing resolutions (CRs) and with government shutdowns?\nHow will NASA/Biological Physical sciences respond to its recent NAS Decadal Survey?\nWhat are the 2 most interesting science highlights presented by the various divisions?\n\n\n\nGenerally, NASA will reallocate budget: it may adjust its portfolio to prioritize high-priority missions. This could mean delaying or scaling back other projects or seeking additional funds specifically earmarked for the mission. For Uranus Orbiter and Probe (UOP) specifically, NASA most likely will not initialize it in the next few years.\nDuring a Continuing Resolution, NASA can generally continue its operations at funding levels approved in the previous fiscal year but cannot start new projects and pend the amount of fundings. In the case of a government shutdown, non-essential operations are suspended, and only critical mission operations, like support for the International Space Station and maintaining mission properties. Scheduled launches will be postponed and administrative functions will be suspended.\nNASA’s Biological and Physical Sciences division would typically use the recommendations from the National Academies of Sciences (NAS) Decadal Survey to shape its research agenda. The division will hold a townhall which shares and discusses their responds. The survey is influential in determining funding priorities and research directions. The agency may: adjust its research priorities, reallocate resources and personnel as identified in the survey.\nHighlights\n\nAstro highlight:\n\nWebb Discovers Methane, Carbon Dioxide in Atmosphere of K2-18 b\nLaunch of XRISM and Euclid missions\n\nBiological and Physical Sciences highlight:\n\nGene transcription (gravity variable)\n\nPlanetary highlight:\n\nSample return OSIRIS-REx and first analysis\nCelebration of DART success\nLaunch of Psyche mission\nDinkinesh Flyby of Lucy mission\n\nHeliophysics highlight:\n\nHeliophysics Big Year, a global celebration of solar science\nSolar Eclipse\nLaunch of AWE (Atmospheric Waves Experiment) mission\n\nEarth highlight:\n\nLaunch of TEMPO (Tropospheric Emissions: Monitoring of Pollution) mission\nLaunch of Earth Surface Mineral Dust Source Investigation (EMIT) and OCO-3 instruments"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw03.html#question-1",
     "href": "courses/epss265/homeworks/epss265_hw03.html#question-1",
     "title": "03 - SCM Noise Curves",
     "section": "",
-    "text": "NASA’s Science Mission Directorate (SMD) held its Fall Quarterly town hall meeting with the public. The event was led by NASA’s Associate Administrator for Science, Dr. Nicky Fox, and representatives of all SMD Divisions who answered questions submitted by the public on October 19. This one-hour event was advertised in advance at smd@listsrv2.nasaprs.com (enlist if you like). Watch the recorded video from that here.\n\nHow does NASA deal with starts for new missions, like UOP, if budgets are tight?\nHow does NASA deal with continuing resolutions (CRs) and with government shutdowns?\nHow will NASA/Biological Physical sciences respond to its recent NAS Decadal Survey?\nWhat are the 2 most interesting science highlights presented by the various divisions?\n\n\n\nGenerally, NASA will reallocate budget: it may adjust its portfolio to prioritize high-priority missions. This could mean delaying or scaling back other projects or seeking additional funds specifically earmarked for the mission. For Uranus Orbiter and Probe (UOP) specifically, NASA most likely will not initialize it in the next few years.\nDuring a Continuing Resolution, NASA can generally continue its operations at funding levels approved in the previous fiscal year but cannot start new projects and pend the amount of fundings. In the case of a government shutdown, non-essential operations are suspended, and only critical mission operations, like support for the International Space Station and maintaining mission properties. Scheduled launches will be postponed and administrative functions will be suspended.\nNASA’s Biological and Physical Sciences division would typically use the recommendations from the National Academies of Sciences (NAS) Decadal Survey to shape its research agenda. The division will hold a townhall which shares and discusses their responds. The survey is influential in determining funding priorities and research directions. The agency may: adjust its research priorities, reallocate resources and personnel as identified in the survey.\nHighlights\n\nAstro highlight:\n\nWebb Discovers Methane, Carbon Dioxide in Atmosphere of K2-18 b\nLaunch of XRISM and Euclid missions\n\nBiological and Physical Sciences highlight:\n\nGene transcription (gravity variable)\n\nPlanetary highlight:\n\nSample return OSIRIS-REx and first analysis\nCelebration of DART success\nLaunch of Psyche mission\nDinkinesh Flyby of Lucy mission\n\nHeliophysics highlight:\n\nHeliophysics Big Year, a global celebration of solar science\nSolar Eclipse\nLaunch of AWE (Atmospheric Waves Experiment) mission\n\nEarth highlight:\n\nLaunch of TEMPO (Tropospheric Emissions: Monitoring of Pollution) mission\nLaunch of Earth Surface Mineral Dust Source Investigation (EMIT) and OCO-3 instruments",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "03 - SCM Noise Curves"
-    ]
+    "text": "NASA’s Science Mission Directorate (SMD) held its Fall Quarterly town hall meeting with the public. The event was led by NASA’s Associate Administrator for Science, Dr. Nicky Fox, and representatives of all SMD Divisions who answered questions submitted by the public on October 19. This one-hour event was advertised in advance at smd@listsrv2.nasaprs.com (enlist if you like). Watch the recorded video from that here.\n\nHow does NASA deal with starts for new missions, like UOP, if budgets are tight?\nHow does NASA deal with continuing resolutions (CRs) and with government shutdowns?\nHow will NASA/Biological Physical sciences respond to its recent NAS Decadal Survey?\nWhat are the 2 most interesting science highlights presented by the various divisions?\n\n\n\nGenerally, NASA will reallocate budget: it may adjust its portfolio to prioritize high-priority missions. This could mean delaying or scaling back other projects or seeking additional funds specifically earmarked for the mission. For Uranus Orbiter and Probe (UOP) specifically, NASA most likely will not initialize it in the next few years.\nDuring a Continuing Resolution, NASA can generally continue its operations at funding levels approved in the previous fiscal year but cannot start new projects and pend the amount of fundings. In the case of a government shutdown, non-essential operations are suspended, and only critical mission operations, like support for the International Space Station and maintaining mission properties. Scheduled launches will be postponed and administrative functions will be suspended.\nNASA’s Biological and Physical Sciences division would typically use the recommendations from the National Academies of Sciences (NAS) Decadal Survey to shape its research agenda. The division will hold a townhall which shares and discusses their responds. The survey is influential in determining funding priorities and research directions. The agency may: adjust its research priorities, reallocate resources and personnel as identified in the survey.\nHighlights\n\nAstro highlight:\n\nWebb Discovers Methane, Carbon Dioxide in Atmosphere of K2-18 b\nLaunch of XRISM and Euclid missions\n\nBiological and Physical Sciences highlight:\n\nGene transcription (gravity variable)\n\nPlanetary highlight:\n\nSample return OSIRIS-REx and first analysis\nCelebration of DART success\nLaunch of Psyche mission\nDinkinesh Flyby of Lucy mission\n\nHeliophysics highlight:\n\nHeliophysics Big Year, a global celebration of solar science\nSolar Eclipse\nLaunch of AWE (Atmospheric Waves Experiment) mission\n\nEarth highlight:\n\nLaunch of TEMPO (Tropospheric Emissions: Monitoring of Pollution) mission\nLaunch of Earth Surface Mineral Dust Source Investigation (EMIT) and OCO-3 instruments"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw03.html#question-2",
     "href": "courses/epss265/homeworks/epss265_hw03.html#question-2",
     "title": "03 - SCM Noise Curves",
     "section": "Question 2",
-    "text": "Question 2\n\nFor a day/time of interestNote1 from THEMIS or MMS, based on your perusal of the overview plots at the mission website, and using standard tools:\n\nPlot SCM time-series data in 2 different coordinate systems: one that you introduce from L2 files and one you create by rotating the data using cotrans (e.g., GSE and SM coord’s).\nDo a time-series spectrogram of a SCM component in some geophysical coordinates in survey and burst mode up to a high frequency, several kHz (use waveburst from THEMIS or “hb” from MMS).\nSelect a time when the geophysical signal (plasma waves) is at minimum (a quiet period) by looking at the dynamic power spectrum first. Compare the quiet time spectrum (a line spectrum) plot with published instrument noise curves: Point out the characteristic noise curve, a decreasing noise density as a function of frequency at low frequencies, a minimum near the resonance, and an increasing noise level at high frequencies – does it match expectation? Can you point out the plasma waves in the dynamic power spectrum?\n\nNote1: A good day for THEMIS is the first results Space Sci. Rev. paper (2007-03-23 13-16UT,) or the first Science paper (2008-02-26 4- 6UT) from any THEMIS spacecraft. A good day for MMS is the first Science paper (2015-10-16 13:00-14:00UT) from any MMS spacecraft.\n\nWe choose MMS for this question. And the data is from 2015-10-16 13:00-14:00UT.\nIts overall summary plot together with SCM quicklook plots are shown below.\n\n\n\n\n\n\n\n\nMMS Overall Summary\n\n\n\n\n\nMMS Overall Summary\n\n\n\n\n\n\n\n\n\n\n\n\nMMS SCM L2 SURVEY SCSRV\n\n\n\n\n\nMMS SCM L2 BRST SCB\n\n\n\n\nReferences:\n\nLe Contel, O., P. Leroy, A. Roux, C. Coillot, D. Alison, A. Bouabdellah, L. Mirioni, et al. “The Search-Coil Magnetometer for MMS.” Space Science Reviews 199, no. 1 (March 1, 2016): 257–82. https://doi.org/10.1007/s11214-014-0096-9.\nLPP - Laboratoire de Physique des Plasmas - UMR 7648 - MMS/SCM\nMMS SCM Quicklooks webpage\n\n\nTransforming coordinates\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data\n\n\n\n\nCode\ntime_range = ['2015-10-16T13:05:30', '2015-10-16T13:07:30']\n\ntvars = pyspedas.mms.scm(trange=time_range, data_rate='brst', time_clip=True, probe='1')\ntplot(tvars)\n\n\n03-Nov-23 23:04:53: Loading /Users/zijin/data/mms/mms1/scm/brst/l2/schb/2015/10/16/mms1_scm_brst_l2_schb_20151016130524_v2.2.0.cdf\n03-Nov-23 23:04:53: Loading /Users/zijin/data/mms/mms1/scm/brst/l2/scb/2015/10/16/mms1_scm_brst_l2_scb_20151016130524_v2.2.0.cdf\n03-Nov-23 23:04:57: Time clip was applied to: mms1_scm_acb_gse_scb_brst_l2\n03-Nov-23 23:04:57: Time clip was applied to: mms1_scm_acb_gse_schb_brst_l2\n03-Nov-23 23:04:57: Loaded variables:\n03-Nov-23 23:04:57: mms1_scm_acb_gse_scb_brst_l2\n03-Nov-23 23:04:57: mms1_scm_acb_gse_schb_brst_l2\n\n\n\n\n\n\n\n\n\n\n\nCode\ntvars_sm = []\ncoord_out = 'sm'\nfor tvar in tvars:\n    pyspedas.cotrans(tvar, coord_out=coord_out)\n    tvar_sm = tvar + '_' + coord_out\n    tvars_sm.append(tvar_sm)\n\ntplot(tvars_sm)\n\n\n03-Nov-23 23:04:58: ['gse', 'gsm', 'sm']\n03-Nov-23 23:05:01: Running transformation: subgse2gsm\n03-Nov-23 23:05:03: Running transformation: subgsm2sm\n03-Nov-23 23:05:03: Output variable: mms1_scm_acb_gse_scb_brst_l2_sm\n03-Nov-23 23:05:03: ['gse', 'gsm', 'sm']\n03-Nov-23 23:05:04: Running transformation: subgse2gsm\n03-Nov-23 23:05:05: Running transformation: subgsm2sm\n03-Nov-23 23:05:05: Output variable: mms1_scm_acb_gse_schb_brst_l2_sm\n\n\n\n\n\n\n\n\n\n\n\nSpectrogram\n\n\nCode\ntvar_tdpwrspc = pyspedas.tdpwrspc('mms1_scm_acb_gse_schb_brst_l2_sm')\ntplot(tvar_tdpwrspc[0])\n\ntvar_tdpwrspc = pyspedas.tdpwrspc('mms1_scm_acb_gse_scb_brst_l2_sm')\ntplot(tvar_tdpwrspc)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuiet time spectrum\n\nThe SCM provides the three components of the magnetic fluctuations in the 1 Hz – 6 kHz nominal frequency range. The noise equivalent magnetic induction (NEMI or sensitivity) of the search-coil antenna is less than or equal to : 2 pT/sqrt(Hz) at 10 Hz, 0.3 pT/sqrt(Hz) at 100 Hz and 0.05 pT/sqrt(Hz) at 1 kHz (Fig. 6). The SCM resolution at 1k Hz is 0.15pT.\n\n\n\n\n\n\n\n\n\nFigure 6. Noise curve in magnetic field (” NEMI “) of each axis of the triaxe fluxmeter.\n\n\n\n\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\nFrom quickplot, we visually find the quiet time is around 2015-10-16T13:06:16. It mathchs expectation and looks quite like the NEMI from publications : resonance near 1kz with minimum noise level, together with a decreasing noise density at low frequencies, and an increasing noise level at high frequencies.\nFrom the quickplot spectrum, we can see there are some waves of 50-200 Hz between 13:06:50 and 13:07:00. Also observed is weak wave near 800 hz before 13:05:40.\n\n\nCode\ndata = get_data(tvar_tdpwrspc[0], xarray=True)\nquiet_time_data = data.sel(time='2015-10-16T13:06:16')\n\nfig, ax = plt.subplots()\n\nax.loglog(quiet_time_data.spec_bins.data[0], np.sqrt(quiet_time_data.data[0])*1000)\n\nax.set_xlabel(\"Freq (Hz)\")\nax.set_ylabel(\"NEMI (pT/sqrt(Hz))\")\nplt.show()",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "03 - SCM Noise Curves"
-    ]
+    "text": "Question 2\n\nFor a day/time of interestNote1 from THEMIS or MMS, based on your perusal of the overview plots at the mission website, and using standard tools:\n\nPlot SCM time-series data in 2 different coordinate systems: one that you introduce from L2 files and one you create by rotating the data using cotrans (e.g., GSE and SM coord’s).\nDo a time-series spectrogram of a SCM component in some geophysical coordinates in survey and burst mode up to a high frequency, several kHz (use waveburst from THEMIS or “hb” from MMS).\nSelect a time when the geophysical signal (plasma waves) is at minimum (a quiet period) by looking at the dynamic power spectrum first. Compare the quiet time spectrum (a line spectrum) plot with published instrument noise curves: Point out the characteristic noise curve, a decreasing noise density as a function of frequency at low frequencies, a minimum near the resonance, and an increasing noise level at high frequencies – does it match expectation? Can you point out the plasma waves in the dynamic power spectrum?\n\nNote1: A good day for THEMIS is the first results Space Sci. Rev. paper (2007-03-23 13-16UT,) or the first Science paper (2008-02-26 4- 6UT) from any THEMIS spacecraft. A good day for MMS is the first Science paper (2015-10-16 13:00-14:00UT) from any MMS spacecraft.\n\nWe choose MMS for this question. And the data is from 2015-10-16 13:00-14:00UT.\nIts overall summary plot together with SCM quicklook plots are shown below.\n\n\n\n\n\n\nMMS Overall Summary\n\n\n\n\n\n\n\nMMS Overall Summary\n\n\n\n\n\n\n\n\n\n\n\nMMS SCM L2 SURVEY SCSRV\n\n\n\n\n\n\n\nMMS SCM L2 BRST SCB\n\n\n\n\n\nReferences:\n\nLe Contel, O., P. Leroy, A. Roux, C. Coillot, D. Alison, A. Bouabdellah, L. Mirioni, et al. “The Search-Coil Magnetometer for MMS.” Space Science Reviews 199, no. 1 (March 1, 2016): 257–82. https://doi.org/10.1007/s11214-014-0096-9.\nLPP - Laboratoire de Physique des Plasmas - UMR 7648 - MMS/SCM\nMMS SCM Quicklooks webpage\n\n\nTransforming coordinates\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data\n\n\n\n\nCode\ntime_range = ['2015-10-16T13:05:30', '2015-10-16T13:07:30']\n\ntvars = pyspedas.mms.scm(trange=time_range, data_rate='brst', time_clip=True, probe='1')\ntplot(tvars)\n\n\n03-Nov-23 23:04:53: Loading /Users/zijin/data/mms/mms1/scm/brst/l2/schb/2015/10/16/mms1_scm_brst_l2_schb_20151016130524_v2.2.0.cdf\n03-Nov-23 23:04:53: Loading /Users/zijin/data/mms/mms1/scm/brst/l2/scb/2015/10/16/mms1_scm_brst_l2_scb_20151016130524_v2.2.0.cdf\n03-Nov-23 23:04:57: Time clip was applied to: mms1_scm_acb_gse_scb_brst_l2\n03-Nov-23 23:04:57: Time clip was applied to: mms1_scm_acb_gse_schb_brst_l2\n03-Nov-23 23:04:57: Loaded variables:\n03-Nov-23 23:04:57: mms1_scm_acb_gse_scb_brst_l2\n03-Nov-23 23:04:57: mms1_scm_acb_gse_schb_brst_l2\n\n\n\n\n\n\n\nCode\ntvars_sm = []\ncoord_out = 'sm'\nfor tvar in tvars:\n    pyspedas.cotrans(tvar, coord_out=coord_out)\n    tvar_sm = tvar + '_' + coord_out\n    tvars_sm.append(tvar_sm)\n\ntplot(tvars_sm)\n\n\n03-Nov-23 23:04:58: ['gse', 'gsm', 'sm']\n03-Nov-23 23:05:01: Running transformation: subgse2gsm\n03-Nov-23 23:05:03: Running transformation: subgsm2sm\n03-Nov-23 23:05:03: Output variable: mms1_scm_acb_gse_scb_brst_l2_sm\n03-Nov-23 23:05:03: ['gse', 'gsm', 'sm']\n03-Nov-23 23:05:04: Running transformation: subgse2gsm\n03-Nov-23 23:05:05: Running transformation: subgsm2sm\n03-Nov-23 23:05:05: Output variable: mms1_scm_acb_gse_schb_brst_l2_sm\n\n\n\n\n\n\n\nSpectrogram\n\n\nCode\ntvar_tdpwrspc = pyspedas.tdpwrspc('mms1_scm_acb_gse_schb_brst_l2_sm')\ntplot(tvar_tdpwrspc[0])\n\ntvar_tdpwrspc = pyspedas.tdpwrspc('mms1_scm_acb_gse_scb_brst_l2_sm')\ntplot(tvar_tdpwrspc)\n\n\n\n\n\n\n\n\n\n\nQuiet time spectrum\n\nThe SCM provides the three components of the magnetic fluctuations in the 1 Hz – 6 kHz nominal frequency range. The noise equivalent magnetic induction (NEMI or sensitivity) of the search-coil antenna is less than or equal to : 2 pT/sqrt(Hz) at 10 Hz, 0.3 pT/sqrt(Hz) at 100 Hz and 0.05 pT/sqrt(Hz) at 1 kHz (Fig. 6). The SCM resolution at 1k Hz is 0.15pT.\n\n\n\n\n\n\n\nFigure 6. Noise curve in magnetic field (” NEMI “) of each axis of the triaxe fluxmeter.\n\n\n\n\n\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n\nFrom quickplot, we visually find the quiet time is around 2015-10-16T13:06:16. It mathchs expectation and looks quite like the NEMI from publications : resonance near 1kz with minimum noise level, together with a decreasing noise density at low frequencies, and an increasing noise level at high frequencies.\nFrom the quickplot spectrum, we can see there are some waves of 50-200 Hz between 13:06:50 and 13:07:00. Also observed is weak wave near 800 hz before 13:05:40.\n\n\nCode\ndata = get_data(tvar_tdpwrspc[0], xarray=True)\nquiet_time_data = data.sel(time='2015-10-16T13:06:16')\n\nfig, ax = plt.subplots()\n\nax.loglog(quiet_time_data.spec_bins.data[0], np.sqrt(quiet_time_data.data[0])*1000)\n\nax.set_xlabel(\"Freq (Hz)\")\nax.set_ylabel(\"NEMI (pT/sqrt(Hz))\")\nplt.show()"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw02.html",
     "href": "courses/epss265/homeworks/epss265_hw02.html",
     "title": "02 - FGM Basics",
     "section": "",
-    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\n\n\nCode\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\n\n\nCode\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "02 - FGM Basics"
-    ]
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\n\n\nCode\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\n\n\nCode\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw02.html#question-1",
     "href": "courses/epss265/homeworks/epss265_hw02.html#question-1",
     "title": "02 - FGM Basics",
     "section": "",
-    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\n\n\nCode\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\n\n\nCode\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "02 - FGM Basics"
-    ]
+    "text": "Obtain FGM data from THM (Level 1) or MMS (L2) or from ground based magnetometers (gmags) and plot it using SPEDAS (cmd line or gui, IDL or python).\nIf you are unsure which date to pick you can use:\n\nFor THEMIS data: 2008-02-26/04-06 UT (P3-5 or D,E,A) [see plots here]\nFor ground-based magnetometer data: same as above (e.g., stations Gillam, or Carson City, NV) [plots here]\nFor MMS data: 2015-10-16/08-14 UT (MMS1-4) [see plot here]\n\n\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, store_data, options\nfrom pipe import select\n\n\n\n\nCode\ntrange = ['2008-02-26T04:00', '2008-02-26T06:00']\nprobes = ['d', 'e', 'a']\n\npyspedas.themis.fgm(trange=trange, probe=probes, level='l1', time_clip=True)\n\n\n\n\nCode\ndatatype = 'fgl'\ntvar_format = \"th{probe}_{datatype}\"\ntvars =  list(probes | select(lambda x: tvar_format.format(probe=x, datatype=datatype)))\n\ntplot(tvars)"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw02.html#question-2",
     "href": "courses/epss265/homeworks/epss265_hw02.html#question-2",
     "title": "02 - FGM Basics",
     "section": "Question 2",
-    "text": "Question 2\n\nProcess your data: compute the total field from its components and plot it in the same panel as the three components using colors b/g/r/black for x/y/z/t.\n\n\n\nCode\nfrom xarray_einstats import linalg\nfrom pytplot import split_vec, join_vec\n\n\nWe define a utility function to compute the total field from its components, see below\n\n\nCode\n\ndef _tvectot(tvar: str, new_name: str, join_component: bool):\n    data = get_data(tvar, xarray=True)\n    new_data = linalg.norm(data, dims=\"v_dim\")\n    store_data(new_name, new_data, xarray=True)\n    \n    if join_vec:\n        join_vec(split_vec(tvar)+[new_name], new_name)\n        options(new_name, 'legend_names', ['x', 'y', 'z', 'Magnitude'])\n    else:\n        options(new_name, 'legend_names', 'Magnitude')\n    return new_name\n\ndef tvectot(tvars: str | list[str], newnames: str | list[str] = None, suffix=\"_mag\", join_component=False) -&gt; str | list[str]:\n    \"\"\"\n    Computes the magnitude of a vector time series.\n\n    Parameters\n    ----------\n    - tvars : Names of the tplot variables.\n    - new_names: Names for the resultant magnitude tplot variables. If not provided, it appends the suffix to `tvars`.\n    - suffix: The suffix to append to tensor_names to form new_names if new_names is not provided.\n    - join_component: If True, the magnitude tplot variable is joined with the component tplot variables.\n\n    Returns\n    -------\n    Names of the magnitude tplot variables.\n    \"\"\"\n    tvars_type = type(tvars)\n    if tvars_type == str:\n        tvars = [tvars]\n    if join_vec:\n        suffix = \"_tot\"\n\n    if newnames is None:\n        newnames = [tvar + suffix for tvar in tvars]\n\n    for tvar, newname in zip(tvars, newnames):\n        _tvectot(tvar, newname, join_component)\n    \n    if tvars_type == str:\n        return newnames[0]\n    else:\n        return newnames\n\n\n\n\nCode\ntvar_tots = tvectot(tvars, join_component=True)\ntplot(tvar_tots)",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "02 - FGM Basics"
-    ]
+    "text": "Question 2\n\nProcess your data: compute the total field from its components and plot it in the same panel as the three components using colors b/g/r/black for x/y/z/t.\n\n\n\nCode\nfrom xarray_einstats import linalg\nfrom pytplot import split_vec, join_vec\n\n\nWe define a utility function to compute the total field from its components, see below\n\n\nCode\n\ndef _tvectot(tvar: str, new_name: str, join_component: bool):\n    data = get_data(tvar, xarray=True)\n    new_data = linalg.norm(data, dims=\"v_dim\")\n    store_data(new_name, new_data, xarray=True)\n    \n    if join_vec:\n        join_vec(split_vec(tvar)+[new_name], new_name)\n        options(new_name, 'legend_names', ['x', 'y', 'z', 'Magnitude'])\n    else:\n        options(new_name, 'legend_names', 'Magnitude')\n    return new_name\n\ndef tvectot(tvars: str | list[str], newnames: str | list[str] = None, suffix=\"_mag\", join_component=False) -&gt; str | list[str]:\n    \"\"\"\n    Computes the magnitude of a vector time series.\n\n    Parameters\n    ----------\n    - tvars : Names of the tplot variables.\n    - new_names: Names for the resultant magnitude tplot variables. If not provided, it appends the suffix to `tvars`.\n    - suffix: The suffix to append to tensor_names to form new_names if new_names is not provided.\n    - join_component: If True, the magnitude tplot variable is joined with the component tplot variables.\n\n    Returns\n    -------\n    Names of the magnitude tplot variables.\n    \"\"\"\n    tvars_type = type(tvars)\n    if tvars_type == str:\n        tvars = [tvars]\n    if join_vec:\n        suffix = \"_tot\"\n\n    if newnames is None:\n        newnames = [tvar + suffix for tvar in tvars]\n\n    for tvar, newname in zip(tvars, newnames):\n        _tvectot(tvar, newname, join_component)\n    \n    if tvars_type == str:\n        return newnames[0]\n    else:\n        return newnames\n\n\n\n\nCode\ntvar_tots = tvectot(tvars, join_component=True)\ntplot(tvar_tots)"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw02.html#question-3",
     "href": "courses/epss265/homeworks/epss265_hw02.html#question-3",
     "title": "02 - FGM Basics",
     "section": "Question 3",
-    "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here\nIt is also possible to use SSC Locator Graphics, which is also more general.",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "02 - FGM Basics"
-    ]
+    "text": "Question 3\n\nShow the locations of the spacecraft or the ground-based station you used above in relevant geophysical coordinates (GSE, GSM, MAG, …) from a webbased tool (tipsod or other) or plot it in SPEDAS (you can find cribs for that).\n\nTHEMIS website provides good summary plot of the spacecraft locations in various coordinate systems, see here\nIt is also possible to use SSC Locator Graphics, which is also more general."
   },
   {
     "objectID": "courses/epss265/homeworks/index.html",
     "href": "courses/epss265/homeworks/index.html",
     "title": "Homework",
     "section": "",
-    "text": "02 - FGM Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n03 - SCM Noise Curves\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n04 - EFI Calibration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n05 - LEP Principles\n\n\nLow Energy Plasma Instruments\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework"
-    ]
-  },
-  {
-    "objectID": "courses/phys231/index.html",
-    "href": "courses/phys231/index.html",
-    "title": "PHYSICS 231A",
-    "section": "",
-    "text": "In this course, we will cover a selection of analytic methods useful in a wide variety of physics topics. This includes complex analysis, asymptotic approximation of integrals, summing divergent series, manifold topology and de Rham cohomology, Fourier analysis, linear differential equations and Green’s functions, and perturbation theory for nonlinear problems.",
-    "crumbs": [
-      "Courses",
-      "PHYSICS 231A"
-    ]
-  },
-  {
-    "objectID": "courses/phys231/index.html#about",
-    "href": "courses/phys231/index.html#about",
-    "title": "PHYSICS 231A",
-    "section": "",
-    "text": "In this course, we will cover a selection of analytic methods useful in a wide variety of physics topics. This includes complex analysis, asymptotic approximation of integrals, summing divergent series, manifold topology and de Rham cohomology, Fourier analysis, linear differential equations and Green’s functions, and perturbation theory for nonlinear problems.",
-    "crumbs": [
-      "Courses",
-      "PHYSICS 231A"
-    ]
+    "text": "02 - FGM Basics\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\n03 - SCM Noise Curves\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\n04 - EFI Calibration\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\n05 - LEP Principles\n\n\nLow Energy Plasma Instruments\n\n\n\n\n\n\n\n \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "🪐 A graduate student at UCLA, majoring in space science & planetary science.",
-    "crumbs": [
-      "About"
-    ]
+    "text": "🪐 A graduate student at UCLA, majoring in space science & planetary science."
   },
   {
     "objectID": "about.html#education",
     "href": "about.html#education",
     "title": "About",
     "section": "Education",
-    "text": "Education\nUniversity of California, Los Angeles | Los Angeles, CA PhD in Planetary Science | Sept 2022 - Present",
-    "crumbs": [
-      "About"
-    ]
+    "text": "Education\nUniversity of California, Los Angeles | Los Angeles, CA PhD in Planetary Science | Sept 2022 - Present"
   },
   {
     "objectID": "projects/index.html",
     "href": "projects/index.html",
     "title": "Projects",
     "section": "",
-    "text": "Evolution of solar wind discontinuities over radial distance\nEnergetic ion scattering by solar wind discontinuities\nRelativistic electron flux decay and recovery: relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind - Undergraduate thesis\n\nFINESST",
-    "crumbs": [
-      "Projects"
-    ]
+    "text": "Evolution of solar wind discontinuities over radial distance\nEnergetic ion scattering by solar wind discontinuities\nRelativistic electron flux decay and recovery: relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind - Undergraduate thesis\n\nFINESST"
   },
   {
     "objectID": "projects/index.html#research-projects",
     "href": "projects/index.html#research-projects",
     "title": "Projects",
     "section": "",
-    "text": "Evolution of solar wind discontinuities over radial distance\nEnergetic ion scattering by solar wind discontinuities\nRelativistic electron flux decay and recovery: relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind - Undergraduate thesis\n\nFINESST",
-    "crumbs": [
-      "Projects"
-    ]
+    "text": "Evolution of solar wind discontinuities over radial distance\nEnergetic ion scattering by solar wind discontinuities\nRelativistic electron flux decay and recovery: relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind - Undergraduate thesis\n\nFINESST"
   },
   {
     "objectID": "index.html",
@@ -172,195 +119,94 @@
     "text": "Form is emptiness, emptiness is form"
   },
   {
-    "objectID": "courses/phys231/phys231_hw02.html",
-    "href": "courses/phys231/phys231_hw02.html",
-    "title": "Homework 02",
-    "section": "",
-    "text": "Mathematica notebook",
-    "crumbs": [
-      "Courses",
-      "PHYSICS 231A",
-      "Homework 02"
-    ]
-  },
-  {
-    "objectID": "courses/phys231/phys231_hw02.html#power-series",
-    "href": "courses/phys231/phys231_hw02.html#power-series",
-    "title": "Homework 02",
-    "section": "5. Power series",
-    "text": "5. Power series\n\nConsider a power series of the form\n\\[\na=1+ \\sum_{n=1}^{\\infty} a_n z^n\n\\]\nShow that there is another power series\n\\[\nb = \\sum_{n=0}^{\\infty} b_n z^n\n\\]\nsuch that, as a formal expression\n\\[\nab = 1\n\\]\nDo this by giving a recurrence relation for the coefficients \\(b_n\\). Solve this recurrence relation for \\(1/e^z\\) and show it gives the power series for \\(e^{−z}\\).\n\nThe product \\(ab\\) can be written as:\n\\[\nab = \\left(1 + \\sum_{n=1}^{\\infty} a_n z^n \\right) \\left( \\sum_{n=0}^{\\infty} b_n z^n \\right) = 1\n\\]\nBy expanding, we get:\n\\[\nab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \\dots + \\left( \\sum_{k=0}^{n} a_k b_{n-k} \\right) z^n + \\dots\n\\]\nFor \\(ab = 1\\), all the coefficients of \\(z^n\\) (for \\(n \\geq 1\\)) must be zero, and the constant term (the coefficient of \\(z^0\\)) must be 1. This gives us the following conditions:\n\n\\(b_0 = 1\\) (since the constant term of \\(ab\\) must be 1).\nFor \\(n \\geq 1\\), we have \\(\\sum_{k=0}^{n} a_k b_{n-k} = 0\\).\n\nFor \\(a_k\\), we have \\(a_0 = 1\\) and \\(a_n\\) for \\(n \\geq 1\\). Thus, the recurrence relation for \\(b_n\\) becomes:\n\\[\nb_n = -\\sum_{k=1}^{n} a_k b_{n-k} \\quad \\text{for } n \\geq 1\n\\]\nFor \\(a = e^z\\). The power series for \\(b= 1/e^z\\) is given by:\n\n\\(b_0 = 1\\) (from the initial condition).\nFor \\(n \\geq 1\\):\n\n\\[\nb_n = -\\sum_{k=1}^{n} \\frac{1}{k!} b_{n-k}\n\\]\nAnd if \\(b_n = \\frac{(-1)^n}{n!}\\). Then, it is exactly the power series for \\(e^{-z}\\):\n\\[\ne^{-z} = \\sum_{n=0}^{\\infty} \\frac{(-z)^n}{n!}\n\\]\nTo prove \\(b_n = \\frac{(-1)^n}{n!}\\), we use induction method. Suppose it is true for \\(n\\), then using\n\\[\n(1 + (-1))^{n+1} = \\sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \\sum_{k=0}^{n+1} \\frac{(-1)^{n+1-k}}{k! (n+1-k)!}\n\\]\nBy substituting \\(b_k = \\frac{(-1)^k}{k!}\\) for \\(k \\le n\\), we have\n\\[\n(-1)^{n+1} / (n+1)~! = -\\sum_{k=1}^{n+1} \\frac{1}{k!} b_{n-k}\n\\]\nSo \\(b_{n+1} = \\frac{(-1)^{n+1}}{(n+1)!}\\). Q.E.D",
-    "crumbs": [
-      "Courses",
-      "PHYSICS 231A",
-      "Homework 02"
-    ]
-  },
-  {
-    "objectID": "courses/phys231/phys231_hw02.html#expansion-near-pole",
-    "href": "courses/phys231/phys231_hw02.html#expansion-near-pole",
-    "title": "Homework 02",
-    "section": "6. Expansion near pole",
-    "text": "6. Expansion near pole\n\nAssuming the result of problem 5 and the bonus problem, show that if \\(f (z) = g(z)/h(z)\\) has a pole at \\(z = 0\\), that we can expand \\(f(z)\\) in a series\n\\[\nf (z) = \\sum_{n=-m}^{\\infty} a_n z^n\n\\]\nfor some \\(m\\), and that this converges in a “punctured disc” \\(\\{ z | |z| &lt; R, z \\ne 0 \\}\\). Make such an expansion for \\(f (z) = z/(1 + z^2)\\) around \\(z = i\\) (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).\n\nSince \\(f(z)\\) has a pole at \\(z = 0\\), \\(h(z)\\) must have a zero of order \\(m\\) at \\(z = 0\\)\nGiven this, \\(h(z)\\) can be written as \\(z^m k(z)\\) where \\(k(z)\\) is analytic and non-zero at \\(z = 0\\). Therefore, \\(f(z)\\) can be written as:\n\\[\nf(z) = \\frac{g(z)}{z^m k(z)}\n\\]\nSince \\(k(z)\\) is analytic and non-zero at \\(z = 0\\), there exists a power series \\(\\sum_{n=0}^{\\infty} b_n z^n\\) such that \\(\\frac{1}{k(z)} = \\sum_{n=0}^{\\infty} b_n z^n\\) . This leads to:\n\\[\nf(z) = \\frac{g(z)}{z^m} \\sum_{n=0}^{\\infty} b_n z^n = \\sum_{n=0}^{\\infty} b_n g(z) z^{n-m}\n\\]\nfor \\(z \\ne 0\\). As \\(g(z)\\) is analytic at \\(z = 0\\), it can also be expanded into a power series around \\(z = 0\\). Thus, the product of these two series results in a series of the form:\n\\[\nf(z) = \\sum_{n=-m}^{\\infty} a_n z^n\n\\]\nThis series converges in some punctured disc \\(\\{ z \\,|\\, |z| &lt; R, z \\ne 0 \\}\\) because it is the product of two convergent power series in that region.\nFor the specific function \\(f(z) = \\frac{z}{1 + z^2}\\), we want to expand around \\(z = i\\)\n\\[\nf(z) = \\frac{z}{(z - i)(z + i)}\n\\]\nTo expand around \\(z = i\\), let’s set \\(w = z - i\\), so \\(z = w + i\\). Then:\n\\[\nf(w + i) = \\frac{w + i}{ w (w + 2i)}\n\\]\nNow, observe that:\n\\[\n\\frac{1}{w + 2i} = \\frac{1}{2i} \\cdot \\frac{1}{1 + \\frac{w}{2i}}\n\\]\nSince \\(|\\frac{w}{2i}| &lt; 1\\) for \\(|w| &lt; 2\\), we can use the geometric series expansion:\n\\[\n\\frac{1}{1 + \\frac{w}{2i}} = \\sum_{n=0}^{\\infty} \\left(-\\frac{w}{2i}\\right)^n\n\\]\nThus, we get:\n\\[\nf(z) = \\frac{w + i}{2i w } \\cdot \\sum_{n=0}^{\\infty} \\left(-\\frac{w}{2i}\\right)^n\n\\]\nwhich will be valid in a punctured disc around \\(z = i\\), specifically for \\(|z - i| &lt; 2\\) (or \\(|w| &lt; 2\\)).",
-    "crumbs": [
-      "Courses",
-      "PHYSICS 231A",
-      "Homework 02"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/project/project.html",
-    "href": "courses/epss265/project/project.html",
-    "title": "Objective",
-    "section": "",
-    "text": "If a thin Aluminum layer is deposited over a solid-state detector active area, the energy loss by the particle in that Al layer will not be recorded. The shorter the range of a particle the more the relative energy that will be missed. The range depends on mass near the last portion of the flight: heavier ions stop earlier. Two detectors, a bare one and one with an Al layer, measuring the same beam could give very different results for He+ or O+.\nPlot the energy recorded (past the Al) versus the incident energy, for beams of various energies, and for different thickness (10nm, 100nm, …). Use H+, He+, O+. Demonstrate that with a sufficient number of detectors you could differentiate monoenergetic protons, He+ and O+. Use SPENVIS or GEANT-4 for your modeling.\nBonus: simulate the number of detectors required to deconvolve the effects of a single, thermalized (not beam) distribution with dE/E~100%.\n\nDirections\nThis will be done by creating a plot of energy deposited in Si as function of input energy. You will use freeware Geant-4 which simulates particle interaction with matter, through a portal: SPENVIS. Various models exist there (very useful site!).\nFirst you have to register, then create a project, then input your model input and output parameters, then make a run and get results one-energy-at-a-time. Once you know how to do that, then you must create an array of inputs and outputs outside of SPENVIS in your favorite plotting package (e.g., excel, python or other). You will then record those results and plot them, one array for protons, another for He+ and another for O+. You can try other species as well, for example O2+ which may be present in the low altitude ionosphere.\n\nAssume monoenergetic beams. The program allows you to use a simple ion spectrum. (For the bonus question you have to make a guess on the instrument response function, model it in a simple analytical form, then prove it can be done using Geant-4. You do not have to do the bonus.)\n\nFor your outline, make sure you can obtain results, understand the problem enough to present the requested report structure, before actually doing the plots. Present a statement of task, the process and the expected results to be plotted.\nFor your report, you should not repeat the steps I mention below, but just execute your outline above and go right to the findings, plots and discussion. In the discussion explain how you use the model to design a detector system (how many detectors, thicknesses, orientations etc) that does the job.\n\nOn SPENVIS after registration, name your project and proceed to use Geant-4 “MULASSIS”. You can save your run, and come back to it later.\nYour system will be a 3 layer system, where the first layer is air, the second Al of variable thickness and the third Silicon of a mm or two... enough to stop the highest energy of interest. You shoot some particles (10,000 is a good number), and record how much energy is deposited in Si. Excluding losses in the Si (phonons) the lost energy is mainly due to losses in the Aluminum. Pick the source parameters: How many/which ions, charge angle (-22 deg -&gt; 22 deg).\nFor Geometry you pick the layers above, and for Al choose 0, 1, 10 100 nm, one thickness at a time.\nSpecify the input as monoenergetic beam.\nSpecify analysis parameters as mean energy (the mean energy deposited based on the 10,000 particle run)\nCreate a macro (a bunch of commands that tell Geant-4 what to do) and Run.\nSee the plot\nOutput results (2 numbers) into your program next to input energy to build the in/out energy curve.\nRepeat, one point at a time.\nPlot results for one species and then (in different color) for other species.\nRepeat for different Al thicknesses.\n\n\n\nGeometry Definition\nSource particles\n\nHe+\n\nAtomic number: 2\nNucleon number: 4\n\n\nMaterial Definition\nhttps://www.spenvis.oma.be/restricted/load_result.php/EPSS265/spenvis_mul-rmt.txt\nhttps://www.spenvis.oma.be/spenvis/htusers/b/beforerr/EPSS265/1699989981/spenvis_mlo.txt\n\n\n\nCode\nimport yaml\n\nwith open(\"config.yaml\", 'r') as stream:\n    config = yaml.safe_load(stream)\n\n\n\n\nCode\nuser = config[\"user\"]\nproject = config[\"project\"]\nrun = config[\"run\"]\nfiles = config[\"files\"]\n\noutput = files[\"output\"]\nreport = files[\"report\"]\n\nbase_url = config[\"base_url\"]\nurl_pattern = config[\"url_pattern\"]\n\nprint(\n    url_pattern.format(\n        base_url=base_url,\n        user=user,\n        project=project,\n        run=run,\n        filename=output[\"filename\"],\n    )\n)\n\nprint(\n    url_pattern.format(\n        base_url=base_url,\n        user=user,\n        project=project,\n        run=run,\n        filename=report[\"filename\"],\n    )\n)\n\n\nhttps://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mlo.txt\nhttps://www.spenvis.oma.be/spenvis/htusers/b//beforerr/EPSS265/1699990533/spenvis_mul-rmt.txt\n\n\n\n’*‘, 10, 4, 0, 0, 5, 5, 3, 0 ’DOSE ANALYSIS’ ‘MULASSIS v1.23’ ‘geant4-09-05-patch-02 (22-October-2012)’ ‘File Created: Wed Nov 15 23:11:52 2023’\n‘End of File’\n\n\nSPENVIS generated macrofile for MULASSIS\n/geometry/layer/delete 0 /geometry/material/addNIST G4_Al /geometry/material/addNIST G4_Si /geometry/layer/shape slab /geometry/layer/add 0 Vacuum 1 1.000E+00 mm /geometry/layer/add 1 G4_Al 2 1.000E-03 um /geometry/layer/add 2 G4_Si 3 1.000E+00 mm # Total thickness = 2.000 mm /analysis/file spenvis # # Analysis definition #",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Project",
-      "Objective"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/homeworks/epss265_hw04.html",
-    "href": "courses/epss265/homeworks/epss265_hw04.html",
-    "title": "04 - EFI Calibration",
-    "section": "",
-    "text": "For a time of interest from THEMIS or MMS (or RBSP or other), based on the overview plots at the mission website, finish the following steps.\n\nObtain EFI data in spinning and despun spacecraft coord’s and in some geophysical (e.g., GSE or GSM) coord’s.\nUsing the data in DSL or DMPA coordinates (where XY are despun, spin-plane components) estimate the offset in X and Y from a quiet time in the magnetosphere when the flows, and hence –VxB, are expected to be slow. Remove the offset from the data.\nWith the spin plane offsets removed, obtain the 3rd component (Z) for times when the Bfield is at a large angle relative to the spin plane (&gt;10 deg or more) using the E*B=0 approximation.\nCompare your estimate of Ez with the measurement of the same component made by the axial electric field boom pair. How large are the offsets for the axial field compared to those you have found for the spin plane components?\n\nNote: A crib sheet and a jupyter notebook on how to perform the offset removal and EdotB determination are my_thm_efi_load_cal_crib.pyspd and my_thm_efi_load_cal_crib.py, located in the class notes below Lecture 12. Use a different spacecraft for your solution. A good day for THEMIS is another spacecraft from the first Science paper (2008-02-26 4-6UT)– except TH-D which is in the released crib sheet. A good day for MMS is the first Science paper (2015-10-16 13:05-13:08UT) from any of the four MMS spacecraft.\nWe choose MMS for this question. And the data is from 2015-10-16 13:00-14:00UT.\nIts overall summary plot together with SCM quicklook plots are shown below.",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "04 - EFI Calibration"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/homeworks/epss265_hw04.html#quickplot",
-    "href": "courses/epss265/homeworks/epss265_hw04.html#quickplot",
-    "title": "04 - EFI Calibration",
-    "section": "Quickplot",
-    "text": "Quickplot\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, tlimit\n\nimport xarray as xr\nimport numpy as np\n\n\n\n\nCode\ntrange = ['2015-10-16T13:00:00', '2015-10-16T13:10:00']\ntvars = pyspedas.mms.edp(trange=trange, time_clip=True)\ntplot(tvars)\n\n\n28-Nov-23 17:11:35: Loading /Users/zijin/data/mms/mms1/edp/fast/l2/dce/2015/10/mms1_edp_fast_l2_dce_20151016_v2.1.0.cdf\n28-Nov-23 17:11:37: Time clip was applied to: mms1_edp_dce_gse_fast_l2\n28-Nov-23 17:11:38: Time clip was applied to: mms1_edp_dce_dsl_fast_l2\n28-Nov-23 17:11:38: Time clip was applied to: mms1_edp_dce_par_epar_fast_l2\n28-Nov-23 17:11:38: Loaded variables:\n28-Nov-23 17:11:38: mms1_edp_dce_gse_fast_l2\n28-Nov-23 17:11:38: mms1_edp_dce_dsl_fast_l2\n28-Nov-23 17:11:38: mms1_edp_dce_par_epar_fast_l2\n\n\n\n\n\n\n\n\n\n\n\nCode\ntrangeOfInterest = ['2015-10-16T13:06:30', '2015-10-16T13:07:30']\ntlimit(trangeOfInterest)\ntplot(tvars)",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "04 - EFI Calibration"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/homeworks/epss265_hw04.html#offset",
-    "href": "courses/epss265/homeworks/epss265_hw04.html#offset",
-    "title": "04 - EFI Calibration",
-    "section": "Offset",
-    "text": "Offset\nWe choose a quite time by manually inspecting the data.\n\n\nCode\ntrange4offset = ['2015-10-16T13:00:30', '2015-10-16T13:01:30']\ntlimit(trange4offset)\ntplot(tvars)\ntlimit(full=True)\n\n\n\n\n\n\n\n\n\n\n\nCode\ne_tvar = 'mms1_edp_dce_dsl_fast_l2'\ne_data : xr.DataArray = get_data(e_tvar, xarray=True)\noffset = e_data.sel(time=slice(trange4offset[0], trange4offset[1])).mean(dim='time')\nprint('Ex offset =', offset[0].data)\nprint('Ey offset =', offset[1].data)\n\n\nEx offset = 0.23904572\nEy offset = 0.18106854",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "04 - EFI Calibration"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/homeworks/epss265_hw04.html#e_z-component",
-    "href": "courses/epss265/homeworks/epss265_hw04.html#e_z-component",
-    "title": "04 - EFI Calibration",
-    "section": "\\(E_z\\) component",
-    "text": "\\(E_z\\) component\nWe use the \\(E \\cdot B=0\\) approximation to calculate \\(E_z\\) component. And we ignore the differences (fractions of a degree) between DBCS, DMPA and DSL. *\n\n\nCode\npyspedas.mms.fgm(trange=trange, time_clip=True, varformat='*dmpa*')\nmag_tvar = 'mms1_fgm_b_dmpa_srvy_l2'\ntplot(mag_tvar)\n\n\n28-Nov-23 17:14:28: Loading /Users/zijin/data/mms/mms1/fgm/srvy/l2/2015/10/mms1_fgm_srvy_l2_20151016_v4.18.0.cdf\n28-Nov-23 17:14:30: Time clip was applied to: mms1_fgm_b_dmpa_srvy_l2\n28-Nov-23 17:14:30: Time clip was applied to: mms1_fgm_flag_srvy_l2\n28-Nov-23 17:14:30: Loaded variables:\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_gse_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_gse_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_gsm_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_gsm_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_bcs_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_bcs_srvy_l2_btot\n\n\n\n\n\n\n\n\n\n\n\nCode\ndef calibrate_offset(data, offset):\n    return data - offset\n\n\n\n\nCode\ndef calibrate_e_dot_b(e_data: xr.DataArray, mag_data, threshold_angle=10):\n    data = e_data.copy()\n    data[:, 2] = (\n        -(e_data[:, 0] * mag_data[:, 0] + e_data[:, 1] * mag_data[:, 1])\n        / mag_data[:, 2]\n    )\n    \n    threshold = np.sin(np.deg2rad(threshold_angle))\n    mask = np.abs((mag_data[:, 2] / mag_data[:, 3])) &gt; threshold\n    data[~mask] = np.nan\n    \n    return data\n\n\n\n\nCode\n# Interpolate FGM data on EDP times\npyspedas.tinterpol(mag_tvar, e_tvar)\nmag_data = get_data(mag_tvar + '-itrp', xarray=True)\n\ne_data_c1 = calibrate_offset(e_data, offset)\ne_data_c2 = calibrate_e_dot_b(e_data_c1, mag_data)\n\n\n28-Nov-23 17:15:11: tinterpol (linear) was applied to: mms1_fgm_b_dmpa_srvy_l2-itrp",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "04 - EFI Calibration"
-    ]
-  },
-  {
-    "objectID": "courses/epss265/homeworks/epss265_hw04.html#comparison",
-    "href": "courses/epss265/homeworks/epss265_hw04.html#comparison",
-    "title": "04 - EFI Calibration",
-    "section": "Comparison",
-    "text": "Comparison\n\nCompare your estimate of Ez with the measurement of the same component made by the axial electric field boom pair. How large are the offsets for the axial field compared to those you have found for the spin plane components?\n\n\n\nCode\nez_data = e_data.sel(v_dim=2)\nez_data_c2 = e_data_c2.sel(v_dim=2)\n\nxr.concat(\n    [\n        ez_data.assign_coords(datatype=\"Ez original\"),\n        ez_data_c2.assign_coords(datatype=\"Ez calibrated\"),\n    ],\n    dim=\"datatype\",\n).plot(x=\"time\", hue=\"datatype\")\n\n\n\n\n\n\n\n\n\n\n\nCode\nez_offset = np.abs(ez_data - ez_data_c2).mean()\nprint(\"Ez offset = \", ez_offset.data)\n\n\nEz offset =  0.43761042",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "04 - EFI Calibration"
-    ]
-  },
-  {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html",
     "href": "courses/epss265/homeworks/epss265_hw05.html",
     "title": "05 - LEP Principles",
     "section": "",
-    "text": "References:",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "References:"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html#q1.-retarding-potential-analyzers",
     "href": "courses/epss265/homeworks/epss265_hw05.html#q1.-retarding-potential-analyzers",
     "title": "05 - LEP Principles",
     "section": "Q1. Retarding Potential Analyzers",
-    "text": "Q1. Retarding Potential Analyzers\n\nIn the ionosphere, mount along ram velocity, measure species densities (in like atomic mass groups)\n\nRam speed (7.5km/s) is high or supersonic relative to ion thermal speed or motion\nSpacecraft (sc) charging is negative and small relative to motional energy\nI-V curve has steps at \\(qV_{ret} = \\frac{1}{2}m(V_{sr}+V_r)^2 – q \\phi_s\\) ; \\(\\phi_s\\) = sensor potential (w/r/t to plasma), \\(V_{s_r}\\) = sc ram speed, \\(V_r\\) = ion speed\n\nHomework Q#1\n\nShow that the thermal width of the steps is \\(m V_{sr} V_{th}\\), where \\(V_{th}\\) is the ion species thermal speed.\nShow that for sensor potential of –0.8V, the step functions are at ~1.1V for H+ and ~5.5V for O+.\n\n\n\n\n\n\n\nFigure 1. Schematic cross-sectio onf the planar RPA sensor illustrating the arrangement of internal grids required to perform the retarding potential analysis of thermal ions.\n\n\nthermal width = \\(\\frac{1}{2} m (V_{th} + V_{s_r})^2 - \\frac{1}{2} m (V_{th} - V_{s_r})^2 = m V_{s_r} V_{th}\\)\nstep function for low temperature ions, taking \\(V_{r}=0\\)\n\\[V_{ret} = \\frac{1}{2} \\frac{m}{q}V_{s_r}^2 – \\phi_s\\]\n\n\nCode\nfrom plasmapy.particles import Particle\nimport astropy.units as u\n\n\n\ndef calc_step_potential(phi, v_sr, particle: Particle):\n    result = particle.mass * v_sr ** 2 / (2 * particle.charge) - phi\n    return result.to(u.V)\n\nphi = -0.8 * u.V\nv_sr = 7.5 * u.km / u.s\n\nproton = Particle('proton')\no_plus = Particle('O+')\n\nprint(f'Proton step potential: {calc_step_potential(phi, v_sr, proton)}')\nprint(f'O+ step potential: {calc_step_potential(phi, v_sr, o_plus)}')\n\nProton step potential: 1.0936161382302447 V\nO+ step potential: 5.463469940275583 V",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "Q1. Retarding Potential Analyzers\n\nIn the ionosphere, mount along ram velocity, measure species densities (in like atomic mass groups)\n\nRam speed (7.5km/s) is high or supersonic relative to ion thermal speed or motion\nSpacecraft (sc) charging is negative and small relative to motional energy\nI-V curve has steps at \\(qV_{ret} = \\frac{1}{2}m(V_{sr}+V_r)^2 – q \\phi_s\\) ; \\(\\phi_s\\) = sensor potential (w/r/t to plasma), \\(V_{s_r}\\) = sc ram speed, \\(V_r\\) = ion speed\n\nHomework Q#1\n\nShow that the thermal width of the steps is \\(m V_{sr} V_{th}\\), where \\(V_{th}\\) is the ion species thermal speed.\nShow that for sensor potential of –0.8V, the step functions are at ~1.1V for H+ and ~5.5V for O+.\n\n\n\n\n\n\n\nFigure 1. Schematic cross-sectio onf the planar RPA sensor illustrating the arrangement of internal grids required to perform the retarding potential analysis of thermal ions.\n\n\nthermal width = \\(\\frac{1}{2} m (V_{th} + V_{s_r})^2 - \\frac{1}{2} m (V_{th} - V_{s_r})^2 = m V_{s_r} V_{th}\\)\nstep function for low temperature ions, taking \\(V_{r}=0\\)\n\\[V_{ret} = \\frac{1}{2} \\frac{m}{q}V_{s_r}^2 – \\phi_s\\]\n\n\nCode\nfrom plasmapy.particles import Particle\nimport astropy.units as u\n\n\n\ndef calc_step_potential(phi, v_sr, particle: Particle):\n    result = particle.mass * v_sr ** 2 / (2 * particle.charge) - phi\n    return result.to(u.V)\n\nphi = -0.8 * u.V\nv_sr = 7.5 * u.km / u.s\n\nproton = Particle('proton')\no_plus = Particle('O+')\n\nprint(f'Proton step potential: {calc_step_potential(phi, v_sr, proton)}')\nprint(f'O+ step potential: {calc_step_potential(phi, v_sr, o_plus)}')\n\nProton step potential: 1.0936161382302447 V\nO+ step potential: 5.463469940275583 V"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html#q2.-rpaion-drift-meters",
     "href": "courses/epss265/homeworks/epss265_hw05.html#q2.-rpaion-drift-meters",
     "title": "05 - LEP Principles",
     "section": "Q2. RPA/Ion Drift Meters",
-    "text": "Q2. RPA/Ion Drift Meters\n\nIn the ionosphere, mounted along ram velocity, measure species velocity\n\nG2 (positive) retards e.g. the lower energy H+, but allows the higher energy O+ through\nCollimated beam comes through and falls asymmetrically (based on direction) on collectors\nG6 (negative) suppresses electrons\nG3-5 are grounded to remove distortions\n\nHomework Q#2: Determine transverse velocity \\(V_t\\) as function of ram speed, W, D.\n\n\n\n\n\n\nFigure 5. Ambient ions are accelerated through the spacecraft sheath potential and account of this acceleration decrease the apparent ion arrival angleas shown.\n\n\nThe ram velocity measued at the RPA can be related to the ion velocity at infinity \\(V_r\\) by\n\\[ \\frac{1}{2} m V_{ram} = \\frac{1}{2} m (V_{r} + V_s)^2 - q \\phi_s\\]\nThe ratio of two currents measured by the RPA is\n\\[ J_1 / J_2 = \\frac{A_1}{A_2} = \\frac{W-2 D \\tan \\alpha}{W+2 D \\tan \\alpha}\\]\nwhere \\(A_1\\) and \\(A_2\\) are the areas of the two collectors. The angle \\(\\alpha\\) is the angle between the ion velocity and the normal to the collector surface. The ion velocity can be expressed as\n\\[ V_t = V_{ram} \\tan \\alpha \\]\nThe log of the ratio of the fluxes, which are actually measured\n\\[ \\log R = J_1 / J_2\\]\nCombining these equations gives\n\\[\nV_t=\\left[\\left(V_r+V_s\\right)^2-2 q \\phi_s / m\\right]^{\\frac{1}{2}} \\frac{W}{2 D}\\left( 1-\\log R \\right) /\\left(1+ \\log R \\right)\n\\]",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "Q2. RPA/Ion Drift Meters\n\nIn the ionosphere, mounted along ram velocity, measure species velocity\n\nG2 (positive) retards e.g. the lower energy H+, but allows the higher energy O+ through\nCollimated beam comes through and falls asymmetrically (based on direction) on collectors\nG6 (negative) suppresses electrons\nG3-5 are grounded to remove distortions\n\nHomework Q#2: Determine transverse velocity \\(V_t\\) as function of ram speed, W, D.\n\n\n\n\n\n\nFigure 5. Ambient ions are accelerated through the spacecraft sheath potential and account of this acceleration decrease the apparent ion arrival angleas shown.\n\n\nThe ram velocity measued at the RPA can be related to the ion velocity at infinity \\(V_r\\) by\n\\[ \\frac{1}{2} m V_{ram} = \\frac{1}{2} m (V_{r} + V_s)^2 - q \\phi_s\\]\nThe ratio of two currents measured by the RPA is\n\\[ J_1 / J_2 = \\frac{A_1}{A_2} = \\frac{W-2 D \\tan \\alpha}{W+2 D \\tan \\alpha}\\]\nwhere \\(A_1\\) and \\(A_2\\) are the areas of the two collectors. The angle \\(\\alpha\\) is the angle between the ion velocity and the normal to the collector surface. The ion velocity can be expressed as\n\\[ V_t = V_{ram} \\tan \\alpha \\]\nThe log of the ratio of the fluxes, which are actually measured\n\\[ \\log R = J_1 / J_2\\]\nCombining these equations gives\n\\[\nV_t=\\left[\\left(V_r+V_s\\right)^2-2 q \\phi_s / m\\right]^{\\frac{1}{2}} \\frac{W}{2 D}\\left( 1-\\log R \\right) /\\left(1+ \\log R \\right)\n\\]"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html#q3.-magnetic-spectrographs",
     "href": "courses/epss265/homeworks/epss265_hw05.html#q3.-magnetic-spectrographs",
     "title": "05 - LEP Principles",
     "section": "Q3. Magnetic Spectrographs",
-    "text": "Q3. Magnetic Spectrographs\n\nFor low energy (less than a few keV) particles (left):\n\nRPA provides velocity, temperature. Post-acceleration, Vpa, behind it allows refined measurement of m/q\nHomework Q#3 Show that in LIMS: \\(m/q=(B r_c)2/(2V_{pa})\\), where B is magnetic field, rc particle magnetic radius\n\nFor high energy particles (right) the RPA is not used (they are hard to control with potentials):\n\nBroom magnet clears electrons\nHigh field bends the high energy ions\nIons that were not bent are assumed to be neutrals (ENAs)\n\n\n\n\n\n\n\nLIMS on SCATHA\n\n\nThe energy of accelerated particle is: \\[\n\\frac{1}{2} m v^2=q V_{p a}\n\\]\nParticles that are able to reach the detector must satisify: \\[\nm v^2 r_c=B q v\n\\]\nCombining Equations we get: \\[\n\\begin{aligned}\n& v=\\left(\\frac{2 q}{m} V_{p a}\\right)^{\\frac{1}{2}} \\\\\n\\Rightarrow & m / q=\\left(B r_c\\right)^2 / 2 v_{p a}\n\\end{aligned}\n\\]",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "Q3. Magnetic Spectrographs\n\nFor low energy (less than a few keV) particles (left):\n\nRPA provides velocity, temperature. Post-acceleration, Vpa, behind it allows refined measurement of m/q\nHomework Q#3 Show that in LIMS: \\(m/q=(B r_c)2/(2V_{pa})\\), where B is magnetic field, rc particle magnetic radius\n\nFor high energy particles (right) the RPA is not used (they are hard to control with potentials):\n\nBroom magnet clears electrons\nHigh field bends the high energy ions\nIons that were not bent are assumed to be neutrals (ENAs)\n\n\n\n\n\n\n\nLIMS on SCATHA\n\n\nThe energy of accelerated particle is: \\[\n\\frac{1}{2} m v^2=q V_{p a}\n\\]\nParticles that are able to reach the detector must satisify: \\[\nm v^2 r_c=B q v\n\\]\nCombining Equations we get: \\[\n\\begin{aligned}\n& v=\\left(\\frac{2 q}{m} V_{p a}\\right)^{\\frac{1}{2}} \\\\\n\\Rightarrow & m / q=\\left(B r_c\\right)^2 / 2 v_{p a}\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html#q4.-electrostatic-analyzers",
     "href": "courses/epss265/homeworks/epss265_hw05.html#q4.-electrostatic-analyzers",
     "title": "05 - LEP Principles",
     "section": "Q4. Electrostatic Analyzers",
-    "text": "Q4. Electrostatic Analyzers\n\nElectrostatic deflection “analyzes” distribution selecting particles with matching centrifugal and electrostatic forces\n\nAnalyser constant, \\(K=R/\\Delta\\), where \\(\\Delta=R_2-R_1\\); \\(R=(R_2+R_1)/2\\). Outer shell is at 0 Volts, inner shell at potential V.\nElectrostatic deflection at the entrance aperture can measure incoming ions from different directions if spacecraft non-spinning\nHomework Q#4 Show that the energy W of the particles of charge q incident on the MCP is \\(W=-K q V /2\\)\n\n\nParticles that are able to reach the detector must satisify:\n\\[\nm v^2 R=q E\n\\]\nwhere \\(E\\) is the electric field between \\(R_2\\) and \\(R_1\\), \\(E \\approx \\frac{-V}{\\Delta}\\), so\n\\[\n\\begin{aligned}\n& m v^2=\\frac{-R}{\\Delta} q V = -K q V \\\\\n\\Rightarrow & W=\\frac{1}{2} m v^2=-\\frac{1}{2} K q V\n\\end{aligned}\n\\]",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "Q4. Electrostatic Analyzers\n\nElectrostatic deflection “analyzes” distribution selecting particles with matching centrifugal and electrostatic forces\n\nAnalyser constant, \\(K=R/\\Delta\\), where \\(\\Delta=R_2-R_1\\); \\(R=(R_2+R_1)/2\\). Outer shell is at 0 Volts, inner shell at potential V.\nElectrostatic deflection at the entrance aperture can measure incoming ions from different directions if spacecraft non-spinning\nHomework Q#4 Show that the energy W of the particles of charge q incident on the MCP is \\(W=-K q V /2\\)\n\n\nParticles that are able to reach the detector must satisify:\n\\[\nm v^2 R=q E\n\\]\nwhere \\(E\\) is the electric field between \\(R_2\\) and \\(R_1\\), \\(E \\approx \\frac{-V}{\\Delta}\\), so\n\\[\n\\begin{aligned}\n& m v^2=\\frac{-R}{\\Delta} q V = -K q V \\\\\n\\Rightarrow & W=\\frac{1}{2} m v^2=-\\frac{1}{2} K q V\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "courses/epss265/homeworks/epss265_hw05.html#q5.-time-of-flight-post-analyzer-mass-discrimination",
     "href": "courses/epss265/homeworks/epss265_hw05.html#q5.-time-of-flight-post-analyzer-mass-discrimination",
     "title": "05 - LEP Principles",
     "section": "Q5. Time of Flight (post-analyzer) Mass Discrimination",
-    "text": "Q5. Time of Flight (post-analyzer) Mass Discrimination\n\nElectrostatic deflection provides energy per charge: E/Q. Time of flight, t, provides the energy per mass E/M\n\nPost-acceleration potential \\(U_{ACC}\\) is sufficient for optimal McP operation and timing electrons at foil. Measure flux at \\(E/Q+ U_{ACC}\\)\nElectrons generated at carbon foil. Carbon foil results in passage of an energy fraction \\(\\alpha\\)\nHomework Q#5. Show \\(M/Q=2a(E/Q + U_{ACC})/(d/t)^2\\), where: Q=ion charge in units of elemental charge, e.\n\n\nThe velocity of ions after passing through the foil is\n\\[\nv=d / t\n\\]\nDue to partial energy transfer after passing the foil\n\\[ \\frac{1}{2} M v^2=\\alpha\\left(E + Q U_{ACC}\\right)\n\\]\nCombining Equations we get:\n\\[\nM / Q=2 \\alpha\\left(E / Q+U_{ACC}\\right) /(d / t)^2\n\\]",
-    "crumbs": [
-      "Courses",
-      "EPSS 265",
-      "Homework",
-      "05 - LEP Principles"
-    ]
+    "text": "Q5. Time of Flight (post-analyzer) Mass Discrimination\n\nElectrostatic deflection provides energy per charge: E/Q. Time of flight, t, provides the energy per mass E/M\n\nPost-acceleration potential \\(U_{ACC}\\) is sufficient for optimal McP operation and timing electrons at foil. Measure flux at \\(E/Q+ U_{ACC}\\)\nElectrons generated at carbon foil. Carbon foil results in passage of an energy fraction \\(\\alpha\\)\nHomework Q#5. Show \\(M/Q=2a(E/Q + U_{ACC})/(d/t)^2\\), where: Q=ion charge in units of elemental charge, e.\n\n\nThe velocity of ions after passing through the foil is\n\\[\nv=d / t\n\\]\nDue to partial energy transfer after passing the foil\n\\[ \\frac{1}{2} M v^2=\\alpha\\left(E + Q U_{ACC}\\right)\n\\]\nCombining Equations we get:\n\\[\nM / Q=2 \\alpha\\left(E / Q+U_{ACC}\\right) /(d / t)^2\n\\]"
+  },
+  {
+    "objectID": "courses/epss265/homeworks/epss265_hw04.html",
+    "href": "courses/epss265/homeworks/epss265_hw04.html",
+    "title": "04 - EFI Calibration",
+    "section": "",
+    "text": "For a time of interest from THEMIS or MMS (or RBSP or other), based on the overview plots at the mission website, finish the following steps.\n\nObtain EFI data in spinning and despun spacecraft coord’s and in some geophysical (e.g., GSE or GSM) coord’s.\nUsing the data in DSL or DMPA coordinates (where XY are despun, spin-plane components) estimate the offset in X and Y from a quiet time in the magnetosphere when the flows, and hence –VxB, are expected to be slow. Remove the offset from the data.\nWith the spin plane offsets removed, obtain the 3rd component (Z) for times when the Bfield is at a large angle relative to the spin plane (&gt;10 deg or more) using the E*B=0 approximation.\nCompare your estimate of Ez with the measurement of the same component made by the axial electric field boom pair. How large are the offsets for the axial field compared to those you have found for the spin plane components?\n\nNote: A crib sheet and a jupyter notebook on how to perform the offset removal and EdotB determination are my_thm_efi_load_cal_crib.pyspd and my_thm_efi_load_cal_crib.py, located in the class notes below Lecture 12. Use a different spacecraft for your solution. A good day for THEMIS is another spacecraft from the first Science paper (2008-02-26 4-6UT)– except TH-D which is in the released crib sheet. A good day for MMS is the first Science paper (2015-10-16 13:05-13:08UT) from any of the four MMS spacecraft.\nWe choose MMS for this question. And the data is from 2015-10-16 13:00-14:00UT.\nIts overall summary plot together with SCM quicklook plots are shown below."
+  },
+  {
+    "objectID": "courses/epss265/homeworks/epss265_hw04.html#quickplot",
+    "href": "courses/epss265/homeworks/epss265_hw04.html#quickplot",
+    "title": "04 - EFI Calibration",
+    "section": "Quickplot",
+    "text": "Quickplot\n\n\nCode\nimport pyspedas\nfrom pytplot import tplot, get_data, tlimit\n\nimport xarray as xr\nimport numpy as np\n\n\n\n\nCode\ntrange = ['2015-10-16T13:00:00', '2015-10-16T13:10:00']\ntvars = pyspedas.mms.edp(trange=trange, time_clip=True)\ntplot(tvars)\n\n\n28-Nov-23 17:11:35: Loading /Users/zijin/data/mms/mms1/edp/fast/l2/dce/2015/10/mms1_edp_fast_l2_dce_20151016_v2.1.0.cdf\n28-Nov-23 17:11:37: Time clip was applied to: mms1_edp_dce_gse_fast_l2\n28-Nov-23 17:11:38: Time clip was applied to: mms1_edp_dce_dsl_fast_l2\n28-Nov-23 17:11:38: Time clip was applied to: mms1_edp_dce_par_epar_fast_l2\n28-Nov-23 17:11:38: Loaded variables:\n28-Nov-23 17:11:38: mms1_edp_dce_gse_fast_l2\n28-Nov-23 17:11:38: mms1_edp_dce_dsl_fast_l2\n28-Nov-23 17:11:38: mms1_edp_dce_par_epar_fast_l2\n\n\n\n\n\n\n\nCode\ntrangeOfInterest = ['2015-10-16T13:06:30', '2015-10-16T13:07:30']\ntlimit(trangeOfInterest)\ntplot(tvars)"
+  },
+  {
+    "objectID": "courses/epss265/homeworks/epss265_hw04.html#offset",
+    "href": "courses/epss265/homeworks/epss265_hw04.html#offset",
+    "title": "04 - EFI Calibration",
+    "section": "Offset",
+    "text": "Offset\nWe choose a quite time by manually inspecting the data.\n\n\nCode\ntrange4offset = ['2015-10-16T13:00:30', '2015-10-16T13:01:30']\ntlimit(trange4offset)\ntplot(tvars)\ntlimit(full=True)\n\n\n\n\n\n\n\nCode\ne_tvar = 'mms1_edp_dce_dsl_fast_l2'\ne_data : xr.DataArray = get_data(e_tvar, xarray=True)\noffset = e_data.sel(time=slice(trange4offset[0], trange4offset[1])).mean(dim='time')\nprint('Ex offset =', offset[0].data)\nprint('Ey offset =', offset[1].data)\n\n\nEx offset = 0.23904572\nEy offset = 0.18106854"
+  },
+  {
+    "objectID": "courses/epss265/homeworks/epss265_hw04.html#e_z-component",
+    "href": "courses/epss265/homeworks/epss265_hw04.html#e_z-component",
+    "title": "04 - EFI Calibration",
+    "section": "\\(E_z\\) component",
+    "text": "\\(E_z\\) component\nWe use the \\(E \\cdot B=0\\) approximation to calculate \\(E_z\\) component. And we ignore the differences (fractions of a degree) between DBCS, DMPA and DSL. *\n\n\nCode\npyspedas.mms.fgm(trange=trange, time_clip=True, varformat='*dmpa*')\nmag_tvar = 'mms1_fgm_b_dmpa_srvy_l2'\ntplot(mag_tvar)\n\n\n28-Nov-23 17:14:28: Loading /Users/zijin/data/mms/mms1/fgm/srvy/l2/2015/10/mms1_fgm_srvy_l2_20151016_v4.18.0.cdf\n28-Nov-23 17:14:30: Time clip was applied to: mms1_fgm_b_dmpa_srvy_l2\n28-Nov-23 17:14:30: Time clip was applied to: mms1_fgm_flag_srvy_l2\n28-Nov-23 17:14:30: Loaded variables:\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_dmpa_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_gse_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_gse_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_gsm_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_gsm_srvy_l2_btot\n28-Nov-23 17:14:30: mms1_fgm_b_bcs_srvy_l2_bvec\n28-Nov-23 17:14:30: mms1_fgm_b_bcs_srvy_l2_btot\n\n\n\n\n\n\n\nCode\ndef calibrate_offset(data, offset):\n    return data - offset\n\n\n\n\nCode\ndef calibrate_e_dot_b(e_data: xr.DataArray, mag_data, threshold_angle=10):\n    data = e_data.copy()\n    data[:, 2] = (\n        -(e_data[:, 0] * mag_data[:, 0] + e_data[:, 1] * mag_data[:, 1])\n        / mag_data[:, 2]\n    )\n    \n    threshold = np.sin(np.deg2rad(threshold_angle))\n    mask = np.abs((mag_data[:, 2] / mag_data[:, 3])) &gt; threshold\n    data[~mask] = np.nan\n    \n    return data\n\n\n\n\nCode\n# Interpolate FGM data on EDP times\npyspedas.tinterpol(mag_tvar, e_tvar)\nmag_data = get_data(mag_tvar + '-itrp', xarray=True)\n\ne_data_c1 = calibrate_offset(e_data, offset)\ne_data_c2 = calibrate_e_dot_b(e_data_c1, mag_data)\n\n\n28-Nov-23 17:15:11: tinterpol (linear) was applied to: mms1_fgm_b_dmpa_srvy_l2-itrp"
+  },
+  {
+    "objectID": "courses/epss265/homeworks/epss265_hw04.html#comparison",
+    "href": "courses/epss265/homeworks/epss265_hw04.html#comparison",
+    "title": "04 - EFI Calibration",
+    "section": "Comparison",
+    "text": "Comparison\n\nCompare your estimate of Ez with the measurement of the same component made by the axial electric field boom pair. How large are the offsets for the axial field compared to those you have found for the spin plane components?\n\n\n\nCode\nez_data = e_data.sel(v_dim=2)\nez_data_c2 = e_data_c2.sel(v_dim=2)\n\nxr.concat(\n    [\n        ez_data.assign_coords(datatype=\"Ez original\"),\n        ez_data_c2.assign_coords(datatype=\"Ez calibrated\"),\n    ],\n    dim=\"datatype\",\n).plot(x=\"time\", hue=\"datatype\")\n\n\n\n\n\n\n\nCode\nez_offset = np.abs(ez_data - ez_data_c2).mean()\nprint(\"Ez offset = \", ez_offset.data)\n\n\nEz offset =  0.43761042"
+  },
+  {
+    "objectID": "courses/phys231/index.html",
+    "href": "courses/phys231/index.html",
+    "title": "PHYSICS 231A",
+    "section": "",
+    "text": "In this course, we will cover a selection of analytic methods useful in a wide variety of physics topics. This includes complex analysis, asymptotic approximation of integrals, summing divergent series, manifold topology and de Rham cohomology, Fourier analysis, linear differential equations and Green’s functions, and perturbation theory for nonlinear problems."
+  },
+  {
+    "objectID": "courses/phys231/index.html#about",
+    "href": "courses/phys231/index.html#about",
+    "title": "PHYSICS 231A",
+    "section": "",
+    "text": "In this course, we will cover a selection of analytic methods useful in a wide variety of physics topics. This includes complex analysis, asymptotic approximation of integrals, summing divergent series, manifold topology and de Rham cohomology, Fourier analysis, linear differential equations and Green’s functions, and perturbation theory for nonlinear problems."
   }
 ]
