@@ -1,0 +1,199 @@
+---
+title: Homework 03
+format:
+  html: default
+  typst:
+    output-file: phys231_hw03_raw
+---
+
+::: {.content-visible when-format="html"}
+- [Complete PDF](./phys231_hw03_final.pdf)
+- [Mathematica Notebook](./phys231_hw03.nb)
+:::
+
+## 1. Conformal map
+
+> Consider the half-infinite strip
+>
+> $$
+> S = \{z \,|\, \text{Re}\, z > 0, 2i < \text{Im}\, z < 5i \}
+> $$
+>
+> Find an invertible conformal map sending $S$ to the upper half plane
+>
+> $$
+> H = \{z \,|\, \text{Im}\, z > 0 \},
+> $$
+
+we can proceed in steps using standard conformal mappings.
+
+1. **Translate the Strip**: First, we translate the strip downwards $T(z) = z - 2i$ so that its imaginary boundaries are on the real axis and at $3i$.
+2. **Scale the Strip**: Next, we scale the strip so that its width becomes $\pi$. Define the scaling map $D(z) = \frac{\pi}{3}z$.
+3. **Apply the Exponential Function**: The exponential function $E(z)=e^z$ maps horizontal strips to $\{z \,|\,\text{Im}\, z > 0, |z| > 1 \}$
+4. **Map to the Upper Half-Plane**: $R(z)=\frac{1}{2} (z + 1/z)$ will map to the upper half-plane.
+
+So, the complete conformal map $F$ from $S$ to $H$ is the composition of these maps:
+
+$$
+F(z) = R(E(D(T(z)))) = \sqrt{e^{\frac{\pi}{3}(z - 3.5i)}}.
+$$
+
+This map is invertible and conformal.
+
+Note that the inverse map of $R(z)$
+
+$$
+z = w+\sqrt{w^2 − 1}
+$$
+
+has a branch cut at $w ∈ (−1, 1)$. However, for $|z| > 1$, we have $\text{Im}\, w > 0$, so the maps are inevitable.
+
+## 2. Saddle point
+
+> Prove that if $f = u + iv$ is holomorphic at $z = 0$ and $f'(z)$ has a zero of degree 1 at $z = 0$, that both $u$ and $v$ have saddle points at $z = 0$.
+
+At $z=0$, $f^{\prime}=u_x+i v_x=0$
+$$
+\Rightarrow u_x(0)=0 \text { and } v_x(0)=0
+$$
+
+$f$ is holomorphic
+
+$$
+\begin{array}{l}
+v_y=u_x=0 \\
+u_y=-v_x=0
+\end{array}
+$$
+
+So the Hessian determinant is
+
+$$
+\begin{aligned}
+D_u=u_{x x} u_{y y}-\left(u_{x y}\right)^2 & =-v_{y x} v_{x y}-u_{x y}^2 \\
+& =-v_{x y}^2-u_{x y}^2 \\
+D_v=v_{x x} v_{y y}-\left(v_{x y}\right)^2= & -v_{x y}^2-u_{x y}^2
+\end{aligned}
+$$
+
+Since $f^{\prime}$ has a zero of degree $1 \Rightarrow$ second derivative of $u$ and $v$ are nonzero at $z=0$, which gives $D_u<0$ and $D_\nu<0$. Given first derivative is zero, $u$ and $v$ have saddle points at $z=0$
+
+## 3. Holomorphic functions agree
+
+> Show that if two holomorphic functions agree on an interval of the real line, they agree everywhere.
+
+Let's say two holomorphic function $f$ and $g$ agree on Interval $I$. we show $h=f-g$ if $h \equiv 0$ on $I$, then $h$ is 0 everywhere.
+
+$$
+h(z)=\sum_{n=0}^{\infty} \frac{(z-c)^n}{n !} h^{(n)}(c)
+$$
+
+for $c \in I$. On the real line, $h(x)$ and all its derivatives with respect to $x$ vanish. So $h^{(n)}(c) =0$ for all  $n\ge0$. And because $h$ is an entire function the radius of convergence should be infinite. Therefore, for any $z ∈ C$ lies within the circle of convergence, we have $h(z) = 0$.
+
+{{< pdf phys231_hw03_q4.pdf width=100% height=1200 >}}
+
+## 5. Mobius transformations
+
+> Show that Mobius transformations send circles and lines to circles and lines.
+
+Mobius transformations
+
+$$
+f(z) = \frac{a z+b}{c z+d} = \frac{a}{c}+\frac{e}{z+\frac{d}{c}},
+$$
+
+can be decomposed into four simple transformation of translation, dilation, and inversion.
+
+$$
+f=f_4 \circ f_3 \circ f_2 \circ f_1 .
+$$
+
+Since translation, dilation perserve geometrical lines and circles, we only need to show that inversion $I(z)=1/z$ sends circles and lines to circles and lines.
+
+$$
+I(z) = I(x+i y)=\frac{1}{x+i y}=\frac{x}{x^2+y^2}-\frac{y i}{x^2+y^2}
+$$
+
+So $I$ maps $(x, y)$ into a $(u, v)$ with
+
+$$
+u=\frac{x}{x^2+y^2} \text { and } v=\frac{-y}{x^2+y^2}
+$$
+
+For line of general form $Ax+By=C$, we have
+
+$$
+\begin{aligned}
+Au - B v= (u^2+v^2)C
+\end{aligned}
+$$
+
+Thus $I$ maps a line to a circle ($C \neq 0$) or a line ($C = 0$).
+
+For cicrcle of general form $D x+E y+F\left(x^2+y^2\right)=R$, we have
+
+$$
+D u -E v + F = R\left(u^2+v^2\right)
+$$
+
+Thus $I$ maps a circle to a circle ($R \neq 0$) or a line ($R = 0$). Note here, $R$ is not the radius of the original circle.
+
+## 6. cross-ratio under simultaneous Mobius transformations
+
+> Show that for any three points $z_1, z_2, z_3$, there is precisely one Mobius transformation sending $z_1$ to 0, $z_2$ to 1, and $z_3$ to infinity. The image of a fourth point $z_4$ under this map defines the "cross-ratio" of $\left(z_1, z_2, z_3, z_4\right)$. Show that the cross ratio is preserved under simultaneous Mobius transformations of these four points.
+
+Let Möbius transformation $f(z) = (a z+b) /(c z+d)$, satisfying
+
+$$
+f\left(z_1\right)=0, f\left(z_2\right)=1, f\left(z_3\right)=\infty
+$$
+
+Then the Möbius transformation is determined by
+
+$$
+\begin{aligned}
+& f\left(z_1\right)=0 \Rightarrow a z_1 + b=0 \\
+& f\left(z_2\right)=1 \Rightarrow a z_2 +b - c z_2 - d =0 \\
+& f\left(z_3\right)=\infty \Rightarrow c z_3 + d =0
+\end{aligned}
+$$
+
+The three linear equations can be solved in the sense of their relative ratio.
+
+And the Möbius transformation can be written as
+
+$$
+f(z)=\frac{z_2-z_3}{z_2-z_1} \frac{z-z_1}{z-z_3}
+$$
+
+So the cross ratio is 
+
+$$
+\frac{z_2-z_3}{z_2-z_1} \frac{z_4-z_1}{z_4-z_3}
+$$
+
+Then the cross ratio of the image under the transformation of any $f$ is
+
+$$
+\frac{f(z_2)-f(z_3)}{f(z_2)-f(z_1)} \frac{f(z_4)-f(z_1)}{f(z_4)-f(z_3)}
+$$
+
+Note that
+
+$$
+f(x)-f(y)=\frac{a x+b}{c x+d}-\frac{a y+b}{c y+d}=\frac{(a d-b c)(x-y)}{(c x+d)(c y+d)}
+$$
+
+and
+
+$$
+\frac{f(x)-f(y)}{f(x)-f(z)} = \frac{(x-y)(cz+d)}{(x-z)(cy+d)}
+$$
+
+So
+
+$$
+\frac{f(z_2)-f(z_3)}{f(z_2)-f(z_1)} \frac{f(z_4)-f(z_1)}{f(z_4)-f(z_3)} = 
+\frac{(z_2-z_3)(c z_1 +d)}{(z_2-z_1)(c z_3 + d)} \frac{(z_4-z_1)(c z_3 +d)}{(z_4-z_3)(c z_1 + d)}
+= \frac{z_2-z_3}{z_2-z_1} \frac{z_4-z_1}{z_4-z_3}
+$$

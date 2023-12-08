@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19219,        595]
-NotebookOptionsPosition[     16903,        547]
-NotebookOutlinePosition[     17298,        563]
-CellTagsIndexPosition[     17255,        560]
+NotebookDataLength[     17785,        549]
+NotebookOptionsPosition[     15786,        506]
+NotebookOutlinePosition[     16182,        522]
+CellTagsIndexPosition[     16139,        519]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -500,54 +500,13 @@ Cell[BoxData[
    3.908628734311914*^9}, 3.908629181244196*^9},
  CellLabel->
   "Out[129]=",ExpressionUUID->"5161af98-16d3-4316-9674-b70e94c9a3da"]
-}, Open  ]],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.9086368295436163`*^9, 3.908636832481732*^9}, 
-   3.9086392805696383`*^9},ExpressionUUID->"5ecc6ddc-2eef-48d8-89d6-\
-2ac83b8a9464"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Solve", "[", 
-  RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"z", "^", "2"}], "-", 
-     RowBox[{"3", "z"}], "+", "1"}], "==", "0"}], ",", "z"}], "]"}]], "Input",\
-
- CellChangeTimes->{{3.908639283926937*^9, 3.908639295867113*^9}},
- CellLabel->
-  "In[138]:=",ExpressionUUID->"6b21870e-6f45-4b59-8249-cb59b2141a6b"],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"z", "\[Rule]", 
-     RowBox[{
-      FractionBox["1", "2"], " ", 
-      RowBox[{"(", 
-       RowBox[{"3", "-", 
-        SqrtBox["5"]}], ")"}]}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"z", "\[Rule]", 
-     RowBox[{
-      FractionBox["1", "2"], " ", 
-      RowBox[{"(", 
-       RowBox[{"3", "+", 
-        SqrtBox["5"]}], ")"}]}]}], "}"}]}], "}"}]], "Output",
- CellChangeTimes->{3.908639296211155*^9},
- CellLabel->
-  "Out[138]=",ExpressionUUID->"79b7c672-9996-4db1-ac2e-24c201ddc89c"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
 WindowSize->{960, 922},
-WindowMargins->{{Automatic, 0}, {Automatic, 98}},
-FrontEndVersion->"13.2 for Mac OS X ARM (64-bit) (January 30, 2023)",
+WindowMargins->{{Automatic, -1060}, {Automatic, 38}},
+FrontEndVersion->"13.3 for Mac OS X ARM (64-bit) (July 24, 2023)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"da6067ba-88d9-4fc7-a81f-41a2ae55485a"
 ]
@@ -576,7 +535,7 @@ Cell[2283, 72, 233, 4, 49, "Output",ExpressionUUID->"ddab4217-7c62-4b4e-9c68-cdd
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[2553, 81, 1550, 46, 136, "Input",ExpressionUUID->"86fb9cbf-44d3-496e-ad08-1c14f1ee452d"],
-Cell[4106, 129, 639, 16, 50, "Output",ExpressionUUID->"99e0aa5a-07ae-40ce-92cf-3eb44815bcfa"],
+Cell[4106, 129, 639, 16, 49, "Output",ExpressionUUID->"99e0aa5a-07ae-40ce-92cf-3eb44815bcfa"],
 Cell[4748, 147, 369, 6, 34, "Output",ExpressionUUID->"23d176e6-2d08-4e60-a16e-54075daec268"]
 }, Open  ]]
 }, Open  ]],
@@ -586,14 +545,9 @@ Cell[5380, 165, 1826, 57, 177, "Text",ExpressionUUID->"92ffe520-95c5-4ddd-a41e-3
 Cell[CellGroupData[{
 Cell[7231, 226, 1537, 43, 157, "Input",ExpressionUUID->"2a2ec30b-4f86-437d-8bdd-6addeddd191e"],
 Cell[8771, 271, 1120, 31, 49, "Output",ExpressionUUID->"b44551cb-7a30-414e-8761-1f73ad7d5a24"],
-Cell[9894, 304, 2368, 81, 58, "Output",ExpressionUUID->"0a1b102d-7d3a-4897-88ea-f25a775b3ad0"],
-Cell[12265, 387, 2469, 83, 58, "Output",ExpressionUUID->"74070340-a420-4c39-af48-c0d8828792f3"],
-Cell[14737, 472, 1009, 29, 51, "Output",ExpressionUUID->"5161af98-16d3-4316-9674-b70e94c9a3da"]
-}, Open  ]],
-Cell[15761, 504, 179, 3, 30, "Input",ExpressionUUID->"5ecc6ddc-2eef-48d8-89d6-2ac83b8a9464"],
-Cell[CellGroupData[{
-Cell[15965, 511, 339, 10, 30, "Input",ExpressionUUID->"6b21870e-6f45-4b59-8249-cb59b2141a6b"],
-Cell[16307, 523, 556, 19, 49, "Output",ExpressionUUID->"79b7c672-9996-4db1-ac2e-24c201ddc89c"]
+Cell[9894, 304, 2368, 81, 57, "Output",ExpressionUUID->"0a1b102d-7d3a-4897-88ea-f25a775b3ad0"],
+Cell[12265, 387, 2469, 83, 57, "Output",ExpressionUUID->"74070340-a420-4c39-af48-c0d8828792f3"],
+Cell[14737, 472, 1009, 29, 50, "Output",ExpressionUUID->"5161af98-16d3-4316-9674-b70e94c9a3da"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

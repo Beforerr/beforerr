@@ -1,2 +1,2 @@
 publish:
-    quarto publish gh-pages --no-prompt
+    quarto publish gh-pages --no-prompt --no-render
