@@ -1,0 +1,192 @@
+---
+title: Homework 07
+format:
+  html: default
+  typst: 
+    output-file: phys231_hw07
+number-sections: true
+---
+
+## Green's function for Poisson's equation
+
+> * Use Fourier analysis to compute a Green's function for Poisson's equation on $\mathbb{R}^3$, satisfying
+>
+>   $$
+>   \left(\partial_x^2+\partial_y^2+\partial_z^2\right) G(x, y, z)=\delta^{(3)}(x, y, z)
+>   $$
+> * Prove there is a unique such Green's function which goes to zero at infinity (hint: use Liouville's theorem for harmonic functions).
+> * Find the Green's function but now for functions on the unit ball around the origin, with Dirichlet boundary conditions $\phi(x, y, z)=0$ for $x^2+y^2+z^2=1$. Hint: Schwartz reflection principle/method of images.
+
+### Fourier Analysis
+
+Let $\hat{G}(k_x, k_y, k_z)$ be the Fourier transform of $G(x, y, z)$. After Fourier transform, the equation becomes:
+
+$$
+-(k_x^2 + k_y^2 + k_z^2) \hat{G}(k_x, k_y, k_z) = 1
+$$
+
+since the Fourier transform of $\delta^{(3)}(x, y, z)$ is 1.
+
+Thus, the solution in Fourier Space:
+
+$$
+\hat{G}(k_x, k_y, k_z) = -\frac{1}{k_x^2 + k_y^2 + k_z^2}
+$$
+
+To find $G(x, y, z)$, perform the inverse Fourier transform:
+
+$$
+G(x, y, z) = \int_{\mathbb{R}^3} -\frac{e^{i(k_x x + k_y y + k_z z)}}{k_x^2 + k_y^2 + k_z^2} \, dk_x \, dk_y \, dk_z
+$$
+
+This integral yields $G(x, y, z) = \frac{-1}{4\pi\sqrt{x^2 + y^2 + z^2}}$.
+
+### Uniqueness of the Green's Function
+
+Liouville's theorem states that a bounded harmonic function on $\mathbb{R}^n$ is constant. Given any two Green's functions $G_1$ and $G_2$ that vanish at infinity, their difference $G_1 - G_2$ is harmonic (satisfies Laplace's equation) and bounded. By Liouville's theorem, $G_1 - G_2$ is constant, and since both go to zero at infinity, this constant must be zero. Thus, $G_1 = G_2$, proving uniqueness.
+
+### Green's Function on the Unit Ball with Dirichlet Boundary Conditions
+
+To find a function $G(x, y, z; x', y', z')$ that satisfies:
+
+1. $(\partial_x^2 + \partial_y^2 + \partial_z^2) G(x, y, z; x', y', z') = -\delta(x - x', y - y', z - z')$ within the unit ball $x^2 + y^2 + z^2 < 1$.
+2. $G(x, y, z; x', y', z') = 0$ for $x^2 + y^2 + z^2 = 1$, enforcing the Dirichlet boundary conditions.
+
+We place an "image" point source at $(x'', y'', z'')$ where $(x'', y'', z'') = \frac{(x', y', z')}{|x'|^2 + |y'|^2 + |z'|^2}$ outside the unit ball in such a way that the combined effect of the real source and the image source satisfies the boundary conditions.
+
+The Green's function then is a combination of the solution from both the real and the image source
+
+$$
+G(x, y, z; x', y', z') = \frac{1}{4\pi\sqrt{(x - x')^2 + (y - y')^2 + (z - z')^2}} - \frac{1}{4\pi\sqrt{(x - x'')^2 + (y - y'')^2 + (z - z'')^2}}
+$$
+
+More generally, we define the point $x^* = \frac{x}{|x|^2}$ dual to $x$. Therefore, a Green’s function for $B^n(0, 1)$ is given by $G(x, y) = Φ(y − x) − Φ(|x|(y − x^*))$.
+
+## Green's function for the heat equation
+
+> Find the Green's function for the heat equation
+>
+> $$
+> \partial_t u=\partial_x^2 u
+> $$
+>
+> by Fourier analysis.
+
+We want to find a Green's function $G(x, t; x', t')$ that satisfies the following properties:
+
+1. $\partial_t G = \partial_x^2 G$
+2. $G(x, t; x', t')$ behaves like a delta function as $t \to t'^+$, i.e., $G(x, t; x', t') \to \delta(x - x')$ as $t \to t'^+$.
+
+By taking the Fourier transform of $G$ with respect to $x$, the heat equation in Fourier space becomes
+
+$$
+\partial_t \hat{G} = -k^2 \hat{G}
+$$
+
+This is a first-order linear differential equation in $t$, the solution is
+
+$$
+\hat{G}(k, t; x', t') = A(k, x', t') e^{-k^2 (t - t')}
+$$
+
+where $A(k, x', t')$ is to be determined.
+
+Now we apply the initial condition. The initial condition is that $G$ approaches $\delta(x - x')$ as $t \to t'^+$. In Fourier space, this translates to $\hat{G}(k, t; x', t') \to e^{-ik(x - x')}$ as $t \to t'^+$. Thus
+
+$$
+A(k, x', t') = e^{-ikx'}
+$$
+
+Then take the inverse Fourier transform of $\hat{G}(k, t; x', t')$ to get back to the spatial domain:
+
+$$
+G(x, t; x', t') = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-ikx'} e^{-ikx} e^{-k^2 (t - t')} dk
+$$
+
+This integral yields a function of the form:
+
+$$
+G(x, t; x', t') = \frac{1}{\sqrt{4\pi (t - t')}} e^{-\frac{(x - x')^2}{4(t - t')}}
+$$
+
+for $t > t'$.
+
+So the Green's function for the heat equation is:
+
+$$
+G(x, t; x', t') = \begin{cases} \frac{1}{\sqrt{4\pi (t - t')}} e^{-\frac{(x - x')^2}{4(t - t')}}, & t > t' \\ 0, & \text{otherwise} \end{cases}
+$$
+
+## Resolvent $R(z, A)=(z \mathbb{1}-A)^{-1}$
+
+> Given a finite dimensional complex matrix $A$, we can define the resolvent
+>
+> $$
+> R(z, A)=(z \mathbb{1}-A)^{-1}=\frac{1}{z-A},
+> $$
+>
+> where $\mathbb{1}$ is the identity matrix. This equation makes sense whenever $z$ is not an eigenvalue of $A$, and so we can consider $R(z, A)$ as a meromorphic, matrix-valued function of $z$, with poles at the eigenvalues of $A$. For these problems, assume $A$ is Hermitian:
+>
+> 1. Show that
+>
+>     $$
+>     R(z, A)=\frac{P_\lambda}{z-\lambda},
+>     $$
+>
+>     where $P_\lambda$ is the projector onto the eigenspace of $\lambda$ eigenvectors.
+> 2. Suppose $w$ is orthogonal to the kernel of $A$. Prove that
+>
+>     $$
+>     v=\int_C \frac{d z}{2 \pi i} \frac{R(z, A)}{z} w
+>     $$
+>
+>     solves the equation
+>
+>     $$
+>     A v=w,
+>     $$
+>
+>     where $C$ is a contour winding once around $z=0$ and not enclosing any other eigenvalues.
+> 3. Show the same as in (2) for a contour enclosing all eigenvalues except for 0.
+
+### Expression for $R(z, A)$
+
+Given a Hermitian matrix $A$, its eigenvalues are real, and it can be diagonalized. Let $\lambda$ be an eigenvalue of $A$ and $P_\lambda$ the projector onto the eigenspace of $\lambda$. We have spectral decomposition
+
+$$
+A = \sum_{\lambda} \lambda P_\lambda
+$$
+
+the expression for $R(z, A)$ can be simplified:
+
+$$
+R(z, A) = (z\mathbb{1} - A)^{-1} = \left( z \sum_\lambda P_\lambda - \sum_\lambda \lambda P_\lambda \right)^{-1}
+$$
+
+Because the projectors $P_\lambda$ are orthogonal and sum to the identity: $R(z, A) = \sum_\lambda (zP_\lambda - \lambda P_\lambda)^{-1}$.
+
+* Thus, $R(z, A) = \sum_\lambda \frac{P_\lambda}{z - \lambda}$.
+
+### Solving $A v = w$
+
+Substitute the expression for $R(z, A)$ into the integral:
+
+$$
+v = \int_C \frac{d z}{2 \pi i} \frac{\sum_\lambda \frac{P_\lambda}{z - \lambda}}{z} w
+$$
+
+Evaluate it using the residue theorem. Since $C$ winds around $z = 0$ and does not enclose any other eigenvalues, the only contribution comes from the pole at $z = 0$.
+
+The residue at $z = 0$ gives $P_0 w$. So $A v = A P_0 w = w$
+
+### Contour Enclosing All Eigenvalues Except 0
+
+Use the same integral expression for $v$. But now the integral will pick up residues from all poles $\lambda \neq 0$ within the contour $C$.
+
+For each $\lambda \neq 0$, the residue at $z = \lambda$ is $\frac{P_\lambda w}{\lambda}$.
+
+Summing up the residues, $v = \sum_{\lambda \neq 0} \frac{P_\lambda w}{\lambda}$.
+
+Multiplying both sides by $A$ (and using $AP_\lambda = \lambda P_\lambda$), we get $A v = \sum_{\lambda \neq 0} P_\lambda w = w - P_0 w$.
+
+Since $w$ is orthogonal to the kernel of $A$, $P_0 w = 0$. Therefore, $A v = w$.

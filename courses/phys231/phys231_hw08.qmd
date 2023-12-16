@@ -1,0 +1,254 @@
+---
+title: Homework 08
+format:
+  html: default
+  typst: 
+    output-file: phys231_hw08
+number-sections: true
+---
+## Asymptotic series for $\log (x-2)$
+
+> Find an asymptotic series for
+>
+> $$
+> f(x)= \log (x-2)
+> $$
+>
+> as $x \rightarrow \infty$ in terms of $\log x$ and inverse powers of $x$. (Hint: split the log and use Taylor series on one part.)
+
+$$
+f(x) = \log(x - 2) = \log x + \log(1 - \frac{2}{x})
+$$
+
+The Taylor series expansion of $\log(1 - y)$ around $y = 0$ is:
+
+$$
+\log(1 - y) = -y - \frac{y^2}{2} - \frac{y^3}{3} - \cdots
+$$
+
+By substituting $y = \frac{2}{x}$ into this series, the asymptotic series for $f(x)$ as $x \to \infty$ is:
+
+$$
+f(x) = \log x - \frac{2}{x} - \frac{2^2}{2x^2} - \frac{2^3}{3x^3} - \cdots
+$$
+
+## Watson's lemma and $\int_0^1 \frac{e^{-s x}}{1+x^2} d x$
+
+> Use Watson's lemma to find the $s \rightarrow \infty$ asymptotic series for
+>
+> $$
+> I(s)=\int_0^1 \frac{e^{-s x}}{1+x^2} d x
+> $$
+
+To use Watson's Lemma, we need to express $\frac{1}{1+x^2}$ as a power series at $x = 0$. The Taylor series of $\frac{1}{1+x^2}$ around $x = 0$ is:
+
+$$
+\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \cdots
+$$
+
+which is valid for $|x| < 1$. Substituting this into $I(s)$ gives:
+
+$$
+I(s) = \int_0^1 e^{-s x} (1 - x^2 + x^4 - x^6 + \cdots) \, dx
+$$
+
+Now, we can integrate term by term:
+
+1. For the first term:
+
+    $$
+    \int_0^1 e^{-s x} \, dx = \frac{1}{s} (1 - e^{-s})
+    $$
+
+    As $s \rightarrow \infty$, $e^{-s}$ approaches 0 faster than $1/s$, so this term becomes $\frac{1}{s}$.
+2. For the second term:
+
+    $$
+    -\int_0^1 x^2 e^{-s x} \, dx
+    $$
+
+    Applying integration by parts or a similar method, we find this term is $O\left(\frac{1}{s^3}\right)$ as $s \rightarrow \infty$.
+3. Similarly, each subsequent term will contribute higher order terms in $\frac{1}{s}$.
+
+Hence, the asymptotic expansion of $I(s)$ as $s \rightarrow \infty$ is:
+
+$$
+I(s) \sim \frac{1}{s} - \frac{1}{s^3} + \cdots
+$$
+
+## Watson's lemma and $\int_0^{\infty} \sin (\sqrt{x}) e^{-s x^2} d x$
+
+> Use Watson's lemma to find the $s \rightarrow \infty$ asymptotic series for
+>
+> $$
+> I(s)=\int_0^{\infty} \sin (\sqrt{x}) e^{-s x^2} d x
+> $$
+
+The integral $I(s)$ does not directly fit this form of Watson's lemma due to the $e^{-s x^2}$ term. So first, we perform a change of variable to transform the integral into a more suitable form for Watson's Lemma. Let $u = x^2$, then $du = 2x \, dx$ or $dx = \frac{du}{2\sqrt{u}}$. The integral becomes:
+
+$$
+I(s) = \int_0^{\infty} \sin(u^{1/4}) e^{-s u} \frac{du}{2\sqrt{u}}
+$$
+
+Expand $\sin(u^{1/4})$ in a Taylor series about $u = 0$:
+
+$$
+\sin(u^{1/4}) = u^{1/4} - \frac{u^{3/4}}{3!} + \frac{u^{5/4}}{5!} - \cdots
+$$
+
+Substituting this series into the integral, we get:
+
+$$
+I(s) = \int_0^{\infty} \left(u^{1/4} - \frac{u^{3/4}}{3!} + \cdots \right) e^{-s u} \frac{du}{2\sqrt{u}}
+= \frac{\Gamma(3/4)}{2 s^{3/4}} - \frac{\Gamma(5/4)}{12 s^{5/4}} + \cdots
+$$
+
+## Asymptotic series for the error function
+
+> Use integration by parts to give the $x \rightarrow \infty$ asymptotic series for the error function
+>
+> $$
+> \operatorname{erf}(x)=\frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} d t .
+> $$
+
+We can apply successive integration by parts to $\operatorname{erfc}(\lambda)$, in which the first step gives
+
+$$
+\begin{aligned}
+\operatorname{erf}(x) & =\frac{2}{\sqrt{\pi}} \int_x^{\infty} \exp \left(-t^2\right) d t \\
+& =\frac{2}{\sqrt{\pi}} \int_x^{\infty} \frac{-2 t \exp \left(-t^2\right)}{-2 t} d t,\left[u=\frac{1}{-2 t}, d v=-2 t \exp \left(-t^2\right) d t\right] \\
+& =\frac{2}{\sqrt{\pi}}\left[\frac{\exp \left(-t^2\right)}{-2 t}-\int \frac{\exp \left(-t^2\right)}{2 t^2} d t\right]_x^{\infty} \\
+& =\frac{2}{\sqrt{\pi}}\left[\frac{\exp \left(-x^2\right)}{2 x}-\int_x^{\infty} \frac{\exp \left(-t^2\right)}{2 t^2} d t\right] \\
+& =\frac{2 e^{-x^2}}{\sqrt{\pi}}\left(\frac{1}{2 x}\right)-\frac{2}{\sqrt{\pi}} \int_x^{\infty} \frac{\exp \left(-t^2\right)}{2 t^2} d t
+\end{aligned}
+$$
+
+We have obtained the first term. And applying integration by parts to the new integral gives
+
+$$
+\begin{aligned}
+\int_x^{\infty} \frac{\exp \left(-t^2\right)}{2 t^2} d t & =\frac{1}{2} \int_x^{\infty} \frac{-2 t \exp \left(-t^2\right)}{-2 t^3} d t\left[u=-\frac{1}{2 t^3}, d v=-2 t \exp \left(-t^2\right) d t\right] \\
+& =\frac{1}{2}\left[\frac{\exp \left(-t^2\right)}{-2 t^3}-\int \frac{3 \exp \left(-t^2\right)}{2 t^4} d t\right]_x^{\infty} \\
+& =\frac{1}{2}\left[\frac{\exp \left(-x^2\right)}{2 x^3}-\int_x^{\infty} \frac{3 \exp \left(-t^2\right)}{2 t^4} d t\right]
+\end{aligned}
+$$
+
+Thus we have
+
+$$
+\operatorname{erfc}(x)=\frac{e^{-x^2}}{\sqrt{\pi}}\left(\frac{1}{2 x}-\frac{1}{4 x^3}-\int_x^{\infty} \frac{3 \exp \left(-t^2\right)}{2 t^4} d t\right),
+$$
+
+Continuing with successive integration by parts we will obtain the asymptotic expansion.
+
+## Stirling's formula
+
+> Use Laplace's method to derive Stirling's formula
+>
+> $$
+> n ! \sim \sqrt{2 \pi n} n^n e^{-n} \quad n \rightarrow \infty
+> $$
+>
+> using the Gamma function. Also find the next term in the asymptotic series.
+
+Gamma function, which is related to the factorial by $\Gamma(n+1) = n!$  is defined as:
+
+$$
+\Gamma(n) = \int_0^{\infty} e^{-t} t^{n-1} dt
+$$
+
+For large $n$, we approximate this integral using Laplace's method, which is effective for integrals of the form $\int e^{M f(t)} dt$ where $M$ is a large parameter. Here, we can rewrite the Gamma function as:
+
+$$
+\Gamma(n+1) = \int_0^{\infty} e^{n \log t - t} dt
+$$
+
+Now, to apply Laplace's method, we find the maximum of the function $f(t) = \log t - \frac{t}{n}$. Taking the derivative and setting it to zero gives:
+
+$$
+\frac{d}{dt} \left( \log t - \frac{t}{n} \right) = \frac{1}{t} - \frac{1}{n} = 0
+$$
+
+This yields $t = n$ as the point where $f(t)$ attains its maximum. We then expand $f(t)$ around this point:
+
+$$
+f(t) \approx f(n) + \frac{1}{2} f''(n) (t - n)^2
+$$
+
+where $f(n) = \log n - 1$ and $f''(n) = -1/n^2$. The integral becomes:
+
+$$
+\Gamma(n+1) \approx e^{n \log n - n} \int_{0}^{\infty} e^{-\frac{1}{2} \frac{(t-n)^2}{n}} dt
+$$
+
+Changing variables with $u = \frac{t-n}{\sqrt{n}}$ gives:
+
+$$
+\Gamma(n+1) \approx e^{n \log n - n} \sqrt{n} \int_{0}^{\infty} e^{-\frac{1}{2} u^2} du
+$$
+
+Recognizing the Gaussian integral, we get:
+
+$$
+\Gamma(n+1) = n! \approx e^{n \log n - n} \sqrt{2 \pi n} = \sqrt{2 \pi n} n^n e^{-n} \quad n \rightarrow \infty
+$$
+
+The second derivative $f''(t)$ at the point $t = n$ gives us the next leading term. The third derivative of $f(t)$ is:
+
+$$
+f'''(t) = \frac{2}{t^3}
+$$
+
+Evaluating this at $t = n$ gives:
+
+$$
+f'''(n) = \frac{2}{n^3}
+$$
+
+The corresponding term in the expansion is of the order $\frac{1}{n}$, which leads to the next term in the series being $\frac{1}{12n}$. Therefore, the improved Stirling's formula, including the next term in the asymptotic series, is:
+
+$$
+n! \sim \sqrt{2 \pi n}\, n^n e^{-n} \left( 1 + \frac{1}{12n} \right)
+$$
+
+## Leading asymptotics of $I(x)=\int_{-1}^1 e^{-x \sin ^4 t} d t$
+
+> Use Laplace's method to find the leading asymptotics of
+>
+> $$
+> I(x)=\int_{-1}^1 e^{-x \sin ^4 t} d t
+> $$
+>
+> as $x \rightarrow \infty$.
+
+For the given integral, we observe that $\sin^4 t$ is maximized when $t = 0$ within the interval $[-1, 1]$. Near this point, the function $\sin^4 t$ can be approximated by its Taylor expansion:
+
+$$
+\sin^4 t \approx t^4
+$$
+
+for small values of $t$. The integral becomes:
+
+$$
+I(x) \approx \int_{-1}^1 e^{-x t^4} dt
+$$
+
+As $x \rightarrow \infty$, the contribution to the integral from regions where $t$ is not very small becomes negligible, so we can extend the limits of the integral to infinity for the purpose of asymptotic approximation:
+
+$$
+I(x) \approx \int_{-\infty}^{\infty} e^{-x t^4} dt
+$$
+
+Let $u = x^{1/4} t$, then $dt = x^{-1/4} du$ and the integral becomes:
+
+$$
+I(x) \approx \int_{-\infty}^{\infty} e^{-u^4} x^{-1/4} du
+$$
+
+The integral $\int_{-\infty}^{\infty} e^{-u^4} du$ is a constant (independent of $x$), so the leading asymptotic behavior of $I(x)$ as $x \rightarrow \infty$ is given by:
+
+$$
+I(x) \sim C x^{-1/4}
+$$
+
+where $C$ is the value of the integral $\int_{-\infty}^{\infty} e^{-u^4} du$, which can be evaluated numerically.

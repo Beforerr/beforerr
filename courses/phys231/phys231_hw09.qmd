@@ -1,0 +1,170 @@
+---
+title: Homework 09
+format:
+  html: default
+  typst: 
+    output-file: phys231_hw09
+number-sections: true
+---
+
+## Stirling approximation
+
+> Show using steepest descent that the leading asymptotics of $\Gamma(z)$ for $z=r e^{i \theta}, r \rightarrow \infty, \operatorname{Re} z>0$, are given by the complex Stirling approximation
+>
+> $$
+> \Gamma(z) \sim e^{-z} z^z\left(\frac{2 \pi}{z}\right)^{1 / 2} .
+> $$
+
+The Gamma function
+
+$$
+\Gamma(z) = \int_{0}^{\infty} t^{z-1} e^{-t} dt
+$$
+
+after performing a change of variables by setting $t = zu$, which yields:
+
+$$
+\Gamma(z) = z^z \int_{0}^{\infty} u^{z-1} e^{-zu} du
+$$
+
+The method of steepest descent involves analyzing the integrand's behavior around its saddle points, where the first derivative of the exponent vanishes. For our integral, the exponent is $-zu + (z-1)\log(u)$. The saddle point occurs where its derivative with respect to $u$ is zero. This gives us:
+
+$$
+-z + \frac{z-1}{u} = 0
+$$
+
+$$
+u = \frac{z-1}{z} \approx 1 \quad \text{for large } z
+$$
+
+Near the saddle point $u = 1$, we approximate the exponent by a second-order Taylor expansion:
+
+$$
+-zu + (z-1)\log(u) \approx -z + (z-1)\log(z) - \frac{z}{2}(u-1)^2
+$$
+
+The integral can now be approximated as:
+
+$$
+\Gamma(z) \approx z^z e^{-z} e^{(z-1)\log(z)} \int_{-\infty}^{\infty} e^{-\frac{z}{2}(u-1)^2} du
+$$
+
+With the Gaussian integral evaluates to:
+
+$$
+\int_{-\infty}^{\infty} e^{-\frac{z}{2}(u-1)^2} du = \sqrt{\frac{2\pi}{z}}
+$$
+
+We get:
+
+$$
+\Gamma(z) \sim e^{-z} z^z \left(\frac{2\pi}{z}\right)^{\frac{1}{2}}
+$$
+
+## Airy function
+
+> Consider the time-independent Schrodinger equation for a linear potential:
+>
+> $$
+> \frac{d^2}{d x^2} \psi(x)=x \psi(x) \text {. }
+> $$
+>
+> * Show that the "Airy function" defined by
+>
+>   $$
+>   A i(x)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{i x y+i y^3 / 3} d y
+>   $$
+>
+>   solves the equation above.
+> * Determine the saddle points of $i x y+i y^3 / 3$ in the $y$ plane and make a change of variables to the integral so that these saddle points are not moving. Determine the direction of steepest descent on the constant phase contours through these saddle points for each argument of complex $x$.
+> * Find the steepest descent contour for $A i(x)$ for $x \rightarrow e^{i \alpha} \infty$ for each $\alpha$. Determine the leading asymptotics for each $\alpha$.
+
+### Verifying the Airy Function as a Solution
+
+Taking the Fourier transform on both sides of equation we get
+
+$$
+\mathcal{F}\left(\frac{d^2 y}{d x^2}\right)=\mathcal{F}(x y),
+$$
+
+For the L.H.S., we get
+
+$$
+\mathcal{F}\left(\frac{d^2 y}{d x^2}\right)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \frac{d^2 y}{d x^2} e^{-i k x} d x = =-k^2 \mathcal{F}(y) .
+$$
+
+For the R.H.S.  based on the derivative of the Fourier transform with respect to $k$ we get,
+
+$$
+\frac{d}{d k} \mathcal{F}(y)=\frac{d}{d k}\left(\frac{1}{2 \pi} \int_{-\infty}^{+\infty} y e^{-i k x} d x\right),
+$$
+
+Therefore,
+
+$$
+\frac{d}{d k} \mathcal{F}(y)=\frac{1}{2 \pi} \int^{+\infty} \frac{d}{d k}\left(y e^{-i k x}\right) d x=\frac{1}{2 \pi} \int^{+\infty}(-i x) y e^{-i k x} d x
+$$
+
+We have
+
+$$
+\mathcal{F}(x y)=i \frac{d \mathcal{F}(y)}{d k},
+$$
+
+So the equation becomes
+
+$$
+-k^2 \mathcal{F}(y)=i \frac{d \mathcal{F}(y)}{d k},
+$$
+
+the only solution is
+
+$$
+\mathcal{F}(y)=e^{i \frac{k^3}{3}},
+$$
+
+taking the inverse Fourier transform, we get a solution satisfying the differential equation. Hence we have the final solution as
+
+$$
+y=A i(x)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} e^{i\left(k x+\frac{k^3}{3}\right)} d k .
+$$
+
+### Saddle Points
+
+The exponent in the integral is $ixy + \frac{i}{3}y^3$. To find the saddle points, we set the derivative of this expression with respect to $y$ equal to zero:
+
+$$
+ix + iy^2 = 0
+$$
+
+## $Z(\epsilon)$ function
+
+> Compute the all-orders asymptotic series for
+>
+> $$
+> Z(\epsilon)=\int d x e^{-x^2-\epsilon x^4} \quad \epsilon \rightarrow 0^{+}
+> $$
+>
+> and then use Borel summation to evaluate the integral.
+
+The expansion is based on the Taylor series of $e^{-\epsilon x^4}$ around $\epsilon = 0$:
+
+$$
+e^{-\epsilon x^4} = \sum_{n=0}^{\infty} \frac{(-\epsilon x^4)^n}{n!}
+$$
+
+Substituting this series into the integral and integrating term by term, we get:
+
+$$
+Z(\epsilon) = \sum_{n=0}^{\infty} \frac{(-\epsilon)^n}{n!} \int dx\, x^{4n} e^{-x^2}
+$$
+
+Each term in this series can be integrated using standard methods, often involving gamma functions for even powers of $x$.
+
+The Borel sum is then given by an integral of the Borel transform against an exponential:
+
+$$
+\tilde{Z}(\epsilon) = \int_0^\infty e^{-t} B(t \epsilon) dt
+$$
+
+where $B(t)$ is the Borel transform of the series.

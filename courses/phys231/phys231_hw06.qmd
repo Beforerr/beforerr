@@ -4,4 +4,362 @@ format:
   html: default
   typst: 
     output-file: phys231_hw06
+number-sections: true
 ---
+
+## Green's function
+
+> Consider the equation
+>
+> $$
+> x^{\prime \prime}(t)+2 \gamma x(t)+\omega_0^2 x(t)=f(t) .
+> $$
+>
+> Using the Green's function for this equation, which satisfies
+>
+> $$
+> G^{\prime \prime}(t)+2 \gamma G^{\prime}(t)+\omega_0^2 G(t)=\delta(t)
+> $$
+>
+> derive the response $x(t)$ to a square pulse
+>
+> $$
+> f(t)=\left\{\begin{array}{ll}
+> 1 & 0 \leq t \leq 1 \\
+> 0 & \text { otherwise }
+> \end{array} .\right.
+> $$
+>
+> Do this by solving for $\tilde{G}(\omega)$ in the Fourier domain and note
+>
+> $$
+> \tilde{x}(\omega)=\tilde{G}(\omega) \tilde{f}(\omega)
+> $$
+>
+> (Note that when inverting this Fourier transform it is important to treat this as a distribution.) Check that $x(t)$ is causal and check that its Fourier transform $\tilde{x}(\omega)$ satisfies the Kramers-Kronig relations.
+
+The differential equation for $G(t)$ in the Fourier domain is
+
+$$
+(-\omega^2 + 2i\gamma\omega + \omega_0^2) \tilde{G}(\omega) = 1
+$$
+
+So
+
+$$
+\tilde{G}(\omega) = \frac{1}{-\omega^2 + 2i \gamma \omega + \omega_0^2}
+$$
+
+Its Fourier transform $\tilde{f}(\omega)$ is given by:
+
+$$
+\tilde{f}(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} \, dt = \int_{0}^{1} e^{-i\omega t} \, dt
+$$
+
+$$
+\tilde{f}(\omega) = \left. \frac{-1}{i\omega} e^{-i\omega t} \right|_0^1 = \frac{1 - e^{-i\omega}}{i\omega}
+$$
+
+Now, we use the relation $\tilde{x}(\omega) = \tilde{G}(\omega) \tilde{f}(\omega)$:
+
+$$
+\tilde{x}(\omega) = \frac{1}{-\omega^2 + 2i\gamma\omega + \omega_0^2} \cdot \frac{1 - e^{-i\omega}}{i\omega}
+$$
+
+To find $x(t)$, we compute the inverse Fourier transform of $\tilde{x}(\omega)$.
+
+$$
+x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{x}(\omega) e^{i\omega t} \, d\omega
+$$
+
+We use contour integration in the complex plane to calculate this.
+
+$\tilde{x}(\omega)$ has poles at $p_1 = iγ+\sqrt{\omega_0^2-\gamma^2}, p_2=iγ-\sqrt{\omega_0^2-\gamma^2}$
+
+The residue at $p_1$ is
+
+$$
+\frac{
+e^{-\gamma + 
+  (\gamma + \sqrt{\gamma^2 - \omega_0^2}) (1 - t)} (e^\gamma - e^{
+   \sqrt{\gamma^2 - \omega_0^2}})
+}
+{2 \sqrt{-\gamma^2 + 
+  \omega_0^2} (-\gamma +\sqrt{\gamma^2-\omega_0^2})}
+$$
+
+...
+
+We can see that $x(t) = 0$ for $t<0$, which means $x(t)$ is causal.
+
+## Different drive function
+
+> Solve the equation in problem 1 with the drive
+>
+> $$
+> f(t)=\left\{\begin{array}{ll}
+> e^{-t} & t \geq 0 \\
+> 0 & t<0
+> \end{array} .\right.
+> $$
+
+The solution can be expressed as the convolution of the Green's function with the driving force $f(t)$:
+
+$$
+x(t) = \int_{-\infty}^{\infty} G(t - \tau) f(\tau) d\tau
+$$
+
+The form of $G(t)$ depends on the values of $\gamma$ and $\omega_0$. For simplicity, let's assume $\gamma > 0$ and $\omega_0 > 0$. The exact form of $G(t)$ depends on whether the system is underdamped, overdamped, or critically damped. Without loss of generality, let's assume an underdamped system, where $\gamma^2 < \omega_0^2$, which gives a Green's function of the form:
+
+$$
+G(t) = \Theta(t) \frac{e^{-\gamma t}}{\omega_d} \sin(\omega_d t)
+$$
+
+where $\omega_d = \sqrt{\omega_0^2 - \gamma^2}$ and $\Theta(t)$ is the Heaviside step function.
+
+Now, we compute the convolution integral:
+
+$$
+x(t) = \int_{-\infty}^{\infty} G(t - \tau) f(\tau) d\tau
+$$
+
+Since $f(\tau) = 0$ for $\tau < 0$, the integral simplifies to:
+
+$$
+x(t) = \int_{0}^{t} G(t - \tau) e^{-\tau} d\tau
+$$
+
+Substitute the expression for $G(t - \tau)$ and carry out the integration:
+
+$$
+x(t) = \int_{0}^{t} \Theta(t - \tau) \frac{e^{-\gamma (t - \tau)}}{\omega_d} \sin(\omega_d (t - \tau)) e^{-\tau} d\tau
+$$
+
+## Green's function and boundary conditions
+
+> Find the Green's function $G(x)$ satisfying
+>
+> $$
+> \frac{d^2}{d x^2} G(x, y)=\delta(x-y)
+> $$
+>
+> with the boundary conditions $G(0, y)=G(1, y)=0$. Show that with this boundary condition,
+>
+> $$
+> \phi(x)=\int_0^1 G(x, y) f(y) d y
+> $$
+>
+> satisfies
+>
+> $$
+> \frac{d^2}{d x^2} \phi(x)=f(x)
+> $$
+>
+> and the boundary conditions $\phi(0)=\phi(1)=0$.
+
+We consider two cases, $x < y$ and $x > y$, because the delta function $\delta(x-y)$ changes the behavior of the solution at $x = y$. We define $G(x, y)$ piecewise for these two cases:
+
+* For $x < y$, let $G(x, y) = A(y)x + C(y)$.
+* For $x > y$, let $G(x, y) = B(y)(1 - x) + D(y)$.
+
+Applying the boundary conditions
+
+* $G(0, y) = 0$ gives $C(y) = 0$
+* $G(1, y) = 0$ gives $D(y)  = 0$
+
+The function $G(x, y)$ itself must be continuous at $x = y$, this gives us:
+
+$$
+A(y)y = B(y)(1 - y)
+$$
+
+The derivative $\frac{d}{dx} G(x, y)$ should have a discontinuity of 1 at $x = y$ (this comes from the delta function). Therefore, the jump at $x = y$ is
+
+$$
+A(y) - (-B(y)) = 1
+$$
+
+The solutions for $A(y)$ and $B(y)$ are:
+
+$$
+A(y)=1−y, B(y)=y
+$$
+
+With these, the Green's function $G(x, y)$ for $x < y$ and $x > y$ can be fully specified:
+
+* For $x < y$, $G(x, y) = A(y)x = (1 - y)x$.
+* For $x > y$, $G(x, y) = B(y)(1 - x) = y(1 - x)$.
+
+---
+
+**Proving $\phi(x)$ Satisfies the Given Conditions**:
+
+We differentiate $\phi(x)$ twice with respect to $x$:
+
+$$
+\frac{d^2}{dx^2} \phi(x) = \frac{d^2}{dx^2} \int_0^1 G(x, y) f(y) dy
+$$
+
+Because $G(x, y)$ is a Green's function, its second derivative with respect to $x$ is $\delta(x-y)$. Therefore, the integral becomes:
+
+$$
+\frac{d^2}{dx^2} \phi(x) = \int_0^1 \delta(x-y) f(y) dy
+$$
+
+The delta function picks out the value of $f(y)$ at $y = x$, so:
+
+$$
+\frac{d^2}{dx^2} \phi(x) = f(x)
+$$
+
+* Since $G(0, y) = 0$, it follows that $\phi(0) = \int_0^1 G(0, y) f(y) dy = 0$.
+* Similarly, since $G(1, y) = 0$, it follows that $\phi(1) = \int_0^1 G(1, y) f(y) dy = 0$.
+
+Therefore, $\phi(x)$ satisfies the differential equation with the boundary conditions $\phi(0) = \phi(1) = 0$.
+
+## Nyquist–Shannon sampling theorem
+
+> Suppose $f(t)$ is band-limited, meaning its Fourier transform satisfies $\tilde{f}(\omega)=0$ for $|\omega| \geq 2 \pi \Lambda$. If $T<1 /(2 \Lambda)$, we showed it is possible to reconstruct $f(t)$ from the set of sample values $f(n T)$, where $n \in \mathbb{Z}$. Give an explicit formula for $f(t)$ in terms of the sample values.
+
+When $x(t)$ is a function with a Fourier transform $X(f)$ :
+
+$$
+X(f) \triangleq \int_{-\infty}^{\infty} x(t) e^{-i 2 \pi f t} \mathrm{~d} t
+$$
+
+the Poisson summation formula indicates that the samples, $x(n T)$, of $x(t)$ are sufficient to create a periodic summation of $X(f)$. The result is:
+
+$$
+X_s(f) \triangleq \sum_{k=-\infty}^{\infty} X\left(f-k f_s\right)=\sum_{n=-\infty}^{\infty} T \cdot x(n T) e^{-i 2 \pi n T f}
+$$
+
+When there is no overlap of the copies (also known as "images") of $X(f)$, the $k=0$ term of Eq. 1 can be recovered by the product:
+
+$$
+X(f)=H(f) \cdot X_s(f)
+$$
+
+where:
+
+$$
+H(f) \triangleq \begin{cases}1 & |f|<B \\ 0 & |f|>f_s-B\end{cases}
+$$
+
+The sampling theorem is proved since $X(f)$ uniquely determines $x(t)$.
+All that remains is to derive the formula for reconstruction. $H(f)$ need not be precisely defined in the region $\left[B, f_s-B\right]$ because $X_s(f)$ is zero in that region. However, the worst case is when $B=f_s / 2$, the Nyquist frequency. A function that is sufficient for that and all less severe cases is:
+
+$$
+H(f)=\operatorname{rect}\left(\frac{f}{f_s}\right)= \begin{cases}1 & |f|<\frac{f_s}{2} \\ 0 & |f|>\frac{f_s}{2}\end{cases}
+$$
+
+where rect is the rectangular function. Therefore:
+
+$$
+\begin{aligned}
+X(f) & =\operatorname{rect}\left(\frac{f}{f_s}\right) \cdot X_s(f) \\
+& =\operatorname{rect}(T f) \cdot \sum_{n=-\infty}^{\infty} T \cdot x(n T) e^{-i 2 \pi n T f}  \\
+& =\sum_{n=-\infty}^{\infty} x(n T) \cdot \underbrace{T \cdot \operatorname{rect}(T f) \cdot e^{-i 2 \pi n T f}}_{\mathcal{F}\left\{\operatorname{sinc}\left(\frac{t-n T}{T}\right)\right\}}
+\end{aligned}
+$$
+
+The inverse transform of both sides produces the Whittaker-Shannon interpolation formula:
+
+$$
+x(t)=\sum_{n=-\infty}^{\infty} x(n T) \cdot \operatorname{sinc}\left(\frac{t-n T}{T}\right)
+$$
+
+## Jacobi theta function
+
+> Consider the Jacobi theta function
+>
+> $$
+> \vartheta_3(\tau)=\sum_{n=-\infty}^{\infty} e^{i \pi \tau n^2}
+> $$
+>
+> Show by Poisson summation that
+>
+> $$
+> \vartheta_3(-1 / \tau)=\sqrt{i \tau} \vartheta_3(\tau)
+> $$
+
+Consider the function $f(x) = e^{i \pi \tau x^2}$. The Fourier transform of $f(x)$ is given by:
+
+$$
+\hat{f}(\xi) = \int_{-\infty}^{\infty} e^{i \pi \tau x^2} e^{-2 \pi i x \xi} dx
+$$
+
+Applying the Poisson summation formula, we have:
+
+$$
+\sum_{n=-\infty}^{\infty} e^{i \pi \tau n^2} = \sum_{m=-\infty}^{\infty} \hat{f}(m)
+$$
+
+Substituting $\hat{f}(m)$ we get:
+
+$$
+\vartheta_3(\tau) = \sqrt{\frac{i}{\tau}} \sum_{m=-\infty}^{\infty} e^{-\pi i m^2 / \tau}
+$$
+
+**Change of Variable**: Let $\tau' = -1/\tau$. Then $e^{-\pi i m^2 / \tau} = e^{i \pi \tau' m^2}$. Therefore, the sum becomes:
+
+$$
+\vartheta_3(\tau) = \sqrt{\frac{i}{\tau}} \sum_{m=-\infty}^{\infty} e^{i \pi \tau' m^2}
+$$
+
+Recognizing the sum as $\vartheta_3(\tau')$ with $\tau' = -1/\tau$, we get:
+
+$$
+\vartheta_3(\tau) = \sqrt{\frac{i}{\tau}} \vartheta_3\left(-\frac{1}{\tau}\right)
+$$
+
+or equivalently:
+
+$$
+\vartheta_3\left(-\frac{1}{\tau}\right) = \sqrt{i\tau} \vartheta_3(\tau)
+$$
+
+## Jacobi theta function by integral
+
+> Show another way by considering the integral
+>
+> $$
+> I_N(\tau)=\int_{\gamma_N} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z}-1} d z
+> $$
+>
+> where $\gamma_N$ is a rectangular contour with vertices $\pm(N+1 / 2) \pm i$. Compute this by residues and take the limit $N \rightarrow \infty$ to show it equals $\vartheta_3(\tau)$. Then argue we can rewrite the contour integral as
+>
+> $$
+> \vartheta_3(\tau)=\int_{-\infty-i \epsilon}^{\infty-i \epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z}-1} d z-\int_{-\infty+i \epsilon}^{\infty+i \epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z}-1} d z
+> $$
+>
+> and do geometric series expansions and direct Gaussian integration to show this is also $\frac{1}{\sqrt{i \tau}} \vartheta_3(-1 / \tau)$.
+
+**Compute by Residues**:
+Inside the contour $\gamma_N$, the poles of the integrand occur at integers. The residue at each pole $n$ (an integer) is given by evaluating the limit as $z \to n$ of $(z - n)$ times the integrand. This leads to residues of the form $e^{-\pi i n^2 \tau}$.
+
+Summing the residues for all poles within the contour, we get:
+
+$$
+\sum_{n=-N}^N e^{-\pi i n^2 \tau}
+$$
+
+This is a finite sum approximation of the theta function $\vartheta_3(\tau)$.
+As $N \to \infty$, this sum becomes $\vartheta_3(\tau)$. So, we have:
+
+$$
+\lim_{N \to \infty} I_N(\tau) = \vartheta_3(\tau)
+$$
+
+The contour integral can be rewritten as:
+
+$$
+\vartheta_3(\tau) = \int_{-\infty-i\epsilon}^{\infty-i\epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z} - 1} dz - \int_{-\infty+i\epsilon}^{\infty+i\epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z} - 1} dz
+$$
+
+Here, $\epsilon$ is a small positive number. The integrand can be expanded using the geometric series for $e^{2 \pi i z}$. This series converges absolutely for $|\text{Im}(z)| > 0$.
+After the series expansion, the integrals involve terms of the form $e^{-\pi i z^2 \tau}$ which are Gaussian integrals. These integrals can be evaluated directly, and due to the symmetry of the Gaussian, they will involve a factor of $\frac{1}{\sqrt{i \tau}}$.
+By summing these integrals, we obtain the identity:
+
+$$
+\vartheta_3(\tau) = \frac{1}{\sqrt{i \tau}} \vartheta_3\left(-\frac{1}{\tau}\right)
+$$
