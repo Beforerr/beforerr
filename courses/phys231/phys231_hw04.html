@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr - Homework 02</title>
+<title>beforerr - Homework 04</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../courses/phys231/phys231_hw03.html" rel="next">
-<link href="../../courses/phys231/index.html" rel="prev">
+<link href="../../courses/epss265/index.html" rel="next">
+<link href="../../courses/phys231/phys231_hw03.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -111,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">Homework 02</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw04.html">Homework 04</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework 02</span></a>
   </div>
 </li>
@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link">
+  <a href="../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Homework 04</span></a>
   </div>
 </li>
@@ -259,17 +259,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#power-series" id="toc-power-series" class="nav-link active" data-scroll-target="#power-series">5. Power series</a></li>
-  <li><a href="#expansion-near-pole" id="toc-expansion-near-pole" class="nav-link" data-scroll-target="#expansion-near-pole">6. Expansion near pole</a></li>
+  <li><a href="#winding-number" id="toc-winding-number" class="nav-link active" data-scroll-target="#winding-number">2. Winding number</a></li>
+  <li><a href="#analytic-continuation-and-fourier-coefficents" id="toc-analytic-continuation-and-fourier-coefficents" class="nav-link" data-scroll-target="#analytic-continuation-and-fourier-coefficents">4. Analytic continuation and Fourier coefficents</a>
+  <ul class="collapse">
+  <li><a href="#analytic-continuation" id="toc-analytic-continuation" class="nav-link" data-scroll-target="#analytic-continuation">Analytic continuation</a></li>
+  <li><a href="#fourier-coefficents-of-ecos-theta" id="toc-fourier-coefficents-of-ecos-theta" class="nav-link" data-scroll-target="#fourier-coefficents-of-ecos-theta">Fourier coefficents of <span class="math inline">\(e^{−\cos \theta}\)</span></a></li>
+  <li><a href="#fourier-coefficents-of-frac1cos-theta---32" id="toc-fourier-coefficents-of-frac1cos-theta---32" class="nav-link" data-scroll-target="#fourier-coefficents-of-frac1cos-theta---32">Fourier coefficents of <span class="math inline">\(\frac{1}{\cos \theta - 3/2}\)</span></a></li>
+  </ul></li>
+  <li><a href="#laurent-series-and-singularity" id="toc-laurent-series-and-singularity" class="nav-link" data-scroll-target="#laurent-series-and-singularity">5. Laurent series and singularity</a></li>
+  <li><a href="#euler-proof-of-basel-problem" id="toc-euler-proof-of-basel-problem" class="nav-link" data-scroll-target="#euler-proof-of-basel-problem">6. Euler proof of Basel problem</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/courses/phys231/phys231_hw02.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/courses/phys231/phys231_hw04.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="phys231_hw04_raw.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">Homework 02</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw04.html">Homework 04</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Homework 02</h1>
+<h1 class="title">Homework 04</h1>
 </div>
 
 
@@ -286,107 +293,129 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="./homework02.nb">Mathematica notebook</a></p>
-<section id="power-series" class="level2">
-<h2 class="anchored" data-anchor-id="power-series">5. Power series</h2>
+<ul>
+<li><a href="./phys231_hw04_final.pdf">Complete PDF</a></li>
+<li><a href="./phys231_hw04.nb">Mathematica Notebook</a></li>
+</ul>
+<section id="winding-number" class="level2">
+<h2 class="anchored" data-anchor-id="winding-number">2. Winding number</h2>
 <blockquote class="blockquote">
-<p>Consider a power series of the form</p>
+<p>Suppose <span class="math inline">\(f(z)\)</span> is holomorphic in the disc <span class="math inline">\(|z| ≤ ϵ\)</span> and has a zero at <span class="math inline">\(z = 0\)</span> but nowhere else in the disc <span class="math inline">\(|z| ≤ ϵ\)</span>. Show by direct integration that</p>
 <p><span class="math display">\[
-a=1+ \sum_{n=1}^{\infty} a_n z^n
+\frac{1}{2πi} \int_{|z|=ϵ} \frac{f'(z)}{f(z)} dz
 \]</span></p>
-<p>Show that there is another power series</p>
-<p><span class="math display">\[
-b = \sum_{n=0}^{\infty} b_n z^n
-\]</span></p>
-<p>such that, as a formal expression</p>
-<p><span class="math display">\[
-ab = 1
-\]</span></p>
-<p>Do this by giving a recurrence relation for the coefficients <span class="math inline">\(b_n\)</span>. Solve this recurrence relation for <span class="math inline">\(1/e^z\)</span> and show it gives the power series for <span class="math inline">\(e^{−z}\)</span>.</p>
+<p>equals the winding number of the argument of f around the circle <span class="math inline">\(|z| = ϵ\)</span>. Then use the residue theorem to show that this equals the degree of the zero, in agreement with the argument principle.</p>
 </blockquote>
-<p>The product <span class="math inline">\(ab\)</span> can be written as:</p>
+<p>The integral</p>
 <p><span class="math display">\[
-ab = \left(1 + \sum_{n=1}^{\infty} a_n z^n \right) \left( \sum_{n=0}^{\infty} b_n z^n \right) = 1
+\int_{C} \frac{f'(z)}{f(z)} dz = \int_{C} \frac{1}{f(z)} df(z) = \int_{f(C)} \frac{1}{w} dw
 \]</span></p>
-<p>By expanding, we get:</p>
+<p>effectively measures the total change in the argument of <span class="math inline">\(f(z)\)</span> as <span class="math inline">\(z\)</span> traverses the circle, which equals the winding number of the argument of <span class="math inline">\(f\)</span>.</p>
+<p>Since <span class="math inline">\(f(z)\)</span> is holomorphic in the disc <span class="math inline">\(|z| \leq \epsilon\)</span> and has a zero at <span class="math inline">\(z = 0\)</span>, <span class="math inline">\(f(z)\)</span> can be locally expressed as <span class="math inline">\(z^n g(z)\)</span>, where <span class="math inline">\(n\)</span> is the degree of the zero.</p>
+<p>Then, <span class="math inline">\(f'(z) = n z^{n−1} g(z) + z^n g'(z)\)</span>, and so</p>
 <p><span class="math display">\[
-ab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \dots + \left( \sum_{k=0}^{n} a_k b_{n-k} \right) z^n + \dots
+\frac{f'(z)}{f(z)} = \frac{n}{z} + \frac{g'(z)}{g(z)}
 \]</span></p>
-<p>For <span class="math inline">\(ab = 1\)</span>, all the coefficients of <span class="math inline">\(z^n\)</span> (for <span class="math inline">\(n \geq 1\)</span>) must be zero, and the constant term (the coefficient of <span class="math inline">\(z^0\)</span>) must be 1. This gives us the following conditions:</p>
-<ol type="1">
-<li><span class="math inline">\(b_0 = 1\)</span> (since the constant term of <span class="math inline">\(ab\)</span> must be 1).</li>
-<li>For <span class="math inline">\(n \geq 1\)</span>, we have <span class="math inline">\(\sum_{k=0}^{n} a_k b_{n-k} = 0\)</span>.</li>
-</ol>
-<p>For <span class="math inline">\(a_k\)</span>, we have <span class="math inline">\(a_0 = 1\)</span> and <span class="math inline">\(a_n\)</span> for <span class="math inline">\(n \geq 1\)</span>. Thus, the recurrence relation for <span class="math inline">\(b_n\)</span> becomes:</p>
-<p><span class="math display">\[
-b_n = -\sum_{k=1}^{n} a_k b_{n-k} \quad \text{for } n \geq 1
-\]</span></p>
-<p>For <span class="math inline">\(a = e^z\)</span>. The power series for <span class="math inline">\(b= 1/e^z\)</span> is given by:</p>
-<ol type="1">
-<li><span class="math inline">\(b_0 = 1\)</span> (from the initial condition).</li>
-<li>For <span class="math inline">\(n \geq 1\)</span>:</li>
-</ol>
-<p><span class="math display">\[
-b_n = -\sum_{k=1}^{n} \frac{1}{k!} b_{n-k}
-\]</span></p>
-<p>And if <span class="math inline">\(b_n = \frac{(-1)^n}{n!}\)</span>. Then, it is exactly the power series for <span class="math inline">\(e^{-z}\)</span>:</p>
-<p><span class="math display">\[
-e^{-z} = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!}
-\]</span></p>
-<p>To prove <span class="math inline">\(b_n = \frac{(-1)^n}{n!}\)</span>, we use induction method. Suppose it is true for <span class="math inline">\(n\)</span>, then using</p>
-<p><span class="math display">\[
-(1 + (-1))^{n+1} = \sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \sum_{k=0}^{n+1} \frac{(-1)^{n+1-k}}{k! (n+1-k)!}
-\]</span></p>
-<p>By substituting <span class="math inline">\(b_k = \frac{(-1)^k}{k!}\)</span> for <span class="math inline">\(k \le n\)</span>, we have</p>
-<p><span class="math display">\[
-(-1)^{n+1} / (n+1)~! = -\sum_{k=1}^{n+1} \frac{1}{k!} b_{n-k}
-\]</span></p>
-<p>So <span class="math inline">\(b_{n+1} = \frac{(-1)^{n+1}}{(n+1)!}\)</span>. Q.E.D</p>
+<p>The residue at <span class="math inline">\(z=0\)</span> is the coefficient of <span class="math inline">\(\frac{1}{z}\)</span> in this expression, which is <span class="math inline">\(n\)</span>, the degree of the zero.</p>
 </section>
-<section id="expansion-near-pole" class="level2">
-<h2 class="anchored" data-anchor-id="expansion-near-pole">6. Expansion near pole</h2>
+<section id="analytic-continuation-and-fourier-coefficents" class="level2">
+<h2 class="anchored" data-anchor-id="analytic-continuation-and-fourier-coefficents">4. Analytic continuation and Fourier coefficents</h2>
 <blockquote class="blockquote">
-<p>Assuming the result of problem 5 and the bonus problem, show that if <span class="math inline">\(f (z) = g(z)/h(z)\)</span> has a pole at <span class="math inline">\(z = 0\)</span>, that we can expand <span class="math inline">\(f(z)\)</span> in a series</p>
-<p><span class="math display">\[
-f (z) = \sum_{n=-m}^{\infty} a_n z^n
-\]</span></p>
-<p>for some <span class="math inline">\(m\)</span>, and that this converges in a “punctured disc” <span class="math inline">\(\{ z | |z| &lt; R, z \ne 0 \}\)</span>. Make such an expansion for <span class="math inline">\(f (z) = z/(1 + z^2)\)</span> around <span class="math inline">\(z = i\)</span> (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).</p>
+<p>Give an analytic continuation of <span class="math inline">\(\cos θ\)</span> from the unit circle <span class="math inline">\(z = e^{iθ}\)</span> to the complex plane minus the origin.</p>
+<p>Conclude that the Fourier coefficients <span class="math inline">\(c_n\)</span> of <span class="math inline">\(e^{- \cos θ}\)</span> decrease faster than any exponential, meaning <span class="math inline">\(c_n = o(e^{−αn})\)</span> for all <span class="math inline">\(α\)</span> as <span class="math inline">\(n → ±∞\)</span>. Compare this to the Fourier series of <span class="math inline">\(1/(cos θ −3/2)\)</span>, what is the decay of its Fourier coefficents?</p>
 </blockquote>
-<p>Since <span class="math inline">\(f(z)\)</span> has a pole at <span class="math inline">\(z = 0\)</span>, <span class="math inline">\(h(z)\)</span> must have a zero of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z = 0\)</span></p>
-<p>Given this, <span class="math inline">\(h(z)\)</span> can be written as <span class="math inline">\(z^m k(z)\)</span> where <span class="math inline">\(k(z)\)</span> is analytic and non-zero at <span class="math inline">\(z = 0\)</span>. Therefore, <span class="math inline">\(f(z)\)</span> can be written as:</p>
+<section id="analytic-continuation" class="level3">
+<h3 class="anchored" data-anchor-id="analytic-continuation">Analytic continuation</h3>
+<p>On the unit circle <span class="math inline">\(z=e ^ {iθ}\)</span>, <span class="math inline">\(\cos \theta = \frac{1}{2} (e^{iθ} +e^{−iθ}) = \frac{1}{2} (z+ z^{-1})\)</span>. This expression provides an analytic continuation of <span class="math inline">\(\cos \theta\)</span> to the complex plane minus the origin, as it is well-defined for all <span class="math inline">\(z \neq 0\)</span>.</p>
+</section>
+<section id="fourier-coefficents-of-ecos-theta" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-coefficents-of-ecos-theta">Fourier coefficents of <span class="math inline">\(e^{−\cos \theta}\)</span></h3>
+<p>The function <span class="math inline">\(e^{−\cos \theta}\)</span> is smooth and periodic. The Fourier coefficients <span class="math inline">\(c_n\)</span> of a periodic function <span class="math inline">\(f(θ)\)</span> are given by:</p>
 <p><span class="math display">\[
-f(z) = \frac{g(z)}{z^m k(z)}
+c_n= 1/2π ∫_{0}^{2π} f(θ)e^{inθ}dθ = 1/2π \int_{0}^{2π} e^{-\cos θ + i n θ}dθ
 \]</span></p>
-<p>Since <span class="math inline">\(k(z)\)</span> is analytic and non-zero at <span class="math inline">\(z = 0\)</span>, there exists a power series <span class="math inline">\(\sum_{n=0}^{\infty} b_n z^n\)</span> such that <span class="math inline">\(\frac{1}{k(z)} = \sum_{n=0}^{\infty} b_n z^n\)</span> . This leads to:</p>
 <p><span class="math display">\[
-f(z) = \frac{g(z)}{z^m} \sum_{n=0}^{\infty} b_n z^n = \sum_{n=0}^{\infty} b_n g(z) z^{n-m}
+1/2π \int_{0}^{2π} e^{-\cos θ + i n θ} dθ = 1/2π \int_{|z|=1} e^{-z/2-1/2z} z^n \frac{dz}{i z} = Res_{z=0} { e^{-z/2-1/2z} z^{n-1} }
 \]</span></p>
-<p>for <span class="math inline">\(z \ne 0\)</span>. As <span class="math inline">\(g(z)\)</span> is analytic at <span class="math inline">\(z = 0\)</span>, it can also be expanded into a power series around <span class="math inline">\(z = 0\)</span>. Thus, the product of these two series results in a series of the form:</p>
+<p>The coefficient <span class="math inline">\(a_{-n}\)</span> of <span class="math inline">\(g(z)=e^{-z/2-1/2z}\)</span> at the point of <span class="math inline">\(z=0\)</span> can de derived by expanding by separately <span class="math inline">\(e^{-z/2}\)</span> as Talyor Series and <span class="math inline">\(e^{−1/(2z)}\)</span> as a Laurent Series and then multiplying these series together</p>
 <p><span class="math display">\[
-f(z) = \sum_{n=-m}^{\infty} a_n z^n
+a_{-n} = \sum_{k=0}^{\infty} (-\frac{1}{2})^k \frac{1}{k!} (-\frac{1}{2})^{(n+k)} \frac{1}{(n+k)!}
 \]</span></p>
-<p>This series converges in some punctured disc <span class="math inline">\(\{ z \,|\, |z| &lt; R, z \ne 0 \}\)</span> because it is the product of two convergent power series in that region.</p>
-<p>For the specific function <span class="math inline">\(f(z) = \frac{z}{1 + z^2}\)</span>, we want to expand around <span class="math inline">\(z = i\)</span></p>
+<p>So fourier coefficients <span class="math inline">\(c_n\)</span></p>
 <p><span class="math display">\[
-f(z) = \frac{z}{(z - i)(z + i)}
+c_n = a_{-n}  \leq  |a_{-n} | \leq \frac{1}{2^{n}}\frac{1}{n!}
 \]</span></p>
-<p>To expand around <span class="math inline">\(z = i\)</span>, let’s set <span class="math inline">\(w = z - i\)</span>, so <span class="math inline">\(z = w + i\)</span>. Then:</p>
+<p>decrease faster than any exponential.</p>
+</section>
+<section id="fourier-coefficents-of-frac1cos-theta---32" class="level3">
+<h3 class="anchored" data-anchor-id="fourier-coefficents-of-frac1cos-theta---32">Fourier coefficents of <span class="math inline">\(\frac{1}{\cos \theta - 3/2}\)</span></h3>
+<p>The Fourier coefficients <span class="math inline">\(c_n\)</span> of a periodic function <span class="math inline">\(f(θ)\)</span> are given by:</p>
 <p><span class="math display">\[
-f(w + i) = \frac{w + i}{ w (w + 2i)}
+\begin{aligned}
+c_n
+&amp;= \frac{1}{2π} \int_{0}^{2π} f(θ)e^{inθ}dθ \\
+&amp;= \frac{1}{2π} \int_{0}^{2π} \frac{1}{\cos \theta - 3/2}e^{i n θ}dθ \\
+&amp;= \frac{1}{2πi} \int_{|z| = 1} \frac{2z}{z^2-3z+1} z^{n-1} dz
+\end{aligned}
 \]</span></p>
-<p>Now, observe that:</p>
+<p>Let <span class="math inline">\(z^2 - 3z+1=(z-z_1)(z-z_2)\)</span>, where <span class="math inline">\(z_1 = \frac{1}{2} \left(3-\sqrt{5}\right), z_2=\frac{1}{2} \left(3 + \sqrt{5}\right)\)</span>.</p>
 <p><span class="math display">\[
-\frac{1}{w + 2i} = \frac{1}{2i} \cdot \frac{1}{1 + \frac{w}{2i}}
+\begin{aligned}
+c_n
+&amp;= Res_{z=z_1}  \frac{2z}{(z-z_1)(z-z_2)} z^{n-1} \\
+&amp;= \frac{2 z_1}{z_1-z_2} {z_1}^{n-1}
+\end{aligned}
 \]</span></p>
-<p>Since <span class="math inline">\(|\frac{w}{2i}| &lt; 1\)</span> for <span class="math inline">\(|w| &lt; 2\)</span>, we can use the geometric series expansion:</p>
+</section>
+</section>
+<section id="laurent-series-and-singularity" class="level2">
+<h2 class="anchored" data-anchor-id="laurent-series-and-singularity">5. Laurent series and singularity</h2>
+<p>Let’s consider a function <span class="math inline">\(f\)</span> that is holomorphic in a disc around <span class="math inline">\(z_0\)</span> except at <span class="math inline">\(z_0\)</span> itself.</p>
+<ol type="1">
+<li><p><strong>Removable Singularity:</strong></p>
+<p>If <span class="math inline">\(f\)</span> has a removable singularity at <span class="math inline">\(z_0\)</span>, it means that <span class="math inline">\(f\)</span> can be extended to a holomorphic function at <span class="math inline">\(z_0\)</span>. In terms of the Laurent series, this implies that all the coefficients <span class="math inline">\(a_n\)</span> for <span class="math inline">\(n &lt; 0\)</span> are zero because it reduces to its Taylor series.</p>
+<p>Conversely, if all <span class="math inline">\(a_n = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span>, the Laurent series reduces to a Taylor series, implying that <span class="math inline">\(f\)</span> is holomorphic at <span class="math inline">\(z_0\)</span> (since it can be expressed as a power series), and thus the singularity is removable.</p></li>
+<li><p><strong>Pole of Order <span class="math inline">\(m\)</span> :</strong></p>
+<p>If <span class="math inline">\(f\)</span> has a pole of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z_0\)</span>, it means that in the Laurent series, there is a term with <span class="math inline">\((z - z_0)^{-m}\)</span> (where <span class="math inline">\(a_{-m} \neq 0\)</span>) and no terms with higher negative powers.</p>
+<p>Conversely, if there is some <span class="math inline">\(m &lt; 0\)</span> such that <span class="math inline">\(a_m \neq 0\)</span> but <span class="math inline">\(a_n = 0\)</span> for all <span class="math inline">\(n &lt; m\)</span>, then the Laurent series has a term <span class="math inline">\(a_m (z - z_0)^m\)</span> as its term with the highest negative power, indicating a pole of order <span class="math inline">\(m\)</span> .</p></li>
+<li><p><strong>Essential Singularity:</strong></p>
+<p>If the singularity at <span class="math inline">\(z_0\)</span> is neither removable nor a pole, it must be an essential singularity. This is characterized by the fact that there are infinitely many negative powers of <span class="math inline">\(z - z_0\)</span> in the Laurent series with non-zero coefficients. In other words, if the Laurent series has non-zero <span class="math inline">\(a_n\)</span> for infinitely many <span class="math inline">\(n &lt; 0\)</span>, then <span class="math inline">\(z_0\)</span> is an essential singularity.</p></li>
+</ol>
+</section>
+<section id="euler-proof-of-basel-problem" class="level2">
+<h2 class="anchored" data-anchor-id="euler-proof-of-basel-problem">6. Euler proof of Basel problem</h2>
+<blockquote class="blockquote">
+<p>Using the result of the bonus problem, prove that</p>
 <p><span class="math display">\[
-\frac{1}{1 + \frac{w}{2i}} = \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+\sin π z = \prod (1 − z/n)e^{z/n} = π z  \prod (1 − z^2/n^2)
 \]</span></p>
-<p>Thus, we get:</p>
+<p>Then compare the Taylor series of sin πz to the first couple terms in the expansion of the infinite product to conclude</p>
 <p><span class="math display">\[
-f(z) = \frac{w + i}{2i w } \cdot \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+\sum_{n=1}^{\infty}  1/n^2 = π^2/ 6
 \]</span></p>
-<p>which will be valid in a punctured disc around <span class="math inline">\(z = i\)</span>, specifically for <span class="math inline">\(|z - i| &lt; 2\)</span> (or <span class="math inline">\(|w| &lt; 2\)</span>).</p>
+</blockquote>
+<p>According to the Weierstrass factorization theorem, an entire function can be represented as a product over its zeros. The function <span class="math inline">\(\sin \pi z\)</span> is entire and has zeros at all integers. The product representation for <span class="math inline">\(\sin \pi z\)</span> is given by:</p>
+<p><span class="math display">\[
+\sin \pi z = \pi z \prod_{n=1}^{\infty} \left(1 - \frac{z}{n}\right)\left(1 + \frac{z}{n}\right)
+=  \sin \pi z = \pi z \prod_{n=1}^{\infty} \left(1 - \frac{z^2}{n^2}\right)
+\]</span></p>
+<p>The Taylor series expansion of <span class="math inline">\(\sin \pi z\)</span> around <span class="math inline">\(z = 0\)</span> is:</p>
+<p><span class="math display">\[
+\sin \pi z = \pi z - \frac{\pi^3 z^3}{3!} + \frac{\pi^5 z^5}{5!} - \frac{\pi^7 z^7}{7!} + \cdots
+\]</span></p>
+<p>Now, let’s expand the infinite product to the first couple of terms and keeping terms up to <span class="math inline">\(z^3\)</span>, we get:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\pi z \prod_{n=1}^{\infty} \left(1 - \frac{z^2}{n^2}\right)
+&amp;= \pi z \left(1 - \frac{z^2}{1^2}\right)\left(1 - \frac{z^2}{2^2}\right)\left(1 - \frac{z^2}{3^2}\right) \cdots \\
+&amp;= \pi z \left(1 - z^2 \left(\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots\right) + \cdots \right)
+\end{aligned}
+\]</span></p>
+<p>Comparing the coefficient of <span class="math inline">\(z^3\)</span> from the Taylor series and the product expansion, we have:</p>
+<p><span class="math display">\[
+-\frac{\pi^3}{6} = -\pi \left(\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \cdots\right)
+\]</span></p>
+<p>This is the result we want.</p>
 
 
 </section>
@@ -791,13 +820,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../courses/phys231/index.html" class="pagination-link  aria-label=" physics="" 231a"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">PHYSICS 231A</span>
+      <a href="../../courses/phys231/phys231_hw03.html" class="pagination-link  aria-label=" homework="" 03"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework 03</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../courses/phys231/phys231_hw03.html" class="pagination-link" aria-label="Homework 03">
-        <span class="nav-page-text">Homework 03</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../courses/epss265/index.html" class="pagination-link" aria-label="EPSS 265">
+        <span class="nav-page-text">EPSS 265</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

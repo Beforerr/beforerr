@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr - Homework 02</title>
+<title>beforerr - Homework 05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../courses/phys231/phys231_hw03.html" rel="next">
-<link href="../../courses/phys231/index.html" rel="prev">
+<link href="../../courses/epss265/index.html" rel="next">
+<link href="../../courses/phys231/phys231_hw04.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -111,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">Homework 02</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw05.html">Homework 05</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework 02</span></a>
   </div>
 </li>
@@ -180,6 +180,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../../courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../courses/phys231/phys231_hw05.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Homework 05</span></a>
   </div>
 </li>
       </ul>
@@ -259,17 +265,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#power-series" id="toc-power-series" class="nav-link active" data-scroll-target="#power-series">5. Power series</a></li>
-  <li><a href="#expansion-near-pole" id="toc-expansion-near-pole" class="nav-link" data-scroll-target="#expansion-near-pole">6. Expansion near pole</a></li>
+  <li><a href="#integral-differentiability-and-decay-rate" id="toc-integral-differentiability-and-decay-rate" class="nav-link active" data-scroll-target="#integral-differentiability-and-decay-rate">1. Integral, differentiability and decay rate</a>
+  <ul class="collapse">
+  <li><a href="#compute-the-integral" id="toc-compute-the-integral" class="nav-link" data-scroll-target="#compute-the-integral">Compute the Integral:</a></li>
+  <li><a href="#degree-of-differentiability" id="toc-degree-of-differentiability" class="nav-link" data-scroll-target="#degree-of-differentiability">Degree of Differentiability</a></li>
+  <li><a href="#relation-to-the-decay-of-the-integrand" id="toc-relation-to-the-decay-of-the-integrand" class="nav-link" data-scroll-target="#relation-to-the-decay-of-the-integrand">Relation to the Decay of the Integrand:</a></li>
+  </ul></li>
+  <li><a href="#integral-of-a-keyhole-contour" id="toc-integral-of-a-keyhole-contour" class="nav-link" data-scroll-target="#integral-of-a-keyhole-contour">2. Integral of a keyhole contour</a></li>
+  <li><a href="#integral-and-laurent-expansion" id="toc-integral-and-laurent-expansion" class="nav-link" data-scroll-target="#integral-and-laurent-expansion">3. Integral and Laurent expansion</a></li>
+  <li><a href="#analytically-continuing" id="toc-analytically-continuing" class="nav-link" data-scroll-target="#analytically-continuing">4. Analytically continuing</a></li>
+  <li><a href="#gamma-function" id="toc-gamma-function" class="nav-link" data-scroll-target="#gamma-function">5. Gamma function</a>
+  <ul class="collapse">
+  <li><a href="#existence" id="toc-existence" class="nav-link" data-scroll-target="#existence">Existence</a></li>
+  <li><a href="#zγz-γz-1" id="toc-zγz-γz-1" class="nav-link" data-scroll-target="#zγz-γz-1"><span class="math inline">\(zΓ(z) = Γ(z + 1)\)</span></a></li>
+  <li><a href="#γn-1-n" id="toc-γn-1-n" class="nav-link" data-scroll-target="#γn-1-n"><span class="math inline">\(Γ(n + 1) = n!\)</span></a></li>
+  <li><a href="#splitting" id="toc-splitting" class="nav-link" data-scroll-target="#splitting">Splitting</a></li>
+  </ul></li>
+  <li><a href="#gamma-relation" id="toc-gamma-relation" class="nav-link" data-scroll-target="#gamma-relation">6. Gamma relation</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/courses/phys231/phys231_hw02.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/courses/phys231/phys231_hw05.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="phys231_hw05.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw02.html">Homework 02</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../courses/phys231/phys231_hw05.html">Homework 05</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Homework 02</h1>
+<h1 class="title">Homework 05</h1>
 </div>
 
 
@@ -286,107 +307,290 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="./homework02.nb">Mathematica notebook</a></p>
-<section id="power-series" class="level2">
-<h2 class="anchored" data-anchor-id="power-series">5. Power series</h2>
+<section id="integral-differentiability-and-decay-rate" class="level2">
+<h2 class="anchored" data-anchor-id="integral-differentiability-and-decay-rate">1. Integral, differentiability and decay rate</h2>
 <blockquote class="blockquote">
-<p>Consider a power series of the form</p>
+<p>Compute this generalization of an integral we did in class:</p>
 <p><span class="math display">\[
-a=1+ \sum_{n=1}^{\infty} a_n z^n
+I_{n,a}(k) = \int^{∞}_{−∞} \frac{ e^{ikx} }{ (x^2 + a^2)^n} dx
 \]</span></p>
-<p>Show that there is another power series</p>
-<p><span class="math display">\[
-b = \sum_{n=0}^{\infty} b_n z^n
-\]</span></p>
-<p>such that, as a formal expression</p>
-<p><span class="math display">\[
-ab = 1
-\]</span></p>
-<p>Do this by giving a recurrence relation for the coefficients <span class="math inline">\(b_n\)</span>. Solve this recurrence relation for <span class="math inline">\(1/e^z\)</span> and show it gives the power series for <span class="math inline">\(e^{−z}\)</span>.</p>
+<p>where <span class="math inline">\(k, a \in {\mathbb{R}}, a &gt; 0\)</span> and <span class="math inline">\(n \in {\mathbb{Z}}, n \geq 1\)</span>. What is the degree of differentiability of <span class="math inline">\(I_{n,a}(k)\)</span> with respect to <span class="math inline">\(k\)</span>? How does this relate to the decay of the integrand?</p>
 </blockquote>
-<p>The product <span class="math inline">\(ab\)</span> can be written as:</p>
+<section id="compute-the-integral" class="level3">
+<h3 class="anchored" data-anchor-id="compute-the-integral">Compute the Integral:</h3>
+<p>Complex function <span class="math inline">\(f(z) = \frac{e^{ikz}}{(z^2 + a^2)^n}\)</span> has poles at <span class="math inline">\(z = \pm i a\)</span>.</p>
+<p>The residue at <span class="math inline">\(z = + i a\)</span> pole</p>
 <p><span class="math display">\[
-ab = \left(1 + \sum_{n=1}^{\infty} a_n z^n \right) \left( \sum_{n=0}^{\infty} b_n z^n \right) = 1
+\text{Res}(f, ia) = \frac{1}{(n-1)!} \lim_{z \to ia} \frac{d^{n-1}}{dz^{n-1}} \left[ (z - ia)^n f(z) \right]
 \]</span></p>
-<p>By expanding, we get:</p>
+<p>Construct a semicircular contour in the upper half-plane that consists of a line segment <span class="math inline">\(C_1\)</span> from <span class="math inline">\(−R\)</span> to <span class="math inline">\(R\)</span> and a semicircular arc <span class="math inline">\(C_2\)</span> of radius <span class="math inline">\(R\)</span> centered at the origin.</p>
+<p>The integral over the contour <span class="math inline">\(C\)</span> is:</p>
 <p><span class="math display">\[
-ab = b_0 + (b_1 + a_1 b_0) z + (b_2 + a_1 b_1 + a_2 b_0) z^2 + \dots + \left( \sum_{k=0}^{n} a_k b_{n-k} \right) z^n + \dots
+\int_C f(z) dz = 2\pi i \times \text{Res}(f, ia)
 \]</span></p>
-<p>For <span class="math inline">\(ab = 1\)</span>, all the coefficients of <span class="math inline">\(z^n\)</span> (for <span class="math inline">\(n \geq 1\)</span>) must be zero, and the constant term (the coefficient of <span class="math inline">\(z^0\)</span>) must be 1. This gives us the following conditions:</p>
-<ol type="1">
-<li><span class="math inline">\(b_0 = 1\)</span> (since the constant term of <span class="math inline">\(ab\)</span> must be 1).</li>
-<li>For <span class="math inline">\(n \geq 1\)</span>, we have <span class="math inline">\(\sum_{k=0}^{n} a_k b_{n-k} = 0\)</span>.</li>
-</ol>
-<p>For <span class="math inline">\(a_k\)</span>, we have <span class="math inline">\(a_0 = 1\)</span> and <span class="math inline">\(a_n\)</span> for <span class="math inline">\(n \geq 1\)</span>. Thus, the recurrence relation for <span class="math inline">\(b_n\)</span> becomes:</p>
+<p>As <span class="math inline">\(R \to \infty\)</span>, the integral over <span class="math inline">\(C_2\)</span> vanishes for <span class="math inline">\(k&gt;0\)</span> due to the exponential decay of <span class="math inline">\(e^{ikz}\)</span> in the upper half-plane.</p>
+<p>The original integral <span class="math inline">\(I_{n,a}(k)\)</span> is equal to the integral over <span class="math inline">\(C_1\)</span>:</p>
 <p><span class="math display">\[
-b_n = -\sum_{k=1}^{n} a_k b_{n-k} \quad \text{for } n \geq 1
+I_{n,a}(k) = 2\pi i \times \text{Res}(f, ia)
 \]</span></p>
-<p>For <span class="math inline">\(a = e^z\)</span>. The power series for <span class="math inline">\(b= 1/e^z\)</span> is given by:</p>
-<ol type="1">
-<li><span class="math inline">\(b_0 = 1\)</span> (from the initial condition).</li>
-<li>For <span class="math inline">\(n \geq 1\)</span>:</li>
-</ol>
-<p><span class="math display">\[
-b_n = -\sum_{k=1}^{n} \frac{1}{k!} b_{n-k}
-\]</span></p>
-<p>And if <span class="math inline">\(b_n = \frac{(-1)^n}{n!}\)</span>. Then, it is exactly the power series for <span class="math inline">\(e^{-z}\)</span>:</p>
-<p><span class="math display">\[
-e^{-z} = \sum_{n=0}^{\infty} \frac{(-z)^n}{n!}
-\]</span></p>
-<p>To prove <span class="math inline">\(b_n = \frac{(-1)^n}{n!}\)</span>, we use induction method. Suppose it is true for <span class="math inline">\(n\)</span>, then using</p>
-<p><span class="math display">\[
-(1 + (-1))^{n+1} = \sum C_{k}^{n+1}(-1)^{n+1-k} = (n+1)! \sum_{k=0}^{n+1} \frac{(-1)^{n+1-k}}{k! (n+1-k)!}
-\]</span></p>
-<p>By substituting <span class="math inline">\(b_k = \frac{(-1)^k}{k!}\)</span> for <span class="math inline">\(k \le n\)</span>, we have</p>
-<p><span class="math display">\[
-(-1)^{n+1} / (n+1)~! = -\sum_{k=1}^{n+1} \frac{1}{k!} b_{n-k}
-\]</span></p>
-<p>So <span class="math inline">\(b_{n+1} = \frac{(-1)^{n+1}}{(n+1)!}\)</span>. Q.E.D</p>
 </section>
-<section id="expansion-near-pole" class="level2">
-<h2 class="anchored" data-anchor-id="expansion-near-pole">6. Expansion near pole</h2>
+<section id="degree-of-differentiability" class="level3">
+<h3 class="anchored" data-anchor-id="degree-of-differentiability">Degree of Differentiability</h3>
+<p><span class="math display">\[
+I_{n,a}'(k) = \int^{∞}_{−∞} \frac{ ix e^{ikx} }{ (x^2 + a^2)^n} dx
+\]</span></p>
+<p>The corresponding complex function</p>
+<p><span class="math display">\[
+f_k(z) = \frac{i z e^{ikz}}{(z^2 + a^2)^n}
+\]</span></p>
+<p>has poles at <span class="math inline">\(z = \pm i a\)</span>.</p>
+<p>The function <span class="math inline">\(I_{n,a}(k)\)</span> will be infinitely differentiable with respect to <span class="math inline">\(k\)</span> because the exponential function <span class="math inline">\(e^{ikx}\)</span> is smooth and the denominator does not depend on <span class="math inline">\(k\)</span>.</p>
+</section>
+<section id="relation-to-the-decay-of-the-integrand" class="level3">
+<h3 class="anchored" data-anchor-id="relation-to-the-decay-of-the-integrand">Relation to the Decay of the Integrand:</h3>
+<p>The decay of the integrand as <span class="math inline">\(x \to \pm\infty\)</span> is crucial for the convergence of the integral. The factor <span class="math inline">\((x^2 + a^2)^{-n}\)</span> ensures that the integrand decays sufficiently fast at infinity for the integral to converge.</p>
+<p>The faster decay of the integrand at infinity, which is ensured by a higher <span class="math inline">\(n\)</span>, means that <span class="math inline">\(I_{n,a}(k)\)</span> will be more regular (i.e., higher degree of differentiability).</p>
+</section>
+</section>
+<section id="integral-of-a-keyhole-contour" class="level2">
+<h2 class="anchored" data-anchor-id="integral-of-a-keyhole-contour">2. Integral of a keyhole contour</h2>
 <blockquote class="blockquote">
-<p>Assuming the result of problem 5 and the bonus problem, show that if <span class="math inline">\(f (z) = g(z)/h(z)\)</span> has a pole at <span class="math inline">\(z = 0\)</span>, that we can expand <span class="math inline">\(f(z)\)</span> in a series</p>
+<p>Compute the following integral by a choice of keyhole contour, where <span class="math inline">\(a, b, c ∈ {\mathbb{R}}\)</span> and <span class="math inline">\(b, c &gt; 0\)</span>:</p>
 <p><span class="math display">\[
-f (z) = \sum_{n=-m}^{\infty} a_n z^n
+I(a, b, c) = \int^∞_{−∞} dx \frac{\log(x^2 + c^2)}{ (x − a)^2 + b^2}
 \]</span></p>
-<p>for some <span class="math inline">\(m\)</span>, and that this converges in a “punctured disc” <span class="math inline">\(\{ z | |z| &lt; R, z \ne 0 \}\)</span>. Make such an expansion for <span class="math inline">\(f (z) = z/(1 + z^2)\)</span> around <span class="math inline">\(z = i\)</span> (hint: for this example we use tricks with geometric series, we don’t need the general recurrence relation).</p>
 </blockquote>
-<p>Since <span class="math inline">\(f(z)\)</span> has a pole at <span class="math inline">\(z = 0\)</span>, <span class="math inline">\(h(z)\)</span> must have a zero of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z = 0\)</span></p>
-<p>Given this, <span class="math inline">\(h(z)\)</span> can be written as <span class="math inline">\(z^m k(z)\)</span> where <span class="math inline">\(k(z)\)</span> is analytic and non-zero at <span class="math inline">\(z = 0\)</span>. Therefore, <span class="math inline">\(f(z)\)</span> can be written as:</p>
+<p>The complex function</p>
 <p><span class="math display">\[
-f(z) = \frac{g(z)}{z^m k(z)}
+f(z) = \frac{\log(z^2 + c^2)}{ (z − a)^2 + b^2} = \frac{\log(z+ ic)}{ (z − a)^2 + b^2} + \frac{\log(z - ic)}{ (z − a)^2 + b^2}
 \]</span></p>
-<p>Since <span class="math inline">\(k(z)\)</span> is analytic and non-zero at <span class="math inline">\(z = 0\)</span>, there exists a power series <span class="math inline">\(\sum_{n=0}^{\infty} b_n z^n\)</span> such that <span class="math inline">\(\frac{1}{k(z)} = \sum_{n=0}^{\infty} b_n z^n\)</span> . This leads to:</p>
+<p>may have branch point <span class="math inline">\(𝑧 = \pm 𝑖c\)</span> and have poles at <span class="math inline">\(a \pm ib\)</span>.</p>
+<p>Consider the contour integral <span class="math inline">\(\oint_C dz f(z)\)</span>in the complex plane where <span class="math inline">\(𝐶\)</span> is a semicircle of radius <span class="math inline">\(R\)</span> in the upper half-plane with a detour down and up the imaginary axis about the branch point <span class="math inline">\(z=ic\)</span>.</p>
+<p><img src="images/keyhole_contour.png" class="img-fluid"></p>
+<p>The function <span class="math inline">\(\log(z + ic)\)</span> is holomorphic in the upper half plane if we choose its branch cut to lie in the lower half plane, so the integrand is holomorphic inside the contour of <span class="math inline">\(C\)</span> except for a simple pole at <span class="math inline">\(a + ib\)</span>.</p>
 <p><span class="math display">\[
-f(z) = \frac{g(z)}{z^m} \sum_{n=0}^{\infty} b_n z^n = \sum_{n=0}^{\infty} b_n g(z) z^{n-m}
+\oint_C dz \frac{\log(z+ ic)}{ (z − a)^2 + b^2} = 2 \pi i \frac{\log(a+ib+ic)}{2ib} = \frac{\pi}{b} \log(a+ib+ic)
 \]</span></p>
-<p>for <span class="math inline">\(z \ne 0\)</span>. As <span class="math inline">\(g(z)\)</span> is analytic at <span class="math inline">\(z = 0\)</span>, it can also be expanded into a power series around <span class="math inline">\(z = 0\)</span>. Thus, the product of these two series results in a series of the form:</p>
+<p>The function <span class="math inline">\(\log(z - ic)\)</span> has a branch cut in the upper half plane. We have</p>
 <p><span class="math display">\[
-f(z) = \sum_{n=-m}^{\infty} a_n z^n
+\oint_C dz \frac{\log(z - ic)}{ (z − a)^2 + b^2} = \frac{\pi}{b} \log(a + ib - ic) + \int_{ic}^{\infty} \frac{ \log (iy-ic+\epsilon) - \log (iy-ic+\epsilon)}{ (z-a)^2+b^2}
 \]</span></p>
-<p>This series converges in some punctured disc <span class="math inline">\(\{ z \,|\, |z| &lt; R, z \ne 0 \}\)</span> because it is the product of two convergent power series in that region.</p>
-<p>For the specific function <span class="math inline">\(f(z) = \frac{z}{1 + z^2}\)</span>, we want to expand around <span class="math inline">\(z = i\)</span></p>
+<p>Since the contribution from the big semi-circle tends to zero as <span class="math inline">\(R → ∞\)</span> and from the small circle around <span class="math inline">\(ic\)</span> as its radius tends to zero. And</p>
 <p><span class="math display">\[
-f(z) = \frac{z}{(z - i)(z + i)}
+\int_{ic}^{\infty} \frac{ \log (iy-ic+\epsilon) - \log (iy-ic+\epsilon)}{ (z-a)^2+b^2} = -2 \pi \int_c^{\infty}dy \frac{1}{(iy-a)^2+b^2} = - \frac{\pi}{b}\log \frac{a+ib-ic}{a-ib-ic}
 \]</span></p>
-<p>To expand around <span class="math inline">\(z = i\)</span>, let’s set <span class="math inline">\(w = z - i\)</span>, so <span class="math inline">\(z = w + i\)</span>. Then:</p>
+<p>So</p>
 <p><span class="math display">\[
-f(w + i) = \frac{w + i}{ w (w + 2i)}
+\begin{align*}
+I(a, b, c)
+&amp;= \int^∞_{−∞} dx \frac{\log(x^2 + c^2)}{ (x − a)^2 + b^2} \\
+&amp;= \frac{\pi}{b} \log(a+ib+ic) + \frac{\pi}{b} \log(a+ib-ic) - - \frac{\pi}{b}\log \frac{a+ib-ic}{a-ib-ic} \\
+&amp;= \frac{\pi}{b} \log(a^2+(b+c)^2)
+\end{align*}
 \]</span></p>
-<p>Now, observe that:</p>
+</section>
+<section id="integral-and-laurent-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="integral-and-laurent-expansion">3. Integral and Laurent expansion</h2>
+<blockquote class="blockquote">
+<p>Consider the integral</p>
 <p><span class="math display">\[
-\frac{1}{w + 2i} = \frac{1}{2i} \cdot \frac{1}{1 + \frac{w}{2i}}
+\int_C dz \frac{z + 2}{ z^2 − 9}
 \]</span></p>
-<p>Since <span class="math inline">\(|\frac{w}{2i}| &lt; 1\)</span> for <span class="math inline">\(|w| &lt; 2\)</span>, we can use the geometric series expansion:</p>
+<p>where <span class="math inline">\(C\)</span> is a positively-oriented circle of radius 4. Compute this integral by taking the sum of the residues inside the circle, and then again by computing the “residue at <span class="math inline">\(∞\)</span>” meaning using the outer Laurent expansion</p>
+</blockquote>
+<p>The integrand</p>
 <p><span class="math display">\[
-\frac{1}{1 + \frac{w}{2i}} = \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+f(z) = \frac{z + 2}{z^2 - 9}
 \]</span></p>
-<p>Thus, we get:</p>
+<p>have simple poles at <span class="math inline">\(z =\pm 3\)</span>.</p>
 <p><span class="math display">\[
-f(z) = \frac{w + i}{2i w } \cdot \sum_{n=0}^{\infty} \left(-\frac{w}{2i}\right)^n
+\text{Res}(f, 3) = \lim_{z \to 3} (z - 3) \frac{z + 2}{z^2 - 9} = \frac{5}{6}
 \]</span></p>
-<p>which will be valid in a punctured disc around <span class="math inline">\(z = i\)</span>, specifically for <span class="math inline">\(|z - i| &lt; 2\)</span> (or <span class="math inline">\(|w| &lt; 2\)</span>).</p>
+<p><span class="math display">\[
+\text{Res}(f, -3) = \lim_{z \to -3} (z + 3) \frac{z + 2}{z^2 - 9} = \frac{1}{6}
+\]</span></p>
+<p>By the residue theorem, the integral over the contour <span class="math inline">\(C\)</span> is:</p>
+<p><span class="math display">\[
+\int_C f(z) , dz = 2\pi i \times (\text{Res}(f, 3) + \text{Res}(f, -3)) = 2\pi i
+\]</span></p>
+<p>Using the outer Laurent expansion</p>
+<p><span class="math display">\[
+\frac{z + 2}{z^2 - 9} = \frac{1}{z} + O[\frac{1}{z^2}]
+\]</span></p>
+<p>So using residue at <span class="math inline">\(∞\)</span></p>
+<p><span class="math display">\[
+\text{Res}(f, ∞) = 1
+\]</span> <span class="math display">\[
+\int_C f(z) , dz = 2\pi i \times \text{Res}(f, ∞) = 2\pi i
+\]</span></p>
+</section>
+<section id="analytically-continuing" class="level2">
+<h2 class="anchored" data-anchor-id="analytically-continuing">4. Analytically continuing</h2>
+<blockquote class="blockquote">
+<p>Compute the integral</p>
+<p><span class="math display">\[
+\int^{2π}_{0} \frac{dθ}{2 − \cos θ  }
+\]</span></p>
+<p>by analytically continuing the integrand and then using residues.</p>
+</blockquote>
+<p>Perform a change of variables to convert the integral into a contour integral in the complex plane.</p>
+<p>Let <span class="math inline">\(z = e^{i\theta}\)</span>. Then, <span class="math inline">\(dz = ie^{i\theta}d\theta = izd\theta\)</span> and <span class="math inline">\(d\theta = \frac{dz}{iz}\)</span>. Also, <span class="math inline">\(\cos \theta = \frac{1}{2}(e^{i\theta} + e^{-i\theta}) = \frac{1}{2}(z + \frac{1}{z})\)</span>.</p>
+<p>Substituting these into the integral, we get:</p>
+<p><span class="math display">\[
+\int^{2π}_{0} \frac{dθ}{2 − \cos θ  } = \int_{|z|=1} \frac{1}{2 - \frac{1}{2}(z + \frac{1}{z})} \times \frac{dz}{iz}
+\]</span></p>
+<p>Simplifying this, we have:</p>
+<p><span class="math display">\[
+\int_{|z|=1} \frac{dz}{2iz - \frac{1}{2}i(z^2 + 1)}
+\]</span></p>
+<p>To find the poles of the integrand, we set the denominator to zero:</p>
+<p><span class="math display">\[
+iz - \frac{1}{2}i(z^2 + 1) =0
+\]</span></p>
+<p><span class="math display">\[
+z_1=2-\sqrt{3}, z_2=2+\sqrt{3}
+\]</span></p>
+<p><span class="math inline">\(z_1\)</span> is within the contour, so</p>
+<p><span class="math display">\[
+\int_{|z|=1} \frac{1}{2 - \frac{1}{2}(z + \frac{1}{z})} \times \frac{dz}{iz} = 2 \pi i \frac{2}{i(z_2-z_1)} = \frac {2 \pi}{\sqrt 3}
+\]</span></p>
+</section>
+<section id="gamma-function" class="level2">
+<h2 class="anchored" data-anchor-id="gamma-function">5. Gamma function</h2>
+<blockquote class="blockquote">
+<p>The Gamma function is usually defined as</p>
+<p><span class="math display">\[
+Γ(z) = \int^∞_0 t^{z−1}e^{−t}dt
+\]</span></p>
+<p>(This kind of integral is known as a Mellin transform, in this case of <span class="math inline">\(e^{−t}\)</span>, and we can equivalently write it as a two-sided Laplace transform of <span class="math inline">\(e^{−e^s}\)</span> by taking <span class="math inline">\(s = \log t\)</span>.) Verify this integral exists for <span class="math inline">\(\Re(z) &gt; 0\)</span> and that</p>
+<p><span class="math display">\[
+zΓ(z) = Γ(z + 1)
+\]</span> <span class="math display">\[
+Γ(n + 1) = n!
+\]</span></p>
+<p>The first relation can be iterated to analytically continue the <span class="math inline">\(Γ\)</span> function to the whole complex plane, except for poles at the nonpositive integers. However, there is a way to analytically continue it all at once:</p>
+<p>Split the integral into two parts <span class="math inline">\(\int^∞_ 1 +\int^1_0\)</span> . Show that the first part yields an entire function in <span class="math inline">\(z\)</span>, and that the second part equals</p>
+<p><span class="math display">\[
+\sum_{n=0}^\infty \frac{(−1)^n}{n!} \frac{1}{ z + n}
+\]</span></p>
+<p>which is an entire meromorphic function with poles at the non-positive integers, thus giving an analytic continuation of <span class="math inline">\(Γ\)</span> as a meromorphic function on all of <span class="math inline">\({\mathbb{C}}\)</span>.</p>
+</blockquote>
+<p>To verify the properties of the Gamma function and its analytic continuation, we’ll break down the problem into parts.</p>
+<section id="existence" class="level3">
+<h3 class="anchored" data-anchor-id="existence">Existence</h3>
+<p>We prove this integral converges absolutely.</p>
+<p><span class="math display">\[
+\int\limits_0^\infty |t^{z-1}e^{-t}| dt  = \int\limits_0^\infty t^{\operatorname{Re} z-1}e^{-t} dt
+\]</span></p>
+<p>For <span class="math inline">\(z \in {\mathbb{R}}\)</span>,</p>
+<p><span class="math display">\[
+\int\limits_0^\infty t^{z-1}e^{-t}dt = \int\limits_0^1 t^{z-1}e^{-t}dt + \int\limits_1^\infty t^{z-1}e^{-t}dt
+\]</span></p>
+<p>we have for large <span class="math inline">\(N \le t,\)</span> <span class="math inline">\(t^{z-1}e^{-t}\le e^{-t/2}\)</span></p>
+<p><span class="math display">\[
+0\le t\le N \implies t^{z-1}e^{-t}\le t^{z-1}
+\;,\;\;\text{and}\;\;
+\int\limits_0^N t^{z-1}dt=\left.\frac{t^z}z\right|_0^N=\frac{N^z}{z}
+\]</span></p>
+<p><span class="math display">\[
+N \le t\implies t^{z-1}e^{-t}\le e^{-t/2}
+\;,\;\;\text{and}\;\;
+\int\limits_N^\infty e^{-t/2} dt=\left. -2 e^{-t/2}\right|_N^\infty= 2e^{-N/2}
+\]</span></p>
+<p>So</p>
+<p><span class="math display">\[
+\int\limits_0^\infty |t^{z-1}e^{-t}| dt  \le \infty
+\]</span></p>
+<p>Therefore, this integral exists for <span class="math inline">\(\Re(z) &gt; 0\)</span>.</p>
+</section>
+<section id="zγz-γz-1" class="level3">
+<h3 class="anchored" data-anchor-id="zγz-γz-1"><span class="math inline">\(zΓ(z) = Γ(z + 1)\)</span></h3>
+<p>By definition:</p>
+<p><span class="math display">\[
+z\Gamma(z) = z \int_{0}^{\infty} t^{z-1}e^{-t} dt
+\]</span></p>
+<p>Using integration by parts, we get:</p>
+<p><span class="math display">\[
+\begin{aligned}
+z\Gamma(z)
+&amp;= \left. t^z e^{-t} \right| _{0}^{\infty} - \int_{0}^{\infty} t^{z} (-e^{-t}) dt \\
+&amp;= \int_{0}^{\infty} t^z e^{-t} dt \\
+&amp;= \Gamma(z + 1)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="γn-1-n" class="level3">
+<h3 class="anchored" data-anchor-id="γn-1-n"><span class="math inline">\(Γ(n + 1) = n!\)</span></h3>
+<p><span class="math display">\[
+{\displaystyle {\begin{aligned}\Gamma (1)&amp;=\int _{0}^{\infty }t^{1-1}e^{-t}\,dt\\&amp;=\int _{0}^{\infty }e^{-t}\,dt\\&amp;=1.\end{aligned}}}
+\]</span></p>
+<p>By induction we have <span class="math inline">\(Γ(n + 1) = n!\)</span></p>
+</section>
+<section id="splitting" class="level3">
+<h3 class="anchored" data-anchor-id="splitting">Splitting</h3>
+<p>Now, to analytically continue the Gamma function, we split the integral into two parts:</p>
+<p><span class="math display">\[
+\Gamma(z) = \int_{1}^{\infty} t^{z-1}e^{-t} dt + \int_{0}^{1} t^{z-1}e^{-t} dt
+\]</span></p>
+<ul>
+<li>The first part <span class="math inline">\(\int_{1}^{\infty} t^{z-1}e^{-t} dt = (\int_{1}^{N} + \int_{N}^{\infty}) t^{z-1}e^{-t} dt\)</span> converges for all <span class="math inline">\(z\)</span> and is an entire function in <span class="math inline">\(z\)</span>.</li>
+<li>The second part <span class="math inline">\(\int_{0}^{1} t^{z-1}e^{-t} dt\)</span> ) can be expressed as a power series using the Taylor expansion of <span class="math inline">\(e^{-t}\)</span> :</li>
+</ul>
+<p><span class="math display">\[
+\int_{0}^{1} t^{z-1}e^{-t}dt
+= \int_{0}^{1} t^{z-1} \sum_{n=0}^{\infty} \frac{(-1)^n}{n!} t^n dt
+= \sum_{n=0}^{\infty} \frac{(-1)^n}{n!} \int_{0}^{1} t^{z + n - 1} dt
+= \sum_{n=0}^{\infty} \frac{(-1)^n}{n!} \frac{1}{z + n}
+\]</span></p>
+<p>This series converges for ( z ) not a non-positive integer and provides an analytic continuation of <span class="math inline">\(\Gamma\)</span> as a meromorphic function on all of <span class="math inline">\(\mathbb{C}\)</span>, with poles at the non-positive integers.</p>
+</section>
+</section>
+<section id="gamma-relation" class="level2">
+<h2 class="anchored" data-anchor-id="gamma-relation">6. Gamma relation</h2>
+<blockquote class="blockquote">
+<p>Prove the relation</p>
+<p><span class="math display">\[
+Γ(z)Γ(1 − z) = \frac{π} {\sin πz}
+\]</span></p>
+<p>by combining the two Gamma integrals into</p>
+<p><span class="math display">\[
+Γ(z)Γ(1 − z) = \int^∞_0 dt \frac{t^{z−1}}{t + 1}
+\]</span></p>
+<p>and evaluating this by residues.</p>
+</blockquote>
+<p><span class="math display">\[
+\Gamma(z) = \int_{0}^{\infty} t^{z-1}e^{-t} dt
+\]</span></p>
+<p>For fixed <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[
+\Gamma(1 - z)
+= \int_{0}^{\infty} t^{-z}e^{-t} dt
+= \int_{0}^{\infty} u^{-z}e^{-u} du
+= t \int_{0}^{\infty} (vt)^{-z}e^{-vt} dv
+\]</span></p>
+<p>By combining these two</p>
+<p><span class="math display">\[
+Γ(z)Γ(1 − z)
+= \int^∞_0\int^∞_0  e^{-t(1+v)} v^{-z} dvdt
+= \int^∞_0 dv \frac{v^{z−1}}{v + 1}
+= \int^∞_0 dt \frac{t^{z−1}}{t + 1}
+= \int^∞_{-∞} dt \frac{e^{zx}}{ 1+e^x }
+\]</span></p>
+<p>Complex function</p>
+<p><span class="math display">\[
+\frac{e^{zx}}{ 1+e^x }
+\]</span></p>
+<p>have pole at <span class="math inline">\(\pi i\)</span>. Consider a contour <span class="math inline">\(C_R\)</span> in the complex plane with vertices at <span class="math inline">\(R\)</span>, <span class="math inline">\(−R\)</span>, <span class="math inline">\(R+2πi\)</span>, and <span class="math inline">\(−R+2πi\)</span>, as <span class="math inline">\(R\)</span> tends to infinity. We have</p>
+<p><span class="math display">\[
+{\displaystyle \int _{C_{R}}{\frac {e^{xz}}{1+e^{x}}} dx=-2\pi ie^{z \pi i}}
+\]</span> <span class="math display">\[
+\int _{C_{R3}}{f(x,z)} dx = -e^{2\pi i z} \int _{C_{R1}}{f(x,z)} dx
+\]</span></p>
+<p>The right and left vertical sides of the rectangle tend to 0 as <span class="math inline">\(R \to \infty\)</span> for <span class="math inline">\(z \in (0,1)\)</span>.</p>
+<p><span class="math display">\[
+\int^∞_{-∞} dt \frac{e^{zx}}{ 1+e^x } = \frac{-2\pi ie^{z \pi i}}{1-e^{2\pi i z}} = \frac{\pi}{\sin \pi z}
+\]</span></p>
+<p>By analytic continuation, this relation is true for all <span class="math inline">\(z \in {\mathbb{C}}/\ {\mathbb{Z}}\)</span></p>
 
 
 </section>
@@ -791,13 +995,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../courses/phys231/index.html" class="pagination-link  aria-label=" physics="" 231a"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">PHYSICS 231A</span>
+      <a href="../../courses/phys231/phys231_hw04.html" class="pagination-link  aria-label=" homework="" 04"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework 04</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../courses/phys231/phys231_hw03.html" class="pagination-link" aria-label="Homework 03">
-        <span class="nav-page-text">Homework 03</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../courses/epss265/index.html" class="pagination-link" aria-label="EPSS 265">
+        <span class="nav-page-text">EPSS 265</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
