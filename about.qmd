@@ -3,6 +3,10 @@ title: "About"
 about:
   template: jolla
   image: images/profile.png
+  links: 
+    - icon: github
+      text: GitHub
+      href: "https://github.com/Beforerr"
 ---
 
 - 🪐 A graduate student at UCLA, majoring in space science & planetary science.
