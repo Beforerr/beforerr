@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math display">\[E=E(d)\]</span></p>
 <p>More generally, the threshold energy <span class="math inline">\(E\)</span> also depends the incident particle <span class="math inline">\(s\)</span>.</p>
 <p><span class="math display">\[E=E(d,s)\]</span></p>
-<div id="6b659a4e" class="cell" data-execution_count="1">
+<div id="b6d85978" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Pkg</span></span>
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="89cfe24e" class="cell" data-execution_count="2">
+<div id="b613b106" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">parse_result_line</span>(line)</span>
@@ -430,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>convert_data (generic function with 1 method)</code></pre>
 </div>
 </div>
-<div id="8edc4af4" class="cell" data-execution_count="3">
+<div id="ba5677f7" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">read_data</span>(filename <span class="op">=</span> <span class="st">"result.yml"</span>)</span>
@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The result from SPENVIS is stored in <a href="./run/result.yml">a yaml file</a>. We parse it and convert it to DataFrame for analysis.</p>
-<div id="3edf55a8" class="cell" data-execution_count="4">
+<div id="f9fa726f" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="fu">read_data</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -11085,7 +11085,7 @@ Figure&nbsp;1: Deposited energy as a function of incident energy with diﬀerent
 <p>Assuming the Protons constitute <span class="math inline">\(n_1\)</span> percen, He+ <span class="math inline">\(n_2\)</span>, and O+ <span class="math inline">\(n_3\)</span> of the incoming beam. For three unknown variables <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, <span class="math inline">\(n_3\)</span>, we need at least three detectors to solve the equation system. With the first detector recording the total incoming energy <span class="math inline">\(E_1\)</span>, the second detector <span class="math inline">\(E_2\)</span>, and the third detector <span class="math inline">\(E_3\)</span>, we have the following equation system:</p>
 <p><span class="math display">\[E_1 = n_1 E + n_2 E + n_3 E\]</span> <span class="math display">\[E_2 = n_1 \alpha_{2,p} E + n_2 \alpha_{2,He+} E + n_3 \alpha_{2,O+} E\]</span> <span class="math display">\[E_3 = n_1 \alpha_{3,p} E + n_2 \alpha_{3,He+} E + n_3 \alpha_{3,O+} E\]</span></p>
 <p>where <span class="math inline">\(\alpha_{2,p}\)</span>, <span class="math inline">\(\alpha_{2,He+}\)</span>, <span class="math inline">\(\alpha_{2,O+}\)</span>, <span class="math inline">\(\alpha_{3,p}\)</span>, <span class="math inline">\(\alpha_{3,He+}\)</span>, <span class="math inline">\(\alpha_{3,O+}\)</span> are 1- the energy loss ratio of protons, He+ and O+ in the Al layer of the second and third detector respectively.</p>
-<p>Since $_{i,p} $ can be determined from experiment/simulation, we can solve the above equation to get <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, <span class="math inline">\(n_3\)</span>.</p>
+<p>Since <span class="math inline">\(\alpha_{i,p}\)</span> can be determined from experiment/simulation, we can solve the above equation to get <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>, <span class="math inline">\(n_3\)</span>.</p>
 <p>If we want to well differentiate monoenergetic protons, He+ and O+ with energy <span class="math inline">\(E\)</span>, we can reverse the relationship <span class="math inline">\(E=E(d,s)\)</span> to get the thickness of the Al layer <span class="math inline">\(d\)</span> for each ion. This is possible because theoretically the threshold energy <span class="math inline">\(E\)</span> is a monotonic increasing function of the thickness of the Al layer <span class="math inline">\(d\)</span>.</p>
 <p><span class="math display">\[d=d(E,s)\]</span></p>
 <p>So for a detector with a thickness <span class="math inline">\(d_{O+}=d(E,O+)\)</span> of the Al layer, we only detect the deposited energy of protons and He+ in the Si layer. And for a detector with a thickness <span class="math inline">\(d_{He+}=d(E,He+)\)</span> of the Al layer, we only detect the deposited energy of protons in the Si layer.</p>
@@ -11098,7 +11098,7 @@ Figure&nbsp;1: Deposited energy as a function of incident energy with diﬀerent
 <li><span class="math inline">\(d_{2} = d_{He+} \approx 610 nm\)</span></li>
 </ul>
 <p>And we have <span class="math inline">\(\alpha_{2,p} \approx 0.59\)</span>, <span class="math inline">\(\alpha_{2,He+} \approx 0.38\)</span> and <span class="math inline">\(\alpha_{3,p} \approx 0.22\)</span> from the simulation. The equation is solvable.</p>
-<div id="508a742e" class="cell" data-execution_count="6">
+<div id="5b7ec8e8" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> <span class="fu">read_data</span>(<span class="st">"result_2.yml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -17663,7 +17663,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>where $\alpha_{2,p}$, $\alpha_{2,He+}$, $\alpha_{2,O+}$, $\alpha_{3,p}$, $\alpha_{3,He+}$, $\alpha_{3,O+}$ are 1- the energy loss ratio of protons, He+ and O+ in the Al layer of the second and third detector respectively.</span>
 <span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>Since $\alpha_{i,p} $ can be determined from experiment/simulation, we can solve the above equation to get $n_1$, $n_2$, $n_3$.</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>Since $\alpha_{i,p}$ can be determined from experiment/simulation, we can solve the above equation to get $n_1$, $n_2$, $n_3$.</span>
 <span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>If we want to well differentiate monoenergetic protons, He+ and O+ with energy $E$, we can reverse the relationship $E=E(d,s)$ to get the thickness of the Al layer $d$ for each ion. This is possible because theoretically the threshold energy $E$ is a monotonic increasing function of the thickness of the Al layer $d$.</span>
 <span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a></span>
