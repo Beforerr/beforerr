@@ -1,5 +1,16 @@
 [
   {
+    "listing": "/research/index.html",
+    "items": [
+      "/research/articles/margotSearchTechnosignatures2023/index.html",
+      "/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
+      "/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
+      "/research/projects/2024_Zijin_finesst/index.html",
+      "/research/projects/2023_Zijin_relativistic-electron-flux/index.html",
+      "/research/projects/2022_Zijin_solar-wind-LMA/index.html"
+    ]
+  },
+  {
     "listing": "/courses/epss265/homeworks/index.html",
     "items": [
       "/courses/epss265/homeworks/epss265_hw02.html",
