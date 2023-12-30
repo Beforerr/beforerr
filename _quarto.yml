@@ -15,19 +15,30 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - research/index.qmd
+      - text: "Others"
+        menu: 
+          - href: docs/courses/index.qmd
+          - href: docs/projects/index.qmd
     tools:
       - icon: github
         href: "https://github.com/Beforerr/beforerr"
   sidebar:
-    contents: auto
+    - contents: docs/courses
+      id: courses
+    - contents: docs/projects
+      id: projects
+  page-footer:
+    center:
+      - text: "About"
+        href: about.qmd
   page-navigation: true
+  bread-crumbs: true
   repo-url: "https://github.com/Beforerr/beforerr"
   repo-actions: [source, issue]
 
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
     code-fold: true
-    code-tools: true

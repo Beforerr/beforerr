@@ -1,0 +1,7 @@
+---
+title: "Courses"
+listing: 
+  contents: "*/index.qmd"
+  exclude: 
+    title: Homework
+---

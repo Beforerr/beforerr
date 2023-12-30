@@ -1,0 +1,16 @@
+github-user: "Beforerr"
+github_repo: "https://github.com/Beforerr"
+orcid: "0000-0001-8823-4474"
+
+authors:
+  zijin: 
+    name: Zijin Zhang
+    email: zijin@ucla.edu
+    orcid: 0000-0002-9968-067X
+  anton: 
+    name: Anton V. Artemyev
+    email: aartemyev@igpp.ucla.edu
+    orcid: 0000-0001-8823-4474
+
+affiliations:
+  ucla: University of California, Los Angeles

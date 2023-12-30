@@ -1,0 +1,15 @@
+---
+title: solar wind discontinuities
+author: 
+  - name: "{{< var authors.zijin.name >}}"
+    email: "{{< var authors.zijin.email >}}"
+    orcid: "{{< var author.zijin.orcid >}}"
+    affiliation: "{{< var affiliations.ucla >}}"
+  - name: "{{< var authors.anton.name >}}"
+    email: "{{< var authors.anton.email >}}"
+    affiliation: "{{< var affiliations.ucla >}}"
+date: last-modified
+categories:
+  - proposal
+  - solar wind
+---

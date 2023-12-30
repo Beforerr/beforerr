@@ -1,0 +1,14 @@
+---
+title: A Search for Technosignatures Around 11,680 Stars with the Green Bank Telescope at 1.15–1.73 GHz
+doi: 10.3847/1538-3881/acfda4
+date: "2023-10"
+author:
+  - name: Jean-Luc Margot
+    orcid: 0000-0001-9798-1797
+  - name: Megan Grace Li
+    orcid: 0000-0002-3012-4261
+abstract: We conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope...
+categories: 
+  - paper
+image: seti.jpeg
+---

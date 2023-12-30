@@ -1,0 +1,22 @@
+---
+title: "Research"
+page-layout: full
+listing:
+  - id: articles
+    contents: "articles/*/index.qmd"
+    categories: true
+    sort: "date desc"
+  - id: projects
+    contents: "projects/*/index.qmd"
+    sort: "date desc"
+---
+
+## Journal articles
+
+:::{#articles}
+:::
+
+## Projects
+
+:::{#projects}
+:::

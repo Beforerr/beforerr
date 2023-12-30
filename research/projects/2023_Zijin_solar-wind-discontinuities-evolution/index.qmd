@@ -1,0 +1,13 @@
+---
+title: Evolution of solar wind discontinuities over radial distance
+author: Zijin Zhang
+date: last-modified
+github: https://github.com/Beforerr/ids_finder
+link: https://beforerr.github.io/ids_finder
+categories:
+  - seeding
+  - solar wind
+---
+
+- [Web Pages]({{< meta link >}})
+- [GitHub repository]({{< meta github >}})

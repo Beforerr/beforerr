@@ -1,5 +1,6 @@
 ---
 title: "About"
+toc: false
 about:
   template: jolla
   image: images/profile.png
@@ -7,6 +8,8 @@ about:
     - icon: github
       text: GitHub
       href: "https://github.com/Beforerr"
+    - text: ORCID
+      href: "https://orcid.org/0000-0002-9968-067X"
 ---
 
 - 🪐 A graduate student at UCLA, majoring in space science & planetary science.

@@ -1,0 +1,11 @@
+---
+title: Relativistic electron flux decay and recovery
+subtitle: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections
+author: Zijin Zhang
+date: last-modified
+link: https://beforerr.github.io/EMIC_multi-satellites_study/
+github: https://github.com/Beforerr/EMIC_multi-satellites_study/
+---
+
+- [Web Pages]({{< meta link >}})
+- [GitHub repository]({{< meta github >}})

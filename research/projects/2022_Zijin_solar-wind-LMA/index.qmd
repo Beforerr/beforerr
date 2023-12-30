@@ -1,0 +1,15 @@
+---
+title: The kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind
+author: Zijin Zhang
+date: "2022-07"
+github: https://github.com/Beforerr/moon_magnetic_anomalies
+link: https://beforerr.github.io/ids_finder
+categories:
+  - solar wind
+keywords: 
+- Undergraduate thesis
+- simulation
+---
+
+- [GitHub repository]({{< meta github >}})
+- [PDF](https://github.com/Beforerr/moon_magnetic_anomalies/blob/main/ustcthesis/main.pdf)

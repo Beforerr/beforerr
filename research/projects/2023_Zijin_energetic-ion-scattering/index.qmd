@@ -1,0 +1,13 @@
+---
+title: Energetic ion scattering by solar wind discontinuities
+author: Zijin Zhang
+date: last-modified
+github: https://github.com/Beforerr/ion_scattering_by_SWD
+link: https://beforerr.github.io/ion_scattering_by_SWD
+categories:
+  - seeding
+  - solar wind
+---
+
+- [Web Pages]({{< meta link >}})
+- [GitHub repository]({{< meta github >}})
