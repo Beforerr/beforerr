@@ -15,9 +15,10 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - research/index.qmd
+      - docs/research/index.qmd
       - text: "Others"
         menu: 
+          - href: docs/blog/index.qmd
           - href: docs/courses/index.qmd
           - href: docs/projects/index.qmd
     tools:

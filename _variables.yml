@@ -7,10 +7,14 @@ authors:
     name: Zijin Zhang
     email: zijin@ucla.edu
     orcid: 0000-0002-9968-067X
+    affiliations:
+      - ref: ucla
   anton: 
     name: Anton V. Artemyev
     email: aartemyev@igpp.ucla.edu
     orcid: 0000-0001-8823-4474
+    affiliations:
+      - ref: ucla
 
 affiliations:
   ucla: University of California, Los Angeles
