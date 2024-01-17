@@ -8,6 +8,7 @@
 
 <meta name="author" content="Charbonneau Paul">
 <meta name="author" content="Sokoloff Dmitry">
+<meta name="dcterms.date" content="2024-01-17">
 
 <title>beforerr - Evolution of Solar and Stellar Dynamo Theory</title>
 <style>
@@ -139,18 +140,26 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#outline" id="toc-outline" class="nav-link active" data-scroll-target="#outline">Outline</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
   <li><a href="#what-is-dynamo-theory-about" id="toc-what-is-dynamo-theory-about" class="nav-link" data-scroll-target="#what-is-dynamo-theory-about">What is dynamo theory about?</a></li>
   <li><a href="#magnetic-ﬁelds-in-the-universe" id="toc-magnetic-ﬁelds-in-the-universe" class="nav-link" data-scroll-target="#magnetic-ﬁelds-in-the-universe">Magnetic ﬁelds in the universe</a></li>
   <li><a href="#takeaway-phenomenological-points" id="toc-takeaway-phenomenological-points" class="nav-link" data-scroll-target="#takeaway-phenomenological-points">Takeaway phenomenological points</a></li>
   <li><a href="#mhd-equations" id="toc-mhd-equations" class="nav-link" data-scroll-target="#mhd-equations">MHD equations</a></li>
-  <li><a href="#lenzs-law" id="toc-lenzs-law" class="nav-link" data-scroll-target="#lenzs-law">Lenz’s Law</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#anti-dynamo-theorem" id="toc-anti-dynamo-theorem" class="nav-link" data-scroll-target="#anti-dynamo-theorem">Anti-dynamo theorem</a></li>
+  <li><a href="#anti-dynamo-theorem-1" id="toc-anti-dynamo-theorem-1" class="nav-link" data-scroll-target="#anti-dynamo-theorem-1">Anti-dynamo theorem</a></li>
+  <li><a href="#from-toroidal-to-poloidal" id="toc-from-toroidal-to-poloidal" class="nav-link" data-scroll-target="#from-toroidal-to-poloidal">From toroidal to poloidal</a></li>
+  </ul></li>
+  <li><a href="#paper" id="toc-paper" class="nav-link" data-scroll-target="#paper">Paper</a>
+  <ul class="collapse">
   <li><a href="#tension-why-is-mean-field-electrodynamics-working" id="toc-tension-why-is-mean-field-electrodynamics-working" class="nav-link" data-scroll-target="#tension-why-is-mean-field-electrodynamics-working">Tension: Why Is Mean-Field Electrodynamics Working?</a></li>
-  <li><a href="#tension-the-troublesome-magnetic-helicity" id="toc-tension-the-troublesome-magnetic-helicity" class="nav-link" data-scroll-target="#tension-the-troublesome-magnetic-helicity">Tension: The Troublesome Magnetic Helicity</a></li>
-  <li><a href="#tension-the-troublesome-solar-differential-rotation" id="toc-tension-the-troublesome-solar-differential-rotation" class="nav-link" data-scroll-target="#tension-the-troublesome-solar-differential-rotation">Tension: The Troublesome Solar Differential Rotation</a></li>
+  <li><a href="#mean-field-electrodynamics" id="toc-mean-field-electrodynamics" class="nav-link" data-scroll-target="#mean-field-electrodynamics">Mean-Field Electrodynamics</a></li>
+  <li><a href="#tension-why-is-mean-field-electrodynamics-working-1" id="toc-tension-why-is-mean-field-electrodynamics-working-1" class="nav-link" data-scroll-target="#tension-why-is-mean-field-electrodynamics-working-1">Tension: Why Is Mean-Field Electrodynamics Working?</a></li>
   <li><a href="#tensions-from-solar-to-stellar-dynamos" id="toc-tensions-from-solar-to-stellar-dynamos" class="nav-link" data-scroll-target="#tensions-from-solar-to-stellar-dynamos">Tension(s): From Solar to Stellar Dynamos</a></li>
+  <li><a href="#tensions-from-solar-to-stellar-dynamos-1" id="toc-tensions-from-solar-to-stellar-dynamos-1" class="nav-link" data-scroll-target="#tensions-from-solar-to-stellar-dynamos-1">Tension(s): From Solar to Stellar Dynamos</a></li>
+  <li><a href="#tensions-from-solar-to-stellar-dynamos-2" id="toc-tensions-from-solar-to-stellar-dynamos-2" class="nav-link" data-scroll-target="#tensions-from-solar-to-stellar-dynamos-2">Tension(s): From Solar to Stellar Dynamos</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/journal_club/2024-01-17_dynamo/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="dynamo.revealjs.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -161,7 +170,11 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title">
 <h1 class="title">Evolution of Solar and Stellar Dynamo Theory</h1>
 <p class="subtitle lead">in ‘Solar and Stellar Dynamo: A New Era’</p>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">#journal club</div>
+    <div class="quarto-category">dynamo theory</div>
+  </div>
+  </div>
 
 
 
@@ -175,6 +188,12 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 17, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -191,16 +210,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Paper</li>
 </ul>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<!-- Charbonneau, P., & Sokoloff, D. (2023). Evolution of Solar and Stellar Dynamo Theory. Space Science Reviews, 219(5), 35. https://doi.org/10.1007/s11214-023-00980-0 -->
-<ul>
-<li>Tobias, S. M. (2021). The turbulent dynamo. Journal of Fluid Mechanics, 912, P1. <a href="https://doi.org/10.1017/jfm.2020.1055">10.1017/jfm.2020.1055</a></li>
-<li>Rincon, François. 2019. “Dynamo Theories.” Journal of Plasma Physics. <a href="https://doi.org/10.1017/S0022377819000539">10.1017/S0022377819000539</a>.</li>
-<li>Rincon, Francois. 2019. “Introduction to MHD Dynamos.” <a href="https://www.irap.omp.eu/wp-content/uploads/sites/4/2020/11/RINCON_Astroplasma_MHD_dynamos_2020_session_1.pdf">Presentation Link</a>.</li>
-<li>Rincon, François. 2017. “Turbulent MHD Dynamos in 2017: A Review of My Own Confusion.”</li>
-</ul>
-</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <section id="what-is-dynamo-theory-about" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-dynamo-theory-about">What is dynamo theory about?</h2>
 <ul>
@@ -240,8 +251,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="takeaway-phenomenological-points" class="level2">
-<h2 class="anchored" data-anchor-id="takeaway-phenomenological-points">Takeaway phenomenological points</h2>
+<section id="takeaway-phenomenological-points" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="takeaway-phenomenological-points">Takeaway phenomenological points</h2>
 <ul>
 <li>Many astrophysical objects have global, ordered ﬁelds
 <ul>
@@ -254,6 +265,11 @@ ul.task-list li input[type="checkbox"] {
 <li>These come hand in hand with global magnetism</li>
 <li>Simultaneous development of “small-scale dynamo” theory</li>
 </ul></li>
+<li>Astrophysical magnetism is in a nonlinear, saturated state
+<ul>
+<li>Linear theory not the whole story (or using it requires non-trivial justiﬁcation)</li>
+<li>Multiple scale interactions expected to be important</li>
+</ul></li>
 </ul>
 </section>
 <section id="mhd-equations" class="level2">
@@ -262,41 +278,142 @@ ul.task-list li input[type="checkbox"] {
 <p><span class="math display">\[\frac{\partial \mathbf{B}}{\partial t}=\nabla \times(\mathbf{u} \times \mathbf{B}-\eta \nabla \times \mathbf{B})\]</span></p>
 <p>Incompressible, resistive, viscous MHD</p>
 <p><span class="math display">\[\frac{\partial \mathbf{u}}{\partial t}+\mathbf{u} \cdot \nabla \mathbf{u}=-\nabla P+\mathbf{B} \cdot \nabla \mathbf{B}+\nu \Delta \mathbf{u}+\mathbf{f}(\mathbf{x}, t)\]</span></p>
-</section>
-<section id="lenzs-law" class="level2">
-<h2 class="anchored" data-anchor-id="lenzs-law">Lenz’s Law</h2>
+<section id="lenzs-law" class="level4">
+<h4 class="anchored" data-anchor-id="lenzs-law">Lenz’s Law</h4>
 <p>Electromagnetic induction suppresses rather enhances the seed magnetic ﬁeld.</p>
 </section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+</section>
+<section id="anti-dynamo-theorem" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="anti-dynamo-theorem">Anti-dynamo theorem</h2>
 <p>Observations around solar activity minimum suggest that,the large-scale solar magnetic ﬁeld is axisymmetric about the rotation axis.</p>
 <p><span class="math display">\[
 \mathbf{B}(r, \theta, t)=\nabla \times\left(A(r, \theta, t) \hat{\mathbf{e}}_\phi\right)+B(r, \theta, t) \hat{\mathbf{e}}_\phi .
 \]</span></p>
-<p>the (steady) large-scale flow field <span class="math inline">\(\mathbf{u}\)</span> is written as the sum of an axisymmetric azimuthal component (differential rotation), and an axisymmetric “poloidal” component <span class="math inline">\(u_{\mathrm{p}}\)</span></p>
 <p><span class="math display">\[
 \mathbf{u}(r, \theta)=\mathbf{u}_{\mathrm{p}}(r, \theta)+\varpi \Omega(r, \theta) \hat{\mathbf{e}}_\phi,
 \]</span></p>
-</section>
-<section id="section-1" class="level2">
-<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p>MHD induction equation</p>
 <p><span class="math display">\[\begin{gathered}\frac{\partial A}{\partial t}=\underbrace{\eta\left(\nabla^2-\frac{1}{\varpi^2}\right) A}_{\text {resistive decay }}-\underbrace{\frac{\mathbf{u}_{\mathrm{p}}}{\varpi} \cdot \nabla(\varpi A)}_{\text {transport }}, \\ \frac{\partial B}{\partial t}=\underbrace{\eta\left(\nabla^2-\frac{1}{\varpi^2}\right) B+\frac{1}{\varpi} \frac{\partial(\varpi B)}{\partial r} \frac{\partial \eta}{\partial r}}_{\text {resistive decay }}-\underbrace{\varpi \mathbf{u}_{\mathrm{p}} \cdot \nabla\left(\frac{B}{\varpi}\right)}_{\text {transport }} \\ -\underbrace{B \nabla \cdot \mathbf{u}_{\mathrm{p}}}_{\text {compression }}+\underbrace{\varpi\left(\nabla \times\left(A \hat{\mathbf{e}}_\phi\right)\right) \cdot \nabla \Omega}_{\text {shearing }} .\end{gathered}\]</span></p>
-<p>Simple spherically symmetric or planar 2D ﬂows can not support dynamo action.</p>
-<p>Cowling’s theorem: an axisymmetric ﬂow cannot sustain an axisymmetric magnetic ﬁeld against resistive decay.</p>
 </section>
-<section id="tension-why-is-mean-field-electrodynamics-working" class="level2">
-<h2 class="anchored" data-anchor-id="tension-why-is-mean-field-electrodynamics-working">Tension: Why Is Mean-Field Electrodynamics Working?</h2>
+<section id="anti-dynamo-theorem-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="anti-dynamo-theorem-1">Anti-dynamo theorem</h2>
+<section id="cowlings-theorem" class="level4">
+<h4 class="anchored" data-anchor-id="cowlings-theorem">Cowling’s theorem</h4>
+<p>An axisymmetric ﬂow cannot sustain an axisymmetric magnetic ﬁeld against resistive decay.</p>
 </section>
-<section id="tension-the-troublesome-magnetic-helicity" class="level2">
-<h2 class="anchored" data-anchor-id="tension-the-troublesome-magnetic-helicity">Tension: The Troublesome Magnetic Helicity</h2>
+<section id="zeldovichs-theorem" class="level4">
+<h4 class="anchored" data-anchor-id="zeldovichs-theorem">Zel’dovich’s theorem</h4>
+<p>Planar, two-dimensional motions cannot excite a dynamo.</p>
 </section>
-<section id="tension-the-troublesome-solar-differential-rotation" class="level2">
-<h2 class="anchored" data-anchor-id="tension-the-troublesome-solar-differential-rotation">Tension: The Troublesome Solar Differential Rotation</h2>
+<section id="others" class="level4">
+<h4 class="anchored" data-anchor-id="others">Others</h4>
+<ul>
+<li>A purely toroidal ﬂow cannot excite a dynamo</li>
+<li>A magnetic ﬁeld of the form <span class="math inline">\(B(x, y, t)\)</span> alone cannot be a dynamo ﬁeld.</li>
+</ul>
+<p><em>A minimal geometric complexity is required for dynamos to work.</em></p>
+</section>
+</section>
+<section id="from-toroidal-to-poloidal" class="level2">
+<h2 class="anchored" data-anchor-id="from-toroidal-to-poloidal">From toroidal to poloidal</h2>
+<p>We have no choice but to look for some fundamentally non-axisymmetric process to provide an additional source term in MHD induction equation.</p>
+<ul>
+<li>Turbulence and mean-field electrodynamics</li>
+<li>The Babcock–Leighton mechanism</li>
+<li>Hydrodynamical and magnetohydrodynamical instabilities (from the rotational shear layer, <em>tachocline</em>)</li>
+</ul>
+</section>
+</section>
+<section id="paper" class="level1">
+<h1>Paper</h1>
+<section id="tension-why-is-mean-field-electrodynamics-working" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="tension-why-is-mean-field-electrodynamics-working">Tension: Why Is Mean-Field Electrodynamics Working?</h2>
+<p>Separating the ﬂow and magnetic ﬁeld into large-scale, slowly varying “mean” component <span class="math inline">\(〈U〉, 〈B〉\)</span> and small-scale rapidly varying “turbulent” components <span class="math inline">\(\boldsymbol{u}, \boldsymbol{b}\)</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\boldsymbol{U}=\langle\mathbf{U}\rangle + \boldsymbol{u}, \\
+\boldsymbol{B}=\langle\mathbf{B}\rangle + \boldsymbol{b} .
+\end{gathered}
+\]</span></p>
+<p>Occasionally interpreted as a decomposition into axisymmetric and non-axisymmetric field components in systems with a rotation axis.</p>
+<p><span class="math display">\[
+\frac{\partial\langle\mathbf{B}\rangle}{\partial t}=\nabla \times(\langle\mathbf{U}\rangle \times\langle\mathbf{B}\rangle+\xi-\eta \nabla \times\langle\mathbf{B}\rangle)
+\]</span> where the mean electromotive force <span class="math inline">\(\xi\)</span> is given by the average of the small-scale flow-field cross-correlation: <span class="math display">\[
+\xi=\left\langle\mathbf{u} \times \mathbf{b}\right\rangle
+\]</span></p>
+</section>
+<section id="mean-field-electrodynamics" class="level2">
+<h2 class="anchored" data-anchor-id="mean-field-electrodynamics">Mean-Field Electrodynamics</h2>
+<p>Closure is achieved by expanding this turbulent electromotive force (emf) <span class="math inline">\(\boldsymbol{\xi}\)</span> in terms of <span class="math inline">\(\langle\mathbf{B}\rangle\)</span> and its derivatives:</p>
+<p><span class="math display">\[
+\xi_i=a_{i j}\left\langle B_j\right\rangle+b_{i j k} \frac{\partial\left\langle B_j\right\rangle}{\partial x_k}+\cdots
+\]</span></p>
+<p>This is not a <strong><em>linearization</em></strong> procedure, in that we are <strong>not</strong> assuming that:</p>
+<p><span class="math display">\[\left|\boldsymbol{u}\right| /|\langle\boldsymbol{U}\rangle| \ll 1\]</span></p>
+<p><span class="math display">\[\left|\boldsymbol{b}\right| /|\langle\boldsymbol{B}\rangle| \ll 1\]</span></p>
+</section>
+<section id="tension-why-is-mean-field-electrodynamics-working-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="tension-why-is-mean-field-electrodynamics-working-1">Tension: Why Is Mean-Field Electrodynamics Working?</h2>
+<p>The challenge is now to compute these tensorial quantities from known statistical properties of the turbulent ﬂow</p>
+<section id="tractable-physical-regimes" class="level4">
+<h4 class="anchored" data-anchor-id="tractable-physical-regimes">Tractable physical regimes:</h4>
+<ol type="1">
+<li>The energy density of the mean magnetic ﬁeld is larger than the energy density of the small-scale ﬁeld;</li>
+<li>The magnetic Reynolds number is low;</li>
+<li>The turbulent cyclonic eddies have a lifetime shorter than their characteristic turnover time.</li>
+</ol>
+<!-- ## Tension: The Troublesome Magnetic Helicity -->
+<!-- ## Tension: The Troublesome Solar Differential Rotation -->
+</section>
 </section>
 <section id="tensions-from-solar-to-stellar-dynamos" class="level2">
 <h2 class="anchored" data-anchor-id="tensions-from-solar-to-stellar-dynamos">Tension(s): From Solar to Stellar Dynamos</h2>
+<section id="babcockleighton-mechanism" class="level4">
+<h4 class="anchored" data-anchor-id="babcockleighton-mechanism">Babcock–Leighton mechanism</h4>
+<p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs41116-020-00025-6/MediaObjects/41116_2020_25_Fig3_HTML.png" class="img-fluid"></p>
+<p>The net effect of BMRs is taking a formerly toroidal internal magnetic ﬁeld and converting a fraction of its associated ﬂux into a net surface dipole moment.</p>
+<div class="notes">
+<p>The larger sunspot pairs (‘‘bipolar magnetic regions’’, hereafter BMR) often emerge with a systematic tilt with respect to the E–W direction, in that on average, the leading sunspot (with respect to the direction of solar rotation) is located at a lower latitude than the trailing sunspot, the more so the higher the latitude of the emerging BMR (see, e.g., Stenﬂo and Kosovichev 2012; McClintock and Norton 2013). This pattern is known as ‘‘Joy’s law’’. The tilt of the magnetic axis of a BMR implies a non-zero projection along the N–S direction, which amounts to a dipole moment. The decay of BMRs and subsequent dispersal of their magnetic ﬂux by surface ﬂows can release a fraction of this dipole moment and contribute to the global dipole.</p>
+</div>
+</section>
+</section>
+<section id="tensions-from-solar-to-stellar-dynamos-1" class="level2">
+<h2 class="anchored" data-anchor-id="tensions-from-solar-to-stellar-dynamos-1">Tension(s): From Solar to Stellar Dynamos</h2>
+<section id="hydrodynamical-and-magnetohydrodynamical-instabilities" class="level4">
+<h4 class="anchored" data-anchor-id="hydrodynamical-and-magnetohydrodynamical-instabilities">Hydrodynamical and magnetohydrodynamical instabilities</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Tachocline.svg" class="img-fluid figure-img"></p>
+<figcaption>tachocline</figcaption>
+</figure>
+</div>
+<div class="notes">
+<p>The tachocline is the rotational shear layer uncovered by helioseismology immediately beneath the Sun’s convective envelope, providing a smooth match between the latitudinal differential rotation of the envelope, and the rigidly rotating radiative core (see, e.g., Spiegel and Zahn 1992; Brown et al.&nbsp;1989; Tomczyk et al.&nbsp;1995; Gough and McIntyre 1998; Charbonneau et al.&nbsp;1999, and references therein).</p>
+</div>
+</section>
+</section>
+<section id="tensions-from-solar-to-stellar-dynamos-2" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="tensions-from-solar-to-stellar-dynamos-2">Tension(s): From Solar to Stellar Dynamos</h2>
+<ol type="1">
+<li>Which is the primary polarity reversal mechanism: α-effect, or Babcock–Leighton, . . . or something else?</li>
+<li>How do differential rotation and meridional circulation vary with rotation rate, luminosity, and internal structure?</li>
+<li>How do turbulent coefﬁcients (α-effect, turbulent pumping, turbulent diffusion) vary with rotation rate, luminosity, and internal structure?</li>
+<li>How do sunspots and BMRs form and decay in stars of varying structure (in particularly, depth of convective envelope), rotation rate and luminosity?</li>
+</ol>
+<p>Unifying dynamo framework applicable to both the sun and solar type stars of varying spectral type, luminosity, and rotation rate.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<!-- Charbonneau, P., & Sokoloff, D. (2023). Evolution of Solar and Stellar Dynamo Theory. Space Science Reviews, 219(5), 35. https://doi.org/10.1007/s11214-023-00980-0 -->
+<ul>
+<li>Tobias, S. M. (2021). The turbulent dynamo. Journal of Fluid Mechanics, 912, P1. <a href="https://doi.org/10.1017/jfm.2020.1055">10.1017/jfm.2020.1055</a></li>
+<li>Rincon, François. 2019. “Dynamo Theories.” Journal of Plasma Physics. <a href="https://doi.org/10.1017/S0022377819000539">10.1017/S0022377819000539</a>.</li>
+<li>Rincon, Francois. 2019. “Introduction to MHD Dynamos.” <a href="https://www.irap.omp.eu/wp-content/uploads/sites/4/2020/11/RINCON_Astroplasma_MHD_dynamos_2020_session_1.pdf">Presentation Link</a>.</li>
+<li>Rincon, François. 2017. “Turbulent MHD Dynamos in 2017: A Review of My Own Confusion.”</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
