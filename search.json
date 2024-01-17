@@ -2034,14 +2034,14 @@
     "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#takeaway-phenomenological-points",
     "title": "Evolution of Solar and Stellar Dynamo Theory",
     "section": "Takeaway phenomenological points",
-    "text": "Takeaway phenomenological points\n\nMany astrophysical objects have global, ordered ﬁelds\n\nDifferential rotation, global symmetries and geometry are important\nCoherent structures and MHD instabilities may also be very important\nMotivation for the development of “large-scale” dynamo theories\n\nLots of “small-scale”, random ﬁelds also discovered from the 70s\n\nThese come hand in hand with global magnetism\nSimultaneous development of “small-scale dynamo” theory"
+    "text": "Takeaway phenomenological points\n\nMany astrophysical objects have global, ordered ﬁelds\n\nDifferential rotation, global symmetries and geometry are important\nCoherent structures and MHD instabilities may also be very important\nMotivation for the development of “large-scale” dynamo theories\n\nLots of “small-scale”, random ﬁelds also discovered from the 70s\n\nThese come hand in hand with global magnetism\nSimultaneous development of “small-scale dynamo” theory\n\nAstrophysical magnetism is in a nonlinear, saturated state\n\nLinear theory not the whole story (or using it requires non-trivial justiﬁcation)\nMultiple scale interactions expected to be important"
   },
   {
     "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tension-why-is-mean-field-electrodynamics-working",
     "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tension-why-is-mean-field-electrodynamics-working",
     "title": "Evolution of Solar and Stellar Dynamo Theory",
     "section": "Tension: Why Is Mean-Field Electrodynamics Working?",
-    "text": "Tension: Why Is Mean-Field Electrodynamics Working?"
+    "text": "Tension: Why Is Mean-Field Electrodynamics Working?\nSeparating the ﬂow and magnetic ﬁeld into large-scale, slowly varying “mean” component \\(〈U〉, 〈B〉\\) and small-scale rapidly varying “turbulent” components \\(\\boldsymbol{u}, \\boldsymbol{b}\\)\n\\[\n\\begin{gathered}\n\\boldsymbol{U}=\\langle\\mathbf{U}\\rangle + \\boldsymbol{u}, \\\\\n\\boldsymbol{B}=\\langle\\mathbf{B}\\rangle + \\boldsymbol{b} .\n\\end{gathered}\n\\]\nOccasionally interpreted as a decomposition into axisymmetric and non-axisymmetric field components in systems with a rotation axis.\n\\[\n\\frac{\\partial\\langle\\mathbf{B}\\rangle}{\\partial t}=\\nabla \\times(\\langle\\mathbf{U}\\rangle \\times\\langle\\mathbf{B}\\rangle+\\xi-\\eta \\nabla \\times\\langle\\mathbf{B}\\rangle)\n\\] where the mean electromotive force \\(\\xi\\) is given by the average of the small-scale flow-field cross-correlation: \\[\n\\xi=\\left\\langle\\mathbf{u} \\times \\mathbf{b}\\right\\rangle\n\\]"
   },
   {
     "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tension-the-troublesome-magnetic-helicity",
@@ -2062,7 +2062,7 @@
     "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tensions-from-solar-to-stellar-dynamos",
     "title": "Evolution of Solar and Stellar Dynamo Theory",
     "section": "Tension(s): From Solar to Stellar Dynamos",
-    "text": "Tension(s): From Solar to Stellar Dynamos"
+    "text": "Tension(s): From Solar to Stellar Dynamos\nBabcock–Leighton mechanism\n\nThe net effect of BMRs is taking a formerly toroidal internal magnetic ﬁeld and converting a fraction of its associated ﬂux into a net surface dipole moment.\n\nThe larger sunspot pairs (‘‘bipolar magnetic regions’’, hereafter BMR) often emerge with a systematic tilt with respect to the E–W direction, in that on average, the leading sunspot (with respect to the direction of solar rotation) is located at a lower latitude than the trailing sunspot, the more so the higher the latitude of the emerging BMR (see, e.g., Stenﬂo and Kosovichev 2012; McClintock and Norton 2013). This pattern is known as ‘‘Joy’s law’’. The tilt of the magnetic axis of a BMR implies a non-zero projection along the N–S direction, which amounts to a dipole moment. The decay of BMRs and subsequent dispersal of their magnetic ﬂux by surface ﬂows can release a fraction of this dipole moment and contribute to the global dipole."
   },
   {
     "objectID": "docs/blog/journal_club/2024-01-17_dynamo/index.html",
@@ -2160,7 +2160,7 @@
     "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#mhd-equations",
     "title": "Evolution of Solar and Stellar Dynamo Theory",
     "section": "MHD equations",
-    "text": "MHD equations\nMHD induction equation\n\\[\\frac{\\partial \\mathbf{B}}{\\partial t}=\\nabla \\times(\\mathbf{u} \\times \\mathbf{B}-\\eta \\nabla \\times \\mathbf{B})\\]\nIncompressible, resistive, viscous MHD\n\\[\\frac{\\partial \\mathbf{u}}{\\partial t}+\\mathbf{u} \\cdot \\nabla \\mathbf{u}=-\\nabla P+\\mathbf{B} \\cdot \\nabla \\mathbf{B}+\\nu \\Delta \\mathbf{u}+\\mathbf{f}(\\mathbf{x}, t)\\]"
+    "text": "MHD equations\nMHD induction equation\n\\[\\frac{\\partial \\mathbf{B}}{\\partial t}=\\nabla \\times(\\mathbf{u} \\times \\mathbf{B}-\\eta \\nabla \\times \\mathbf{B})\\]\nIncompressible, resistive, viscous MHD\n\\[\\frac{\\partial \\mathbf{u}}{\\partial t}+\\mathbf{u} \\cdot \\nabla \\mathbf{u}=-\\nabla P+\\mathbf{B} \\cdot \\nabla \\mathbf{B}+\\nu \\Delta \\mathbf{u}+\\mathbf{f}(\\mathbf{x}, t)\\]\nLenz’s Law\nElectromagnetic induction suppresses rather enhances the seed magnetic ﬁeld."
   },
   {
     "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#section",
@@ -2216,6 +2216,41 @@
     "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#anti-dynamo-theorem-1",
     "title": "Evolution of Solar and Stellar Dynamo Theory",
     "section": "Anti-dynamo theorem",
-    "text": "Anti-dynamo theorem\nCowling’s theorem: an axisymmetric ﬂow cannot sustain an axisymmetric magnetic ﬁeld against resistive decay."
+    "text": "Anti-dynamo theorem\nCowling’s theorem\nAn axisymmetric ﬂow cannot sustain an axisymmetric magnetic ﬁeld against resistive decay.\nZel’dovich’s theorem\nPlanar, two-dimensional motions cannot excite a dynamo.\nOthers\n\nA purely toroidal ﬂow cannot excite a dynamo\nA magnetic ﬁeld of the form \\(B(x, y, t)\\) alone cannot be a dynamo ﬁeld.\n\nA minimal geometric complexity is required for dynamos to work."
+  },
+  {
+    "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#from-toroidal-to-poloidal",
+    "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#from-toroidal-to-poloidal",
+    "title": "Evolution of Solar and Stellar Dynamo Theory",
+    "section": "From toroidal to poloidal",
+    "text": "From toroidal to poloidal\nWe have no choice but to look for some fundamentally non-axisymmetric process to provide an additional source term in MHD induction equation.\n\nTurbulence and mean-field electrodynamics\nThe Babcock–Leighton mechanism\nHydrodynamical and magnetohydrodynamical instabilities (from the rotational shear layer, tachocline)"
+  },
+  {
+    "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#mean-field-electrodynamics",
+    "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#mean-field-electrodynamics",
+    "title": "Evolution of Solar and Stellar Dynamo Theory",
+    "section": "Mean-Field Electrodynamics",
+    "text": "Mean-Field Electrodynamics\nClosure is achieved by expanding this turbulent electromotive force (emf) \\(\\boldsymbol{\\xi}\\) in terms of \\(\\langle\\mathbf{B}\\rangle\\) and its derivatives:\n\\[\n\\xi_i=a_{i j}\\left\\langle B_j\\right\\rangle+b_{i j k} \\frac{\\partial\\left\\langle B_j\\right\\rangle}{\\partial x_k}+\\cdots\n\\]\nThis is not a linearization procedure, in that we are not assuming that:\n\\[\\left|\\boldsymbol{u}\\right| /|\\langle\\boldsymbol{U}\\rangle| \\ll 1\\]\n\\[\\left|\\boldsymbol{b}\\right| /|\\langle\\boldsymbol{B}\\rangle| \\ll 1\\]"
+  },
+  {
+    "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tension-why-is-mean-field-electrodynamics-working-1",
+    "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tension-why-is-mean-field-electrodynamics-working-1",
+    "title": "Evolution of Solar and Stellar Dynamo Theory",
+    "section": "Tension: Why Is Mean-Field Electrodynamics Working?",
+    "text": "Tension: Why Is Mean-Field Electrodynamics Working?\nThe challenge is now to compute these tensorial quantities from known statistical properties of the turbulent ﬂow\nTractable physical regimes:\n\nThe energy density of the mean magnetic ﬁeld is larger than the energy density of the small-scale ﬁeld;\nThe magnetic Reynolds number is low;\nThe turbulent cyclonic eddies have a lifetime shorter than their characteristic turnover time."
+  },
+  {
+    "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tensions-from-solar-to-stellar-dynamos-1",
+    "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tensions-from-solar-to-stellar-dynamos-1",
+    "title": "Evolution of Solar and Stellar Dynamo Theory",
+    "section": "Tension(s): From Solar to Stellar Dynamos",
+    "text": "Tension(s): From Solar to Stellar Dynamos\nHydrodynamical and magnetohydrodynamical instabilities\n\ntachocline\nThe tachocline is the rotational shear layer uncovered by helioseismology immediately beneath the Sun’s convective envelope, providing a smooth match between the latitudinal differential rotation of the envelope, and the rigidly rotating radiative core (see, e.g., Spiegel and Zahn 1992; Brown et al. 1989; Tomczyk et al. 1995; Gough and McIntyre 1998; Charbonneau et al. 1999, and references therein)."
+  },
+  {
+    "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tensions-from-solar-to-stellar-dynamos-2",
+    "href": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#tensions-from-solar-to-stellar-dynamos-2",
+    "title": "Evolution of Solar and Stellar Dynamo Theory",
+    "section": "Tension(s): From Solar to Stellar Dynamos",
+    "text": "Tension(s): From Solar to Stellar Dynamos\n\nWhich is the primary polarity reversal mechanism: α-effect, or Babcock–Leighton, . . . or something else?\nHow do differential rotation and meridional circulation vary with rotation rate, luminosity, and internal structure?\nHow do turbulent coefﬁcients (α-effect, turbulent pumping, turbulent diffusion) vary with rotation rate, luminosity, and internal structure?\nHow do sunspots and BMRs form and decay in stars of varying structure (in particularly, depth of convective envelope), rotation rate and luminosity?\n\nUnifying dynamo framework applicable to both the sun and solar type stars of varying spectral type, luminosity, and rotation rate."
   }
 ]
