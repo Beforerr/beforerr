@@ -1,13 +1,15 @@
 ---
 title: Evolution of solar wind discontinuities over radial distance
 author: Zijin Zhang
+abstract: Solar wind discontinuities evolve in space with occurrence rate decreasing, thickness increasing and current density decreasing with distance from the Sun. And they are probably generated locally beyond 1 AU.
 date: last-modified
-github: https://github.com/Beforerr/ids_finder
-link: https://beforerr.github.io/ids_finder
 categories:
   - seeding
   - solar wind
+code-links:
+  - text: Website
+    href: https://beforerr.github.io/ids_finder
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/ids_finder
+image: https://beforerr.github.io/ids_finder/figures/ocr_time_cleaned.png
 ---
-
-- [Web Pages]({{< meta link >}})
-- [GitHub repository]({{< meta github >}})

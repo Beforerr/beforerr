@@ -1,13 +1,14 @@
 ---
 title: Energetic ion scattering by solar wind discontinuities
 author: Zijin Zhang
-date: last-modified
-github: https://github.com/Beforerr/ion_scattering_by_SWD
-link: https://beforerr.github.io/ion_scattering_by_SWD
+abstract: In this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering...
 categories:
   - seeding
   - solar wind
+code-links:
+  - text: Webpage
+    href: https://beforerr.github.io/ion_scattering_by_SWD
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/ion_scattering_by_SWD
+image: https://github.com/Beforerr/ion_scattering_by_SWD/blob/main/figures/uncertainty_curve_length.png?raw=true
 ---
-
-- [Web Pages]({{< meta link >}})
-- [GitHub repository]({{< meta github >}})

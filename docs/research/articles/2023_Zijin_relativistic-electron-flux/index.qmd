@@ -1,0 +1,16 @@
+---
+title: Relativistic electron flux decay and recovery
+subtitle: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections
+author: Zijin Zhang
+date: last-modified
+code-links:
+  - text: Webpage
+    href: https://beforerr.github.io/EMIC_multi-satellites_study/
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/EMIC_multi-satellites_study/
+image: https://beforerr.github.io/EMIC_multi-satellites_study/figures/fig1_orbit_multi_mission_conjunctions.png
+---
+
+ELFIN captured a significant ~4-hour episode of continuous EMIC-driven electron precipitation. This appears to be influenced by electron scattering caused by both whistler-mode and EMIC waves. Interestingly, despite this scattering, the predominant factor remains electron acceleration through whistler-mode waves, largely driven by substorm injections. The increase in electron fluxes during the storm, as recorded by ELFIN and ERG, aligns well with our analytical flux model. The first figure in the paper comprehensively presents all the observations we used, while the concluding figure distinctly shows the impact of electron acceleration on flux enhancement.
+
+![(top) An overview of the mission orbits recorded on April 17, 2021, from 00:00 to 12:00 UTC. The orbits of the distinct missions are projected onto the MLT and $L$-shell plane, designated with different colors; star markers denote the orbit start, squares indicate their termination, and time annotations are provided near the periods of interest. ELFIN-B's trajectory is displayed during three time intervals: 02:42-02:46, 04:14-04:18, and 05:47-05:51 UT. NOAA-19's trajectory is plotted for 01:47-01:52 and 03:30-03:36 UT, while NOAA-15's is displayed at 01:15-01:20 and 02:58-03:03 UT. The trajectories of GOES, MMS, and Arase span the entire 12-hour interval from 00:00 to 12:00 UT. (bottom) $Sym-H$ and SME indices during this event.]({{< meta image >}})

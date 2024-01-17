@@ -1,15 +1,29 @@
 ---
 title: The kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind
-author: Zijin Zhang
+author: 
+  - name: "{{< var authors.zijin.name >}}"
+    email: "{{< var authors.zijin.email >}}"
+    orcid: "{{< var authors.zijin.orcid >}}"
+    affiliation: University of Science and Technology of China
+  - name: Xin Tao
+    email: xtao@ustc.edu.cn
+    orcid: 0000-0002-4676-8133
+    affiliation: University of Science and Technology of China
+abstract: We investigate the interaction between the solar wind and lunar crustal magnetic anomalies, using particle-in-cell simulation.
 date: "2022-07"
-github: https://github.com/Beforerr/moon_magnetic_anomalies
-link: https://beforerr.github.io/ids_finder
 categories:
   - solar wind
 keywords: 
 - Undergraduate thesis
 - simulation
----
+code-links:
+  - text: Thesis PDF
+    href: https://github.com/Beforerr/moon_magnetic_anomalies/blob/main/ustcthesis/main.pdf
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/moon_magnetic_anomalies
+image: image.png
+--- 
 
-- [GitHub repository]({{< meta github >}})
-- [PDF](https://github.com/Beforerr/moon_magnetic_anomalies/blob/main/ustcthesis/main.pdf)
+The Moon, charactered by an absence of magnetosphere and atmosphere, sits directly exposed to the surrounding solar wind and/or magnetospheric plasma as the Moon revolved around the Earth. Therefore, the lunar space environment is mainly shaped by the interaction between the lunar surface and the impinging plasma. Previously, the Moon was thought as a passive absorber of the solar wind, forming a nearly complete void downstream called lunar wake. However, recent mission revealed a more complicated and diverse interaction between the Moon and the solar wind, such as the reflection and deflection of solar wind protons, formation of ”mini-magnetospheres” and collisionless shocks around lunar magnetic anomalies (LMAs). These new observation sparks a new interest to the lunar plasma environment research.
+
+In the present thesis, we investigate the interaction between the solar wind and lunar crustal magnetic anomalies. We use particle-in-cell simulation to study a simplified but typical scenario of the interaction between a magnetic dipolar embedded in the lunar regolith and solar wind. We confirm that LMAs may indeed be strong enough to stand off the solar wind from directly striking the lunar surface under typical solar wind conditions and form a mini-magnetosphere structure. The analysis of the miniature magnetosphere and parameter influence offers insight into kinetic multi-scale physical processes in the planetary magnetic structures.
