@@ -1,0 +1,114 @@
+---
+title: "Evolution of Solar and Stellar Dynamo Theory"
+subtitle: "in 'Solar and Stellar Dynamo: A New Era'"
+author: 
+  - Charbonneau Paul
+  - Sokoloff Dmitry
+format:
+  revealjs:
+    footer: "Journal Club Presentation"
+    output-file: 'dynamo.revealjs.html'
+  html: default
+---
+
+## Outline
+
+- Introduction to MHD dynamo theory
+- Paper
+
+## What is dynamo theory about?
+
+- The **origin**, **amplification**, **saturation** and **sustainment**, of magnetic ﬁelds in the universe 
+
+    - on the Earth, other planets and their satellites (“planetary magnetism”)
+    - in the Sun and other stars (“stellar magnetism”)
+    - in galaxies, clusters and the early universe (“cosmic magnetism”)
+
+If you care about magnetic fields, you might care about dynamo theory.
+
+## Magnetic ﬁelds in the universe
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![Solar magnetism (from 1G (global) to 1 kG (sunspots)](images/rinconDynamoTheories2019_fig1g.gif)
+
+:::
+
+::: {.column width="33%"}
+![Planetary magnetism (0.1 G at Earth's surface)](https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20190927135600773-0135:S0022377819000539:S0022377819000539_fig2g.gif)
+:::
+
+::: {.column width="33%"}
+![Cosmic magnetism (galactic magnetic ﬁeld ~ 10 μG)](https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20190927135600773-0135:S0022377819000539:S0022377819000539_fig3g.gif)
+:::
+
+::::
+
+
+
+## Takeaway phenomenological points
+
+- Many astrophysical objects have global, ordered ﬁelds 
+    - **Differential rotation**, global **symmetries** and **geometry** are important
+    - Coherent structures and MHD instabilities may also be very important
+    - Motivation for the development of “***large-scale***” dynamo theories 
+- Lots of “small-scale”, random ﬁelds also discovered from the 70s
+    - These come hand in hand with global magnetism
+    - Simultaneous development of “small-scale dynamo” theory
+
+## MHD equations
+
+MHD induction equation
+
+$$\frac{\partial \mathbf{B}}{\partial t}=\nabla \times(\mathbf{u} \times \mathbf{B}-\eta \nabla \times \mathbf{B})$$
+
+Incompressible, resistive, viscous MHD
+
+$$\frac{\partial \mathbf{u}}{\partial t}+\mathbf{u} \cdot \nabla \mathbf{u}=-\nabla P+\mathbf{B} \cdot \nabla \mathbf{B}+\nu \Delta \mathbf{u}+\mathbf{f}(\mathbf{x}, t)$$
+
+## Lenz's Law
+
+Electromagnetic induction suppresses rather enhances the seed magnetic ﬁeld.
+
+## 
+
+
+
+## Anti-dynamo theorem {.smaller}
+
+Observations around solar activity minimum suggest that,the large-scale solar magnetic ﬁeld is axisymmetric about the rotation axis.
+
+$$
+\mathbf{B}(r, \theta, t)=\nabla \times\left(A(r, \theta, t) \hat{\mathbf{e}}_\phi\right)+B(r, \theta, t) \hat{\mathbf{e}}_\phi .
+$$
+
+$$
+\mathbf{u}(r, \theta)=\mathbf{u}_{\mathrm{p}}(r, \theta)+\varpi \Omega(r, \theta) \hat{\mathbf{e}}_\phi,
+$$
+
+MHD induction equation
+
+$$\begin{gathered}\frac{\partial A}{\partial t}=\underbrace{\eta\left(\nabla^2-\frac{1}{\varpi^2}\right) A}_{\text {resistive decay }}-\underbrace{\frac{\mathbf{u}_{\mathrm{p}}}{\varpi} \cdot \nabla(\varpi A)}_{\text {transport }}, \\ \frac{\partial B}{\partial t}=\underbrace{\eta\left(\nabla^2-\frac{1}{\varpi^2}\right) B+\frac{1}{\varpi} \frac{\partial(\varpi B)}{\partial r} \frac{\partial \eta}{\partial r}}_{\text {resistive decay }}-\underbrace{\varpi \mathbf{u}_{\mathrm{p}} \cdot \nabla\left(\frac{B}{\varpi}\right)}_{\text {transport }} \\ -\underbrace{B \nabla \cdot \mathbf{u}_{\mathrm{p}}}_{\text {compression }}+\underbrace{\varpi\left(\nabla \times\left(A \hat{\mathbf{e}}_\phi\right)\right) \cdot \nabla \Omega}_{\text {shearing }} .\end{gathered}$$
+
+## Anti-dynamo theorem
+
+Cowling’s theorem: an axisymmetric ﬂow cannot sustain an axisymmetric magnetic ﬁeld against resistive decay.
+
+
+## Tension: Why Is Mean-Field Electrodynamics Working?
+
+## Tension: The Troublesome Magnetic Helicity
+
+## Tension: The Troublesome Solar Differential Rotation
+
+## Tension(s): From Solar to Stellar Dynamos
+
+## References
+
+<!-- Charbonneau, P., & Sokoloff, D. (2023). Evolution of Solar and Stellar Dynamo Theory. Space Science Reviews, 219(5), 35. https://doi.org/10.1007/s11214-023-00980-0 -->
+
+- Tobias, S. M. (2021). The turbulent dynamo. Journal of Fluid Mechanics, 912, P1. [10.1017/jfm.2020.1055](https://doi.org/10.1017/jfm.2020.1055)
+- Rincon, François. 2019. “Dynamo Theories.” Journal of Plasma Physics. [10.1017/S0022377819000539](https://doi.org/10.1017/S0022377819000539).
+- Rincon, Francois. 2019. “Introduction to MHD Dynamos.” [Presentation Link](https://www.irap.omp.eu/wp-content/uploads/sites/4/2020/11/RINCON_Astroplasma_MHD_dynamos_2020_session_1.pdf).
+- Rincon, François. 2017. “Turbulent MHD Dynamos in 2017: A Review of My Own Confusion.”
