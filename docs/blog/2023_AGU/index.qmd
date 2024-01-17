@@ -1,0 +1,20 @@
+---
+title: AGU23
+subtitle: Wide. Open. Science.
+author: 
+  - Zijin Zhang
+categories:
+  - "#conference"
+date: 2023-12-11
+image: https://news.agu.org/files/2023/10/AGU23_Full_Event_Logo_CenterAligned_Black.jpg
+---
+
+Two posters are presented this year. First AGU meeting in person!
+
+- [Solar wind discontinuities spatial evolution and energetic ion scattering](https://beforerr.github.io/ids_finder/manuscripts/AGU23_poster.html)
+  
+  [Poster PDF](https://github.com/Beforerr/ids_finder/blob/main/notebooks/manuscripts/AGU23_poster.pdf)
+
+- [Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections](https://beforerr.github.io/EMIC_multi-satellites_study/manuscripts/AGU23_poster-preview.html)
+
+  [Poster PDF](https://github.com/Beforerr/EMIC_multi-satellites_study/blob/main/manuscripts/AGU23_poster.pdf)
