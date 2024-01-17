@@ -5,16 +5,23 @@ author:
   - Charbonneau Paul
   - Sokoloff Dmitry
 format:
+  html: default
   revealjs:
     footer: "Journal Club Presentation"
     output-file: 'dynamo.revealjs.html'
-  html: default
+categories:
+  - "#journal club"
+  - dynamo theory
+date: last-modified
+image: images/rinconDynamoTheories2019_fig1g.gif
 ---
 
 ## Outline
 
 - Introduction to MHD dynamo theory
 - Paper
+
+# Introduction
 
 ## What is dynamo theory about?
 
@@ -32,7 +39,6 @@ If you care about magnetic fields, you might care about dynamo theory.
 
 ::: {.column width="33%"}
 ![Solar magnetism (from 1G (global) to 1 kG (sunspots)](images/rinconDynamoTheories2019_fig1g.gif)
-
 :::
 
 ::: {.column width="33%"}
@@ -114,6 +120,8 @@ We have no choice but to look for some fundamentally non-axisymmetric process to
 - Turbulence and mean-field electrodynamics
 - The Babcock–Leighton mechanism
 - Hydrodynamical and magnetohydrodynamical instabilities (from the rotational shear layer, *tachocline*)
+
+# Paper
 
 ## Tension: Why Is Mean-Field Electrodynamics Working? {.smaller}
 

@@ -1,6 +1,8 @@
 ---
 title: "Blog"
 description: "News about boring me"
+listing:
+  categories: true
 ---
 
 --- 
