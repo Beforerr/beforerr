@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -116,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -151,7 +152,7 @@ div.csl-indent {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../research/index.html"> 
+    <a class="nav-link" href="../../../../docs/research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -159,6 +160,10 @@ div.csl-indent {
  <span class="menu-text">Others</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/blog/index.html">
+ <span class="dropdown-text">Blog</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../../../../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
@@ -381,7 +386,8 @@ div.csl-indent {
 
 <blockquote class="blockquote">
 <ul>
-<li>For an event/spacecraft of your choice from MMS (other than MMS3 for the event in the above crib provided), introduce L2 FPI ion and electron moments and eflux energy spectrograms. Explain what the region of space is (why the data are consistent with that region). Magnetic field is always useful to include. Use a geophysical coordinate system (GSM, GSE a al., Science 2016 and Torbert et al., Science 2018.</li>
+<li>For an event/spacecraft of your choice from MMS (other than MMS3 for the event in the above crib provided), introduce L2 FPI ion and electron moments and eflux energy spectrograms. Explain what the region of space is (why the data are consistent with that region). Magnetic field is always useful to include. Use a geophysical coordinate system (GSM, GSE a
+al., Science 2016 and Torbert et al., Science 2018.</li>
 <li>Using standard tools in mms_part_products, obtain gyro-velocity spectra of high-energy (5-10keV or 20-30keV) ions. Can you tell the gradient of those ions at the magnetopause, or the plasma sheet boundary layer from their duskward anisotropy?</li>
 <li>Also using mms_part_products, obtain pitch angle spectra from FPI for low (100-1000eV) and high (10-20keV) electrons in a region surrounding magnetic reconnection (1-2min before and after). Can you tell where the anisotropy reverses from towards to away from the RX region? How do you interpret this reversal?</li>
 </ul>
@@ -392,18 +398,22 @@ div.csl-indent {
 
 </div>
 <div class="column-page quarto-layout-panel" data-layout-nrow="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://www.science.org/cms/10.1126/science.aaf2939/asset/31a10bb9-7848-4676-93e7-be72c67cedfb/assets/graphic/352_aaf2939_f2.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Locations of the four MMS spacecraft during the magnetopause crossing investigated in this study.</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://www.science.org/cms/10.1126/science.aaf2939/asset/9e226fa3-80f0-4210-bd72-79fd4126bc64/assets/graphic/352_aaf2939_f3.jpeg" class="img-fluid figure-img"></p>
 <figcaption>Summary data for two magnetopause crossings of MMS2 on 16 October 2015.</figcaption>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -412,7 +422,7 @@ div.csl-indent {
 
 </div>
 <div class="column-page quarto-layout-panel" data-layout-nrow="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img src="images/mms1_event_A03_overview.svg" class="img-fluid"></p>
 </div>
@@ -859,27 +869,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -894,10 +883,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -906,8 +899,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1154,7 +1154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/epss265/homeworks/epss265_hw06.ipynb" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
