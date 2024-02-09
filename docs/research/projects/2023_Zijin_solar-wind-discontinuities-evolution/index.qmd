@@ -7,9 +7,11 @@ categories:
   - seeding
   - solar wind
 code-links:
+  - text: Manuscript
+    href: https://beforerr.github.io/ids_spatial_evolution_juno/_manuscript/
   - text: Website
-    href: https://beforerr.github.io/ids_finder
+    href: https://beforerr.github.io/ids_spatial_evolution_juno/
   - text: GitHub Repo
-    href: https://github.com/Beforerr/ids_finder
+    href: https://github.com/Beforerr/ids_spatial_evolution_juno
 image: https://beforerr.github.io/ids_finder/figures/ocr_time_cleaned.png
 ---

@@ -10,6 +10,8 @@ about:
       href: "https://github.com/Beforerr"
     - text: ORCID
       href: "https://orcid.org/0000-0002-9968-067X"
+    - text: CV
+      href: docs/others/cv_Zijin.qmd
 ---
 
 - 🪐 A graduate student at UCLA, majoring in space science & planetary science.

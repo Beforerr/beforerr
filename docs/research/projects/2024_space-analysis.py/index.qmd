@@ -1,0 +1,22 @@
+---
+title: space-analysis.py
+subtitle: Python utils for data analysis in space physics
+author: 
+  - name: "{{< var authors.zijin.name >}}"
+    email: "{{< var authors.zijin.email >}}"
+    orcid: "{{< var authors.zijin.orcid >}}"
+    affiliation: "{{< var affiliations.ucla >}}"
+date: last-modified
+categories:
+  - package
+format:
+  html:
+    toc-location: left
+code-links:
+  - text: Documentation
+    href: https://beforerr.github.io/space-analysis.py/
+    icon: globe
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/space-analysis.py
+    icon: github
+---

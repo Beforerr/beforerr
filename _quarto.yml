@@ -43,3 +43,5 @@ format:
     theme: cosmo
     toc: true
     code-fold: true
+
+wrap: preserve

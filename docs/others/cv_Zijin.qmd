@@ -1,0 +1,66 @@
+---
+title: Curriculum Vitae
+author: 
+  - name: Zijin Zhang
+    orcid: "{{< var orcid >}}"
+    email: "{{< var email >}}"
+address: Earth, Planetary and Space Sciences, University of California, Los Angeles, CA 90095
+format:
+  html: default
+  latex:
+    number-sections: false
+code-links:
+  - href: https://www.overleaf.com/project/65acd9becf5caed2b8e9089a
+    text: Overleaf
+  - href: cv_Zijin_clean.pdf
+    text: PDF
+resources: cv_Zijin_clean.pdf
+---
+
+\begin{center}
+    \textbf{\Large {{< meta author >}}} \\ \vspace{5pt}
+    % \seticon{faPhone} \ \small XXX-XXX-XXXX \quad
+    Email: \href{mailto:{{< var email >}}}{zijin@ucla.edu} \quad
+    Website: \href{https://beforerr.github.io/beforerr/docs/research/}{beforerr.github.io}
+\end{center}
+
+
+# Education
+
+- Graduate student in Planetary Science, *University of California, Los Angeles*, 2022 - present
+
+- B.Sc. in Space Physics<!--  and B.Eng. in Computer Science -->, *University of Science and Technology of China*, 2018 - 2022
+
+
+# Research Interests
+
+- Solar wind and wave‑particle interactions
+
+- Computational plasma physics and application of data science in space science
+
+- Solar physics, heliophysics and experimental space science
+
+# Publications
+
+1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., & Kasahara, S. (2024). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *JGR: Space Physics* [submitted]. DOI: [10.13140/RG.2.2.25908.01920](https://doi.org/10.13140/RG.2.2.25908.01920)
+
+1. Margot, J.-L., Li, M. G., Pinchuk, … **Zhang, Z.**. (2023). A search for technosignatures around 11680 stars with the green bank telescope at 1.15–1.73 GHz. *Astronomical Journal*, 166(5), 206. DOI: [10.3847/1538-3881/acfda4](https://doi.org/10.3847/1538-3881/acfda4)
+
+1. **Zhang, Z.**, & Tao, X. (2022). The kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind. *Undergraduate Thesis* [University of Science and Technology of China]. DOI: [10.13140/RG.2.2.15841.68968](http://dx.doi.org/10.13140/RG.2.2.15841.68968)
+
+
+# Presentations
+
+1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Chen, S. (2023, December 14). Solar wind discontinuities spatial evolution and energetic ion scattering. *American Geophysical Union*. DOI: [10.13140/RG.2.2.12905.67682](https://doi.org/10.13140/RG.2.2.12905.67682)
+
+1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, December 12). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *American Geophysical Union*. DOI: [10.13140/RG.2.2.33038.33607](https://doi.org/10.13140/RG.2.2.33038.33607)
+
+1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, June 22). Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections. *Geospace Environment Modeling*. DOI: [10.13140/RG.2.2.33038.33607](http://dx.doi.org/10.13140/RG.2.2.33038.33607)
+
+# Research Experience
+
+- Graduate Student Researcher, *Experimental Space Physics Group*, 2022-present\
+Study energetic ion scattering by solar wind discontinuities. 2022-present. [Project website](https://beforerr.github.io/ion_scattering_by_SWD).
+
+- Undergraduate Research Assistant, *Artificial Intelligence of Things Lab*, 2021-2022\
+Implemented a distributed system to monitor edge devices and automate IT deployment and management 

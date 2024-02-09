@@ -10,7 +10,8 @@ author:
     email: "{{< var authors.anton.email >}}"
     orcid: "{{< var authors.anton.orcid >}}"
     affiliation: "{{< var affiliations.ucla >}}"
-date: last-modified
+date: "2024-02"
+# date: last-modified
 categories:
   - proposal
   - solar wind
@@ -24,7 +25,7 @@ code-links:
   - text: GitHub Repo
     href: https://github.com/Beforerr/finesst_solar_wind_discontinuities/
     icon: github
-image: https://beforerr.github.io/finesst_solar_wind_discontinuities/images/orbits/juno_psp_orbit_v2.png
+image: https://raw.githubusercontent.com/Beforerr/finesst_solar_wind_discontinuities/dd5eafec460819d3b876b6422b63f703a3b7e912/figures/orbits/juno_psp_orbit_v2.svg
 ---
 
 Future Investigators in NASA Earth and Space Science and Technology (FINESST) is a program element in Research Opportunities in Space and Earth Sciences (ROSES).

@@ -13,7 +13,7 @@ Two posters are presented this year. First AGU meeting in person!
 
 - [Solar wind discontinuities spatial evolution and energetic ion scattering](https://beforerr.github.io/ids_finder/manuscripts/AGU23_poster.html)
   
-  [Poster PDF](https://github.com/Beforerr/ids_finder/blob/main/notebooks/manuscripts/AGU23_poster.pdf)
+  [Poster PDF](https://beforerr.github.io/ids_spatial_evolution_juno/presentations/AGU23_poster.pdf)
 
 - [Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections](https://beforerr.github.io/EMIC_multi-satellites_study/manuscripts/AGU23_poster-preview.html)
 
