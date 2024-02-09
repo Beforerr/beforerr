@@ -43,7 +43,9 @@
       "/docs/research/articles/2023_Zijin_relativistic-electron-flux/index.html",
       "/docs/research/articles/margotSearchTechnosignatures2023/index.html",
       "/docs/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
+      "/docs/research/projects/2024_space-analysis.py/index.html",
       "/docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
+      "/docs/research/projects/2024_DiscontinuityPy/index.html",
       "/docs/research/projects/2024_Zijin_finesst/index.html",
       "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html"
     ]
@@ -51,7 +53,8 @@
   {
     "listing": "/docs/blog/index.html",
     "items": [
-      "/docs/blog/journal_club/2024-01-17_dynamo/index.html"
+      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
+      "/docs/blog/2023_AGU/index.html"
     ]
   }
 ]

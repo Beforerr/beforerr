@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.547">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -62,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -134,12 +135,39 @@ ul.task-list li input[type="checkbox"] {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -221,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/research/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="paper">paper <span class="quarto-category-count">(1)</span></div><div class="category" data-category="proposal">proposal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seeding">seeding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="solar wind">solar wind <span class="quarto-category-count">(4)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="package">package <span class="quarto-category-count">(2)</span></div><div class="category" data-category="paper">paper <span class="quarto-category-count">(1)</span></div><div class="category" data-category="proposal">proposal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seeding">seeding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="solar wind">solar wind <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -337,7 +365,40 @@ Zijin Zhang
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="seeding,solar wind" data-listing-date-sort="1705181330000" data-listing-file-modified-sort="1705181330683" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="quarto-post image-right" data-index="1" data-categories="package" data-listing-date-sort="1707469486000" data-listing-file-modified-sort="1707469486443" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail">
+<p><a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external"></a></p><a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external">space-analysis.py</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external">Python utils for data analysis in space physics</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('package'); return false;">
+package
+</div>
+</div>
+<div class="listing-description">
+<a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<a href="../../docs/research/projects/2024_space-analysis.py/index.html" class="no-external">
+<div class="listing-date">
+Feb 9, 2024
+</div>
+<div class="listing-author">
+<p>Zijin Zhang</p>
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="seeding,solar wind" data-listing-date-sort="1707469365000" data-listing-file-modified-sort="1707469365077" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
 <div class="thumbnail">
 <p><a href="../../docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external"></a></p><a href="../../docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">
 <p><img src="https://beforerr.github.io/ids_finder/figures/ocr_time_cleaned.png" class="thumbnail-image"></p>
@@ -365,7 +426,7 @@ solar wind
 <div class="metadata">
 <a href="../../docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">
 <div class="listing-date">
-Jan 13, 2024
+Feb 9, 2024
 </div>
 <div class="listing-author">
 Zijin Zhang
@@ -373,10 +434,43 @@ Zijin Zhang
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="proposal,solar wind" data-listing-date-sort="1705177978000" data-listing-file-modified-sort="1705177978343" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="quarto-post image-right" data-index="3" data-categories="package" data-listing-date-sort="1707469118000" data-listing-file-modified-sort="1707469118265" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail">
+<p><a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external"></a></p><a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external">DiscontinuityPy</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external">A python package for identifying and analyzing discontinuities for time series data.</a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('package'); return false;">
+package
+</div>
+</div>
+<div class="listing-description">
+<a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<a href="../../docs/research/projects/2024_DiscontinuityPy/index.html" class="no-external">
+<div class="listing-date">
+Feb 9, 2024
+</div>
+<div class="listing-author">
+<p>Zijin Zhang</p>
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="proposal,solar wind" data-listing-date-sort="1706774400000" data-listing-file-modified-sort="1707469276418" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
 <div class="thumbnail">
 <p><a href="../../docs/research/projects/2024_Zijin_finesst/index.html" class="no-external"></a></p><a href="../../docs/research/projects/2024_Zijin_finesst/index.html" class="no-external">
-<p><img src="https://beforerr.github.io/finesst_solar_wind_discontinuities/images/orbits/juno_psp_orbit_v2.png" class="thumbnail-image"></p>
+<p><img src="https://raw.githubusercontent.com/Beforerr/finesst_solar_wind_discontinuities/dd5eafec460819d3b876b6422b63f703a3b7e912/figures/orbits/juno_psp_orbit_v2.svg" class="thumbnail-image"></p>
 </a><p><a href="../../docs/research/projects/2024_Zijin_finesst/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -401,7 +495,7 @@ solar wind
 <div class="metadata">
 <a href="../../docs/research/projects/2024_Zijin_finesst/index.html" class="no-external">
 <div class="listing-date">
-Jan 13, 2024
+Feb 1, 2024
 </div>
 <div class="listing-author">
 Zijin Zhang, Anton V. Artemyev
@@ -409,7 +503,7 @@ Zijin Zhang, Anton V. Artemyev
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="solar wind" data-listing-date-sort="1656658800000" data-listing-file-modified-sort="1705179423431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
+<div class="quarto-post image-right" data-index="5" data-categories="solar wind" data-listing-date-sort="1656658800000" data-listing-file-modified-sort="1705179423431" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="214">
 <div class="thumbnail">
 <p><a href="../../docs/research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external"></a></p><a href="../../docs/research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external">
 <p><img src="../../docs/research/projects/2022_Zijin_solar-wind-LMA/image.png" class="thumbnail-image"></p>
@@ -581,27 +675,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -616,10 +689,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -628,8 +705,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -864,7 +948,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/research/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
