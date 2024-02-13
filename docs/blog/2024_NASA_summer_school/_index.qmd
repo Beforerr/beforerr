@@ -1,0 +1,88 @@
+---
+title: NASA Heliophysics Summer School
+format:
+  pdf:
+    documentclass: scrartcl
+    pagestyle: empty
+    keep-tex: true
+    # sansfont: Times New Roman # heading font
+    include-in-header:
+      - text: |
+          \addtokomafont{disposition}{\rmfamily} % Make the headings the same font as the rest of the document, instead of sans serif
+---
+
+::: {.content-visible when-format="html"}
+::: {.callout-note}
+The Heliophysics Summer School focuses on the physics of core processes that describe the domains of the heliosphere (solar interior and corona, solar wind, magnetospheres, ionospheres, and the heliosphere boundary) and emphasizes the unifying concepts between these domains. The 2024 Summer School will focus on **Comparative Heliophysics**. During the Summer School, participants will explore how similar concepts and principles of heliophysics apply under different conditions. The Summer School will focus on universal processes in heliophysics such as dynamos, plasma flows, magnetic reconnection, and particle acceleration. Examples of these processes in action will include the dynamics and evolution of the Sun and other stars, solar and stellar atmospheres and winds, and planetary magnetospheres and ionospheres. The implications for planetary atmospheres and climate, planetary evolution, and exoplanetary habitability will be considered.
+:::
+:::
+
+{{< pagebreak >}}
+
+# [Research Statement]{.underline}
+
+::: {.content-visible when-format="html"}
+::: {.callout-note}
+Research statement addresses the following prompts:
+
+1. Please provide a brief research statement summarizing your research experience and plans for the immediate future.
+2. How will participation in the Heliophysics Summer School help you achieve your future career plans/goals?
+:::
+:::
+
+Zijin Zhang  
+Department of Earth, Planetary, and Space Sciences (EPSS)  
+University of California, Los Angeles (UCLA)
+
+I am a second-year graduate student in the EPSS Department at UCLA, with an interest in contributing to the understanding of key phenomena in the heliosphere like magnetic discontinuities. Magnetic discontinuities, characterized by localized, transient alterations in the magnetic field, play a crucial role in in processes such as efficient *plasma acceleration* and the generation of *plasma instabilities* (magnetic reconnection) associated with discontinuity currents. To this end, I leverage a multifaceted approach that encompasses [spacecraft observations](https://beforerr.github.io/ids_spatial_evolution_juno/_manuscript/), [numerical simulations](https://beforerr.github.io/ion_scattering_by_SWD/), the development of [analytical tools](https://beforerr.github.io/discontinuitypy/) and  the analysis of extensive datasets to study these phenomena. 
+
+## Research experience
+
+My research journey has encompassed several key projects:
+
+1. analyzing the spatial evolution of solar wind discontinuities in the outer heliosphere with Juno spacecraft data by differentiating the temporal effect (correlated with solar activity) and spatial variations (correlated with radial distance);
+
+1. integrating observations from multiple spacecraft missions (Van Allen Probes, ERG/ARASE, MMS, GOES, ELFIN, POES) to explore the dynamics of relativistic electrons in the magnetosphere with series of strong electron and ion injections from the plasma sheet and strong electron precipitation; and
+
+1. employing particle-in-cell simulations to investigate the interaction between the solar wind and lunar crustal magnetic anomalies.
+
+## Future research plans
+
+Looking forward, my research will concentrate on elucidating the influence of magnetic discontinuities on the acceleration of solar wind particles. Utilizing data from the Parker Solar Probe (PSP) to examine the spatial distribution of discontinuities in the inner heliosphere represents a significant part of this work. By synthesizing PSP observations with data from additional spacecraft, I aim to trace the evolution of these discontinuities from their solar origins to the outer reaches of the heliosphere. Subsequent numerical simulations, particularly test-particle simulations incorporating realistic discontinuity parameters, will enable a deeper understanding of solar wind particle dynamics in the presence of discontinuities.
+
+## Relevence of the school to my career goals
+
+<!-- The main focus of the school, which is the universal processes in heliophysics, is closely related to my research interests. The school will provide me with a unique opportunity to learn about the latest developments in the field, and to interact with experts and peers. I am particularly interested in the *comparative* aspect of the school, which will allow me to learn about the similarities and differences in the processes that occur in different regions of the heliosphere since discontinuities and particle acceleration are ubiquitous in the heliosphere. This will be particularly useful for my research, as it will help me to understand the broader context of the phenomena I study. -->
+
+The thematic focus of the school on universal processes in heliophysics aligns perfectly with my research interests, since discontinuities and particle acceleration are ubiquitous in the heliosphere. Participating in this program presents a unique chance to engage with the latest advancements in the field and to network with leading experts and fellow researchers. I am especially drawn to the *comparative* dimension of the school's curriculum, which promises to enrich my research perspective by highlighting the commonalities and distinctions among heliospheric processes across different regions. This comparative analysis is invaluable, as it will broaden my comprehension of the phenomena under study and enhance the contextual framework of my research endeavors.
+
+
+{{< pagebreak >}}
+
+# [Personal Statement]{.underline}
+
+::: {.content-visible when-format="html"}
+::: {.callout-note}
+
+Not to exceed one page, single spaced, or approximately 500 words.
+
+Please ensure that your Personal Statement addresses one of the two following questions:
+
+1. How have your personal and professional experiences shaped your perspective on resilience and perseverance as related to your scientific research? or
+2. When engaging with other researchers, how would you include diverse perspectives from the group into the conversation?
+:::
+:::
+
+Throughout my academic journey as a second-year graduate student in the EPSS Department at UCLA, I have learned the value of integrating diverse perspectives into scientific research. My focus on understanding magnetic discontinuities within the heliosphere has not only deepened my appreciation for the complexity of space phenomena but also underscored the importance of collaborative approaches that embrace a wide range of insights. This realization has been profoundly influenced by my personal experiences and my interactions with a diverse group of researchers and communities.
+
+My research endeavors, from employing spacecraft observations and numerical simulations to developing analytical tools, have always been propelled by collaboration. In studying the spatial evolution of solar wind discontinuities and the dynamics of relativistic electrons in the magnetosphere, I have had the privilege of working with data from missions like PSP, MMS, ELFIN, and ERG. Colloborating with other researchers, especially with instrument teams, helped me to gain a deeper understanding of the data (their limitations and capabilities) and to develop new tools for data analysis. These experiences have taught me that the richness of scientific discovery is greatly enhanced by the diverse methodologies and perspectives that each team member brings to the table.
+
+Engagement with fellow researchers, especially in an interdisciplinary field like heliophysics, demands openness to different viewpoints. The heliosphere, host to complex phenomena like magnetic reconnection and particle acceleration, encompasses a vast plasma parameter space, making a holistic understanding contingent upon an approach that integrates data analysis, numerical simulations, and theoretical modeling. By actively seeking to include voices from various scientific backgrounds, I have learned that the most innovative and transformative ideas often emerge from the intersection of diverse perspectives. This approach not only fosters a culture of mutual respect and learning but also propels our research forward in unexpected and innovative directions.
+
+My commitment to inclusivity in scientific conversations is also informed by my personal experiences. The challenging winter mountaineering expedition to Mount Siguniang and the fifteen-day  field research in the desertification Mu-Us Sandy Land have been pivotal in shaping my understanding of resilience, perseverance, and the power of diverse perspectives. These experiences taught me that whether facing the harsh realities of nature or addressing global challenges like climate change, collective efforts rooted in diverse experiences and expertise can lead to meaningful change.
+
+<!-- In engaging with other researchers, I prioritize creating an environment where each member feels valued and heard. This involves not only acknowledging the unique contributions of each individual but also actively seeking to bridge gaps in understanding and perspective. By encouraging the exchange of ideas across disciplinary boundaries, we can achieve a more comprehensive and nuanced understanding of complex scientific phenomena. -->
+
+As I look forward to participating in the school focused on universal processes in heliophysics, I am particularly excited about the opportunity to interact with experts and peers from different regions and research backgrounds. The comparative aspect of the school aligns perfectly with my belief in the importance of diverse perspectives. I am eager to learn about the similarities and differences in heliospheric processes, which will undoubtedly enrich my research and contribute to a deeper collective understanding of the universe we study.
+
+<!-- In conclusion, my approach to engaging with other researchers is deeply influenced by my personal and professional experiences, which have taught me the value of resilience, perseverance, and the transformative power of diversity in scientific exploration. I am committed to fostering an inclusive research environment that embraces diverse perspectives, believing that this is essential for advancing our understanding of the universe and addressing the complex challenges that lie ahead. -->

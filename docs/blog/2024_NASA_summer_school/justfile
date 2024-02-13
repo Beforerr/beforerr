@@ -1,0 +1,3 @@
+extract:
+    qpdf _index.pdf --pages . 2-3 -- research_statement.pdf
+    qpdf _index.pdf --pages . 4 -- personal_statement.pdf
