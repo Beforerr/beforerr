@@ -478,21 +478,21 @@
     "href": "docs/research/index.html",
     "title": "Research",
     "section": "",
-    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\n\nNo matching items"
+    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/research/index.html#journal-articles",
     "href": "docs/research/index.html#journal-articles",
     "title": "Research",
     "section": "",
-    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\n\nNo matching items"
+    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/research/index.html#projects",
     "href": "docs/research/index.html#projects",
     "title": "Research",
     "section": "Projects",
-    "text": "Projects\n\n\n\n\n\n\n\n\n\n\nEnergetic ion scattering by solar wind discontinuities\n\n\n\n\n\n\nseeding\n\n\nsolar wind\n\n\n\nIn this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering…\n\n\n\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nEvolution of solar wind discontinuities over radial distance\n\n\n\n\n\n\nseeding\n\n\nsolar wind\n\n\n\nSolar wind discontinuities evolve in space with occurrence rate decreasing, thickness increasing and current density decreasing with distance from the Sun. And they are probably generated locally beyond 1 AU.\n\n\n\n\n\nFeb 9, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nDiscontinuityPy\n\n\nA python package for identifying and analyzing discontinuities for time series data.\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nspace-analysis.py\n\n\nPython utils for data analysis in space physics\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nSolar wind discontinuities\n\n\nFINESST23 Proposal\n\n\n\nproposal\n\n\nsolar wind\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nZijin Zhang, Anton V. Artemyev\n\n\n\n\n\n\n\n\n\n\n\n\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind\n\n\n\n\n\n\nsolar wind\n\n\n\nWe investigate the interaction between the solar wind and lunar crustal magnetic anomalies, using particle-in-cell simulation.\n\n\n\n\n\nJul 1, 2022\n\n\nZijin Zhang, Xin Tao\n\n\n\n\n\n\nNo matching items"
+    "text": "Projects\n\n\n\n\n\n\n\n\n\n\nEnergetic ion scattering by solar wind discontinuities\n\n\n\n\n\n\nseeding\n\n\nsolar wind\n\n\n\nIn this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering…\n\n\n\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nEvolution of solar wind discontinuities over radial distance\n\n\n\n\n\n\nseeding\n\n\nsolar wind\n\n\n\nSolar wind discontinuities evolve in space with occurrence rate decreasing, thickness increasing and current density decreasing with distance from the Sun. And they are probably generated locally beyond 1 AU.\n\n\n\n\n\nFeb 13, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nDiscontinuityPy\n\n\nA python package for identifying and analyzing discontinuities for time series data.\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nspace-analysis.py\n\n\nPython utils for data analysis in space physics\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nSolar wind discontinuities\n\n\nFINESST23 Proposal\n\n\n\nproposal\n\n\nsolar wind\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nZijin Zhang, Anton V. Artemyev\n\n\n\n\n\n\n\n\n\n\n\n\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind\n\n\n\n\n\n\nsolar wind\n\n\n\nWe investigate the interaction between the solar wind and lunar crustal magnetic anomalies, using particle-in-cell simulation.\n\n\n\n\n\nJul 1, 2022\n\n\nZijin Zhang, Xin Tao\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -534,7 +534,7 @@
     "href": "docs/blog/index.html",
     "title": "Blog",
     "section": "",
-    "text": "Evolution of Solar and Stellar Dynamo Theory\n\n\nin ‘Solar and Stellar Dynamo: A New Era’\n\n\n\n#journal club\n\n\ndynamo theory\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nCharbonneau Paul, Sokoloff Dmitry\n\n\n\n\n\n\n\n\n\n\n\n\nAGU23\n\n\nWide. Open. Science.\n\n\n\n#conference\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nZijin Zhang\n\n\n\n\n\n\nNo matching items"
+    "text": "Evolution of Solar and Stellar Dynamo Theory\n\n\nin ‘Solar and Stellar Dynamo: A New Era’\n\n\n\n#journal club\n\n\ndynamo theory\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nCharbonneau Paul, Sokoloff Dmitry\n\n\n\n\n\n\n\n\n\n\n\n\nAGU23\n\n\nWide. Open. Science.\n\n\n\n#conference\n\n\n\n\n\n\n\n\n\nDec 11, 2023\n\n\nZijin Zhang\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/blog/journal_club/2024-01-17_dynamo/dynamo.revealjs.html#outline",
