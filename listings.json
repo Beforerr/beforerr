@@ -1,5 +1,19 @@
 [
   {
+    "listing": "/docs/blog/index.html",
+    "items": [
+      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
+      "/docs/blog/2023_AGU/index.html"
+    ]
+  },
+  {
+    "listing": "/docs/courses/index.html",
+    "items": [
+      "/docs/courses/epss265/index.html",
+      "/docs/courses/phys231/index.html"
+    ]
+  },
+  {
     "listing": "/docs/courses/epss265/homeworks/index.html",
     "items": [
       "/docs/courses/epss265/homeworks/epss265_hw02.html",
@@ -20,20 +34,6 @@
       "/docs/research/projects/2024_space-analysis.py/index.html",
       "/docs/research/projects/2024_Zijin_finesst/index.html",
       "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html"
-    ]
-  },
-  {
-    "listing": "/docs/blog/index.html",
-    "items": [
-      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
-      "/docs/blog/2023_AGU/index.html"
-    ]
-  },
-  {
-    "listing": "/docs/courses/index.html",
-    "items": [
-      "/docs/courses/epss265/index.html",
-      "/docs/courses/phys231/index.html"
     ]
   }
 ]
