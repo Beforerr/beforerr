@@ -1,9 +1,9 @@
 ---
 title: Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Fluxes
 format:
-  typst: 
-    keep-typ: true
   html: default
+  pdf: 
+    keep-tex: true
 ---
 
 **PhD Candidate: Zijin Zhang**

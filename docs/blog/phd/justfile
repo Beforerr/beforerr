@@ -1,0 +1,3 @@
+default:
+    quarto render proposal_EMIC.qmd
+    mv proposal_EMIC.tex overleaf/
