@@ -1,0 +1,13 @@
+---
+title: "Evolution of Solar and Stellar Dynamo Theory" 
+author: 
+  - Charbonneau Pau 
+format:
+  html: default
+  revealjs:
+    footer: "Journal Club Presentation"
+    output-file: 'messenger.revealjs.html'
+categories:
+  - "#journal club"
+date: last-modified
+---
