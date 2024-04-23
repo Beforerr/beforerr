@@ -14,3 +14,6 @@ date: last-modified
 > Departmental Written and Oral Preliminary Examination: This examination must be taken no later than the spring quarter of the second year. It is scheduled by the faculty adviser in consultation with the student and other members of the examining committee. The examining committee consists of the faculty adviser and at least two additional EPSS faculty members. In extraordinary circumstances, a delay or change in committee membership may be granted by petition to the graduate adviser or department chair.
 
 > The student prepares two written research proposals on two dissimilar projects approved by the faculty adviser. The proposals must be concise, with a guideline of 4 pages and a maximum of 5 pages, and must be submitted to the examining committee at least 10 days before the examination. One of the proposals should cover a possible dissertation topic. The proposals are presented briefly to the examining committee orally, and the committee examines their originality and scientific merit, as well as the student’s fundamental knowledge in the program area.
+
+
+- [EMIC Proposal](./proposal_EMIC.qmd)
