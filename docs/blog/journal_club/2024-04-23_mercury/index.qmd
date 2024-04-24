@@ -13,4 +13,23 @@ date: last-modified
 ---
 
 
-Messenger
+# Introduction
+
+## Quick facts
+
+Messenger (Mercury Surface, Space Environment, Geochemistry, and Ranging)
+
+- A NASA robotic space probe that orbited the planet Mercury between 2011 and 2015
+
+Mercury
+
+- The smallest and innermost planet in the Solar System
+
+  $R_{\text{Mercury}} = 2439.7 \text{km} = 0.38 R_{\text{Earth}}$
+
+
+Dungey cycle
+
+- Circulation of plasma, magnetic flux, and energy from the dayside X-line at the magnetopause
+- to the nightside X-line in the crosstail current layer and,
+- and later, back to the dayside magnetosphere
