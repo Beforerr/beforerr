@@ -1,7 +1,7 @@
 ---
-title: "Evolution of Solar and Stellar Dynamo Theory" 
+title: "MESSENGER Observations of Extreme Loading and Unloading of Mercury’s Magnetic Tail" 
 author: 
-  - Charbonneau Pau 
+  - James A. Slavin
 format:
   html: default
   revealjs:
@@ -11,3 +11,6 @@ categories:
   - "#journal club"
 date: last-modified
 ---
+
+
+Messenger
