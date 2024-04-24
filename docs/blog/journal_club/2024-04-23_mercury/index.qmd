@@ -7,12 +7,11 @@ format:
   pptx: default
 code-links:
   - text: PowerPoint (modified)
-    href: https://github.com/Beforerr/beforerr/docs/blog/journal_club/2024-04-23_mercury/index.pptx
+    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2024-04-23_mercury/index.pptx
 categories:
   - "#journal club"
 date: last-modified
 ---
-
 
 <!-- https://www.science.org/doi/10.1126/science.1188067 -->
 <!-- https://www.science.org/doi/10.1126/science.1172011 -->
@@ -68,12 +67,6 @@ The relevant scaleis the convectiontime $T_c$, defined a the time to cycle the m
 
   - Events 2 to 4 corresponded to higher $|B_Y/B_X|$ than the intervening periods, indicating increased flaring of the magnetic tail.
 
-## Tail-loading event 2
-
-Fig. 3 Magnetometer observations of tail-loading event 2 during MESSENGER’s third flyby. 
-
-![](images/329_665_f2.jpeg)
-
 Estimating the magnetic flux
 
 $$
@@ -88,13 +81,21 @@ $$
 \Phi = \approx 9.5 \text{MWb}
 $$
 
-# 
+## Tail-loading event 2
+
+Fig. 3 Magnetometer observations of tail-loading event 2 during MESSENGER’s third flyby. 
+
+![](images/329_665_f3.jpeg)
 
 - six intervals of several seconds each when the total magnetic field weakened, indicating entry into a region with high plasma thermal pressure and low magnetic field pressure.
 
 - These minima in field magnitude coincide with either rapid northward-then-southward or just southward variations in BZ, followed by a slower recovery back to BZ ≈ 0
 
-- the near-Mercury neutral line (NMNL). The NMNL was observed near XMSO = –2.6 RM during MESSENGER’s second flyby (5), but it was closer to the planet, near XMSO ≈ –1.6 RM, for this flyby. The third flyby results therefore suggest that the NMNL develops much closer to the planet when the magnetic tail is heavily loaded with magnetic flux, such as during events 2 and 3.
+---
+
+Near-Mercury neutral line (NMNL)
+
+- The NMNL was observed near XMSO = –2.6 RM during MESSENGER’s second flyby (5), but it was closer to the planet, near XMSO ≈ –1.6 RM, for this flyby. The third flyby results therefore suggest that the NMNL develops much closer to the planet when the magnetic tail is heavily loaded with magnetic flux, such as during events 2 and 3.
 
 ## Schematic view
 
@@ -108,7 +109,7 @@ $$
 \Phi / \Phi_M \approx 1
 $$
 
-By comparision, Earth's is only ~10 to 12% (14).
+By comparision, Earth's is only ~10 to 12%.
 
 - Mercury’s dayside magneto-sphere may be fully depleted by reconnection
 - The entire dayside surface would map to open magnetic field lines and be exposed to the shocked solar wind of the magnetosheath.
