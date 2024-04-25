@@ -6,8 +6,8 @@ format:
     cite-method: natbib
     keep-tex: true
     bibliography: 
-        - files/addon_anton.bib
-        - files/full_anton.bib
+        - files/Anton.addon.bib
+        - files/Anton.full.bib
         - files/research.bib
 ---
 
