@@ -5,6 +5,10 @@ format:
   pdf: 
     cite-method: natbib
     keep-tex: true
+    bibliography: 
+        - files/addon_anton.bib
+        - files/full_anton.bib
+        - files/research.bib
 ---
 
 **PhD Candidate: Zijin Zhang**
