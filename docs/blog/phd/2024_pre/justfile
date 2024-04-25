@@ -1,0 +1,7 @@
+sync-overleaf:
+   rsync figures/ overleaf/figures/ -r
+   rsync files/ overleaf/files/ -r
+
+default:
+    quarto render proposal_EMIC.qmd
+    mv proposal_EMIC.tex overleaf/
