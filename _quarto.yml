@@ -3,7 +3,10 @@ project:
   preview: 
     port: 5555
 
-bibliography: files/references.bib
+bibliography:
+  - files/references.bib
+  - ../share/bibliography/research.bib
+
 
 website:
   title: "beforerr"
