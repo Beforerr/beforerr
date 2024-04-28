@@ -191,7 +191,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">EPSS 263</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/epss263_hw02.html">Homework 02</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/index.html">EPSS M263</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/epss263_hw02.html">Homework 02</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,8 +214,8 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">EPSS 263</span></a>
+            <a href="../../../../docs/courses/epss263/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EPSS M263</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -394,7 +394,7 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">EPSS 263</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/epss263_hw02.html">Homework 02</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/index.html">EPSS M263</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/index.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss263/homework/epss263_hw02.html">Homework 02</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Homework 02</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
@@ -536,7 +536,7 @@ V \cdot \nabla \ln g = - \kappa V \cdot ( - \nabla \ln \rho + \nabla \ln p)
 \]</span></p>
 <p>For this equation to hold everywhere, we must have</p>
 <p><span class="math display">\[
-g = c_1 * (\frac{\rho}{p})^\kappa
+g = c_1 (\frac{\rho}{p})^\kappa
 \]</span></p>
 <p>Therefore, we have</p>
 <p><span class="math display">\[
@@ -544,7 +544,7 @@ p = c_1 \rho^\gamma (\frac{\rho}{p})^\kappa
 \]</span></p>
 <p>and thus</p>
 <p><span class="math display">\[
-p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
+p = \alpha \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
 \]</span></p>
 <p>which is the polytropic equation with <span class="math inline">\(n = \frac{\gamma + \kappa}{1 + \kappa}\)</span>.</p>
 <p>Since we don’t assume anywhere in the above derivation that <span class="math inline">\(d_t s^* = 0\)</span>, the equation of specific entropy still could be transformed into an equation for a revised “entropy” defined using <span class="math inline">\(n\)</span>, the polytropic index, which is no longer <span class="math inline">\(\gamma\)</span>, but <span class="math inline">\(n=(\gamma+\kappa)/(1+\kappa)\)</span>, even though <span class="math inline">\(d_t s^* \neq 0\)</span>.</p>
@@ -567,7 +567,7 @@ p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
 \]</span></p>
 <p>where <span class="math inline">\(n\)</span> is the particle number density, <span class="math inline">\(\sigma\)</span> is the collisional cross-section, <span class="math inline">\(v\)</span> is the mean thermal velocity between particle species, and <span class="math inline">\(\ln \Lambda\)</span> is the Coulomb logarithm accounting for small angle collisions.</p>
 <p>Using typical parameters for space science, we can calculate the collision time scale <span class="math inline">\(\tau = 1/\nu_{ei} = 3 \cdot 10^4 \text{s}\)</span>, which is indeed large enough.</p>
-<div id="a3827a26" class="cell" data-execution_count="1">
+<div id="52b80826" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plasmapy.formulary <span class="im">as</span> plf</span>
@@ -601,7 +601,7 @@ p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>tau(n<span class="op">=</span>n, T<span class="op">=</span>T, V<span class="op">=</span>v_drift)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="63">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="33">
 <p><span class="math inline">\(34654.032 \; \mathrm{s}\)</span></p>
 </div>
 </div>
@@ -618,18 +618,18 @@ p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
 \begin{aligned}
 &amp; R_1 \equiv \frac{V B}{n J}=\frac{V B}{\frac{m_e}{e^2 n \tau}} \frac{B}{\mu_0 L}=n V L \tau \frac{\mu_0 e^2}{m_e} \\
 &amp; R_2 \equiv \frac{V B}{\frac{1}{n e} \frac{P_e}{L}}=\frac{V B}{\frac{k}{n e} \frac{n T}{L}}=\frac{e}{k} \frac{V B L}{T} \\
-&amp; R_3=\frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 \\
-&amp; R_4=\frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} \\
+&amp; R_3 \equiv \frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 \\
+&amp; R_4 \equiv \frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} \\
 &amp;
 \end{aligned}
 \]</span></p>
-<p>Using the parameters from <span class="citation" data-cites="borovskyOutstandingQuestionsMagnetospheric2020">(<a href="#ref-borovskyOutstandingQuestionsMagnetospheric2020" role="doc-biblioref">Borovsky et al. 2020</a>)</span>, and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., <span class="math inline">\(L \sim 3e7 m\)</span>, we have the ratios calculated as shown below <a href="#tbl-ratios" class="quarto-xref">Table&nbsp;1</a>. The Hall term is now become comparable to the “v cross B” term with <span class="math inline">\(R_3 \sim 10\)</span>. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).</p>
+<p>Using the parameters from <span class="citation" data-cites="borovskyOutstandingQuestionsMagnetospheric2020">(<a href="#ref-borovskyOutstandingQuestionsMagnetospheric2020" role="doc-biblioref">Borovsky et al. 2020</a>)</span>, and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., <span class="math inline">\(L \sim 10^7 m\)</span>, we have the ratios calculated as shown below <a href="#tbl-ratios" class="quarto-xref">Table&nbsp;1</a>. The Hall term is now become comparable to the “v cross B” term with <span class="math inline">\(R_3 \sim 10\)</span>. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).</p>
 <p>The ratio of the electron inertia to the Hall term is given by</p>
 <p><span class="math display">\[
 R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}
 \]</span></p>
 <p>Since <span class="math inline">\(R_4\)</span> is proportional to <span class="math inline">\(L^2\)</span>, and <span class="math inline">\(R_3\)</span> is proportional to <span class="math inline">\(L\)</span>, the ratio <span class="math inline">\(R_4/R_3\)</span> is proportional to <span class="math inline">\(L\)</span>. Therefore, the electron inertia term is more significant when the spatial scale is smaller. It is also more significant when the magnetic field is weaker, or the velocity is larger.</p>
-<div id="33a47718" class="cell" data-execution_count="2">
+<div id="a5ba221c" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.constants.si <span class="im">import</span> mu0, e, m_e, k_B</span>
@@ -704,67 +704,49 @@ R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> u.m,</span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.K,</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> u.s,</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>magnetotail <span class="op">=</span> <span class="bu">dict</span>(</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"ion plasma sheet"</span>,</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">5e5</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m,</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> (<span class="fl">1e3</span> <span class="op">*</span> u.eV).to(u.K, equivalencies<span class="op">=</span>u.temperature_energy()),</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [solar_wind, magnetotail]:</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"τ"</span>] <span class="op">=</span> tau(n<span class="op">=</span>d[<span class="st">"n"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>])</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R1"</span>] <span class="op">=</span> R1(n<span class="op">=</span>d[<span class="st">"n"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], τ<span class="op">=</span>d[<span class="st">"τ"</span>])</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R2"</span>] <span class="op">=</span> R2(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>])</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R3"</span>] <span class="op">=</span> R3(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>])</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R4"</span>] <span class="op">=</span> R4(L<span class="op">=</span>d[<span class="st">"L"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>])</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> QTable([solar_wind, magnetotail])</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df.colnames[<span class="dv">1</span>:]:</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    df[col].info.<span class="bu">format</span> <span class="op">=</span> <span class="st">".1E"</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>magnetotail <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"ion plasma sheet"</span>,</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">5e5</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m,</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> (<span class="fl">1e3</span> <span class="op">*</span> u.eV).to(u.K, equivalencies<span class="op">=</span>u.temperature_energy()),</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [solar_wind, magnetotail]:</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"τ"</span>] <span class="op">=</span> tau(n<span class="op">=</span>d[<span class="st">"n"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>])</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R1"</span>] <span class="op">=</span> R1(n<span class="op">=</span>d[<span class="st">"n"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], τ<span class="op">=</span>d[<span class="st">"τ"</span>])</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R2"</span>] <span class="op">=</span> R2(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>])</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R3"</span>] <span class="op">=</span> R3(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>])</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R4"</span>] <span class="op">=</span> R4(L<span class="op">=</span>d[<span class="st">"L"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>])</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> QTable([solar_wind, magnetotail])</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df.colnames[<span class="dv">1</span>:]:</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    df[col].info.<span class="bu">format</span> <span class="op">=</span> <span class="st">".1E"</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/zijin/mambaforge/envs/cool_space_science/lib/python3.10/site-packages/plasmapy/utils/decorators/checks.py:1390: RelativityWarning: thermal_speed is yielding a velocity that is 6.258% of the speed of light. Relativistic effects may be important.
-  warnings.warn(
-/Users/zijin/mambaforge/envs/cool_space_science/lib/python3.10/site-packages/plasmapy/utils/decorators/checks.py:1390: RelativityWarning: V is yielding a velocity that is 6.258% of the speed of light. Relativistic effects may be important.
-  warnings.warn(
-/Users/zijin/mambaforge/envs/cool_space_science/lib/python3.10/site-packages/plasmapy/utils/decorators/checks.py:1390: RelativityWarning: thermal_speed is yielding a velocity that is 6.256% of the speed of light. Relativistic effects may be important.
-  warnings.warn(</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="64">
-<div><i>QTable length=2</i>
-<table id="table5770245312" class="table-striped table-bordered table-condensed">
-<thead><tr><th>name</th><th>n</th><th>V</th><th>L</th><th>T</th><th>τ</th><th>B</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th></tr></thead>
-<thead><tr><th></th><th>1 / m3</th><th>m / s</th><th>m</th><th>K</th><th>s</th><th>T</th><th></th><th></th><th></th><th></th></tr></thead>
-<thead><tr><th>str16</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th><th>float64</th></tr></thead>
-<tbody><tr><td>solar wind</td><td>1.0E+07</td><td>1.0E+05</td><td>1.0E+06</td><td>1.0E+05</td><td>3.5E+04</td><td>1.0E-08</td><td>1.2E+09</td><td>1.2E+02</td><td>2.0E+01</td><td>3.5E+05</td></tr>
-<tr><td>ion plasma sheet</td><td>5.0E+05</td><td>1.0E+05</td><td>1.0E+07</td><td>1.2E+07</td><td>6.7E+08</td><td>1.0E-08</td><td>1.2E+13</td><td>1.0E+01</td><td>1.0E+01</td><td>1.8E+06</td></tr>
-</tbody></table></div>
-</div>
 </div>
 <div class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>).cols_label(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="st">"Number Density (m^-3)"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="st">"Velocity (m/s)"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="st">"Length (m)"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="st">"Temperature (K)"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="st">"Collision Time (s)"</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>).tab_spanner(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Plasma Parameters"</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"n"</span>, <span class="st">"V"</span>, <span class="st">"L"</span>, <span class="st">"T"</span>, <span class="st">"tau"</span>]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>).cols_label(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="st">"Number Density (m^-3)"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="st">"Velocity (m/s)"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="st">"Length (m)"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="st">"Temperature (K)"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="st">"Collision Time (s)"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="st">"Magnetic Field (T)"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>).tab_spanner(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Plasma Parameters"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"n"</span>, <span class="st">"V"</span>, <span class="st">"L"</span>, <span class="st">"T"</span>, <span class="st">"B"</span>, <span class="st">"τ"</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="tbl-ratios" class="cell anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -772,52 +754,52 @@ R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}
 Table&nbsp;1: Ratios of the terms in Ohm’s law
 </figcaption>
 <div aria-describedby="tbl-ratios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="66">
-<div id="idpnohinte" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="cell-output cell-output-display" data-execution_count="36">
+<div id="mhdsvmecbx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>
-#idpnohinte table {
+#mhdsvmecbx table {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
 
-#idpnohinte thead, tbody, tfoot, tr, td, th { border-style: none; }
+#mhdsvmecbx thead, tbody, tfoot, tr, td, th { border-style: none; }
  tr { background-color: transparent; }
-#idpnohinte p { margin: 0; padding: 0; }
- #idpnohinte .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
- #idpnohinte .gt_caption { padding-top: 4px; padding-bottom: 4px; }
- #idpnohinte .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
- #idpnohinte .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
- #idpnohinte .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #idpnohinte .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #idpnohinte .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
- #idpnohinte .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
- #idpnohinte .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
- #idpnohinte .gt_column_spanner_outer:first-child { padding-left: 0; }
- #idpnohinte .gt_column_spanner_outer:last-child { padding-right: 0; }
- #idpnohinte .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
- #idpnohinte .gt_spanner_row { border-bottom-style: hidden; }
- #idpnohinte .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
- #idpnohinte .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
- #idpnohinte .gt_from_md> :first-child { margin-top: 0; }
- #idpnohinte .gt_from_md> :last-child { margin-bottom: 0; }
- #idpnohinte .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
- #idpnohinte .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
- #idpnohinte .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
- #idpnohinte .gt_row_group_first td { border-top-width: 2px; }
- #idpnohinte .gt_row_group_first th { border-top-width: 2px; }
- #idpnohinte .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
- #idpnohinte .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
- #idpnohinte .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
- #idpnohinte .gt_left { text-align: left; }
- #idpnohinte .gt_center { text-align: center; }
- #idpnohinte .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
- #idpnohinte .gt_font_normal { font-weight: normal; }
- #idpnohinte .gt_font_bold { font-weight: bold; }
- #idpnohinte .gt_font_italic { font-style: italic; }
- #idpnohinte .gt_super { font-size: 65%; }
- #idpnohinte .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
- #idpnohinte .gt_asterisk { font-size: 100%; vertical-align: 0; }
+#mhdsvmecbx p { margin: 0; padding: 0; }
+ #mhdsvmecbx .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #FFFFFF; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #mhdsvmecbx .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #mhdsvmecbx .gt_title { color: #333333; font-size: 125%; font-weight: initial; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #FFFFFF; border-bottom-width: 0; }
+ #mhdsvmecbx .gt_subtitle { color: #333333; font-size: 85%; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #FFFFFF; border-top-width: 0; }
+ #mhdsvmecbx .gt_heading { background-color: #FFFFFF; text-align: center; border-bottom-color: #FFFFFF; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #mhdsvmecbx .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #mhdsvmecbx .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #mhdsvmecbx .gt_col_heading { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #mhdsvmecbx .gt_column_spanner_outer { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: normal; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #mhdsvmecbx .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #mhdsvmecbx .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #mhdsvmecbx .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #mhdsvmecbx .gt_spanner_row { border-bottom-style: hidden; }
+ #mhdsvmecbx .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #mhdsvmecbx .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #mhdsvmecbx .gt_from_md> :first-child { margin-top: 0; }
+ #mhdsvmecbx .gt_from_md> :last-child { margin-bottom: 0; }
+ #mhdsvmecbx .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #mhdsvmecbx .gt_stub { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #mhdsvmecbx .gt_stub_row_group { color: #333333; background-color: #FFFFFF; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #mhdsvmecbx .gt_row_group_first td { border-top-width: 2px; }
+ #mhdsvmecbx .gt_row_group_first th { border-top-width: 2px; }
+ #mhdsvmecbx .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #mhdsvmecbx .gt_sourcenotes { color: #333333; background-color: #FFFFFF; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #mhdsvmecbx .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #mhdsvmecbx .gt_left { text-align: left; }
+ #mhdsvmecbx .gt_center { text-align: center; }
+ #mhdsvmecbx .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #mhdsvmecbx .gt_font_normal { font-weight: normal; }
+ #mhdsvmecbx .gt_font_bold { font-weight: bold; }
+ #mhdsvmecbx .gt_font_italic { font-style: italic; }
+ #mhdsvmecbx .gt_super { font-size: 65%; }
+ #mhdsvmecbx .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #mhdsvmecbx .gt_asterisk { font-size: 100%; vertical-align: 0; }
  
 </style>
 
@@ -825,9 +807,7 @@ Table&nbsp;1: Ratios of the terms in Ohm’s law
 <tbody>
 <tr class="odd gt_col_headings gt_spanner_row">
 <td rowspan="2" id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</td>
-<td colspan="4" id="Plasma Parameters" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Plasma Parameters</span></td>
-<td rowspan="2" id="Collision Time (s)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Collision Time (s)</td>
-<td rowspan="2" id="B" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">B</td>
+<td colspan="6" id="Plasma Parameters" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><span class="gt_column_spanner">Plasma Parameters</span></td>
 <td rowspan="2" id="R1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">R1</td>
 <td rowspan="2" id="R2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">R2</td>
 <td rowspan="2" id="R3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">R3</td>
@@ -838,6 +818,8 @@ Table&nbsp;1: Ratios of the terms in Ohm’s law
 <td id="Velocity (m/s)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Velocity (m/s)</td>
 <td id="Length (m)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Length (m)</td>
 <td id="Temperature (K)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temperature (K)</td>
+<td id="Magnetic Field (T)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Magnetic Field (T)</td>
+<td id="Collision Time (s)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Collision Time (s)</td>
 </tr>
 </tbody>
 <tbody class="gt_table_body">
@@ -847,8 +829,8 @@ Table&nbsp;1: Ratios of the terms in Ohm’s law
 <td class="gt_row gt_right">1.0 × 10<sup>5</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>6</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>5</sup></td>
-<td class="gt_row gt_right">3.5 × 10<sup>4</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>−8</sup></td>
+<td class="gt_row gt_right">3.5 × 10<sup>4</sup></td>
 <td class="gt_row gt_right">1.2 × 10<sup>9</sup></td>
 <td class="gt_row gt_right">1.2 × 10<sup>2</sup></td>
 <td class="gt_row gt_right">2.0 × 10<sup>1</sup></td>
@@ -860,8 +842,8 @@ Table&nbsp;1: Ratios of the terms in Ohm’s law
 <td class="gt_row gt_right">1.0 × 10<sup>5</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>7</sup></td>
 <td class="gt_row gt_right">1.2 × 10<sup>7</sup></td>
-<td class="gt_row gt_right">6.7 × 10<sup>8</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>−8</sup></td>
+<td class="gt_row gt_right">6.7 × 10<sup>8</sup></td>
 <td class="gt_row gt_right">1.2 × 10<sup>13</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>1</sup></td>
 <td class="gt_row gt_right">1.0 × 10<sup>1</sup></td>
@@ -892,7 +874,7 @@ $$
 
 Coulomb logarithm is defined as $\lambda = \ln Λ$
 
-```paflquurbtrsgioqxmfgzqe
+```dnkyliyuqmzmeebtzmrczsf
 # electron mass over proton mass
 import numpy as np
 m_e_over_m_p = 1 / 1840
@@ -1390,440 +1372,441 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Homework 02</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">    html: default</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf: default</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conservation of charge density</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show the conservation of charge density $\rho_c$ (Eq. I.50), by integrating the Boltzmann equation.</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>The Boltzmann equation is given by</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>\frac{\partial f}{\partial t} + \mathbf{v} \cdot \nabla f + \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \left( \frac{\partial f}{\partial t} \right)_c</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Take the zeroth charge-velocity moment of the Boltzmann equation, i.e., multiply by $e v^0 = e$ and integrate over velocity space. The first term on the left-hand side becomes</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \frac{\partial f}{\partial t} = \frac{\partial}{\partial t} \int d^3v \, e f = \frac{\partial}{\partial t} \rho_c</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>The second term on the left-hand side becomes</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \mathbf{v} \cdot \nabla f = \nabla \cdot \int d^3v \, e \mathbf{v} f = \nabla \cdot \mathbf{j}_c</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>The third term on the left-hand side becomes</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \frac{q}{m} \int d^3v \, e \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>= \frac{e q}{m} \int d^3v \nabla_v \cdot <span class="co">[</span><span class="ot">\left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) f</span><span class="co">]</span> - \frac{e q}{m} \int d^3v \nabla_v \cdot \left( \mathbf{v} \times \mathbf{B} \right) f</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>The first term on the right-hand side becomes a surface integral over the velocity space, which vanishes because the distribution function $f$ goes to zero at infinity. The second term on the right-hand side is zero because $\mathbf{v} \times \mathbf{B}$ is always perpendicular to $\mathbf{v}$, so the dot product is zero. Therefore, the third term on the left-hand side is zero.</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>The right-hand side of the Boltzmann equation is zero because the collision operator conserves charge density. Therefore, the zeroth charge-velocity moment of the Boltzmann equation is</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t} \rho_c + \nabla \cdot \mathbf{j}_c = 0</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Equation of specific entropy</span></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show the generalization of (I.57) for a gas with f degrees of freedom ($\gamma=1+2/f$ ratio of specific heats) $$</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; \frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; $$</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>Euler's equation of motion is given by (after combining with the continuity equation)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>\frac{d}{d t}\left(\frac{1}{2} \rho V^2\right)</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\frac{1}{2} \rho V^2 \nabla \cdot \vec{V}</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\vec{V} \cdot \nabla p</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>= </span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>\rho_c \vec{V} \cdot \vec{E}</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\vec{V} \cdot(\vec{J} \times \vec{B})</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\rho V \cdot g</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>The energy equation is given by</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t}\left(\frac{1}{2} \rho V^2+u\right)+\frac{\partial}{\partial x_j}\left<span class="co">[</span><span class="ot">\left(\frac{1}{2} \rho V^2+u\right) V_j+P_{j k} V_k+q_j\right</span><span class="co">]</span>= <span class="sc">\\</span></span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>J_j E_j+\rho V_j g_j</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>where $u = \frac{f}{2} p$ is the internal energy.</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>Because</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>\frac{d}{d t}(\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \vec{V} \cdot \nabla (\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \nabla \cdot (\rho V^2 \vec{V}) - \rho V^2 \nabla \cdot  \vec{V}</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>By combining, we have</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t}(\rho V^2) +\frac{\partial}{\partial x_j}<span class="co">[</span><span class="ot">(\rho V^2) V_j</span><span class="co">]</span> = \frac{d}{d t}(\rho V^2) + \rho V^2 \nabla \cdot  \vec{V}</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>We can rewrite energy equation into a form that is similar to Euler's equation of motion:</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">\frac{d}{d t}(\frac{1}{2} \rho V^2)+\frac{1}{2} \rho V^2 \nabla \cdot \vec{V}</span><span class="co">]</span> + </span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>[</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\nabla (u+p) \cdot \vec{V}</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>= -\nabla \cdot q +  J \cdot E +\rho V \cdot g</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>Subtracting Euler's equation from the energy equation would gives us:</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>[</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}</span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="ss"> + </span>\vec{V} \cdot \nabla u</span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="ss"> + </span>u \nabla \cdot \vec{V}</span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>] + \nabla \cdot \vec{V} p - \vec{V} \cdot \nabla p</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>=</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>\nabla \cdot q +  (J - \rho_c \vec{V}) \cdot \vec{E} - \vec{V} \cdot(\vec{J} \times \vec{B})</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>=</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>\nabla \cdot q +  j \cdot E^*</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>where $\vec{E}^* = \vec{E} + \vec{V} \times \vec{B}$.</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>The left-hand side of the equation can be rewritten as</span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>LHS </span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>= d_t u + (p+u) \nabla \cdot \vec{V}</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>= d_t (\frac{f}{2} p) -  (\frac{f}{2} + 1) \frac{p}{\rho} d_t \rho</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>= \frac{f}{2} \rho^\gamma d_t \frac{p}{\rho^\gamma}</span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>where $\gamma = 1 + 2/f$ is the ratio of specific heats.</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>Therefore, we have</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="fu"># Polytropic equation</span></span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show that for a gas with f degrees of freedom ($\gamma=1+f/2$ ratio of specific heats), in steady state (∂/∂t=0), and with a heat flux which obeys: $q = \kappa u V$ (eq. (I.85), where $u$ is the internal energy), the polytropic equation $p=\alpha \rho^n$ (I.84) still holds even though ds*/dt as per eq. (I.81) is not zero (where s* is the specific entropy defined the usual way using $\gamma$). In other words, show that eq. (I.81) can be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$. In other words show (I.86).</span></span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>As we have shown in the previous question, the equation of specific entropy is given by</span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>With</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>the heat flux proportional to the internal energy, i.e., $q = \kappa u V$</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$j \cdot E^* = 0$</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>and assuming $p = g \rho^\gamma$, where $g$ is an arbitrary function</span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>the equation of specific entropy becomes</span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>d_t g = - \nabla \cdot \kappa V (\frac{f}{2} p) / (\frac{f}{2} \rho^\gamma) = - \kappa  \nabla \cdot (V  p) / (p/g)</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>For steady state problems, i.e., $\frac{\partial}{\partial t} = 0$, the equation can be rewritten as</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>g V \cdot \nabla g = - \kappa ( \nabla \cdot V + V \cdot \nabla \ln p)</span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>Using continuity equation (with steady state condition), i.e., $\nabla \cdot V = - V \cdot \nabla \rho / \rho = - V \cdot \nabla \ln \rho$, we have</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>V \cdot \nabla \ln g = - \kappa V \cdot ( - \nabla \ln \rho + \nabla \ln p)</span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a>For this equation to hold everywhere, we must have</span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a>g = c_1 * (\frac{\rho}{p})^\kappa</span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>Therefore, we have</span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>p = c_1 \rho^\gamma (\frac{\rho}{p})^\kappa</span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>and thus</span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}</span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>which is the polytropic equation with $n = \frac{\gamma + \kappa}{1 + \kappa}$.</span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>Since we don't assume anywhere in the above derivation that $d_t s^* = 0$, the equation of specific entropy still could be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$, even though $d_t s^* \neq 0$.</span>
-<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="fu"># Generalized Ohm's law</span></span>
-<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Siscoe’s notes show a scaling analysis of the terms R1-R4 in Ohm’s law, equations (II.9) (II.12), for the cool magnetosheath/slow solar wind. </span></span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Collision time scale</span></span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; a. Show that the collision time scale $\tau$ is indeed large enough, such that R1 is indeed large for the plasma region envisioned in the book. To compute $\tau =1/\nu_{ei}$, obtain the numerical value of the collision frequency for that region by using tabulated values of the Coulomb logarithm $\lambda$ in the NRL formulary (here, p. 34, item (b)) and the equation for $\nu_{ei}=\nu_e \text{~} \nu_i$ for the weak collision rate case (strong field case, here, p. 36). </span></span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a>The Lorentz collision frequency is given by</span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>\nu = n \sigma v \ln \Lambda</span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>where $n$ is the particle number density, $\sigma$ is the collisional cross-section, $v$ is the mean thermal velocity between particle species, and $\ln \Lambda$ is the Coulomb logarithm accounting for small angle collisions.</span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>Using typical parameters for space science, we can calculate the collision time scale $\tau = 1/\nu_{ei} = 3 \cdot 10^4 \text{s}$, which is indeed large enough.</span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plasmapy.formulary <span class="im">as</span> plf</span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.K</span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>v_drift <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tau(n, T, V):</span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>    <span class="co"># assuming temperature and denisty is the same for both species</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>    n_ion <span class="op">=</span> n_e <span class="op">=</span> n</span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>    T_ion <span class="op">=</span> T_e <span class="op">=</span> T</span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>    Coulomb_log <span class="op">=</span> plf.Coulomb_logarithm(T, n_e, (<span class="st">"e-"</span>, <span class="st">"p+"</span>)) <span class="op">*</span> u.dimensionless_unscaled</span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>    electron_ion_collisions <span class="op">=</span> plf.MaxwellianCollisionFrequencies(</span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>        <span class="st">"e-"</span>,</span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p+"</span>,</span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>        v_drift <span class="op">=</span> V,</span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>        n_a<span class="op">=</span>n_e,</span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>        T_a<span class="op">=</span>T_e,</span>
-<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>        n_b<span class="op">=</span>n_ion,</span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>        T_b<span class="op">=</span>T_ion,</span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>        Coulomb_log<span class="op">=</span>Coulomb_log,</span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>    nu_ei <span class="op">=</span> electron_ion_collisions.Maxwellian_avg_ei_collision_freq</span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span>  <span class="op">/</span> nu_ei).to(u.s)</span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>tau(n<span class="op">=</span>n, T<span class="op">=</span>T, V<span class="op">=</span>v_drift)</span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dimensionless ratios</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; b. Obtain the ratios R1-R4 for typical parameters in another plasma region, the near-Earth magnetotail plasma sheet (but outside the reconnection electron diffusion region). Is the Hall term significant now? Derive the ratio of the electron inertia to the Hall term (ratio R4/R3) by scaling analysis – under what conditions is it significant in this environment?</span></span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>Given the following parameters</span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>&amp; R_1 \equiv \frac{V B}{n J}=\frac{V B}{\frac{m_e}{e^2 n \tau}} \frac{B}{\mu_0 L}=n V L \tau \frac{\mu_0 e^2}{m_e} <span class="sc">\\</span></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>&amp; R_2 \equiv \frac{V B}{\frac{1}{n e} \frac{P_e}{L}}=\frac{V B}{\frac{k}{n e} \frac{n T}{L}}=\frac{e}{k} \frac{V B L}{T} <span class="sc">\\</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>&amp; R_3=\frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 <span class="sc">\\</span></span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>&amp; R_4=\frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} <span class="sc">\\</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>&amp;</span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>Using the parameters from <span class="co">[</span><span class="ot">@borovskyOutstandingQuestionsMagnetospheric2020</span><span class="co">]</span>, and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., $L \sim 3e7 m$, we have the ratios calculated as shown below @tbl-ratios. The Hall term is now become comparable to the "v cross B" term with $R_3 \sim 10$. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).</span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>The ratio of the electron inertia to the Hall term is given by </span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}</span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>Since $R_4$ is proportional to $L^2$, and $R_3$ is proportional to $L$, the ratio $R_4/R_3$ is proportional to $L$. Therefore, the electron inertia term is more significant when the spatial scale is smaller. It is also more significant when the magnetic field is weaker, or the velocity is larger.</span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.constants.si <span class="im">import</span> mu0, e, m_e, k_B</span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.table <span class="im">import</span> QTable</span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R1(</span>
-<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
-<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
-<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
-<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a>    τ: <span class="bu">float</span>, <span class="co">#: collision time</span></span>
-<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the ohmic resistive term</span></span>
-<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> mu0 <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> m_e</span>
-<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (n <span class="op">*</span> V <span class="op">*</span> L <span class="op">*</span> τ <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R2(</span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
-<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>    T: <span class="bu">float</span> <span class="co">#: temperature</span></span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the ampipolar electric field term</span></span>
-<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> e <span class="op">/</span> k_B</span>
-<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V <span class="op">*</span> B <span class="op">*</span> L <span class="op">/</span> T <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
-<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R3(</span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
-<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span> <span class="co">#: length</span></span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the Hall term</span></span>
-<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> e <span class="op">*</span> mu0</span>
-<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V <span class="op">*</span> L <span class="op">*</span> n <span class="op">/</span> B <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
-<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R4(</span>
-<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
-<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the electron inertia term</span></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> mu0 <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> m_e</span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (L<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> n <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R4overR3(</span>
-<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
-<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
-<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
-<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span> <span class="co">#: length</span></span>
-<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the electron inertia term to the Hall term</span></span>
-<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R4(L<span class="op">=</span>L, n<span class="op">=</span>n) <span class="op">/</span> R3(V<span class="op">=</span>V, B<span class="op">=</span>B, n<span class="op">=</span>n, L<span class="op">=</span>L)</span>
-<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plasmapy.formulary <span class="im">as</span> plf</span>
-<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a><span class="co"># using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020]</span></span>
-<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a>solar_wind <span class="op">=</span> <span class="bu">dict</span>(</span>
-<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"solar wind"</span>,</span>
-<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
-<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
-<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> u.m,</span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.K,</span>
-<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> u.s,</span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
-<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a>magnetotail <span class="op">=</span> <span class="bu">dict</span>(</span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"ion plasma sheet"</span>,</span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">5e5</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
-<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
-<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m,</span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> (<span class="fl">1e3</span> <span class="op">*</span> u.eV).to(u.K, equivalencies<span class="op">=</span>u.temperature_energy()),</span>
-<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
-<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [solar_wind, magnetotail]:</span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"τ"</span>] <span class="op">=</span> tau(n<span class="op">=</span>d[<span class="st">"n"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>])</span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R1"</span>] <span class="op">=</span> R1(n<span class="op">=</span>d[<span class="st">"n"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], τ<span class="op">=</span>d[<span class="st">"τ"</span>])</span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R2"</span>] <span class="op">=</span> R2(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>])</span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R3"</span>] <span class="op">=</span> R3(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>])</span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R4"</span>] <span class="op">=</span> R4(L<span class="op">=</span>d[<span class="st">"L"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>])</span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> QTable([solar_wind, magnetotail])</span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df.colnames[<span class="dv">1</span>:]:</span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>    df[col].info.<span class="bu">format</span> <span class="op">=</span> <span class="st">".1E"</span></span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>df</span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Ratios of the terms in Ohm's law</span></span>
-<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
-<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ratios</span></span>
-<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Ratios of the terms in Ohm's law</span></span>
-<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
-<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
-<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a>).cols_label(</span>
-<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="st">"Number Density (m^-3)"</span>,</span>
-<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="st">"Velocity (m/s)"</span>,</span>
-<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="st">"Length (m)"</span>,</span>
-<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="st">"Temperature (K)"</span>,</span>
-<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="st">"Collision Time (s)"</span>,</span>
-<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a>).tab_spanner(</span>
-<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Plasma Parameters"</span>,</span>
-<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"n"</span>, <span class="st">"V"</span>, <span class="st">"L"</span>, <span class="st">"T"</span>, <span class="st">"tau"</span>]</span>
-<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-403"><a href="#cb5-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-404"><a href="#cb5-404" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
-<span id="cb5-405"><a href="#cb5-405" aria-hidden="true" tabindex="-1"></a><span class="co">Using NRL Plasma Formulary</span></span>
-<span id="cb5-406"><a href="#cb5-406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-407"><a href="#cb5-407" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb5-408"><a href="#cb5-408" aria-hidden="true" tabindex="-1"></a><span class="co">\lambda_{e i}=\lambda_{i e}=</span></span>
-<span id="cb5-409"><a href="#cb5-409" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{cases}</span></span>
-<span id="cb5-410"><a href="#cb5-410" aria-hidden="true" tabindex="-1"></a><span class="co">23-\ln \left(n_e^{1 / 2} Z T_e^{-3 / 2}\right), &amp; T_i m_e / m_i&lt;T_e&lt;10 Z^2 \mathrm{eV} \\</span></span>
-<span id="cb5-411"><a href="#cb5-411" aria-hidden="true" tabindex="-1"></a><span class="co">24-\ln \left(n_e^{1 / 2} T_e^{-1}\right), &amp; T_i m_e / m_i&lt;10 Z^2 \mathrm{eV}&lt;T_e \\</span></span>
-<span id="cb5-412"><a href="#cb5-412" aria-hidden="true" tabindex="-1"></a><span class="co">16-\ln \left(n_i^{1 / 2} T_i^{-3 / 2} Z^2 \mu\right), &amp; T_e&lt;T_i m_e / m_i</span></span>
-<span id="cb5-413"><a href="#cb5-413" aria-hidden="true" tabindex="-1"></a><span class="co">\end{cases}</span></span>
-<span id="cb5-414"><a href="#cb5-414" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
-<span id="cb5-415"><a href="#cb5-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-416"><a href="#cb5-416" aria-hidden="true" tabindex="-1"></a><span class="co">Coulomb logarithm is defined as $\lambda = \ln Λ$</span></span>
-<span id="cb5-417"><a href="#cb5-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-418"><a href="#cb5-418" aria-hidden="true" tabindex="-1"></a><span class="co">```{QUARTO_PYTHON{python}}</span></span>
-<span id="cb5-419"><a href="#cb5-419" aria-hidden="true" tabindex="-1"></a><span class="co"># electron mass over proton mass</span></span>
-<span id="cb5-420"><a href="#cb5-420" aria-hidden="true" tabindex="-1"></a><span class="co">import numpy as np</span></span>
-<span id="cb5-421"><a href="#cb5-421" aria-hidden="true" tabindex="-1"></a><span class="co">m_e_over_m_p = 1 / 1840</span></span>
-<span id="cb5-422"><a href="#cb5-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-423"><a href="#cb5-423" aria-hidden="true" tabindex="-1"></a><span class="co">def λ_ei(</span></span>
-<span id="cb5-424"><a href="#cb5-424" aria-hidden="true" tabindex="-1"></a><span class="co">    n_e: float,</span></span>
-<span id="cb5-425"><a href="#cb5-425" aria-hidden="true" tabindex="-1"></a><span class="co">    T_e: float, #: electron temperature (eV)</span></span>
-<span id="cb5-426"><a href="#cb5-426" aria-hidden="true" tabindex="-1"></a><span class="co">    Z: float, #: ion charge</span></span>
-<span id="cb5-427"><a href="#cb5-427" aria-hidden="true" tabindex="-1"></a><span class="co">    T_i: float, #: ion temperature (eV)</span></span>
-<span id="cb5-428"><a href="#cb5-428" aria-hidden="true" tabindex="-1"></a><span class="co">    n_i = None, #: ion density in cgs unit (cm^-3)</span></span>
-<span id="cb5-429"><a href="#cb5-429" aria-hidden="true" tabindex="-1"></a><span class="co">    mu: float #: ion mass in units of proton mass</span></span>
-<span id="cb5-430"><a href="#cb5-430" aria-hidden="true" tabindex="-1"></a><span class="co">):</span></span>
-<span id="cb5-431"><a href="#cb5-431" aria-hidden="true" tabindex="-1"></a><span class="co">    m_e_over_m_i = m_e_over_m_p / mu</span></span>
-<span id="cb5-432"><a href="#cb5-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-433"><a href="#cb5-433" aria-hidden="true" tabindex="-1"></a><span class="co">    if T_i * m_e_over_m_i &lt; T_e &lt; 10 * Z**2:</span></span>
-<span id="cb5-434"><a href="#cb5-434" aria-hidden="true" tabindex="-1"></a><span class="co">        return 23 - np.log(n_e**0.5 * Z * T_e**-1.5)</span></span>
-<span id="cb5-435"><a href="#cb5-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-436"><a href="#cb5-436" aria-hidden="true" tabindex="-1"></a><span class="co">    elif T_i * m_e_over_m_i &lt; 10 * Z**2 &lt; T_e:</span></span>
-<span id="cb5-437"><a href="#cb5-437" aria-hidden="true" tabindex="-1"></a><span class="co">        return 24 - np.log(n_e**0.5 * T_e**-1)</span></span>
-<span id="cb5-438"><a href="#cb5-438" aria-hidden="true" tabindex="-1"></a><span class="co">    elif T_e &lt; T_i * m_e_over_m_i:</span></span>
-<span id="cb5-439"><a href="#cb5-439" aria-hidden="true" tabindex="-1"></a><span class="co">        return 16 - np.log(n_i**0.5 * T_i**-1.5 * Z**2 * mu)</span></span>
-<span id="cb5-440"><a href="#cb5-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-441"><a href="#cb5-441" aria-hidden="true" tabindex="-1"></a><span class="co">``` </span></span>
-<span id="cb5-442"><a href="#cb5-442" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Homework 02</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    html: default</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf: default</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conservation of charge density</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show the conservation of charge density $\rho_c$ (Eq. I.50), by integrating the Boltzmann equation.</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>The Boltzmann equation is given by</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>\frac{\partial f}{\partial t} + \mathbf{v} \cdot \nabla f + \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \left( \frac{\partial f}{\partial t} \right)_c</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Take the zeroth charge-velocity moment of the Boltzmann equation, i.e., multiply by $e v^0 = e$ and integrate over velocity space. The first term on the left-hand side becomes</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \frac{\partial f}{\partial t} = \frac{\partial}{\partial t} \int d^3v \, e f = \frac{\partial}{\partial t} \rho_c</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>The second term on the left-hand side becomes</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \mathbf{v} \cdot \nabla f = \nabla \cdot \int d^3v \, e \mathbf{v} f = \nabla \cdot \mathbf{j}_c</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>The third term on the left-hand side becomes</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>\int d^3v \, e \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \frac{q}{m} \int d^3v \, e \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>= \frac{e q}{m} \int d^3v \nabla_v \cdot <span class="co">[</span><span class="ot">\left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) f</span><span class="co">]</span> - \frac{e q}{m} \int d^3v \nabla_v \cdot \left( \mathbf{v} \times \mathbf{B} \right) f</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>The first term on the right-hand side becomes a surface integral over the velocity space, which vanishes because the distribution function $f$ goes to zero at infinity. The second term on the right-hand side is zero because $\mathbf{v} \times \mathbf{B}$ is always perpendicular to $\mathbf{v}$, so the dot product is zero. Therefore, the third term on the left-hand side is zero.</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>The right-hand side of the Boltzmann equation is zero because the collision operator conserves charge density. Therefore, the zeroth charge-velocity moment of the Boltzmann equation is</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t} \rho_c + \nabla \cdot \mathbf{j}_c = 0</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># Equation of specific entropy</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show the generalization of (I.57) for a gas with f degrees of freedom ($\gamma=1+2/f$ ratio of specific heats) $$</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; \frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; $$</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>Euler's equation of motion is given by (after combining with the continuity equation)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>\frac{d}{d t}\left(\frac{1}{2} \rho V^2\right)</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\frac{1}{2} \rho V^2 \nabla \cdot \vec{V}</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\vec{V} \cdot \nabla p</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>= </span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>\rho_c \vec{V} \cdot \vec{E}</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\vec{V} \cdot(\vec{J} \times \vec{B})</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\rho V \cdot g</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>The energy equation is given by</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t}\left(\frac{1}{2} \rho V^2+u\right)+\frac{\partial}{\partial x_j}\left<span class="co">[</span><span class="ot">\left(\frac{1}{2} \rho V^2+u\right) V_j+P_{j k} V_k+q_j\right</span><span class="co">]</span>= <span class="sc">\\</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>J_j E_j+\rho V_j g_j</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>where $u = \frac{f}{2} p$ is the internal energy.</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>Because</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>\frac{d}{d t}(\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \vec{V} \cdot \nabla (\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \nabla \cdot (\rho V^2 \vec{V}) - \rho V^2 \nabla \cdot  \vec{V}</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>By combining, we have</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial t}(\rho V^2) +\frac{\partial}{\partial x_j}<span class="co">[</span><span class="ot">(\rho V^2) V_j</span><span class="co">]</span> = \frac{d}{d t}(\rho V^2) + \rho V^2 \nabla \cdot  \vec{V}</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>We can rewrite energy equation into a form that is similar to Euler's equation of motion:</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">\frac{d}{d t}(\frac{1}{2} \rho V^2)+\frac{1}{2} \rho V^2 \nabla \cdot \vec{V}</span><span class="co">]</span> + </span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\nabla (u+p) \cdot \vec{V}</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>= -\nabla \cdot q +  J \cdot E +\rho V \cdot g</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>Subtracting Euler's equation from the energy equation would gives us:</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>\frac{\partial u}{\partial t}</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss"> + </span>\vec{V} \cdot \nabla u</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ss"> + </span>u \nabla \cdot \vec{V}</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>] + \nabla \cdot \vec{V} p - \vec{V} \cdot \nabla p</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>\nabla \cdot q +  (J - \rho_c \vec{V}) \cdot \vec{E} - \vec{V} \cdot(\vec{J} \times \vec{B})</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>\nabla \cdot q +  j \cdot E^*</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>where $\vec{E}^* = \vec{E} + \vec{V} \times \vec{B}$.</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>The left-hand side of the equation can be rewritten as</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>LHS </span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>= d_t u + (p+u) \nabla \cdot \vec{V}</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>= d_t (\frac{f}{2} p) -  (\frac{f}{2} + 1) \frac{p}{\rho} d_t \rho</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>= \frac{f}{2} \rho^\gamma d_t \frac{p}{\rho^\gamma}</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>where $\gamma = 1 + 2/f$ is the ratio of specific heats.</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>Therefore, we have</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="fu"># Polytropic equation</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show that for a gas with f degrees of freedom ($\gamma=1+f/2$ ratio of specific heats), in steady state (∂/∂t=0), and with a heat flux which obeys: $q = \kappa u V$ (eq. (I.85), where $u$ is the internal energy), the polytropic equation $p=\alpha \rho^n$ (I.84) still holds even though ds*/dt as per eq. (I.81) is not zero (where s* is the specific entropy defined the usual way using $\gamma$). In other words, show that eq. (I.81) can be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$. In other words show (I.86).</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>As we have shown in the previous question, the equation of specific entropy is given by</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>With</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>the heat flux proportional to the internal energy, i.e., $q = \kappa u V$</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$j \cdot E^* = 0$</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>and assuming $p = g \rho^\gamma$, where $g$ is an arbitrary function</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>the equation of specific entropy becomes</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>d_t g = - \nabla \cdot \kappa V (\frac{f}{2} p) / (\frac{f}{2} \rho^\gamma) = - \kappa  \nabla \cdot (V  p) / (p/g)</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>For steady state problems, i.e., $\frac{\partial}{\partial t} = 0$, the equation can be rewritten as</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>g V \cdot \nabla g = - \kappa ( \nabla \cdot V + V \cdot \nabla \ln p)</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>Using continuity equation (with steady state condition), i.e., $\nabla \cdot V = - V \cdot \nabla \rho / \rho = - V \cdot \nabla \ln \rho$, we have</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>V \cdot \nabla \ln g = - \kappa V \cdot ( - \nabla \ln \rho + \nabla \ln p)</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>For this equation to hold everywhere, we must have</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>g = c_1 (\frac{\rho}{p})^\kappa</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>Therefore, we have</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>p = c_1 \rho^\gamma (\frac{\rho}{p})^\kappa</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>and thus</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>p = \alpha \rho^{\frac{\gamma + \kappa}{1 + \kappa}}</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>which is the polytropic equation with $n = \frac{\gamma + \kappa}{1 + \kappa}$.</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>Since we don't assume anywhere in the above derivation that $d_t s^* = 0$, the equation of specific entropy still could be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$, even though $d_t s^* \neq 0$.</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="fu"># Generalized Ohm's law</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Siscoe’s notes show a scaling analysis of the terms R1-R4 in Ohm’s law, equations (II.9) (II.12), for the cool magnetosheath/slow solar wind. </span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Collision time scale</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; a. Show that the collision time scale $\tau$ is indeed large enough, such that R1 is indeed large for the plasma region envisioned in the book. To compute $\tau =1/\nu_{ei}$, obtain the numerical value of the collision frequency for that region by using tabulated values of the Coulomb logarithm $\lambda$ in the NRL formulary (here, p. 34, item (b)) and the equation for $\nu_{ei}=\nu_e \text{~} \nu_i$ for the weak collision rate case (strong field case, here, p. 36). </span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>The Lorentz collision frequency is given by</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>\nu = n \sigma v \ln \Lambda</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>where $n$ is the particle number density, $\sigma$ is the collisional cross-section, $v$ is the mean thermal velocity between particle species, and $\ln \Lambda$ is the Coulomb logarithm accounting for small angle collisions.</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>Using typical parameters for space science, we can calculate the collision time scale $\tau = 1/\nu_{ei} = 3 \cdot 10^4 \text{s}$, which is indeed large enough.</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plasmapy.formulary <span class="im">as</span> plf</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.K</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>v_drift <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> u.km <span class="op">/</span> u.s</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tau(n, T, V):</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>    <span class="co"># assuming temperature and denisty is the same for both species</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>    n_ion <span class="op">=</span> n_e <span class="op">=</span> n</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>    T_ion <span class="op">=</span> T_e <span class="op">=</span> T</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>    Coulomb_log <span class="op">=</span> plf.Coulomb_logarithm(T, n_e, (<span class="st">"e-"</span>, <span class="st">"p+"</span>)) <span class="op">*</span> u.dimensionless_unscaled</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>    electron_ion_collisions <span class="op">=</span> plf.MaxwellianCollisionFrequencies(</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>        <span class="st">"e-"</span>,</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p+"</span>,</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>        v_drift <span class="op">=</span> V,</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>        n_a<span class="op">=</span>n_e,</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>        T_a<span class="op">=</span>T_e,</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>        n_b<span class="op">=</span>n_ion,</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>        T_b<span class="op">=</span>T_ion,</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>        Coulomb_log<span class="op">=</span>Coulomb_log,</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>    nu_ei <span class="op">=</span> electron_ion_collisions.Maxwellian_avg_ei_collision_freq</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">1</span>  <span class="op">/</span> nu_ei).to(u.s)</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>tau(n<span class="op">=</span>n, T<span class="op">=</span>T, V<span class="op">=</span>v_drift)</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dimensionless ratios</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; b. Obtain the ratios R1-R4 for typical parameters in another plasma region, the near-Earth magnetotail plasma sheet (but outside the reconnection electron diffusion region). Is the Hall term significant now? Derive the ratio of the electron inertia to the Hall term (ratio R4/R3) by scaling analysis – under what conditions is it significant in this environment?</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>Given the following parameters</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>&amp; R_1 \equiv \frac{V B}{n J}=\frac{V B}{\frac{m_e}{e^2 n \tau}} \frac{B}{\mu_0 L}=n V L \tau \frac{\mu_0 e^2}{m_e} <span class="sc">\\</span></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>&amp; R_2 \equiv \frac{V B}{\frac{1}{n e} \frac{P_e}{L}}=\frac{V B}{\frac{k}{n e} \frac{n T}{L}}=\frac{e}{k} \frac{V B L}{T} <span class="sc">\\</span></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>&amp; R_3 \equiv \frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 <span class="sc">\\</span></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>&amp; R_4 \equiv \frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} <span class="sc">\\</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>&amp;</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>Using the parameters from <span class="co">[</span><span class="ot">@borovskyOutstandingQuestionsMagnetospheric2020</span><span class="co">]</span>, and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., $L \sim 10^7 m$, we have the ratios calculated as shown below @tbl-ratios. The Hall term is now become comparable to the "v cross B" term with $R_3 \sim 10$. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).</span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>The ratio of the electron inertia to the Hall term is given by </span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}</span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>Since $R_4$ is proportional to $L^2$, and $R_3$ is proportional to $L$, the ratio $R_4/R_3$ is proportional to $L$. Therefore, the electron inertia term is more significant when the spatial scale is smaller. It is also more significant when the magnetic field is weaker, or the velocity is larger.</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.constants.si <span class="im">import</span> mu0, e, m_e, k_B</span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> astropy.units <span class="im">as</span> u</span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> astropy.table <span class="im">import</span> QTable</span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R1(</span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>    τ: <span class="bu">float</span>, <span class="co">#: collision time</span></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the ohmic resistive term</span></span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> mu0 <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> m_e</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (n <span class="op">*</span> V <span class="op">*</span> L <span class="op">*</span> τ <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R2(</span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>    T: <span class="bu">float</span> <span class="co">#: temperature</span></span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the ampipolar electric field term</span></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> e <span class="op">/</span> k_B</span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V <span class="op">*</span> B <span class="op">*</span> L <span class="op">/</span> T <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R3(</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span> <span class="co">#: length</span></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the Hall term</span></span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> e <span class="op">*</span> mu0</span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V <span class="op">*</span> L <span class="op">*</span> n <span class="op">/</span> B <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R4(</span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span>, <span class="co">#: length</span></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the "v cross B" term over the electron inertia term</span></span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>    const <span class="op">=</span> mu0 <span class="op">*</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> m_e</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (L<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> n <span class="op">*</span> const).to(u.dimensionless_unscaled)</span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> R4overR3(</span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a>    V: <span class="bu">float</span>, <span class="co">#: velocity</span></span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>    B: <span class="bu">float</span>, <span class="co">#: magnetic field</span></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>    n: <span class="bu">float</span>, <span class="co">#: number density</span></span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a>    L: <span class="bu">float</span> <span class="co">#: length</span></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a><span class="co">    Ratio of the electron inertia term to the Hall term</span></span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R4(L<span class="op">=</span>L, n<span class="op">=</span>n) <span class="op">/</span> R3(V<span class="op">=</span>V, B<span class="op">=</span>B, n<span class="op">=</span>n, L<span class="op">=</span>L)</span>
+<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plasmapy.formulary <span class="im">as</span> plf</span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a><span class="co"># using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020]</span></span>
+<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>solar_wind <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"solar wind"</span>,</span>
+<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
+<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
+<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> u.m,</span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.K,</span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>magnetotail <span class="op">=</span> <span class="bu">dict</span>(</span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> <span class="st">"ion plasma sheet"</span>,</span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fl">5e5</span> <span class="op">*</span> u.m<span class="op">**-</span><span class="dv">3</span>,</span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="fl">1e5</span> <span class="op">*</span> u.m <span class="op">/</span> u.s,</span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="fl">1e7</span> <span class="op">*</span> u.m,</span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> (<span class="fl">1e3</span> <span class="op">*</span> u.eV).to(u.K, equivalencies<span class="op">=</span>u.temperature_energy()),</span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fl">1e-8</span> <span class="op">*</span> u.T</span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> [solar_wind, magnetotail]:</span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"τ"</span>] <span class="op">=</span> tau(n<span class="op">=</span>d[<span class="st">"n"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>])</span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R1"</span>] <span class="op">=</span> R1(n<span class="op">=</span>d[<span class="st">"n"</span>], V<span class="op">=</span>d[<span class="st">"V"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], τ<span class="op">=</span>d[<span class="st">"τ"</span>])</span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R2"</span>] <span class="op">=</span> R2(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>], T<span class="op">=</span>d[<span class="st">"T"</span>])</span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R3"</span>] <span class="op">=</span> R3(V<span class="op">=</span>d[<span class="st">"V"</span>], B<span class="op">=</span>d[<span class="st">"B"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>], L<span class="op">=</span>d[<span class="st">"L"</span>])</span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>    d[<span class="st">"R4"</span>] <span class="op">=</span> R4(L<span class="op">=</span>d[<span class="st">"L"</span>], n<span class="op">=</span>d[<span class="st">"n"</span>])</span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> QTable([solar_wind, magnetotail])</span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> df.colnames[<span class="dv">1</span>:]:</span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a>    df[col].info.<span class="bu">format</span> <span class="op">=</span> <span class="st">".1E"</span></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>df</span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Ratios of the terms in Ohm's law</span></span>
+<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a>::: {.content-visible when-format="html"}</span>
+<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ratios</span></span>
+<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: Ratios of the terms in Ohm's law</span></span>
+<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
+<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a>GT(df.to_pandas()).fmt_scientific(</span>
+<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.colnames[<span class="dv">1</span>:], decimals<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a>).cols_label(</span>
+<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="st">"Number Density (m^-3)"</span>,</span>
+<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> <span class="st">"Velocity (m/s)"</span>,</span>
+<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> <span class="st">"Length (m)"</span>,</span>
+<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="st">"Temperature (K)"</span>,</span>
+<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a>    τ <span class="op">=</span> <span class="st">"Collision Time (s)"</span>,</span>
+<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="st">"Magnetic Field (T)"</span></span>
+<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>).tab_spanner(</span>
+<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Plasma Parameters"</span>,</span>
+<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span>[<span class="st">"n"</span>, <span class="st">"V"</span>, <span class="st">"L"</span>, <span class="st">"T"</span>, <span class="st">"B"</span>, <span class="st">"τ"</span>]</span>
+<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
+<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a><span class="co">Using NRL Plasma Formulary</span></span>
+<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a><span class="co">\lambda_{e i}=\lambda_{i e}=</span></span>
+<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{cases}</span></span>
+<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a><span class="co">23-\ln \left(n_e^{1 / 2} Z T_e^{-3 / 2}\right), &amp; T_i m_e / m_i&lt;T_e&lt;10 Z^2 \mathrm{eV} \\</span></span>
+<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a><span class="co">24-\ln \left(n_e^{1 / 2} T_e^{-1}\right), &amp; T_i m_e / m_i&lt;10 Z^2 \mathrm{eV}&lt;T_e \\</span></span>
+<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a><span class="co">16-\ln \left(n_i^{1 / 2} T_i^{-3 / 2} Z^2 \mu\right), &amp; T_e&lt;T_i m_e / m_i</span></span>
+<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a><span class="co">\end{cases}</span></span>
+<span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-417"><a href="#cb4-417" aria-hidden="true" tabindex="-1"></a><span class="co">Coulomb logarithm is defined as $\lambda = \ln Λ$</span></span>
+<span id="cb4-418"><a href="#cb4-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-419"><a href="#cb4-419" aria-hidden="true" tabindex="-1"></a><span class="co">```{QUARTO_PYTHON{python}}</span></span>
+<span id="cb4-420"><a href="#cb4-420" aria-hidden="true" tabindex="-1"></a><span class="co"># electron mass over proton mass</span></span>
+<span id="cb4-421"><a href="#cb4-421" aria-hidden="true" tabindex="-1"></a><span class="co">import numpy as np</span></span>
+<span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a><span class="co">m_e_over_m_p = 1 / 1840</span></span>
+<span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a><span class="co">def λ_ei(</span></span>
+<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a><span class="co">    n_e: float,</span></span>
+<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a><span class="co">    T_e: float, #: electron temperature (eV)</span></span>
+<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a><span class="co">    Z: float, #: ion charge</span></span>
+<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a><span class="co">    T_i: float, #: ion temperature (eV)</span></span>
+<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a><span class="co">    n_i = None, #: ion density in cgs unit (cm^-3)</span></span>
+<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a><span class="co">    mu: float #: ion mass in units of proton mass</span></span>
+<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a><span class="co">):</span></span>
+<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a><span class="co">    m_e_over_m_i = m_e_over_m_p / mu</span></span>
+<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a><span class="co">    if T_i * m_e_over_m_i &lt; T_e &lt; 10 * Z**2:</span></span>
+<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a><span class="co">        return 23 - np.log(n_e**0.5 * Z * T_e**-1.5)</span></span>
+<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a><span class="co">    elif T_i * m_e_over_m_i &lt; 10 * Z**2 &lt; T_e:</span></span>
+<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a><span class="co">        return 24 - np.log(n_e**0.5 * T_e**-1)</span></span>
+<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a><span class="co">    elif T_e &lt; T_i * m_e_over_m_i:</span></span>
+<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a><span class="co">        return 16 - np.log(n_i**0.5 * T_i**-1.5 * Z**2 * mu)</span></span>
+<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a><span class="co">``` </span></span>
+<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
