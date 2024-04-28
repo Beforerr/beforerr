@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.519">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr</title>
+<title>beforerr - Evolution and Impact of Solar Wind Discontinuities</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -67,6 +87,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -131,18 +153,142 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction-and-background" id="toc-introduction-and-background" class="nav-link" data-scroll-target="#introduction-and-background">Introduction and Background</a>
+  <ul class="collapse">
+  <li><a href="#previous-studies-and-context" id="toc-previous-studies-and-context" class="nav-link" data-scroll-target="#previous-studies-and-context">Previous Studies and Context</a></li>
+  <li><a href="#the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities" id="toc-the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities" class="nav-link" data-scroll-target="#the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities">The Role of Alfven wave and kinetic effects in the discontinuities</a></li>
+  <li><a href="#current-gaps-in-understanding" id="toc-current-gaps-in-understanding" class="nav-link" data-scroll-target="#current-gaps-in-understanding">Current Gaps in Understanding</a></li>
+  </ul></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/proposal_SWD.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="proposal_SWD.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Evolution and Impact of Solar Wind Discontinuities</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>PhD Candidate: Zijin Zhang</strong></p>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Solar wind discontinuities, characterized by abrupt changes in magnetic field directions and magnitudes, play a crucial role in shaping heliospheric dynamics and influencing solar wind heating and turbulence. This PhD research proposes a comprehensive study of these discontinuities, leveraging data from contemporary space missions such as Parker Solar Probe (PSP) and Juno to examine their propagation characteristics from the Sun to beyond 1 AU. By analyzing the evolution of these features, this study aims to answer fundamental questions about their role in heliophysical processes, including particle acceleration and magnetic field turbulence.</p>
+<p>Additionally, this research will explore ion dynamics associated with these discontinuities to understand their role in formation and evolution of
+. The integration of observational data from multiple spacecraft with advanced modeling techniques will shed light on the complex interactions within solar wind discontinuities, enhancing our understanding of space weather phenomena.</p>
+</section>
+<section id="introduction-and-background" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-background">Introduction and Background</h2>
+<p>The study of solar wind magnetic discontinuities, characterized by rapid variations in interplanetary magnetic fields, stands at the forefront of understanding key phenomena in Heliophysics. These discontinuities, manifesting as localized transient rotations or jumps in the magnetic field, are pivotal in processes such as efficient plasma heating and in hosting plasma instabilities associated with discontinuity currents, which are among the most intense currents in the solar wind. Theoretical models suggest that the formation and destruction of discontinuities are closely related to the nonlinear dynamics of Alfvén waves. These nonlinear processes can create significant isolated disturbances to the otherwise adiabatic evolution of the solar wind flow. Investigatation of the nonfluid (kinetic) properties of solar wind discontinuities reveals that electron density and temperature vary significantly across these discontinuities, underlining the importance of kinetic effects in discontinuity structure.</p>
+<p>As such, this study aims to :</p>
+<ol type="1">
+<li><strong>“How do these discontinuities evolve and influence the heating of the solar wind and the turbulence within the magnetic field?”</strong></li>
+<li><strong>“What are the kinetic processes behind the formation and evolution of these discontinuities?”</strong></li>
+</ol>
+<p>Understanding these discontinuities is essential for elucidating the fundamental processes that govern the solar wind’s evolution as it travels through the heliosphere.</p>
+<section id="previous-studies-and-context" class="level3">
+<h3 class="anchored" data-anchor-id="previous-studies-and-context">Previous Studies and Context</h3>
+<p>Spacecraft investigations of the space plasma environment have revealed that the solar wind magnetic field follows the Parker model of the heliospheric current sheet only on average. Localized transient currents, that can be significantly more intense than the model currents, are carried by various discontinuities observed as strong variations in magnetic field components <span class="citation" data-cites="colburn1966 burlagaMicroScaleStructuresInterplanetary1968 turnerOrientationsRotationalTangential1971">(<a href="#ref-colburn1966" role="doc-biblioref"><strong>colburn1966?</strong></a>; <a href="#ref-burlagaMicroScaleStructuresInterplanetary1968" role="doc-biblioref"><strong>burlagaMicroScaleStructuresInterplanetary1968?</strong></a>; <a href="#ref-turnerOrientationsRotationalTangential1971" role="doc-biblioref">Turner and Siscoe 1971</a>)</span>. Most often such variations are manifested as magnetic fieild rotations within the plane of two most fluctuating components.</p>
+<!-- These discontinuities play an important role in energy dissipation [particle acceleration in the solar wind, see @dmitrukTestParticleEnergization2004; @macbrideTurbulentCascadeAU2008; @osmanIntermittencyLocalHeating2012; @tesseinAssociationSuprathermalParticles2013]. 
+Moreover, they contribute significantly to the magnetic fluctuation spectra [@borovskyContributionStrongDiscontinuities2010; @zhdankinMagneticDiscontinuitiesMagnetohydrodynamic2012; @lionCoherentEventsSpectral2016] and can affect space weather [@tsurutaniReviewInterplanetaryDiscontinuities2011].  -->
+<p>Further advancements were made with data from the Helios-1, Helios-2, Ulysses and Voyager missions, which explored discontinuities in three-dimensional space, revealing their prevalence and importance throughout the heliosphere <span class="citation" data-cites="marianiStatisticalStudyMagnetohydrodynamic1983 tsurutaniNonlinearElectromagneticWaves1997">(<a href="#ref-marianiStatisticalStudyMagnetohydrodynamic1983" role="doc-biblioref">Mariani, Bavassano, and Villante 1983</a>; <a href="#ref-tsurutaniNonlinearElectromagneticWaves1997" role="doc-biblioref">Tsurutani et al. 1997</a>)</span>. As illustrated in <strong>?@fig-1</strong>, these discontinuities are observed at a multitude of radial distances from the Sun. These findings underscored the need to understand the origin of discontinuities, which are thought to arise from dynamic processes on the Sun, including solar flares and coronal mass ejections, as well as through in-situ processes like local magnetic turbulence, magnetic reconnection and nonlinear wave interactions within the solar wind.</p>
+</section>
+<section id="the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities" class="level3">
+<h3 class="anchored" data-anchor-id="the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities">The Role of Alfven wave and kinetic effects in the discontinuities</h3>
+<p>Ulysses measurements of the high-latitude solar wind at <span class="math inline">\(1-5\)</span> AU showed that the majority of discontinuities resided within the stream-stream interaction regions and/or within Alfvén wave trains <span class="citation" data-cites="tsurutaniInterplanetaryDiscontinuitiesAlfven1995 tsurutaniReviewDiscontinuitiesAlfven1999">(<a href="#ref-tsurutaniInterplanetaryDiscontinuitiesAlfven1995" role="doc-biblioref">Tsurutani et al. 1995</a>; <a href="#ref-tsurutaniReviewDiscontinuitiesAlfven1999" role="doc-biblioref">Tsurutani and Ho 1999</a>)</span>. The nonlinear evolution of Alfvén waves (wave steepening) can be the main cause of such discontinuities. The background plasma/magnetic field inhomogeneities and various dissipative processes are key to Alfvén wave nonlinear evolution . In hybrid simulations and analytical models , this steepening was shown to cause formation of discontinuities in configurations resembling the near-Earth observations. There are models predicting discontinuity formation and destruction due to dissipative processes (e.g., Alfvén wave steepening, magnetic reconnection) in the solar wind. However, efficiency of these processes in realistic expanding solar wind was not yet tested against observations.</p>
+<p>More recently, utilizing high-resolution plasma measurements from ARTEMIS and MMS missions, <span class="citation" data-cites="artemyevKineticNatureSolar2019">Artemyev et al. (<a href="#ref-artemyevKineticNatureSolar2019" role="doc-biblioref">2019</a>)</span> showed that discontinuities have kinetic characteristics for both tangential and rotational discontinuities: (1) Jumps in the tangential velocity component are well correlated with jumps in the Alfven speed, and (2) Electron density and temperature vary significantly across these discontinuities. This discoveries revealed the importance of ion and electron kinetics to discontinuity structure.</p>
+</section>
+<section id="current-gaps-in-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="current-gaps-in-understanding">Current Gaps in Understanding</h3>
+<p>Previous observations of solar wind discontinuities in the outer heliosphere were rarely in conjunction with measurements closer to the Sun. Thus it is presently unclear whether their frequency and properties are the result of solar variability or due to the natural evolution of the discontinuities during their propagation and interaction with the ambient solar wind.</p>
+<p>Regular and long-lasting Juno (2011-2016) and PSP (2019-now) observations together with almost permanent near-Earth solar wind monitoring provide a unique opportunity to examine the discontinuity characteristics at two radial distances simultaneously in the context of both the inner and in the outer heliosphere over an unprecedentedly large radial distance range (<span class="math inline">\(\sim 0.1\)</span> AU - <span class="math inline">\(\sim 5\)</span> AU). We will determine the discontinuity occurrence rates and properties for various radial distances and compare this results with the prediction of the adiabatic expansion model, <strong>to understand if discontinuity formation or destruction dominate the statistics of discontinuities far away from the solar wind acceleration region</strong>.</p>
+<p>In addition, with the increasing computational resources and advanced numerical techniques on GPU-accelerated platforms <span class="citation" data-cites="myersPortingWarpXGPUaccelerated2021">(<a href="#ref-myersPortingWarpXGPUaccelerated2021" role="doc-biblioref">Myers et al. 2021</a>)</span>, it is now possible to simulate the solar wind discontinuities with full kinetic effects included using PIC code. The kinetic simulations will be used to <strong>understand the role of ion and electron kinetics in the formation and evolution of discontinuities</strong>.</p>
+<p>This research seeks to address these gaps by leveraging recent advancements in observational capabilities and numerical modeling to provide a comprehensive examination of solar wind discontinuities.</p>
+<!-- **2. Research Objectives**
+
+This PhD research focuses on three main objectives:
+1. To quantify how the occurrence and characteristics of solar wind discontinuities change with radial distance from the Sun.
+2. To investigate the mechanisms behind the formation and evolution of these discontinuities as they propagate through the inner and outer heliosphere.
+3. To assess the impact of these discontinuities on solar wind heating and the development of turbulence. -->
+</section>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p><strong>Data Collection:</strong></p>
+<ul>
+<li><strong>Parker Solar Probe</strong> and <strong>Juno</strong>: These spacecraft provide high-resolution magnetic field and plasma data from the inner heliosphere to beyond 1 AU. The PSP’s close passes to the Sun offer unique insights into the nascent solar wind, while Juno’s trajectory up to Jupiter allows for studying the evolution of solar wind structures as they propagate outward.</li>
+<li>Complementary Data from Other Missions: Data from missions like STEREO, ARTEMIS, and WIND will complement PSP and Juno observations, providing a broader contextual view of the heliospheric conditions and enabling a multi-point analysis of discontinuity properties.</li>
+</ul>
+<p><strong>Hybrid and PIC Simulation:</strong></p>
+<ul>
+<li>Simulation Setup: Employ hybrid simulations first to model the nonlinear ion dynamics involved in the formation and evolution of solar wind discontinuities. Then, a full kinetic PIC simulation will be performed to study the electron dynamics associated with discontinuities. These simulations will integrate real solar wind parameters to create realistic scenarios for discontinuity development.</li>
+<li>Model Validation: Validate the simulation outputs with observed data to ensure accuracy in the representation of physical processes such as wave propagation, steepening, and the resultant discontinuity formation.</li>
+</ul>
+<p><strong>Analytical Techniques:</strong></p>
+<ul>
+<li>Determination of discontinuities: We will implement Liu’s <span class="citation" data-cites="liu2022a">(<a href="#ref-liu2022a" role="doc-biblioref"><strong>liu2022a?</strong></a>)</span> method to identify discontinuities in the solar wind which has better compatibility for the discontinuities with minor field changes, and is more robust to the situation encountered in the outer heliosphere. We also will use the minimum or maximum variance analysis (MVA) analysis <span class="citation" data-cites="sonnerupMinimumMaximumVariance1998 sonnerupMagnetopauseStructureAttitude1967">(<a href="#ref-sonnerupMinimumMaximumVariance1998" role="doc-biblioref">Bengt U. Ö. Sonnerup and Scheible 1998</a>; <a href="#ref-sonnerupMagnetopauseStructureAttitude1967" role="doc-biblioref">B. U. Ö. Sonnerup and Cahill Jr. 1967</a>)</span> to determine the main (most varying) magnetic field component, <span class="math inline">\(B_l\)</span>, and medium variation component, <span class="math inline">\(B_m\)</span>. <strong>?@fig-examples</strong> shows several examples of solar wind discontinuities detected by different spacecraft.</li>
+<li>Comparative analysis: Analyze discontinuity occurrence rate and properties across different radial distances to determine spatial trends, untangle the temporal effect due to solar variability.</li>
+<li>Simulation study: Study the evolution of particle velocity distribution over space and time to understand their interactions with discontinuities, the pressure balance across discontinuities and the physical mechanisms in the energy transfer processes.</li>
+</ul>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This PhD project will employ a comprehensive approach to dissect the complex nature of solar wind discontinuities, offering insights into their fundamental properties and impacts across the heliosphere. By integrating observational data with theoretical analyses and numerical simulation, this research aims to unravel the intricate processes that govern the magnetic discontinuities, the key element of magnetic field turbulence and the primary interface of charged particle acceleration.</p>
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-artemyevKineticNatureSolar2019" class="csl-entry" role="listitem">
+Artemyev, A. V., V. Angelopoulos, I. Y. Vasko, A. Runov, L. A. Avanov, B. L. Giles, C. T. Russell, and R. J. Strangeway. 2019. <span>“On the <span>Kinetic Nature</span> of <span>Solar Wind Discontinuities</span>.”</span> <em>Geophysical Research Letters</em> 46 (3): 1185–94. <a href="https://doi.org/10.1029/2018GL079906">https://doi.org/10.1029/2018GL079906</a>.
+</div>
+<div id="ref-marianiStatisticalStudyMagnetohydrodynamic1983" class="csl-entry" role="listitem">
+Mariani, F., B. Bavassano, and U. Villante. 1983. <span>“A <span>Statistical Study</span> of <span>Magnetohydrodynamic Discontinuities</span> in the <span>Inner Solar System</span> - <span>HELIOS-1</span> and <span>HELIOS-2</span>.”</span> <em>Solar Physics</em> 83 (March): 349–65. <a href="https://doi.org/10.1007/BF00148285">https://doi.org/10.1007/BF00148285</a>.
+</div>
+<div id="ref-myersPortingWarpXGPUaccelerated2021" class="csl-entry" role="listitem">
+Myers, A., A. Almgren, L. D. Amorim, J. Bell, L. Fedeli, L. Ge, K. Gott, et al. 2021. <span>“Porting <span>WarpX</span> to <span class="nocase">GPU-accelerated</span> Platforms.”</span> <em>Parallel Computing</em> 108 (December): 102833. <a href="https://doi.org/10.1016/j.parco.2021.102833">https://doi.org/10.1016/j.parco.2021.102833</a>.
+</div>
+<div id="ref-sonnerupMagnetopauseStructureAttitude1967" class="csl-entry" role="listitem">
+Sonnerup, B. U. Ö, and L. J. Cahill Jr. 1967. <span>“Magnetopause Structure and Attitude from <span>Explorer</span> 12 Observations.”</span> <em>Journal of Geophysical Research (1896-1977)</em> 72 (1): 171–83. <a href="https://doi.org/10.1029/JZ072i001p00171">https://doi.org/10.1029/JZ072i001p00171</a>.
+</div>
+<div id="ref-sonnerupMinimumMaximumVariance1998" class="csl-entry" role="listitem">
+Sonnerup, Bengt U. Ö., and Maureen Scheible. 1998. <span>“Minimum and Maximum Variance Analysis.”</span> <em>ISSI Scientific Reports Series</em> 1 (January): 185–220.
+</div>
+<div id="ref-tsurutaniReviewDiscontinuitiesAlfven1999" class="csl-entry" role="listitem">
+Tsurutani, Bruce T., and Christian M. Ho. 1999. <span>“A Review of Discontinuities and <span class="nocase">Alfv<span class="nocase">é</span>n</span> Waves in Interplanetary Space: <span>Ulysses</span> Results.”</span> <em>Reviews of Geophysics</em> 37 (January): 517–24. <a href="https://doi.org/10.1029/1999RG900010">https://doi.org/10.1029/1999RG900010</a>.
+</div>
+<div id="ref-tsurutaniNonlinearElectromagneticWaves1997" class="csl-entry" role="listitem">
+Tsurutani, Bruce T., Christian M. Ho, John K. Arballo, Gurbax S. Lakhina, Karl-Heinz Glassmeier, and Fritz M. Neubauer. 1997. <span>“Nonlinear Electromagnetic Waves and Spherical Arc-Polarized Waves in Space Plasmas.”</span> <em>Plasma Physics and Controlled Fusion</em> 39 (5A): A237. <a href="https://doi.org/10.1088/0741-3335/39/5A/022">https://doi.org/10.1088/0741-3335/39/5A/022</a>.
+</div>
+<div id="ref-tsurutaniInterplanetaryDiscontinuitiesAlfven1995" class="csl-entry" role="listitem">
+Tsurutani, Bruce T., Edward J. Smith, Christian M. Ho, Marcia Neugebauer, Bruce E. Goldstein, John S. Mok, Andre Balogh, David Southwood, and William C. Feldman. 1995. <span>“Interplanetary Discontinuities and <span class="nocase">Alfv<span class="nocase">é</span>n</span> Waves.”</span> <em>Space Science Reviews</em> 72 (April): 205–10. <a href="https://doi.org/10.1007/BF00768781">https://doi.org/10.1007/BF00768781</a>.
+</div>
+<div id="ref-turnerOrientationsRotationalTangential1971" class="csl-entry" role="listitem">
+Turner, J. M., and G. L. Siscoe. 1971. <span>“Orientations of <span>‘Rotational’</span> and <span>‘Tangential’</span> Discontinuities in the Solar Wind.”</span> <em>Journal of Geophysical Research (1896-1977)</em> 76 (7): 1816–22. <a href="https://doi.org/10.1029/JA076i007p01816">https://doi.org/10.1029/JA076i007p01816</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -222,24 +368,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/Beforerr\.github\.io\/beforerr\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -274,11 +402,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -293,6 +417,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -307,14 +452,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -323,15 +464,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -566,7 +700,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/proposal_SWD.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
