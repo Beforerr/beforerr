@@ -1,0 +1,399 @@
+---
+title: Homework
+---
+
+# Conservation of charge density
+
+> Show the conservation of charge density $\rho_c$ (Eq. I.50), by integrating the Boltzmann equation.
+
+The Boltzmann equation is given by
+
+$$
+\frac{\partial f}{\partial t} + \mathbf{v} \cdot \nabla f + \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \left( \frac{\partial f}{\partial t} \right)_c
+$$
+
+Take the zeroth charge-velocity moment of the Boltzmann equation, i.e., multiply by $e v^0 = e$ and integrate over velocity space. The first term on the left-hand side becomes
+
+$$
+\int d^3v \, e \frac{\partial f}{\partial t} = \frac{\partial}{\partial t} \int d^3v \, e f = \frac{\partial}{\partial t} \rho_c
+$$
+
+The second term on the left-hand side becomes
+
+$$
+\int d^3v \, e \mathbf{v} \cdot \nabla f = \nabla \cdot \int d^3v \, e \mathbf{v} f = \nabla \cdot \mathbf{j}_c
+$$
+
+The third term on the left-hand side becomes
+
+$$
+\int d^3v \, e \frac{q}{m} \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f = \frac{q}{m} \int d^3v \, e \left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) \cdot \nabla_v f
+= \frac{e q}{m} \int d^3v \nabla_v \cdot [\left( \mathbf{E} + \mathbf{v} \times \mathbf{B} \right) f] - \frac{e q}{m} \int d^3v \nabla_v \cdot \left( \mathbf{v} \times \mathbf{B} \right) f
+$$
+
+The first term on the right-hand side becomes a surface integral over the velocity space, which vanishes because the distribution function $f$ goes to zero at infinity. The second term on the right-hand side is zero because $\mathbf{v} \times \mathbf{B}$ is always perpendicular to $\mathbf{v}$, so the dot product is zero. Therefore, the third term on the left-hand side is zero.
+
+The right-hand side of the Boltzmann equation is zero because the collision operator conserves charge density. Therefore, the zeroth charge-velocity moment of the Boltzmann equation is
+
+$$
+\frac{\partial}{\partial t} \rho_c + \nabla \cdot \mathbf{j}_c = 0
+$$
+
+# Equation of specific entropy
+
+> Show the generalization of (I.57) for a gas with f degrees of freedom ($\gamma=1+2/f$ ratio of specific heats) $$
+> \frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}
+> $$
+
+Euler's equation of motion is given by (after combining with the continuity equation)
+
+$$
+\frac{d}{d t}\left(\frac{1}{2} \rho V^2\right)
++ \frac{1}{2} \rho V^2 \nabla \cdot \vec{V}
++ \vec{V} \cdot \nabla p
+= 
+\rho_c \vec{V} \cdot \vec{E}
++ \vec{V} \cdot(\vec{J} \times \vec{B})
++ \rho V \cdot g
+$$
+
+The energy equation is given by
+
+$$
+\frac{\partial}{\partial t}\left(\frac{1}{2} \rho V^2+u\right)+\frac{\partial}{\partial x_j}\left[\left(\frac{1}{2} \rho V^2+u\right) V_j+P_{j k} V_k+q_j\right]= \\
+J_j E_j+\rho V_j g_j
+$$
+
+where $u = \frac{f}{2} p$ is the internal energy.
+
+Because
+
+$$
+\frac{d}{d t}(\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \vec{V} \cdot \nabla (\rho V^2) = \frac{\partial}{\partial t}(\rho V^2) + \nabla \cdot (\rho V^2 \vec{V}) - \rho V^2 \nabla \cdot  \vec{V}
+$$
+
+By combining, we have
+
+$$
+\frac{\partial}{\partial t}(\rho V^2) +\frac{\partial}{\partial x_j}[(\rho V^2) V_j] = \frac{d}{d t}(\rho V^2) + \rho V^2 \nabla \cdot  \vec{V}
+$$
+
+We can rewrite energy equation into a form that is similar to Euler's equation of motion:
+
+$$
+[\frac{d}{d t}(\frac{1}{2} \rho V^2)+\frac{1}{2} \rho V^2 \nabla \cdot \vec{V}] + 
+[
+\frac{\partial u}{\partial t}
++ \nabla (u+p) \cdot \vec{V}
+]
+= -\nabla \cdot q +  J \cdot E +\rho V \cdot g
+$$
+
+Subtracting Euler's equation from the energy equation would gives us:
+
+$$
+[
+\frac{\partial u}{\partial t}
+ + \vec{V} \cdot \nabla u
+ + u \nabla \cdot \vec{V}
+] + \nabla \cdot \vec{V} p - \vec{V} \cdot \nabla p
+=
+- \nabla \cdot q +  (J - \rho_c \vec{V}) \cdot \vec{E} - \vec{V} \cdot(\vec{J} \times \vec{B})
+=
+- \nabla \cdot q +  j \cdot E^*
+$$
+
+where $\vec{E}^* = \vec{E} + \vec{V} \times \vec{B}$.
+
+The left-hand side of the equation can be rewritten as
+
+$$
+LHS 
+= d_t u + (p+u) \nabla \cdot \vec{V}
+= d_t (\frac{f}{2} p) -  (\frac{f}{2} + 1) \frac{p}{\rho} d_t \rho
+= \frac{f}{2} \rho^\gamma d_t \frac{p}{\rho^\gamma}
+$$
+
+where $\gamma = 1 + 2/f$ is the ratio of specific heats.
+
+Therefore, we have
+
+$$
+\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}
+$$
+
+# Polytropic equation
+
+> Show that for a gas with f degrees of freedom ($\gamma=1+f/2$ ratio of specific heats), in steady state (∂/∂t=0), and with a heat flux which obeys: $q = \kappa u V$ (eq. (I.85), where $u$ is the internal energy), the polytropic equation $p=\alpha \rho^n$ (I.84) still holds even though ds*/dt as per eq. (I.81) is not zero (where s* is the specific entropy defined the usual way using $\gamma$). In other words, show that eq. (I.81) can be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$. In other words show (I.86).
+
+As we have shown in the previous question, the equation of specific entropy is given by
+
+$$
+\frac{d}{dt} (p / \rho^\gamma) = \frac{ (-\nabla \cdot q + j \cdot E^*) }{(f/2) \rho^\gamma}
+$$
+
+With
+
+-   the heat flux proportional to the internal energy, i.e., $q = \kappa u V$
+-   $j \cdot E^* = 0$
+-   and assuming $p = g \rho^\gamma$, where $g$ is an arbitrary function
+
+the equation of specific entropy becomes
+
+$$
+d_t g = - \nabla \cdot \kappa V (\frac{f}{2} p) / (\frac{f}{2} \rho^\gamma) = - \kappa  \nabla \cdot (V  p) / (p/g)
+$$
+
+For steady state problems, i.e., $\frac{\partial}{\partial t} = 0$, the equation can be rewritten as
+
+$$
+g V \cdot \nabla g = - \kappa ( \nabla \cdot V + V \cdot \nabla \ln p)
+$$
+
+Using continuity equation (with steady state condition), i.e., $\nabla \cdot V = - V \cdot \nabla \rho / \rho = - V \cdot \nabla \ln \rho$, we have
+
+$$
+V \cdot \nabla \ln g = - \kappa V \cdot ( - \nabla \ln \rho + \nabla \ln p)
+$$
+
+For this equation to hold everywhere, we must have
+
+$$
+g = c_1 * (\frac{\rho}{p})^\kappa
+$$
+
+Therefore, we have
+
+$$
+p = c_1 \rho^\gamma (\frac{\rho}{p})^\kappa
+$$
+
+and thus
+
+$$
+p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
+$$
+
+which is the polytropic equation with $n = \frac{\gamma + \kappa}{1 + \kappa}$.
+
+Since we don't assume anywhere in the above derivation that $d_t s^* = 0$, the equation of specific entropy still could be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$, even though $d_t s^* \neq 0$.
+
+#
+
+> Siscoe’s notes show a scaling analysis of the terms R1-R4 in Ohm’s law, equations (II.9) (II.12), for the cool magnetosheath/slow solar wind. 
+
+> a. Show that the collision time scale $\tau$ is indeed large enough, such that R1 is indeed large for the plasma region envisioned in the book. To compute $\tau =1/\nu_{ei}$, obtain the numerical value of the collision frequency for that region by using tabulated values of the Coulomb logarithm $\lambda$ in the NRL formulary (here, p. 34, item (b)) and the equation for $\nu_{ei}=\nu_e \text{~} \nu_i$ for the weak collision rate case (strong field case, here, p. 36). 
+
+The Lorentz collision frequency is given by
+
+$$
+\nu = n \sigma v \ln \Lambda
+$$
+
+where $n$ is the particle number density, $\sigma$ is the collisional cross-section, $v$ is the mean thermal velocity between particle species, and $\ln \Lambda$ is the Coulomb logarithm accounting for small angle collisions.
+
+Using typical parameters for space science, we can calculate the collision time scale $\tau = 1/\nu_{ei} = 3 \cdot 10^4 \text{s}$, which is indeed large enough.
+
+
+```{python}
+import plasmapy.formulary as plf
+import astropy.units as u
+
+n = 1e7 * u.m**-3
+T = 1e5 * u.K
+v_drift = 100 * u.km / u.s
+
+
+def τ(n, T, V):
+    # assuming temperature and denisty is the same for both species
+    n_ion = n_e = n
+    T_ion = T_e = T
+    
+    Coulomb_log = plf.Coulomb_logarithm(T, n_e, ("e-", "p+")) * u.dimensionless_unscaled
+    
+    electron_ion_collisions = plf.MaxwellianCollisionFrequencies(
+        "e-",
+        "p+",
+        v_drift = V,
+        n_a=n_e,
+        T_a=T_e,
+        n_b=n_ion,
+        T_b=T_ion,
+        Coulomb_log=Coulomb_log,
+    )
+
+    nu_ei = electron_ion_collisions.Maxwellian_avg_ei_collision_freq
+    return (1  / nu_ei).to(u.s)
+
+τ(n=n, T=T, V=v_drift)
+```
+
+
+> b. Obtain the ratios R1-R4 for typical parameters in another plasma region, the near-Earth magnetotail plasma sheet (but outside the reconnection electron diffusion region). Is the Hall term significant now? Derive the ratio of the electron inertia to the Hall term (ratio R4/R3) by scaling analysis – under what conditions is it significant in this environment?
+
+Given the following parameters
+$$
+\begin{aligned}
+& R_1 \equiv \frac{V B}{n J}=\frac{V B}{\frac{m_e}{e^2 n \tau}} \frac{B}{\mu_0 L}=n V L \tau \frac{\mu_0 e^2}{m_e} \\
+& R_2 \equiv \frac{V B}{\frac{1}{n e} \frac{P_e}{L}}=\frac{V B}{\frac{k}{n e} \frac{n T}{L}}=\frac{e}{k} \frac{V B L}{T} \\
+& R_3=\frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 \\
+& R_4=\frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} \\
+&
+\end{aligned}
+$$
+
+Using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020], and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., $L \sim 3e7 m$, we have the ratios calculated as shown below. The Hall term is now become comparable to the "v cross B" term with $R_3 \sim 10$. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).
+
+The ratio of the electron inertia to the Hall term is given by 
+
+$$
+R_4/R_3 = \frac{L * B}{V} * \frac{e}{m_e}
+$$
+
+Since $R_4$ is proportional to $L^2$, and $R_3$ is proportional to $L$, the ratio $R_4/R_3$ is proportional to $L$. Therefore, the electron inertia term is more significant when the spatial scale is smaller. It is also more significant when the magnetic field is weaker, or the velocity is larger.
+
+
+```{python}
+from astropy.constants.si import mu0, e, m_e, k_B
+import astropy.units as u
+from astropy.table import QTable
+import pandas as pd
+
+def R1(
+    n: float, #: number density
+    V: float, #: velocity
+    L: float, #: length
+    τ: float, #: collision time
+):
+    """
+    Ratio of the "v cross B" term over the ohmic resistive term
+    """
+    const = mu0 * e**2 / m_e
+    return (n * V * L * τ * const).to(u.dimensionless_unscaled)
+
+def R2(
+    V: float, #: velocity
+    B: float, #: magnetic field
+    L: float, #: length
+    T: float #: temperature
+):
+    """
+    Ratio of the "v cross B" term over the ampipolar electric field term
+    """
+    const = e / k_B
+    return (V * B * L / T * const).to(u.dimensionless_unscaled)
+
+def R3(
+    V: float, #: velocity
+    B: float, #: magnetic field
+    n: float, #: number density
+    L: float #: length
+):
+    """
+    Ratio of the "v cross B" term over the Hall term
+    """
+    const = e * mu0
+    return (V * L * n / B * const).to(u.dimensionless_unscaled)
+
+def R4(
+    L: float, #: length
+    n: float, #: number density
+):
+    """
+    Ratio of the "v cross B" term over the electron inertia term
+    """
+    const = mu0 * e**2 / m_e
+    return (L**2 * n * const).to(u.dimensionless_unscaled)
+
+def R4overR3(
+    V: float, #: velocity
+    B: float, #: magnetic field
+    n: float, #: number density
+    L: float #: length
+):
+    """
+    Ratio of the electron inertia term to the Hall term
+    """
+    return R4(L=L, n=n) / R3(V=V, B=B, n=n, L=L)
+
+
+import plasmapy.formulary as plf
+# using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020]
+
+solar_wind = dict(
+    name = "solar wind",
+    n = 1e7 * u.m**-3,
+    V = 1e5 * u.m / u.s,
+    L = 1e6 * u.m,
+    T = 1e5 * u.K,
+    τ = 1 * u.s,
+    B = 1e-8 * u.T
+)
+
+magnetotail = dict(
+    name = "ion plasma sheet",
+    n = 5e5 * u.m**-3,
+    V = 1e5 * u.m / u.s,
+    L = 1e7 * u.m,
+    T = (1e3 * u.eV).to(u.K, equivalencies=u.temperature_energy()),
+    B = 1e-8 * u.T
+)
+
+for d in [solar_wind, magnetotail]:
+    d["τ"] = τ(n=d["n"], T=d["T"], V=d["V"])
+    d["R1"] = R1(n=d["n"], V=d["V"], L=d["L"], τ=d["τ"])
+    d["R2"] = R2(V=d["V"], B=d["B"], L=d["L"], T=d["T"])
+    d["R3"] = R3(V=d["V"], B=d["B"], n=d["n"], L=d["L"])
+    d["R4"] = R4(L=d["L"], n=d["n"])
+
+df = QTable([solar_wind, magnetotail])
+
+from great_tables import GT
+GT(df.to_pandas()).fmt_scientific(columns = df.colnames[1:])
+
+for col in df.colnames[1:]:
+    df[col].info.format = ".1E"
+df
+```
+
+
+
+<!-- 
+Using NRL Plasma Formulary
+
+$$
+\lambda_{e i}=\lambda_{i e}=
+\begin{cases}
+23-\ln \left(n_e^{1 / 2} Z T_e^{-3 / 2}\right), & T_i m_e / m_i<T_e<10 Z^2 \mathrm{eV} \\
+24-\ln \left(n_e^{1 / 2} T_e^{-1}\right), & T_i m_e / m_i<10 Z^2 \mathrm{eV}<T_e \\
+16-\ln \left(n_i^{1 / 2} T_i^{-3 / 2} Z^2 \mu\right), & T_e<T_i m_e / m_i
+\end{cases}
+$$
+
+Coulomb logarithm is defined as $\lambda = \ln Λ$
+
+```{python}
+# electron mass over proton mass
+import numpy as np
+m_e_over_m_p = 1 / 1840
+
+def λ_ei(
+    n_e: float,
+    T_e: float, #: electron temperature (eV)
+    Z: float, #: ion charge
+    T_i: float, #: ion temperature (eV)
+    n_i = None, #: ion density in cgs unit (cm^-3)
+    mu: float #: ion mass in units of proton mass
+):
+    m_e_over_m_i = m_e_over_m_p / mu
+
+    if T_i * m_e_over_m_i < T_e < 10 * Z**2:
+        return 23 - np.log(n_e**0.5 * Z * T_e**-1.5)
+
+    elif T_i * m_e_over_m_i < 10 * Z**2 < T_e:
+        return 24 - np.log(n_e**0.5 * T_e**-1)
+    elif T_e < T_i * m_e_over_m_i:
+        return 16 - np.log(n_i**0.5 * T_i**-1.5 * Z**2 * mu)
+
+``` 
+-->
