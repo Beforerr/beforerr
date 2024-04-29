@@ -7,6 +7,8 @@ bibliography:
   - files/references.bib
   - ../share/bibliography/research.bib
 
+execute:
+  freeze: auto  # re-render only when source changes
 
 website:
   title: "beforerr"
