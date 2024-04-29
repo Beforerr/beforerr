@@ -1,3 +1,4 @@
 ---
-title: EPSS 263
+title: EPSS M263
+subtitle: Solar System Magnetohydrodynamics
 ---

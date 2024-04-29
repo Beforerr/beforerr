@@ -1,5 +1,8 @@
 ---
-title: Homework
+title: Homework 02
+format: 
+    html: default
+    pdf: default
 ---
 
 # Conservation of charge density
@@ -159,7 +162,7 @@ $$
 For this equation to hold everywhere, we must have
 
 $$
-g = c_1 * (\frac{\rho}{p})^\kappa
+g = c_1 (\frac{\rho}{p})^\kappa
 $$
 
 Therefore, we have
@@ -171,16 +174,18 @@ $$
 and thus
 
 $$
-p = c_1 \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
+p = \alpha \rho^{\frac{\gamma + \kappa}{1 + \kappa}}
 $$
 
 which is the polytropic equation with $n = \frac{\gamma + \kappa}{1 + \kappa}$.
 
 Since we don't assume anywhere in the above derivation that $d_t s^* = 0$, the equation of specific entropy still could be transformed into an equation for a revised “entropy” defined using $n$, the polytropic index, which is no longer $\gamma$, but $n=(\gamma+\kappa)/(1+\kappa)$, even though $d_t s^* \neq 0$.
 
-#
+# Generalized Ohm's law
 
 > Siscoe’s notes show a scaling analysis of the terms R1-R4 in Ohm’s law, equations (II.9) (II.12), for the cool magnetosheath/slow solar wind. 
+
+## Collision time scale
 
 > a. Show that the collision time scale $\tau$ is indeed large enough, such that R1 is indeed large for the plasma region envisioned in the book. To compute $\tau =1/\nu_{ei}$, obtain the numerical value of the collision frequency for that region by using tabulated values of the Coulomb logarithm $\lambda$ in the NRL formulary (here, p. 34, item (b)) and the equation for $\nu_{ei}=\nu_e \text{~} \nu_i$ for the weak collision rate case (strong field case, here, p. 36). 
 
@@ -204,7 +209,7 @@ T = 1e5 * u.K
 v_drift = 100 * u.km / u.s
 
 
-def τ(n, T, V):
+def tau(n, T, V):
     # assuming temperature and denisty is the same for both species
     n_ion = n_e = n
     T_ion = T_e = T
@@ -225,9 +230,10 @@ def τ(n, T, V):
     nu_ei = electron_ion_collisions.Maxwellian_avg_ei_collision_freq
     return (1  / nu_ei).to(u.s)
 
-τ(n=n, T=T, V=v_drift)
+tau(n=n, T=T, V=v_drift)
 ```
 
+## Dimensionless ratios
 
 > b. Obtain the ratios R1-R4 for typical parameters in another plasma region, the near-Earth magnetotail plasma sheet (but outside the reconnection electron diffusion region). Is the Hall term significant now? Derive the ratio of the electron inertia to the Hall term (ratio R4/R3) by scaling analysis – under what conditions is it significant in this environment?
 
@@ -236,13 +242,13 @@ $$
 \begin{aligned}
 & R_1 \equiv \frac{V B}{n J}=\frac{V B}{\frac{m_e}{e^2 n \tau}} \frac{B}{\mu_0 L}=n V L \tau \frac{\mu_0 e^2}{m_e} \\
 & R_2 \equiv \frac{V B}{\frac{1}{n e} \frac{P_e}{L}}=\frac{V B}{\frac{k}{n e} \frac{n T}{L}}=\frac{e}{k} \frac{V B L}{T} \\
-& R_3=\frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 \\
-& R_4=\frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} \\
+& R_3 \equiv \frac{V B}{\frac{1}{\text { en }} \frac{B^2}{\mu_0 L}}=\frac{V L n}{B} \mathrm{e} \mu_0 \\
+& R_4 \equiv \frac{V B}{\frac{m_e}{e^2 n} \frac{J}{T}}=L^2 n \frac{\mu_o e^2}{m_e} \\
 &
 \end{aligned}
 $$
 
-Using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020], and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., $L \sim 3e7 m$, we have the ratios calculated as shown below. The Hall term is now become comparable to the "v cross B" term with $R_3 \sim 10$. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).
+Using the parameters from [@borovskyOutstandingQuestionsMagnetospheric2020], and assuming the spatial scale of the magnetotail plasma sheet is about earth radius, i.e., $L \sim 10^7 m$, we have the ratios calculated as shown below @tbl-ratios. The Hall term is now become comparable to the "v cross B" term with $R_3 \sim 10$. This term will be more significant when the spatial scale is smaller (for example, near the reconnection region).
 
 The ratio of the electron inertia to the Hall term is given by 
 
@@ -254,6 +260,7 @@ Since $R_4$ is proportional to $L^2$, and $R_3$ is proportional to $L$, the rati
 
 
 ```{python}
+#| output: false
 from astropy.constants.si import mu0, e, m_e, k_B
 import astropy.units as u
 from astropy.table import QTable
@@ -326,7 +333,6 @@ solar_wind = dict(
     V = 1e5 * u.m / u.s,
     L = 1e6 * u.m,
     T = 1e5 * u.K,
-    τ = 1 * u.s,
     B = 1e-8 * u.T
 )
 
@@ -340,7 +346,7 @@ magnetotail = dict(
 )
 
 for d in [solar_wind, magnetotail]:
-    d["τ"] = τ(n=d["n"], T=d["T"], V=d["V"])
+    d["τ"] = tau(n=d["n"], T=d["T"], V=d["V"])
     d["R1"] = R1(n=d["n"], V=d["V"], L=d["L"], τ=d["τ"])
     d["R2"] = R2(V=d["V"], B=d["B"], L=d["L"], T=d["T"])
     d["R3"] = R3(V=d["V"], B=d["B"], n=d["n"], L=d["L"])
@@ -348,13 +354,43 @@ for d in [solar_wind, magnetotail]:
 
 df = QTable([solar_wind, magnetotail])
 
-from great_tables import GT
-GT(df.to_pandas()).fmt_scientific(columns = df.colnames[1:])
-
 for col in df.colnames[1:]:
     df[col].info.format = ".1E"
 df
 ```
+
+
+::: {.content-visible when-format="pdf"}
+```{python}
+#| tbl-cap: Ratios of the terms in Ohm's law
+from great_tables import GT
+GT(df.to_pandas()).fmt_scientific(
+    columns = df.colnames[1:], decimals=1
+)
+```
+:::
+
+
+::: {.content-visible when-format="html"}
+```{python}
+#| label: tbl-ratios
+#| tbl-cap: Ratios of the terms in Ohm's law
+from great_tables import GT
+GT(df.to_pandas()).fmt_scientific(
+    columns = df.colnames[1:], decimals=1
+).cols_label(
+    n = "Number Density (m^-3)",
+    V = "Velocity (m/s)",
+    L = "Length (m)",
+    T = "Temperature (K)",
+    τ = "Collision Time (s)",
+    B = "Magnetic Field (T)"
+).tab_spanner(
+    label="Plasma Parameters",
+    columns=["n", "V", "L", "T", "B", "τ"]
+)
+```
+:::
 
 
 
@@ -372,7 +408,7 @@ $$
 
 Coulomb logarithm is defined as $\lambda = \ln Λ$
 
-```{python}
+```{QUARTO_PYTHON{python}}
 # electron mass over proton mass
 import numpy as np
 m_e_over_m_p = 1 / 1840
