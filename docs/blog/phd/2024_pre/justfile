@@ -1,15 +1,15 @@
+sync-overleaf: process-tex
+   rsync figures/ overleaf/figures/ -r
+   rsync proposal_EMIC.tex overleaf/
+   rsync proposal_SWD.tex overleaf/
+   rsync ~/projects/share/bibliography/ overleaf/files/ -r
+
 rm_bib file:
    awk '!found && /\\bibliography{/ { found = 1; next } 1' {{file}} > .temp && mv .temp {{file}}
 
 process-tex:
    just rm_bib proposal_EMIC.tex
    just rm_bib proposal_SWD.tex
-
-sync-overleaf:
-   rsync figures/ overleaf/figures/ -r
-   rsync proposal_EMIC.tex overleaf/
-   rsync proposal_SWD.tex overleaf/
-   rsync ~/projects/share/bibliography/ overleaf/files/ -r
 
 default:
    quarto render proposal_EMIC.qmd --to latex -M bibliography:files/references.bib
