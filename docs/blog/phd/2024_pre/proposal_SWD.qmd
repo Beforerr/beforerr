@@ -1,12 +1,5 @@
 ---
 title: Evolution and Impact of Solar Wind Discontinuities
-format:
-  html: default
-  pdf: 
-    keep-tex: true
-    include-after-body:
-        - text: |
-            \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
 ---
 
 **PhD Candidate: Zijin Zhang**
