@@ -1,6 +1,7 @@
 **/overleaf/
 data/
 
+site_libs/
 _site/
 _docs/
 _proc/
