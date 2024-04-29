@@ -3,7 +3,6 @@ title: Evolution and Impact of Solar Wind Discontinuities
 format:
   html: default
   pdf: 
-    cite-method: natbib
     keep-tex: true
     include-after-body:
         - text: |

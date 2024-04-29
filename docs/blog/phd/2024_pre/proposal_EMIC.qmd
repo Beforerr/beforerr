@@ -3,8 +3,6 @@ title: Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Flu
 format:
   html: default
   pdf: 
-    keep-tex: true
-    cite-method: natbib
     include-after-body:
         - text: |
             \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
@@ -56,7 +54,7 @@ This enriched background sets a solid foundation for investigating the interacti
 
 - **Magnetospheric Multiscale (MMS) Mission:** Analyze high-resolution data from the MMS mission, which is key for understanding the microphysics of wave-particle interactions, especially during short-duration events and smaller spatial scales that are not resolved by other satellites.
 
-![(top) An overview of the mission orbits recorded on April 17, 2021, from 00:00 to 12:00 UTC. The orbits of the various missions are projected onto the MLT and $L$-shell plane, using Tsyganenko 2001 model. (bottom) Sym-H and SME indices during this event.](https://raw.githubusercontent.com/Beforerr/EMIC_multi-satellites_study/main/figures/fig1_orbit_multi_mission_conjunctions.png)
+![(top) An overview of the mission orbits recorded on April 17, 2021, from 00:00 to 12:00 UTC. The orbits of the various missions are projected onto the MLT and $L$-shell plane, using Tsyganenko 2001 model. (bottom) Sym-H and SME indices during this event.](figures/fig1_orbit_multi_mission_conjunctions.png)
 
 
 **Analytical Methods:**

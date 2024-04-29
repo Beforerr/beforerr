@@ -43,28 +43,14 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
-\makeatletter
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}{
-    \@ifstar
-      \xxxParagraphStar
-      \xxxParagraphNoStar
-  }
-  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
-  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}{
-    \@ifstar
-      \xxxSubParagraphStar
-      \xxxSubParagraphNoStar
-  }
-  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
-  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
-\makeatother
 
 
 \providecommand{\tightlist}{%
@@ -91,39 +77,6 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
- % allow citations to break across lines
- \let\@cite@ofmt\@firstofone
- % avoid brackets around text for \cite:
- \def\@biblabel#1{}
- \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
- {\begin{list}{}{%
-  \setlength{\itemindent}{0pt}
-  \setlength{\leftmargin}{0pt}
-  \setlength{\parsep}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-   \setlength{\leftmargin}{\cslhangindent}
-   \setlength{\itemindent}{-1\cslhangindent}
-  \fi
-  % set entry spacing
-  \setlength{\itemsep}{#2\baselineskip}}}
- {\end{list}}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \KOMAoption{captions}{tableheading}
 \makeatletter
@@ -170,8 +123,9 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage{bookmark}
-
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -194,19 +148,19 @@
 
 \subsection{Abstract}\label{abstract}
 
-Electromagnetic Ion Cyclotron (EMIC) waves and whistler waves are fundamental plasma wave phenomena in Earth's magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. These interactions often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies (Miyoshi et al. 2003; Sorathia et al. 2018) and EMIC \& whistler waves causing electron losses through pitch angle scattering (Summers and Thorne 2003; Summers, Ni, and Meredith 2007b). This study aims to deepen the understanding of how these waves, in concert with other phenomena like plasma sheet injections, impact the behavior of radiation belt electrons. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, this study will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.
+Electromagnetic Ion Cyclotron (EMIC) waves and whistler waves are fundamental plasma wave phenomena in Earth's magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. These interactions often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003, sorathiaModelingDepletionRecovery2018} and EMIC \& whistler waves causing electron losses through pitch angle scattering \citep{summersRelativisticElectronPitchangle2003, summersTimescalesRadiationBelt2007}. This study aims to deepen the understanding of how these waves, in concert with other phenomena like plasma sheet injections, impact the behavior of radiation belt electrons. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, this study will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.
 
 \subsection{Background and Motivation}\label{background-and-motivation}
 
 \textbf{Interactions of Waves with Radiation Belt Electrons:}
 
-Relativistic electron fluxes in Earth's inner magnetosphere are greatly affected by electron scattering to the atmosphere via resonant interactions with whistler-mode and electromagnetic ion cyclotron (EMIC) waves (Millan and Thorne 2007; Summers, Ni, and Meredith 2007a). Near the loss-cone, electron scattering rates for EMIC waves at such energies are much larger than for whistler-mode waves (Glauert and Horne 2005). Thus, EMIC wave-driven electron precipitation is considered a key contributor to relativistic electron losses at energies exceeding the minimum energy for cyclotron resonance with such waves, \(E_{\min}\sim 0.5-1\) MeV (Summers and Thorne 2003; Summers, Ni, and Meredith 2007b). Numerical simulations of the outer radiation belt dynamics (Ma et al. 2015) and data-model comparisons (Angelopoulos et al. 2023) have demonstrated that EMIC waves can scatter relativistic electrons efficiently and deplete their fluxes quickly in the outer radiation belt.
+Relativistic electron fluxes in Earth's inner magnetosphere are greatly affected by electron scattering to the atmosphere via resonant interactions with whistler-mode and electromagnetic ion cyclotron (EMIC) waves \citep{millanReviewRadiationBelt2007, summersTimescalesRadiationBelt2007a}. Near the loss-cone, electron scattering rates for EMIC waves at such energies are much larger than for whistler-mode waves \citep{glauertCalculationPitchAngle2005}. Thus, EMIC wave-driven electron precipitation is considered a key contributor to relativistic electron losses at energies exceeding the minimum energy for cyclotron resonance with such waves, \(E_{\min}\sim 0.5-1\) MeV \citep{summersRelativisticElectronPitchangle2003, summersTimescalesRadiationBelt2007}. Numerical simulations of the outer radiation belt dynamics \citep{maModelingInwardDiffusion2015} and data-model comparisons \citep{angelopoulosEnergeticElectronPrecipitation2023} have demonstrated that EMIC waves can scatter relativistic electrons efficiently and deplete their fluxes quickly in the outer radiation belt.
 
-For energies below ultra-relativistic energies (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering mostly affects low pitch-angle electrons (equatorial \(\alpha_{eq}<30^\circ\), see Kersten et al. 2014). Therefore, additional high pitch-angle electron scattering by whistler-mode waves is required to assist EMIC waves in the precipitation of the main, near-equatorial, (trapped) electron population (Mourenas et al. 2016). A combination of electron scattering by whistler-mode and EMIC waves at the same \(L\)-shell (even if at different longitudes) can result in a very effective electron flux depletion (Mourenas et al. 2016; Drozdov et al. 2022). Verification of this electron loss mechanism requires a combination of satellites near the equator (to measure the waves and equatorial pitch-angle electron fluxes) and at low-altitude (to measure precipitating electron fluxes).
+For energies below ultra-relativistic energies (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering mostly affects low pitch-angle electrons \citep[equatorial \(\alpha_{eq}<30^\circ\), see][]{kerstenElectronLossesRadiation2014}. Therefore, additional high pitch-angle electron scattering by whistler-mode waves is required to assist EMIC waves in the precipitation of the main, near-equatorial, (trapped) electron population \citep{mourenasFastDropoutsMultiMeV2016}. A combination of electron scattering by whistler-mode and EMIC waves at the same \(L\)-shell (even if at different longitudes) can result in a very effective electron flux depletion \citep{mourenasFastDropoutsMultiMeV2016, drozdovDepletionsMultiMeVElectrons2022}. Verification of this electron loss mechanism requires a combination of satellites near the equator (to measure the waves and equatorial pitch-angle electron fluxes) and at low-altitude (to measure precipitating electron fluxes).
 
 \textbf{Origin and Characteristics of Waves:}
 
-EMIC waves are often generated by anisotropic ion populations from plasma sheet injections \cite{Jun19:emic,Jun21:emic}. These injections also create anisotropic ``seed'' electrons \cite{Miyoshi13,Jaynes15:seedelectrons}, the free energy source for whistler-mode chorus waves \cite{Tao11,Fu14:radiation_belts,Zhang18:whistlers&injections}. Such chorus waves can effectively accelerate the same seed electrons to relativistic energies \textbackslash cite\textless e.g.,\textgreater\{Miyoshi03,Thorne13:nature,Li14:storm,Mourenas14:fluxes,Allison\&Shprits20\}. Therefore, there is a competition between electron acceleration by whistler-mode waves \textbackslash cite\textless supported by direct adiabatic heating during injections, see, e.g.\textgreater\{Sorathia18\} and electron precipitation by EMIC and chorus waves, and this competition should ultimately shape the energy spectrum of radiation belt electrons after a series of plasma sheet injections. Several recent publications indicate that the electron energy spectrum may have an upper limit corresponding to a balance between electron injections and precipitation loss, controlled by whistler-mode waves \cite{Olifer21, Olifer22, Walton23}. The existence of such an upper limit has been predicted by Kennel and Petschek (1966), and reevaluated for relativistic electrons by Summers, Tang, and Thorne (2009) and Summers and Shi (2014). Several of its main assumptions have been verified using ELFIN data \cite{Mourenas24}. The Kennel-Petschek upper limit is based on the idea that injected electrons generate whistler-mode waves (with exponentially higher wave power for electron fluxes above the flux limit) that ultimately scatter these same injected electrons into the atmosphere. The competition between linearly increasing anisotropic electron fluxes and exponentially faster electron losses into the atmosphere due to exponentially increasing wave growth, leads to a stationary solution in the diffusion (Fokker-Planck) equation describing electron flux dynamics. Inclusion of EMIC wave-driven loss into this balance reduces the upper limit of the electron flux at high energy \cite{Mourenas22:ExtremeSpectra, Summers04B}.
+EMIC waves are often generated by anisotropic ion populations from plasma sheet injections \cite{Jun19:emic,Jun21:emic}. These injections also create anisotropic ``seed'' electrons \cite{Miyoshi13,Jaynes15:seedelectrons}, the free energy source for whistler-mode chorus waves \cite{Tao11,Fu14:radiation_belts,Zhang18:whistlers&injections}. Such chorus waves can effectively accelerate the same seed electrons to relativistic energies \textbackslash cite\textless e.g.,\textgreater\{Miyoshi03,Thorne13:nature,Li14:storm,Mourenas14:fluxes,Allison\&Shprits20\}. Therefore, there is a competition between electron acceleration by whistler-mode waves \textbackslash cite\textless supported by direct adiabatic heating during injections, see, e.g.\textgreater\{Sorathia18\} and electron precipitation by EMIC and chorus waves, and this competition should ultimately shape the energy spectrum of radiation belt electrons after a series of plasma sheet injections. Several recent publications indicate that the electron energy spectrum may have an upper limit corresponding to a balance between electron injections and precipitation loss, controlled by whistler-mode waves \cite{Olifer21, Olifer22, Walton23}. The existence of such an upper limit has been predicted by \citet{kennelLimitStablyTrapped1966}, and reevaluated for relativistic electrons by \citet{summersLimitStablyTrapped2009} and \citet{summersLimitingEnergySpectrum2014}. Several of its main assumptions have been verified using ELFIN data \cite{Mourenas24}. The Kennel-Petschek upper limit is based on the idea that injected electrons generate whistler-mode waves (with exponentially higher wave power for electron fluxes above the flux limit) that ultimately scatter these same injected electrons into the atmosphere. The competition between linearly increasing anisotropic electron fluxes and exponentially faster electron losses into the atmosphere due to exponentially increasing wave growth, leads to a stationary solution in the diffusion (Fokker-Planck) equation describing electron flux dynamics. Inclusion of EMIC wave-driven loss into this balance reduces the upper limit of the electron flux at high energy \cite{Mourenas22:ExtremeSpectra, Summers04B}.
 
 \textbf{Role of EMIC Waves in Space Weather:}
 Understanding the interactions between EMIC waves and radiation belt electrons is crucial for predicting space weather effects, particularly since these interactions can lead to rapid changes in radiation belt configurations, posing risks to satellites and other space-based technologies (Baker et al., 2004; Horne et al., 2005). The 2003 Halloween storm provided a clear example of how enhanced EMIC wave activity correlated with significant radiation belt electron flux decreases, highlighting the importance of including these waves in predictive models (Turner et al., 2012).
@@ -309,55 +263,10 @@ The findings from this research will deepen our understanding of magnetospheric 
 
 The proposed research is designed to tackle some of the most pressing questions in space physics regarding the impact of EMIC waves on radiation belt dynamics. Through a combination of detailed empirical analysis and advanced theoretical modeling, this project aims to provide significant insights and tools for predicting space weather, thereby contributing to our ability to safeguard and optimize the operation of space-based technologies.
 
-\phantomsection\label{refs}
-\begin{CSLReferences}{1}{0}
-\bibitem[\citeproctext]{ref-angelopoulosEnergeticElectronPrecipitation2023}
-Angelopoulos, V., X. -J. Zhang, A. V. Artemyev, D. Mourenas, E. Tsai, C. Wilkins, A. Runov, et al. 2023. {``Energetic {Electron Precipitation Driven} by {Electromagnetic Ion Cyclotron Waves} from {ELFIN}'s {Low Altitude Perspective}.''} \emph{Space Science Reviews} 219 (August): 37. \url{https://doi.org/10.1007/s11214-023-00984-w}.
 
-\bibitem[\citeproctext]{ref-drozdovDepletionsMultiMeVElectrons2022}
-Drozdov, A. Y., H. J. Allison, Y. Y. Shprits, M. E. Usanova, A. Saikin, and D. Wang. 2022. {``Depletions of {Multi-MeV Electrons} and {Their Association} to {Minima} in {Phase Space Density}.''} \emph{Geophysical Research Letters} 49 (April): e97620. \url{https://doi.org/10.1029/2021GL09762010.1002/essoar.10510085.1}.
-
-\bibitem[\citeproctext]{ref-glauertCalculationPitchAngle2005}
-Glauert, Sarah A., and Richard B. Horne. 2005. {``Calculation of Pitch Angle and Energy Diffusion Coefficients with the {PADIE} Code.''} \emph{Journal of Geophysical Research: Space Physics} 110 (A4). \url{https://doi.org/10.1029/2004JA010851}.
-
-\bibitem[\citeproctext]{ref-kennelLimitStablyTrapped1966}
-Kennel, C. F., and H. E. Petschek. 1966. {``Limit on Stably Trapped Particle Fluxes.''} \emph{Journal of Geophysical Research (1896-1977)} 71 (1): 1--28. \url{https://doi.org/10.1029/JZ071i001p00001}.
-
-\bibitem[\citeproctext]{ref-kerstenElectronLossesRadiation2014}
-Kersten, Tobias, Richard B. Horne, Sarah A. Glauert, Nigel P. Meredith, Brian J. Fraser, and Russell S. Grew. 2014. {``Electron Losses from the Radiation Belts Caused by {EMIC} Waves.''} \emph{Journal of Geophysical Research: Space Physics} 119 (11): 8820--37. \url{https://doi.org/10.1002/2014JA020366}.
-
-\bibitem[\citeproctext]{ref-maModelingInwardDiffusion2015}
-Ma, Q., W. Li, R. M. Thorne, B. Ni, C. A. Kletzing, W. S. Kurth, G. B. Hospodarsky, et al. 2015. {``Modeling Inward Diffusion and Slow Decay of Energetic Electrons in the {Earth}'s Outer Radiation Belt.''} \emph{Geophysical Research Letters} 42 (4): 987--95. \url{https://doi.org/10.1002/2014GL062977}.
-
-\bibitem[\citeproctext]{ref-millanReviewRadiationBelt2007}
-Millan, R. M., and R. M. Thorne. 2007. {``Review of Radiation Belt Relativistic Electron Losses.''} \emph{Journal of Atmospheric and Solar-Terrestrial Physics}, Global {Aspects} of {Magnetosphere-Ionosphere Coupling}, 69 (3): 362--77. \url{https://doi.org/10.1016/j.jastp.2006.06.019}.
-
-\bibitem[\citeproctext]{ref-miyoshiRebuildingProcessOuter2003}
-Miyoshi, Yoshizumi, Akira Morioka, Hiroaki Misawa, Takahiro Obara, Tsugunobu Nagai, and Yoshiya Kasahara. 2003. {``Rebuilding Process of the Outer Radiation Belt During the 3 {November} 1993 Magnetic Storm: {NOAA} and {Exos-D} Observations.''} \emph{Journal of Geophysical Research: Space Physics} 108 (A1): SMP 3-1-SMP 3-15. \url{https://doi.org/10.1029/2001JA007542}.
-
-\bibitem[\citeproctext]{ref-mourenasFastDropoutsMultiMeV2016}
-Mourenas, D., A. V. Artemyev, Q. Ma, O. V. Agapitov, and W. Li. 2016. {``Fast Dropouts of Multi-{MeV} Electrons Due to Combined Effects of {EMIC} and Whistler Mode Waves.''} \emph{Geophysical Research Letters} 43 (9): 4155--63. \url{https://doi.org/10.1002/2016GL068921}.
-
-\bibitem[\citeproctext]{ref-sorathiaModelingDepletionRecovery2018}
-Sorathia, Kareem A., Aleksandr Y. Ukhorskiy, Viacheslav G. Merkin, Joseph F. Fennell, and Seth G. Claudepierre. 2018. {``Modeling the {Depletion} and {Recovery} of the {Outer Radiation Belt During} a {Geomagnetic Storm}: {Combined MHD} and {Test Particle Simulations}.''} \emph{Journal of Geophysical Research: Space Physics} 123 (7): 5590--5609. \url{https://doi.org/10.1029/2018JA025506}.
-
-\bibitem[\citeproctext]{ref-summersTimescalesRadiationBelt2007a}
-Summers, Danny, Binbin Ni, and Nigel P. Meredith. 2007a. {``Timescales for Radiation Belt Electron Acceleration and Loss Due to Resonant Wave-Particle Interactions: 1. {Theory}.''} \emph{Journal of Geophysical Research: Space Physics} 112 (A4). \url{https://doi.org/10.1029/2006JA011801}.
-
-\bibitem[\citeproctext]{ref-summersTimescalesRadiationBelt2007}
----------. 2007b. {``Timescales for Radiation Belt Electron Acceleration and Loss Due to Resonant Wave-Particle Interactions: 2. {Evaluation} for {VLF} Chorus, {ELF} Hiss, and Electromagnetic Ion Cyclotron Waves.''} \emph{Journal of Geophysical Research: Space Physics} 112 (A4). \url{https://doi.org/10.1029/2006JA011993}.
-
-\bibitem[\citeproctext]{ref-summersLimitingEnergySpectrum2014}
-Summers, Danny, and Run Shi. 2014. {``Limiting Energy Spectrum of an Electron Radiation Belt.''} \emph{Journal of Geophysical Research: Space Physics} 119 (8): 6313--26. \url{https://doi.org/10.1002/2014JA020250}.
-
-\bibitem[\citeproctext]{ref-summersLimitStablyTrapped2009}
-Summers, Danny, Rongxin Tang, and Richard M. Thorne. 2009. {``Limit on Stably Trapped Particle Fluxes in Planetary Magnetospheres.''} \emph{Journal of Geophysical Research: Space Physics} 114 (A10). \url{https://doi.org/10.1029/2009JA014428}.
-
-\bibitem[\citeproctext]{ref-summersRelativisticElectronPitchangle2003}
-Summers, Danny, and Richard M. Thorne. 2003. {``Relativistic Electron Pitch-Angle Scattering by Electromagnetic Ion Cyclotron Waves During Geomagnetic Storms.''} \emph{Journal of Geophysical Research: Space Physics} 108 (A4). \url{https://doi.org/10.1029/2002JA009489}.
-
-\end{CSLReferences}
+  \bibliography{../../../../files/references.bib,../../../../../share/bibliography/research.bib}
 
 
+\bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
 
 \end{document}
