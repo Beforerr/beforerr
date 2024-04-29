@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.519">
+<meta name="generator" content="quarto-1.5.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr - Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Fluxes</title>
+<title>beforerr – Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Fluxes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -67,6 +87,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -120,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <a href="https://github.com/Beforerr/beforerr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -136,11 +185,24 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation">Background and Motivation</a></li>
-  <li><a href="#proposed-data-and-detailed-analysis-approach" id="toc-proposed-data-and-detailed-analysis-approach" class="nav-link" data-scroll-target="#proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</a></li>
+  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation">Background and Motivation</a>
+  <ul class="collapse">
+  <li><a href="#interactions-of-waves-with-radiation-belt-electrons" id="toc-interactions-of-waves-with-radiation-belt-electrons" class="nav-link" data-scroll-target="#interactions-of-waves-with-radiation-belt-electrons">Interactions of Waves with Radiation Belt Electrons</a></li>
+  <li><a href="#origin-and-characteristics-of-waves" id="toc-origin-and-characteristics-of-waves" class="nav-link" data-scroll-target="#origin-and-characteristics-of-waves">Origin and Characteristics of Waves</a></li>
+  <li><a href="#role-of-emic-waves-in-space-weather" id="toc-role-of-emic-waves-in-space-weather" class="nav-link" data-scroll-target="#role-of-emic-waves-in-space-weather">Role of EMIC Waves in Space Weather</a></li>
+  <li><a href="#gaps-in-current-understanding" id="toc-gaps-in-current-understanding" class="nav-link" data-scroll-target="#gaps-in-current-understanding">Gaps in Current Understanding</a></li>
+  </ul></li>
+  <li><a href="#proposed-data-and-detailed-analysis-approach" id="toc-proposed-data-and-detailed-analysis-approach" class="nav-link" data-scroll-target="#proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</a>
+  <ul class="collapse">
+  <li><a href="#data-acquisition-and-sources" id="toc-data-acquisition-and-sources" class="nav-link" data-scroll-target="#data-acquisition-and-sources">Data Acquisition and Sources</a></li>
+  <li><a href="#analytical-methods" id="toc-analytical-methods" class="nav-link" data-scroll-target="#analytical-methods">Analytical Methods</a></li>
+  <li><a href="#simulation-and-modeling" id="toc-simulation-and-modeling" class="nav-link" data-scroll-target="#simulation-and-modeling">Simulation and Modeling</a></li>
+  <li><a href="#research-questions-addressed" id="toc-research-questions-addressed" class="nav-link" data-scroll-target="#research-questions-addressed">Research Questions Addressed</a></li>
   <li><a href="#expected-contributions" id="toc-expected-contributions" class="nav-link" data-scroll-target="#expected-contributions">Expected Contributions</a></li>
+  </ul></li>
   <li><a href="#discussion-and-future-work" id="toc-discussion-and-future-work" class="nav-link" data-scroll-target="#discussion-and-future-work">Discussion and Future Work</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures">Figures</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/2024_pre/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="proposal_EMIC.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -167,63 +229,85 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><strong>PhD Candidate: Zijin Zhang</strong></p>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Electromagnetic Ion Cyclotron (EMIC) waves are fundamental plasma wave phenomena in Earth’s magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. These interactions often lead to significant modulation of electron fluxes, contributing to both electron acceleration and loss. This study aims to deepen the understanding of how EMIC waves, in concert with other wave modes such as whistler-mode chorus waves and phenomena like plasma sheet injections, impact the behavior of radiation belt electrons during various geomagnetic conditions. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, this study will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.</p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Electromagnetic Ion Cyclotron (EMIC) waves and whistler waves are fundamental plasma wave phenomena in Earth’s magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. These interactions often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies <span class="citation" data-cites="miyoshiRebuildingProcessOuter2003 sorathiaModelingDepletionRecovery2018">(<a href="#ref-miyoshiRebuildingProcessOuter2003" role="doc-biblioref">Miyoshi et al. 2003</a>; <a href="#ref-sorathiaModelingDepletionRecovery2018" role="doc-biblioref">Sorathia et al. 2018</a>)</span> and EMIC &amp; whistler waves causing electron losses through pitch angle scattering <span class="citation" data-cites="summersRelativisticElectronPitchangle2003 summersTimescalesRadiationBelt2007">(<a href="#ref-summersRelativisticElectronPitchangle2003" role="doc-biblioref">Summers and Thorne 2003</a>; <a href="#ref-summersTimescalesRadiationBelt2007" role="doc-biblioref">Summers, Ni, and Meredith 2007b</a>)</span>. This study aims to deepen the understanding of how these waves, in concert with other phenomena like plasma sheet injections, impact the behavior of radiation belt electrons. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, this study will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.</p>
+<!-- Understanding the complex interplay between these waves and radiation belt electrons is crucial for predicting space weather effects and mitigating risks to satellites and other space-based technologies. -->
 </section>
-<section id="background-and-motivation" class="level2">
-<h2 class="anchored" data-anchor-id="background-and-motivation">Background and Motivation</h2>
-<p>The dynamic environments of Earth’s radiation belts are shaped by a complex interplay of different types of waves and particle populations. Among these, Electromagnetic Ion Cyclotron (EMIC) waves play a pivotal role in the energy dynamics of radiation belt electrons. These waves, primarily generated through instabilities associated with the anisotropic temperature distribution of ions, have been the focus of significant research due to their ability to effectively resonate with high-energy electrons (Millan &amp; Thorne, 2007; Jordanova et al., 2010).</p>
-<p><strong>Origin and Characteristics of EMIC Waves:</strong></p>
-<p>EMIC waves arise predominantly during geomagnetic storms when rapid injections of energetic ions from the solar wind into the magnetosphere create temperature anisotropies (Cornwall et al., 1970; Anderson et al., 1996). These waves have been observed in different frequency bands corresponding to the ion species (H+, He+, O+) that drive them, each influencing different electron populations within the radiation belts. The interaction of these waves with electrons, particularly through resonant scattering, can lead to significant modifications in electron pitch angles and energies, contributing to both acceleration and loss processes.</p>
-<p><strong>Interactions with Radiation Belt Electrons:</strong>
-The resonance with radiation belt electrons typically results in increased pitch angle scattering, particularly for electrons at energies of hundreds of keV to several MeV. This scattering can fill the loss cone and lead to electron precipitation into the Earth’s atmosphere, effectively depleting the radiation belt populations (Thorne et al., 2005; Summers et al., 2007). Furthermore, recent studies have highlighted that under certain conditions, EMIC waves can also accelerate electrons to ultra-relativistic energies through mechanisms that are not yet fully understood and are a current area of active research (Miyoshi et al., 2013; Foster et al., 2014).</p>
-<p><strong>Role of EMIC Waves in Space Weather:</strong>
-Understanding the interactions between EMIC waves and radiation belt electrons is crucial for predicting space weather effects, particularly since these interactions can lead to rapid changes in radiation belt configurations, posing risks to satellites and other space-based technologies (Baker et al., 2004; Horne et al., 2005). The 2003 Halloween storm provided a clear example of how enhanced EMIC wave activity correlated with significant radiation belt electron flux decreases, highlighting the importance of including these waves in predictive models (Turner et al., 2012).</p>
-<p><strong>Gaps in Current Understanding:</strong>
-Despite significant advances, there remain substantial gaps in our understanding of the conditions under which EMIC waves are most effective at causing electron losses and what roles other concurrent processes (e.g., whistler-mode chorus waves and plasma sheet injections) play in modifying these interactions. The proposed study aims to bridge these gaps by combining observational data analysis with theoretical modeling efforts.</p>
-<p>This enriched background sets a solid foundation for investigating the interactions of EMIC waves with radiation belt electrons and underscores the importance of this research in advancing our understanding of magnetospheric physics and improving our ability to forecast space weather impacts effectively.</p>
+<section id="background-and-motivation" class="level1">
+<h1>Background and Motivation</h1>
+<section id="interactions-of-waves-with-radiation-belt-electrons" class="level3">
+<h3 class="anchored" data-anchor-id="interactions-of-waves-with-radiation-belt-electrons">Interactions of Waves with Radiation Belt Electrons</h3>
+<p>Relativistic electron fluxes in Earth’s inner magnetosphere are greatly affected by electron scattering to the atmosphere via resonant interactions with whistler-mode and electromagnetic ion cyclotron (EMIC) waves <span class="citation" data-cites="millanReviewRadiationBelt2007 summersTimescalesRadiationBelt2007a">(<a href="#ref-millanReviewRadiationBelt2007" role="doc-biblioref">Millan and Thorne 2007</a>; <a href="#ref-summersTimescalesRadiationBelt2007a" role="doc-biblioref">Summers, Ni, and Meredith 2007a</a>)</span>. Near the loss-cone, electron scattering rates for EMIC waves at such energies are much larger than for whistler-mode waves <span class="citation" data-cites="glauertCalculationPitchAngle2005">(<a href="#ref-glauertCalculationPitchAngle2005" role="doc-biblioref">Glauert and Horne 2005</a>)</span>. Thus, EMIC wave-driven electron precipitation is considered a key contributor to relativistic electron losses at energies exceeding the minimum energy for cyclotron resonance with such waves, <span class="math inline">\(E_{\min}\sim 0.5-1\)</span> MeV <span class="citation" data-cites="summersRelativisticElectronPitchangle2003 summersTimescalesRadiationBelt2007">(<a href="#ref-summersRelativisticElectronPitchangle2003" role="doc-biblioref">Summers and Thorne 2003</a>; <a href="#ref-summersTimescalesRadiationBelt2007" role="doc-biblioref">Summers, Ni, and Meredith 2007b</a>)</span>. Numerical simulations of the outer radiation belt dynamics <span class="citation" data-cites="maModelingInwardDiffusion2015">(<a href="#ref-maModelingInwardDiffusion2015" role="doc-biblioref">Ma et al. 2015</a>)</span> and data-model comparisons <span class="citation" data-cites="angelopoulosEnergeticElectronPrecipitation2023">(<a href="#ref-angelopoulosEnergeticElectronPrecipitation2023" role="doc-biblioref">Angelopoulos et al. 2023</a>)</span> have demonstrated that EMIC waves can scatter relativistic electrons efficiently and deplete their fluxes quickly in the outer radiation belt.</p>
+<p>For energies below ultra-relativistic energies (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering mostly affects low pitch-angle electrons <span class="citation" data-cites="kerstenElectronLossesRadiation2014">(equatorial <span class="math inline">\(\alpha_{eq}&lt;30^\circ\)</span>, see <a href="#ref-kerstenElectronLossesRadiation2014" role="doc-biblioref">Kersten et al. 2014</a>)</span>. Therefore, additional high pitch-angle electron scattering by whistler-mode waves is required to assist EMIC waves in the precipitation of the main, near-equatorial, (trapped) electron population <span class="citation" data-cites="mourenasFastDropoutsMultiMeV2016">(<a href="#ref-mourenasFastDropoutsMultiMeV2016" role="doc-biblioref">Mourenas et al. 2016</a>)</span>. A combination of electron scattering by whistler-mode and EMIC waves at the same <span class="math inline">\(L\)</span>-shell (even if at different longitudes) can result in a very effective electron flux depletion <span class="citation" data-cites="mourenasFastDropoutsMultiMeV2016 drozdovDepletionsMultiMeVElectrons2022">(<a href="#ref-mourenasFastDropoutsMultiMeV2016" role="doc-biblioref">Mourenas et al. 2016</a>; <a href="#ref-drozdovDepletionsMultiMeVElectrons2022" role="doc-biblioref">Drozdov et al. 2022</a>)</span>. Verification of this electron loss mechanism requires a combination of satellites near the equator (to measure the waves and equatorial pitch-angle electron fluxes) and at low-altitude (to measure precipitating electron fluxes).</p>
 </section>
-<section id="proposed-data-and-detailed-analysis-approach" class="level2">
-<h2 class="anchored" data-anchor-id="proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</h2>
-<p><strong>Data Acquisition and Sources:</strong></p>
+<section id="origin-and-characteristics-of-waves" class="level3">
+<h3 class="anchored" data-anchor-id="origin-and-characteristics-of-waves">Origin and Characteristics of Waves</h3>
+<!--
+#| Chatgpt
+EMIC waves arise predominantly during geomagnetic storms when rapid injections of energetic ions from the solar wind into the magnetosphere create temperature anisotropies (Cornwall et al., 1970; Anderson et al., 1996). These waves have been observed in different frequency bands corresponding to the ion species (H+, He+, O+) that drive them, each influencing different electron populations within the radiation belts. The interaction of these waves with electrons, particularly through resonant scattering, can lead to significant modifications in electron pitch angles and energies, contributing to both acceleration and loss processes. -->
+<p>EMIC waves are often generated by anisotropic ion populations from plasma sheet injections . These injections also create anisotropic “seed” electrons , the free energy source for whistler-mode chorus waves . Such chorus waves can effectively accelerate the same seed electrons to relativistic energies <span class="citation" data-cites="miyoshiRebuildingProcessOuter2003 thorneRapidLocalAcceleration2013 mourenasApproximateAnalyticalSolutions2014 allisonLocalHeatingRadiation2020">(<a href="#ref-miyoshiRebuildingProcessOuter2003" role="doc-biblioref">Miyoshi et al. 2003</a>; <a href="#ref-thorneRapidLocalAcceleration2013" role="doc-biblioref">Thorne et al. 2013</a>; <a href="#ref-mourenasApproximateAnalyticalSolutions2014" role="doc-biblioref">Mourenas et al. 2014</a>; <a href="#ref-allisonLocalHeatingRadiation2020" role="doc-biblioref">Allison and Shprits 2020</a>)</span>. Therefore, there is a competition between electron acceleration by whistler-mode waves <span class="citation" data-cites="sorathiaModelingDepletionRecovery2018">(supported by direct adiabatic heating during injections, see, e.g. <a href="#ref-sorathiaModelingDepletionRecovery2018" role="doc-biblioref">Sorathia et al. 2018</a>)</span> and electron precipitation by EMIC and chorus waves, and this competition should ultimately shape the energy spectrum of radiation belt electrons after a series of plasma sheet injections. Several recent publications indicate that the electron energy spectrum may have an upper limit corresponding to a balance between electron injections and precipitation loss, controlled by whistler-mode waves <span class="citation" data-cites="oliferTaleTwoRadiation2021 oliferNaturalLimitSpectral2022">(<a href="#ref-oliferTaleTwoRadiation2021" role="doc-biblioref">Olifer et al. 2021</a>, <a href="#ref-oliferNaturalLimitSpectral2022" role="doc-biblioref">2022</a>)</span>. The existence of such an upper limit has been predicted by <span class="citation" data-cites="kennelLimitStablyTrapped1966">Kennel and Petschek (<a href="#ref-kennelLimitStablyTrapped1966" role="doc-biblioref">1966</a>)</span>, and reevaluated for relativistic electrons by <span class="citation" data-cites="summersLimitStablyTrapped2009">Summers, Tang, and Thorne (<a href="#ref-summersLimitStablyTrapped2009" role="doc-biblioref">2009</a>)</span> and <span class="citation" data-cites="summersLimitingEnergySpectrum2014">Summers and Shi (<a href="#ref-summersLimitingEnergySpectrum2014" role="doc-biblioref">2014</a>)</span>. Several of its main assumptions have been verified using ELFIN data <span class="citation" data-cites="mourenasCheckingKeyAssumptions2024">(<a href="#ref-mourenasCheckingKeyAssumptions2024" role="doc-biblioref">Mourenas et al. 2024</a>)</span>. The Kennel-Petschek upper limit is based on the idea that injected electrons generate whistler-mode waves (with exponentially higher wave power for electron fluxes above the flux limit) that ultimately scatter these same injected electrons into the atmosphere. The competition between linearly increasing anisotropic electron fluxes and exponentially faster electron losses into the atmosphere due to exponentially increasing wave growth, leads to a stationary solution in the diffusion (Fokker-Planck) equation describing electron flux dynamics. Inclusion of EMIC wave-driven loss into this balance reduces the upper limit of the electron flux at high energy <span class="citation" data-cites="mourenasExtremeEnergySpectra2022">(<a href="#ref-mourenasExtremeEnergySpectra2022" role="doc-biblioref">Mourenas et al. 2022</a>)</span>.</p>
+</section>
+<section id="role-of-emic-waves-in-space-weather" class="level3">
+<h3 class="anchored" data-anchor-id="role-of-emic-waves-in-space-weather">Role of EMIC Waves in Space Weather</h3>
+<p>Understanding the interactions between EMIC waves and radiation belt electrons is crucial for predicting space weather effects, particularly since these interactions can lead to rapid changes in radiation belt configurations, posing risks to satellites and other space-based technologies (Baker et al., 2004; Horne et al., 2005). The 2003 Halloween storm provided a clear example of how enhanced EMIC wave activity correlated with significant radiation belt electron flux decreases, highlighting the importance of including these waves in predictive models (Turner et al., 2012).</p>
+</section>
+<section id="gaps-in-current-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="gaps-in-current-understanding">Gaps in Current Understanding</h3>
+<p>Despite significant advances, there remain substantial gaps in our understanding of what roles these coexistent waves with concurrent processes (plasma sheet injections) play in modifying these interactions with energetic particles. The proposed study aims to bridge these gaps by combining observational data analysis with theoretical modeling efforts.</p>
+<p>This enriched background sets a solid foundation for investigating the interactions of EMIC &amp; whitler waves with radiation belt electrons and underscores the importance of this research in advancing our understanding of magnetospheric physics and improving our ability to forecast space weather impacts effectively.</p>
+</section>
+</section>
+<section id="proposed-data-and-detailed-analysis-approach" class="level1">
+<h1>Proposed Data and Detailed Analysis Approach</h1>
+<section id="data-acquisition-and-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-acquisition-and-sources">Data Acquisition and Sources</h3>
 <ul>
 <li><p><strong>ELFIN CubeSat:</strong> Employ low-altitude measurements from the ELFIN CubeSat to quantify the effects of EMIC waves on electron precipitation. ELFIN’s unique orbital characteristics allow it to measure loss cone distributions and provide a direct measure of wave-driven electron losses, enhancing our understanding of wave-particle interaction dynamics in the radiation belts.</p></li>
 <li><p><strong>Van Allen Probes:</strong> Utilize extensive datasets from the Van Allen Probes, which include electric and magnetic field measurements, plasma wave spectra, and particle detection (electron and ion fluxes) across different energy ranges. These data are essential for directly observing EMIC waves and assessing their interactions with radiation belt electrons during different geomagnetic conditions.</p></li>
 <li><p><strong>ERG (Arase) Satellite:</strong> Draw upon high-resolution data from the ERG satellite, which offers crucial insights into the inner magnetosphere’s dynamics. ERG’s suite of instruments provides critical measurements of electron density, electric fields, and magnetic fields that help identify the conditions conducive to EMIC wave generation and propagation.</p></li>
 <li><p><strong>Magnetospheric Multiscale (MMS) Mission:</strong> Analyze high-resolution data from the MMS mission, which is key for understanding the microphysics of wave-particle interactions, especially during short-duration events and smaller spatial scales that are not resolved by other satellites.</p></li>
 </ul>
-<p><strong>Analytical Methods:</strong></p>
+</section>
+<section id="analytical-methods" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-methods">Analytical Methods</h2>
 <ul>
 <li><p><strong>Wave-Particle Interaction Analysis:</strong> Use phase space density calculations and quasi-linear theory to analyze how EMIC waves scatter radiation belt electrons into the loss cone, leading to precipitation. This method helps in quantifying the diffusion coefficients which are critical for understanding the rate and extent of electron flux changes.</p></li>
 <li><p><strong>Event Selection and Case Studies:</strong> Identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations.</p></li>
 </ul>
-<p><strong>Simulation and Modeling:</strong></p>
+</section>
+<section id="simulation-and-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-and-modeling">Simulation and Modeling</h2>
 <ul>
-<li><p><strong>Diffusion Model Enhancement:</strong> Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions.</p></li>
-<li><p><strong>Numerical Simulations:</strong> Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data.</p></li>
-<li><p><strong>Model Validation and Iterative Refinement:</strong> Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios.</p></li>
+<li><strong>Diffusion Model Enhancement:</strong> Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions.</li>
 </ul>
-<p><strong>Research Questions Addressed:</strong></p>
+<!-- - **Numerical Simulations:** Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data. -->
+<ul>
+<li><strong>Model Validation and Iterative Refinement:</strong> Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios.</li>
+</ul>
+</section>
+<section id="research-questions-addressed" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-addressed">Research Questions Addressed</h2>
 <ol type="1">
-<li><strong>Mechanism Elucidation:</strong> How exactly do EMIC waves influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?</li>
-<li><strong>Modeling Improvements:</strong> Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts?</li>
-<li><strong>Predictive Capabilities:</strong> How effectively can the refined models predict changes in electron fluxes during geomagnetic storms, and what improvements are necessary to achieve better predictive reliability?</li>
+<li><strong>Mechanism Elucidation:</strong> How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?</li>
+<li><strong>Modeling Improvements:</strong> Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts?
+<!-- 3. **Predictive Capabilities:** How effectively can the refined models predict changes in electron fluxes during geomagnetic storms, and what improvements are necessary to achieve better predictive reliability? --></li>
 </ol>
 <p>By addressing these questions through a detailed analytical and simulation-based approach, the proposed research aims to significantly advance our understanding of EMIC waves’ role in radiation belt dynamics.</p>
 </section>
 <section id="expected-contributions" class="level2">
 <h2 class="anchored" data-anchor-id="expected-contributions">Expected Contributions</h2>
-<p>This research project is poised to make contributions to our understanding of magnetospheric dynamics, particularly in relation to how EMIC waves influence radiation belt electrons. The integration of empirical data from multiple satellite sources with advanced simulation techniques aims to create a robust analytical framework capable of deciphering the complex interactions within Earth’s magnetosphere. Specific expected contributions include:</p>
+<p>This research project is poised to make contributions to our understanding of magnetospheric dynamics, particularly in relation to how EMIC&amp;whistler waves influence radiation belt electrons. The integration of empirical data from multiple satellite sources with advanced simulation techniques aims to create a robust analytical framework capable of deciphering the complex interactions within Earth’s magnetosphere. Specific expected contributions include:</p>
 <ol type="1">
 <li><p><strong>Empirical Analysis of Wave-Particle Interactions:</strong> By leveraging data from the Van Allen Probes, ERG, MMS, and ELFIN, this study will provide comprehensive empirical insights into how EMIC waves interact with radiation belt electrons. This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions.</p></li>
 <li><p><strong>Advanced Theoretical Modeling:</strong> The development and enhancement of diffusion models that incorporate refined EMIC wave characteristics will offer new theoretical insights into the mechanisms driving electron dynamics in the radiation belts. This will facilitate a better understanding of the conditions under which EMIC waves lead to electron acceleration or loss, filling a significant gap in the current scientific literature.</p></li>
 <li><p><strong>Improved Predictive Capabilities for Space Weather:</strong> By refining simulation models to better predict the impacts of EMIC waves on radiation belt dynamics, this research will enhance our ability to forecast space weather effects, thereby contributing to more effective mitigation strategies for protecting satellites and other space-based technologies from adverse effects.</p></li>
-<li><p><strong>Publications and Dissemination:</strong> The findings from this study are expected to be disseminated through several peer-reviewed scientific papers, presentations at major international conferences, and integrations into global space weather modeling tools, reaching both academic audiences and space weather practitioners.</p></li>
 </ol>
+<!-- 4. **Publications and Dissemination:** The findings from this study are expected to be disseminated through several peer-reviewed scientific papers, presentations at major international conferences, and integrations into global space weather modeling tools, reaching both academic audiences and space weather practitioners. -->
 </section>
-<section id="discussion-and-future-work" class="level2">
-<h2 class="anchored" data-anchor-id="discussion-and-future-work">Discussion and Future Work</h2>
+</section>
+<section id="discussion-and-future-work" class="level1">
+<h1>Discussion and Future Work</h1>
 <p>The findings from this research will deepen our understanding of magnetospheric physics, particularly the role of EMIC waves in electron dynamics. However, several questions are likely to emerge from this study, guiding future research efforts:</p>
 <ul>
 <li><p><strong>Wave Source Regions and Propagation:</strong> Further investigations may be required to identify the specific source regions of EMIC waves and their propagation characteristics through the magnetosphere. Understanding these aspects could enhance predictions of when and where EMIC waves will impact electron populations.</p></li>
@@ -231,14 +315,91 @@ Despite significant advances, there remain substantial gaps in our understanding
 <li><p><strong>Technological Applications:</strong> The development of real-time monitoring tools based on the findings from this research could be explored. These tools would use satellite data to provide immediate assessments of EMIC wave activity and its potential impacts, offering valuable information for satellite operators and space weather forecasters.</p></li>
 </ul>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="level1">
+<h1>Summary</h1>
 <p>The proposed research is designed to tackle some of the most pressing questions in space physics regarding the impact of EMIC waves on radiation belt dynamics. Through a combination of detailed empirical analysis and advanced theoretical modeling, this project aims to provide significant insights and tools for predicting space weather, thereby contributing to our ability to safeguard and optimize the operation of space-based technologies.</p>
+</section>
+<section id="figures" class="level1">
+<h1>Figures</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_orbit_multi_mission_conjunctions.png" class="img-fluid figure-img"></p>
+<figcaption>(top) An overview of the mission orbits recorded on April 17, 2021, from 00:00 to 12:00 UTC. The orbits of the various missions are projected onto the MLT and <span class="math inline">\(L\)</span>-shell plane, using Tsyganenko 2001 model. (bottom) Sym-H and SME indices during this event.</figcaption>
+</figure>
+</div>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-allisonLocalHeatingRadiation2020" class="csl-entry" role="listitem">
+Allison, Hayley J., and Yuri Y. Shprits. 2020. <span>“Local Heating of Radiation Belt Electrons to Ultra-Relativistic Energies.”</span> <em>Nature Communications</em> 11 (September): 4533. <a href="https://doi.org/10.1038/s41467-020-18053-z">https://doi.org/10.1038/s41467-020-18053-z</a>.
+</div>
+<div id="ref-angelopoulosEnergeticElectronPrecipitation2023" class="csl-entry" role="listitem">
+Angelopoulos, V., X. -J. Zhang, A. V. Artemyev, D. Mourenas, E. Tsai, C. Wilkins, A. Runov, et al. 2023. <span>“Energetic <span>Electron Precipitation Driven</span> by <span>Electromagnetic Ion Cyclotron Waves</span> from <span>ELFIN</span>’s <span>Low Altitude Perspective</span>.”</span> <em>Space Science Reviews</em> 219 (August): 37. <a href="https://doi.org/10.1007/s11214-023-00984-w">https://doi.org/10.1007/s11214-023-00984-w</a>.
+</div>
+<div id="ref-drozdovDepletionsMultiMeVElectrons2022" class="csl-entry" role="listitem">
+Drozdov, A. Y., H. J. Allison, Y. Y. Shprits, M. E. Usanova, A. Saikin, and D. Wang. 2022. <span>“Depletions of <span>Multi-MeV Electrons</span> and <span>Their Association</span> to <span>Minima</span> in <span>Phase Space Density</span>.”</span> <em>Geophysical Research Letters</em> 49 (April): e97620. <a href="https://doi.org/10.1029/2021GL09762010.1002/essoar.10510085.1">https://doi.org/10.1029/2021GL09762010.1002/essoar.10510085.1</a>.
+</div>
+<div id="ref-glauertCalculationPitchAngle2005" class="csl-entry" role="listitem">
+Glauert, Sarah A., and Richard B. Horne. 2005. <span>“Calculation of Pitch Angle and Energy Diffusion Coefficients with the <span>PADIE</span> Code.”</span> <em>Journal of Geophysical Research: Space Physics</em> 110 (A4). <a href="https://doi.org/10.1029/2004JA010851">https://doi.org/10.1029/2004JA010851</a>.
+</div>
+<div id="ref-kennelLimitStablyTrapped1966" class="csl-entry" role="listitem">
+Kennel, C. F., and H. E. Petschek. 1966. <span>“Limit on Stably Trapped Particle Fluxes.”</span> <em>Journal of Geophysical Research (1896-1977)</em> 71 (1): 1–28. <a href="https://doi.org/10.1029/JZ071i001p00001">https://doi.org/10.1029/JZ071i001p00001</a>.
+</div>
+<div id="ref-kerstenElectronLossesRadiation2014" class="csl-entry" role="listitem">
+Kersten, Tobias, Richard B. Horne, Sarah A. Glauert, Nigel P. Meredith, Brian J. Fraser, and Russell S. Grew. 2014. <span>“Electron Losses from the Radiation Belts Caused by <span>EMIC</span> Waves.”</span> <em>Journal of Geophysical Research: Space Physics</em> 119 (11): 8820–37. <a href="https://doi.org/10.1002/2014JA020366">https://doi.org/10.1002/2014JA020366</a>.
+</div>
+<div id="ref-maModelingInwardDiffusion2015" class="csl-entry" role="listitem">
+Ma, Q., W. Li, R. M. Thorne, B. Ni, C. A. Kletzing, W. S. Kurth, G. B. Hospodarsky, et al. 2015. <span>“Modeling Inward Diffusion and Slow Decay of Energetic Electrons in the <span>Earth</span>’s Outer Radiation Belt.”</span> <em>Geophysical Research Letters</em> 42 (4): 987–95. <a href="https://doi.org/10.1002/2014GL062977">https://doi.org/10.1002/2014GL062977</a>.
+</div>
+<div id="ref-millanReviewRadiationBelt2007" class="csl-entry" role="listitem">
+Millan, R. M., and R. M. Thorne. 2007. <span>“Review of Radiation Belt Relativistic Electron Losses.”</span> <em>Journal of Atmospheric and Solar-Terrestrial Physics</em>, Global <span>Aspects</span> of <span>Magnetosphere-Ionosphere Coupling</span>, 69 (3): 362–77. <a href="https://doi.org/10.1016/j.jastp.2006.06.019">https://doi.org/10.1016/j.jastp.2006.06.019</a>.
+</div>
+<div id="ref-miyoshiRebuildingProcessOuter2003" class="csl-entry" role="listitem">
+Miyoshi, Yoshizumi, Akira Morioka, Hiroaki Misawa, Takahiro Obara, Tsugunobu Nagai, and Yoshiya Kasahara. 2003. <span>“Rebuilding Process of the Outer Radiation Belt During the 3 <span>November</span> 1993 Magnetic Storm: <span>NOAA</span> and <span>Exos-D</span> Observations.”</span> <em>Journal of Geophysical Research: Space Physics</em> 108 (A1): SMP 3-1-SMP 3-15. <a href="https://doi.org/10.1029/2001JA007542">https://doi.org/10.1029/2001JA007542</a>.
+</div>
+<div id="ref-mourenasApproximateAnalyticalSolutions2014" class="csl-entry" role="listitem">
+Mourenas, D., A. V. Artemyev, O. V. Agapitov, V. Krasnoselskikh, and W. Li. 2014. <span>“Approximate Analytical Solutions for the Trapped Electron Distribution Due to Quasi-Linear Diffusion by Whistler Mode Waves.”</span> <em>Journal of Geophysical Research (Space Physics)</em> 119 (December): 9962–77. <a href="https://doi.org/10.1002/2014JA020443">https://doi.org/10.1002/2014JA020443</a>.
+</div>
+<div id="ref-mourenasFastDropoutsMultiMeV2016" class="csl-entry" role="listitem">
+Mourenas, D., A. V. Artemyev, Q. Ma, O. V. Agapitov, and W. Li. 2016. <span>“Fast Dropouts of Multi-<span>MeV</span> Electrons Due to Combined Effects of <span>EMIC</span> and Whistler Mode Waves.”</span> <em>Geophysical Research Letters</em> 43 (9): 4155–63. <a href="https://doi.org/10.1002/2016GL068921">https://doi.org/10.1002/2016GL068921</a>.
+</div>
+<div id="ref-mourenasExtremeEnergySpectra2022" class="csl-entry" role="listitem">
+Mourenas, D., A. V. Artemyev, X.-J. Zhang, and V. Angelopoulos. 2022. <span>“Extreme <span>Energy Spectra</span> of <span>Relativistic Electron Flux</span> in the <span>Outer Radiation Belt</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 127 (11): e2022JA031038. <a href="https://doi.org/10.1029/2022JA031038">https://doi.org/10.1029/2022JA031038</a>.
+</div>
+<div id="ref-mourenasCheckingKeyAssumptions2024" class="csl-entry" role="listitem">
+———. 2024. <span>“Checking <span>Key Assumptions</span> of the <span>Kennel-Petschek Flux Limit With ELFIN CubeSats</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 129 (2): e2023JA032193. <a href="https://doi.org/10.1029/2023JA032193">https://doi.org/10.1029/2023JA032193</a>.
+</div>
+<div id="ref-oliferNaturalLimitSpectral2022" class="csl-entry" role="listitem">
+Olifer, L., I. R. Mann, S. G. Claudepierre, D. N. Baker, H. E. Spence, and L. G. Ozeke. 2022. <span>“A <span>Natural Limit</span> to the <span>Spectral Hardness</span> of <span>Worst Case Electron Radiation</span> in the <span>Terrestrial Van Allen Belt</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 127 (8): e2022JA030506. <a href="https://doi.org/10.1029/2022JA030506">https://doi.org/10.1029/2022JA030506</a>.
+</div>
+<div id="ref-oliferTaleTwoRadiation2021" class="csl-entry" role="listitem">
+Olifer, L., I. R. Mann, A. Kale, B. H. Mauk, S. G. Claudepierre, D. N. Baker, H. E. Spence, and L. G. Ozeke. 2021. <span>“A <span>Tale</span> of <span>Two Radiation Belts</span>: <span>The Energy-Dependence</span> of <span>Self-Limiting Electron Space Radiation</span>.”</span> <em>Geophysical Research Letters</em> 48 (20): e2021GL095779. <a href="https://doi.org/10.1029/2021GL095779">https://doi.org/10.1029/2021GL095779</a>.
+</div>
+<div id="ref-sorathiaModelingDepletionRecovery2018" class="csl-entry" role="listitem">
+Sorathia, Kareem A., Aleksandr Y. Ukhorskiy, Viacheslav G. Merkin, Joseph F. Fennell, and Seth G. Claudepierre. 2018. <span>“Modeling the <span>Depletion</span> and <span>Recovery</span> of the <span>Outer Radiation Belt During</span> a <span>Geomagnetic Storm</span>: <span>Combined MHD</span> and <span>Test Particle Simulations</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 123 (7): 5590–5609. <a href="https://doi.org/10.1029/2018JA025506">https://doi.org/10.1029/2018JA025506</a>.
+</div>
+<div id="ref-summersTimescalesRadiationBelt2007a" class="csl-entry" role="listitem">
+Summers, Danny, Binbin Ni, and Nigel P. Meredith. 2007a. <span>“Timescales for Radiation Belt Electron Acceleration and Loss Due to Resonant Wave-Particle Interactions: 1. <span>Theory</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 112 (A4). <a href="https://doi.org/10.1029/2006JA011801">https://doi.org/10.1029/2006JA011801</a>.
+</div>
+<div id="ref-summersTimescalesRadiationBelt2007" class="csl-entry" role="listitem">
+———. 2007b. <span>“Timescales for Radiation Belt Electron Acceleration and Loss Due to Resonant Wave-Particle Interactions: 2. <span>Evaluation</span> for <span>VLF</span> Chorus, <span>ELF</span> Hiss, and Electromagnetic Ion Cyclotron Waves.”</span> <em>Journal of Geophysical Research: Space Physics</em> 112 (A4). <a href="https://doi.org/10.1029/2006JA011993">https://doi.org/10.1029/2006JA011993</a>.
+</div>
+<div id="ref-summersLimitingEnergySpectrum2014" class="csl-entry" role="listitem">
+Summers, Danny, and Run Shi. 2014. <span>“Limiting Energy Spectrum of an Electron Radiation Belt.”</span> <em>Journal of Geophysical Research: Space Physics</em> 119 (8): 6313–26. <a href="https://doi.org/10.1002/2014JA020250">https://doi.org/10.1002/2014JA020250</a>.
+</div>
+<div id="ref-summersLimitStablyTrapped2009" class="csl-entry" role="listitem">
+Summers, Danny, Rongxin Tang, and Richard M. Thorne. 2009. <span>“Limit on Stably Trapped Particle Fluxes in Planetary Magnetospheres.”</span> <em>Journal of Geophysical Research: Space Physics</em> 114 (A10). <a href="https://doi.org/10.1029/2009JA014428">https://doi.org/10.1029/2009JA014428</a>.
+</div>
+<div id="ref-summersRelativisticElectronPitchangle2003" class="csl-entry" role="listitem">
+Summers, Danny, and Richard M. Thorne. 2003. <span>“Relativistic Electron Pitch-Angle Scattering by Electromagnetic Ion Cyclotron Waves During Geomagnetic Storms.”</span> <em>Journal of Geophysical Research: Space Physics</em> 108 (A4). <a href="https://doi.org/10.1029/2002JA009489">https://doi.org/10.1029/2002JA009489</a>.
+</div>
+<div id="ref-thorneRapidLocalAcceleration2013" class="csl-entry" role="listitem">
+Thorne, R. M., W. Li, B. Ni, Q. Ma, J. Bortnik, L. Chen, D. N. Baker, et al. 2013. <span>“Rapid Local Acceleration of Relativistic Radiation-Belt Electrons by Magnetospheric Chorus.”</span> <em>Nature</em> 504 (December): 411–14. <a href="https://doi.org/10.1038/nature12889">https://doi.org/10.1038/nature12889</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -274,18 +435,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -317,7 +467,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -352,7 +542,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -367,27 +561,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -402,10 +575,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -414,8 +591,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -650,7 +834,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    </div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/2024_pre/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
