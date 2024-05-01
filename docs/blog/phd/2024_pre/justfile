@@ -15,9 +15,5 @@ process-tex file:
    just rm_paragraph {{file}}
 
 process-texs:
-   just rm_bib proposal_EMIC.tex
+   just process-tex proposal_EMIC.tex
    just rm_bib proposal_SWD.tex
-
-default:
-   quarto render proposal_EMIC.qmd --to latex -M bibliography:files/references.bib
-   mv proposal_EMIC.tex overleaf/
