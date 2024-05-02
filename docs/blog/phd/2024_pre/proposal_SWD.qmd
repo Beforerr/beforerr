@@ -1,5 +1,5 @@
 ---
-title: Evolution and Impact of Solar Wind Discontinuities
+title: Dynamics of Solar Wind Discontinuities
 ---
 
 **PhD Candidate: Zijin Zhang**
@@ -12,9 +12,9 @@ Solar wind discontinuities, characterized by abrupt changes in magnetic field di
 
 The study of solar wind magnetic discontinuities, characterized by rapid variations in interplanetary magnetic fields, stands at the forefront of understanding key phenomena in Heliophysics. These discontinuities, manifesting as localized transient rotations or jumps in the magnetic field, are pivotal in processes such as efficient plasma heating and in hosting plasma instabilities associated with discontinuity currents, which are among the most intense currents in the solar wind. Theoretical models suggest that the formation and destruction of discontinuities are closely related to the nonlinear dynamics of Alfvén waves. These nonlinear processes can create significant isolated disturbances to the otherwise adiabatic evolution of the solar wind flow. Investigatation of the nonfluid (kinetic) properties of solar wind discontinuities reveals that electron density and temperature vary significantly across these discontinuities, underlining the importance of kinetic effects in discontinuity structure.
 
-As such, this study aims to :
+As such, this study aims to understand the dynamics of solar wind discontinuities by addressing two key questions
 
-1. **"How do these discontinuities evolve and influence the heating of the solar wind and the turbulence within the magnetic field?"**
+1. **"How do discontinuities evolve and influence the heating of the solar wind and the turbulence within the magnetic field?"**
 
 2. **"What are the kinetic processes behind the formation and evolution of these discontinuities?"**
 
@@ -34,7 +34,7 @@ Further advancements were made with data from the Helios-1, Helios-2, Ulysses an
 
 Ulysses measurements of the high-latitude solar wind at $1-5$ AU showed that the majority of discontinuities resided within the stream-stream interaction regions and/or within Alfvén wave trains [@tsurutaniInterplanetaryDiscontinuitiesAlfven1995; @tsurutaniReviewDiscontinuitiesAlfven1999]. The nonlinear evolution of Alfvén waves (wave steepening) can be the main cause of such discontinuities. The background plasma/magnetic field inhomogeneities and various dissipative processes are key to Alfvén wave nonlinear evolution \citep{Lerche75, Prakash&Diamond99, Medvedev97:prl, Nariyuki14, Yang15}. In hybrid simulations \citep[see][]{Vasquez&Hollweg98, Vasquez&Hollweg01, TenBarge&Howes13} and analytical models \citep[e.g.,][]{Kennel88:jetp, Hada89, Malkov91, Wu&Kennel92, Medvedev97:pop}, this steepening was shown to cause formation of discontinuities in configurations resembling the near-Earth observations. There are models predicting discontinuity formation \citep{Servidio15, Podesta&Roytershteyn17} and destruction \citep{Servidio11,Matthaeus15} due to dissipative processes (e.g., Alfvén wave steepening, magnetic reconnection) in the solar wind. However, the efficiency of these processes in realistic expanding solar wind was not yet tested against observations. 
 
-More recently, utilizing high-resolution plasma measurements from ARTEMIS and MMS missions, @artemyevKineticNatureSolar2019 showed that discontinuities have  kinetic characteristics for both tangential and rotational discontinuities: (1) Jumps in the tangential velocity component are well correlated with jumps in the Alfven speed, and (2) Electron density and temperature vary significantly across these discontinuities. These discoveries revealed the importance of ion and electron kinetics to discontinuity structure.
+More recently, utilizing high-resolution plasma measurements from ARTEMIS and MMS missions, @artemyevKineticNatureSolar2019 showed that discontinuities have kinetic characteristics for both tangential and rotational discontinuities: fluxes of electrons of different energies vary differently across these discontinuities. This discoveries revealed the importance of ion and electron kinetics to discontinuity structure.
 
 ### Current Gaps in Understanding
 
