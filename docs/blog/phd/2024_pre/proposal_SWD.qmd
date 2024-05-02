@@ -30,12 +30,6 @@ Moreover, they contribute significantly to the magnetic fluctuation spectra [@bo
 
 Further advancements were made with data from the Helios-1, Helios-2, Ulysses and Voyager missions, which explored discontinuities in three-dimensional space, revealing their prevalence and importance throughout the heliosphere [@marianiStatisticalStudyMagnetohydrodynamic1983; @tsurutaniNonlinearElectromagneticWaves1997]. As illustrated in @fig-1, these discontinuities are observed at a multitude of radial distances from the Sun. These findings underscored the need to understand the origin of discontinuities, which are thought to arise from dynamic processes on the Sun, including solar flares and coronal mass ejections, as well as through in-situ processes like local magnetic turbulence, magnetic reconnection and nonlinear wave interactions within the solar wind.
 
-::: {#fig-1}
-![](figures/schematic.png)
-
-Distribution of occurrence rate of solar wind discontinuities [@sodingRadialLatitudinalDependencies2001].
-:::
-
 ### The Role of Alfven wave and kinetic effects in the discontinuities
 
 Ulysses measurements of the high-latitude solar wind at $1-5$ AU showed that the majority of discontinuities resided within the stream-stream interaction regions and/or within Alfvén wave trains [@tsurutaniInterplanetaryDiscontinuitiesAlfven1995; @tsurutaniReviewDiscontinuitiesAlfven1999]. The nonlinear evolution of Alfvén waves (wave steepening) can be the main cause of such discontinuities. The background plasma/magnetic field inhomogeneities and various dissipative processes are key to Alfvén wave nonlinear evolution \citep{Lerche75, Prakash&Diamond99, Medvedev97:prl, Nariyuki14, Yang15}. In hybrid simulations \citep[see][]{Vasquez&Hollweg98, Vasquez&Hollweg01, TenBarge&Howes13} and analytical models \citep[e.g.,][]{Kennel88:jetp, Hada89, Malkov91, Wu&Kennel92, Medvedev97:pop}, this steepening was shown to cause formation of discontinuities in configurations resembling the near-Earth observations. There are models predicting discontinuity formation \citep{Servidio15, Podesta&Roytershteyn17} and destruction \citep{Servidio11,Matthaeus15} due to dissipative processes (e.g., Alfvén wave steepening, magnetic reconnection) in the solar wind. However, efficiency of these processes in realistic expanding solar wind was not yet tested against observations. 
@@ -65,13 +59,7 @@ This PhD research focuses on three main objectives:
 
 - **Parker Solar Probe** and **Juno**: These spacecraft provide high-resolution magnetic field and plasma data from the inner heliosphere to beyond 1 AU. The PSP’s close passes to the Sun offer unique insights into the nascent solar wind, while Juno’s trajectory up to Jupiter allows for studying the evolution of solar wind structures as they propagate outward.
 
-- Complementary Data from Other Missions: Data from missions like STEREO, ARTEMIS, and WIND will complement PSP and Juno observations, providing a broader contextual view of the heliospheric conditions and enabling a multi-point analysis of discontinuity properties.
-
-**Hybrid and PIC Simulation:**
-
-- Simulation Setup: Employ hybrid simulations first to model the nonlinear ion dynamics involved in the formation and evolution of solar wind discontinuities. Then, a full kinetic PIC simulation will be performed to study the electron dynamics associated with discontinuities. These simulations will integrate real solar wind parameters to create realistic scenarios for discontinuity development.
-
-- Model Validation: Validate the simulation outputs with observed data to ensure accuracy in the representation of physical processes such as wave propagation, steepening, and the resultant discontinuity formation.
+- Complementary Data from Other Missions: Data from missions like STEREO, ARTEMIS, and WIND will complement PSP and Juno observations, providing a broader contextual view of the heliospheric conditions and enabling a multi-point analysis of discontinuity properties [@velliUnderstandingOriginsHeliosphere2020].
 
 **Analytical Techniques:**
 
@@ -79,7 +67,38 @@ This PhD research focuses on three main objectives:
 
 - Comparative analysis: Analyze discontinuity occurrence rate and properties across different radial distances to determine spatial trends, untangle the temporal effect due to  solar variability.
 
-- Simulation study: Study the evolution of particle velocity distribution over space and time to understand their interactions with discontinuities, the pressure balance across discontinuities and the physical mechanisms in the energy transfer processes.
+Two promising approaches are proposed to study the evolution of solar wind discontinuities: The first approach involves studying conjunction events, where spacecraft are either contemporaneously aligned along the same spiral field line—thereby measuring solar wind emitted from the same region on the solar surface—or where spacecraft are positioned such that they measure the same solar wind plasma. This second alignment is determined by the difference in radial distance, $\delta R$, corresponding to the solar wind travel time, $\tau = \delta R / V_{sw}$. An example of this approach is demonstrated in @fig-alignment, where plasma and magnetic field measurements from the Parker Solar Probe (PSP) and the Advanced Composition Explorer (ACE) display similar trends in magnetic field magnitude, plasma density, velocity, and temperature during the alignment period. This period corresponds to April 6-7, 2019 for PSP and April 7-9, 2019 for ACE. Further validation is provided by using the statistical plasma expansion model [@perroneRadialEvolutionSolar2019], where the plasma properties measured by PSP and projected to the ACE location show good agreement with the actual ACE measurements, as illustrated in @fig-evolution. This confirms the validity of the alignment approach for studying solar wind discontinuities.
+
+The second approach leverages big data collected over many years to compare solar wind discontinuities observed by different spacecraft at various radial distances. Due to the Sun's rapid rotation, solar wind plasma emitted from a single region on the solar surface sweeps across the entire heliosphere within a solar rotation period of 27 days. By utilizing solar wind measurements at 1 AU from STEREO, ARTEMIS, and WIND, and comparing these with data from Juno and PSP, it is possible to differentiate the effects of temporal variations in solar wind from those due to spatial variations (associated with radial distance from the Sun) in the occurrence rate and characteristics of discontinuities. An example of such a comparison for the occurrence rate is shown in @fig-rate, where the number of discontinuities measured per day by different spacecraft missions is plotted.
+
+In the proposed study, we will extend this comparison to the properties of discontinuities, such as their thickness, strength (current density), and orientation, to understand how these features evolve with radial distance from the Sun and how this properties are related to the local plasma properties. This will provide insights into the physical mechanisms that govern the formation and evolution of solar wind discontinuities as they propagate through the heliosphere.
+
+**Hybrid and PIC Simulation:**
+
+The proposed study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic Particle-in-Cell (PIC) simulation aimed at exploring the electron dynamics associated with these discontinuities. These simulations will be enriched with real solar wind parameters to create realistic scenarios for the examination of discontinuity development. Here we demonstrate the simulation setup using Hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind, as shown in @fig-hybrid.
+
+Further in-depth analysis will focus on the evolution of particle velocity distributions over space and time to gain insights into their interactions with discontinuities. This includes studying the pressure balance across discontinuities and delving into the physical mechanisms responsible for energy transfer processes. Such a comprehensive study will not only enhance our understanding of particle dynamics in the presence of discontinuities but also illuminate the broader implications for solar wind physics.
+
+Finally, to ensure the reliability and relevance of our simulation results, we will validate our findings against observed data. This validation process is crucial for confirming the accuracy of our simulations in representing key physical processes such as wave propagation, steepening, and the resultant formation of discontinuities. By aligning simulation outcomes with empirical observations, we can refine our models to better reflect the complexities of heliospheric phenomena.
+
+<!-- - Simulation Setup: Employ hybrid simulations first to model the nonlinear ion dynamics involved in the formation and evolution of solar wind discontinuities. Then, a full kinetic PIC simulation will be performed to study the electron dynamics associated with discontinuities. These simulations will integrate real solar wind parameters to create realistic scenarios for discontinuity development. -->
+
+<!-- - Simulation study: Study the evolution of particle velocity distribution over space and time to understand their interactions with discontinuities, the pressure balance across discontinuities and the physical mechanisms in the energy transfer processes. -->
+
+<!-- - Model Validation: Validate the simulation outputs with observed data to ensure accuracy in the representation of physical processes such as wave propagation, steepening, and the resultant discontinuity formation. -->
+
+
+## Summary
+
+This PhD project will employ a comprehensive approach to dissect the complex nature of solar wind discontinuities, offering insights into their fundamental properties and impacts across the heliosphere. By integrating observational data with theoretical analyses and numerical simulation, this research aims to unravel the intricate processes that govern the magnetic discontinuities, the key element of magnetic field turbulence and the primary interface of charged particle acceleration.
+
+## Figures
+
+::: {#fig-1}
+![](figures/schematic.png)
+
+Distribution of occurrence rate of solar wind discontinuities [@sodingRadialLatitudinalDependencies2001].
+:::
 
 ::: {#fig-examples}
 ![](figures/fig-ids_examples)
@@ -87,6 +106,28 @@ This PhD research focuses on three main objectives:
 Discontinuities detected by PSP, Juno, STEREO and near-Earth ARTEMIS satellite: red, blue, and black lines are $B_l$, $B_m$, and $|{\mathbf B}|$.
 :::
 
-## Summary
+::: {#fig-alignment}
+![](figures/psp_alignment.png)
 
-This PhD project will employ a comprehensive approach to dissect the complex nature of solar wind discontinuities, offering insights into their fundamental properties and impacts across the heliosphere. By integrating observational data with theoretical analyses and numerical simulation, this research aims to unravel the intricate processes that govern the magnetic discontinuities, the key element of magnetic field turbulence and the primary interface of charged particle acceleration.
+Measurement by PSP and ACE spacecrafts from 2019-04-06 to 2019-04-10. From top to bottom: (a) Magnetic field magnitude measured (b) Plasma density, (c) Plasma velocity, (d) Plasma temperature. 
+:::
+
+::: {#fig-evolution}
+![](figures/psp_properties_evolution.png)
+
+Plasma properties (plasma beta versus plasma speed normalized by Alfven speed) measured by PSP projected to the ACE location using the statistical plasma expansion model. Top panel shows the data from the candidate alignment period (2019-04-06 to 2019-04-07) and the bottom panel shows the data after the alignment period.
+:::
+
+::: {#fig-rate}
+![](figures/ocr_time_cleaned.png)
+
+The number of discontinuities measured by Juno per day coincides with the discontinuity number measured by STEREO, WIND, and ARTEMIS, when Juno is around $1$ AU. This number (occurrence rate) decreases with distance (with time after $\sim 2013$), as Juno moves from $1$ AU to $5$ AU. We will use the similar comparison for discontinuity characteristics and occurrence rate derived for PSP and Juno.
+:::
+
+::: {#fig-hybrid}
+
+Formation of a rotational discontinuity in the solar wind, reproduced using hybrid simulation. The magnetic field components $B_x$, $B_y$, and $B_z$ are shown in the top panel, while the ion velocity distribution function is displayed in the bottom panel.
+:::
+
+
+{{< pagebreak >}}

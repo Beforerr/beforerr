@@ -105,7 +105,7 @@ The proposed research is designed to tackle some of the most pressing questions 
 # Figures
 
 ::: {#fig-1}
-![](figures/fig1_orbit_multi_mission_conjunctions.png){width="60%"}
+![](figures/fig1_orbit_multi_mission_conjunctions.png){width="67%"}
 
 (top) An overview of the mission orbits recorded on April 17, 2021. The orbits of the various missions are projected onto the MLT and $L$-shell plane, using Tsyganenko model. (bottom) Sym-H and SME indices during this event.
 :::
