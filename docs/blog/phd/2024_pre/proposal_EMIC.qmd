@@ -46,37 +46,43 @@ Despite significant advances, there remain substantial gaps in our understanding
 
 **Magnetospheric Multiscale (MMS) Mission:** Analyze high-resolution data from the MMS mission, which is key for understanding the microphysics of wave-particle interactions, especially during short-duration events and smaller spatial scales that are not resolved by other satellites.
 
+We highlight a candidate conjunction event, as illustrated in @fig-1. Equatorial and low-altitude satellites allow direct observations of electron loss due to scattering by EMIC and whistler-mode waves, electron acceleration by whistler-mode waves, and plasma sheet injections.
+
 ## Analytical Methods
 
-First, we will identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations. 
-We highlight a candidate conjunction event, as illustrated in @fig-1. Equatorial and low-altitude satellites allow direct observations of electron loss due to scattering by EMIC and whistler-mode waves, electron acceleration by whistler-mode waves, and plasma sheet injections.
-In our analysis, we will utilize phase space density calculations and quasi-linear theory to analyze how EMIC waves scatter radiation belt electrons into the loss cone, leading to precipitation. By quantifying the diffusion coefficients, we can better understand the rate and extent of changes in electron flux. 
+First, we will identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations.
 
-## Simulation and Modeling
+@fig-elfin shows a clear example of the EMIC wave-driven electron precipitation observed by ELFIN CubeSats. We observe a high precipitating-to-trapped flux ratio $j_{prec}/j_{trap}$ during four ELFIN orbits. 
+Within $L \in [5,6]$ there is a peak of precipitating-to-trapped flux ratio above $300$ keV. This peak moves from $L \sim 6$ around 02:45 UT to $L \sim 5$ at 05:15 UT. Only EMIC wave-driven precipitation may have a low-energy cut-off of scattering fluxes around $\sim 500$ keV, which is a typical minimum resonant energy for EMIC waves [see the identification of other EMIC wave-driven precipitation events with similar precipitating-to-trapped ratios in @anNonresonantScatteringRelativistic2022; @angelopoulosEnergeticElectronPrecipitation2023]. Note that the efficient precipitation (large $j_{prec}/j_{trap}$) observed at $L>6.5$ is likely due to a combination of whistler-mode wave-driven precipitation [@shiRoleULFWaves2022] and precipitation due to the curvature scattering [@wilkinsStatisticalCharacteristicsElectron2023], while precipitation of $<300$ keV electrons at $L<5$ is driven by whistler-mode wave scattering [see similar examples of quasi-periodical precipitation on the dusk flank in @artemyevRoleDuctingRelativistic2021].
+Therefore, @fig-elfin demonstrates that during at least three hours, ELFIN observed continuous EMIC wave-driven losses of relativistic electrons. Taking into account that $j_{prec}/j_{trap}$ reaches one, we deal with the strong diffusion regime for $\sim$ 0.3--1 MeV electrons and, thus, one may expect a significant depletion of equatorial electron flux in this energy range, at least at low pitch-angles.
 
-In our simulation and modeling efforts, we focus on enhancing diffusion models by integrating the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This involves updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. Additionally, we implement a model validation and iterative refinement process. This systematic approach compares simulated results with satellite observations to enhance the reliability and accuracy of predictive models. The iterative refinement process ensures that our models remain robust and effective across a wide range of space weather scenarios.
+To further confirm the role of EMIC waves in driving electron precipitation, we will utilize phase space density calculations and quasi-linear theory to analyze how EMIC waves scatter radiation belt electrons into the loss cone, leading to precipitation. By quantifying the diffusion coefficients, we can better understand the rate and extent of changes in electron flux.
 
-<!-- - Diffusion Model Enhancement: Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. -->
+In the limit of near-equilibrium of the electron distribution near the loss-cone [@kennelLimitStablyTrapped1966] the average precipitating electron flux measured within the loss-cone by ELFIN CubeSats at low altitude, $j_{prec}$, can be expressed as a function of the trapped flux measured at an equatorial pitch-angle $5$% above the loss-cone angle $\alpha_{LC}$, denoted $j_{trap}$ [@mourenasUpperLimitOuter2023]. In the latest ELFIN data release, $j_{prec}$ is averaged weighted by solid angle, giving $j_{prec}/j_{trap}\approx 1.3/(z_0+z_0^2/200)$ with $z_0=2\alpha_{LC}/(\tau_B D_{\alpha\alpha})^{1/2}$ and $\tau_B$ the electron bounce period, valid for $j_{prec}/j_{trap}\in[0.001,0.85]$. 
+Accordingly, $D_{\alpha\alpha}$ at $\alpha_0=\alpha_{LC}$ can be inferred from the measured ratio $j_{prec}/j_{trap}$ at ELFIN, giving $D_{\alpha\alpha} \approx \frac{{\alpha_{LC}^2}}{{2500\, \tau_B }} \left(\sqrt{1+ \frac{{ j_{trap} }}{{ 38.5\, j_{prec} }} } -1 \right)^{-2}$. 
+The diffusion rates $D_{\alpha\alpha}$ inferred, using the above Equation, from time-averaged ELFIN measurements of precipitating and trapped electron fluxes are displayed in @fig-Daa_EMIC for different electron energies and different $L$. In the noon-dusk sector of the plasmaspheric plume, despite the theoretical impossibility of cyclotron resonance between 0.5-2 MeV electrons and typical EMIC wave frequencies, observed electron precipitation at these energies continues, particularly for low-energy electrons via scattering with high-frequency, low-amplitude H-band EMIC waves. 
+These results suggest the presence of duskside EMIC wave bursts with peak amplitudes $B_w\approx 0.5$ nT and a typical low-amplitude tail at high frequencies during this event. 
 
-<!-- - **Numerical Simulations:** Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data. -->
+In the proposed study, we will extend the analysis to chorus waves and further investigate the combined effects of EMIC and chorus waves on radiation belt electrons. By utilizing the observed wave properties with the aid of theoretical predictions, we aim to elucidate the underlying mechanisms that drive electron dynamics during storm-time events.
 
-<!-- - Model Validation and Iterative Refinement: Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios. -->
+<!-- ## Research Questions Addressed -->
 
-## Research Questions Addressed
-
-1. **Mechanism Elucidation:** How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?
-2. **Modeling Improvements:** Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts?
+<!-- 1. **Mechanism Elucidation:** How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains? -->
+<!-- 2. **Modeling Improvements:** Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts? -->
 <!-- 3. **Predictive Capabilities:** How effectively can the refined models predict changes in electron fluxes during geomagnetic storms, and what improvements are necessary to achieve better predictive reliability? -->
 
-By addressing these questions through a detailed analytical and simulation-based approach, the proposed research aims to significantly advance our understanding of EMIC waves' role in radiation belt dynamics.
+<!-- By addressing these questions through a detailed analytical and simulation-based approach, the proposed research aims to significantly advance our understanding of EMIC waves' role in radiation belt dynamics. -->
 
 ## Expected Contributions
 
-This research project is poised to make contributions to our understanding of magnetospheric dynamics, particularly in relation to how EMIC&whistler waves influence radiation belt electrons. The integration of empirical data from multiple satellite sources with advanced simulation techniques aims to create a robust analytical framework capable of deciphering the complex interactions within Earth's magnetosphere. Specific expected contributions include:
+This research project is poised to make contributions to our understanding of magnetospheric dynamics, particularly in relation to how EMIC&whistler waves influence radiation belt electrons. The integration of empirical data from multiple satellite sources with advanced theoretic modeling aims to create a robust analytical framework capable of deciphering the complex interactions within Earth's magnetosphere.
 
-1. **Empirical Analysis of Wave-Particle Interactions:** By leveraging data from the Van Allen Probes, ERG, MMS, and ELFIN, this study will provide comprehensive empirical insights into how EMIC waves interact with radiation belt electrons. This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions.
+<!-- By leveraging data from the Van Allen Probes, ERG, MMS, and ELFIN, this study will provide comprehensive empirical insights into how EMIC waves interact with radiation belt electrons. -->
+This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions. Specifically, we try to answer the following questions:
 
-2. Advanced Theoretical Modeling: The development and enhancement of diffusion models that incorporate refined EMIC wave characteristics will offer new theoretical insights into the mechanisms driving electron dynamics in the radiation belts. This will facilitate a better understanding of the conditions under which EMIC waves lead to electron acceleration or loss, filling a significant gap in the current scientific literature.
+**How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?**
+
+<!-- 2. Advanced Theoretical Modeling: The development and enhancement of diffusion models that incorporate refined EMIC wave characteristics will offer new theoretical insights into the mechanisms driving electron dynamics in the radiation belts. This will facilitate a better understanding of the conditions under which EMIC waves lead to electron acceleration or loss, filling a significant gap in the current scientific literature. -->
 
 <!-- 3. **Improved Predictive Capabilities for Space Weather:** By refining simulation models to better predict the impacts of EMIC waves on radiation belt dynamics, this research will enhance our ability to forecast space weather effects, thereby contributing to more effective mitigation strategies for protecting satellites and other space-based technologies from adverse effects. -->
 
@@ -90,7 +96,7 @@ The findings from this research will deepen our understanding of magnetospheric 
 
 - Interactions with Other Wave Modes: While this project focuses on EMIC waves, the magnetosphere contains multiple interacting wave modes. Future work could explore the interactions between EMIC waves and other wave types, such as ULF and VLF waves, to provide a more holistic view of the dynamics governing radiation belt electron fluxes.
 
-- Technological Applications: The development of real-time monitoring tools based on the findings from this research could be explored. These tools would use satellite data to provide immediate assessments of EMIC wave activity and its potential impacts, offering valuable information for satellite operators and space weather forecasters.
+<!-- - Technological Applications: The development of real-time monitoring tools based on the findings from this research could be explored. These tools would use satellite data to provide immediate assessments of EMIC wave activity and its potential impacts, offering valuable information for satellite operators and space weather forecasters. -->
 
 # Summary
 
@@ -99,9 +105,34 @@ The proposed research is designed to tackle some of the most pressing questions 
 # Figures
 
 ::: {#fig-1}
-![](figures/fig1_orbit_multi_mission_conjunctions.png){width="80%"}
+![](figures/fig1_orbit_multi_mission_conjunctions.png){width="60%"}
 
-(top) An overview of the mission orbits recorded on April 17, 2021, from 00:00 to 12:00 UTC. The orbits of the various missions are projected onto the MLT and $L$-shell plane, using Tsyganenko 2001 model. (bottom) Sym-H and SME indices during this event.
+(top) An overview of the mission orbits recorded on April 17, 2021. The orbits of the various missions are projected onto the MLT and $L$-shell plane, using Tsyganenko model. (bottom) Sym-H and SME indices during this event.
 :::
+
+::: {#fig-elfin}
+![](figures/fig_elfin_j_ratio.png)
+
+Two ELFIN CubeSats observations of EMIC wave-driven electron precipitation, where the precipitating flux reaches the trapped flux in high-energy channels, over an interval exceeding three hours, from 02:42 to 05:53 UT. The locations are projected to the equatorial L-Shell and MLT, using the Tsyganenko89 magnetic field model. Panels (a), (b), and (d) show data from ELFIN-B, while panel (c) features observations from ELFIN-A.
+:::
+
+
+::: {#fig-Daa_EMIC}
+![](figures/fig_Daa.png)
+
+Panel (a) Diffusion rates $D_{\alpha\alpha}$ of electrons near the loss-cone inferred, using Equation 2, from ELFIN measurements of precipitating and trapped electron fluxes in the dusk sector near 16 MLT, at $L=5$ (solid red) and $L=6$ (solid black) as a function of electron energy $E$. Diffusion rates $D_{\alpha\alpha}$ near the loss-cone evaluated based on analytical estimates for H-band EMIC waves with typical wave and plasma parameters at $L=5$ (red) and $L=6$ (black) in a noon-dusk plasmaspheric plume, as a function of energy $E$ are shown for a typical ratio $f_{pe}/f_{ce}=20$, a peak wave amplitude of $B_w=0.5$ nT at $\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.4$, and a (minimum) frequency $\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.45$ for cyclotron resonance with $\sim2$ MeV electrons (dashed lines). (b) Same as (a) with analytical estimates of $D_{\alpha\alpha}$ shown for H-band EMIC waves with a peak wave amplitude of $B_w=0.5$ nT at $\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.4$ and a (minimum) frequency $\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.7$ for cyclotron resonance with $\sim0.75$ MeV electrons (dashed lines).
+:::
+
+<!-- # Appendix
+
+## Simulation and Modeling
+
+In our simulation and modeling efforts, we focus on enhancing diffusion models by integrating the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This involves updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. Additionally, we implement a model validation and iterative refinement process. This systematic approach compares simulated results with satellite observations to enhance the reliability and accuracy of predictive models. The iterative refinement process ensures that our models remain robust and effective across a wide range of space weather scenarios. -->
+
+<!-- - Diffusion Model Enhancement: Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. -->
+
+<!-- - **Numerical Simulations:** Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data. -->
+
+<!-- - Model Validation and Iterative Refinement: Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios. -->
 
 {{< pagebreak >}}
