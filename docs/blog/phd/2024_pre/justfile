@@ -16,4 +16,4 @@ process-tex file:
 
 process-texs:
    just process-tex proposal_EMIC.tex
-   just rm_bib proposal_SWD.tex
+   just process-tex proposal_SWD.tex

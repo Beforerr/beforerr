@@ -219,13 +219,12 @@ This research seeks to address these gaps by leveraging recent advancements in o
 \textbf{Analytical Techniques:}
 
 \begin{itemize}
+\tightlist
 \item
   Determination of discontinuities: We will implement Liu's \citep{liuMagneticDiscontinuitiesSolar2022} method to identify discontinuities in the solar wind which has better compatibility for the discontinuities with minor field changes, and is more robust to the situation encountered in the outer heliosphere. We also will use the minimum or maximum variance analysis (MVA) analysis \citep{sonnerupMinimumMaximumVariance1998, sonnerupMagnetopauseStructureAttitude1967} to determine the main (most varying) magnetic field component, \(B_l\), and medium variation component, \(B_m\). Figure~\ref{fig-examples} shows several examples of solar wind discontinuities detected by different spacecraft.
-\item
-  Comparative analysis: Analyze discontinuity occurrence rate and properties across different radial distances to determine spatial trends, untangle the temporal effect due to solar variability.
 \end{itemize}
 
-Two promising approaches are proposed to study the evolution of solar wind discontinuities: The first approach involves studying conjunction events, where spacecraft are either contemporaneously aligned along the same spiral field line---thereby measuring solar wind emitted from the same region on the solar surface---or where spacecraft are positioned such that they measure the same solar wind plasma. This second alignment is determined by the difference in radial distance, \(\delta R\), corresponding to the solar wind travel time, \(\tau = \delta R / V_{sw}\). An example of this approach is demonstrated in Figure~\ref{fig-alignment}, where plasma and magnetic field measurements from the Parker Solar Probe (PSP) and the Advanced Composition Explorer (ACE) display similar trends in magnetic field magnitude, plasma density, velocity, and temperature during the alignment period. This period corresponds to April 6-7, 2019 for PSP and April 7-9, 2019 for ACE. Further validation is provided by using the statistical plasma expansion model \citep{perroneRadialEvolutionSolar2019}, where the plasma properties measured by PSP and projected to the ACE location show good agreement with the actual ACE measurements, as illustrated in Figure~\ref{fig-evolution}. This confirms the validity of the alignment approach for studying solar wind discontinuities.
+Two promising approaches are proposed to study the evolution of solar wind discontinuities: The first approach involves studying conjunction events, where spacecraft are either contemporaneously aligned along the same spiral field line---thereby measuring solar wind emitted from the same region on the solar surface---or where spacecraft are positioned such that they measure the same solar wind plasma \citep{velliUnderstandingOriginsHeliosphere2020}. This second alignment is determined by the difference in radial distance, \(\delta R\), corresponding to the solar wind travel time, \(\tau = \delta R / V_{sw}\). An example of this approach is demonstrated in Figure~\ref{fig-alignment}, where plasma and magnetic field measurements from the Parker Solar Probe (PSP) and the Advanced Composition Explorer (ACE) display similar trends in magnetic field magnitude, plasma density, velocity, and temperature during the alignment period. This period corresponds to April 6-7, 2019 for PSP and April 7-9, 2019 for ACE. Further validation is provided by using the statistical plasma expansion model \citep{perroneRadialEvolutionSolar2019}, where the plasma properties measured by PSP and projected to the ACE location show good agreement with the actual ACE measurements, as illustrated in Figure~\ref{fig-evolution}. This confirms the validity of the alignment approach for studying solar wind discontinuities.
 
 The second approach leverages big data collected over many years to compare solar wind discontinuities observed by different spacecraft at various radial distances. Due to the Sun's rapid rotation, solar wind plasma emitted from a single region on the solar surface sweeps across the entire heliosphere within a solar rotation period of 27 days. By utilizing solar wind measurements at 1 AU from STEREO, ARTEMIS, and WIND, and comparing these with data from Juno and PSP, it is possible to differentiate the effects of temporal variations in solar wind from those due to spatial variations (associated with radial distance from the Sun) in the occurrence rate and characteristics of discontinuities. An example of such a comparison for the occurrence rate is shown in Figure~\ref{fig-rate}, where the number of discontinuities measured per day by different spacecraft missions is plotted.
 
@@ -233,7 +232,7 @@ In the proposed study, we will extend this comparison to the properties of disco
 
 \textbf{Hybrid and PIC Simulation:}
 
-The proposed study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic Particle-in-Cell (PIC) simulation aimed at exploring the electron dynamics associated with these discontinuities. These simulations will be enriched with real solar wind parameters to create realistic scenarios for the examination of discontinuity development. Here we demonstrate the simulation setup using Hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind, as shown in \textbf{?@fig-hybrid}.
+The proposed study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic Particle-in-Cell (PIC) simulation aimed at exploring the electron dynamics associated with these discontinuities. These simulations will be enriched with real solar wind parameters to create realistic scenarios for the examination of discontinuity development. Here we demonstrate the simulation setup using Hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind from an initial oblique Alfvén wave, as shown in Figure~\ref{fig-hybrid}.
 
 Further in-depth analysis will focus on the evolution of particle velocity distributions over space and time to gain insights into their interactions with discontinuities. This includes studying the pressure balance across discontinuities and delving into the physical mechanisms responsible for energy transfer processes. Such a comprehensive study will not only enhance our understanding of particle dynamics in the presence of discontinuities but also illuminate the broader implications for solar wind physics.
 
@@ -273,11 +272,11 @@ This PhD project will employ a comprehensive approach to dissect the complex nat
 
 \centering{
 
-\captionsetup{labelsep=none}\includegraphics{figures/psp_alignment.png}
+\includegraphics{figures/psp_alignment.png}
 
 }
 
-\caption{\label{fig-alignment}}
+\caption{\label{fig-alignment}Measurement by PSP and ACE spacecrafts from 2019-04-06 to 2019-04-10. From top to bottom: (a) Magnetic field magnitude measured (b) Plasma density, (c) Plasma velocity, (d) Plasma temperature.}
 
 \end{figure}%
 
@@ -305,8 +304,21 @@ This PhD project will employ a comprehensive approach to dissect the complex nat
 
 \end{figure}%
 
+\begin{figure}
 
-  \bibliography{../../../../files/references.bib,../../../../../share/bibliography/research.bib}
+\centering{
+
+\includegraphics{figures/fig_hybrid.png}
+
+}
+
+\caption{\label{fig-hybrid}Formation of a rotational discontinuity in the solar wind, reproduced using hybrid simulation. The magnetic field components \(B_x\), \(B_y\), \(B_z\), magnetic field magnitude \(|{\mathbf B}|\) are shown in different colors, with each panel corresponding to different times in the simulation normalized by the ion cyclotron period.}
+
+\end{figure}%
+
+\newpage{}
+
+
 
 
 \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
