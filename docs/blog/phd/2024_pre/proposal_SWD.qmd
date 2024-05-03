@@ -1,22 +1,30 @@
 ---
-title: Dynamics of Solar Wind Discontinuities
+# title: Dynamics of Solar Wind Discontinuities
+title: Exploring solar wind discontinuity properties in the inner and outer heliosphere
 ---
 
 **PhD Candidate: Zijin Zhang**
 
 ## Abstract
 
+Solar wind discontinuities, characterized by abrupt changes in the magnetic field, play a crucial role in heliospheric dynamics, such as solar wind heating and turbulence. This proposal aims to conduct a detailed study of these discontinuities, leveraging data from contemporary space missions like Parker Solar Probe (PSP) and Juno to examine their characteristics (occurrence rates, thickness, current density, etc.) from the Sun to beyond 1 AU. By analyzing the evolution of these features, this study seeks to answer questions about how the discontinuities change with the radial distance from the Sun and the physical mechanisms behind the formation of solar wind discontinuities. Additionally, this research will explore ion and electron dynamics associated using hybrid and particle-in-cell (PIC) simulation to understand their role in formation and evolution of discontinuities. The integration of observational data from multiple spacecraft with advanced modeling techniques will shed light on the complex interactions within solar wind discontinuities, enhancing our understanding of heliosphere.
+
+<!-- 
 Solar wind discontinuities, characterized by abrupt changes in magnetic field directions and magnitudes, play a crucial role in shaping heliospheric dynamics and influencing solar wind heating and turbulence. This PhD research proposes a comprehensive study of these discontinuities, leveraging data from contemporary space missions such as Parker Solar Probe (PSP) and Juno to examine their propagation characteristics from the Sun to beyond 1 AU. By analyzing the evolution of these features, this study aims to answer fundamental questions about their role in heliophysical processes, including particle acceleration and magnetic field turbulence. Additionally, this research will explore ion and electron dynamics associated using Hybrid and particle-in-cell simulation to understand their role in formation and evolution of discontinuities. The integration of observational data from multiple spacecraft with advanced modeling techniques will shed light on the complex interactions within solar wind discontinuities, enhancing our understanding of heliosphere.
+-->
+
 
 ## Introduction and Background
 
 The study of solar wind magnetic discontinuities, characterized by rapid variations in interplanetary magnetic fields, stands at the forefront of understanding key phenomena in Heliophysics. These discontinuities, manifesting as localized transient rotations or jumps in the magnetic field, are pivotal in processes such as efficient plasma heating and in hosting plasma instabilities associated with discontinuity currents, which are among the most intense currents in the solar wind. Theoretical models suggest that the formation and destruction of discontinuities are closely related to the nonlinear dynamics of Alfvén waves. These nonlinear processes can create significant isolated disturbances to the otherwise adiabatic evolution of the solar wind flow. Investigatation of the nonfluid (kinetic) properties of solar wind discontinuities reveals that electron density and temperature vary significantly across these discontinuities, underlining the importance of kinetic effects in discontinuity structure.
 
-As such, this study aims to understand the dynamics of solar wind discontinuities by addressing two key questions
+As such, this study aims to understand the dynamics of solar wind discontinuities by addressing the key question
 
-1. **"How do discontinuities evolve and influence the heating of the solar wind and the turbulence within the magnetic field?"**
+**"How do discontinuities evolve over radial distances from the Sun and what are the physical mechanisms behind their formation and evolution?"**
 
-2. **"What are the kinetic processes behind the formation and evolution of these discontinuities?"**
+<!-- 1. **"How do discontinuities evolve and influence the heating of the solar wind and the turbulence within the magnetic field?"** -->
+
+<!-- 2. **"What are the kinetic processes behind the formation and evolution of these discontinuities?"** -->
 
 Understanding these discontinuities is essential for elucidating the fundamental processes that govern the solar wind's evolution as it travels through the heliosphere.
 
@@ -63,7 +71,7 @@ This PhD research focuses on three main objectives:
 
 **Analytical Techniques:**
 
-- Determination of discontinuities: We will implement Liu's [@liuMagneticDiscontinuitiesSolar2022] method to identify discontinuities in the solar wind which has better compatibility for the discontinuities with minor field changes, and is more robust to the situation encountered in the outer heliosphere. We also will use the minimum or maximum variance analysis (MVA) analysis [@sonnerupMinimumMaximumVariance1998; @sonnerupMagnetopauseStructureAttitude1967] to determine the main (most varying) magnetic field component, $B_l$, and medium variation component, $B_m$. @fig-examples shows several examples of solar wind discontinuities detected by different spacecraft.
+This first step in understanding the evolution of solar wind discontinuities involves identifying and characterizing these structures. We will implement Liu's [@liuMagneticDiscontinuitiesSolar2022] method to identify discontinuities in the solar wind which has better compatibility for the discontinuities with minor field changes, and is more robust to the situation encountered in the outer heliosphere. We also will use the minimum or maximum variance analysis (MVA) analysis [@sonnerupMinimumMaximumVariance1998; @sonnerupMagnetopauseStructureAttitude1967] to determine the main (most varying) magnetic field component, $B_l$, and medium variation component, $B_m$. @fig-examples shows several examples of solar wind discontinuities detected by different spacecraft.
 
 <!-- - Comparative analysis: Analyze discontinuity occurrence rate and properties across different radial distances to determine spatial trends, untangle the temporal effect due to  solar variability. -->
 
@@ -73,9 +81,14 @@ The second approach leverages big data collected over many years to compare sola
 
 In the proposed study, we will extend this comparison to the properties of discontinuities, such as their thickness, strength (current density), and orientation, to understand how these features evolve with radial distance from the Sun and how this properties are related to the local plasma properties. This will provide insights into the physical mechanisms that govern the formation and evolution of solar wind discontinuities as they propagate through the heliosphere.
 
+Simulations of magnetohydrodynamic (MHD) turbulence [@grecoStatisticalAnalysisDiscontinuities2009]
+
+<!-- With the discontinuities identified, we will analyze their properties, such as thickness, strength (current density), and orientation, to understand how these features evolve with radial distance from the Sun. Additional high-resolution plasma data will enable us to investigate the kinetic properties of these discontinuities, such as ion and electron density and temperature variations across the discontinuities, providing insights into the role of ion and electron kinetics in discontinuity structure. -->
+
+
 **Hybrid and PIC Simulation:**
 
-The proposed study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic Particle-in-Cell (PIC) simulation aimed at exploring the electron dynamics associated with these discontinuities. These simulations will be enriched with real solar wind parameters to create realistic scenarios for the examination of discontinuity development. Here we demonstrate the simulation setup using Hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind from an initial oblique Alfvén wave, as shown in @fig-hybrid.
+The proposed study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic PIC simulation aimed at exploring the electron dynamics associated with these discontinuities. These simulations will be enriched with real solar wind parameters to create realistic scenarios for the examination of discontinuity development. Here we demonstrate the simulation setup using Hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind from an initial oblique Alfvén wave, as shown in @fig-hybrid.
 
 Further in-depth analysis will focus on the evolution of particle velocity distributions over space and time to gain insights into their interactions with discontinuities. This includes studying the pressure balance across discontinuities and delving into the physical mechanisms responsible for energy transfer processes. Such a comprehensive study will not only enhance our understanding of particle dynamics in the presence of discontinuities but also illuminate the broader implications for solar wind physics.
 
