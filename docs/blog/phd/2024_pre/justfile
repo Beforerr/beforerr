@@ -1,19 +1,21 @@
-sync-overleaf: process-texs
+process-tex file:
+   just rm_bib {{file}}
+   just rm_paragraph {{file}}
+   just sync-tex {{file}}
+
+process-texs:
+   just process-tex proposal_EMIC.tex
+   just process-tex proposal_SWD.tex
+
+sync-overleaf:
    rsync figures/ overleaf/figures/ -r
-   rsync proposal_EMIC.tex overleaf/
-   rsync proposal_SWD.tex overleaf/
    rsync ~/projects/share/bibliography/ overleaf/files/ -r
+
+sync-tex file: sync-overleaf
+   rsync {{file}} overleaf/
 
 rm_bib file:
    awk '!found && /\\bibliography{/ { found = 1; next } 1' {{file}} > .temp && mv .temp {{file}}
 
 rm_paragraph file:
    awk '/\\paragraph\{/ { print; getline; if ($0 != "") print $0; next }{ print }' {{file}} > .temp && mv .temp {{file}}
-
-process-tex file:
-   just rm_bib {{file}}
-   just rm_paragraph {{file}}
-
-process-texs:
-   just process-tex proposal_EMIC.tex
-   just process-tex proposal_SWD.tex
