@@ -183,6 +183,18 @@ Spacecraft investigations of the space plasma environment have revealed that the
 
 Further advancements were made with data from the Helios-1, Helios-2, Ulysses and Voyager missions, which explored discontinuities in three-dimensional space, revealing their prevalence and importance throughout the heliosphere \citep{marianiStatisticalStudyMagnetohydrodynamic1983, tsurutaniNonlinearElectromagneticWaves1997}. As illustrated in Figure~\ref{fig-1}, these discontinuities are observed at a multitude of radial distances from the Sun. These findings underscored the need to understand the origin of discontinuities, which are thought to arise from dynamic processes on the Sun, including solar flares and coronal mass ejections, as well as through in-situ processes like local magnetic turbulence, magnetic reconnection and nonlinear wave interactions within the solar wind.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.75\textwidth,height=\textheight]{figures/schematic.png}
+
+}
+
+\caption{\label{fig-1}Distribution of occurrence rate of solar wind discontinuities \citep{sodingRadialLatitudinalDependencies2001}.}
+
+\end{figure}%
+
 \subsubsection{The Role of Alfven wave and kinetic effects in the discontinuities}\label{the-role-of-alfven-wave-and-kinetic-effects-in-the-discontinuities}
 
 Ulysses measurements of the high-latitude solar wind at \(1-5\) AU showed that the majority of discontinuities resided within the stream-stream interaction regions and/or within Alfvén wave trains \citep{tsurutaniInterplanetaryDiscontinuitiesAlfven1995, tsurutaniReviewDiscontinuitiesAlfven1999}. The nonlinear evolution of Alfvén waves (wave steepening) can be the main cause of such discontinuities. The background plasma/magnetic field inhomogeneities and various dissipative processes are key to Alfvén wave nonlinear evolution \citep{Lerche75, Prakash&Diamond99, Medvedev97:prl, Nariyuki14, Yang15}. In hybrid simulations \citep[see][]{Vasquez&Hollweg98, Vasquez&Hollweg01, TenBarge&Howes13} and analytical models \citep[e.g.,][]{Kennel88:jetp, Hada89, Malkov91, Wu&Kennel92, Medvedev97:pop}, this steepening was shown to cause formation of discontinuities in configurations resembling the near-Earth observations. There are models predicting discontinuity formation \citep{Servidio15, Podesta&Roytershteyn17} and destruction \citep{Servidio11,Matthaeus15} due to dissipative processes (e.g., Alfvén wave steepening, magnetic reconnection) in the solar wind. However, the efficiency of these processes in realistic expanding solar wind was not yet tested against observations.
@@ -215,14 +227,50 @@ This research seeks to address these gaps by leveraging recent advancements in o
 This first step in understanding the evolution of solar wind discontinuities involves identifying and characterizing these structures. We will adopt Liu's method \citep{liuMagneticDiscontinuitiesSolar2022} for this purpose, as it demonstrates better compatibility with discontinuities exhibiting minor field changes and is more robust to the situation encountered in the outer heliosphere. Additionally, we will utilize the minimum or maximum variance analysis (MVA) analysis \citep{sonnerupMinimumMaximumVariance1998, sonnerupMagnetopauseStructureAttitude1967} to determine the main (most varying) magnetic field component, \(B_l\), and medium variation component, \(B_m\).
 Examples of solar wind discontinuities detected by various spacecraft are illustrated in Figure~\ref{fig-examples}.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics{figures/fig-ids_examples.pdf}
+
+}
+
+\caption{\label{fig-examples}Discontinuities detected by PSP, Juno, STEREO and near-Earth ARTEMIS satellite: red, blue, and black lines are \(B_l\), \(B_m\), and \(|{\mathbf B}|\).}
+
+\end{figure}%
+
 Two promising approaches are proposed for studying the evolution of solar wind discontinuities:
 \textbf{1. Conjunction Events Analysis:} This approach involves studying instances where spacecraft are either simultaneously aligned along the same spiral field line, thus measuring solar wind emanating from the same solar surface region, or positioned to measure the same solar wind plasma \citep{velliUnderstandingOriginsHeliosphere2020}. The latter alignment is determined by the difference in radial distance, \(\delta R\), corresponding to the solar wind travel time, \(\tau = \delta R / V_{sw}\).
 An example demonstrating this approach is presented in Figure~\ref{fig-alignment}, showcasing similar trends in magnetic field magnitude, plasma density, velocity, and temperature observed by the Parker Solar Probe (PSP) and the Advanced Composition Explorer (ACE) during an alignment period in April 2019. Validation is further supported by utilizing the statistical plasma expansion model \citep{perroneRadialEvolutionSolar2019}, where the plasma properties measured by PSP and projected to the ACE location exhibit good agreement with actual ACE measurements, as depicted in Figure~\ref{fig-evolution}. This confirms the validity of the alignment approach for studying solar wind discontinuities.
 \textbf{2. Comparative Analysis:} This approach leverages extensive data collected over the years to compare solar wind discontinuities observed by different spacecraft at various radial distances. Due to the Sun's rapid rotation, solar wind plasma emitted from a single region on the solar surface sweeps across the entire heliosphere within a solar rotation period of 27 days. By utilizing solar wind measurements at 1 AU from STEREO, ARTEMIS, and WIND, and comparing these with data from Juno and PSP, it is possible to distinguish between the effects of temporal variations in solar wind and those due to spatial variations (associated with radial distance from the Sun) in the occurrence rate and characteristics of discontinuities. An example of such a comparison for the occurrence rate is depicted in Figure~\ref{fig-rate}, where the number of discontinuities measured per day by different spacecraft missions is plotted.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics{figures/psp_alignment.png}
+
+}
+
+\caption{\label{fig-alignment}Measurement by PSP and ACE spacecrafts from 2019-04-06 to 2019-04-10. From top to bottom: (a) Magnetic field magnitude measured (b) Plasma density, (c) Plasma velocity, (d) Plasma temperature.}
+
+\end{figure}%
+
 In the proposed study, we will expand this comparison to include the properties of discontinuities, such as thickness, strength (current density), and orientation. This extension will enable us to grasp how these features evolve with radial distance from the Sun and how they relate to the local plasma properties. Examining these properties is crucial for understanding the generation of discontinuities.
 \citet{borovskyFluxTubeTexture2008} argued that solar wind discontinuities act as static boundaries between flux tubes originating at the solar surface and they are convected passively from the source regions. However, \citet{grecoStatisticalAnalysisDiscontinuities2009}, by examining the waiting time distribution of magnetic ﬁeld increments, discovered a good agreement between between MHD simulations and observations. This finding suggests that discontinuities stem from intermittent MHD turbulence, indicating local generation.
 If turbulence theory holds true, discontinuities properties should align with local plasma parameters; conversely, if propagation theory is accurate, discontinuities properties should be consistent with solar wind expansion model. Studying these properties will provide insights into the physical mechanisms governing discontinuity formation and spatial evolution as solar wind propagates through the heliosphere.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics{figures/ocr_time_cleaned.png}
+
+}
+
+\caption{\label{fig-rate}The number of discontinuities measured by Juno per day coincides with the discontinuity number measured by STEREO, WIND, and ARTEMIS, when Juno is around \(1\) AU. This number (occurrence rate) decreases with distance (with time after \(\sim 2013\)), as Juno moves from \(1\) AU to \(5\) AU. We will use the similar comparison for discontinuity characteristics and occurrence rate derived for PSP and Juno.}
+
+\end{figure}%
 
 Expanding upon the identification of numerous discontinuities, our next step is to transition from MHD to kinetic scales by examining the kinetic properties of these discontinuities, including ion and electron density and temperature, as well as pitch angle variations across them. Currently, no theoretical models predict the kinetic properties of discontinuities. Therefore, we intend to employ simulations to understand the role of ion and electron kinetics in discontinuity formation and evolution.
 
@@ -240,59 +288,11 @@ This research project will employ a comprehensive approach to dissect the comple
 
 \centering{
 
-\includegraphics{figures/schematic.png}
-
-}
-
-\caption{\label{fig-1}Distribution of occurrence rate of solar wind discontinuities \citep{sodingRadialLatitudinalDependencies2001}.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics{figures/fig-ids_examples.pdf}
-
-}
-
-\caption{\label{fig-examples}Discontinuities detected by PSP, Juno, STEREO and near-Earth ARTEMIS satellite: red, blue, and black lines are \(B_l\), \(B_m\), and \(|{\mathbf B}|\).}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics{figures/psp_alignment.png}
-
-}
-
-\caption{\label{fig-alignment}Measurement by PSP and ACE spacecrafts from 2019-04-06 to 2019-04-10. From top to bottom: (a) Magnetic field magnitude measured (b) Plasma density, (c) Plasma velocity, (d) Plasma temperature.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
 \includegraphics{figures/psp_properties_evolution.png}
 
 }
 
 \caption{\label{fig-evolution}Plasma properties (plasma beta versus plasma speed normalized by Alfven speed) measured by PSP projected to the ACE location using the statistical plasma expansion model. Top panel shows the data from the candidate alignment period (2019-04-06 to 2019-04-07) and the bottom panel shows the data after the alignment period.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics{figures/ocr_time_cleaned.png}
-
-}
-
-\caption{\label{fig-rate}The number of discontinuities measured by Juno per day coincides with the discontinuity number measured by STEREO, WIND, and ARTEMIS, when Juno is around \(1\) AU. This number (occurrence rate) decreases with distance (with time after \(\sim 2013\)), as Juno moves from \(1\) AU to \(5\) AU. We will use the similar comparison for discontinuity characteristics and occurrence rate derived for PSP and Juno.}
 
 \end{figure}%
 
