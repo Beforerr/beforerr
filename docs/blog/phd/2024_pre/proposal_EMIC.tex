@@ -92,6 +92,7 @@
 \def\fps@figure{htbp}
 \makeatother
 
+\usepackage{sidecap}
 \KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
@@ -196,11 +197,35 @@ Despite significant advances, there remain substantial gaps in our understanding
 
 We highlight a candidate conjunction event, as illustrated in Figure~\ref{fig-1}. Equatorial and low-altitude satellites allow direct observations of electron loss due to scattering by EMIC and whistler-mode waves, electron acceleration by whistler-mode waves, and plasma sheet injections.
 
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.67\textwidth,height=\textheight]{figures/fig1_orbit_multi_mission_conjunctions.png}
+
+}
+
+\caption{\label{fig-1}(top) An overview of the mission orbits recorded on April 17, 2021. The orbits of the various missions are projected onto the MLT and \(L\)-shell plane, using Tsyganenko model. (bottom) Sym-H and SME indices during this event.}
+
+\end{figure}%
+
 \subsection{Analysis Approach}\label{analysis-approach}
 
 First, we will identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations.
 
-Figure~\ref{fig-elfin} shows a clear example of the EMIC wave-driven electron precipitation observed by ELFIN CubeSats. We observe a high precipitating-to-trapped flux ratio \(j_{prec}/j_{trap}\) during four ELFIN orbits.
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=0.67\textwidth,height=\textheight]{figures/fig_elfin_j_ratio.png}
+
+}
+
+\caption{\label{fig-elfin}Two ELFIN CubeSats observations of EMIC wave-driven electron precipitation, where the precipitating flux reaches the trapped flux in high-energy channels, over an interval exceeding three hours, from 02:42 to 05:53 UT. The locations are projected to the equatorial L-Shell and MLT, using the Tsyganenko89 magnetic field model. Panels (a), (b), and (d) show data from ELFIN-B, while panel (c) features observations from ELFIN-A.}
+
+\end{figure}%
+
+Figure~\ref{fig-elfin} (adapted from Fig 5 of \citet{angelopoulosEnergeticElectronPrecipitation2023}) shows a clear example of the EMIC wave-driven electron precipitation observed by ELFIN CubeSats. We observe a high precipitating-to-trapped flux ratio \(j_{prec}/j_{trap}\) during four ELFIN orbits.
 Within \(L \in [5,6]\) there is a peak of precipitating-to-trapped flux ratio above \(300\) keV. This peak moves from \(L \sim 6\) around 02:45 UT to \(L \sim 5\) at 05:15 UT. Only EMIC wave-driven precipitation may have a low-energy cut-off of scattering fluxes around \(\sim 500\) keV, which is a typical minimum resonance energy for EMIC waves \citep[see the identification of other EMIC wave-driven precipitation events with similar precipitating-to-trapped ratios in][]{anNonresonantScatteringRelativistic2022, angelopoulosEnergeticElectronPrecipitation2023}. Note that the efficient precipitation (large \(j_{prec}/j_{trap}\)) observed at \(L>6.5\) is likely due to a combination of whistler-mode wave-driven precipitation \citep{shiRoleULFWaves2022} and precipitation due to the curvature scattering \citep{wilkinsStatisticalCharacteristicsElectron2023}, while precipitation of \(<300\) keV electrons at \(L<5\) is driven by whistler-mode wave scattering \citep[see similar examples of quasi-periodical precipitation on the dusk flank in][]{artemyevRoleDuctingRelativistic2021}.
 Therefore, Figure~\ref{fig-elfin} demonstrates that during at least three hours, ELFIN observed continuous EMIC wave-driven losses of relativistic electrons. As \(j_{prec}/j_{trap}\) for \(\sim\) 0.3--1 MeV electrons reaches one, the strong diffusion regime, one may expect a significant depletion of equatorial electron flux in this energy range, at least at low pitch-angles.
 
@@ -239,30 +264,6 @@ The findings of this research will deepen our comprehension of radiation belt el
 The proposed research is designed to tackle some of the most pressing questions in space physics regarding the impact of EMIC\&whistler waves on radiation belt dynamics. Through a combination of detailed empirical analysis and advanced theoretical modeling, this project aims to provide significant insights and tools for predicting space weather, thereby contributing to our ability to safeguard and optimize the operation of space-based technologies.
 
 \section{Figures}\label{figures}
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=0.67\textwidth,height=\textheight]{figures/fig1_orbit_multi_mission_conjunctions.png}
-
-}
-
-\caption{\label{fig-1}(top) An overview of the mission orbits recorded on April 17, 2021. The orbits of the various missions are projected onto the MLT and \(L\)-shell plane, using Tsyganenko model. (bottom) Sym-H and SME indices during this event.}
-
-\end{figure}%
-
-\begin{figure}
-
-\centering{
-
-\includegraphics{figures/fig_elfin_j_ratio.png}
-
-}
-
-\caption{\label{fig-elfin}Two ELFIN CubeSats observations of EMIC wave-driven electron precipitation, where the precipitating flux reaches the trapped flux in high-energy channels, over an interval exceeding three hours, from 02:42 to 05:53 UT. The locations are projected to the equatorial L-Shell and MLT, using the Tsyganenko89 magnetic field model. Panels (a), (b), and (d) show data from ELFIN-B, while panel (c) features observations from ELFIN-A.}
-
-\end{figure}%
 
 \begin{figure}
 

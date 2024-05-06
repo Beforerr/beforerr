@@ -3,9 +3,12 @@ format:
     cite-method: natbib
     keep-tex: true
     include-before-body: 
-        - text: |
-            \vspace{-20truemm}
+      - text: |
+          \vspace{-20truemm}
+    include-in-header: 
+      - text: |
+          \usepackage{sidecap}
     include-after-body:
-        - text: |
-            \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
+      - text: |
+          \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
   html: default
