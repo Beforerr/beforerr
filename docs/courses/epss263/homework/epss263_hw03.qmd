@@ -1,0 +1,10 @@
+---
+title: Homework 03
+---
+
+# Variation of p⊥ and p|| along a field line with a loss cone.
+
+(a) Find loss cone angle. Start with $\mu = m v_{⊥}^2/2B = const$, $v_{⊥}^2+ v_{\parallel}^2= v^2= const$. and show that for the loss cone $\alpha$: $\sin^2{\alpha}= B/Bi$, where Bi is the field strength in the ionosphere.
+
+
+
