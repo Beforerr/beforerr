@@ -1,4 +1,5 @@
 format:
+  html: default
   pdf: 
     cite-method: natbib
     keep-tex: true
@@ -11,4 +12,3 @@ format:
     include-after-body:
       - text: |
           \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
-  html: default

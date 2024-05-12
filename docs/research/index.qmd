@@ -9,6 +9,8 @@ listing:
   - id: projects
     contents: "projects/*/index.qmd"
     sort: "date desc"
+  - id: topics
+    contents: "topics/*/index.qmd"
 ---
 
 ## Journal articles
@@ -19,4 +21,9 @@ listing:
 ## Projects
 
 :::{#projects}
+:::
+
+## Topics
+
+:::{#topics}
 :::

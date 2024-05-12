@@ -92,6 +92,7 @@
 \def\fps@figure{htbp}
 \makeatother
 
+\usepackage{sidecap}
 \KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
@@ -224,14 +225,17 @@ This research seeks to address these gaps by leveraging recent advancements in o
 
 \textbf{Proposed Approach:}
 
-This first step in understanding the evolution of solar wind discontinuities involves identifying and characterizing these structures. We will adopt Liu's method \citep{liuMagneticDiscontinuitiesSolar2022} for this purpose, as it demonstrates better compatibility with discontinuities exhibiting minor field changes and is more robust to the situation encountered in the outer heliosphere. Additionally, we will utilize the minimum or maximum variance analysis (MVA) analysis \citep{sonnerupMinimumMaximumVariance1998, sonnerupMagnetopauseStructureAttitude1967} to determine the main (most varying) magnetic field component, \(B_l\), and medium variation component, \(B_m\).
+This first step in understanding the evolution of solar wind discontinuities involves identifying and characterizing these structures. We will adopt Liu's method \citep{liuMagneticDiscontinuitiesSolar2022} for this purpose, as it demonstrates better compatibility with discontinuities exhibiting minor field changes and is more robust to the situation encountered in the outer heliosphere.
+Then for each discontinuity identified, we calculate the distance matrix of the time series sequence (distance between each pair of magnetic field vectors) to determine the leading edge and trailing edge of the discontinuity.
+After that, we will utilize the minimum or maximum variance analysis (MVA) analysis \citep{sonnerupMinimumMaximumVariance1998, sonnerupMagnetopauseStructureAttitude1967} to determine the main (most varying) magnetic field component, \(B_l\), and medium variation component, \(B_m\).
+The maxium variance direction is then fitted by a step-like functions to extract the parameters to properly describe the discontinuity (we used logistic function here \(B(t; A, \mu, \sigma, {\mathrm{form=logistic}}) = A \left[1 - \frac{1}{1 + e^{\alpha}} \right]\), where \(\alpha = (t - \mu)/{\sigma}\)).
 Examples of solar wind discontinuities detected by various spacecraft are illustrated in Figure~\ref{fig-examples}.
 
 \begin{figure}
 
 \centering{
 
-\includegraphics{figures/fig-ids_examples.pdf}
+\includegraphics{figures/fig-ids_examples.png}
 
 }
 
@@ -256,7 +260,9 @@ An example demonstrating this approach is presented in Figure~\ref{fig-alignment
 
 \end{figure}%
 
-In the proposed study, we will expand this comparison to include the properties of discontinuities, such as thickness, strength (current density), and orientation. This extension will enable us to grasp how these features evolve with radial distance from the Sun and how they relate to the local plasma properties. Examining these properties is crucial for understanding the generation of discontinuities.
+In the proposed study, we will expand this comparison to include the properties of discontinuities, such as thickness, strength (current density), and orientation.
+
+This extension will enable us to grasp how these features evolve with radial distance from the Sun and how they relate to the local plasma properties. Examining these properties is crucial for understanding the generation of discontinuities.
 \citet{borovskyFluxTubeTexture2008} argued that solar wind discontinuities act as static boundaries between flux tubes originating at the solar surface and they are convected passively from the source regions. However, \citet{grecoStatisticalAnalysisDiscontinuities2009}, by examining the waiting time distribution of magnetic ﬁeld increments, discovered a good agreement between between MHD simulations and observations. This finding suggests that discontinuities stem from intermittent MHD turbulence, indicating local generation.
 If turbulence theory holds true, discontinuities properties should align with local plasma parameters; conversely, if propagation theory is accurate, discontinuities properties should be consistent with solar wind expansion model. Studying these properties will provide insights into the physical mechanisms governing discontinuity formation and spatial evolution as solar wind propagates through the heliosphere.
 
@@ -271,12 +277,6 @@ If turbulence theory holds true, discontinuities properties should align with lo
 \caption{\label{fig-rate}The number of discontinuities measured by Juno per day coincides with the discontinuity number measured by STEREO, WIND, and ARTEMIS, when Juno is around \(1\) AU. This number (occurrence rate) decreases with distance (with time after \(\sim 2013\)), as Juno moves from \(1\) AU to \(5\) AU. We will use the similar comparison for discontinuity characteristics and occurrence rate derived for PSP and Juno.}
 
 \end{figure}%
-
-Expanding upon the identification of numerous discontinuities, our next step is to transition from MHD to kinetic scales by examining the kinetic properties of these discontinuities, including ion and electron density and temperature, as well as pitch angle variations across them. Currently, no theoretical models predict the kinetic properties of discontinuities. Therefore, we intend to employ simulations to understand the role of ion and electron kinetics in discontinuity formation and evolution.
-
-Our study will employ a two-tiered simulation strategy to thoroughly investigate the formation and evolution of solar wind discontinuities. Initially, hybrid simulations will be utilized to model the nonlinear ion dynamics that are fundamental in the development of these discontinuities. This will be followed by a full kinetic PIC simulation exploring the electron dynamics associated with these discontinuities. These simulations will incorporate real solar wind parameters to create realistic scenarios for examining discontinuity development. Here, we demonstrate the simulation setup using hybrid simulation, where we successfully reproduced the formation of a rotational discontinuity in the solar wind from an initial oblique Alfvén wave, as shown in Figure~\ref{fig-hybrid}.
-
-Further in-depth analysis will focus on the evolution of particle velocity distributions over space and time to gain insights into their interactions with discontinuities. This includes studying the pressure balance across discontinuities and wave-particle interactions for energy transfer processes. Finally, to ensure the reliability and relevance of our simulation results, we will validate our findings against observed data. This validation process is crucial for confirming the accuracy of our simulations in representing key physical processes such as wave propagation, steepening, and the resultant formation of discontinuities. By aligning simulation outcomes with empirical observations, we can refine current models to better reflect the complexities of heliospheric phenomena with inclusion of kinetic effects.
 
 \subsection{Summary}\label{summary}
 
@@ -311,6 +311,7 @@ This research project will employ a comprehensive approach to dissect the comple
 \newpage{}
 
 
+  \bibliography{../../../../files/references.bib,../../../../../share/bibliography/research.bib}
 
 
 \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}

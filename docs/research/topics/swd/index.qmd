@@ -1,0 +1,30 @@
+---
+title: Solar wind discontinuities
+---
+
+# Meta
+
+This is a collection of resources on the topic of solar wind discontinuities.
+
+## Research projects
+
+- [Solar wind discontinuities spatial evolution in the outer heliosphere](https://beforerr.github.io/ids_spatial_evolution_juno/) - [GitHub](https://github.com/Beforerr/ids_spatial_evolution_juno)
+
+
+# Solar wind discontinuities (SWD)
+
+> Discontinuous changes in plasmas parameters and magnetic fields. ~~Confucius~~ Colburn et al., 1966
+
+![Sketch of types of discontinuity](../figures/discontinuity.jpeg)
+
+- Import element of solar wind turbulences @borovskyContributionStrongDiscontinuities2010.
+
+- Very kinetic structure:
+
+  - Jumps in the electron density, temperature and pitch angle distribution @artemyevKineticNatureSolar2019.
+
+  - Interact with energetic part of the solar wind ions
+
+::: {.notes}
+Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
+:::
