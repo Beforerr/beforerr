@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.518">
+<meta name="generator" content="quarto-1.4.519">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Zijin Zhang">
 
-<title>beforerr - Curriculum Vitae</title>
+<title>beforerr - Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,22 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,12 +62,78 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-articles .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-articles'] = new List('listing-articles', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-projects .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-projects'] = new List('listing-projects', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #EDF3F9;
+      }
+</style>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -77,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">beforerr</span>
     </a>
   </div>
@@ -88,15 +155,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/research/index.html"> 
+    <a class="nav-link active" href="../research/index.html" aria-current="page"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,15 +172,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
         <li>
-    <a class="dropdown-item" href="../../docs/blog/index.html">
- <span class="dropdown-text">Blog</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../docs/courses/index.html">
+    <a class="dropdown-item" href="../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/projects/index.html">
+    <a class="dropdown-item" href="../docs/projects/index.html">
  <span class="dropdown-text">Projects</span></a>
   </li>  
     </ul>
@@ -127,7 +190,23 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Research</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -135,64 +214,252 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#professional-preparation" id="toc-professional-preparation" class="nav-link active" data-scroll-target="#professional-preparation">Professional Preparation</a></li>
-  <li><a href="#profile" id="toc-profile" class="nav-link" data-scroll-target="#profile">Profile</a></li>
-  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
-  <li><a href="#presentations" id="toc-presentations" class="nav-link" data-scroll-target="#presentations">Presentations</a></li>
+  <li><a href="#journal-articles" id="toc-journal-articles" class="nav-link active" data-scroll-target="#journal-articles">Journal articles</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/others/05_cv_Zijin.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="05_cv_Zijin.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
-    </div>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/research/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="paper">paper <span class="quarto-category-count">(1)</span></div><div class="category" data-category="proposal">proposal <span class="quarto-category-count">(1)</span></div><div class="category" data-category="seeding">seeding <span class="quarto-category-count">(2)</span></div><div class="category" data-category="solar wind">solar wind <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Curriculum Vitae</h1>
+
+
+
+
+<section id="journal-articles" class="level2">
+<h2 class="anchored" data-anchor-id="journal-articles">Journal articles</h2>
+<div id="listing-articles" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="paper" data-listing-date-sort="1696140000000" data-listing-file-modified-sort="1703807433843" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail">
+<p><a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external"></a></p><a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external">
+<p><img src="../research/articles/margotSearchTechnosignatures2023/seti.jpeg" class="thumbnail-image"></p>
+</a><p><a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external">A Search for Technosignatures Around 11,680 Stars with the Green Bank Telescope at 1.15–1.73 GHz</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('paper'); return false;">
+paper
+</div>
+</div>
+<div class="listing-description">
+<a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external">We conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/articles/margotSearchTechnosignatures2023/index.html" class="no-external">
+<div class="listing-date">
+Oct 1, 2023
+</div>
+<div class="listing-author">
+Jean-Luc Margot, Megan Grace Li
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="projects" class="level2">
+<h2 class="anchored" data-anchor-id="projects">Projects</h2>
+<div id="listing-projects" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="seeding,solar wind" data-listing-date-sort="1703808554000" data-listing-file-modified-sort="1703808554806" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
+<div class="thumbnail">
+<p><a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external"></a></p><a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">Evolution of solar wind discontinuities over radial distance</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('seeding'); return false;">
+seeding
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('solar wind'); return false;">
+solar wind
+</div>
+</div>
+<div class="listing-description">
+<a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">
+<li>Web Pages</li>
+<li>GitHub repository</li>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html" class="no-external">
+<div class="listing-date">
+Dec 28, 2023
+</div>
+<div class="listing-author">
+Zijin Zhang
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="seeding,solar wind" data-listing-date-sort="1703808539000" data-listing-file-modified-sort="1703808539528" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
+<div class="thumbnail">
+<p><a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external"></a></p><a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external">Energetic ion scattering by solar wind discontinuities</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('seeding'); return false;">
+seeding
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('solar wind'); return false;">
+solar wind
+</div>
+</div>
+<div class="listing-description">
+<a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external">
+<li>Web Pages</li>
+<li>GitHub repository</li>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/projects/2023_Zijin_energetic-ion-scattering/index.html" class="no-external">
+<div class="listing-date">
+Dec 28, 2023
+</div>
+<div class="listing-author">
+Zijin Zhang
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="proposal,solar wind" data-listing-date-sort="1703807924000" data-listing-file-modified-sort="1703807924992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
+<div class="thumbnail">
+<p><a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external"></a></p><a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external">solar wind discontinuities</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('proposal'); return false;">
+proposal
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('solar wind'); return false;">
+solar wind
+</div>
+</div>
+<div class="listing-description">
+<a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/projects/2024_Zijin_finesst/index.html" class="no-external">
+<div class="listing-date">
+Dec 28, 2023
+</div>
+<div class="listing-author">
+Zijin Zhang, Anton V. Artemyev
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1703799275000" data-listing-file-modified-sort="1703799275191" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="11">
+<div class="thumbnail">
+<p><a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external"></a></p><a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external">Relativistic electron flux decay and recovery</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external">Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections</a>
+</div>
+<div class="listing-description">
+<a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external">
+<li>Web Pages</li>
+<li>GitHub repository</li>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/projects/2023_Zijin_relativistic-electron-flux/index.html" class="no-external">
+<div class="listing-date">
+Dec 28, 2023
+</div>
+<div class="listing-author">
+Zijin Zhang
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="solar wind" data-listing-date-sort="1656655200000" data-listing-file-modified-sort="1703808513215" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="thumbnail">
+<p><a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external"></a></p><a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external">The kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('solar wind'); return false;">
+solar wind
+</div>
+</div>
+<div class="listing-description">
+<a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external">
+<li>GitHub repository</li>
+<li>PDF</li>
+</a>
+</div>
+</div>
+<div class="metadata">
+<a href="../research/projects/2022_Zijin_solar-wind-LMA/index.html" class="no-external">
+<div class="listing-date">
+Jul 1, 2022
+</div>
+<div class="listing-author">
+Zijin Zhang
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Zijin Zhang </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<div class="contact-block">
-<p>Zijin Zhang</p>
-<p>Earth, Planetary and Space Sciences, University of California, Los Angeles, CA 90095</p>
-<p>zijin@ucla.edu</p>
-</div>
-<section id="professional-preparation" class="level2">
-<h2 class="anchored" data-anchor-id="professional-preparation">Professional Preparation</h2>
-<p><strong>Graduate student in Planetary Science</strong> <br> <em>University of California, Los Angeles</em> <br> <span class="cvdate"><em>2022-present</em></span></p>
-<p><strong>B.Sc. in Space Physics and B.Eng. in Computer Science</strong> <br> <em>University of Science and Technology of China</em> <br> <span class="cvdate"><em>2018-2022</em></span></p>
-</section>
-<section id="profile" class="level2">
-<h2 class="anchored" data-anchor-id="profile">Profile</h2>
-</section>
-<section id="publications" class="level2">
-<h2 class="anchored" data-anchor-id="publications">Publications</h2>
-</section>
-<section id="presentations" class="level2">
-<h2 class="anchored" data-anchor-id="presentations">Presentations</h2>
-<ul>
-<li><strong><em>Zijin Zhang</em></strong>, Anton Artemyev, Vassilis Angelopoulos, &amp; Shi Chen. (2023, December 11). Solar wind discontinuities spatial evolution and energetic ion scattering. American Geophysical Union. https://doi.org/10.13140/RG.2.2.12905.67682</li>
-</ul>
-<p>https://beforerr.github.io/ids_spatial_evolution_juno/presentations/AGU23_poster.pdf</p>
-<p>http://dx.doi.org/10.13140/RG.2.2.12905.67682</p>
 
 
 </section>
@@ -604,7 +871,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../about.html">
 <p>About</p>
 </a>
   </li>  

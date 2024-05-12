@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Zijin Zhang">
+<meta name="author" content="Anton V. Artemyev">
 
-<title>beforerr – Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Fluxes</title>
+<title>beforerr – Hybrid Simulations of Anisotropy in Solar Wind Discontinuities</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +25,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +68,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #EDF3F9;
+      }
+</style>
 
 
 </head>
@@ -73,11 +81,11 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">beforerr</span>
     </a>
   </div>
@@ -88,15 +96,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
+    <a class="nav-link" href="../../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/research/index.html"> 
+    <a class="nav-link" href="../../../../docs/research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -105,15 +113,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
         <li>
-    <a class="dropdown-item" href="../../../docs/blog/index.html">
+    <a class="dropdown-item" href="../../../../docs/blog/index.html">
  <span class="dropdown-text">Blog</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../docs/courses/index.html">
+    <a class="dropdown-item" href="../../../../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../docs/projects/index.html">
+    <a class="dropdown-item" href="../../../../docs/projects/index.html">
  <span class="dropdown-text">Projects</span></a>
   </li>  
     </ul>
@@ -127,116 +135,58 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Hybrid Simulations of Anisotropy in Solar Wind Discontinuities</h1>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Zijin Zhang <a href="mailto:zijin@ucla.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9968-067X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              University of California, Los Angeles
+            </p>
+        </div>
+      <div class="quarto-title-meta-contents">
+      <p class="author">Anton V. Artemyev <a href="mailto:aartemyev@igpp.ucla.edu" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-8823-4474" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              University of California, Los Angeles
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation">Background and Motivation</a></li>
-  <li><a href="#proposed-data-and-detailed-analysis-approach" id="toc-proposed-data-and-detailed-analysis-approach" class="nav-link" data-scroll-target="#proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</a></li>
-  <li><a href="#expected-contributions" id="toc-expected-contributions" class="nav-link" data-scroll-target="#expected-contributions">Expected Contributions</a></li>
-  <li><a href="#discussion-and-future-work" id="toc-discussion-and-future-work" class="nav-link" data-scroll-target="#discussion-and-future-work">Discussion and Future Work</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="proposal_EMIC.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
-    </div>
+        
+    <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://beforerr.github.io/swd_simulation/"><i class="bi bi-globe"></i>Webpage</a></li><li><a href="https://github.com/Beforerr/swd_simulation"><i class="bi bi-github"></i>GitHub Repo</a></li></ul></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Dynamics of EMIC Waves and Their Influence on Radiation Belt Electron Fluxes</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
 
 
-<p><strong>PhD Candidate: Zijin Zhang</strong></p>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Electromagnetic Ion Cyclotron (EMIC) waves are fundamental plasma wave phenomena in Earth’s magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. These interactions often lead to significant modulation of electron fluxes, contributing to both electron acceleration and loss. This study aims to deepen the understanding of how EMIC waves, in concert with other wave modes such as whistler-mode chorus waves and phenomena like plasma sheet injections, impact the behavior of radiation belt electrons during various geomagnetic conditions. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, this study will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.</p>
-</section>
-<section id="background-and-motivation" class="level2">
-<h2 class="anchored" data-anchor-id="background-and-motivation">Background and Motivation</h2>
-<p>The dynamic environments of Earth’s radiation belts are shaped by a complex interplay of different types of waves and particle populations. Among these, Electromagnetic Ion Cyclotron (EMIC) waves play a pivotal role in the energy dynamics of radiation belt electrons. These waves, primarily generated through instabilities associated with the anisotropic temperature distribution of ions, have been the focus of significant research due to their ability to effectively resonate with high-energy electrons (Millan &amp; Thorne, 2007; Jordanova et al., 2010).</p>
-<p><strong>Origin and Characteristics of EMIC Waves:</strong></p>
-<p>EMIC waves arise predominantly during geomagnetic storms when rapid injections of energetic ions from the solar wind into the magnetosphere create temperature anisotropies (Cornwall et al., 1970; Anderson et al., 1996). These waves have been observed in different frequency bands corresponding to the ion species (H+, He+, O+) that drive them, each influencing different electron populations within the radiation belts. The interaction of these waves with electrons, particularly through resonant scattering, can lead to significant modifications in electron pitch angles and energies, contributing to both acceleration and loss processes.</p>
-<p><strong>Interactions with Radiation Belt Electrons:</strong>
-The resonance with radiation belt electrons typically results in increased pitch angle scattering, particularly for electrons at energies of hundreds of keV to several MeV. This scattering can fill the loss cone and lead to electron precipitation into the Earth’s atmosphere, effectively depleting the radiation belt populations (Thorne et al., 2005; Summers et al., 2007). Furthermore, recent studies have highlighted that under certain conditions, EMIC waves can also accelerate electrons to ultra-relativistic energies through mechanisms that are not yet fully understood and are a current area of active research (Miyoshi et al., 2013; Foster et al., 2014).</p>
-<p><strong>Role of EMIC Waves in Space Weather:</strong>
-Understanding the interactions between EMIC waves and radiation belt electrons is crucial for predicting space weather effects, particularly since these interactions can lead to rapid changes in radiation belt configurations, posing risks to satellites and other space-based technologies (Baker et al., 2004; Horne et al., 2005). The 2003 Halloween storm provided a clear example of how enhanced EMIC wave activity correlated with significant radiation belt electron flux decreases, highlighting the importance of including these waves in predictive models (Turner et al., 2012).</p>
-<p><strong>Gaps in Current Understanding:</strong>
-Despite significant advances, there remain substantial gaps in our understanding of the conditions under which EMIC waves are most effective at causing electron losses and what roles other concurrent processes (e.g., whistler-mode chorus waves and plasma sheet injections) play in modifying these interactions. The proposed study aims to bridge these gaps by combining observational data analysis with theoretical modeling efforts.</p>
-<p>This enriched background sets a solid foundation for investigating the interactions of EMIC waves with radiation belt electrons and underscores the importance of this research in advancing our understanding of magnetospheric physics and improving our ability to forecast space weather impacts effectively.</p>
-</section>
-<section id="proposed-data-and-detailed-analysis-approach" class="level2">
-<h2 class="anchored" data-anchor-id="proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</h2>
-<p><strong>Data Acquisition and Sources:</strong></p>
-<ul>
-<li><p><strong>ELFIN CubeSat:</strong> Employ low-altitude measurements from the ELFIN CubeSat to quantify the effects of EMIC waves on electron precipitation. ELFIN’s unique orbital characteristics allow it to measure loss cone distributions and provide a direct measure of wave-driven electron losses, enhancing our understanding of wave-particle interaction dynamics in the radiation belts.</p></li>
-<li><p><strong>Van Allen Probes:</strong> Utilize extensive datasets from the Van Allen Probes, which include electric and magnetic field measurements, plasma wave spectra, and particle detection (electron and ion fluxes) across different energy ranges. These data are essential for directly observing EMIC waves and assessing their interactions with radiation belt electrons during different geomagnetic conditions.</p></li>
-<li><p><strong>ERG (Arase) Satellite:</strong> Draw upon high-resolution data from the ERG satellite, which offers crucial insights into the inner magnetosphere’s dynamics. ERG’s suite of instruments provides critical measurements of electron density, electric fields, and magnetic fields that help identify the conditions conducive to EMIC wave generation and propagation.</p></li>
-<li><p><strong>Magnetospheric Multiscale (MMS) Mission:</strong> Analyze high-resolution data from the MMS mission, which is key for understanding the microphysics of wave-particle interactions, especially during short-duration events and smaller spatial scales that are not resolved by other satellites.</p></li>
-</ul>
-<p><strong>Analytical Methods:</strong></p>
-<ul>
-<li><p><strong>Wave-Particle Interaction Analysis:</strong> Use phase space density calculations and quasi-linear theory to analyze how EMIC waves scatter radiation belt electrons into the loss cone, leading to precipitation. This method helps in quantifying the diffusion coefficients which are critical for understanding the rate and extent of electron flux changes.</p></li>
-<li><p><strong>Event Selection and Case Studies:</strong> Identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations.</p></li>
-</ul>
-<p><strong>Simulation and Modeling:</strong></p>
-<ul>
-<li><p><strong>Diffusion Model Enhancement:</strong> Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions.</p></li>
-<li><p><strong>Numerical Simulations:</strong> Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data.</p></li>
-<li><p><strong>Model Validation and Iterative Refinement:</strong> Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios.</p></li>
-</ul>
-<p><strong>Research Questions Addressed:</strong></p>
-<ol type="1">
-<li><strong>Mechanism Elucidation:</strong> How exactly do EMIC waves influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?</li>
-<li><strong>Modeling Improvements:</strong> Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts?</li>
-<li><strong>Predictive Capabilities:</strong> How effectively can the refined models predict changes in electron fluxes during geomagnetic storms, and what improvements are necessary to achieve better predictive reliability?</li>
-</ol>
-<p>By addressing these questions through a detailed analytical and simulation-based approach, the proposed research aims to significantly advance our understanding of EMIC waves’ role in radiation belt dynamics.</p>
-</section>
-<section id="expected-contributions" class="level2">
-<h2 class="anchored" data-anchor-id="expected-contributions">Expected Contributions</h2>
-<p>This research project is poised to make contributions to our understanding of magnetospheric dynamics, particularly in relation to how EMIC waves influence radiation belt electrons. The integration of empirical data from multiple satellite sources with advanced simulation techniques aims to create a robust analytical framework capable of deciphering the complex interactions within Earth’s magnetosphere. Specific expected contributions include:</p>
-<ol type="1">
-<li><p><strong>Empirical Analysis of Wave-Particle Interactions:</strong> By leveraging data from the Van Allen Probes, ERG, MMS, and ELFIN, this study will provide comprehensive empirical insights into how EMIC waves interact with radiation belt electrons. This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions.</p></li>
-<li><p><strong>Advanced Theoretical Modeling:</strong> The development and enhancement of diffusion models that incorporate refined EMIC wave characteristics will offer new theoretical insights into the mechanisms driving electron dynamics in the radiation belts. This will facilitate a better understanding of the conditions under which EMIC waves lead to electron acceleration or loss, filling a significant gap in the current scientific literature.</p></li>
-<li><p><strong>Improved Predictive Capabilities for Space Weather:</strong> By refining simulation models to better predict the impacts of EMIC waves on radiation belt dynamics, this research will enhance our ability to forecast space weather effects, thereby contributing to more effective mitigation strategies for protecting satellites and other space-based technologies from adverse effects.</p></li>
-<li><p><strong>Publications and Dissemination:</strong> The findings from this study are expected to be disseminated through several peer-reviewed scientific papers, presentations at major international conferences, and integrations into global space weather modeling tools, reaching both academic audiences and space weather practitioners.</p></li>
-</ol>
-</section>
-<section id="discussion-and-future-work" class="level2">
-<h2 class="anchored" data-anchor-id="discussion-and-future-work">Discussion and Future Work</h2>
-<p>The findings from this research will deepen our understanding of magnetospheric physics, particularly the role of EMIC waves in electron dynamics. However, several questions are likely to emerge from this study, guiding future research efforts:</p>
-<ul>
-<li><p><strong>Wave Source Regions and Propagation:</strong> Further investigations may be required to identify the specific source regions of EMIC waves and their propagation characteristics through the magnetosphere. Understanding these aspects could enhance predictions of when and where EMIC waves will impact electron populations.</p></li>
-<li><p><strong>Interactions with Other Wave Modes:</strong> While this project focuses on EMIC waves, the magnetosphere contains multiple interacting wave modes. Future work could explore the interactions between EMIC waves and other wave types, such as ULF and VLF waves, to provide a more holistic view of the dynamics governing radiation belt electron fluxes.</p></li>
-<li><p><strong>Technological Applications:</strong> The development of real-time monitoring tools based on the findings from this research could be explored. These tools would use satellite data to provide immediate assessments of EMIC wave activity and its potential impacts, offering valuable information for satellite operators and space weather forecasters.</p></li>
-</ul>
-</section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>The proposed research is designed to tackle some of the most pressing questions in space physics regarding the impact of EMIC waves on radiation belt dynamics. Through a combination of detailed empirical analysis and advanced theoretical modeling, this project aims to provide significant insights and tools for predicting space weather, thereby contributing to our ability to safeguard and optimize the operation of space-based technologies.</p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -668,12 +618,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../../about.html">
+    <a class="nav-link" href="../../../../about.html">
 <p>About</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/blog/phd/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/research/projects/2024_Zijin_hybrid-simulation/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
