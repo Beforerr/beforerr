@@ -1,0 +1,19 @@
+---
+title: Hybrid Simulations of Anisotropy in Solar Wind Discontinuities
+author: 
+  - name: "{{< var authors.zijin.name >}}"
+    email: "{{< var authors.zijin.email >}}"
+    orcid: "{{< var authors.zijin.orcid >}}"
+    affiliation: "{{< var affiliations.ucla >}}"
+  - name: "{{< var authors.anton.name >}}"
+    email: "{{< var authors.anton.email >}}"
+    orcid: "{{< var authors.anton.orcid >}}"
+    affiliation: "{{< var affiliations.ucla >}}"
+code-links:
+  - text: Webpage
+    href: https://beforerr.github.io/swd_simulation/
+    icon: globe
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/swd_simulation
+    icon: github
+---
