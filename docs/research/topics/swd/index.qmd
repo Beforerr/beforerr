@@ -1,5 +1,8 @@
 ---
 title: Solar wind discontinuities
+code-links:
+  - text: Tana Notes
+    href: https://app.tana.inc?nodeid=ialPLMRUiR
 ---
 
 # Meta
@@ -28,3 +31,10 @@ This is a collection of resources on the topic of solar wind discontinuities.
 ::: {.notes}
 Magnetohydrodynamics theory: classified as rotational discontinuities (RD), tangential discontinuities (TD), and shock waves
 :::
+
+
+## Formation of SWD
+
+Turbulent ion heating by reconnection of tangential discontinuities. (a) Current density (color) and magnetic field lines, possible reconnection sites are indicated by crosses. (b) The proton temperature anisotropy (color) that indicates acceleration
+
+Alfven wave steepening results in the discontinuity formation: magnetic energy transport from large scale (Alfven waves generated in the solar corona) to small (ion kinetic) scales of discontinuities, where this energy can be dissipated to particle heating

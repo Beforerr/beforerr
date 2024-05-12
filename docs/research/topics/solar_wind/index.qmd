@@ -1,5 +1,6 @@
 ---
 title: Solar wind
+code-links:
+  - text: Tana Notes
+    href: https://app.tana.inc?nodeid=Dg_YqdTyuC
 ---
-
-[Tana Notes](https://app.tana.inc?nodeid=Dg_YqdTyuC)
