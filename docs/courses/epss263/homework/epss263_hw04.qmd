@@ -1,0 +1,9 @@
+---
+title: Homework 04
+---
+
+## Phase velocity and the group velocity polar plots
+
+> Plot the phase velocity and the group velocity polar plots for $C_S= 0.25 C_A$ and $C_S= 4 C_A$.
+
+![](figures/mhd_waves_1.png)
