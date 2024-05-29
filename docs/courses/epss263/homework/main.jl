@@ -1,9 +1,12 @@
+import Pkg;
+Pkg.add("Optim");
 using DataFrames
+using Optim
 
 """
 Calculates the group velocities for slow waves.
 """
-function vgs(θ, cs, ca)
+function vgs(θ, cs, ca=1)
     cm = sqrt(cs^2 + ca^2) #: magnetosonic speed
     cm2 = cs^2 + ca^2
     cn2 = sqrt(cm^4 - 4 * cs^2 * ca^2 * cos(θ)^2)
@@ -17,9 +20,16 @@ end
 """
 Calculates the group velocities propagation angle for slow waves.
 """
-function vgs_angle(θ, cs, ca)
+function vgs_angle(θ, cs, ca=1)
     Vgs_para, Vgs_perp = vgs(θ, cs, ca)
     return atan(Vgs_perp, Vgs_para)
+end
+
+"""
+Calculates the group velocities for MHD waves.
+"""
+function group_velocity(wave::AbstractMHDWaves)
+    cms = sqrt(wave.cs^2 + wave.ca^2) #: magnetosonic speed
 end
 
 """
@@ -36,7 +46,6 @@ function calc_VpVg_fastandslow(cs, ca, θ)
 
     Vpi_para = @. Vpi * cos(θ)
     Vpi_perp = @. Vpi * sin(θ)
-    
 
     Vps_para = @. Vps * cos(θ)
     Vps_perp = @. Vps * sin(θ)
@@ -113,13 +122,51 @@ function VpVg_fastandslow_df(cs)
     return df
 end
 
-
-using Optim
-
-function maximum_vgs_angle(cs, ca)
+function maximum_vgs_angle(cs; ca=1)
     f(θ) = -abs(vgs_angle(θ, cs, ca))
     res = optimize(f, 0, π/2)
     return res.minimizer 
 end
 
-subset(df, :type => .==("group velocity"))
+
+
+"""
+Abstract MHD wave
+"""
+abstract type AbstractMHDWaves end
+
+struct FastWave <: AbstractMHDWaves
+    cs::Float64
+    ca::Float64
+    cms::Float64
+end
+
+struct SlowWave <: AbstractMHDWaves
+    cs::Float64
+    ca::Float64
+    cms::Float64
+end
+
+"""
+Calculates the phase velocities for MHD waves.
+"""
+function phase_velocity(wave::SlowWave, θ)
+    cm = wave.cms #: magnetosonic speed
+    cs = wave.cs
+    ca = wave.ca
+
+    cn2 = @. sqrt(cm^4 - 4 * cs^2 * ca^2 * cos(θ)^2)
+    Vps = @. sqrt(0.5 * (cm^2 - cn2))
+
+    return Vps.*cos.(θ), Vps.*sin.(θ)
+end
+
+
+for sym in [:SlowWave, :FastWave]
+    @eval function $sym(cs, ca)
+        cms = sqrt(cs^2 + ca^2) #: magnetosonic speed
+        return $sym(cs, ca, cms)
+    end
+
+    @eval $sym(cs) = $sym(cs, 1)
+end
