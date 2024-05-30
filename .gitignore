@@ -182,3 +182,7 @@ checklink/cookies.txt
 /.quarto/
 
 /.luarc.json
+# pixi environments
+.pixi
+pixi.lock
+*.egg-info
