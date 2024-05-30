@@ -1,0 +1,60 @@
+---
+title: Homework 05
+---
+
+
+The density and pressure can now be found by substituting (111.74) back into the original shock equations
+
+$$
+\frac{ρ_2}{ρ_1}=\frac{U_1}{U_2}=\frac{γ+1}{γ-1+\frac{2}{M_1^2}} \underset{M_1^2 \rightarrow \infty}{ \longrightarrow } \frac{γ+1}{γ-1}
+$$
+
+
+$$
+\begin{aligned}
+\frac{r_2}{p_1}=\frac{2 γ M_1^2-(γ-1)}{γ+1} \frac{-}{M_1^2 \rightarrow \infty}>\frac{2 γ}{γ+1} M_1^2
+\end{aligned}
+$$
+
+```{julia}
+using Symbolics
+using Latexify
+@variables γ::Real M1::Real
+
+ρ = Symbolics.variables(:ρ, 1:2)
+p = Symbolics.variables(:p, 1:2)
+
+rules = Dict(
+    ρ[2] => (γ + 1) / (γ - 1 + 2 / M1^2) * ρ[1],
+    p[2] => (2 * γ * M1^2 - (γ - 1)) / (γ + 1) * p[1]
+)
+
+α = p ./ ρ.^γ
+
+ratio = Symbolics.fast_substitute(α[2]/α[1], rules) |> simplify_fractions
+
+r = @acrule (~x * ~y)^(~z) => (~x)^(~z) * (~y)^(~z)
+simplify(ratio, RuleSet([r]))
+latexify(ratio)
+```
+
+$$
+\begin{equation}
+\frac{\rho_1^{\gamma} \left( 2 - M1^{2} + M1^{2} \gamma \right)^{\gamma} \left( 1 - \gamma + 2 M1^{2} \gamma \right)}{\left( \left( 1 + \gamma \right) \rho_1 \right)^{\gamma} M1^{2 \gamma} \left( 1 + \gamma \right)}
+\end{equation}
+$$
+
+
+## Perpendicular Shock
+
+> a. Show Eq. III.90 following Siscoe notes. Follow same procedure as in III.73 to factor the known solution and derive the quadratic coefficients. Write (X-1)(X^2 + A_1 X + A_0)=0 where X = (U2/U1) and solve for A0 and A1 given the coefficients of the cubic. For extra testing of cubic, make sure that X=1 is indeed a valid solution. As another test of your cubic equation (you can do that always during the derivation): Set $A_1 → ∞$ and validate it becomes a quadratic that is identical to III.71 (with M1 defined same as S1).
+
+```{mathematica}
+massEq := ρ1 U1 == ρ2 U2
+momEq := ρ1 U1^2 + p1 + B1^2/2 == ρ2 U2^2 + p2 + B2^2/2
+energyEq := (1/2 ρ1 U1^2 + p1 γ/(γ - 1) + B1^2) U1 == (1/2 ρ2 U2^2 + p2 γ/(γ - 1) + B2^2) U2
+FaradayEq := B1 U1 == B2 U2
+
+eqs = {massEq, momEq, energyEq, FaradayEq}
+Solve[eqs, {ρ2, p2, U2, B2}]
+```
