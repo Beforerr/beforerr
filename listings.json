@@ -22,8 +22,8 @@
   {
     "listing": "/docs/courses/index.html",
     "items": [
-      "/docs/courses/epss263/index.html",
       "/docs/courses/epss265/index.html",
+      "/docs/courses/epss263/index.html",
       "/docs/courses/phys231/index.html"
     ]
   },
@@ -67,9 +67,7 @@
     "items": [
       "/docs/courses/epss263/homework/epss263_hw02.html",
       "/docs/courses/epss263/homework/epss263_hw03.html",
-      "/docs/courses/epss263/homework/epss263_hw04.html",
-      "/docs/courses/epss263/homework/epss263_hw04.julia.html",
-      "/docs/courses/epss263/homework/epss263_hw04.py.html"
+      "/docs/courses/epss263/homework/epss263_hw04.html"
     ]
   }
 ]
