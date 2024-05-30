@@ -4,8 +4,7 @@ project:
     port: 5555
 
 bibliography:
-  - files/references.bib
-  - ../share/bibliography/research.bib
+  - files/research.bib
 
 execute:
   freeze: auto  # re-render only when source changes
