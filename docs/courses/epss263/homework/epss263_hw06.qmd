@@ -1,0 +1,23 @@
+---
+title: Homework 06
+---
+
+## Problem 1
+
+1. Using equation IV.2 in Siscoe (the 3 components of the Euler equation, expressed in terms of V) we derived the dispersion relation for double-adiabatic MHD. We derived the F,S wave dispersion relation in the notes (Lecture 15a; same as Siscoe IV.7). The Intermediate mode was derived earlier in the class as well, separately (Siscoe IV4). We did not solve the quadratic using the determinant. a. Express the 3 wave solutions in terms of 2 (there is no need to simplify the R.H.S). b. Plot them in a polar diagram (Friedriechs diagram) and check that they agree with the polar diagrams shown in Notes 14a (last page). Use p|| = p⊥, for the unperturbed doubleadiabatic plasma, and =0.5, 0.8, 1.0, and 2.0, as shown in the class notes. c. Why do you think the dispersion curves for the anisotropic MHD compressional modes are so different from the isotropic MHD ones, even when p|| = p⊥?
+
+### Wave solutions
+
+The velocity perturbation is given by the following expression:
+
+$$
+\begin{aligned}
+\omega^2 \delta \vec{V} & =\left[C_{\perp}^2 k_x(\vec{k} \cdot \delta \vec{V})-C_{11}^2 k_x^2 \delta V_x\right] \hat{x} \\
+& +\left[C_{ \pm}^2 k_x k_z \delta V_x+3 C_{11}^2 k_z^2 \delta V_z\right] \hat{z} \\
+& +\xi_0 C_A^2\left[k^2 \delta V_x \hat{x}+k_z^2 \delta V_y \hat{y}\right]
+\end{aligned}
+$$
+
+The three wave solutions are given by the following expressions:
+
+##
