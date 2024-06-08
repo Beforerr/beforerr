@@ -126,12 +126,10 @@ Basically this is because the scalar adiabatic relation is replaced by two separ
 
 The current density in the x and y directions are plotted below:
 
-::: {#fig-J layout-nrow="1"}
+::: {layout-nrow="1"}
 ![Jx](figures/p_b_bomb/Jx/t_1.0.png)
 
 ![Jy](figures/p_b_bomb/Jy/t_1.0.png)
-
-Current density in x and y directions
 :::
 
 The divergence of the current density is plotted below:
