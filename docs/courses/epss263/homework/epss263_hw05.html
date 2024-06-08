@@ -410,7 +410,7 @@ window.Quarto = {
   <li><a href="#hydrodynamic-shock" id="toc-hydrodynamic-shock" class="nav-link" data-scroll-target="#hydrodynamic-shock">Hydrodynamic shock</a></li>
   <li><a href="#perpendicular-shock" id="toc-perpendicular-shock" class="nav-link" data-scroll-target="#perpendicular-shock">Perpendicular Shock</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/epss263/homework/epss263_hw05.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="epss263_hw05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/epss263/homework/epss263_hw05.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="epss263_hw05.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -459,16 +459,16 @@ window.Quarto = {
 <section id="bipolar-alfvén-wavepacket" class="level3">
 <h3 class="anchored" data-anchor-id="bipolar-alfvén-wavepacket">Bipolar Alfvén wavepacket</h3>
 <p>To create a bipolar pulse in dBz and let it evolve on both sides. The init input is as follows:</p>
-<pre class="{fortran}"><code>case(6)
-    !2D gaussian perturbation in Bz modulated by a odd function of x
-    do iz = izmin,izmax
-        do iy = iymin,iymax
-            do ix = ixmin,ixmax
-                uu(ix,iy,iz,7) = uu(ix,iy,iz,7) + db0 * (xgrid(ix) - 0.5*Lx) * &amp;
-                exp( -( (xgrid(ix)-0.5*Lx)/(0.01*Lx) )**2 - ((ygrid(iy)-0.5*Ly)/(0.01*Ly))**2)
-            enddo
-        enddo
-    enddo</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode fortran code-with-copy"><code class="sourceCode fortranfixed"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">case(6)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">!2D gaussian perturbation in Bz modulated by a odd function of x</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">do</span> iz <span class="kw">=</span> izmin,izmax</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">do</span> iy <span class="kw">=</span> iymin,iymax</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="kw">do</span> ix <span class="kw">=</span> ixmin,ixmax</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                uu(ix,iy,iz,<span class="dv">7</span>) <span class="kw">=</span> uu(ix,iy,iz,<span class="dv">7</span>) <span class="kw">+</span> db0 <span class="kw">*</span> (xgrid(ix) <span class="kw">-</span> <span class="fl">0.5</span><span class="co">*Lx) * &amp;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                <span class="bu">exp</span>( <span class="kw">-</span>( (xgrid(ix)<span class="kw">-</span><span class="fl">0.5</span><span class="kw">*</span>Lx)<span class="kw">/</span>(<span class="fl">0.01</span><span class="kw">*</span>Lx) )<span class="kw">**</span><span class="dv">2</span> <span class="kw">-</span> ((ygrid(iy)<span class="kw">-</span><span class="co">0.5*Ly)/(0.01*Ly))**2)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">enddo</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">enddo</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">enddo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The basic idea is to change the amplitude modulation part from a constant to a odd function like <code>(xgrid(ix) - 0.5*Lx)</code> (sin would also work).</p>
 <p>The figures below show the current density in the x direction for the bipolar Alfvén wavepacket.</p>
 <div>
@@ -500,16 +500,16 @@ window.Quarto = {
 p_2\to \frac{\left(2 γ  M_1^2-(γ -1)\right)}{γ +1} p_1
 \]</span></p>
 <p>And as the entropy is defined as <span class="math inline">\(\alpha_i\text{:=} p_i / \rho _i^{γ}\)</span></p>
-<pre class="{mathematica}"><code>assums = { Subscript[ρ, 1] &gt; 0, γ &gt; 0, Subscript[M, 1] &gt; 0};
-ratio = Simplify[α[2]/α[1] /. rules, assums]</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>assums <span class="ex">=</span> <span class="op">{</span> <span class="fu">Subscript</span><span class="op">[</span>ρ<span class="op">,</span> <span class="dv">1</span><span class="op">]</span> &gt; <span class="dv">0</span><span class="op">,</span> γ &gt; <span class="dv">0</span><span class="op">,</span> <span class="fu">Subscript</span><span class="op">[</span><span class="fu">M</span><span class="op">,</span> <span class="dv">1</span><span class="op">]</span> &gt; <span class="dv">0</span><span class="op">}</span>;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ratio <span class="ex">=</span> <span class="fu">Simplify</span><span class="op">[</span>α<span class="op">[</span><span class="dv">2</span><span class="op">]</span><span class="sc">/</span>α<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="ot">/.</span> rules<span class="op">,</span> assums<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>gives us</p>
 <p><span class="math display">\[
 α[2]/α[1] = (γ +1)^{-γ -1} \left(γ +\frac{2}{M_1^2}-1\right)^{γ } \left(-γ +2 γ  M_1^2+1\right) = \left(\frac{1}{γ+1}\right)^{γ+1}\left[2 γ M_1^2-(γ-1)\right]\left(γ-1+\frac{2}{M_1^2}\right)^γ
 \]</span></p>
 <p>Taking the derivative of the entropy ratio with respect to <span class="math inline">\(M_1\)</span>:</p>
-<pre class="{mathematica}"><code>dRatio = D[ratio, M1];
-dRatio = Simplify[dRatio, assums];
-dRatio /. formatRules</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dRatio <span class="ex">=</span> <span class="fu">D</span><span class="op">[</span>ratio<span class="op">,</span> M1<span class="op">]</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dRatio <span class="ex">=</span> <span class="fu">Simplify</span><span class="op">[</span>dRatio<span class="op">,</span> assums<span class="op">]</span>;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dRatio <span class="ot">/.</span> formatRules</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>gives us</p>
 <p><span class="math display">\[
 \frac{d}{d M_1} \left(\frac{α_2}{α_1}\right) =
@@ -517,11 +517,11 @@ dRatio /. formatRules</code></pre>
 \]</span></p>
 <p>The derivative is positive for all <span class="math inline">\(M_1&gt;0\)</span> values as long as <span class="math inline">\(γ&gt;1\)</span>. And when <span class="math inline">\(M_1=1\)</span>, the ratio is equal to 1.</p>
 <p>The plot of the entropy ratio as a function of <span class="math inline">\(M_1\)</span> for a range of adiabatic indices is shown below.</p>
-<pre class="{mathematica}"><code>γs = {1, 4/3, 5/3, 2};
-LogLogPlot[
- Evaluate[ratio /. γ -&gt; γs], {M1, 1, 100}, 
- PlotLegends -&gt; γs
- ]</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>γs <span class="ex">=</span> <span class="op">{</span><span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="sc">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">3</span><span class="op">,</span> <span class="dv">2</span><span class="op">}</span>;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">LogLogPlot</span><span class="op">[</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">Evaluate</span><span class="op">[</span>ratio <span class="ot">/.</span> γ <span class="ot">-&gt;</span> γs<span class="op">],</span> <span class="op">{</span>M1<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">100</span><span class="op">},</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> PlotLegends <span class="ot">-&gt;</span> γs</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="figures/entropy_ratio.svg" class="img-fluid"></p>
 <p>And we can see that when <span class="math inline">\(γ=1\)</span>, the entropy ratio is constant and equal to 1. As <span class="math inline">\(p = α_1 ρ^γ = n k T\)</span>, this corresponds to the case where the temperature is constant across the shock. Isothermal behavior is due to fast, field-aligned escaping electrons and this is more likely to occur in parallel shocks.</p>
 <p>The mathematica notebook for this question and the following question is available <a href="./epss263_hw05.nb">here</a>.</p>
@@ -550,23 +550,23 @@ B_1^2\to \frac{\rho _1 U_1^2}{A^2}
 p_1\to \frac{\rho _1 U_1^2}{\gamma  S^2}
 \]</span></p>
 <p>And Elimitating <span class="math inline">\(B_2\)</span>, <span class="math inline">\(\rho_2\)</span> and <span class="math inline">\(p_2\)</span> from the equations</p>
-<pre class="{mathematica}"><code>massEq := \[Rho]1 U1 == \[Rho]2 U2
-momEq := \[Rho]1 U1^2 + p1 + B1^2/2 == \[Rho]2 U2^2 + p2 + B2^2/2
-energyEq := (1/2 \[Rho]1 U1^2 + f p1 + B1^2) U1 == (1/2 \[Rho]2 U2^2 +
-      f p2 + B2^2) U2
-FaradayEq := B1 U1 == B2 U2
-eqs = {massEq, momEq, energyEq, FaradayEq};
-
-Simplify[
- Eliminate[eqs, {B2, \[Rho]2, p2}] /. rules, {Subscript[U, 1] &gt; 0, 
-  Subscript[\[Rho], 1] &gt; 0}]</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>massEq <span class="ex">:=</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">1</span> U1 <span class="ex">==</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">2</span> U2</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>momEq <span class="ex">:=</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">1</span> U1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> p1 <span class="sc">+</span> B1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> <span class="ex">==</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">2</span> U2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> p2 <span class="sc">+</span> B2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>energyEq <span class="ex">:=</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">1</span> U1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">f</span> p1 <span class="sc">+</span> B1<span class="sc">^</span><span class="dv">2</span>) U1 <span class="ex">==</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">2</span> U2<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">f</span> p2 <span class="sc">+</span> B2<span class="sc">^</span><span class="dv">2</span>) U2</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>FaradayEq <span class="ex">:=</span> B1 U1 <span class="ex">==</span> B2 U2</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>eqs <span class="ex">=</span> <span class="op">{</span>massEq<span class="op">,</span> momEq<span class="op">,</span> energyEq<span class="op">,</span> FaradayEq<span class="op">}</span>;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">Simplify</span><span class="op">[</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">Eliminate</span><span class="op">[</span>eqs<span class="op">,</span> <span class="op">{</span>B2<span class="op">,</span> <span class="sc">\</span><span class="op">[</span>Rho<span class="op">]</span><span class="dv">2</span><span class="op">,</span> p2<span class="op">}]</span> <span class="ot">/.</span> rules<span class="op">,</span> <span class="op">{</span><span class="fu">Subscript</span><span class="op">[</span><span class="fu">U</span><span class="op">,</span> <span class="dv">1</span><span class="op">]</span> &gt; <span class="dv">0</span><span class="op">,</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Subscript</span><span class="op">[</span><span class="sc">\</span><span class="op">[</span>Rho<span class="op">],</span> <span class="dv">1</span><span class="op">]</span> &gt; <span class="dv">0</span><span class="op">}]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We get the following equation</p>
 <p><span class="math display">\[
 \frac{(r-1) \left(A^2 r \left(S^2 (-\gamma +\gamma  r+r+1)-2\right)+S^2 (\gamma +\gamma  (-r)-2)\right)}{A (\gamma -1) S}=0
 \]</span></p>
 <p>where <span class="math inline">\(r = U_2/U_1\)</span>.</p>
 <p>Clearly, <span class="math inline">\(r=1\)</span> is a solution. We can collect the rest equation to get the quadratic equation in <span class="math inline">\(r\)</span></p>
-<pre class="{mathematica}"><code>Collect[S^2 (-2 + \[Gamma] - r \[Gamma]) + A^2 r (-2 + S^2 (1 + r - \[Gamma] + r \[Gamma])) == 0, r]</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Collect</span><span class="op">[</span><span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> (<span class="sc">-</span><span class="dv">2</span> <span class="sc">+</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="sc">-</span> <span class="fu">r</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span>) <span class="sc">+</span> <span class="fu">A</span><span class="sc">^</span><span class="dv">2</span> <span class="fu">r</span> (<span class="sc">-</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">r</span> <span class="sc">-</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="sc">+</span> <span class="fu">r</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span>)) <span class="ex">==</span> <span class="dv">0</span><span class="op">,</span> <span class="fu">r</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>we get</p>
 <p><span class="math display">\[
 r^2 \left(A^2 \gamma  S^2+A^2 S^2\right)+r \left(-A^2 \gamma  S^2+A^2 S^2-2 A^2-\gamma  S^2\right)+\gamma  S^2-2 S^2=0
@@ -577,8 +577,8 @@ r^2 \left(A^2 \gamma  S^2+A^2 S^2\right)+r \left(-A^2 \gamma  S^2+A^2 S^2-2 A^2-
 <li>Solve the quadratic to find the two solutions for U2. Show that one is non-physical, and identify the remaining, physical one.</li>
 </ol>
 </blockquote>
-<pre class="{mathematica}"><code>assums = {A &gt; 0 , S &gt; 0, \[Gamma] &gt; 1};
-Solve[eqR, {r}, Reals, Assumptions -&gt; assums] // Simplify</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>assums <span class="ex">=</span> <span class="op">{</span><span class="fu">A</span> &gt; <span class="dv">0</span> <span class="op">,</span> <span class="fu">S</span> &gt; <span class="dv">0</span><span class="op">,</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> &gt; <span class="dv">1</span><span class="op">}</span>;</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Solve</span><span class="op">[</span>eqR<span class="op">,</span> <span class="op">{</span><span class="fu">r</span><span class="op">},</span> <span class="bu">Reals</span><span class="op">,</span> <span class="fu">Assumptions</span> <span class="ot">-&gt;</span> assums<span class="op">]</span> <span class="sc">//</span> <span class="fu">Simplify</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Solve the quadratic equation, we get</p>
 <p><span class="math display">\[
 \left\{\left\{r\to \frac{A^2 \left((\gamma -1) S^2+2\right)-\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right\},\left\{r\to \frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right\}\right\}
@@ -588,12 +588,12 @@ Solve[eqR, {r}, Reals, Assumptions -&gt; assums] // Simplify</code></pre>
 r_1\text{:=}\frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}
 \]</span></p>
 <p>In the limit of <span class="math inline">\(A\to\infty\)</span></p>
-<pre class="{mathematica}"><code>Subscript[r, 1] := 
- 1/(2 A^2 S^2 (1 + \[Gamma])) (A^2 (2 + S^2 (-1 + \[Gamma])) + 
-    S^2 \[Gamma] + \[Sqrt](A^4 (2 + S^2 (-1 + \[Gamma]))^2 + 
-       S^4 \[Gamma]^2 + 
-       A^2 (4 S^2 \[Gamma] + S^4 (8 + 2 \[Gamma] - 2 \[Gamma]^2))))
-Simplify[Limit[Subscript[r, 1], {A -&gt; \[Infinity]}], assums]</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Subscript</span><span class="op">[</span><span class="fu">r</span><span class="op">,</span> <span class="dv">1</span><span class="op">]</span> <span class="ex">:=</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span> <span class="fu">A</span><span class="sc">^</span><span class="dv">2</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span>)) (<span class="fu">A</span><span class="sc">^</span><span class="dv">2</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> (<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span>)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="sc">+</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Sqrt</span><span class="op">]</span>(<span class="fu">A</span><span class="sc">^</span><span class="dv">4</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> (<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span>))<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">S</span><span class="sc">^</span><span class="dv">4</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">A</span><span class="sc">^</span><span class="dv">2</span> (<span class="dv">4</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="sc">+</span> <span class="fu">S</span><span class="sc">^</span><span class="dv">4</span> (<span class="dv">8</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span><span class="sc">^</span><span class="dv">2</span>))))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Simplify</span><span class="op">[</span><span class="fu">Limit</span><span class="op">[</span><span class="fu">Subscript</span><span class="op">[</span><span class="fu">r</span><span class="op">,</span> <span class="dv">1</span><span class="op">],</span> <span class="op">{</span><span class="fu">A</span> <span class="ot">-&gt;</span> <span class="sc">\</span><span class="op">[</span><span class="fu">Infinity</span><span class="op">]}],</span> assums<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>we can see that the solution becomes</p>
 <p><span class="math display">\[
 \frac{(\gamma -1) S^2+2}{(\gamma +1) S^2}
@@ -605,15 +605,15 @@ Simplify[Limit[Subscript[r, 1], {A -&gt; \[Infinity]}], assums]</code></pre>
 </ol>
 </blockquote>
 <p>In the limit of <span class="math inline">\(A_1→∞\)</span> and <span class="math inline">\(M_1→∞\)</span>, the solution approaches <span class="math inline">\(\frac{\gamma -1}{\gamma +1}\)</span>. For <span class="math inline">\(γ=5/3\)</span>, the solution approaches 0.25, which is expected. The contour plot of the solution is shown below.</p>
-<pre class="{mathematica}"><code>Block[{\[Gamma] = 5/3, p1, p2},
- p1 = ContourPlot[r1, {A, 0, 100}, {S, 0, 100}, 
-   PlotLegends -&gt; Automatic];
- p2 = ContourPlot[r1, {A, 0, 10}, {S, 0, 10}, 
-   PlotLegends -&gt; Automatic];
- Export["figures/shock_U2.svg", p1];
- Export["figures/shock_U2_zoom.svg", p2];
- {p1, p2}
- ]</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode mathematica code-with-copy"><code class="sourceCode mathematica"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Block</span><span class="op">[{</span><span class="sc">\</span><span class="op">[</span><span class="fu">Gamma</span><span class="op">]</span> <span class="ex">=</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">3</span><span class="op">,</span> p1<span class="op">,</span> p2<span class="op">},</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> p1 <span class="ex">=</span> <span class="fu">ContourPlot</span><span class="op">[</span>r1<span class="op">,</span> <span class="op">{</span><span class="fu">A</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">100</span><span class="op">},</span> <span class="op">{</span><span class="fu">S</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">100</span><span class="op">},</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>   PlotLegends <span class="ot">-&gt;</span> <span class="cn">Automatic</span><span class="op">]</span>;</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a> p2 <span class="ex">=</span> <span class="fu">ContourPlot</span><span class="op">[</span>r1<span class="op">,</span> <span class="op">{</span><span class="fu">A</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">},</span> <span class="op">{</span><span class="fu">S</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">},</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>   PlotLegends <span class="ot">-&gt;</span> <span class="cn">Automatic</span><span class="op">]</span>;</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">Export</span><span class="op">[</span><span class="st">"figures/shock_U2.svg"</span><span class="op">,</span> p1<span class="op">]</span>;</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">Export</span><span class="op">[</span><span class="st">"figures/shock_U2_zoom.svg"</span><span class="op">,</span> p2<span class="op">]</span>;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> <span class="op">{</span>p1<span class="op">,</span> p2<span class="op">}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a> <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1149,210 +1149,209 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>To create a bipolar pulse in dBz and let it evolve on both sides. The init input is as follows:</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{fortran}</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="in">case(6)</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="in">    !2D gaussian perturbation in Bz modulated by a odd function of x</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="in">    do iz = izmin,izmax</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">        do iy = iymin,iymax</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">            do ix = ixmin,ixmax</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">                uu(ix,iy,iz,7) = uu(ix,iy,iz,7) + db0 * (xgrid(ix) - 0.5*Lx) * &amp;</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="in">                exp( -( (xgrid(ix)-0.5*Lx)/(0.01*Lx) )**2 - ((ygrid(iy)-0.5*Ly)/(0.01*Ly))**2)</span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">            enddo</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">        enddo</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="in">    enddo</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="in">```fortran</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="in">case(6)</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="in">    !2D gaussian perturbation in Bz modulated by a odd function of x</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="in">    do iz = izmin,izmax</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="in">        do iy = iymin,iymax</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="in">            do ix = ixmin,ixmax</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">                uu(ix,iy,iz,7) = uu(ix,iy,iz,7) + db0 * (xgrid(ix) - 0.5*Lx) * &amp;</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">                exp( -( (xgrid(ix)-0.5*Lx)/(0.01*Lx) )**2 - ((ygrid(iy)-0.5*Ly)/(0.01*Ly))**2)</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="in">            enddo</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="in">        enddo</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">    enddo</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>The basic idea is to change the amplitude modulation part from a constant to a odd function like <span class="in">`(xgrid(ix) - 0.5*Lx)`</span> (sin would also work).</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>The basic idea is to change the amplitude modulation part from a constant to a odd function like <span class="in">`(xgrid(ix) - 0.5*Lx)`</span> (sin would also work).</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>The figures below show the current density in the x direction for the bipolar Alfvén wavepacket.</span>
 <span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>The figures below show the current density in the x direction for the bipolar Alfvén wavepacket.</span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/bipolar_pulse/Jx/t_1.0.png)</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/bipolar_pulse/Jx_Alfven/t_1.0.png)</span></span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/bipolar_pulse/Jx/t_1.0.png)</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/bipolar_pulse/Jx_Alfven/t_1.0.png)</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>The notebooks to reproduce the results are available <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/Beforerr/MHD2DSpectral/blob/b775998b11b9a6f9a2609bf72fbec9fdfbbcacbe/examples/main.ipynb)</span> with initial input <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/Beforerr/MHD2DSpectral/blob/b775998b11b9a6f9a2609bf72fbec9fdfbbcacbe/examples/bipolar_pulse/mhd.input)</span>.</span>
 <span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>The notebooks to reproduce the results are available <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/Beforerr/MHD2DSpectral/blob/b775998b11b9a6f9a2609bf72fbec9fdfbbcacbe/examples/main.ipynb)</span> with initial input <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/Beforerr/MHD2DSpectral/blob/b775998b11b9a6f9a2609bf72fbec9fdfbbcacbe/examples/bipolar_pulse/mhd.input)</span>.</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hydrodynamic shock</span></span>
 <span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hydrodynamic shock</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show that the entropy across a hydrodynamic shock increases: (i) First, prove equation III.80 in Siscoe (you can use the jumps in p and $ρ$ previously derived). (ii) Next, take the derivative of the entropy ratio as function of Mach number and show it is positive. Thus explain that starting from M1=1 and moving upwards all M1 values have positive entropy ratios. (iii) Plot the entropy ratio as function of M1 for a range of adiabatic indices. (iv) Under what conditions does the entropy not increase? </span><span class="co">[</span><span class="ot">Ans. $γ=1$</span><span class="co">]</span><span class="at"> When might such conditions occur in space plasmas and why? </span><span class="co">[</span><span class="ot">Ans. parallel shocks</span><span class="co">]</span></span>
 <span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Show that the entropy across a hydrodynamic shock increases: (i) First, prove equation III.80 in Siscoe (you can use the jumps in p and $ρ$ previously derived). (ii) Next, take the derivative of the entropy ratio as function of Mach number and show it is positive. Thus explain that starting from M1=1 and moving upwards all M1 values have positive entropy ratios. (iii) Plot the entropy ratio as function of M1 for a range of adiabatic indices. (iv) Under what conditions does the entropy not increase? </span><span class="co">[</span><span class="ot">Ans. $γ=1$</span><span class="co">]</span><span class="at"> When might such conditions occur in space plasmas and why? </span><span class="co">[</span><span class="ot">Ans. parallel shocks</span><span class="co">]</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>Given the jump conditions of pressure and density:</span>
 <span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>Given the jump conditions of pressure and density:</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>\rho _2\to \frac{(γ +1)}{γ +\frac{2}{M_1^2}-1} \rho _1</span>
 <span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>\rho _2\to \frac{(γ +1)}{γ +\frac{2}{M_1^2}-1} \rho _1</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>p_2\to \frac{\left(2 γ  M_1^2-(γ -1)\right)}{γ +1} p_1 </span>
 <span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>p_2\to \frac{\left(2 γ  M_1^2-(γ -1)\right)}{γ +1} p_1 </span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>And as the entropy is defined as $\alpha_i\text{:=} p_i / \rho _i^{γ}$</span>
 <span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>And as the entropy is defined as $\alpha_i\text{:=} p_i / \rho _i^{γ}$</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="in">assums = { Subscript[ρ, 1] &gt; 0, γ &gt; 0, Subscript[M, 1] &gt; 0};</span></span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="in">ratio = Simplify[α[2]/α[1] /. rules, assums]</span></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>gives us</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="in">assums = { Subscript[ρ, 1] &gt; 0, γ &gt; 0, Subscript[M, 1] &gt; 0};</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="in">ratio = Simplify[α[2]/α[1] /. rules, assums]</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>gives us</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>α<span class="co">[</span><span class="ot">2</span><span class="co">]</span>/α<span class="co">[</span><span class="ot">1</span><span class="co">]</span> = (γ +1)^{-γ -1} \left(γ +\frac{2}{M_1^2}-1\right)^{γ } \left(-γ +2 γ  M_1^2+1\right) = \left(\frac{1}{γ+1}\right)^{γ+1}\left<span class="co">[</span><span class="ot">2 γ M_1^2-(γ-1)\right</span><span class="co">]</span>\left(γ-1+\frac{2}{M_1^2}\right)^γ</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>α<span class="co">[</span><span class="ot">2</span><span class="co">]</span>/α<span class="co">[</span><span class="ot">1</span><span class="co">]</span> = (γ +1)^{-γ -1} \left(γ +\frac{2}{M_1^2}-1\right)^{γ } \left(-γ +2 γ  M_1^2+1\right) = \left(\frac{1}{γ+1}\right)^{γ+1}\left<span class="co">[</span><span class="ot">2 γ M_1^2-(γ-1)\right</span><span class="co">]</span>\left(γ-1+\frac{2}{M_1^2}\right)^γ</span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>Taking the derivative of the entropy ratio with respect to $M_1$:</span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio = D[ratio, M1];</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio = Simplify[dRatio, assums];</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio /. formatRules</span></span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>gives us</span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>\frac{d}{d M_1} \left(\frac{α_2}{α_1}\right) = </span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>4 (γ -1) γ  (γ +1)^{-γ -1} \left(M_1^2-1\right)^2 M_1^{-2 γ -1} \left((γ -1) M_1^2+2\right)^{γ -1}</span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>The derivative is positive for all $M_1&gt;0$ values as long as $γ&gt;1$. And when $M_1=1$, the ratio is equal to 1.</span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>The plot of the entropy ratio as a function of $M_1$ for a range of adiabatic indices is shown below.</span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="in">γs = {1, 4/3, 5/3, 2};</span></span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="in">LogLogPlot[</span></span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="in"> Evaluate[ratio /. γ -&gt; γs], {M1, 1, 100}, </span></span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="in"> PlotLegends -&gt; γs</span></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in"> ]</span></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>Taking the derivative of the entropy ratio with respect to $M_1$:</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio = D[ratio, M1];</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio = Simplify[dRatio, assums];</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="in">dRatio /. formatRules</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>gives us</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>\frac{d}{d M_1} \left(\frac{α_2}{α_1}\right) = </span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>4 (γ -1) γ  (γ +1)^{-γ -1} \left(M_1^2-1\right)^2 M_1^{-2 γ -1} \left((γ -1) M_1^2+2\right)^{γ -1}</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>The derivative is positive for all $M_1&gt;0$ values as long as $γ&gt;1$. And when $M_1=1$, the ratio is equal to 1.</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>The plot of the entropy ratio as a function of $M_1$ for a range of adiabatic indices is shown below.</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a><span class="in">γs = {1, 4/3, 5/3, 2};</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="in">LogLogPlot[</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in"> Evaluate[ratio /. γ -&gt; γs], {M1, 1, 100}, </span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="in"> PlotLegends -&gt; γs</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="in"> ]</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/entropy_ratio.svg)</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>And we can see that when $γ=1$, the entropy ratio is constant and equal to 1. As $p = α_1 ρ^γ = n k T$, this corresponds to the case where the temperature is constant across the shock. Isothermal behavior is due to fast, field-aligned escaping electrons and this is more likely to occur in parallel shocks.</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>The mathematica notebook for this question and the following question is available <span class="co">[</span><span class="ot">here</span><span class="co">](./epss263_hw05.nb)</span>.</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Perpendicular Shock</span></span>
 <span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/entropy_ratio.svg)</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; a. Show Eq. III.90 following Siscoe notes. Follow same procedure as in III.73 to factor the known solution and derive the quadratic coefficients. Write (X-1)(X^2 + A_1 X + A_0)=0 where X = (U2/U1) and solve for A0 and A1 given the coefficients of the cubic. For extra testing of cubic, make sure that X=1 is indeed a valid solution. As another test of your cubic equation (you can do that always during the derivation): Set $A_1 → ∞$ and validate it becomes a quadratic that is identical to III.71 (with M1 defined same as S1).</span></span>
 <span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>And we can see that when $γ=1$, the entropy ratio is constant and equal to 1. As $p = α_1 ρ^γ = n k T$, this corresponds to the case where the temperature is constant across the shock. Isothermal behavior is due to fast, field-aligned escaping electrons and this is more likely to occur in parallel shocks.</span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>The mathematica notebook for this question and the following question is available <span class="co">[</span><span class="ot">here</span><span class="co">](./epss263_hw05.nb)</span>.</span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Perpendicular Shock</span></span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; a. Show Eq. III.90 following Siscoe notes. Follow same procedure as in III.73 to factor the known solution and derive the quadratic coefficients. Write (X-1)(X^2 + A_1 X + A_0)=0 where X = (U2/U1) and solve for A0 and A1 given the coefficients of the cubic. For extra testing of cubic, make sure that X=1 is indeed a valid solution. As another test of your cubic equation (you can do that always during the derivation): Set $A_1 → ∞$ and validate it becomes a quadratic that is identical to III.71 (with M1 defined same as S1).</span></span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>The continuity relations for the perpendicular shock can be written as</span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>&amp; [<span class="co">[</span><span class="ot">\rho U</span><span class="co">]</span>]=0 <span class="sc">\\</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>&amp; \left<span class="co">[</span><span class="ot">\left[\rho U^2+p+\frac{B^2}{2 \mu_0}\right]\right</span><span class="co">]</span>=0 <span class="sc">\\</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>&amp; {\left<span class="co">[</span><span class="ot">\left[\left(\frac{1}{2} \rho U^2+\frac{\gamma}{\gamma-1} \rho+\frac{B^2}{\mu_0}\right) U\right]\right</span><span class="co">]</span>=0} <span class="sc">\\</span></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>&amp; {[<span class="co">[</span><span class="ot">U B</span><span class="co">]</span>]=0}</span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>Normalizing the magnetic pressure by the ram pressure and the thermal pressure by the ram pressure</span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>B_1^2\to \frac{\rho _1 U_1^2}{A^2}</span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>p_1\to \frac{\rho _1 U_1^2}{\gamma  S^2}</span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>And Elimitating $B_2$, $\rho_2$ and $p_2$ from the equations</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>The continuity relations for the perpendicular shock can be written as</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>&amp; [<span class="co">[</span><span class="ot">\rho U</span><span class="co">]</span>]=0 <span class="sc">\\</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>&amp; \left<span class="co">[</span><span class="ot">\left[\rho U^2+p+\frac{B^2}{2 \mu_0}\right]\right</span><span class="co">]</span>=0 <span class="sc">\\</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>&amp; {\left<span class="co">[</span><span class="ot">\left[\left(\frac{1}{2} \rho U^2+\frac{\gamma}{\gamma-1} \rho+\frac{B^2}{\mu_0}\right) U\right]\right</span><span class="co">]</span>=0} <span class="sc">\\</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>&amp; {[<span class="co">[</span><span class="ot">U B</span><span class="co">]</span>]=0}</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>Normalizing the magnetic pressure by the ram pressure and the thermal pressure by the ram pressure</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>B_1^2\to \frac{\rho _1 U_1^2}{A^2}</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>p_1\to \frac{\rho _1 U_1^2}{\gamma  S^2}</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>And Elimitating $B_2$, $\rho_2$ and $p_2$ from the equations</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="in">massEq := \[Rho]1 U1 == \[Rho]2 U2</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="in">momEq := \[Rho]1 U1^2 + p1 + B1^2/2 == \[Rho]2 U2^2 + p2 + B2^2/2</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="in">energyEq := (1/2 \[Rho]1 U1^2 + f p1 + B1^2) U1 == (1/2 \[Rho]2 U2^2 +</span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="in">      f p2 + B2^2) U2</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="in">FaradayEq := B1 U1 == B2 U2</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="in">eqs = {massEq, momEq, energyEq, FaradayEq};</span></span>
 <span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="in">massEq := \[Rho]1 U1 == \[Rho]2 U2</span></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="in">momEq := \[Rho]1 U1^2 + p1 + B1^2/2 == \[Rho]2 U2^2 + p2 + B2^2/2</span></span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="in">energyEq := (1/2 \[Rho]1 U1^2 + f p1 + B1^2) U1 == (1/2 \[Rho]2 U2^2 +</span></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">      f p2 + B2^2) U2</span></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="in">FaradayEq := B1 U1 == B2 U2</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="in">eqs = {massEq, momEq, energyEq, FaradayEq};</span></span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">Simplify[</span></span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="in"> Eliminate[eqs, {B2, \[Rho]2, p2}] /. rules, {Subscript[U, 1] &gt; 0, </span></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="in">  Subscript[\[Rho], 1] &gt; 0}]</span></span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="in">Simplify[</span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="in"> Eliminate[eqs, {B2, \[Rho]2, p2}] /. rules, {Subscript[U, 1] &gt; 0, </span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">  Subscript[\[Rho], 1] &gt; 0}]</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>We get the following equation</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>\frac{(r-1) \left(A^2 r \left(S^2 (-\gamma +\gamma  r+r+1)-2\right)+S^2 (\gamma +\gamma  (-r)-2)\right)}{A (\gamma -1) S}=0</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>where $r = U_2/U_1$.</span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>Clearly, $r=1$ is a solution. We can collect the rest equation to get the quadratic equation in $r$</span>
 <span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>We get the following equation</span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a>\frac{(r-1) \left(A^2 r \left(S^2 (-\gamma +\gamma  r+r+1)-2\right)+S^2 (\gamma +\gamma  (-r)-2)\right)}{A (\gamma -1) S}=0</span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="in">Collect[S^2 (-2 + \[Gamma] - r \[Gamma]) + A^2 r (-2 + S^2 (1 + r - \[Gamma] + r \[Gamma])) == 0, r]</span></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>we get</span>
 <span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>where $r = U_2/U_1$.</span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>Clearly, $r=1$ is a solution. We can collect the rest equation to get the quadratic equation in $r$</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>r^2 \left(A^2 \gamma  S^2+A^2 S^2\right)+r \left(-A^2 \gamma  S^2+A^2 S^2-2 A^2-\gamma  S^2\right)+\gamma  S^2-2 S^2=0</span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">Collect[S^2 (-2 + \[Gamma] - r \[Gamma]) + A^2 r (-2 + S^2 (1 + r - \[Gamma] + r \[Gamma])) == 0, r]</span></span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>we get</span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>r^2 \left(A^2 \gamma  S^2+A^2 S^2\right)+r \left(-A^2 \gamma  S^2+A^2 S^2-2 A^2-\gamma  S^2\right)+\gamma  S^2-2 S^2=0</span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>This is exactly the same as Eq. III.90 in Siscoe notes.</span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; b. Solve the quadratic to find the two solutions for U2. Show that one is non-physical, and identify the remaining, physical one.</span></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="in">assums = {A &gt; 0 , S &gt; 0, \[Gamma] &gt; 1};</span></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="in">Solve[eqR, {r}, Reals, Assumptions -&gt; assums] // Simplify</span></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>Solve the quadratic equation, we get</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a>This is exactly the same as Eq. III.90 in Siscoe notes.</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a>\left<span class="sc">\{</span>\left<span class="sc">\{</span>r\to \frac{A^2 \left((\gamma -1) S^2+2\right)-\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right<span class="sc">\}</span>,\left<span class="sc">\{</span>r\to \frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right<span class="sc">\}</span>\right<span class="sc">\}</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; b. Solve the quadratic to find the two solutions for U2. Show that one is non-physical, and identify the remaining, physical one.</span></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>The first solution is non-physical as it is negative. The physical solution is</span>
 <span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="in">assums = {A &gt; 0 , S &gt; 0, \[Gamma] &gt; 1};</span></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="in">Solve[eqR, {r}, Reals, Assumptions -&gt; assums] // Simplify</span></span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>Solve the quadratic equation, we get</span>
-<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>\left<span class="sc">\{</span>\left<span class="sc">\{</span>r\to \frac{A^2 \left((\gamma -1) S^2+2\right)-\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right<span class="sc">\}</span>,\left<span class="sc">\{</span>r\to \frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}\right<span class="sc">\}</span>\right<span class="sc">\}</span></span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>The first solution is non-physical as it is negative. The physical solution is</span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a>r_1\text{:=}\frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}</span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>In the limit of $A\to\infty$</span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="in">Subscript[r, 1] := </span></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="in"> 1/(2 A^2 S^2 (1 + \[Gamma])) (A^2 (2 + S^2 (-1 + \[Gamma])) + </span></span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="in">    S^2 \[Gamma] + \[Sqrt](A^4 (2 + S^2 (-1 + \[Gamma]))^2 + </span></span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="in">       S^4 \[Gamma]^2 + </span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="in">       A^2 (4 S^2 \[Gamma] + S^4 (8 + 2 \[Gamma] - 2 \[Gamma]^2))))</span></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="in">Simplify[Limit[Subscript[r, 1], {A -&gt; \[Infinity]}], assums]</span></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a>we can see that the solution becomes</span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a>\frac{(\gamma -1) S^2+2}{(\gamma +1) S^2}</span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>which is the same as Eq. III.71 in Siscoe notes for hydrodynamic shocks.</span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a>r_1\text{:=}\frac{A^2 \left((\gamma -1) S^2+2\right)+\sqrt{A^4 \left((\gamma -1) S^2+2\right)^2+A^2 \left(\left(-2 \gamma ^2+2 \gamma +8\right) S^4+4 \gamma  S^2\right)+\gamma ^2 S^4}+\gamma  S^2}{2 A^2 (\gamma +1) S^2}</span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>In the limit of $A\to\infty$</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="in">Subscript[r, 1] := </span></span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="in"> 1/(2 A^2 S^2 (1 + \[Gamma])) (A^2 (2 + S^2 (-1 + \[Gamma])) + </span></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="in">    S^2 \[Gamma] + \[Sqrt](A^4 (2 + S^2 (-1 + \[Gamma]))^2 + </span></span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">       S^4 \[Gamma]^2 + </span></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="in">       A^2 (4 S^2 \[Gamma] + S^4 (8 + 2 \[Gamma] - 2 \[Gamma]^2))))</span></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="in">Simplify[Limit[Subscript[r, 1], {A -&gt; \[Infinity]}], assums]</span></span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a>we can see that the solution becomes</span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>\frac{(\gamma -1) S^2+2}{(\gamma +1) S^2}</span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>which is the same as Eq. III.71 in Siscoe notes for hydrodynamic shocks.</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; c. Plot the solution as function of A1 and M1 (color, contour or surface plot OK). Show that the limits for $A_1→∞$ and $M_1→∞$ are as expected.</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>In the limit of $A_1→∞$ and $M_1→∞$, the solution approaches $\frac{\gamma -1}{\gamma +1}$. For $γ=5/3$, the solution approaches 0.25, which is expected. The contour plot of the solution is shown below.</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="in">```mathematica</span></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="in">Block[{\[Gamma] = 5/3, p1, p2},</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a><span class="in"> p1 = ContourPlot[r1, {A, 0, 100}, {S, 0, 100}, </span></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">   PlotLegends -&gt; Automatic];</span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="in"> p2 = ContourPlot[r1, {A, 0, 10}, {S, 0, 10}, </span></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="in">   PlotLegends -&gt; Automatic];</span></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="in"> Export["figures/shock_U2.svg", p1];</span></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="in"> Export["figures/shock_U2_zoom.svg", p2];</span></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="in"> {p1, p2}</span></span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="in"> ]</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; c. Plot the solution as function of A1 and M1 (color, contour or surface plot OK). Show that the limits for $A_1→∞$ and $M_1→∞$ are as expected.</span></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>In the limit of $A_1→∞$ and $M_1→∞$, the solution approaches $\frac{\gamma -1}{\gamma +1}$. For $γ=5/3$, the solution approaches 0.25, which is expected. The contour plot of the solution is shown below.</span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{mathematica}</span></span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="in">Block[{\[Gamma] = 5/3, p1, p2},</span></span>
-<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a><span class="in"> p1 = ContourPlot[r1, {A, 0, 100}, {S, 0, 100}, </span></span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="in">   PlotLegends -&gt; Automatic];</span></span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="in"> p2 = ContourPlot[r1, {A, 0, 10}, {S, 0, 10}, </span></span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="in">   PlotLegends -&gt; Automatic];</span></span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="in"> Export["figures/shock_U2.svg", p1];</span></span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="in"> Export["figures/shock_U2_zoom.svg", p2];</span></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="in"> {p1, p2}</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a><span class="in"> ]</span></span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="al">![Contour plot with A and S less than 100](figures/shock_U2.svg)</span></span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="al">![Zoom in plot for A and S less than 10](figures/shock_U2_zoom.svg)</span></span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>:::</span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol="2"}</span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="al">![Contour plot with A and S less than 100](figures/shock_U2.svg)</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="al">![Zoom in plot for A and S less than 10](figures/shock_U2_zoom.svg)</span></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
