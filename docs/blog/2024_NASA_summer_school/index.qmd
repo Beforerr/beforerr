@@ -1,0 +1,32 @@
+# Lecture Notes
+
+## The Physics of Heliophysics - Tom Bogdan
+
+- Symmetry
+- Conservations
+- Comoving frame vs Lab frame
+- Evaluate interactions in the comoving frame
+    - Radiation and isotropy
+
+## The Physics of Heliophysics - Marco Velli
+
+"Far out in the uncharted backwaters of the unfashionable end of the western spiral arm of the Galaxy lies a small unregarded yellow sun." - Douglas Adams
+
+On the importance of being Magnetic
+
+"... a sunspot is a vortex, in which electrified"
+
+Sunspot rush towards the poles
+
+Sheely 2013, Cornoal Cells to infer the magnetic field structure and chirallity of filament channels
+
+Plasma is different
+
+- Collision, faster particle collide less and can be accelerated more easily
+    - Inverse Robin Hood D.T. Runaway is possible
+
+cometary ion tail
+
+Warped heliospheric current sheet is limited in space and time (1Au and further)
+
+You can treat everything as a fluid as long as you find a way to close the system with proper equations of state

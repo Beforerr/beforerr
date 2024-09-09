@@ -1,10 +1,6 @@
 ---
 title: Poor man's magnetometer
-jupyter:
-  kernelspec:
-    display_name: Julia 1.9.4
-    language: julia
-    name: julia-1.9
+engine: julia
 ---
 
 ## Plot the energy recorded versus the incident energy
@@ -27,11 +23,13 @@ $$E=E(d,s)$$
 
 ```{julia}
 #| output: false
-import Pkg
-Pkg.add("YAML")
-Pkg.add("DataFrames")
-Pkg.add("Gadfly")
-Pkg.add("Unitful")
+using Pkg
+Pkg.add([
+    "YAML",
+    "DataFrames",
+    "Gadfly",
+    "Unitful",
+])
 
 using YAML
 using DataFrames
@@ -69,13 +67,13 @@ function convert_data(yaml_data)
         SourceParticle=[entry["source"]["particle"] for entry in yaml_data],
         LayerAlThickness=[entry["layer.Al.thickness"] for entry in yaml_data],
     )
-    
+
     return df
 end
 ```
 
 ```{julia}
-function read_data(filename = "result.yml")
+function read_data(filename="result.yml")
     # Read YAML file or string
     filepath = joinpath(@__DIR__, "run", filename)
     # Parse YAML content
