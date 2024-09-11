@@ -7,8 +7,8 @@ author:
     affiliation: "{{< var affiliations.ucla >}}"
 date: last-modified
 code-links: 
-  - href: https://www.overleaf.com/project/662764a24cf7dad3dc8557eb
-    text: Overleaf
+  - text: Tana
+    href: https://app.tana.inc?nodeid=MhUJ66j3bGlZ
 ---
 
 
@@ -18,5 +18,4 @@ code-links:
 
 > The student prepares two written research proposals on two dissimilar projects approved by the faculty adviser. The proposals must be concise, with a guideline of 4 pages and a maximum of 5 pages, and must be submitted to the examining committee at least 10 days before the examination. One of the proposals should cover a possible dissertation topic. The proposals are presented briefly to the examining committee orally, and the committee examines their originality and scientific merit, as well as the student’s fundamental knowledge in the program area.
 
-
-- [EMIC Proposal](./2024_pre/proposal_EMIC.qmd)
+- [First Exam](2024_pre/index.qmd)
