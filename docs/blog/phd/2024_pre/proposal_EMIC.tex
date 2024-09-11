@@ -135,6 +135,7 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
+
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -145,7 +146,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Synergistic Influence of EMIC and Whistler (Chorus) Waves on Radiation Belt Electron Flux Dynamics},
+  pdftitle={Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -153,7 +154,8 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Synergistic Influence of EMIC and Whistler (Chorus) Waves on Radiation Belt Electron Flux Dynamics}
+
+\title{Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux}
 \author{}
 \date{}
 
@@ -162,30 +164,27 @@
 
 \vspace{-20truemm}
 
+
 \textbf{PhD Candidate: Zijin Zhang}
 
 \section{Abstract}\label{abstract}
 
-Electromagnetic Ion Cyclotron (EMIC) waves and whistler (chorus) waves are fundamental plasma wave phenomena in Earth's magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. Electron interactions with these waves often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003} and EMIC \& chorus waves causing electron losses through pitch angle scattering \citep{summersRelativisticElectronPitchangle2003, summersTimescalesRadiationBelt2007}. This project aims to deepen the understanding of how these waves, in concert with other phenomena like plasma sheet injections, impact the behavior of radiation belt electrons during storm-time events. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, we will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics, improving predictions of space weather effects.
+Electromagnetic Ion Cyclotron (EMIC) waves and whistler (chorus) waves are fundamental plasma wave phenomena in Earth's magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. Electron interactions with these waves often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003} and EMIC \& chorus waves causing electron losses through pitch angle scattering \citep{summersRelativisticElectronPitchangle2003, summersTimescalesRadiationBelt2007}.
+This project focuses on leveraging ELFIN satellite measurements to investigate the role of EMIC-driven precipitation during storm-time events, specifically analyzing how EMIC waves contribute to the shaping of energetic electron spectra. Traditionally, these spectra have been modeled considering primarily whistler-mode waves and plasma injections. By integrating ELFIN data with complementary observations from Van Allen Probes, ERG (Arase) and MMS, alongside advanced simulations, we aim to refine the understanding of EMIC wave contributions to relativistic electron dynamics, enhancing current radiation belt models.
 
 \section{Background and Motivation}\label{background-and-motivation}
 
-\paragraph{Interactions of Waves with Radiation Belt Electrons}\label{interactions-of-waves-with-radiation-belt-electrons}
+There are six important physical processes that affect the dynamics of relativistic (\(>0.3\) MeV) electrons trapped in the Earth's outer radiation belt: (a) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with electromagnetic ion cyclotron (EMIC) waves \cite{Thorne&Kennel71, Miyoshi08, Ross21, Summers&Thorne03, Millan&Thorne07, Miyoshi08,Shprits08:JASTP_local, Angelopoulos23:ssr}, (b) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with whistler-mode waves \cite{Horne05JGR, Mourenas14}, (c) electron flux increases due to chorus wave-driven acceleration of \(\approx100-300\) keV ``seed'' electrons \cite{Miyoshi03, Thorne13:nature, Li14:storm, Mourenas14:fluxes,Allison&Shprits20, Jaynes15:seedelectrons} provided by recurrent strong injections \cite{Hua2022, Mourenas23:jgr:upper_limit}, (d) electron losses due to magnetopause shadowing and outward radial diffusion \cite{Shprits06:magnetopause, Boynton16, Boynton17, Olifer18}, (e) electron flux increase due to inward radial diffusion by ULF waves \cite{Ozeke14, Ozeke2020}, and (f) electron flux increase due to direct injections of \(\sim0.5-1.5\) MeV electrons in the outer belt \cite{Kim21, Tang22}. These mechanisms collectively shape the distribution of radiation belt electrons, with varying influences depending on geomagnetic conditions and wave activity.
 
-Relativistic electron fluxes in Earth's inner magnetosphere are greatly affected by electron scattering to the atmosphere via resonant interactions with whistler-mode and electromagnetic ion cyclotron (EMIC) waves \citep{millanReviewRadiationBelt2007, summersTimescalesRadiationBelt2007a}. Near the loss-cone, electron scattering rates for EMIC waves at such energies are much larger than for whistler-mode waves \citep{glauertCalculationPitchAngle2005}. Thus, EMIC wave-driven electron precipitation is considered a key contributor to relativistic electron losses at energies exceeding the minimum energy for cyclotron resonance with such waves, \(E_{\min}\sim 0.5-1\) MeV \citep{summersRelativisticElectronPitchangle2003, summersTimescalesRadiationBelt2007}. Numerical simulations of the outer radiation belt dynamics \citep{maModelingInwardDiffusion2015} and data-model comparisons \citep{angelopoulosEnergeticElectronPrecipitation2023} have demonstrated that EMIC waves can scatter relativistic electrons efficiently and deplete their fluxes quickly in the outer radiation belt.
-For energies below ultra-relativistic energies (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering mostly affects low pitch-angle electrons \citep[equatorial \(\alpha_{eq}<30^\circ\), see][]{kerstenElectronLossesRadiation2014}. Therefore, additional high pitch-angle electron scattering by whistler-mode waves is required to assist EMIC waves in the precipitation of the main, near-equatorial, (trapped) electron population \citep{mourenasFastDropoutsMultiMeV2016}. A combination of electron scattering by whistler-mode and EMIC waves at the same \(L\)-shell (even if at different MLT) can result in a very effective electron flux depletion \citep{mourenasFastDropoutsMultiMeV2016, drozdovDepletionsMultiMeVElectrons2022}. Verification of this electron loss mechanism requires a combination of satellites near the equator (to measure the waves and equatorial pitch-angle electron fluxes) and at low-altitude (to measure precipitating electron fluxes).
+Among these, EMIC wave-driven electron precipitation stands out as a key mechanism for electron losses at energies above the minimum threshold for cyclotron resonance with such waves, typically \(E_{\min}\sim 0.5-1\) MeV \cite{Summers&Thorne03, Summers07:theory, Usanova14, Kurita18:emic, Nakamura22:emic}. EMIC waves induce much higher electron pitch angle scattering rates near the loss cone at relativistic energies than those driven by chorus waves \cite{Glauert&Horne05, Summers07:rates, Ni15}. Numerical simulations of the outer radiation belt dynamics \cite{Ma15, Shprits16, Drozdov17}, alongside data-model comparisons \cite{Shprits17, Kim21:emic, Drozdov22:dropout, Adair22, Angelopoulos23:ssr}, have confirmed that EMIC waves efficiently scatter relativistic electrons, leading to rapid depletion of their fluxes in the outer radiation belt.
 
-\paragraph{Effects of Wave-particle Resonant Interactions}\label{effects-of-wave-particle-resonant-interactions}
+However, for energies below ultra-relativistic levels (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering primarily affects low pitch angle electrons (equatorial \(\alpha_{eq}<30^\circ\)) \cite{Ni15, Kersten14}. Additional scattering of high pitch angle (\(\alpha_{eq}>30^\circ\)) electrons by whistler-mode waves has been suggested to assist EMIC waves in the precipitation of the near-equatorial (trapped) electron population \cite{Mourenas16:grl, Zhang17, Drozdov20}. Studies have shown that the combination of EMIC and whistler-mode wave scattering at the same \(L\)-shell (even at different longitudes) can result in very effective electron flux depletion \cite{Mourenas16:grl, Kim21:emic, Drozdov22:dropout}. Verifying this electron loss mechanism requires coordinated observations from satellites near the equator (to measure waves and equatorial pitch-angle fluxes) and at low-altitude (to capture precipitating electron fluxes).
 
-EMIC waves are generated by anisotropic ion populations from plasma sheet injections \citep{Jun19:emic}. These injections also create anisotropic ``seed'' electrons \citep{Miyoshi13,Jaynes15:seedelectrons}, the free energy source for whistler-mode chorus waves \citep{Tao11,Fu14:radiation_belts,Zhang18:whistlers&injections}. Such chorus waves can effectively accelerate the same seed electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003, thorneRapidLocalAcceleration2013, mourenasApproximateAnalyticalSolutions2014, allisonLocalHeatingRadiation2020}. Therefore, there is a competition between electron acceleration by whistler-mode waves \citep[supported by direct adiabatic heating during injections, see, e.g.][]{sorathiaModelingDepletionRecovery2018} and electron precipitation by EMIC and chorus waves, and this competition should ultimately shape the energy spectrum of radiation belt electrons after a series of plasma sheet injections. Several recent publications indicate that the electron energy spectrum may have an upper limit of flux, corresponding to a balance between electron injections and precipitation loss, controlled by whistler-mode waves \citep{oliferTaleTwoRadiation2021, oliferNaturalLimitSpectral2022}. The existence of such an upper limit has been predicted by \citet{kennelLimitStablyTrapped1966}, and reevaluated for relativistic electrons by \citet{summersLimitStablyTrapped2009} and \citet{summersLimitingEnergySpectrum2014}. Several of its main assumptions have been verified using ELFIN data \citep{mourenasCheckingKeyAssumptions2024}. The Kennel-Petschek upper limit is based on the idea that injected electrons generate whistler-mode waves (with exponentially higher wave power for electron fluxes above the flux limit) that ultimately scatter these same injected electrons into the atmosphere. The competition between linearly increasing anisotropic electron fluxes and exponentially faster electron losses into the atmosphere due to exponentially increasing wave growth, leads to a stationary solution in the diffusion (Fokker-Planck) equation describing electron flux dynamics. Inclusion of EMIC wave-driven loss into this balance reduces the upper limit for the differential electron flux at high energy \citep{mourenasExtremeEnergySpectra2022}.
+EMIC waves are typically generated by anisotropic ion populations from plasma sheet injections \citep{Jun19:emic}. These injections also produce anisotropic ``seed'' electrons \citep{Miyoshi13, Jaynes15:seedelectrons}, which provide the free energy for whistler-mode chorus wave generation \citep{Tao11, Fu14:radiation_belts, Zhang18:whistlers&injections}. Chorus waves can then accelerate the same seed electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003, thorneRapidLocalAcceleration2013, mourenasApproximateAnalyticalSolutions2014, allisonLocalHeatingRadiation2020}. A competition emerges between electron acceleration driven by whistler-mode waves, supported by adiabatic heating during injections \citep[e.g.,][]{sorathiaModelingDepletionRecovery2018}, and electron precipitation induced by EMIC and chorus waves. This competition ultimately shapes the energy spectrum of radiation belt electrons following plasma sheet injections. Recent publications suggest that the electron energy spectrum reaches an upper flux limit, resulting from a balance between electron injections and precipitation losses governed by whistler-mode waves \citep{oliferTaleTwoRadiation2021, oliferNaturalLimitSpectral2022}.
 
-\paragraph{Role of EMIC Waves in Space Weather}\label{role-of-emic-waves-in-space-weather}
+This upper flux limit, first predicted by \citet{kennelLimitStablyTrapped1966} and later extended for relativistic electrons \citep{summersLimitStablyTrapped2009, summersLimitingEnergySpectrum2014}, is based on the concept that injected electrons generate whistler-mode waves, which grow exponentially as electron fluxes exceed the flux limit. These waves, in turn, scatter the injected electrons into the atmosphere. The dynamic interplay between linearly increasing anisotropic electron fluxes and exponentially faster electron losses results in a stationary solution within the Fokker-Planck equation that describes electron flux dynamics/ When EMIC wave-driven losses are incorporated into this framework, the upper limit for the differential electron flux at higher energies is further reduced \citep{mourenasExtremeEnergySpectra2022}. This adjustment highlights the important contribution of EMIC waves to electron precipitation, particularly at higher energies, where they significantly enhance overall electron losses.
 
-Understanding the interactions between EMIC waves and radiation belt electrons is crucial for predicting space weather effects, particularly since these interactions can lead to rapid changes in radiation belt configurations, posing risks to satellites and other space-based technologies (Baker et al., 2004; Horne et al., 2005). The 2003 Halloween storm provided a clear example of how enhanced EMIC wave activity correlated with significant radiation belt electron flux decreases, highlighting the importance of including these waves in predictive models (Turner et al., 2012).
-
-\paragraph{Gaps in Current Understanding}\label{gaps-in-current-understanding}
-
-Despite significant advances, there remain substantial gaps in our understanding of what roles these waves, operating concurrently with other dynamic processes during plasma sheet injections, play in modifying these interactions with energetic particles. The proposed study aims to bridge these gaps by combining observational data analysis with theoretical modeling efforts.
+The significant role of EMIC waves in regulating radiation belt electron loss complements the more widely studied effects of whistler-mode waves and other mechanisms like plasma injections and magnetopause shadowing. Understanding the concurrent operation of EMIC waves alongside these processes during storm-time plasma sheet injections remains a critical challenge. The proposed study seeks to clarify the relative contributions of EMIC waves by combining detailed observational data from missions such as ELFIN, Van Allen Probes, and ERG (Arase) with advanced theoretical modeling. This enhanced understanding will improve our ability to interpret radiation belt behavior during geomagnetic storms and advance the current models of radiation belt dynamics.
 
 \section{Proposed Data and Detailed Analysis Approach}\label{proposed-data-and-detailed-analysis-approach}
 
@@ -244,13 +243,7 @@ This estimate of electron lifetime by EMIC waves is based on analytical quasi-li
 
 \subsection{Expected Contributions}\label{expected-contributions}
 
-This research project aims to advance our understanding of how EMIC or/and whistler waves influence radiation belt electrons. By integrating empirical data from multiple satellite sources with advanced theoretical modeling, we seek to establish a robust analytical framework capable of unraveling the complex interactions within Earth's magnetosphere.
-
-This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions. Specifically, we try to answer the following question:
-
-\textbf{How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?}
-
-Utilizing analytic diffusion coefficients for EMIC waves, chorus waves, or a combination thereof, we intend to ascertain the rate and extent of changes in electron fluxes during storm-time events and elucidate the role these waves play in driving electron precipitation.
+This project aims to quantify the impact of EMIC waves on the electron energy spectrum, previously thought to be shaped mainly by plasma injections and whistler-mode waves. Using data from satellite missions like ELFIN, Van Allen Probes, and ERG (Arase), we will examine how EMIC waves alter electron fluxes during storms, particularly alongside whistler-mode waves. By analyzing case studies and applying diffusion coefficients, we aim to assess how EMIC waves influence electron pitch angles and precipitation. Ultimately, this study seeks to compare the effects of EMIC and whistler-mode waves to determine when EMIC waves dominate electron loss processes.
 
 \section{Discussion and Future Work}\label{discussion-and-future-work}
 
@@ -284,9 +277,9 @@ The proposed research is designed to tackle some of the most pressing questions 
 \newpage{}
 
 
-  \bibliography{../../../../files/references.bib,../../../../../share/bibliography/research.bib}
 
 
 \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}
+
 
 \end{document}
