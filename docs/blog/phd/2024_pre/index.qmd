@@ -1,0 +1,14 @@
+---
+code-links:
+  - text: Mail
+    href: https://mail.google.com/mail/u/1/#label/PhD%2FFirst+Exam
+  - text: Overleaf
+    href: https://www.overleaf.com/project/662764a24cf7dad3dc8557eb
+  - text: Zotero
+    href: zotero://select/library/collections/N8EDINIV
+  - text: Tana
+    href: https://app.tana.inc?nodeid=DkMM5F5bzQ8q
+---
+
+- [EMIC Proposal](./proposal_EMIC.qmd)
+- [Solar wind discontinuity Proposal](./proposal_SWD.qmd)
