@@ -3,9 +3,13 @@ process-tex file:
    just rm_paragraph {{file}}
    just sync-tex {{file}}
 
-process-texs:
-   just process-tex proposal_EMIC.tex
-   just process-tex proposal_SWD.tex
+process name:
+   quarto render {{name}}.qmd --to pdf
+   just process-tex {{name}}.tex
+
+process-files:
+   just process proposal_EMIC
+   just process proposal_SWD
 
 sync-overleaf:
    rsync figures/ overleaf/figures/ -r

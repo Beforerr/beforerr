@@ -134,7 +134,7 @@ The number of discontinuities measured by Juno per day coincides with the discon
 
 ## Summary
 
-This research project will employ a comprehensive approach to dissect the complex nature of solar wind discontinuities, offering insights into their fundamental properties and impacts across the heliosphere. By integrating observational data with theoretical analyses and numerical simulation, this research aims to unravel the intricate processes that govern the magnetic discontinuities, the key element of magnetic field turbulence and the primary interface of charged particle acceleration.
+This research project adopts a comprehensive approach to unravel the complex characteristics of solar wind discontinuities, seeking to shed light on their fundamental characteristics. By utilizing big data from multiple spacecraft missions throughout the heliosphere, we aim to examine the temporal variations in these properties driven by solar activity, as well as the spatial variations influenced by radial distance from the Sun. Our goal is to infer the intricate processes governing the evolution of magnetic discontinuities, a key component of magnetic field turbulence and a crucial interface for charged particle acceleration.
 
 ## Figures
 
