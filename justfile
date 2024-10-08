@@ -1,7 +1,7 @@
 default:
     just --list
 
-ensure-env:
+ensure-env: ln-bib
     pixi install
 
 publish:
@@ -9,3 +9,8 @@ publish:
 
 preview:
     quarto preview
+
+[private]
+ln-bib:
+    mkdir -p files/bibliography
+    [ -e files/bibliography/research.bib ] || ln -s ~/projects/share/bibliography/research.bib files/bibliography/research.bib
