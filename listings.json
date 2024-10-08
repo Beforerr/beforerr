@@ -1,5 +1,16 @@
 [
   {
+    "listing": "/research/index.html",
+    "items": [
+      "/research/articles/margotSearchTechnosignatures2023/index.html",
+      "/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
+      "/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
+      "/research/projects/2024_Zijin_finesst/index.html",
+      "/research/projects/2023_Zijin_relativistic-electron-flux/index.html",
+      "/research/projects/2022_Zijin_solar-wind-LMA/index.html"
+    ]
+  },
+  {
     "listing": "/courses/epss265/homeworks/index.html",
     "items": [
       "/courses/epss265/homeworks/epss265_hw02.html",
@@ -7,6 +18,22 @@
       "/courses/epss265/homeworks/epss265_hw04.html",
       "/courses/epss265/homeworks/epss265_hw05.html",
       "/courses/epss265/homeworks/epss265_hw06.html"
+    ]
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/epss265/index.html",
+      "/courses/phys231/index.html"
+    ]
+  },
+  {
+    "listing": "/docs/courses/index.html",
+    "items": [
+      "/docs/courses/astr145/index.html",
+      "/docs/courses/epss265/index.html",
+      "/docs/courses/epss263/index.html",
+      "/docs/courses/phys231/index.html"
     ]
   },
   {
@@ -20,35 +47,19 @@
     ]
   },
   {
-    "listing": "/docs/courses/index.html",
-    "items": [
-      "/docs/courses/epss265/index.html",
-      "/docs/courses/epss263/index.html",
-      "/docs/courses/phys231/index.html"
-    ]
-  },
-  {
-    "listing": "/research/index.html",
-    "items": [
-      "/research/articles/margotSearchTechnosignatures2023/index.html",
-      "/research/projects/2024_Zijin_finesst/index.html",
-      "/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
-      "/research/projects/2023_Zijin_relativistic-electron-flux/index.html",
-      "/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
-      "/research/projects/2022_Zijin_solar-wind-LMA/index.html"
-    ]
-  },
-  {
     "listing": "/docs/research/index.html",
     "items": [
       "/docs/research/articles/2023_Zijin_relativistic-electron-flux/index.html",
       "/docs/research/articles/margotSearchTechnosignatures2023/index.html",
       "/docs/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
-      "/docs/research/projects/2024_space-analysis.py/index.html",
+      "/docs/research/projects/2024_Zijin_hybrid-simulation/index.html",
       "/docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
       "/docs/research/projects/2024_DiscontinuityPy/index.html",
+      "/docs/research/projects/2024_space-analysis.py/index.html",
       "/docs/research/projects/2024_Zijin_finesst/index.html",
-      "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html"
+      "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html",
+      "/docs/research/topics/solar_wind/index.html",
+      "/docs/research/topics/swd/index.html"
     ]
   },
   {
@@ -56,6 +67,7 @@
     "items": [
       "/docs/blog/phd/2024_pre/proposal_EMIC.html",
       "/docs/blog/phd/2024_pre/proposal_SWD.html",
+      "/docs/blog/phd/2024_pre/index.html",
       "/docs/blog/phd/index.html",
       "/docs/blog/journal_club/2024-04-23_mercury/index.html",
       "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
@@ -65,11 +77,7 @@
   {
     "listing": "/docs/courses/epss263/homework/index.html",
     "items": [
-      "/docs/courses/epss263/homework/epss263_hw02.html",
-      "/docs/courses/epss263/homework/epss263_hw03.html",
-      "/docs/courses/epss263/homework/epss263_hw04.html",
-      "/docs/courses/epss263/homework/epss263_hw05.html",
-      "/docs/courses/epss263/homework/epss263_hw06.html"
+      "/docs/courses/epss263/homework/epss263_hw02.html"
     ]
   }
 ]
