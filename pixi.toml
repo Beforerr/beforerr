@@ -10,3 +10,5 @@ platforms = ["osx-arm64"]
 
 [dependencies]
 jupyter = "*"
+astropy = "*"
+numpy = "*"
