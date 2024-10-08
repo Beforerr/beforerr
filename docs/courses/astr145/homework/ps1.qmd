@@ -1,0 +1,443 @@
+---
+title: Problem Set 1
+number-sections: true
+---
+
+```{python}
+from math import pi
+from astropy.constants import G, c, M_sun, g0
+import astropy.units as u
+
+def schwarzschild_radius(M):
+    """Schwarzschild radius"""
+    return (2 * G * M) / (c ** 2)
+```
+
+## High-Energy Photons
+
+(a) Consider a quasar with an X-ray luminosity  of $L_X = 10^{43} erg s^{−1}$ that is situated 10 Gpc from Earth. If the typical photon has  an energy of 1 keV, what is the flux of photons from this source observed at Earth, in  units of photons $cm^{−2} s^{−1}$? The Chandra telescope has a collecting area of $0.04 m^2$.  How long must Chandra observe this source in order to collect 10 photons? Express  your answer in hours.  
+(b) Now consider a blazar with $Lγ = 10^{45} erg s^{−1}$ that is situated 0.5 Gpc from Earth.  If the typical photon has an energy of 10 GeV, what is the flux of photons from this  source observed at Earth, in units of photons $cm^{−2} s^{−1}$? The Fermi telescope has a  collecting area of ∼ 8000 cm2. How long must Fermi observe this source in order to collect 10 photons?
+
+---
+
+The code for the calculations is as follows:
+
+```{python}
+def energy_flux(L, d):
+    """Energy flux"""
+    return L / (4 * pi * d ** 2)
+
+def photon_flux(F, E):
+    """Photon flux"""
+    f_p = F / E.to(u.erg)
+    return f_p.to(1 / u.cm ** 2 / u.s)
+
+# Part (a): Quasar
+L_X = 1e43 * u.erg / u.s  # X-ray luminosity of the quasar
+d = 10 * u.Gpc  # Distance from Earth in Gpc
+E = 1 * u.keV  # Photon energy in keV
+A = 0.04 * u.m ** 2  # Collecting area of the Chandra telescope
+
+F_energy = energy_flux(L_X, d)
+F_photon = photon_flux(F_energy, E)
+rate = F_photon * A
+t = 10 / rate
+print(f"Part (a):")
+print(f"Photon Flux: {F_photon:.2e}")
+print(f"Time to Collect 10 Photons: {t.to(u.hour):.2f}\n")
+
+# Part (b): Blazar
+L_gamma = 1e45 * u.erg / u.s  # Gamma-ray luminosity of the blazar
+d = 0.5 * u.Gpc  # Distance from Earth in Gpc
+E = 10 * u.GeV  # Photon energy in GeV
+A = 8000 * u.cm ** 2  # Collecting area of the Fermi telescope
+
+F_energy = energy_flux(L_gamma, d)
+F_photon = photon_flux(F_energy, E)
+rate = F_photon * A
+t = 10 / rate
+print(f"Part (b):")
+print(f"Photon Flux: {F_photon:.2e}")
+print(f"Time to Collect 10 Photons: {t.to(u.hour):.2f}")
+```
+
+
+---
+
+### Quasar
+
+Energy Flux ($F_{\text{energy}}$) is given by:
+
+$$
+F_{\text{energy}} = \frac{L_X}{4\pi d^2} = \frac{10^{43} \, \text{erg/s}}{4\pi (10 Gpc)^2} \approx 8.37 \times 10^{-16} \, \text{erg/cm}^2\text{/s}
+$$
+
+Convert Photon Energy to Ergs:
+$$
+1 \, \text{keV} = 1.602 \times 10^{-9} \, \text{erg}
+$$
+
+Photon Flux ($F_{\text{photon}}$) is given by:
+
+$$
+F_{\text{photon}} = \frac{F_{\text{energy}}}{E} \approx 5.22 \times 10^{-7} \, \text{photons/cm}^2\text{/s}
+$$
+
+Rate of Photons Collected:
+
+$$
+R = F_{\text{photon}} \times A
+$$
+
+Time to Collect 10 Photons
+
+$$
+t = \frac{N}{R} = \frac{10 \, \text{photons}}{R} \approx 13.3 \, \text{hours}
+$$
+
+---
+
+### Blazar
+
+$$
+F_{\text{photon}} = \frac{F_{\text{energy}}}{E}
+$$
+
+Plugging in the values:
+
+$$
+F_{\text{photon}} = \frac{F_{\text{energy}}}{E} \approx 2.089 \times 10^{-9} \, \text{photons/cm}^2\text{/s}
+$$
+
+$$
+t = \frac{N}{R} \approx 166 \, \text{hours}
+$$
+
+## Gravitational Frequency Shift
+
+Suppose you are standing in your “laboratory,” a steel box of height l. The laboratory is sitting on the Earth, so you and  everything in it feel a downward gravitational acceleration of magnitude $g = 10 m s^{−2}$  (don’t use the numerical value in this problem, just call it g).  
+
+(a) If you drop a ball from rest at the top of the box, it hits the bottom after a time $t$, where $g t^2/2 = l$. Show that its kinetic energy at the bottom of the box is $E_b = m l g$. 
+(b) Your friend is in a similar laboratory in space, far enough away from the Earth  that its gravity is negligible. She has attached a laser to the ceiling of her laboratory,  pointing down towards a light detector on the floor. The laser emits photons that have  frequency νt. The detector at the bottom can measure the frequency (and hence the  color) of photons that it receives. If the laboratory were floating freely in space, then  the frequency of the photons received at the bottom would be νb = νt. How long does  it take photons to go from the top of the box to the bottom? (Give an equation for  the time tb in terms of l and c.)  
+(c) Now suppose that your friend’s laboratory is not floating freely but is being towed  by a rocket that is accelerating upwards (in the frame of your friend) with acceleration  a = 10 m s−2. By the time the light reaches the bottom, therefore, the box is moving  upwards with a speed vbox = at. What is the frequency νb of photons measured by a  detector bolted to the floor at the bottom of the box? (Give a formula expressing $ν_b$ in terms of νt, a, l, and c.) Are the photons at the bottom bluer or redder than those  emitted at the top? Hint: You can assume that the travel time is the same as in (b)  so long as $v_{box}<<c$.  
+(d) Remember that the energy of a photon with frequency ν is E = hν. Show that  the photons received at the bottom of the box have greater energy than those emitted  at the top of the box by an amount ≈ Et × (al/c2).  
+(e) You install an identical laser and light detector in your laboratory on the earth. The  laser again emits photons with frequency νt. Apply the equivalence principle discussed  in class to answer the following questions: (i) Are the photons received at the bottom  bluer, redder, or the same color as those emitted at the top? (ii) Do photons gain  energy, lose energy, or keep the same energy as they fall through the box? (iii) What  is the amount of energy that a photon gains or loses as it falls through the box? (If  the energy doesn’t change, answer zero.) Explain (briefly) the reasoning behind your  answers.
+(f) Compare your answers to part (e) and part (a). What does this comparison  suggest?
+
+---
+
+### Kinetic Energy
+
+$$
+l = \frac{1}{2}gt^2
+\implies
+t = \sqrt{\frac{2l}{g}}
+$$
+
+$$
+v = gt = g \sqrt{\frac{2l}{g}} = \sqrt{2gl}
+$$
+   
+$$
+\implies
+E_b = \frac{1}{2}mv^2 = \frac{1}{2}m(2gl) = m g l
+$$
+
+---
+
+### Traverse Time
+
+$$
+t_b = \frac{l}{c}
+$$
+
+---
+
+### Frequency Shift
+
+$$
+\nu_b = \nu_t \left(1 + \frac{v_{\text{box}}}{c}\right)
+$$
+
+Assume that the travel time is the same
+
+$$
+v_{\text{box}} = at = a \left(\frac{l}{c}\right)
+$$
+   
+$$
+\implies
+\nu_b = \nu_t \left(1 + \frac{a l}{c^2}\right)
+$$
+   
+
+*The photons received at the bottom are **bluer** than those emitted at the top.*
+
+---
+
+### Energy Difference
+
+$$
+E_b = h\nu_b = h\nu_t \left(1 + \frac{a l}{c^2}\right) = E_t \left(1 + \frac{a l}{c^2}\right)
+$$
+   
+$$
+\implies
+\Delta E = E_b - E_t = E_t \left(\frac{a l}{c^2}\right)
+$$
+   
+---
+
+### Equivalence Principle
+
+According to the equivalence principle, being in a gravitational field is equivalent to being in an accelerated frame. Thus, photons climbing down a gravitational well gain energy, appearing bluer at the bottom.
+
+$$
+\Delta E \approx E_t \left(\frac{g l}{c^2}\right)
+$$
+   
+---
+
+### Comparison Between Parts (a) and (e)
+
+kinetic energy gained by the ball is $E_b = mgl$
+
+photons gain energy $\Delta E \approx E_t \left(\frac{g l}{c^2}\right)$ 
+
+**Implications:** The energy gained by both the ball and the photons is proportional to $g l$, suggests that gravitational effects are universally applicable. Also consider if the energy gained is equivalent for both the ball and the photons $E_b = \Delta E$, this implies that $m = E_t/c^2$, similar to the mass-energy equivalence.
+
+## Black Hole Masses
+
+The gravitational effects of a spherical object with  mass M and radius R, are identical to those of a point mass with the same mass M for  any radius r > R. Therefore, although all the mass of a black hole is concentrated at  the singularity, it is sometimes useful to calculate an “effective” density by spreading  its mass uniformly within the Schwarzschild radius.  
+
+(a) Estimate the effective density of a stellar-mass black hole with $M = 10 M_\odot$. Can  you find anything on Earth with comparable density to this black hole?
+(b) Estimate the effective average density of a supermassive black hole with $M =  10^8 M_\odot$ solar masses. Can you find anything on Earth with comparable density to this  black hole?
+(c) Based on these densities, do you think it is easier to propose alternative theories  to stellar mass or supermassive black holes?
+
+---
+
+The code for the calculations is as follows:
+
+```{python}
+def volume(r):
+    """Volume of a sphere with radius r"""
+    return (4/3) * pi * r ** 3
+
+def density(M, r):
+    """Effective density of a black hole"""
+    return M / volume(r)
+
+def bh_density(M):
+    """Effective density of a black hole"""
+    R_s = schwarzschild_radius(M)
+    return density(M, R_s).to(u.g / u.cm ** 3)
+
+
+# Part (a): Stellar-mass black hole
+M_stellar = 10  * M_sun # Stellar-mass black hole: 10 solar masses
+print(f"Effective Density of a Stellar-Mass Black Hole ({M_stellar} M_sun):")
+print(f"Approximate Density: {bh_density(M_stellar):.2e}\n")
+
+# Part (b): Supermassive black hole
+M_supermassive = 1e8 * M_sun  # Supermassive black hole: 10^8 solar masses
+print(f"Effective Density of a Supermassive Black Hole ({M_supermassive:.0e} M_sun):")
+print(f"Approximate Density: {bh_density(M_supermassive):.2e}\n")
+```
+
+### Effective Density of a Stellar-Mass Black Hole
+
+Schwarzschild Radius ($R_s$) is given by:
+
+$$
+R_s = \frac{2GM}{c^2}
+$$
+
+So the effective density ($\rho$) is:
+
+$$
+\rho = \frac{M}{\frac{4}{3} \pi R_s^3} = \frac{M}{\frac{4}{3} \pi \left(\frac{2GM}{c^2}\right)^3} = \frac{3c^6}{32\pi G^3 M^2}
+$$
+
+Substituting the given values:
+
+$$
+\rho \approx 1.84 \times 10^{14} \, \text{g/cm}^3
+$$
+
+Given the average density of Earth is $\approx 5.5 \, \text{g/cm}^3$, no known materials on Earth have densities comparable to $10^{14} \, \text{g/cm}^3$. The effective density of a stellar-mass black hole is **astronomically higher** than any terrestrial substance.
+
+---
+
+### Effective Density of a Supermassive Black Hole 
+
+
+After substituting:
+
+$$
+\rho \approx 1.84  \text{g/cm}^3
+$$
+
+With average density of water:** $1 \, \text{g/cm}^3$, the effective density of a supermassive black hole is comparable with the density of water on Earth.
+
+---
+
+### Implications
+
+**Based on the Calculated Densities:**
+
+- **Stellar-Mass Black Holes ($\sim 10^{14} \, \text{g/cm}^3$):**
+  - **Extremely High Density:** Far exceeds any known material's density.
+  - **Implications:** The lack of comparable densities in any known matter strengthens the case for black holes as the simplest explanation.
+
+- **Supermassive Black Holes ($\sim 1\, \text{g/cm}^3$):**
+  - **Low Effective Density:** Comparable to or lower than common materials on Earth.
+  - **Implications:** It is **easier to propose alternative theories** for supermassive black holes due to their low effective densities, which are not as extreme as those of stellar-mass black holes. Alternative explanations (e.g., dark matter concentrations, exotic objects) might be more **plausible** or easier to conceive.
+
+## Spaghetti-fication
+
+Consider an astronaut with height h = 180 cm approaching a black hole.
+
+(a) Show that the tidal force experienced by the astronaut can be expressed as
+
+$$
+F_\text{tidal} = \frac{2 G M m h}{r^3}
+$$
+
+where M is the mass of the black hole, m is the mass of the astronaut, and r is  the distance between them. Here the tidal force is just the difference between the gravitational force evaluated at the astronaut’s toes and at their head’s – the astronaut  would feel this as a pulling across their body. Note that we have assumed $h<<r$ here.  
+
+(b) If the astronaut is approaching a stellar-mass black hole with $M = 10 M_\odot$, how strong would the acceleration due to this tidal force be when they get to the Schwarzschild  adius of the black hole?  
+
+(c) A human body can sustain a maximum acceleration of 9g, where $g = 980 cm  s^{−2}$ is the gravitational acceleration on Earth’s surface. How close, in units of the Schwarzschild radius, could the astronaut get to the black hole without being spaghettified (i.e., stretched into a long, thin strand)?
+
+(d) Now consider a supermassive black hole with $M = 10^6 M_\odot$ instead. What is the  acceleration due to tidal forces at its Schwarzschild radius? How close, again in units  of the Schwarzschild radius, could the astronaut get to this black hole?
+
+---
+
+The code for the calculations is as follows:
+
+```{python}
+h = 180.0 * u.cm             # Height of astronaut in cm
+g_max = 9 * g0   # Maximum sustainable acceleration
+
+def tidal_acceleration(M, h, r):
+    """tidal acceleration"""
+    return (2 * G * M * h) / (r ** 3)
+
+def closest_approach(M, h, a_max):
+    return (2 * G * M * h / a_max) ** (1/3)
+
+def r_schwarzchild(r, R_s):
+    return (r / R_s).to(u.dimensionless_unscaled)
+
+# Part (b): Tidal acceleration at Schwarzschild radius for a stellar-mass black hole
+def part_b(M_mass_solar):
+    M = M_mass_solar * M_sun
+    R_s = schwarzschild_radius(M)
+    a_tidal = tidal_acceleration(M, h, R_s)
+    return a_tidal
+
+# Part (c): Closest approach without spaghettification for a stellar-mass black hole
+def part_c(M_mass_solar):
+    M = M_mass_solar * M_sun
+    R_s = schwarzschild_radius(M)
+    r = closest_approach(M, h, g_max)
+    return r_schwarzchild(r, R_s)
+
+# Part (d): Tidal acceleration and closest approach for a supermassive black hole
+def part_d(M_mass_solar):
+    M = M_mass_solar * M_sun
+    R_s = schwarzschild_radius(M)
+    a_tidal = tidal_acceleration(M, h, R_s)
+    r = closest_approach(M, h, g_max)
+    return a_tidal, r_schwarzchild(r, R_s)  # (Tidal acceleration, Closest approach in R_s)
+
+# Part (b)
+M_star = 10  # Stellar-mass black hole: 10 solar masses
+a_tidal_b = part_b(M_star)
+print(f"Part (b):")
+print(f"Acceleration due to tidal forces at Schwarzschild radius for {M_star} M_sun black hole:")
+print(f"a_tidal ≈ {a_tidal_b:.2e}\n")
+
+# Part (c)
+closest_r_b = part_c(M_star)
+print(f"Part (c):")
+print(f"Closest approach without spaghettification for {M_star} M_sun black hole:")
+print(f"r ≈ {closest_r_b:.2f} Schwarzschild radii\n")
+
+# Part (d)
+M_super = 1e6  # Supermassive black hole: 10^6 solar masses
+a_tidal_d, closest_r_d = part_d(M_super)
+print(f"Part (d):")
+print(f"Tidal acceleration at Schwarzschild radius for {M_super:.0e} M_sun black hole:")
+print(f"a_tidal ≈ {a_tidal_d:.2e}")
+print(f"Closest approach without spaghettification:")
+print(f"r ≈ {closest_r_d:.2e} Schwarzschild radii")
+```
+
+### Tidal Force
+
+Using the approximation $h \ll r$
+
+$$
+F_{\text{head}} = \frac{G M m}{\left(r - \frac{h}{2}\right)^2} \approx \frac{G M m}{r^2} \left(1 + \frac{h}{r}\right)
+$$
+$$
+F_{\text{toe}} = \frac{G M m}{\left(r + \frac{h}{2}\right)^2} \approx \frac{G M m}{r^2} \left(1 - \frac{h}{r}\right)
+$$
+
+Si the tidal force is:
+
+$$
+F_{\text{tidal}} = F_{\text{head}} - F_{\text{toe}} \approx \frac{2 G M m h}{r^3}
+$$
+   
+---
+
+### Acceleration of Tidal Forces
+   
+$$
+a_{\text{tidal}} = \frac{F_{\text{tidal}}}{m} = \frac{2 G M h}{R_s^3} = \frac{2 G M h}{(2 G M / c^2)^3} = \frac{c^6 h}{4 G^2 M^2}
+$$
+
+Substituting the given values:
+
+$$
+a_{\text{tidal}} = 1.86 \times 10^{10} cm/s²
+$$
+
+---
+
+### Closest Approach Without Spaghettification
+
+Set  $a_{\text{tidal}} = a_{\text{max}}= 9g$ :
+$$
+\frac{2 G M h}{r^3} = a_{\text{max}} \implies r = \left( \frac{2 G M h}{a_{\text{max}}} \right)^{1/3}
+$$
+
+Given $2 G M = R_s c^2$ :
+$$
+\implies r = R_s \left( \frac{h c^2}{a_{\text{max}} R_s^2} \right)^{1/3}
+$$
+
+$$
+\frac{r}{R_s} = \frac{3.78 \times 10^8}{2.95 \times 10^6} \approx 128
+$$
+
+### Supermassive Black Hole
+
+$$
+a_{\text{tidal}} \approx 1.85 cm/s²
+$$
+
+$$
+\frac{r}{R_s} \approx 6 \times 10^{-2}
+$$
+
+
+## Visualizing Black Holes
+
+> Watch this six-minute video demonstrating  what you would see if you traveled near a black hole https://youtu.be/JDNZBT_GeqU.  Write a short reaction (a paragraph or so) to this video – you could comment on  something you learned or particularly enjoyed or pose a question it raised to you, for example.
+
+---
+
+Gravitational lensing, where light from surrounding stars bends around the black hole, creating a warped view is so coool. Especially when near the event horizon and orbiting the black hole, the visual distortions are so fascinating. Also it is kind of interesting that why the closest stable orbit is 3 times the Schwarzschild radius. 
