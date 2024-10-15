@@ -186,3 +186,6 @@ checklink/cookies.txt
 .pixi
 pixi.lock
 *.egg-info
+
+# Julia
+Manifest.toml
