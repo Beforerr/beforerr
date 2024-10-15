@@ -1,6 +1,10 @@
 [project]
 name = "bpy"
 version = "0.1.0"
+dependencies = [
+    "numpy",
+    "astropy",
+]
 
 [build-system]
 requires = ["pdm-backend"]
@@ -12,8 +16,6 @@ platforms = ["osx-arm64"]
 
 [tool.pixi.dependencies]
 jupyter = "*"
-astropy = "*"
-numpy = "*"
 
 [tool.pixi.pypi-dependencies]
 bpy = { path = ".", editable = true }
