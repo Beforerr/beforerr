@@ -1,0 +1,21 @@
+---
+title: Magnetosheath jets at Jupiter and across the solar system
+author: 
+  - Yufei Zhou
+format:
+  html: default
+  pptx: default
+code-links:
+  - text: PowerPoint (modified)
+    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2024-10-16_jets/index.pptx
+categories:
+  - "#journal club"
+date: last-modified
+---
+
+# Introduction
+
+Large amplitude, yet spatially localized, transient increases in dynamic pressure, known as “magnetosheath jets” or “plasmoids” among other denominations.
+
+@plaschkeJetsDownstreamCollisionless2018
+
