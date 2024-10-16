@@ -13,16 +13,87 @@ categories:
 date: last-modified
 ---
 
-# Introduction
+Reported anti-sunward and sunward jets in the Jovian magnetosheath.
 
-Large amplitude, yet spatially localized, transient increases in dynamic pressure, known as “magnetosheath jets” or “plasmoids” among other denominations.
+## Introduction - What are magnetosheath jets?
+
+Large amplitude, yet spatially localized, transient increases in dynamic pressure, known as “magnetosheath jets” or “plasmoids”.
+
+![](images/paste-7.png)
 
 @plaschkeJetsDownstreamCollisionless2018
 
+## Why Jupyter?
+
+Most jets are observed in quasi-parallel shocked magnetosheath (presence of foreshock):
+
+-   Formation mechanism: shock rippling (97%), shock reformation, and shock interaction with rotational discontinuities
+
+Quasiperpendicular shocks are less favorable
+
+-   Formation mechanism: shock interaction with discontinuities; mirror modes...
+-   Magnetic flux tubes that are embedded in the Qper magnetosheath but are connected to the Qpar section of the bow-shock [@kajdicCausesJetsQuasiPerpendicular2021]
+
+Subsolar bow shocks of outer planets are more frequently quasi-perpendicular (due to the Parker spiral)
+
+Parametric variation of jets
+
+## Results
+
+Jupiter-Sun-Orbital (JSO) Cartesian and spherical coordinates. In this coordinate system, the x-axis points from Jupiter to the Sun, the z-axis is aligned with vJO × x\^ (where vJO denotes the orbital velocity of Jupiter)
+
+Voyager 2 observation
+
 ![](images/paste-1.png)
+
+Significant variations, indicating quasi-parallel magnetosheath conditions.
+
+Magnetic field standard deviation and high energy ion flux are good local indicators to distinguish between quasi-parallel and quasi-perpendicular magnetosheath.
+
+After the third jet, quasi-perpendicular magnetosheath \[θ = 90∘, φ = 245∘\]
+
+![](images/paste-6.png)
+
+## Sunward jet
+
+![](images/paste-5.png)
+
+-   magnetopause crossings (expansion phase of the magnetosphere)
+
+    -   breathing of the magnetopause is expected to occur on a time scale of hour for Jupiter.
+
+-   (density-depleted) hot flow anomaly (a flow reversal in their core HFA)
+
+## Anti-sunward jets
+
+Reminiscent of the cores of HFA convected downstream
+
+The two density peaks contributing to the dynamic pressure corresponded to the plasma pileups on the leading and trailing edges of the HFA.
+
+The increased velocity in the jets may be attributed to the curved shock formed during shock–discontinuity interaction, since curved shocks are less capable of decelerating flows and thus could produce relatively high speed flows than other shocks.
+
+Fast mode nature (not mirror modes, which exhibit durations ranging from 20 to 120 seconds and sizes equivalent approximately \~ 0.15RJ)
 
 ![](images/paste-4.png)
 
 ![](images/paste-2.png)
 
+## Comparing magnetosheath jets across planets
+
+ten minutes and can even approach an hour.
+
+Much longer than the durations observed for jets at Earth (up to \~ 3 min)
+
 ![](images/paste-3.png)
+
+## Discussion
+
+They have reported anti-sunward and sunward jets in the Jovian magnetosheath. 
+
+These jets were associated with magnetic field discontinuities.
+
+The highly intermittent and discontinuous magnetic fields in solar wind allow jets to be formed downstream of these planetery bow shocks.
+
+More powerful jets than at Earth are expected in outer planets.
+
+Given the high Mach number for Jovian and Kronian bow shock and the decreasing beta with solar centric distance beyond the Martian orbit. And yheoretical calculations suggest that the strength of jets (ratio of jet to upstream dynamic pressure) grow with Mach number and decrease with plasma beta (ratio of thermal to magnetic pressure).
