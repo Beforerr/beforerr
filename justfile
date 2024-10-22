@@ -3,6 +3,7 @@ default:
 
 ensure-env: ln-bib
     pixi install
+    julia --project -e 'using Pkg; Pkg.update();'
 
 publish:
     quarto publish gh-pages --no-prompt --no-render
