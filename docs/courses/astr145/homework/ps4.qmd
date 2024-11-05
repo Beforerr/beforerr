@@ -1,0 +1,14 @@
+---
+title: Problem Set 4
+number-sections: true
+---
+
+## Changing-Look AGNs
+
+There are two main categories of CL AGNs:
+
+1.	Changing-Obscuration AGNs: variations in the line-of-sight column density, often due to clouds or outflows obscuring the central engine, lead to observable spectral changes.
+
+2.	Changing-State AGNs: the continuum emission and broad emission lines appear or disappear, typically triggered by significant changes in the accretion rate of the supermassive black hole.
+
+Several open questions are listed in @ramosalmeidaNuclearObscurationActive2017. One of the most intriguing question about CS-AGN is their typical timescales and their frequency of occurrence. New telescopes and surveys will help us answer it.
