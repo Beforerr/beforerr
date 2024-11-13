@@ -11,7 +11,7 @@ const L_edd_Msun = 1.26e38u"erg/s"
 
 Calculate the Eddington luminosity for a given mass ``L = 4 * pi * G * M * c / \\kappa``
 """
-function eddington_luminosity(M, kappa = σT/mp)
+function eddington_luminosity(M, kappa=σT / mp)
     L = 4 * pi * G * M * c / kappa
     uconvert(u"erg/s", L)
 end
@@ -25,3 +25,6 @@ function Rsch(M)
     2 * G * M / c^2 |> upreferred
 end
 
+function escape_velocity(M, R)
+    sqrt(2 * G * M / R) |> upreferred
+end

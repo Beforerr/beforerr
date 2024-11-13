@@ -1,0 +1,30 @@
+---
+title: Problem Set 5
+number-sections: true
+---
+
+## The Shock Jump Conditions
+
+> Some models for high-energy radiation from compact objects involve gas free-falling onto the surface of the object at a velocity near the object’s escape speed. This speed is very supersonic relative to the star, so the gas must pass through a shock (called either  an “accretion” or “standoff” shock) before it settles on the surface. Assuming that  this is a strong shock, estimate the post-shock temperatures for a white dwarf (with  M? = 1 M and R? = 109 cm) and a neutron star (with M? = 1 M and R? = 106 cm).  You can assume γ = 5/3, μ = mp, and that the standoff shock is just above the surface  of the star. (For the pedantic among you: you can use the expressions in this problem  set, even though this shock is actually spherical rather than planar.)
+
+```{julia}
+using DrWatson
+using Unitful: Mass, Length
+include(srcdir("astr145/main.jl"))
+```
+
+```{julia}
+function postshock_temperature(u1; μ=mp, γ=5 / 3)
+    2 * (γ - 1) / (γ + 1)^2 * μ * u1^2 |> upreferred
+end
+
+function postshock_temperature(M::Mass, R::Length)
+    v_esc = escape_velocity(M, R)
+    kT = postshock_temperature(v_esc)
+    T = uconvert(u"K", kT / Unitful.k)
+    @show v_esc kT T
+end
+
+postshock_temperature(1u"Msun", 1e9u"cm")
+postshock_temperature(1u"Msun", 1e6u"cm")
+```
