@@ -11,7 +11,7 @@ image: https://news.agu.org/files/2023/10/AGU23_Full_Event_Logo_CenterAligned_Bl
 
 Two posters are presented this year. First AGU meeting in person!
 
-- [Solar wind discontinuities spatial evolution and energetic ion scattering](https://beforerr.github.io/ids_finder/manuscripts/AGU23_poster.html)
+- [Solar wind discontinuities spatial evolution and energetic ion scattering](https://beforerr.github.io/ids_spatial_evolution_juno/presentations/AGU23_poster.html)
   
   [Poster PDF](https://beforerr.github.io/ids_spatial_evolution_juno/presentations/AGU23_poster.pdf)
 
