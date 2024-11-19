@@ -25,6 +25,12 @@ function Rsch(M)
     2 * G * M / c^2 |> upreferred
 end
 
+function R_ISCO(M)
+    3 * Rsch(M) |> upreferred
+end
+
 function escape_velocity(M, R)
     sqrt(2 * G * M / R) |> upreferred
 end
+
+const v_es = escape_velocity
