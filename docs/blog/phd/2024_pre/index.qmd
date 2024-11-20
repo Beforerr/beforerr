@@ -12,3 +12,5 @@ code-links:
 
 - [EMIC Proposal](./proposal_EMIC.qmd)
 - [Solar wind discontinuity Proposal](./proposal_SWD.qmd)
+
+- [Presentation](./presentation.qmd)
