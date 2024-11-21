@@ -1,3 +1,7 @@
+render:
+   quarto render presentation.qmd --to pptx
+   open $BASE_PATH/_site/docs/blog/phd/2024_pre/presentation.pptx
+
 process-tex file:
    just rm_bib {{file}}
    just rm_paragraph {{file}}
@@ -18,8 +22,10 @@ sync-overleaf:
 sync-tex file: sync-overleaf
    rsync {{file}} overleaf/
 
+[private]
 rm_bib file:
    awk '!found && /\\bibliography{/ { found = 1; next } 1' {{file}} > .temp && mv .temp {{file}}
 
+[private]
 rm_paragraph file:
    awk '/\\paragraph\{/ { print; getline; if ($0 != "") print $0; next }{ print }' {{file}} > .temp && mv .temp {{file}}
