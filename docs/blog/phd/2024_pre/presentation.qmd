@@ -1,0 +1,44 @@
+---
+title: "Relativistic electrons in the radiation belt and Current sheet in the solar wind"
+subtitle: "First Oral Exam"
+format:
+  html: default
+  pptx: default
+---
+
+Graduate Student: Zijin Zhang
+Supervisor: Vassilis Angelopoulos
+Committee Members: Marco Velli, Hao Cao, Anton Artemyev
+
+## Part 1: Relativistic electron flux decay and recovery: relative roles of EMIC waves, chorus waves, and electron injections
+
+## Conclusion
+
+### Preliminary Results
+
+- We examined a particular event on 17 April 2021 characterized by a series of strong electron and ion injections, significant electron precipitation driven by EMIC and chorus waves, and electron acceleration mainly attributable to chorus waves.
+
+- This case study is unique in the sense that strong EMIC and chorus wave-driven electron losses do not necessarily correspond to a simultaneous decrease of trapped electron fluxes. Sufficiently strong injections and chorus wave-driven electron acceleration in the presence of a sufficiently steep negative electron energy PSD gradient can balance such wave-driven losses.    
+
+### Future Work
+
+- Statistically study the conditions that lead to relativistic electron flux decay and recovery.
+
+- Understand the physical mechanisms that lead to the observed electron flux: strong diffusion or non-linear wave-particle interactions.
+
+## Part 2: Current sheet in the solar wind: JUNO and PSP Observations
+
+### Preliminary Results
+
+- The normalized occurrence rate decreases with radial distance from the Sun, following a 1/𝑟 relationship in the outer heliosphere.
+
+- Normalized thickness and current density of discontinuities remain constant with radial distance (negligible change compared to their spread)
+
+    - Thickness => ion inertial length
+- Current density => Alfven velocity (current density)
+
+- Better alignment period has a slightly better agreement of the properties of the discontinuities (normalized thickness, current density, $|\Delta \mathbf{B}/B|$ and rotation angle). $B_N/B$  and in-plane rotation angle, however, are significantly different.
+
+### Future Work
+
+- Understand the constant normalized thickness and current density of discontinuities with radial distance and change in the $B_N/B$  and in-plane rotation angle.
