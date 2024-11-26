@@ -3,6 +3,7 @@ using Unitful: mp, G, c
 using UnitfulAstro: Msun
 
 σT = 6.65e-25u"cm^2" # Thomson cross section
+T_CMB = 2.72548u"K" # CMB temperature
 
 const L_edd_Msun = 1.26e38u"erg/s"
 
@@ -32,5 +33,10 @@ end
 function escape_velocity(M, R)
     sqrt(2 * G * M / R) |> upreferred
 end
+
+function breakup_velocity(M, R)
+    sqrt(G * M / R) |> upreferred
+end
+
 
 const v_es = escape_velocity
