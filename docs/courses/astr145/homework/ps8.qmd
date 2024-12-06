@@ -1,0 +1,81 @@
+---
+title: Problem Set 8
+number-sections: true
+---
+
+## Pulsar Ages
+
+For the dipole model of pulsar emission, we found that 
+
+$$
+B_p^2 = \frac{3}{2 π^2} \frac{c^3 I}{R^6} \dot{P} P
+$$
+
+where $P$ is the period, $\dot{P}$ is the time derivative of the period, $R$ is the radius of the  neutron star, and $I$ is its moment of inertia.
+
+(a) Assume that the neutron star is born with an initial period $P_0$ at $t = 0$. Show that  
+
+$$
+P (t) =  \sqrt{ \frac{4π^2 R^6}{3c^3 I} B_p^2 t + P_0^2} . 
+$$
+
+(b) Assuming that $P P_0$, show that the time since the pulsar was born is $\tau = P/(2\dot{P})$.  
+
+(c) On the last problem set, you found that a newly-formed pulsar would have $P_0 \approx 3 \text{ ms}$ and $B_p \approx 10^{12} \text{ G}$. Estimate how long (in years) the pulsar would take to slow  down to $P \approx 1 \text{ s}$, if it has a radius of 10 km and a moment of inertia of $10^{45} \text{ g cm}^2$.  You may assume $\dot{P}$ remains constant through the evolution.
+
+
+## Binary Evolution
+
+As a star transfers mass to a nearby compact object,  the mass ratio of the system changes, and hence the dynamics will evolve. Here you  will examine how this evolution occurs in a low-mass X-ray binary. Let us consider two stars of masses m1 and m2 on circular orbits in a system in which the center of  mass is the origin.
+
+(c) A very simple approximation to the Roche lobe radius of star 1, $R_{L,1}$ is
+
+$$
+R_{L, 1} \sim \frac{a}{2}\left(\frac{m_1}{m_{\mathrm{tot}}}\right)^{1 / 3}
+$$
+
+where $q=M_1 / M_2$. Show that
+
+$$
+\frac{\Delta R_{L, 1}}{R_{L, 1}} \sim\left(\frac{5 / 3}{m_1}-\frac{2}{m_2}\right) \Delta m_2
+$$
+
+Remember that both $a$ and $q$ change in this situation!
+
+(d) Low-mass stars on the main sequence have a mass-radius relation
+
+$$
+R \approx 0.9\left(\frac{M}{M_{\odot}}\right)^\alpha R_{\odot}
+$$
+
+where $\alpha \approx 0.9$. Show that the radius of star $1, R_{\star, 1}$, changes as
+
+$$
+\frac{\Delta R_{\star, 1}}{R_{\star, 1}}=\alpha \frac{\Delta m_1}{m_1}=-\alpha \frac{\Delta m_2}{m_1} .
+$$
+
+as it loses mass to its companion.
+
+(d) To avoid Roche lobe overflow, we need $|∆ R_{\star, 1}| > |∆ R_{L,1}|$, so that the star shrinks  more rapidly than the Roche lobe: otherwise the Roche lobe will shrink so fast that  the mass transfer runs away.. Show that this requires $q\le1.3$. (With the true form  of $R_L(q)$, the threshold is slightly smaller.) We thus generally find that the donor  star is less massive than the accreting object in X-ray binaries! This is believed to be  why there are so few intermediate mass X-ray binaries: mass transfer proceeds very  rapidly until the donor star is less massive than the compact object. Hint: Note that  $∆R_{L,1} < 0$ if $∆m_2 > 0$; this will affect how to interpret the absolute value signs.
+
+---
+
+## Black Hole Mergers
+
+> In the last decade – after many decades of hard  work! – physicists have detected gravitational waves from merging stellar mass black  holes. These have been quite different from the sources we expected and have raised  many questions about stellar mass black holes. Read this article: https://www.quantamagazine.org/colliding-black-holes-tell-new-story-ofstars-20160906/
+> Summarize the models for the formation of these systems, and weigh the evidence to determine what you think is the most likely option. (There’s no right answer, though you can find more recent discussions on the internet if you want to see what has been learned since!)
+
+
+1. Common-Envelope Evolution (Classic Theory):
+
+- Formation: A pair of massive stars begins in a wide orbit.
+- Black Hole Formation: Star A collapses into a black hole while Star B grows, further shrinking the orbit. When Star B exhausts its fuel, it also collapses into a black hole. The two black holes, now close, eventually spiral into each other and merge.
+- Key Features: This process involves complex interactions with hydrogen envelopes and gas loss, which draw the stars closer.
+
+2. Chemically Homogeneous Evolution (New Theory):
+
+- Formation: Two massive stars in a tight orbit are “tidally locked”. Their rapid spinning stirs the stars, maintaining uniform chemical composition and high internal heat.
+- Black Hole Formation: Unlike most stars, which have distinct core and envelope layers, these stars fuse entirely and contract into compact black holes without shedding much material. The black holes are already close, and their merger happens as they spiral closer due to gravitational waves.
+- Key Features: This model skips the envelope phase and results in direct black hole formation in a tight orbit.
+
+The Chemically Homogeneous Evolution model seems most plausible for explaining the unexpected large masses of black holes in recent mergers. However, the Common-Envelope Evolution might still account for a broader range of scenarios. Future data could favor one model definitively, or they might work in tandem to explain different types of mergers.
