@@ -3,11 +3,14 @@ title: Relativistic electron flux decay and recovery
 subtitle: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections
 author: Zijin Zhang
 date: last-modified
+doi: 10.1029/2024JA033174
 code-links:
   - text: Webpage
     href: https://beforerr.github.io/EMIC_multi-satellites_study/
   - text: GitHub Repo
     href: https://github.com/Beforerr/EMIC_multi-satellites_study/
+categories: 
+  - paper
 image: https://beforerr.github.io/EMIC_multi-satellites_study/figures/fig1_orbit_multi_mission_conjunctions.png
 ---
 
