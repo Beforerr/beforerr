@@ -1,33 +1,5 @@
 [
   {
-    "listing": "/research/index.html",
-    "items": [
-      "/research/articles/margotSearchTechnosignatures2023/index.html",
-      "/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
-      "/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
-      "/research/projects/2024_Zijin_finesst/index.html",
-      "/research/projects/2023_Zijin_relativistic-electron-flux/index.html",
-      "/research/projects/2022_Zijin_solar-wind-LMA/index.html"
-    ]
-  },
-  {
-    "listing": "/courses/epss265/homeworks/index.html",
-    "items": [
-      "/courses/epss265/homeworks/epss265_hw02.html",
-      "/courses/epss265/homeworks/epss265_hw03.html",
-      "/courses/epss265/homeworks/epss265_hw04.html",
-      "/courses/epss265/homeworks/epss265_hw05.html",
-      "/courses/epss265/homeworks/epss265_hw06.html"
-    ]
-  },
-  {
-    "listing": "/courses/index.html",
-    "items": [
-      "/courses/epss265/index.html",
-      "/courses/phys231/index.html"
-    ]
-  },
-  {
     "listing": "/docs/courses/index.html",
     "items": [
       "/docs/courses/astr145/index.html",
@@ -47,6 +19,21 @@
     ]
   },
   {
+    "listing": "/docs/blog/index.html",
+    "items": [
+      "/docs/blog/phd/2024_pre/proposal_EMIC.html",
+      "/docs/blog/phd/2024_pre/proposal_SWD.html",
+      "/docs/blog/phd/2024_pre/index.html",
+      "/docs/blog/2024_NASA_summer_school/index.html",
+      "/docs/blog/2024_NASA_summer_school/capstone.html",
+      "/docs/blog/journal_club/2024-10-16_jets/index.html",
+      "/docs/blog/phd/index.html",
+      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
+      "/docs/blog/journal_club/2024-04-23_mercury/index.html",
+      "/docs/blog/2023_AGU/index.html"
+    ]
+  },
+  {
     "listing": "/docs/research/index.html",
     "items": [
       "/docs/research/articles/2023_Zijin_relativistic-electron-flux/index.html",
@@ -60,24 +47,6 @@
       "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html",
       "/docs/research/topics/solar_wind/index.html",
       "/docs/research/topics/swd/index.html"
-    ]
-  },
-  {
-    "listing": "/docs/blog/index.html",
-    "items": [
-      "/docs/blog/phd/2024_pre/proposal_EMIC.html",
-      "/docs/blog/phd/2024_pre/proposal_SWD.html",
-      "/docs/blog/phd/2024_pre/index.html",
-      "/docs/blog/phd/index.html",
-      "/docs/blog/journal_club/2024-04-23_mercury/index.html",
-      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
-      "/docs/blog/2023_AGU/index.html"
-    ]
-  },
-  {
-    "listing": "/docs/courses/epss263/homework/index.html",
-    "items": [
-      "/docs/courses/epss263/homework/epss263_hw02.html"
     ]
   }
 ]
