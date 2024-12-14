@@ -42,7 +42,7 @@ resources: cv_Zijin_clean.pdf
 
 # Publications
 
-1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., & Kasahara, S. (2024). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *JGR: Space Physics* [submitted]. DOI: [10.13140/RG.2.2.25908.01920](https://doi.org/10.13140/RG.2.2.25908.01920)
+1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., Kasahara, S., Miyoshi, Y., Matsuoka, A., Kasahara, Y., Mitani, T., Yokota, S., Hori, T., Keika, K., Takashima, T., Teramoto, M., Matsuda, S., & Shinohara, I. (2024). Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections. *Journal of Geophysical Research: Space Physics*, 129(12), e2024JA033174. https://doi.org/10.1029/2024JA033174
 
 1. Margot, J.-L., Li, M. G., Pinchuk, … **Zhang, Z.**. (2023). A search for technosignatures around 11680 stars with the green bank telescope at 1.15–1.73 GHz. *Astronomical Journal*, 166(5), 206. DOI: [10.3847/1538-3881/acfda4](https://doi.org/10.3847/1538-3881/acfda4)
 
