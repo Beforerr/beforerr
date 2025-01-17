@@ -1,0 +1,4 @@
+---
+title: EPSS 261
+subtitle: Data Analysis Methods in Space Physics
+---

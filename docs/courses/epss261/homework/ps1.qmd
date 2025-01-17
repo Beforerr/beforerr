@@ -1,0 +1,206 @@
+---
+title: Problem Set 1
+number-sections: true
+---
+
+## AE, Dst, Kp
+
+> Obtain and plot the AE [1min resolution] and Dst [1hr resolution] indices directly from their official site, WDC-C in Kyoto, and Kp [3hr resolution] index from its official site, GFZ Potsdam, the entire month of March 2015.
+> Download ASCII and plot using your own tools which are not SPEDAS. Note it’s easier to download in IAGA-2002 format for AE and Dst and to use the ftp directory download for kp.
+
+### AE and Dst indices
+
+> [a] In a short paragraph explain: What is AE index, and Dst index, and how are they derived? How did you download and plot? Show some lines of the ascii data.
+
+The AE index (Auroral Electrojet index) and Dst index (Disturbance Storm-Time index) are geomagnetic indices used to measure different aspects of Earth’s magnetic activity. The AE index quantifies the intensity of auroral electrojets, currents flowing in the auroral regions, and is derived from horizontal magnetic field variations measured by magnetometers distributed around the auroral zone. It provides insight into substorm activity and is calculated using the difference between maximum and minimum horizontal components recorded at these stations. The Dst index, on the other hand, measures the intensity of the ring current, a system of charged particles trapped in Earth’s magnetosphere. It is derived from the average horizontal magnetic field variations observed by low-latitude magnetometers. The Dst index is commonly used to assess geomagnetic storms, with negative values indicating stronger disturbances.
+
+We use julia to download and plot the AE and Dst indices directly from their official site, WDC-C in Kyoto. 
+
+- https://wdc.kugi.kyoto-u.ac.jp/aeasy/index.html
+
+- https://wdc.kugi.kyoto-u.ac.jp/dstae/index.html / http://wdc.kugi.kyoto-u.ac.jp/dst_final/201503
+
+First we register and download the data dependencies using the `DataDeps` package.
+
+```{julia}
+using DataDeps
+
+register(DataDep("AE Index",
+    """
+    Dataset: AE Index
+    Website: https://wdc.kugi.kyoto-u.ac.jp/aeasy/index.html
+    """,
+    "https://wdc.kugi.kyoto-u.ac.jp///aeasy///wwwtmp/WWW_aeasy04087001.dat"
+))
+
+register(DataDep("Dst Index",
+    """
+    Dataset: Dst Index
+    Website: https://wdc.kugi.kyoto-u.ac.jp/dstae/index.html
+    """,
+    "https://wdc.kugi.kyoto-u.ac.jp///dstae///wwwtmp/WWW_dstae04096902.dat"
+))
+
+# Step 1: Download data
+println("Downloading AE index data...")
+ae_file = readdir(datadep"AE Index", join=true)[1]
+
+println("Downloading Dst index data...")
+dst_file = readdir(datadep"Dst Index", join=true)[1]
+```
+
+The data is downloaded as text files in IAGA-2002 format. Sample data looks like this:
+
+```{txt}
+DATE       TIME         DOY     AE        AU        AL        AO     |
+2015-03-01 00:00:00.000 060       245.00    122.00   -123.00     -1.00
+2015-03-01 00:01:00.000 060       253.00    125.00   -128.00     -2.00
+2015-03-01 00:02:00.000 060       235.00    122.00   -113.00      5.00
+2015-03-01 00:03:00.000 060       225.00    120.00   -105.00      8.00
+```
+
+```{txt}
+DATE       TIME         DOY     DST                                  |
+2015-03-01 00:00:00.000 060       -34.00
+2015-03-01 01:00:00.000 060       -44.00
+2015-03-01 02:00:00.000 060       -30.00
+2015-03-01 03:00:00.000 060       -31.00
+```
+
+We then parse the data into TimeSeries using `DelimitedFiles` and `TimeSeries`.
+
+```{julia}
+using DelimitedFiles
+using TimeSeries
+using DataFrames
+using Dates
+
+start_time = "2015-03-01T00:00:00"
+end_time = "2015-03-31T23:59:59"
+
+# Step 2: Parse AE data
+function load_ae_data(filename)
+    meta = Dict(
+        "unit" => "nT",
+        "label" => "AE Index"
+    )
+
+    # Skip the header lines (first 14 lines)
+    data, header = readdlm(filename, skipstart=14, header=true)
+
+    # Convert date and time columns to DateTime
+    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
+
+    TimeArray(datetime, data[:, 4:7], header[4:7], meta)
+end
+
+function load_dst_data(filename)
+    meta = Dict(
+        "unit" => "nT",
+        "label" => "Dst Index"
+    )
+
+    # Skip the header lines (first 17 lines)
+    data, header = readdlm(filename, skipstart=17, header=true)
+
+    # Convert date and time columns to DateTime
+    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
+
+    TimeArray(datetime, data[:, 4:4], header[4:4], meta)
+end
+
+println("Parsing AE data...")
+ae_data = load_ae_data(ae_file)
+
+println("Parsing Dst data...")
+dst_data = load_dst_data(dst_file)
+```
+
+Plot the data using CairoMakie.
+
+```{julia}
+using CairoMakie
+
+Makie.convert_arguments(P::Type{<:Lines}, ta::TimeArray) = convert_arguments(P, timestamp(ta), values(ta))
+
+ylabel(ta::TimeArray) = meta(ta)["label"] * (isnothing(meta(ta)["unit"]) || meta(ta)["unit"] == "" ? "" : " (" * meta(ta)["unit"] * ")")
+
+function tplot(tas; linkxaxes=true, figure=(;), kwargs...)
+    f = Figure(; figure...)
+    axs = []
+    for (i, ta) in enumerate(tas)
+        ax = Axis(f[i, 1]; ylabel=ylabel(ta))
+
+        for p in propertynames(ta)
+            lines!(ax, getproperty(ta, p); label=p)
+        end
+
+        # Hide redundant x labels
+        linkxaxes && i != length(tas) && hidexdecorations!(ax, grid=false)
+        push!(axs, ax)
+    end
+    linkxaxes && linkxaxes!(axs...)
+    f
+end
+
+f = tplot([ae_data.AE, dst_data])
+```
+
+
+### Kp index
+
+> In a second paragraph do the same as above but for Kp. What is Kp index? And how is it derived?
+
+The Kp index is a global geomagnetic activity index that quantifies disturbances in Earth’s magnetic field caused by solar activity. Kp is calculated from the K values or the geomagnetic recordings of 13 mid-latitude geomagnetic observatories.
+
+We use a web service client to load the data (https://kp.gfz-potsdam.de/en/data) from json format into the TimeArray.
+
+```{julia}
+using JSON3
+
+"""
+Download 'Kp', 'ap', 'Ap', 'Cp', 'C9', 'Hp30', 'Hp60', 'ap30', 'ap60', 'SN', 'Fobs' or 'Fadj' index data from kp.gfz-potsdam.de
+
+# Notes
+- 'start_time' and 'end_time': date format 'YYYY-MM-DDThh:mm:ss'
+"""
+function load_Kp_data(start_time, end_time, index=:Kp)
+    url = "https://kp.gfz-potsdam.de/app/json/?start=$(start_time)Z&end=$(end_time)Z&index=$(index)"
+    data = JSON3.read(download(url))
+    datetime = DateTime.(data[:datetime], "yyyy-mm-ddTHH:MM:SSZ")
+    TimeArray(datetime, Float64.(data[index]), [index], Dict("unit" => "", "label" => string(index)))
+end
+
+kp_data = load_Kp_data(start_time, end_time)
+```
+
+### Plot
+
+> [c] Plot all 3 indices in a single plot with common time, UT in usual units [2015-03-01 00:00]. If you cannot plot in this format, simply plot in decimal day or decimal hour.
+
+```{julia}
+f = tplot([ae_data.AE, dst_data, kp_data])
+```
+
+## Galileo Magnetometer PDS
+
+> Obtain and plot the Galileo magnetometer flyby #8 data of Ganymede from the Planetary Data System (PDS). This is the NASA data repository of Planetary missions, the counterpart of SPDF (Space Physics Data Facility) used for Heliophysics missions. Note that planetary magnetospheric quantities are stored in both. UCLA is the central “node” for PDS with Prof. Walker the PI of that program. Use your own tools such as Excel (but not SPEDAS) to do this (you are welcome to use SPLASH if on Windows (download it from PDS)).
+
+### Coordinate system
+
+> In a short paragraph explain: What is the coordinate system and how did you download and plot?
+
+<!-- https://cdaweb.gsfc.nasa.gov/pub/data/galileo/ -->
+<!-- https://pds-ppi.igpp.ucla.edu/mission/Galileo -->
+<a href="https://pds-ppi.igpp.ucla.edu/mission/Galileo/Magnetometer">PDS/PPI Missions - Galileo</a>
+<!-- https://pds-ppi.igpp.ucla.edu/item/GO-J-MAG-2-REDR-RAW-DATA-V1.0:LPWE_08:LPWE_08.DAT -->
+
+https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede
+
+https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0
+https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gsprh::1.0
+<!-- Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby recording in Ganymede-centered 'planetocentric' right-handed (GSPRH) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
+https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_irc::1.0
+<!-- Galileo calibrated MAG high-resolution magnetic field and corrected rotor pointing information from the Ganymede 8 orbit Ganymede flyby recording in Despun Spacecraft (IRC) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
+https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_sys3::1.0
+<!-- Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby recording in System III [1965] (SYS3) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
