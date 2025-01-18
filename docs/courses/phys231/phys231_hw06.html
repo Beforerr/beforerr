@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.4.519">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>beforerr – Homework 06</title>
+<title>beforerr - Homework 06</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -103,35 +103,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -147,7 +120,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -161,18 +134,14 @@ window.Quarto = {
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/research/index.html"> 
+    <a class="nav-link" href="../../../research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Others</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
-        <li>
-    <a class="dropdown-item" href="../../../docs/blog/index.html">
- <span class="dropdown-text">Blog</span></a>
-  </li>  
         <li>
     <a class="dropdown-item" href="../../../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
@@ -185,18 +154,18 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
     <a href="https://github.com/Beforerr/beforerr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../docs/courses/phys231/index.html">PHYSICS 231A</a></li><li class="breadcrumb-item"><a href="../../../docs/courses/phys231/phys231_hw06.html">Homework 06</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -211,72 +180,20 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/courses/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../docs/courses/epss263/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EPSS M263</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../../docs/courses/epss263/homework/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../docs/courses/epss263/homework/epss263_hw02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 02</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../docs/courses/epss263/homework/epss263_hw03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 03</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../docs/courses/epss263/homework/epss263_hw04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 04</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../docs/courses/epss263/homework/epss263_hw05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 05</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../docs/courses/epss263/homework/epss263_hw06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Homework 06</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
             <a href="../../../docs/courses/phys231/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PHYSICS 231A</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link">
@@ -331,20 +248,20 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/courses/epss265/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EPSS 265</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../docs/courses/epss265/homeworks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homework</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/courses/epss265/homeworks/epss265_hw02.html" class="sidebar-item-text sidebar-link">
@@ -379,13 +296,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
  <span class="menu-text">Project</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/courses/epss265/project/project.html" class="sidebar-item-text sidebar-link">
@@ -559,7 +476,7 @@ x(t) = \int_{0}^{t} \Theta(t - \tau) \frac{e^{-\gamma (t - \tau)}}{\omega_d} \si
 <p>Applying the boundary conditions</p>
 <ul>
 <li><span class="math inline">\(G(0, y) = 0\)</span> gives <span class="math inline">\(C(y) = 0\)</span></li>
-<li><span class="math inline">\(G(1, y) = 0\)</span> gives <span class="math inline">\(D(y)  = 0\)</span></li>
+<li><span class="math inline">\(G(1, y) = 0\)</span> gives <span class="math inline">\(D(y) = 0\)</span></li>
 </ul>
 <p>The function <span class="math inline">\(G(x, y)\)</span> itself must be continuous at <span class="math inline">\(x = y\)</span>, this gives us:</p>
 <p><span class="math display">\[
@@ -619,8 +536,7 @@ X(f)=H(f) \cdot X_s(f)
 <p><span class="math display">\[
 H(f) \triangleq \begin{cases}1 &amp; |f|&lt;B \\ 0 &amp; |f|&gt;f_s-B\end{cases}
 \]</span></p>
-<p>The sampling theorem is proved since <span class="math inline">\(X(f)\)</span> uniquely determines <span class="math inline">\(x(t)\)</span>.
-All that remains is to derive the formula for reconstruction. <span class="math inline">\(H(f)\)</span> need not be precisely defined in the region <span class="math inline">\(\left[B, f_s-B\right]\)</span> because <span class="math inline">\(X_s(f)\)</span> is zero in that region. However, the worst case is when <span class="math inline">\(B=f_s / 2\)</span>, the Nyquist frequency. A function that is sufficient for that and all less severe cases is:</p>
+<p>The sampling theorem is proved since <span class="math inline">\(X(f)\)</span> uniquely determines <span class="math inline">\(x(t)\)</span>. All that remains is to derive the formula for reconstruction. <span class="math inline">\(H(f)\)</span> need not be precisely defined in the region <span class="math inline">\(\left[B, f_s-B\right]\)</span> because <span class="math inline">\(X_s(f)\)</span> is zero in that region. However, the worst case is when <span class="math inline">\(B=f_s / 2\)</span>, the Nyquist frequency. A function that is sufficient for that and all less severe cases is:</p>
 <p><span class="math display">\[
 H(f)=\operatorname{rect}\left(\frac{f}{f_s}\right)= \begin{cases}1 &amp; |f|&lt;\frac{f_s}{2} \\ 0 &amp; |f|&gt;\frac{f_s}{2}\end{cases}
 \]</span></p>
@@ -687,14 +603,12 @@ I_N(\tau)=\int_{\gamma_N} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z}-1} d z
 \]</span></p>
 <p>and do geometric series expansions and direct Gaussian integration to show this is also <span class="math inline">\(\frac{1}{\sqrt{i \tau}} \vartheta_3(-1 / \tau)\)</span>.</p>
 </blockquote>
-<p><strong>Compute by Residues</strong>:
-Inside the contour <span class="math inline">\(\gamma_N\)</span>, the poles of the integrand occur at integers. The residue at each pole <span class="math inline">\(n\)</span> (an integer) is given by evaluating the limit as <span class="math inline">\(z \to n\)</span> of <span class="math inline">\((z - n)\)</span> times the integrand. This leads to residues of the form <span class="math inline">\(e^{-\pi i n^2 \tau}\)</span>.</p>
+<p><strong>Compute by Residues</strong>: Inside the contour <span class="math inline">\(\gamma_N\)</span>, the poles of the integrand occur at integers. The residue at each pole <span class="math inline">\(n\)</span> (an integer) is given by evaluating the limit as <span class="math inline">\(z \to n\)</span> of <span class="math inline">\((z - n)\)</span> times the integrand. This leads to residues of the form <span class="math inline">\(e^{-\pi i n^2 \tau}\)</span>.</p>
 <p>Summing the residues for all poles within the contour, we get:</p>
 <p><span class="math display">\[
 \sum_{n=-N}^N e^{-\pi i n^2 \tau}
 \]</span></p>
-<p>This is a finite sum approximation of the theta function <span class="math inline">\(\vartheta_3(\tau)\)</span>.
-As <span class="math inline">\(N \to \infty\)</span>, this sum becomes <span class="math inline">\(\vartheta_3(\tau)\)</span>. So, we have:</p>
+<p>This is a finite sum approximation of the theta function <span class="math inline">\(\vartheta_3(\tau)\)</span>. As <span class="math inline">\(N \to \infty\)</span>, this sum becomes <span class="math inline">\(\vartheta_3(\tau)\)</span>. So, we have:</p>
 <p><span class="math display">\[
 \lim_{N \to \infty} I_N(\tau) = \vartheta_3(\tau)
 \]</span></p>
@@ -702,9 +616,7 @@ As <span class="math inline">\(N \to \infty\)</span>, this sum becomes <span cla
 <p><span class="math display">\[
 \vartheta_3(\tau) = \int_{-\infty-i\epsilon}^{\infty-i\epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z} - 1} dz - \int_{-\infty+i\epsilon}^{\infty+i\epsilon} \frac{e^{-\pi i z^2 \tau}}{e^{2 \pi i z} - 1} dz
 \]</span></p>
-<p>Here, <span class="math inline">\(\epsilon\)</span> is a small positive number. The integrand can be expanded using the geometric series for <span class="math inline">\(e^{2 \pi i z}\)</span>. This series converges absolutely for <span class="math inline">\(|\text{Im}(z)| &gt; 0\)</span>.
-After the series expansion, the integrals involve terms of the form <span class="math inline">\(e^{-\pi i z^2 \tau}\)</span> which are Gaussian integrals. These integrals can be evaluated directly, and due to the symmetry of the Gaussian, they will involve a factor of <span class="math inline">\(\frac{1}{\sqrt{i \tau}}\)</span>.
-By summing these integrals, we obtain the identity:</p>
+<p>Here, <span class="math inline">\(\epsilon\)</span> is a small positive number. The integrand can be expanded using the geometric series for <span class="math inline">\(e^{2 \pi i z}\)</span>. This series converges absolutely for <span class="math inline">\(|\text{Im}(z)| &gt; 0\)</span>. After the series expansion, the integrals involve terms of the form <span class="math inline">\(e^{-\pi i z^2 \tau}\)</span> which are Gaussian integrals. These integrals can be evaluated directly, and due to the symmetry of the Gaussian, they will involve a factor of <span class="math inline">\(\frac{1}{\sqrt{i \tau}}\)</span>. By summing these integrals, we obtain the identity:</p>
 <p><span class="math display">\[
 \vartheta_3(\tau) = \frac{1}{\sqrt{i \tau}} \vartheta_3\left(-\frac{1}{\tau}\right)
 \]</span></p>
@@ -750,7 +662,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -782,29 +705,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -856,24 +757,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -908,11 +791,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -927,6 +806,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -941,14 +841,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -957,15 +853,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1188,7 +1077,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/courses/phys231/phys231_hw05.html" class="pagination-link" aria-label="Homework 05">
+      <a href="../../../docs/courses/phys231/phys231_hw05.html" class="pagination-link  aria-label=" homework="" 05"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework 05</span>
       </a>          
   </div>
@@ -1562,7 +1451,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>\vartheta_3(\tau) = \frac{1}{\sqrt{i \tau}} \vartheta_3\left(-\frac{1}{\tau}\right)</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
@@ -1578,7 +1467,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/phys231/phys231_hw06.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
