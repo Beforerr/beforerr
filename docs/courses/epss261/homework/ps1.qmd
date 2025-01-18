@@ -1,6 +1,7 @@
 ---
 title: Problem Set 1
 number-sections: true
+engine: julia
 ---
 
 ## AE, Dst, Kp
@@ -23,7 +24,12 @@ We use julia to download and plot the AE and Dst indices directly from their off
 First we register and download the data dependencies using the `DataDeps` package.
 
 ```{julia}
+using CairoMakie
 using DataDeps
+using CSV, DelimitedFiles
+using TimeSeries
+using DataFrames
+using Dates
 
 register(DataDep("AE Index",
     """
@@ -70,11 +76,6 @@ DATE       TIME         DOY     DST                                  |
 We then parse the data into TimeSeries using `DelimitedFiles` and `TimeSeries`.
 
 ```{julia}
-using DelimitedFiles
-using TimeSeries
-using DataFrames
-using Dates
-
 start_time = "2015-03-01T00:00:00"
 end_time = "2015-03-31T23:59:59"
 
@@ -119,8 +120,6 @@ dst_data = load_dst_data(dst_file)
 Plot the data using CairoMakie.
 
 ```{julia}
-using CairoMakie
-
 Makie.convert_arguments(P::Type{<:Lines}, ta::TimeArray) = convert_arguments(P, timestamp(ta), values(ta))
 
 ylabel(ta::TimeArray) = meta(ta)["label"] * (isnothing(meta(ta)["unit"]) || meta(ta)["unit"] == "" ? "" : " (" * meta(ta)["unit"] * ")")
@@ -190,17 +189,140 @@ f = tplot([ae_data.AE, dst_data, kp_data])
 
 > In a short paragraph explain: What is the coordinate system and how did you download and plot?
 
-<!-- https://cdaweb.gsfc.nasa.gov/pub/data/galileo/ -->
-<!-- https://pds-ppi.igpp.ucla.edu/mission/Galileo -->
-<a href="https://pds-ppi.igpp.ucla.edu/mission/Galileo/Magnetometer">PDS/PPI Missions - Galileo</a>
-<!-- https://pds-ppi.igpp.ucla.edu/item/GO-J-MAG-2-REDR-RAW-DATA-V1.0:LPWE_08:LPWE_08.DAT -->
+Dataset about Galileo (https://pds-ppi.igpp.ucla.edu/mission/Galileo) flyby of Ganymede is available in the Planetary Data System (PDS) https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede [@10.17189/gch4-8w75]. Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00.
 
-https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede
+The dataset contains data in the following coordinate systems:
 
-https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0
-https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gsprh::1.0
-<!-- Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby recording in Ganymede-centered 'planetocentric' right-handed (GSPRH) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
-https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_irc::1.0
-<!-- Galileo calibrated MAG high-resolution magnetic field and corrected rotor pointing information from the Ganymede 8 orbit Ganymede flyby recording in Despun Spacecraft (IRC) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
-https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_sys3::1.0
-<!-- Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby recording in System III [1965] (SYS3) coordinates. The data cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00. -->
+- Ganymede Phi-Omega (GPHIO) coordinates https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0 [@kivelsonGalileoJupiterMAG2022].
+- Ganymede-centered 'planetocentric' right-handed (GSPRH) coordinates https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gsprh::1.0
+- Despun Spacecraft (IRC) coordinates https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_irc::1.0
+- System III [1965] (SYS3) coordinates https://pds-ppi.igpp.ucla.edu/item/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_sys3::1.0
+
+The data is downloaded as CSV format, read and plot using Julia.
+
+```{julia}
+register(DataDep("ORB08_GAN_GPHIO",
+    """
+    Dataset: ORB08_GAN_GPHIO
+    Website: https://pds-ppi.igpp.ucla.edu/mission/Galileo
+    """,
+    "https://pds-ppi.igpp.ucla.edu/ditdos/write?id=urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0&f=csv"
+))
+
+GAN_file = readdir(datadep"ORB08_GAN_GPHIO", join=true)[1]
+
+data = CSV.File(GAN_file) |> DataFrame
+```
+
+### Plot
+
+> Plot XYZ components and magnitude of the field in four panels. Use a 5th panel in the same plot to show all four traces with different colors, say: Blue, Green, Red, Black for X,Y,Z,T.
+
+```{julia}
+# Create the plot with multiple panels
+fig = Figure(; size=(600, 600))
+
+time = data."SPACECRAFT EVENT TIME"
+
+# Panel for BX
+ax1 = Axis(fig[1, 1], title="BX Component", xlabel="Time", ylabel="BX (nT)")
+lines!(ax1, time, data[!, "BX"], color=:blue)
+
+# Panel for BY
+ax2 = Axis(fig[2, 1], title="BY Component", xlabel="Time", ylabel="BY (nT)")
+lines!(ax2, time, data[!, "BY"], color=:green)
+
+# Panel for BZ
+ax3 = Axis(fig[3, 1], title="BZ Component", xlabel="Time", ylabel="BZ (nT)")
+lines!(ax3, time, data[!, "BZ"], color=:red)
+
+# Panel for B-FIELD MAGNITUDE
+ax4 = Axis(fig[4, 1], title="B-Field Magnitude", xlabel="Time", ylabel="Magnitude (nT)")
+lines!(ax4, time, data[!, "B-FIELD MAGNITUDE"], color=:black)
+
+# Panel for all traces
+ax5 = Axis(fig[5, 1], title="All Components", xlabel="Time", ylabel="B (nT)")
+lines!(ax5, time, data[!, "BX"], color=:blue, label="BX")
+lines!(ax5, time, data[!, "BY"], color=:green, label="BY")
+lines!(ax5, time, data[!, "BZ"], color=:red, label="BZ")
+lines!(ax5, time, data[!, "B-FIELD MAGNITUDE"], color=:black, label="Magnitude")
+
+for ax in [ax1, ax2, ax3, ax4]
+    hidexdecorations!(ax, grid=false)
+end
+
+linkxaxes!(ax1, ax2, ax3, ax4, ax5)
+axislegend(ax5)
+
+fig
+```
+
+## Voyager 2 Heliospheric termination shock
+
+> Voyager 2 crossed the Heliospheric termination shock and entered the heliosheath in Aug. 2007.  
+
+### Plot and analysis
+
+> [a] Plot the shock crossing in CDAWeb using their own plotting resources. In particular plot the total and RTN components of the magnetic field, flow speed, proton density N, and temperature T. In a short paragraph explain: what is the RTN system and how did you create the plot? In a second paragraph explain if the changes in the above parameters are consistent with shock crossings.
+
+The RTN (Radial-Tangential-Normal) coordinate system is a heliocentric coordinate system used to describe the position in relation to the Sun fixed at a spacecraft (or the planet): The R axis is  directed radially away from the Sun, the T axis is the cross product of the solar rotation axis and the R axis, and the N axis is the cross product of R and T. 
+
+![](figures/VOYAGER2_COHO1HR_MERGED_MAG_PLASMA_1657876_000.png){width=63%}
+
+We utilize the combined COHOWeb dataset (VOYAGER2_COHO1HR_MERGED_MAG_PLASMA, https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA) [@nessVoyager2Hourly2023]. The plot was generated using "CDAWeb Data Explorer" by selecting the “Plot Data” option and choosing the appropriate data variable. We select time range from 2007/08/01 00:00:00.000 to 2007/09/30 00:00:00.000.
+
+Around the end of August 31, we observe a significant decrease in bulk flow velocity accompanied by increases in proton density and temperature, corresponding to the shock crossing. Additionally, the magnetic field exhibits a slight increase. These changes are consistent with shock crossings, as shocks typically cause reductions in downstream flow velocity and simultaneous enhancements in plasma density, temperature, and magnetic field strength.
+
+> [b] What is the change in pressure, including dynamic pressure, across the shock (assume the crossing is along the shock normal)? To do this also ignore the electron thermal pressure (just use ion thermal pressure) and plot the quantity: N*V^2 + Pt, where Pt is the sum of magnetic and thermal pressures. Do this using your own tools (not SPEDAS) after downloading the data from SPDF.
+
+```{julia}
+using Unitful
+using Unitful: μ0, k, mp
+
+register(DataDep("VOYAGER2_COHO1HR_MERGED_MAG_PLASMA",
+    """
+    Dataset: VOYAGER2_COHO1HR_MERGED_MAG_PLASMA
+    Website: https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA
+    """,
+    "https://cdaweb.gsfc.nasa.gov/tmp/cweb_B6vad1PhkF/VOYAGER2_COHO1HR_MERGED_MAG_PLASMA_1663093.csv"
+))
+
+# Read the CSV file
+VIM_file = readdir(datadep"VOYAGER2_COHO1HR_MERGED_MAG_PLASMA", join=true)[1]
+data = CSV.File(VIM_file; comment="#") |> DataFrame
+
+allowmissing!(data)
+data[!, "time"] = DateTime.(data."EPOCH_yyyy-mm-ddThh:mm:ss.sssZ", "yyyy-mm-ddTHH:MM:SS.sssZ")
+for c ∈ eachcol(data)
+    replace!(c, -1.0e31 => missing)
+end
+dropmissing!(data)
+
+N = data[!, "SW_PROTON_DENS_n/cc"] * u"cm^-3"
+V = data[!, "BULK_FLOW_SPEED_km/s"] * u"km/s"
+B = data[!, "FIELD_MAGNITUDE_AVG._nT"] * u"nT"
+T = data[!, "RADIAL_PROTON_TEMP_deg_k"] * u"K"
+
+# Calculate the pressure
+pB = B .^ 2 / μ0 / 2 ./ 1u"nPa" .|> NoUnits
+pT = k * N .* T ./ u"nPa" .|> NoUnits
+pRam = mp * N .* V .^ 2 ./ u"nPa" .|> NoUnits
+pressure = pRam .+ pB .+ pT
+beta = pT ./ pB
+time = data."time"
+
+# Plot the data
+fig = Figure()
+ax = Axis(fig[1, 1], title="Pressure Across Shock", xlabel="Time", ylabel="Pressure (nPa)")
+lines!(time, pRam, color=:blue, label="Ram Pressure")
+lines!(time, pB, color=:green, label="Magnetic Pressure")
+lines!(time, pT, color=:red, label="Thermal Pressure")
+lines!(time, pressure, color=:black, label="Total Pressure")
+axislegend(ax)
+
+ax2 = Axis(fig[2, 1], xlabel="Time", ylabel="Beta")
+lines!(time, beta)
+
+hidexdecorations!(ax, grid=false)
+fig
+```
