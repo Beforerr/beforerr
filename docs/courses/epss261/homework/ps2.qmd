@@ -24,7 +24,29 @@ const tau_r_late = 6 * 3600.0u"s" # 6 hours
 const scale_ae = 300.0 # AE scaling factor
 ```
 
+```{julia}
+import DimensionalData: DimArray
 
+function DimArray(v::SpeasyVariable)
+    name = Symbol(v.name)
+    dims = (Ti(v.time), Dim{name}(v.columns))
+    DimArray(v.values, dims; name)
+end
+
+function degap(da::DimArray; dim=Ti)
+    dims = otherdims(da, dim)
+    rows = filter(x -> !any(isnan, x), eachslice(da; dims))
+    if !isempty(rows)
+        cat(rows...; dims)
+    else
+        similar(da, (0, size(da, 2)))
+    end
+end
+
+function degap(ts::TimeArray)
+    ts[all.(!isnan, eachrow(values(ts))), :]
+end
+```
 
 ```{julia}
 abstract type AbstractDataSet end
@@ -61,18 +83,22 @@ OMNI2_H0_MRG1HR = DataSet(
     ["KP1800", "DST1800", "AE1800"]
 )
 
+function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters, fc=TimeArray)
+    vars = map(products) do p
+        spz_var = replace_fillval_by_nan!(get_data("cda/$name/$p", args...))
+        fc(spz_var)
+    end
 
-function load_dataset(args...; dataset=OMNI_HRO_1MIN, name=dataset.name, products=dataset.parameters)
-    vars = mapreduce(merge, products) do p
-        TimeArray(replace_fillval_by_nan!(get_data("cda/$name/$p", args...)))
+    if fc === DimArray
+        DimStack(vars...)
+    elseif fc === TimeArray
+        merge(vars...)
     end
 end
 
 timespan = ["2015-03-15", "2015-03-22"] # 7 days
-omni_hro_ds = load_dataset(timespan; dataset=OMNI_HRO_1MIN)
-
-
-OMNI2_H0_MRG1HR_ds = load_dataset(timespan; dataset=OMNI2_H0_MRG1HR)
+omni_hro_ds = load_dataset(OMNI_HRO_1MIN, timespan)
+OMNI2_H0_MRG1HR_ds = load_dataset(OMNI2_H0_MRG1HR, timespan, fc=TimeArray)
 ```
 
 ### Akasofu parameter
@@ -127,6 +153,7 @@ omni_mVBz = @. -V_ts * B_ts.BZ_GSM |> u"mV/m"
 
 ```{julia}
 function compute_Uin(ε_ts)
+    ε_ts = degap(ε_ts)
     ε = values(ε_ts)
     time = timestamp(ε_ts)
     dt = Quantity.(diff(time))
