@@ -9,11 +9,13 @@ engine: julia
 > Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
 
 ```{julia}
+using CairoMakie
 using Unitful
 using Unitful: μ0
 using UnitfulAstro
 using DimensionalData
 using Speasy
+using SpaceTools
 using TimeSeries
 using LinearAlgebra
 const Re = 1UnitfulAstro.Rearth
@@ -39,14 +41,16 @@ end
 
 ### Define and load data sets
 
-```{julia}
+```julia
 abstract type AbstractDataSet end
 
 @kwdef struct DataSet <: AbstractDataSet
     name::String
     parameters::Vector{String}
 end
+```
 
+```{julia}
 function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters, provider="cda")
     map(products) do p
         replace_fillval_by_nan!(get_data("$provider/$name/$p", args...))
@@ -184,9 +188,6 @@ Uout = integrate(Wmd_all_ts)
 ### Plot
 
 ```{julia}
-using CairoMakie
-using SpaceTools
-
 # Plot results
 fig = Figure(; size=(1200, 1200))
 tvars2plot = [
@@ -213,20 +214,44 @@ f
 > i. Show the band-bass filtered data between fmin=1/180s and fmax=1/15s (low-pass using block average function tsmooth2 with window 61 points, subtract it from the original data to get the high-pass, then do tsmooth2 on that with 5 points). Plot the data.
 
 ```{julia}
+using TimeseriesTools
+
 THA_L2_FGM = DataSet("THA_L2_FGM", ["tha_fgs_gse"])
 tspan = ["2008-09-05T10:00:00", "2008-09-05T20:00:00"]
-tha_fgs_gse = load_dataset(THA_L2_FGM, tspan) |> DimArray
 
-# Filter data
-fmin = 1 / 180u"s"
-fmax = 1 / 15u"s"
-# Wmd_all_ts = tsmooth2(Wmd_all_ts, 61) .- tsmooth2(Wmd_all_ts, 5)
-# Wmd_all_ts = Wmd_all_ts .- tsmooth2(Wmd_all_ts, 5)
-# Wmd_all_ts = Wmd_all_ts[fmin.<f.<fmax]
+tha_fgs_gse = load_dataset(THA_L2_FGM, tspan) |> TS
 ```
 
 
+```{julia}
+function amap(f, a::AbstractDimArray, b::AbstractDimArray)
+    shared_selectors = DimSelectors(b)
+    data = f(a[shared_selectors], b[shared_selectors])
+end
+```
+
+```{julia}
+da = tha_fgs_gse
+da_smoothed = smooth(da, 61)
+da_filtered = rebuild(amap(-, da, da_smoothed); name=:tha_fgs_gse_filtered)
+da_filtered_smoothed = smooth(da_filtered, 5)
+
+tplot([da, da_smoothed, da_filtered_smoothed])
+```
+
 > ii. Do a dynamic power spectrum of the unfiltered data.
+
+```{julia}
+time = tha_fgs_gse.dims[1].val.data
+dtime = Quantity.(time .- time[1])
+new_da = TimeseriesTools.rectifytime(
+    TS(dtime, tha_fgs_gse.dims[2], tha_fgs_gse.data)
+    # TS(dtime, tha_fgs_gse.data[:, 1])
+    ; tol=2
+)
+S = powerspectrum(new_da, 1 / 180)
+p = plot(S)
+```
 
 > iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward  (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
 

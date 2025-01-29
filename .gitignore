@@ -188,3 +188,4 @@ pixi.lock
 
 # Julia
 Manifest.toml
+.CondaPkg
