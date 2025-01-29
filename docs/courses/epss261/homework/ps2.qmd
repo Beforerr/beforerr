@@ -6,7 +6,7 @@ engine: julia
 
 ## Energy input and energy dissipation
 
-> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $Wmd=[41013((-Dst*)/t + (-Dst*)/R)+300AE]$ and its integral is given by: $Umd=∫ Wmd dt$ [in PJ], where: R=1hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and R=6hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python/Julia) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
+> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $Wmd=[4 10^{13}((-Dst*)/t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $Umd=∫ Wmd dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python/Julia) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
 
 
 ```{julia}
@@ -18,20 +18,21 @@ using Speasy
 using TimeSeries
 using LinearAlgebra
 const Re = 1UnitfulAstro.Rearth
-const epsilon_factor = 1e4 * (Re / 1000u"km")^2 / 1e10 # Conversion factor for epsilon
-const tau_r_initial = 3600.0u"s" # 1 hour
-const tau_r_late = 6 * 3600.0u"s" # 6 hours
-const scale_ae = 300.0 # AE scaling factor
+const τ_r_initial = 1u"hr"
+const τ_r_late = 6u"hr"
 ```
 
 ```{julia}
-import DimensionalData: DimArray
+import DimensionalData: DimArray, DimStack
+import TimeSeries: TimeArray
 
 function DimArray(v::SpeasyVariable)
     name = Symbol(v.name)
     dims = (Ti(v.time), Dim{name}(v.columns))
     DimArray(v.values, dims; name)
 end
+
+DimStack(vs::AbstractArray{SpeasyVariable}) = DimStack(DimArray.(vs)...)
 
 function degap(da::DimArray; dim=Ti)
     dims = otherdims(da, dim)
@@ -44,9 +45,11 @@ function degap(da::DimArray; dim=Ti)
 end
 
 function degap(ts::TimeArray)
-    ts[all.(!isnan, eachrow(values(ts))), :]
+    ts[all.(!isnan, eachrow(values(ts)))]
 end
 ```
+
+### Define and load data sets
 
 ```{julia}
 abstract type AbstractDataSet end
@@ -83,23 +86,17 @@ OMNI2_H0_MRG1HR = DataSet(
     ["KP1800", "DST1800", "AE1800"]
 )
 
-function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters, fc=TimeArray)
+function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters)
     vars = map(products) do p
         spz_var = replace_fillval_by_nan!(get_data("cda/$name/$p", args...))
-        fc(spz_var)
-    end
-
-    if fc === DimArray
-        DimStack(vars...)
-    elseif fc === TimeArray
-        merge(vars...)
     end
 end
 
 timespan = ["2015-03-15", "2015-03-22"] # 7 days
-omni_hro_ds = load_dataset(OMNI_HRO_1MIN, timespan)
-OMNI2_H0_MRG1HR_ds = load_dataset(OMNI2_H0_MRG1HR, timespan, fc=TimeArray)
+omni_hro_ds = load_dataset(OMNI_HRO_1MIN, timespan) |> TimeArray
+OMNI2_H0_MRG1HR_ds = load_dataset(OMNI2_H0_MRG1HR, timespan) |> TimeArray
 ```
+
 
 ### Akasofu parameter
 
@@ -109,14 +106,13 @@ function Akasofu_epsilon(B, V)
     I0 = 7 * Re
     Bt = norm([By, Bz])
     θ = acos(Bz / Bt)
-    return (4π / μ0) * V * Bt^2 * sin(θ / 2)^4 * I0^2 |> u"W"
+    return (4π / μ0) * V * Bt^2 * sin(θ / 2)^4 * I0^2 |> u"GW"
 end
 
 B_ts = omni_hro_ds[:BX_GSE, :BY_GSM, :BZ_GSM] .* u"nT"
 V_ts = omni_hro_ds[:flow_speed] .* u"km/s"
 
 Akasofu_epsilon_meta = Dict(
-    "unit" => "10^10 W",
     "label" => "Akasofu Epsilon"
 )
 Akasofu_epsilon_ts = TimeArray(
@@ -135,7 +131,7 @@ We use this here to correct Dst for SW dynamic pressure, relative to prestorm va
 ```{julia}
 function correct_Dst(dst, P_after, P_before)
     Siscoe_constant = 13.5u"nT/sqrt(nPa)"
-    @. (dst * u"nT" - Siscoe_constant * (sqrt(P_after * u"nPa") - sqrt(P_before * u"nPa"))) / u"nT"
+    @. (dst * u"nT" - Siscoe_constant * (sqrt(P_after * u"nPa") - sqrt(P_before * u"nPa")))
 end
 
 omni_Dst_corrected = correct_Dst(omni_hro_ds[:SYM_H], omni_hro_ds[:Pressure], 2)
@@ -152,30 +148,48 @@ omni_mVBz = @. -V_ts * B_ts.BZ_GSM |> u"mV/m"
 ## Cumulative energy input and dissipation
 
 ```{julia}
-function compute_Uin(ε_ts)
-    ε_ts = degap(ε_ts)
-    ε = values(ε_ts)
-    time = timestamp(ε_ts)
-    dt = Quantity.(diff(time))
-    ∫ε_dt = cumsum(ε[1:end-1] .* dt)
+function integrate(ts)
+    ts = degap(ts)
+    ε = values(ts)
+    times = timestamp(ts)
+    dts = Quantity.(diff(times))
+    ∫ε_dt = cumsum(ε[1:end-1] .* dts) .|> u"PJ"
     Uin_meta = Dict(
-        "unit" => "10^15 J",
         "label" => "Cumulative energy input"
     )
-    TimeArray(time[2:end], ∫ε_dt, [:Uin], Uin_meta)
+    TimeArray(times[2:end], ∫ε_dt, [:Uin], Uin_meta)
 end
 
-function compute_Wmd(Dst_star, AE, time)
-    dDst_dt = diff(Dst_star) ./ diff(time) # Time derivative of Dst*
-    dAE_dt = diff(AE) ./ diff(time) # Time derivative of AE
-    Wmd_meta = Dict(
-        "unit" => "10^15 J",
-        "label" => "Magnetospheric dissipation rate"
-    )
-    TimeArray(timestamp(omni_hro_ds), dDst_dt .* dAE_dt, [:Wmd], Wmd_meta)
+tau_r(t, t0; τr_i=1u"hr", τr_f=6u"hr") = τr_i * (t < t0) + τr_f * (t >= t0)
+
+function compute_Wmd(dDst_dt, Dst, AE, time, time2transition)
+    # Time-varying tau_r (assume split between initial and late storm)
+    τ_r = tau_r(time, time2transition)
+    factor = u"erg/s" / u"nT"
+    Wmd_dDstodt = -4e20 * dDst_dt * factor * 1u"s"
+    Wmd_dstotau = -4e20 * Dst / τ_r * factor * 1u"s"
+    Wmd_AE = 3e15 * AE * factor
+    Wmd_all = Wmd_dDstodt + Wmd_dstotau + Wmd_AE
+    # return (; Wmd_dDstodt, Wmd_dstotau, Wmd_AE, Wmd_all)
+    return Wmd_all
 end
 
-Uin = compute_Uin(Akasofu_epsilon_ts)
+item(ts) = values(ts)[1]
+
+Wmd_all_ts = let Dst = omni_Dst_corrected, AE = omni_hro_ds.AE_INDEX .* u"nT", time2transition = Date("2015-03-19")
+    times = timestamp(Dst)
+    dts = Quantity.(diff(times))
+    dDst_dt = diff(Dst) ./ dt
+    time = times[10]
+    # ([dDst_dt[times], Dst[times], AE[times]])
+    Wmd_all = map(times[2:end]) do time
+        compute_Wmd(item.([dDst_dt[time], Dst[time], AE[time]])..., time, time2transition)
+    end
+    TimeArray(times[2:end], Wmd_all, [:Wmd], Dict("label" => "Cumulative energy dissipation"))
+end
+
+Uin = integrate(Akasofu_epsilon_ts)
+Uout = integrate(Wmd_all_ts)
 ```
 
 ### Plot
@@ -185,62 +199,16 @@ using CairoMakie
 using SpaceTools
 
 # Plot results
-fig = Figure(; size=(1200, 600))
+fig = Figure(; size=(1200, 1200))
 tvars2plot = [
-    Uin,
-    Akasofu_epsilon_ts ./ 1e10u"W",
-    [omni_hro_ds.SYM_H, OMNI2_H0_MRG1HR_ds.DST1800, omni_Dst_corrected],
+    [Uin, Uout],
+    Akasofu_epsilon_ts,
+    [omni_hro_ds.SYM_H, OMNI2_H0_MRG1HR_ds.DST1800, omni_Dst_corrected ./ u"nT"],
     [omni_hro_ds.AE_INDEX, OMNI2_H0_MRG1HR_ds.AE1800],
     [omni_mVBz, omni_hro_ds.E .* u"mV/m"],
     [omni_hro_ds.Pressure]
 ]
-tplot!(fig, tvars2plot)
-```
-
-
-```{julia}
-
-# Function to compute Wmd (magnetospheric dissipation rate)
-function compute_Wmd(Dst_star, AE, time)
-    dDst_dt = diff(Dst_star) ./ diff(time) # Time derivative of Dst*
-    dDst_dt = vcat(dDst_dt, dDst_dt[end]) # Match array length
-
-    # Time-varying tau_r (assume split between initial and late storm)
-    tau_r = tau_r_initial .* (time .< 12 * 3600u"s") .+ tau_r_late .* (time .>= 12 * 3600u"s")
-
-    Wmd = 4e13 .* (dDst_dt .+ Dst_star ./ tau_r) .+ scale_ae .* AE
-    return Wmd
-end
-
-# Function to compute cumulative integrals
-function compute_cumulative_integral(data, time)
-    dt = diff(time) # Time steps
-    dt = vcat(dt, dt[end]) # Match array length
-    cumulative_integral = cumsum(data .* dt) ./ 1e15 # Convert to PetaJoules
-    return cumulative_integral
-end
-
-# Main computation
-function main()
-    # Load data
-    time, Bz_GSM, Byz_GSM, V, Dst_star, AE = load_data()
-
-    # Compute epsilon and its cumulative integral
-    epsilon = compute_epsilon(Bz_GSM, Byz_GSM, V)
-    Uin = compute_cumulative_integral(epsilon, time)
-
-    # Compute Wmd and its cumulative integral
-    Wmd = compute_Wmd(Dst_star, AE, time)
-    Umd = compute_cumulative_integral(Wmd, time)
-
-    # Plot results
-    using Plots
-    plot(time ./ 3600u"s", epsilon, label="Epsilon [10^10 W]", xlabel="Time [hours]", ylabel="Power")
-    plot!(time ./ 3600u"s", Wmd, label="Wmd [W]", xlabel="Time [hours]", ylabel="Power")
-    plot!(time ./ 3600u"s", Uin, label="Uin [PJ]", xlabel="Time [hours]", ylabel="Energy", linestyle=:dash)
-    plot!(time ./ 3600u"s", Umd, label="Umd [PJ]", xlabel="Time [hours]", ylabel="Energy", linestyle=:dashdot)
-end
-
-# Run main function
-main()
+f, axs = tplot!(fig, tvars2plot)
+axislegend.(axs)
+f
 ```
