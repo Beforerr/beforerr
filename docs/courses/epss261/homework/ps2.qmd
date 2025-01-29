@@ -6,8 +6,7 @@ engine: julia
 
 ## Energy input and energy dissipation
 
-> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $Wmd=[4 10^{13}((-Dst*)/t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $Umd=∫ Wmd dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python/Julia) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
-
+> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
 
 ```{julia}
 using Unitful
@@ -18,21 +17,10 @@ using Speasy
 using TimeSeries
 using LinearAlgebra
 const Re = 1UnitfulAstro.Rearth
-const τ_r_initial = 1u"hr"
-const τ_r_late = 6u"hr"
 ```
 
 ```{julia}
-import DimensionalData: DimArray, DimStack
 import TimeSeries: TimeArray
-
-function DimArray(v::SpeasyVariable)
-    name = Symbol(v.name)
-    dims = (Ti(v.time), Dim{name}(v.columns))
-    DimArray(v.values, dims; name)
-end
-
-DimStack(vs::AbstractArray{SpeasyVariable}) = DimStack(DimArray.(vs)...)
 
 function degap(da::DimArray; dim=Ti)
     dims = otherdims(da, dim)
@@ -59,6 +47,19 @@ abstract type AbstractDataSet end
     parameters::Vector{String}
 end
 
+function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters, provider="cda")
+    map(products) do p
+        replace_fillval_by_nan!(get_data("$provider/$name/$p", args...))
+    end
+end
+```
+
+```{julia}
+OMNI_HRO_PARAMS = [
+    "Vx", "Vy", "Vz", "flow_speed",
+    "BX_GSE", "BY_GSM", "BZ_GSM", "E",
+    "AE_INDEX", "SYM_H", "Pressure"
+]
 
 """
 High resolution (1-min), multi-source, near-Earth solar wind magnetic field and plasma data as shifted to Earth's bow shock nose, plus several 1-min geomagnetic activity indices.
@@ -66,31 +67,19 @@ High resolution (1-min), multi-source, near-Earth solar wind magnetic field and 
 # References
 - [DOI](https://doi.org/10.48322/45bb-8792)
 """
-OMNI_HRO_1MIN = DataSet(
-    "OMNI_HRO_1MIN",
-    ["BX_GSE", "BY_GSM", "BZ_GSM", "E", "flow_speed", "Vx", "Vy", "Vz", "AE_INDEX", "SYM_H", "Pressure"]
-)
+OMNI_HRO_1MIN = DataSet("OMNI_HRO_1MIN", OMNI_HRO_PARAMS)
 
 """
 Version 2 of OMNI_HRO_1MIN dataset
 
 - [DOI](https://doi.org/10.48322/mj0k-fq60)
 """
-OMNI_HRO2_1MIN = DataSet(
-    "OMNI_HRO2_1MIN",
-    ["BX_GSE", "BY_GSM", "BZ_GSM", "E", "flow_speed", "Vx", "Vy", "Vz", "SYM_H", "Pressure"]
-)
+OMNI_HRO2_1MIN = DataSet("OMNI_HRO2_1MIN", OMNI_HRO_PARAMS)
 
 OMNI2_H0_MRG1HR = DataSet(
     "OMNI2_H0_MRG1HR",
     ["KP1800", "DST1800", "AE1800"]
 )
-
-function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters)
-    vars = map(products) do p
-        spz_var = replace_fillval_by_nan!(get_data("cda/$name/$p", args...))
-    end
-end
 
 timespan = ["2015-03-15", "2015-03-22"] # 7 days
 omni_hro_ds = load_dataset(OMNI_HRO_1MIN, timespan) |> TimeArray
@@ -179,7 +168,7 @@ item(ts) = values(ts)[1]
 Wmd_all_ts = let Dst = omni_Dst_corrected, AE = omni_hro_ds.AE_INDEX .* u"nT", time2transition = Date("2015-03-19")
     times = timestamp(Dst)
     dts = Quantity.(diff(times))
-    dDst_dt = diff(Dst) ./ dt
+    dDst_dt = diff(Dst) ./ dts
     time = times[10]
     # ([dDst_dt[times], Dst[times], AE[times]])
     Wmd_all = map(times[2:end]) do time
@@ -209,6 +198,37 @@ tvars2plot = [
     [omni_hro_ds.Pressure]
 ]
 f, axs = tplot!(fig, tvars2plot)
+axs[3].ylabel = "DST (nT)"
+axs[4].ylabel = "AE (nT)"
+axs[5].ylabel = "Electric field (mV/m)"
+axs[6].ylabel = "Pressure (nPa)"
 axislegend.(axs)
 f
 ```
+
+## Field line resonances
+
+> Obtain magnetic field data from THEMIS-A for a field line resonances observed on 2008-Sep-05 10 – 20 UT. These have periods of 10-30 mHz and can be seen in Figure 1 of Sarris et al., 2010 (Ref. below7). It would be sufficient to use spin-period (FGS) data. 
+
+> i. Show the band-bass filtered data between fmin=1/180s and fmax=1/15s (low-pass using block average function tsmooth2 with window 61 points, subtract it from the original data to get the high-pass, then do tsmooth2 on that with 5 points). Plot the data.
+
+```{julia}
+THA_L2_FGM = DataSet("THA_L2_FGM", ["tha_fgs_gse"])
+tspan = ["2008-09-05T10:00:00", "2008-09-05T20:00:00"]
+tha_fgs_gse = load_dataset(THA_L2_FGM, tspan) |> DimArray
+
+# Filter data
+fmin = 1 / 180u"s"
+fmax = 1 / 15u"s"
+# Wmd_all_ts = tsmooth2(Wmd_all_ts, 61) .- tsmooth2(Wmd_all_ts, 5)
+# Wmd_all_ts = Wmd_all_ts .- tsmooth2(Wmd_all_ts, 5)
+# Wmd_all_ts = Wmd_all_ts[fmin.<f.<fmax]
+```
+
+
+> ii. Do a dynamic power spectrum of the unfiltered data.
+
+> iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward  (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
+
+
+> iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.
