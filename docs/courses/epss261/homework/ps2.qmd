@@ -241,6 +241,8 @@ da_filtered_smoothed = smooth(da_filtered, 5)
 tplot([da, da_smoothed, da_filtered_smoothed])
 ```
 
+### Dynamic power spectrum
+
 > ii. Do a dynamic power spectrum of the unfiltered data.
 
 ```{julia}
@@ -255,12 +257,13 @@ S = powerspectrum(new_da, 1 / 180)
 p = plot(S)
 ```
 
-> iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward  (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
+### Field aligned coordinate system
+
+> iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
 
 ```julia
 function rotate(da, mat)
     da = da[DimSelectors(mats)]
-    da_rot = @d mats .* eachslice(da, dims=Ti) # hcat on `OffsetArray` doesn't work
     da_rot = mats .* eachrow(da.data)
     TS(dims(da, Ti), dims(da, 2), hcat(da_rot...)')
 end
@@ -273,5 +276,7 @@ mats = fac_matrix_make.(eachslice(mat_da, dims=Ti))
 da_fac = rotate(da, mats)
 tplot([da, da_fac])
 ```
+
+### Poloidal vs. toroidal
 
 > iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.
