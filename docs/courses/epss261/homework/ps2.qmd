@@ -9,15 +9,17 @@ engine: julia
 > Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
 
 ```{julia}
-using CairoMakie
+using Speasy
+speasy() # need to initialize first because `openssl` used by `speasy` and `Julia` is incompatible
+
 using Unitful
 using Unitful: μ0
 using UnitfulAstro
 using DimensionalData
-using Speasy
-using SpaceTools
 using TimeSeries
 using LinearAlgebra
+using SpaceTools
+using CairoMakie
 const Re = 1UnitfulAstro.Rearth
 ```
 
@@ -245,8 +247,8 @@ tplot([da, da_smoothed, da_filtered_smoothed])
 time = tha_fgs_gse.dims[1].val.data
 dtime = Quantity.(time .- time[1])
 new_da = TimeseriesTools.rectifytime(
-    TS(dtime, tha_fgs_gse.dims[2], tha_fgs_gse.data)
-    # TS(dtime, tha_fgs_gse.data[:, 1])
+    # TS(dtime, tha_fgs_gse.dims[2], tha_fgs_gse.data)
+    TS(dtime, tha_fgs_gse.data[:, 1])
     ; tol=2
 )
 S = powerspectrum(new_da, 1 / 180)
@@ -255,5 +257,21 @@ p = plot(S)
 
 > iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward  (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
 
+```julia
+function rotate(da, mat)
+    da = da[DimSelectors(mats)]
+    da_rot = @d mats .* eachslice(da, dims=Ti) # hcat on `OffsetArray` doesn't work
+    da_rot = mats .* eachrow(da.data)
+    TS(dims(da, Ti), dims(da, 2), hcat(da_rot...)')
+end
+```
+
+```{julia}
+da = tha_fgs_gse
+mat_da = smooth(da, 601)
+mats = fac_matrix_make.(eachslice(mat_da, dims=Ti))
+da_fac = rotate(da, mats)
+tplot([da, da_fac])
+```
 
 > iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.
