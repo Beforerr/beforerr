@@ -4,24 +4,34 @@ number-sections: true
 engine: julia
 ---
 
-## Energy input and energy dissipation
+## Introduction
 
-> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
+In this report, I will demonstrate the application of Julia in space data analysis. Due to its highly flexible type system, **multiple dispatch** feature, and seamless interoperability between Python and C packages, Julia enables the implementation of `SPEDAS` complex functionalities in a concise and generalizable manner, often requiring only a few lines of code.
+
+More specifically, we utilize
+
+- `DimensionalData` : which provides an abstract array with named dimensions, facilitating more intuitive indexing and generalized manipulation. 
+- `Unitful` : which enables seamless unit conversion and supports dimensional analysis
+
+Since Julia features an **abstract type system**, most packages can be used directly and composed seamlessly without unintended side effects. This contrasts with Python, where inheritance and subtyping are commonly used, making it more challenging to share functionality across different classes. 
 
 ```{julia}
 using Speasy
-speasy() # need to initialize first because `openssl` used by `speasy` and `Julia` is incompatible
+speasy()
 
 using Unitful
 using Unitful: μ0
 using UnitfulAstro
 using DimensionalData
 using TimeSeries
+using TimeseriesTools
 using LinearAlgebra
 using SpaceTools
 using CairoMakie
 const Re = 1UnitfulAstro.Rearth
 ```
+
+`degap` and `rectify_datetime` are used to clean up the data and rectify the time series (make timestamps uniform).
 
 ```{julia}
 import TimeSeries: TimeArray
@@ -39,16 +49,80 @@ end
 function degap(ts::TimeArray)
     ts[all.(!isnan, eachrow(values(ts)))]
 end
+
+function rectify_datetime(da; tol=2, kwargs...)
+    times = dims(da, Ti)
+    t0 = times[1]
+    dtime = Quantity.(times.val .- t0)
+    new_times = TimeseriesTools.rectify(Ti(dtime); tol)[1]
+    set(da, Ti => new_times .+ t0)
+end
 ```
+
+`tplot` could be decomposed into multiple steps and lead to better readability and flexibility.
+
+```{txt}
+"""
+Lay out multiple time series on the same figure across different panels (rows)
+"""
+function tplot(f, tas::AbstractVector; add_legend=true, link_xaxes=true, kwargs...)
+    aps = map(enumerate(tas)) do (i, ta)
+        ap = tplot(f[i, 1], ta; kwargs...)
+        # Hide redundant x labels
+        link_xaxes && i != length(tas) && hidexdecorations!(ap.axis, grid=false)
+        ap
+    end
+    axs = map(ap -> ap.axis, aps)
+    link_xaxes && linkxaxes!(axs...)
+    add_legend && axislegend.(axs)
+    FigureAxes(f, axs)
+end
+
+"""
+Setup the axis on a position and plot multiple time series on it
+"""
+function tplot(gp::GridPosition, tas::AbstractVector; kwargs...)
+    ax = Axis(gp, ylabel=ylabel(ta))
+    plots = map(tas) do ta
+        tplot!(ax, ta; kwargs...)
+    end
+    ax, plots
+end
+
+"""
+Plot a multivariate time series on a position in a figure
+"""
+function tplot(gp::GridPosition, ta::AbstractDimArray; labeldim=nothing, kwargs...)
+    args, attributes = _series(ta, kwargs, labeldim)
+    series(gp, args...; attributes...)
+end
+```
+
+## Energy input and energy dissipation
+
+> Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
 
 ### Define and load data sets
 
-```julia
+We write a simple Julia wrapper around the [Speasy](https://github.com/SciQLop/speasy), a Python package to deal with main Space Physics WebServices using API instead of downloading files. This allows easier integration between Python and Julia.
+
+```{txt}
 abstract type AbstractDataSet end
 
 @kwdef struct DataSet <: AbstractDataSet
     name::String
     parameters::Vector{String}
+end
+
+speasy() = @pyconst(pyimport("speasy"))
+
+struct SpeasyVariable
+    py::Py
+end
+
+function get_data(args...)
+    res = @pyconst(pyimport("speasy").get_data)(args...)
+    return apply_recursively(res, SpeasyVariable, is_pylist)
 end
 ```
 
@@ -70,8 +144,7 @@ OMNI_HRO_PARAMS = [
 """
 High resolution (1-min), multi-source, near-Earth solar wind magnetic field and plasma data as shifted to Earth's bow shock nose, plus several 1-min geomagnetic activity indices.
 
-# References
-- [DOI](https://doi.org/10.48322/45bb-8792)
+References:[DOI](https://doi.org/10.48322/45bb-8792)
 """
 OMNI_HRO_1MIN = DataSet("OMNI_HRO_1MIN", OMNI_HRO_PARAMS)
 
@@ -136,8 +209,6 @@ omni_Dst_corrected = correct_Dst(omni_hro_ds[:SYM_H], omni_hro_ds[:Pressure], 2)
 
 ```{julia}
 omni_mVBz = @. -V_ts * B_ts.BZ_GSM |> u"mV/m"
-# OMNI_VxBgse
-# omni_mVxBz_gsm
 ```
 
 ## Cumulative energy input and dissipation
@@ -211,19 +282,29 @@ f
 
 ## Field line resonances
 
-> Obtain magnetic field data from THEMIS-A for a field line resonances observed on 2008-Sep-05 10 – 20 UT. These have periods of 10-30 mHz and can be seen in Figure 1 of Sarris et al., 2010 (Ref. below7). It would be sufficient to use spin-period (FGS) data. 
+> Obtain magnetic field data from THEMIS-A for a field line resonances observed on 2008-Sep-05 10 – 20 UT. These have periods of 10-30 mHz and can be seen in Figure 1 of Sarris et al., 2010 [@sarrisTHEMISObservationsSpatial2010]. It would be sufficient to use spin-period (FGS) data. 
 
 > i. Show the band-bass filtered data between fmin=1/180s and fmax=1/15s (low-pass using block average function tsmooth2 with window 61 points, subtract it from the original data to get the high-pass, then do tsmooth2 on that with 5 points). Plot the data.
 
 ```{julia}
-using TimeseriesTools
+tha_l2_fgm_ds = DataSet("THA_L2_FGM", ["tha_fgs_gse"])
+tspan = ["2008-09-05T10:00:00", "2008-09-05T22:00:00"]
+tha_fgs_gse = load_dataset(tha_l2_fgm_ds, tspan) |> TS
 
-THA_L2_FGM = DataSet("THA_L2_FGM", ["tha_fgs_gse"])
-tspan = ["2008-09-05T10:00:00", "2008-09-05T20:00:00"]
-
-tha_fgs_gse = load_dataset(THA_L2_FGM, tspan) |> TS
+tha_fgs_gse.metadata["long_name"] = "THA FGS GSE"
+tha_fgs_gse.metadata["units"] = "nT"
 ```
 
+The `smooth` (`tsmooth2` in IDL) function is implemented as follows. By using `mapslices`, the function efficiently applies the operation along the desired dimension. This approach is very general and can be used for multiple dimensions.
+
+```{txt}
+function smooth(da::AbstractDimArray, span::Integer; dims=Ti, suffix="_smoothed", kwargs...)
+    new_da = mapslices(da; dims) do slice
+        mean.(RollingWindowArrays.rolling(slice, span; kwargs...))
+    end
+    rebuild(new_da; name=Symbol(da.name, suffix))
+end
+```
 
 ```{julia}
 function amap(f, a::AbstractDimArray, b::AbstractDimArray)
@@ -235,33 +316,120 @@ end
 ```{julia}
 da = tha_fgs_gse
 da_smoothed = smooth(da, 61)
-da_filtered = rebuild(amap(-, da, da_smoothed); name=:tha_fgs_gse_filtered)
+da_filtered = amap(-, da, da_smoothed)
+da_filtered = rebuild(da_filtered; name=:tha_fgs_gse_filtered)
 da_filtered_smoothed = smooth(da_filtered, 5)
 
-tplot([da, da_smoothed, da_filtered_smoothed])
+figure = (; size=(1000, 600))
+tplot([da, da_smoothed, da_filtered_smoothed]; figure)
 ```
 
 ### Dynamic power spectrum
 
 > ii. Do a dynamic power spectrum of the unfiltered data.
 
+In this section, we implement two approaches to represent the time-frequency domain of time series data. The first approach utilizes a window function, while the second employs a wavelet transform. The functions `pspectrum` are dispatched based on the second argument, leveraging Julia's multiple dispatch mechanism.
+
+- Reference: [Matlab](https://www.mathworks.com/help/signal/ref/pspectrum.html), [PySPEDAS : pytplot.tplot_math.dpwrspc](https://github.com/PySPEDAS/PySPEDAS)
+
+
 ```{julia}
-time = tha_fgs_gse.dims[1].val.data
-dtime = Quantity.(time .- time[1])
-new_da = TimeseriesTools.rectifytime(
-    # TS(dtime, tha_fgs_gse.dims[2], tha_fgs_gse.data)
-    TS(dtime, tha_fgs_gse.data[:, 1])
-    ; tol=2
-)
-S = powerspectrum(new_da, 1 / 180)
-p = plot(S)
+using SignalAnalysis
+using DimensionalData: Where
+
+function pspectrum(x::AbstractDimArray, spec::Spectrogram)
+    fs = SpaceTools.samplingrate(x)
+    y = tfd(x, spec; fs)
+    t0 = dims(x, Ti)[1]
+    times = Ti(y.time .* 1u"s" .+ t0)
+    freqs = 𝑓(y.freq * 1u"Hz")
+    y_da = DimArray(y.power', (times, freqs))
+end
+```
+
+```{julia}
+using ContinuousWavelets
+
+"""
+    pspectrum(x, wt; kwargs...)
+
+Returns the power spectrum of `x` in the time-frequency domains
+"""
+function pspectrum(x::AbstractDimArray, wt::CWT)
+    fs = SpaceTools.samplingrate(x)
+    res = cwt(x, wt)
+    power = abs.(res) .^ 2
+    n = length(dims(x, Ti))
+    times = dims(x, Ti)
+    freqs = 𝑓(getMeanFreq(computeWavelets(n, wt)[1], fs) * 1u"Hz")
+    DimArray(power, (times, freqs))
+end
+```
+
+
+```{julia}
+const DD = DimensionalData
+
+"""
+    plot_tfr(data; kwargs...)
+
+Displays time frequency representation using Makie.
+"""
+function plot_tfr(da::DimArray; colorscale=log10, crange=:auto, figure_kwargs...)
+    cmid = median(da)
+    cmax = cmid * 10
+    cmin = cmid / 10
+    fig, ax, hm = heatmap(da; colorscale, colorrange=(cmin, cmax))
+    Colorbar(fig[:, end+1], hm)
+    fig
+end
+```
+
+Applying hamming window and plotting the power spectrum
+
+```{julia}
+da = TS(tha_fgs_gse[:, 3])
+da = rectify_datetime(da)
+
+spec1 = Spectrogram(nfft=512, noverlap=64, window=hamming)
+res1 = pspectrum(da, spec1)
+plot_tfr(res1)
+```
+
+Applying Morlet wavelet and plotting the power spectrum
+
+```{julia}
+wl2 = wavelet(Morlet(π), β=2)
+res2 = pspectrum(da, wl2)
+plot_tfr(res2)
+```
+
+Field line resonances are more visible using window function although with lower resolution. Zoom in on the low frequencies
+
+```{julia}
+res1_s = res1[𝑓=Where(<=(0.05u"Hz"))]
+plot_tfr(res1_s)
 ```
 
 ### Field aligned coordinate system
 
 > iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.
 
-```julia
+To confirm that the compressional component of the magnetic field is small, we need to analyze the fluctuations in the magnetic field and determine whether the component along the background field direction is significantly weaker than the perpendicular components.
+
+`fac_matrix_make` and `rotate` could be easily implemented in few lines. Note that we implement only the `array` version (corresponding to one timestamp), and the `matrix` version could be freely got using Julia `broadcast` operators which also align with dimensions.
+
+```{txt}
+function fac_matrix_make(
+    vec::AbstractVector;
+    xref=[1.0, 0.0, 0.0]
+)
+    z0 = normalize(vec)
+    y0 = normalize(cross(z0, xref))
+    x0 = cross(y0, z0)
+    return vcat(x0', y0', z0')
+end
+
 function rotate(da, mat)
     da = da[DimSelectors(mats)]
     da_rot = mats .* eachrow(da.data)
@@ -271,8 +439,11 @@ end
 
 ```{julia}
 da = tha_fgs_gse
+# smooth the data
 mat_da = smooth(da, 601)
+# make the rotation matrix from the smoothed data
 mats = fac_matrix_make.(eachslice(mat_da, dims=Ti))
+# rotate original data
 da_fac = rotate(da, mats)
 tplot([da, da_fac])
 ```
@@ -280,3 +451,21 @@ tplot([da, da_fac])
 ### Poloidal vs. toroidal
 
 > iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.
+
+```{julia}
+da_x = da_fac[:, 1]
+da_x = rectify_datetime(da_x)
+
+res_x = pspectrum(da_x, spec1)
+plot_tfr(res_x)
+```
+
+```{julia}
+da_y = da_fac[:, 2]
+da_y = rectify_datetime(da_y)
+
+res_y = pspectrum(da_y, spec1)
+plot_tfr(res_y)
+```
+
+We can see that the power spectrum of the y (azimuthal) component is much higher than the power spectrum of the x (radial) component. This indicates that the FLR is likely to be toroidal.
