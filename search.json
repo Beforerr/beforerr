@@ -1683,5 +1683,149 @@
     "title": "About",
     "section": "Education",
     "text": "Education\nUniversity of California, Los Angeles | Los Angeles, CA\nPhD in Planetary Science | Sept 2022 - Present"
+  },
+  {
+    "objectID": "docs/research/index.html",
+    "href": "docs/research/index.html",
+    "title": "Research",
+    "section": "",
+    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\npaper\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/research/index.html#journal-articles",
+    "href": "docs/research/index.html#journal-articles",
+    "title": "Research",
+    "section": "",
+    "text": "Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections\n\n\n\npaper\n\n\n\n\n\n\n\n\n\nJan 11, 2025\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper\n\n\n\nWe conducted a search for narrowband radio signals over four observing sessions in 2020–2023 with the L-band receiver (1.15–1.73 GHz) of the 100 m diameter Green Bank Telescope…\n\n\n\n\n\nOct 1, 2023\n\n\nJean-Luc Margot, Megan Grace Li\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/research/index.html#projects",
+    "href": "docs/research/index.html#projects",
+    "title": "Research",
+    "section": "Projects",
+    "text": "Projects\n\n\n\n\n\n\n\n\n\n\nEnergetic ion scattering by solar wind discontinuities\n\n\n\n\n\n\nseeding\n\nsolar wind\n\n\n\nIn this studay, we consider observational-based model of ion dynamics and scattering in force-free rotational magnetic discontinuities. Focusing on quantification of the scattering effect, we demonstrate that background sheared magnetic field plays an important role in determining the efficiency of pitch angle scattering…\n\n\n\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nHybrid Simulations of Anisotropy in Solar Wind Discontinuities\n\n\n\n\n\n\n\n\n\n\n\nZijin Zhang, Anton V. Artemyev\n\n\n\n\n\n\n\n\n\n\n\n\nDiscontinuityPy\n\n\nA python package for identifying and analyzing discontinuities for time series data.\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nEvolution of solar wind discontinuities over radial distance\n\n\n\n\n\n\nseeding\n\nsolar wind\n\n\n\nSolar wind discontinuities evolve in space with occurrence rate decreasing, thickness increasing and current density decreasing with distance from the Sun. And they are probably generated locally beyond 1 AU.\n\n\n\n\n\nApr 8, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nspace-analysis.py\n\n\nPython utils for data analysis in space physics\n\n\n\npackage\n\n\n\n\n\n\n\n\n\nApr 8, 2024\n\n\nZijin Zhang\n\n\n\n\n\n\n\n\n\n\n\n\nSolar wind discontinuities\n\n\nFINESST23 Proposal\n\n\n\nproposal\n\nsolar wind\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nZijin Zhang, Anton V. Artemyev\n\n\n\n\n\n\n\n\n\n\n\n\nThe kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind\n\n\n\n\n\n\nsolar wind\n\n\n\nWe investigate the interaction between the solar wind and lunar crustal magnetic anomalies, using particle-in-cell simulation.\n\n\n\n\n\nJul 1, 2022\n\n\nZijin Zhang, Xin Tao\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/research/index.html#topics",
+    "href": "docs/research/index.html#topics",
+    "title": "Research",
+    "section": "Topics",
+    "text": "Topics\n\n\n\n\n\n\n\n\n\n\nSolar wind\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolar wind discontinuities\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/projects/coding/2025_PermuteArgs.jl/index.html",
+    "href": "docs/projects/coding/2025_PermuteArgs.jl/index.html",
+    "title": "PermuteArgs.jl",
+    "section": "",
+    "text": "Seriously, do scientists really care about argument order? 🤔",
+    "crumbs": [
+      "Projects",
+      "Coding",
+      "PermuteArgs.jl"
+    ]
+  },
+  {
+    "objectID": "docs/projects/index.html",
+    "href": "docs/projects/index.html",
+    "title": "Projects",
+    "section": "",
+    "text": "A Julia package for representing charged particles\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nA simple Julia wrapper around Speasy to deal with main Space Physics WebServices\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGenerate multiple method definitions allowing arbitrary argument order based on types\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "docs/projects/index.html#coding",
+    "href": "docs/projects/index.html#coding",
+    "title": "Projects",
+    "section": "",
+    "text": "A Julia package for representing charged particles\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nA simple Julia wrapper around Speasy to deal with main Space Physics WebServices\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nGenerate multiple method definitions allowing arbitrary argument order based on types\n\n\n\npackage\n\nJulia\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "docs/projects/coding/2025_ChargedParticles.jl/index.html",
+    "href": "docs/projects/coding/2025_ChargedParticles.jl/index.html",
+    "title": "ChargedParticles.jl",
+    "section": "",
+    "text": "Plasma physicist believe charged particles makes up 99.9% of the visible universe🌠",
+    "crumbs": [
+      "Projects",
+      "Coding",
+      "ChargedParticles.jl"
+    ]
+  },
+  {
+    "objectID": "docs/projects/coding/2025_Speasy.jl/index.html",
+    "href": "docs/projects/coding/2025_Speasy.jl/index.html",
+    "title": "Speasy.jl",
+    "section": "",
+    "text": "get_data is All You Need 🚀",
+    "crumbs": [
+      "Projects",
+      "Coding",
+      "Speasy.jl"
+    ]
+  },
+  {
+    "objectID": "docs/projects/trips/transactions_with_currencies.html",
+    "href": "docs/projects/trips/transactions_with_currencies.html",
+    "title": "Transactions with currencies",
+    "section": "",
+    "text": "Code\ndef convert_transactions_to_target_currency(transactions, exchange_rates, target_currency = 'CNY'):\n    \"\"\"\n    Converts a list of transactions in various currencies to a target currency based on provided exchange rates.\n\n    Parameters:\n    - transactions (list of tuples): A list where each tuple contains the amount and its currency as a string,\n      e.g., [(100, 'USD'), (-50, 'GBP')].\n    - exchange_rates (dict): A dictionary of exchange rates with currency pairs as keys and rates as values,\n      e.g., {('USD', 'CNY'): 9.14, ('GBP', 'CNY'): 7.23}.\n    - target_currency (str): The currency to which all amounts will be converted.\n\n    Returns:\n    - float: The total amount in the target currency after conversion.\n    \"\"\"\n    total_in_target_currency = 0.0\n    for amount, currency in transactions:\n        if currency == target_currency:\n            # If the transaction is already in the target currency, no conversion is needed.\n            converted_amount = amount\n        else:\n            # Convert the transaction to the target currency using the exchange rate.\n            key = (currency, target_currency)\n            if key in exchange_rates:\n                rate = exchange_rates[key]\n                converted_amount = amount * rate\n            else:\n                raise ValueError(f\"No exchange rate provided for {currency} to {target_currency}\")\n        total_in_target_currency += converted_amount\n    \n    print(total_in_target_currency, \"in\", target_currency)\n    \n    return total_in_target_currency\n\ndef convert_transactions_to_target_currencies(transactions, exchange_rates, target_currencies = ['CNY', 'USD']):\n    \"\"\"Converts a list of transactions in various currencies to multiple target currencies based on provided exchange rates.\n    \"\"\" \n    return [convert_transactions_to_target_currency(transactions, exchange_rates, target_currency) for target_currency in target_currencies]\nCode\nexchange_rates_example = {\n    (\"GBP\", \"CNY\"): 9.14,\n    (\"USD\", \"CNY\"): 7.23,\n    (\"CNY\", \"CNY\"): 1,\n    (\"GBP\", \"USD\"): 1.26,\n    \n}\ntarget_currency_example = \"CNY\"\ntarget_currency_example = \"USD\"",
+    "crumbs": [
+      "Projects",
+      "Trips",
+      "Transactions with currencies"
+    ]
+  },
+  {
+    "objectID": "docs/projects/trips/transactions_with_currencies.html#zijin---yezi",
+    "href": "docs/projects/trips/transactions_with_currencies.html#zijin---yezi",
+    "title": "Transactions with currencies",
+    "section": "Zijin - Yezi",
+    "text": "Zijin - Yezi\n\n\nCode\ntransactions_example = [(339.21, 'GBP'), (-251.38, 'USD')]\nresult_example = convert_transactions_to_target_currencies(transactions_example, exchange_rates_example)\n\n\n1282.9019999999998 in CNY\n176.02459999999996 in USD",
+    "crumbs": [
+      "Projects",
+      "Trips",
+      "Transactions with currencies"
+    ]
+  },
+  {
+    "objectID": "docs/projects/trips/transactions_with_currencies.html#zijin---hanlin",
+    "href": "docs/projects/trips/transactions_with_currencies.html#zijin---hanlin",
+    "title": "Transactions with currencies",
+    "section": "Zijin - Hanlin",
+    "text": "Zijin - Hanlin\n\n\nCode\ntransactions_example = [(72.33, 'GBP'), (-251.40, 'USD')]\nresult_example = convert_transactions_to_target_currencies(transactions_example, exchange_rates_example)\n\n\n-1156.5258 in CNY\n-160.26420000000002 in USD",
+    "crumbs": [
+      "Projects",
+      "Trips",
+      "Transactions with currencies"
+    ]
+  },
+  {
+    "objectID": "docs/projects/trips/transactions_with_currencies.html#zijin---hanzhang",
+    "href": "docs/projects/trips/transactions_with_currencies.html#zijin---hanzhang",
+    "title": "Transactions with currencies",
+    "section": "Zijin - Hanzhang",
+    "text": "Zijin - Hanzhang\n\n\nCode\ntransactions_example = [(-251.40, 'USD')]\nresult_example = convert_transactions_to_target_currencies(transactions_example, exchange_rates_example)\n\n\n-1817.622 in CNY\n-251.4 in USD",
+    "crumbs": [
+      "Projects",
+      "Trips",
+      "Transactions with currencies"
+    ]
+  },
+  {
+    "objectID": "docs/projects/trips/transactions_with_currencies.html#zijin---rosy",
+    "href": "docs/projects/trips/transactions_with_currencies.html#zijin---rosy",
+    "title": "Transactions with currencies",
+    "section": "Zijin - Rosy",
+    "text": "Zijin - Rosy\n\n\nCode\ntransactions_example = [(-177.89, 'USD')]\nresult_example = convert_transactions_to_target_currencies(transactions_example, exchange_rates_example)\n\n\n-1286.1447 in CNY\n-177.89 in USD",
+    "crumbs": [
+      "Projects",
+      "Trips",
+      "Transactions with currencies"
+    ]
   }
 ]
