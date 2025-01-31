@@ -1,0 +1,19 @@
+---
+title: Speasy.jl
+subtitle: A simple Julia wrapper around Speasy to deal with main Space Physics WebServices
+date: last-modified
+categories:
+  - package
+  - Julia
+format:
+  html:
+    toc-location: left
+code-links:
+  - text: GitHub Repo
+    href: https://github.com/SciQLop/Speasy.jl
+    icon: github
+  - text: Speasy
+    href: https://github.com/SciQLop/speasy
+---
+
+`get_data` is All You Need 🚀

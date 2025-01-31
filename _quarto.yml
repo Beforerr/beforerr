@@ -1,13 +1,13 @@
 project:
   type: website
-  preview: 
+  preview:
     port: 5555
 
 bibliography:
   - files/bibliography/research.bib
 
 execute:
-  freeze: auto  # re-render only when source changes
+  freeze: auto # re-render only when source changes
 
 website:
   title: "beforerr"
@@ -17,11 +17,11 @@ website:
         text: Home
       - about.qmd
       - docs/research/index.qmd
+      - docs/projects/index.qmd
       - text: "Others"
-        menu: 
+        menu:
           - href: docs/blog/index.qmd
           - href: docs/courses/index.qmd
-          - href: docs/projects/index.qmd
     tools:
       - icon: github
         href: "https://github.com/Beforerr/beforerr"

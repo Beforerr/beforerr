@@ -1,0 +1,20 @@
+---
+title: ChargedParticles.jl
+subtitle: A Julia package for representing charged particles
+date: last-modified
+categories:
+  - package
+  - Julia
+format:
+  html:
+    toc-location: left
+code-links:
+  - text: GitHub Repo
+    href: https://github.com/JuliaPlasma/ChargedParticles.jl
+    icon: github
+  - text: Documentation
+    href: https://juliaplasma.github.io/ChargedParticles.jl/dev/
+    icon: globe
+---
+
+Plasma physicist believe charged particles makes up 99.9% of the visible universe🌠

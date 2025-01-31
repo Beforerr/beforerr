@@ -1,3 +1,13 @@
 ---
 title: 'Projects'
+listing:
+  - id: coding
+    contents: "coding/*/index.qmd"
+    categories: true
+    sort: "date desc"
 ---
+
+## Coding 👨‍💻 💤💤💤
+
+:::{#coding}
+:::

@@ -1,0 +1,17 @@
+---
+title: PermuteArgs.jl
+subtitle: Generate multiple method definitions allowing arbitrary argument order based on types
+date: last-modified
+categories:
+  - package
+  - Julia
+format:
+  html:
+    toc-location: left
+code-links:
+  - text: GitHub Repo
+    href: https://github.com/SciQLop/PermuteArgs.jl
+    icon: github
+---
+
+Seriously, do scientists really care about argument order? 🤔
