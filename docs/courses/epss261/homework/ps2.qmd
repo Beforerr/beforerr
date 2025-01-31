@@ -2,7 +2,12 @@
 title: Problem Set 2
 number-sections: true
 engine: julia
+fig-format: png
 ---
+
+::: {.callout-warning}
+Functions in this report are experimental, not tested, and may change without notice.
+:::
 
 ## Introduction
 
@@ -16,6 +21,8 @@ More specifically, we utilize
 Since Julia features an **abstract type system**, most packages can be used directly and composed seamlessly without unintended side effects. This contrasts with Python, where inheritance and subtyping are commonly used, making it more challenging to share functionality across different classes. 
 
 ```{julia}
+#| echo: false
+#| output: false
 using Speasy
 speasy()
 
@@ -24,6 +31,7 @@ using Unitful: μ0
 using UnitfulAstro
 using DimensionalData
 using TimeSeries
+import TimeSeries: TimeArray
 using TimeseriesTools
 using LinearAlgebra
 using SpaceTools
@@ -33,9 +41,7 @@ const Re = 1UnitfulAstro.Rearth
 
 `degap` and `rectify_datetime` are used to clean up the data and rectify the time series (make timestamps uniform).
 
-```{julia}
-import TimeSeries: TimeArray
-
+```julia
 function degap(da::DimArray; dim=Ti)
     dims = otherdims(da, dim)
     rows = filter(x -> !any(isnan, x), eachslice(da; dims))
@@ -61,7 +67,7 @@ end
 
 `tplot` could be decomposed into multiple steps and lead to better readability and flexibility.
 
-```{txt}
+```julia
 """
 Lay out multiple time series on the same figure across different panels (rows)
 """
@@ -98,6 +104,10 @@ function tplot(gp::GridPosition, ta::AbstractDimArray; labeldim=nothing, kwargs.
 end
 ```
 
+::: {.callout-note}
+Some functions in this report have been collected into multiple Julia packages [Speasy.jl](https://github.com/SciQLop/speasy.jl) and [SpaceTools.jl](https://github.com/Beforerr/SpaceTools.jl), please refer to the package for more information.
+:::
+
 ## Energy input and energy dissipation
 
 > Compute the total energy input and total energy dissipation in the magnetosphere during a storm, the one which occurred on 17 March, 2015. This was the largest storm of the previous solar cycle. The total energy input rate is: $ε[W]= (4π/μ_0)V B^2 \sin^4(θ/2) I_0^2$, also widely known as the Akasofu “epsilon” parameter1,2,3,4,5,6, with $θ = acos(B_{z,GSM}/B_{yz,GSM})$, $I_0 =7RE$. Its cumulative integral is: $U_{in}= ∫εdt$ [in PetaJoules]. The magnetospheric energy dissipation rate in the ionosphere and ring current (in J/s or W) is: $W_{md}=[4 10^{13}(∂(-Dst*)/∂t + (-Dst*)/τ_R)+300 AE]$ and its integral is given by: $U_{md}=∫ W_{md} dt$ [in PJ], where: $τ_R=1$ hr is the ring-current decay rate of O+ through charge exchange in the beginning of the storm, and $τ_R=6$ hr late in the storm recovery when H+ is the dominant species, and Dst* is the corrected Dst to account for SW pressure variations6. Compute these quantities by following the crib sheet. Scale factors are included. Translate as needed (in Python) and complete (below lines: “; CONSTRUCT...”) the crib sheet EPSS_Hwk02.1_crib.pro. Produce the plot below. In your answer, explain each panel in the plot.
@@ -106,7 +116,7 @@ end
 
 We write a simple Julia wrapper around the [Speasy](https://github.com/SciQLop/speasy), a Python package to deal with main Space Physics WebServices using API instead of downloading files. This allows easier integration between Python and Julia.
 
-```{txt}
+```julia
 abstract type AbstractDataSet end
 
 @kwdef struct DataSet <: AbstractDataSet
@@ -199,10 +209,15 @@ We use this here to correct Dst for SW dynamic pressure, relative to prestorm va
 ```{julia}
 function correct_Dst(dst, P_after, P_before)
     Siscoe_constant = 13.5u"nT/sqrt(nPa)"
-    @. (dst * u"nT" - Siscoe_constant * (sqrt(P_after * u"nPa") - sqrt(P_before * u"nPa")))
+    @. (dst - Siscoe_constant * (sqrt(P_after * u"nPa") - sqrt(P_before * u"nPa")))
 end
 
-omni_Dst_corrected = correct_Dst(omni_hro_ds[:SYM_H], omni_hro_ds[:Pressure], 2)
+omni_hro_symh = omni_hro_ds[:SYM_H] .* u"nT"
+omni_Dst_corrected = correct_Dst(omni_hro_symh, omni_hro_ds[:Pressure], 2)
+```
+
+```{julia}
+tplot([omni_hro_symh, omni_Dst_corrected])
 ```
 
 ### Electric field
@@ -242,7 +257,9 @@ end
 
 item(ts) = values(ts)[1]
 
-Wmd_all_ts = let Dst = omni_Dst_corrected, AE = omni_hro_ds.AE_INDEX .* u"nT", time2transition = Date("2015-03-19")
+omni_AE = omni_hro_ds.AE_INDEX .* u"nT"
+
+Wmd_all_ts = let Dst = omni_Dst_corrected, AE = omni_AE, time2transition = Date("2015-03-19")
     times = timestamp(Dst)
     dts = Quantity.(diff(times))
     dDst_dt = diff(Dst) ./ dts
@@ -256,26 +273,26 @@ end
 
 Uin = integrate(Akasofu_epsilon_ts)
 Uout = integrate(Wmd_all_ts)
+rename!(Uout, :Uout)
 ```
 
 ### Plot
 
 ```{julia}
-# Plot results
 fig = Figure(; size=(1200, 1200))
 tvars2plot = [
     [Uin, Uout],
     Akasofu_epsilon_ts,
-    [omni_hro_ds.SYM_H, OMNI2_H0_MRG1HR_ds.DST1800, omni_Dst_corrected ./ u"nT"],
-    [omni_hro_ds.AE_INDEX, OMNI2_H0_MRG1HR_ds.AE1800],
+    [omni_hro_symh, OMNI2_H0_MRG1HR_ds.DST1800 .* u"nT", omni_Dst_corrected],
+    [omni_AE, OMNI2_H0_MRG1HR_ds.AE1800 .* u"nT"],
     [omni_mVBz, omni_hro_ds.E .* u"mV/m"],
-    [omni_hro_ds.Pressure]
+    [omni_hro_ds.Pressure .* u"nPa"]
 ]
-f, axs = tplot!(fig, tvars2plot)
-axs[3].ylabel = "DST (nT)"
-axs[4].ylabel = "AE (nT)"
-axs[5].ylabel = "Electric field (mV/m)"
-axs[6].ylabel = "Pressure (nPa)"
+f, axs = tplot(fig, tvars2plot)
+axs[3].ylabel = "DST"
+axs[4].ylabel = "AE"
+axs[5].ylabel = "Electric field"
+axs[6].ylabel = "Pressure"
 axislegend.(axs)
 f
 ```
@@ -297,7 +314,7 @@ tha_fgs_gse.metadata["units"] = "nT"
 
 The `smooth` (`tsmooth2` in IDL) function is implemented as follows. By using `mapslices`, the function efficiently applies the operation along the desired dimension. This approach is very general and can be used for multiple dimensions.
 
-```{txt}
+```julia
 function smooth(da::AbstractDimArray, span::Integer; dims=Ti, suffix="_smoothed", kwargs...)
     new_da = mapslices(da; dims) do slice
         mean.(RollingWindowArrays.rolling(slice, span; kwargs...))
@@ -379,8 +396,15 @@ function plot_tfr(da::DimArray; colorscale=log10, crange=:auto, figure_kwargs...
     cmid = median(da)
     cmax = cmid * 10
     cmin = cmid / 10
+
     fig, ax, hm = heatmap(da; colorscale, colorrange=(cmin, cmax))
     Colorbar(fig[:, end+1], hm)
+
+    # rasterize the heatmap to reduce file size
+    if *(size(da)...) > 32^2
+        hm.rasterize = true
+    end
+
     fig
 end
 ```
@@ -419,7 +443,7 @@ To confirm that the compressional component of the magnetic field is small, we n
 
 `fac_matrix_make` and `rotate` could be easily implemented in few lines. Note that we implement only the `array` version (corresponding to one timestamp), and the `matrix` version could be freely got using Julia `broadcast` operators which also align with dimensions.
 
-```{txt}
+```julia
 function fac_matrix_make(
     vec::AbstractVector;
     xref=[1.0, 0.0, 0.0]
