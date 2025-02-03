@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.13">
+<meta name="generator" content="quarto-1.6.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -86,16 +86,15 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../../../">
 <link href="../../../../docs/courses/astr145/index.html" rel="next">
 <link href="../../../../docs/courses/epss261/homework/ps1.html" rel="prev">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-66ab7fd5e73b7f0a764e0d49b3e29ab1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-1322888c997fad56b0b4d776d35cf542.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,6 +187,10 @@ window.Quarto = {
     <a class="nav-link" href="../../../../docs/research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Others</span>
@@ -200,10 +203,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../../../../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../../../docs/projects/index.html">
- <span class="dropdown-text">Projects</span></a>
   </li>  
     </ul>
   </li>
@@ -1794,87 +1793,87 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>Since Julia features an **abstract type system**, most packages can be used directly and composed seamlessly without unintended side effects. This contrasts with Python, where inheritance and subtyping are commonly used, making it more challenging to share functionality across different classes. </span>
 <span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
-<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Speasy</span></span>
-<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="fu">speasy</span>()</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="in">#| echo: false</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a><span class="in">#| output: false</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="in">using Speasy</span></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="in">speasy()</span></span>
 <span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
-<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span>: μ0</span>
-<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">UnitfulAstro</span></span>
-<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DimensionalData</span></span>
-<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TimeSeries</span></span>
-<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">TimeSeries</span>: TimeArray</span>
-<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TimeseriesTools</span></span>
-<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
-<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpaceTools</span></span>
-<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
-<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> Re <span class="op">=</span> <span class="fl">1</span>UnitfulAstro.Rearth</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a><span class="in">using Unitful</span></span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a><span class="in">using Unitful: μ0</span></span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a><span class="in">using UnitfulAstro</span></span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a><span class="in">using DimensionalData</span></span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a><span class="in">using TimeSeries</span></span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a><span class="in">import TimeSeries: TimeArray</span></span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="in">using TimeseriesTools</span></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a><span class="in">using LinearAlgebra</span></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a><span class="in">using SpaceTools</span></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a><span class="in">using CairoMakie</span></span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a><span class="in">const Re = 1UnitfulAstro.Rearth</span></span>
 <span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a><span class="in">`degap`</span> and <span class="in">`rectify_datetime`</span> are used to clean up the data and rectify the time series (make timestamps uniform).</span>
 <span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-46"><a href="#cb39-46" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
-<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">degap</span>(da<span class="op">::</span><span class="dt">DimArray</span>; dim<span class="op">=</span>Ti)</span>
-<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a>    dims <span class="op">=</span> <span class="fu">otherdims</span>(da, dim)</span>
-<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a>    rows <span class="op">=</span> <span class="fu">filter</span>(x <span class="op">-&gt;</span> !<span class="fu">any</span>(isnan, x), <span class="fu">eachslice</span>(da; dims))</span>
-<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !<span class="fu">isempty</span>(rows)</span>
-<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(rows<span class="op">...</span>; dims)</span>
-<span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a>        <span class="fu">similar</span>(da, (<span class="fl">0</span>, <span class="fu">size</span>(da, <span class="fl">2</span>)))</span>
-<span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-47"><a href="#cb39-47" aria-hidden="true" tabindex="-1"></a><span class="in">function degap(da::DimArray; dim=Ti)</span></span>
+<span id="cb39-48"><a href="#cb39-48" aria-hidden="true" tabindex="-1"></a><span class="in">    dims = otherdims(da, dim)</span></span>
+<span id="cb39-49"><a href="#cb39-49" aria-hidden="true" tabindex="-1"></a><span class="in">    rows = filter(x -&gt; !any(isnan, x), eachslice(da; dims))</span></span>
+<span id="cb39-50"><a href="#cb39-50" aria-hidden="true" tabindex="-1"></a><span class="in">    if !isempty(rows)</span></span>
+<span id="cb39-51"><a href="#cb39-51" aria-hidden="true" tabindex="-1"></a><span class="in">        cat(rows...; dims)</span></span>
+<span id="cb39-52"><a href="#cb39-52" aria-hidden="true" tabindex="-1"></a><span class="in">    else</span></span>
+<span id="cb39-53"><a href="#cb39-53" aria-hidden="true" tabindex="-1"></a><span class="in">        similar(da, (0, size(da, 2)))</span></span>
+<span id="cb39-54"><a href="#cb39-54" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-55"><a href="#cb39-55" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-56"><a href="#cb39-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">degap</span>(ts<span class="op">::</span><span class="dt">TimeArray</span>)</span>
-<span id="cb39-58"><a href="#cb39-58" aria-hidden="true" tabindex="-1"></a>    ts[<span class="fu">all</span>.(!isnan, <span class="fu">eachrow</span>(<span class="fu">values</span>(ts)))]</span>
-<span id="cb39-59"><a href="#cb39-59" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-57"><a href="#cb39-57" aria-hidden="true" tabindex="-1"></a><span class="in">function degap(ts::TimeArray)</span></span>
+<span id="cb39-58"><a href="#cb39-58" aria-hidden="true" tabindex="-1"></a><span class="in">    ts[all.(!isnan, eachrow(values(ts)))]</span></span>
+<span id="cb39-59"><a href="#cb39-59" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-60"><a href="#cb39-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">rectify_datetime</span>(da; tol<span class="op">=</span><span class="fl">2</span>, kwargs<span class="op">...</span>)</span>
-<span id="cb39-62"><a href="#cb39-62" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> <span class="fu">dims</span>(da, Ti)</span>
-<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> times[<span class="fl">1</span>]</span>
-<span id="cb39-64"><a href="#cb39-64" aria-hidden="true" tabindex="-1"></a>    dtime <span class="op">=</span> <span class="fu">Quantity</span>.(times.val <span class="op">.-</span> t0)</span>
-<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a>    new_times <span class="op">=</span> TimeseriesTools.<span class="fu">rectify</span>(<span class="fu">Ti</span>(dtime); tol)[<span class="fl">1</span>]</span>
-<span id="cb39-66"><a href="#cb39-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set</span>(da, Ti <span class="op">=&gt;</span> new_times <span class="op">.+</span> t0)</span>
-<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-61"><a href="#cb39-61" aria-hidden="true" tabindex="-1"></a><span class="in">function rectify_datetime(da; tol=2, kwargs...)</span></span>
+<span id="cb39-62"><a href="#cb39-62" aria-hidden="true" tabindex="-1"></a><span class="in">    times = dims(da, Ti)</span></span>
+<span id="cb39-63"><a href="#cb39-63" aria-hidden="true" tabindex="-1"></a><span class="in">    t0 = times[1]</span></span>
+<span id="cb39-64"><a href="#cb39-64" aria-hidden="true" tabindex="-1"></a><span class="in">    dtime = Quantity.(times.val .- t0)</span></span>
+<span id="cb39-65"><a href="#cb39-65" aria-hidden="true" tabindex="-1"></a><span class="in">    new_times = TimeseriesTools.rectify(Ti(dtime); tol)[1]</span></span>
+<span id="cb39-66"><a href="#cb39-66" aria-hidden="true" tabindex="-1"></a><span class="in">    set(da, Ti =&gt; new_times .+ t0)</span></span>
+<span id="cb39-67"><a href="#cb39-67" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-68"><a href="#cb39-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-69"><a href="#cb39-69" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-70"><a href="#cb39-70" aria-hidden="true" tabindex="-1"></a><span class="in">`tplot`</span> could be decomposed into multiple steps and lead to better readability and flexibility.</span>
 <span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-72"><a href="#cb39-72" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
-<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a><span class="st">Lay out multiple time series on the same figure across different panels (rows)</span></span>
-<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-76"><a href="#cb39-76" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tplot</span>(f, tas<span class="op">::</span><span class="dt">AbstractVector</span>; add_legend<span class="op">=</span><span class="cn">true</span>, link_xaxes<span class="op">=</span><span class="cn">true</span>, kwargs<span class="op">...</span>)</span>
-<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a>    aps <span class="op">=</span> <span class="fu">map</span>(<span class="fu">enumerate</span>(tas)) <span class="cf">do</span> (i, ta)</span>
-<span id="cb39-78"><a href="#cb39-78" aria-hidden="true" tabindex="-1"></a>        ap <span class="op">=</span> <span class="fu">tplot</span>(f[i, <span class="fl">1</span>], ta; kwargs<span class="op">...</span>)</span>
-<span id="cb39-79"><a href="#cb39-79" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Hide redundant x labels</span></span>
-<span id="cb39-80"><a href="#cb39-80" aria-hidden="true" tabindex="-1"></a>        link_xaxes <span class="op">&amp;&amp;</span> i <span class="op">!=</span> <span class="fu">length</span>(tas) <span class="op">&amp;&amp;</span> <span class="fu">hidexdecorations!</span>(ap.axis, grid<span class="op">=</span><span class="cn">false</span>)</span>
-<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a>        ap</span>
-<span id="cb39-82"><a href="#cb39-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a>    axs <span class="op">=</span> <span class="fu">map</span>(ap <span class="op">-&gt;</span> ap.axis, aps)</span>
-<span id="cb39-84"><a href="#cb39-84" aria-hidden="true" tabindex="-1"></a>    link_xaxes <span class="op">&amp;&amp;</span> <span class="fu">linkxaxes!</span>(axs<span class="op">...</span>)</span>
-<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a>    add_legend <span class="op">&amp;&amp;</span> <span class="fu">axislegend</span>.(axs)</span>
-<span id="cb39-86"><a href="#cb39-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">FigureAxes</span>(f, axs)</span>
-<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a><span class="in">Lay out multiple time series on the same figure across different panels (rows)</span></span>
+<span id="cb39-75"><a href="#cb39-75" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-76"><a href="#cb39-76" aria-hidden="true" tabindex="-1"></a><span class="in">function tplot(f, tas::AbstractVector; add_legend=true, link_xaxes=true, kwargs...)</span></span>
+<span id="cb39-77"><a href="#cb39-77" aria-hidden="true" tabindex="-1"></a><span class="in">    aps = map(enumerate(tas)) do (i, ta)</span></span>
+<span id="cb39-78"><a href="#cb39-78" aria-hidden="true" tabindex="-1"></a><span class="in">        ap = tplot(f[i, 1], ta; kwargs...)</span></span>
+<span id="cb39-79"><a href="#cb39-79" aria-hidden="true" tabindex="-1"></a><span class="in">        # Hide redundant x labels</span></span>
+<span id="cb39-80"><a href="#cb39-80" aria-hidden="true" tabindex="-1"></a><span class="in">        link_xaxes &amp;&amp; i != length(tas) &amp;&amp; hidexdecorations!(ap.axis, grid=false)</span></span>
+<span id="cb39-81"><a href="#cb39-81" aria-hidden="true" tabindex="-1"></a><span class="in">        ap</span></span>
+<span id="cb39-82"><a href="#cb39-82" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-83"><a href="#cb39-83" aria-hidden="true" tabindex="-1"></a><span class="in">    axs = map(ap -&gt; ap.axis, aps)</span></span>
+<span id="cb39-84"><a href="#cb39-84" aria-hidden="true" tabindex="-1"></a><span class="in">    link_xaxes &amp;&amp; linkxaxes!(axs...)</span></span>
+<span id="cb39-85"><a href="#cb39-85" aria-hidden="true" tabindex="-1"></a><span class="in">    add_legend &amp;&amp; axislegend.(axs)</span></span>
+<span id="cb39-86"><a href="#cb39-86" aria-hidden="true" tabindex="-1"></a><span class="in">    FigureAxes(f, axs)</span></span>
+<span id="cb39-87"><a href="#cb39-87" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-88"><a href="#cb39-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-89"><a href="#cb39-89" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-90"><a href="#cb39-90" aria-hidden="true" tabindex="-1"></a><span class="st">Setup the axis on a position and plot multiple time series on it</span></span>
-<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tplot</span>(gp<span class="op">::</span><span class="dt">GridPosition</span>, tas<span class="op">::</span><span class="dt">AbstractVector</span>; kwargs<span class="op">...</span>)</span>
-<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> <span class="fu">Axis</span>(gp, ylabel<span class="op">=</span><span class="fu">ylabel</span>(ta))</span>
-<span id="cb39-94"><a href="#cb39-94" aria-hidden="true" tabindex="-1"></a>    plots <span class="op">=</span> <span class="fu">map</span>(tas) <span class="cf">do</span> ta</span>
-<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tplot!</span>(ax, ta; kwargs<span class="op">...</span>)</span>
-<span id="cb39-96"><a href="#cb39-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-97"><a href="#cb39-97" aria-hidden="true" tabindex="-1"></a>    ax, plots</span>
-<span id="cb39-98"><a href="#cb39-98" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-89"><a href="#cb39-89" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-90"><a href="#cb39-90" aria-hidden="true" tabindex="-1"></a><span class="in">Setup the axis on a position and plot multiple time series on it</span></span>
+<span id="cb39-91"><a href="#cb39-91" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-92"><a href="#cb39-92" aria-hidden="true" tabindex="-1"></a><span class="in">function tplot(gp::GridPosition, tas::AbstractVector; kwargs...)</span></span>
+<span id="cb39-93"><a href="#cb39-93" aria-hidden="true" tabindex="-1"></a><span class="in">    ax = Axis(gp, ylabel=ylabel(ta))</span></span>
+<span id="cb39-94"><a href="#cb39-94" aria-hidden="true" tabindex="-1"></a><span class="in">    plots = map(tas) do ta</span></span>
+<span id="cb39-95"><a href="#cb39-95" aria-hidden="true" tabindex="-1"></a><span class="in">        tplot!(ax, ta; kwargs...)</span></span>
+<span id="cb39-96"><a href="#cb39-96" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-97"><a href="#cb39-97" aria-hidden="true" tabindex="-1"></a><span class="in">    ax, plots</span></span>
+<span id="cb39-98"><a href="#cb39-98" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-99"><a href="#cb39-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-100"><a href="#cb39-100" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a><span class="st">Plot a multivariate time series on a position in a figure</span></span>
-<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tplot</span>(gp<span class="op">::</span><span class="dt">GridPosition</span>, ta<span class="op">::</span><span class="dt">AbstractDimArray</span>; labeldim<span class="op">=</span><span class="cn">nothing</span>, kwargs<span class="op">...</span>)</span>
-<span id="cb39-104"><a href="#cb39-104" aria-hidden="true" tabindex="-1"></a>    args, attributes <span class="op">=</span> <span class="fu">_series</span>(ta, kwargs, labeldim)</span>
-<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">series</span>(gp, args<span class="op">...</span>; attributes<span class="op">...</span>)</span>
-<span id="cb39-106"><a href="#cb39-106" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-100"><a href="#cb39-100" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-101"><a href="#cb39-101" aria-hidden="true" tabindex="-1"></a><span class="in">Plot a multivariate time series on a position in a figure</span></span>
+<span id="cb39-102"><a href="#cb39-102" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-103"><a href="#cb39-103" aria-hidden="true" tabindex="-1"></a><span class="in">function tplot(gp::GridPosition, ta::AbstractDimArray; labeldim=nothing, kwargs...)</span></span>
+<span id="cb39-104"><a href="#cb39-104" aria-hidden="true" tabindex="-1"></a><span class="in">    args, attributes = _series(ta, kwargs, labeldim)</span></span>
+<span id="cb39-105"><a href="#cb39-105" aria-hidden="true" tabindex="-1"></a><span class="in">    series(gp, args...; attributes...)</span></span>
+<span id="cb39-106"><a href="#cb39-106" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-107"><a href="#cb39-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-108"><a href="#cb39-108" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-109"><a href="#cb39-109" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
@@ -1890,382 +1889,382 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb39-119"><a href="#cb39-119" aria-hidden="true" tabindex="-1"></a>We write a simple Julia wrapper around the <span class="co">[</span><span class="ot">Speasy</span><span class="co">](https://github.com/SciQLop/speasy)</span>, a Python package to deal with main Space Physics WebServices using API instead of downloading files. This allows easier integration between Python and Julia.</span>
 <span id="cb39-120"><a href="#cb39-120" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-121"><a href="#cb39-121" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
-<span id="cb39-122"><a href="#cb39-122" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract type</span> AbstractDataSet <span class="kw">end</span></span>
+<span id="cb39-122"><a href="#cb39-122" aria-hidden="true" tabindex="-1"></a><span class="in">abstract type AbstractDataSet end</span></span>
 <span id="cb39-123"><a href="#cb39-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-124"><a href="#cb39-124" aria-hidden="true" tabindex="-1"></a><span class="pp">@kwdef</span> <span class="kw">struct</span> DataSet <span class="op">&lt;:</span><span class="dt"> AbstractDataSet</span></span>
-<span id="cb39-125"><a href="#cb39-125" aria-hidden="true" tabindex="-1"></a>    name<span class="op">::</span><span class="dt">String</span></span>
-<span id="cb39-126"><a href="#cb39-126" aria-hidden="true" tabindex="-1"></a>    parameters<span class="op">::</span><span class="dt">Vector{String}</span></span>
-<span id="cb39-127"><a href="#cb39-127" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-124"><a href="#cb39-124" aria-hidden="true" tabindex="-1"></a><span class="in">@kwdef struct DataSet &lt;: AbstractDataSet</span></span>
+<span id="cb39-125"><a href="#cb39-125" aria-hidden="true" tabindex="-1"></a><span class="in">    name::String</span></span>
+<span id="cb39-126"><a href="#cb39-126" aria-hidden="true" tabindex="-1"></a><span class="in">    parameters::Vector{String}</span></span>
+<span id="cb39-127"><a href="#cb39-127" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-128"><a href="#cb39-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-129"><a href="#cb39-129" aria-hidden="true" tabindex="-1"></a><span class="fu">speasy</span>() <span class="op">=</span> <span class="pp">@pyconst</span>(<span class="fu">pyimport</span>(<span class="st">"speasy"</span>))</span>
+<span id="cb39-129"><a href="#cb39-129" aria-hidden="true" tabindex="-1"></a><span class="in">speasy() = @pyconst(pyimport("speasy"))</span></span>
 <span id="cb39-130"><a href="#cb39-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-131"><a href="#cb39-131" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> SpeasyVariable</span>
-<span id="cb39-132"><a href="#cb39-132" aria-hidden="true" tabindex="-1"></a>    py<span class="op">::</span><span class="dt">Py</span></span>
-<span id="cb39-133"><a href="#cb39-133" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-131"><a href="#cb39-131" aria-hidden="true" tabindex="-1"></a><span class="in">struct SpeasyVariable</span></span>
+<span id="cb39-132"><a href="#cb39-132" aria-hidden="true" tabindex="-1"></a><span class="in">    py::Py</span></span>
+<span id="cb39-133"><a href="#cb39-133" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-134"><a href="#cb39-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-135"><a href="#cb39-135" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">get_data</span>(args<span class="op">...</span>)</span>
-<span id="cb39-136"><a href="#cb39-136" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> <span class="pp">@pyconst</span>(<span class="fu">pyimport</span>(<span class="st">"speasy"</span>).get_data)(args<span class="op">...</span>)</span>
-<span id="cb39-137"><a href="#cb39-137" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">apply_recursively</span>(res, SpeasyVariable, is_pylist)</span>
-<span id="cb39-138"><a href="#cb39-138" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-139"><a href="#cb39-139" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-135"><a href="#cb39-135" aria-hidden="true" tabindex="-1"></a><span class="in">function get_data(args...)</span></span>
+<span id="cb39-136"><a href="#cb39-136" aria-hidden="true" tabindex="-1"></a><span class="in">    res = @pyconst(pyimport("speasy").get_data)(args...)</span></span>
+<span id="cb39-137"><a href="#cb39-137" aria-hidden="true" tabindex="-1"></a><span class="in">    return apply_recursively(res, SpeasyVariable, is_pylist)</span></span>
+<span id="cb39-138"><a href="#cb39-138" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-139"><a href="#cb39-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-140"><a href="#cb39-140" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-143"><a href="#cb39-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-144"><a href="#cb39-144" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">load_dataset</span>(dataset, args<span class="op">...</span>; name<span class="op">=</span>dataset.name, products<span class="op">=</span>dataset.parameters, provider<span class="op">=</span><span class="st">"cda"</span>)</span>
-<span id="cb39-145"><a href="#cb39-145" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(products) <span class="cf">do</span> p</span>
-<span id="cb39-146"><a href="#cb39-146" aria-hidden="true" tabindex="-1"></a>        <span class="fu">replace_fillval_by_nan!</span>(<span class="fu">get_data</span>(<span class="st">"</span><span class="sc">$</span>provider<span class="st">/</span><span class="sc">$</span>name<span class="st">/</span><span class="sc">$</span>p<span class="st">"</span>, args<span class="op">...</span>))</span>
-<span id="cb39-147"><a href="#cb39-147" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-148"><a href="#cb39-148" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-149"><a href="#cb39-149" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-144"><a href="#cb39-144" aria-hidden="true" tabindex="-1"></a><span class="in">function load_dataset(dataset, args...; name=dataset.name, products=dataset.parameters, provider="cda")</span></span>
+<span id="cb39-145"><a href="#cb39-145" aria-hidden="true" tabindex="-1"></a><span class="in">    map(products) do p</span></span>
+<span id="cb39-146"><a href="#cb39-146" aria-hidden="true" tabindex="-1"></a><span class="in">        replace_fillval_by_nan!(get_data("$provider/$name/$p", args...))</span></span>
+<span id="cb39-147"><a href="#cb39-147" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-148"><a href="#cb39-148" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-149"><a href="#cb39-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-150"><a href="#cb39-150" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-153"><a href="#cb39-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-154"><a href="#cb39-154" aria-hidden="true" tabindex="-1"></a>OMNI_HRO_PARAMS <span class="op">=</span> [</span>
-<span id="cb39-155"><a href="#cb39-155" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Vx"</span>, <span class="st">"Vy"</span>, <span class="st">"Vz"</span>, <span class="st">"flow_speed"</span>,</span>
-<span id="cb39-156"><a href="#cb39-156" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BX_GSE"</span>, <span class="st">"BY_GSM"</span>, <span class="st">"BZ_GSM"</span>, <span class="st">"E"</span>,</span>
-<span id="cb39-157"><a href="#cb39-157" aria-hidden="true" tabindex="-1"></a>    <span class="st">"AE_INDEX"</span>, <span class="st">"SYM_H"</span>, <span class="st">"Pressure"</span></span>
-<span id="cb39-158"><a href="#cb39-158" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb39-154"><a href="#cb39-154" aria-hidden="true" tabindex="-1"></a><span class="in">OMNI_HRO_PARAMS = [</span></span>
+<span id="cb39-155"><a href="#cb39-155" aria-hidden="true" tabindex="-1"></a><span class="in">    "Vx", "Vy", "Vz", "flow_speed",</span></span>
+<span id="cb39-156"><a href="#cb39-156" aria-hidden="true" tabindex="-1"></a><span class="in">    "BX_GSE", "BY_GSM", "BZ_GSM", "E",</span></span>
+<span id="cb39-157"><a href="#cb39-157" aria-hidden="true" tabindex="-1"></a><span class="in">    "AE_INDEX", "SYM_H", "Pressure"</span></span>
+<span id="cb39-158"><a href="#cb39-158" aria-hidden="true" tabindex="-1"></a><span class="in">]</span></span>
 <span id="cb39-159"><a href="#cb39-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-160"><a href="#cb39-160" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-161"><a href="#cb39-161" aria-hidden="true" tabindex="-1"></a><span class="st">High resolution (1-min), multi-source, near-Earth solar wind magnetic field and plasma data as shifted to Earth's bow shock nose, plus several 1-min geomagnetic activity indices.</span></span>
+<span id="cb39-160"><a href="#cb39-160" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-161"><a href="#cb39-161" aria-hidden="true" tabindex="-1"></a><span class="in">High resolution (1-min), multi-source, near-Earth solar wind magnetic field and plasma data as shifted to Earth's bow shock nose, plus several 1-min geomagnetic activity indices.</span></span>
 <span id="cb39-162"><a href="#cb39-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-163"><a href="#cb39-163" aria-hidden="true" tabindex="-1"></a><span class="st">References:[DOI](https://doi.org/10.48322/45bb-8792)</span></span>
-<span id="cb39-164"><a href="#cb39-164" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-165"><a href="#cb39-165" aria-hidden="true" tabindex="-1"></a>OMNI_HRO_1MIN <span class="op">=</span> <span class="fu">DataSet</span>(<span class="st">"OMNI_HRO_1MIN"</span>, OMNI_HRO_PARAMS)</span>
+<span id="cb39-163"><a href="#cb39-163" aria-hidden="true" tabindex="-1"></a><span class="in">References:[DOI](https://doi.org/10.48322/45bb-8792)</span></span>
+<span id="cb39-164"><a href="#cb39-164" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-165"><a href="#cb39-165" aria-hidden="true" tabindex="-1"></a><span class="in">OMNI_HRO_1MIN = DataSet("OMNI_HRO_1MIN", OMNI_HRO_PARAMS)</span></span>
 <span id="cb39-166"><a href="#cb39-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-167"><a href="#cb39-167" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-168"><a href="#cb39-168" aria-hidden="true" tabindex="-1"></a><span class="st">Version 2 of OMNI_HRO_1MIN dataset</span></span>
+<span id="cb39-167"><a href="#cb39-167" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-168"><a href="#cb39-168" aria-hidden="true" tabindex="-1"></a><span class="in">Version 2 of OMNI_HRO_1MIN dataset</span></span>
 <span id="cb39-169"><a href="#cb39-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-170"><a href="#cb39-170" aria-hidden="true" tabindex="-1"></a><span class="st">- [DOI](https://doi.org/10.48322/mj0k-fq60)</span></span>
-<span id="cb39-171"><a href="#cb39-171" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-172"><a href="#cb39-172" aria-hidden="true" tabindex="-1"></a>OMNI_HRO2_1MIN <span class="op">=</span> <span class="fu">DataSet</span>(<span class="st">"OMNI_HRO2_1MIN"</span>, OMNI_HRO_PARAMS)</span>
+<span id="cb39-170"><a href="#cb39-170" aria-hidden="true" tabindex="-1"></a><span class="in">- [DOI](https://doi.org/10.48322/mj0k-fq60)</span></span>
+<span id="cb39-171"><a href="#cb39-171" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-172"><a href="#cb39-172" aria-hidden="true" tabindex="-1"></a><span class="in">OMNI_HRO2_1MIN = DataSet("OMNI_HRO2_1MIN", OMNI_HRO_PARAMS)</span></span>
 <span id="cb39-173"><a href="#cb39-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-174"><a href="#cb39-174" aria-hidden="true" tabindex="-1"></a>OMNI2_H0_MRG1HR <span class="op">=</span> <span class="fu">DataSet</span>(</span>
-<span id="cb39-175"><a href="#cb39-175" aria-hidden="true" tabindex="-1"></a>    <span class="st">"OMNI2_H0_MRG1HR"</span>,</span>
-<span id="cb39-176"><a href="#cb39-176" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"KP1800"</span>, <span class="st">"DST1800"</span>, <span class="st">"AE1800"</span>]</span>
-<span id="cb39-177"><a href="#cb39-177" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-174"><a href="#cb39-174" aria-hidden="true" tabindex="-1"></a><span class="in">OMNI2_H0_MRG1HR = DataSet(</span></span>
+<span id="cb39-175"><a href="#cb39-175" aria-hidden="true" tabindex="-1"></a><span class="in">    "OMNI2_H0_MRG1HR",</span></span>
+<span id="cb39-176"><a href="#cb39-176" aria-hidden="true" tabindex="-1"></a><span class="in">    ["KP1800", "DST1800", "AE1800"]</span></span>
+<span id="cb39-177"><a href="#cb39-177" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb39-178"><a href="#cb39-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-179"><a href="#cb39-179" aria-hidden="true" tabindex="-1"></a>timespan <span class="op">=</span> [<span class="st">"2015-03-15"</span>, <span class="st">"2015-03-22"</span>] <span class="co"># 7 days</span></span>
-<span id="cb39-180"><a href="#cb39-180" aria-hidden="true" tabindex="-1"></a>omni_hro_ds <span class="op">=</span> <span class="fu">load_dataset</span>(OMNI_HRO_1MIN, timespan) <span class="op">|&gt;</span> TimeArray</span>
-<span id="cb39-181"><a href="#cb39-181" aria-hidden="true" tabindex="-1"></a>OMNI2_H0_MRG1HR_ds <span class="op">=</span> <span class="fu">load_dataset</span>(OMNI2_H0_MRG1HR, timespan) <span class="op">|&gt;</span> TimeArray</span>
-<span id="cb39-182"><a href="#cb39-182" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-179"><a href="#cb39-179" aria-hidden="true" tabindex="-1"></a><span class="in">timespan = ["2015-03-15", "2015-03-22"] # 7 days</span></span>
+<span id="cb39-180"><a href="#cb39-180" aria-hidden="true" tabindex="-1"></a><span class="in">omni_hro_ds = load_dataset(OMNI_HRO_1MIN, timespan) |&gt; TimeArray</span></span>
+<span id="cb39-181"><a href="#cb39-181" aria-hidden="true" tabindex="-1"></a><span class="in">OMNI2_H0_MRG1HR_ds = load_dataset(OMNI2_H0_MRG1HR, timespan) |&gt; TimeArray</span></span>
+<span id="cb39-182"><a href="#cb39-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-183"><a href="#cb39-183" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-184"><a href="#cb39-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-185"><a href="#cb39-185" aria-hidden="true" tabindex="-1"></a><span class="ss">### Akasofu parameter</span></span>
+<span id="cb39-185"><a href="#cb39-185" aria-hidden="true" tabindex="-1"></a><span class="fu">### Akasofu parameter</span></span>
 <span id="cb39-186"><a href="#cb39-186" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-189"><a href="#cb39-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-190"><a href="#cb39-190" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Akasofu_epsilon</span>(B, V)</span>
-<span id="cb39-191"><a href="#cb39-191" aria-hidden="true" tabindex="-1"></a>    _, By, Bz <span class="op">=</span> B</span>
-<span id="cb39-192"><a href="#cb39-192" aria-hidden="true" tabindex="-1"></a>    I0 <span class="op">=</span> <span class="fl">7</span> <span class="op">*</span> Re</span>
-<span id="cb39-193"><a href="#cb39-193" aria-hidden="true" tabindex="-1"></a>    Bt <span class="op">=</span> <span class="fu">norm</span>([By, Bz])</span>
-<span id="cb39-194"><a href="#cb39-194" aria-hidden="true" tabindex="-1"></a>    θ <span class="op">=</span> <span class="fu">acos</span>(Bz <span class="op">/</span> Bt)</span>
-<span id="cb39-195"><a href="#cb39-195" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">4</span>π <span class="op">/</span> μ<span class="fl">0</span>) <span class="op">*</span> V <span class="op">*</span> Bt<span class="op">^</span><span class="fl">2</span> <span class="op">*</span> <span class="fu">sin</span>(θ <span class="op">/</span> <span class="fl">2</span>)<span class="op">^</span><span class="fl">4</span> <span class="op">*</span> I0<span class="op">^</span><span class="fl">2</span> <span class="op">|&gt;</span> u<span class="st">"GW"</span></span>
-<span id="cb39-196"><a href="#cb39-196" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-190"><a href="#cb39-190" aria-hidden="true" tabindex="-1"></a><span class="in">function Akasofu_epsilon(B, V)</span></span>
+<span id="cb39-191"><a href="#cb39-191" aria-hidden="true" tabindex="-1"></a><span class="in">    _, By, Bz = B</span></span>
+<span id="cb39-192"><a href="#cb39-192" aria-hidden="true" tabindex="-1"></a><span class="in">    I0 = 7 * Re</span></span>
+<span id="cb39-193"><a href="#cb39-193" aria-hidden="true" tabindex="-1"></a><span class="in">    Bt = norm([By, Bz])</span></span>
+<span id="cb39-194"><a href="#cb39-194" aria-hidden="true" tabindex="-1"></a><span class="in">    θ = acos(Bz / Bt)</span></span>
+<span id="cb39-195"><a href="#cb39-195" aria-hidden="true" tabindex="-1"></a><span class="in">    return (4π / μ0) * V * Bt^2 * sin(θ / 2)^4 * I0^2 |&gt; u"GW"</span></span>
+<span id="cb39-196"><a href="#cb39-196" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-197"><a href="#cb39-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-198"><a href="#cb39-198" aria-hidden="true" tabindex="-1"></a>B_ts <span class="op">=</span> omni_hro_ds[<span class="op">:</span>BX_GSE, <span class="op">:</span>BY_GSM, <span class="op">:</span>BZ_GSM] <span class="op">.*</span> u<span class="st">"nT"</span></span>
-<span id="cb39-199"><a href="#cb39-199" aria-hidden="true" tabindex="-1"></a>V_ts <span class="op">=</span> omni_hro_ds[<span class="op">:</span>flow_speed] <span class="op">.*</span> u<span class="st">"km/s"</span></span>
+<span id="cb39-198"><a href="#cb39-198" aria-hidden="true" tabindex="-1"></a><span class="in">B_ts = omni_hro_ds[:BX_GSE, :BY_GSM, :BZ_GSM] .* u"nT"</span></span>
+<span id="cb39-199"><a href="#cb39-199" aria-hidden="true" tabindex="-1"></a><span class="in">V_ts = omni_hro_ds[:flow_speed] .* u"km/s"</span></span>
 <span id="cb39-200"><a href="#cb39-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-201"><a href="#cb39-201" aria-hidden="true" tabindex="-1"></a>Akasofu_epsilon_meta <span class="op">=</span> <span class="fu">Dict</span>(</span>
-<span id="cb39-202"><a href="#cb39-202" aria-hidden="true" tabindex="-1"></a>    <span class="st">"label"</span> <span class="op">=&gt;</span> <span class="st">"Akasofu Epsilon"</span></span>
-<span id="cb39-203"><a href="#cb39-203" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-204"><a href="#cb39-204" aria-hidden="true" tabindex="-1"></a>Akasofu_epsilon_ts <span class="op">=</span> <span class="fu">TimeArray</span>(</span>
-<span id="cb39-205"><a href="#cb39-205" aria-hidden="true" tabindex="-1"></a>    <span class="fu">timestamp</span>(omni_hro_ds),</span>
-<span id="cb39-206"><a href="#cb39-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Akasofu_epsilon</span>.(<span class="fu">eachrow</span>(<span class="fu">values</span>(B_ts)), <span class="fu">values</span>(V_ts)),</span>
-<span id="cb39-207"><a href="#cb39-207" aria-hidden="true" tabindex="-1"></a>    [<span class="op">:</span>ε],</span>
-<span id="cb39-208"><a href="#cb39-208" aria-hidden="true" tabindex="-1"></a>    Akasofu_epsilon_meta</span>
-<span id="cb39-209"><a href="#cb39-209" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-210"><a href="#cb39-210" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-201"><a href="#cb39-201" aria-hidden="true" tabindex="-1"></a><span class="in">Akasofu_epsilon_meta = Dict(</span></span>
+<span id="cb39-202"><a href="#cb39-202" aria-hidden="true" tabindex="-1"></a><span class="in">    "label" =&gt; "Akasofu Epsilon"</span></span>
+<span id="cb39-203"><a href="#cb39-203" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb39-204"><a href="#cb39-204" aria-hidden="true" tabindex="-1"></a><span class="in">Akasofu_epsilon_ts = TimeArray(</span></span>
+<span id="cb39-205"><a href="#cb39-205" aria-hidden="true" tabindex="-1"></a><span class="in">    timestamp(omni_hro_ds),</span></span>
+<span id="cb39-206"><a href="#cb39-206" aria-hidden="true" tabindex="-1"></a><span class="in">    Akasofu_epsilon.(eachrow(values(B_ts)), values(V_ts)),</span></span>
+<span id="cb39-207"><a href="#cb39-207" aria-hidden="true" tabindex="-1"></a><span class="in">    [:ε],</span></span>
+<span id="cb39-208"><a href="#cb39-208" aria-hidden="true" tabindex="-1"></a><span class="in">    Akasofu_epsilon_meta</span></span>
+<span id="cb39-209"><a href="#cb39-209" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb39-210"><a href="#cb39-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-211"><a href="#cb39-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-212"><a href="#cb39-212" aria-hidden="true" tabindex="-1"></a><span class="ss">### Dst correction</span></span>
+<span id="cb39-212"><a href="#cb39-212" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dst correction</span></span>
 <span id="cb39-213"><a href="#cb39-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-214"><a href="#cb39-214" aria-hidden="true" tabindex="-1"></a><span class="ss">Siscoe etal 1968, JGR found deltaDst = constant*(sqrt(P_after)-sqrt(P_before)) for after/before sudden impulse.</span></span>
-<span id="cb39-215"><a href="#cb39-215" aria-hidden="true" tabindex="-1"></a><span class="ss">We use this here to correct Dst for SW dynamic pressure, relative to prestorm value (Dst=0, Pdyn=2nPa).</span></span>
+<span id="cb39-214"><a href="#cb39-214" aria-hidden="true" tabindex="-1"></a>Siscoe etal 1968, JGR found deltaDst = constant*(sqrt(P_after)-sqrt(P_before)) for after/before sudden impulse.</span>
+<span id="cb39-215"><a href="#cb39-215" aria-hidden="true" tabindex="-1"></a>We use this here to correct Dst for SW dynamic pressure, relative to prestorm value (Dst=0, Pdyn=2nPa).</span>
 <span id="cb39-216"><a href="#cb39-216" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-219"><a href="#cb39-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">correct_Dst</span>(dst, P_after, P_before)</span>
-<span id="cb39-221"><a href="#cb39-221" aria-hidden="true" tabindex="-1"></a>    Siscoe_constant <span class="op">=</span> <span class="fl">13.5</span>u<span class="st">"nT/sqrt(nPa)"</span></span>
-<span id="cb39-222"><a href="#cb39-222" aria-hidden="true" tabindex="-1"></a>    @. (dst <span class="op">-</span> Siscoe_constant <span class="op">*</span> (<span class="fu">sqrt</span>(P_after <span class="op">*</span> u<span class="st">"nPa"</span>) <span class="op">-</span> <span class="fu">sqrt</span>(P_before <span class="op">*</span> u<span class="st">"nPa"</span>)))</span>
-<span id="cb39-223"><a href="#cb39-223" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-220"><a href="#cb39-220" aria-hidden="true" tabindex="-1"></a><span class="in">function correct_Dst(dst, P_after, P_before)</span></span>
+<span id="cb39-221"><a href="#cb39-221" aria-hidden="true" tabindex="-1"></a><span class="in">    Siscoe_constant = 13.5u"nT/sqrt(nPa)"</span></span>
+<span id="cb39-222"><a href="#cb39-222" aria-hidden="true" tabindex="-1"></a><span class="in">    @. (dst - Siscoe_constant * (sqrt(P_after * u"nPa") - sqrt(P_before * u"nPa")))</span></span>
+<span id="cb39-223"><a href="#cb39-223" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-224"><a href="#cb39-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-225"><a href="#cb39-225" aria-hidden="true" tabindex="-1"></a>omni_hro_symh <span class="op">=</span> omni_hro_ds[<span class="op">:</span>SYM_H] <span class="op">.*</span> u<span class="st">"nT"</span></span>
-<span id="cb39-226"><a href="#cb39-226" aria-hidden="true" tabindex="-1"></a>omni_Dst_corrected <span class="op">=</span> <span class="fu">correct_Dst</span>(omni_hro_symh, omni_hro_ds[<span class="op">:</span>Pressure], <span class="fl">2</span>)</span>
-<span id="cb39-227"><a href="#cb39-227" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-225"><a href="#cb39-225" aria-hidden="true" tabindex="-1"></a><span class="in">omni_hro_symh = omni_hro_ds[:SYM_H] .* u"nT"</span></span>
+<span id="cb39-226"><a href="#cb39-226" aria-hidden="true" tabindex="-1"></a><span class="in">omni_Dst_corrected = correct_Dst(omni_hro_symh, omni_hro_ds[:Pressure], 2)</span></span>
+<span id="cb39-227"><a href="#cb39-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-228"><a href="#cb39-228" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-231"><a href="#cb39-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-232"><a href="#cb39-232" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([omni_hro_symh, omni_Dst_corrected])</span>
-<span id="cb39-233"><a href="#cb39-233" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-232"><a href="#cb39-232" aria-hidden="true" tabindex="-1"></a><span class="in">tplot([omni_hro_symh, omni_Dst_corrected])</span></span>
+<span id="cb39-233"><a href="#cb39-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-234"><a href="#cb39-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-235"><a href="#cb39-235" aria-hidden="true" tabindex="-1"></a><span class="ss">### Electric field</span></span>
+<span id="cb39-235"><a href="#cb39-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### Electric field</span></span>
 <span id="cb39-236"><a href="#cb39-236" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-239"><a href="#cb39-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-240"><a href="#cb39-240" aria-hidden="true" tabindex="-1"></a>omni_mVBz <span class="op">=</span> @. <span class="op">-</span>V_ts <span class="op">*</span> B_ts.BZ_GSM <span class="op">|&gt;</span> u<span class="st">"mV/m"</span></span>
-<span id="cb39-241"><a href="#cb39-241" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-240"><a href="#cb39-240" aria-hidden="true" tabindex="-1"></a><span class="in">omni_mVBz = @. -V_ts * B_ts.BZ_GSM |&gt; u"mV/m"</span></span>
+<span id="cb39-241"><a href="#cb39-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-242"><a href="#cb39-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-243"><a href="#cb39-243" aria-hidden="true" tabindex="-1"></a><span class="ss">## Cumulative energy input and dissipation</span></span>
+<span id="cb39-243"><a href="#cb39-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cumulative energy input and dissipation</span></span>
 <span id="cb39-244"><a href="#cb39-244" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-247"><a href="#cb39-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-248"><a href="#cb39-248" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">integrate</span>(ts)</span>
-<span id="cb39-249"><a href="#cb39-249" aria-hidden="true" tabindex="-1"></a>    ts <span class="op">=</span> <span class="fu">degap</span>(ts)</span>
-<span id="cb39-250"><a href="#cb39-250" aria-hidden="true" tabindex="-1"></a>    ε <span class="op">=</span> <span class="fu">values</span>(ts)</span>
-<span id="cb39-251"><a href="#cb39-251" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> <span class="fu">timestamp</span>(ts)</span>
-<span id="cb39-252"><a href="#cb39-252" aria-hidden="true" tabindex="-1"></a>    dts <span class="op">=</span> <span class="fu">Quantity</span>.(<span class="fu">diff</span>(times))</span>
-<span id="cb39-253"><a href="#cb39-253" aria-hidden="true" tabindex="-1"></a>    ∫ε_dt <span class="op">=</span> <span class="fu">cumsum</span>(ε[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span><span class="op">-</span><span class="fl">1</span>] <span class="op">.*</span> dts) <span class="op">.|&gt;</span> u<span class="st">"PJ"</span></span>
-<span id="cb39-254"><a href="#cb39-254" aria-hidden="true" tabindex="-1"></a>    Uin_meta <span class="op">=</span> <span class="fu">Dict</span>(</span>
-<span id="cb39-255"><a href="#cb39-255" aria-hidden="true" tabindex="-1"></a>        <span class="st">"label"</span> <span class="op">=&gt;</span> <span class="st">"Cumulative energy input"</span></span>
-<span id="cb39-256"><a href="#cb39-256" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb39-257"><a href="#cb39-257" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TimeArray</span>(times[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>], ∫ε_dt, [<span class="op">:</span>Uin], Uin_meta)</span>
-<span id="cb39-258"><a href="#cb39-258" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-248"><a href="#cb39-248" aria-hidden="true" tabindex="-1"></a><span class="in">function integrate(ts)</span></span>
+<span id="cb39-249"><a href="#cb39-249" aria-hidden="true" tabindex="-1"></a><span class="in">    ts = degap(ts)</span></span>
+<span id="cb39-250"><a href="#cb39-250" aria-hidden="true" tabindex="-1"></a><span class="in">    ε = values(ts)</span></span>
+<span id="cb39-251"><a href="#cb39-251" aria-hidden="true" tabindex="-1"></a><span class="in">    times = timestamp(ts)</span></span>
+<span id="cb39-252"><a href="#cb39-252" aria-hidden="true" tabindex="-1"></a><span class="in">    dts = Quantity.(diff(times))</span></span>
+<span id="cb39-253"><a href="#cb39-253" aria-hidden="true" tabindex="-1"></a><span class="in">    ∫ε_dt = cumsum(ε[1:end-1] .* dts) .|&gt; u"PJ"</span></span>
+<span id="cb39-254"><a href="#cb39-254" aria-hidden="true" tabindex="-1"></a><span class="in">    Uin_meta = Dict(</span></span>
+<span id="cb39-255"><a href="#cb39-255" aria-hidden="true" tabindex="-1"></a><span class="in">        "label" =&gt; "Cumulative energy input"</span></span>
+<span id="cb39-256"><a href="#cb39-256" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb39-257"><a href="#cb39-257" aria-hidden="true" tabindex="-1"></a><span class="in">    TimeArray(times[2:end], ∫ε_dt, [:Uin], Uin_meta)</span></span>
+<span id="cb39-258"><a href="#cb39-258" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-259"><a href="#cb39-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-260"><a href="#cb39-260" aria-hidden="true" tabindex="-1"></a><span class="fu">tau_r</span>(t, t0; τr_i<span class="op">=</span><span class="fl">1</span>u<span class="st">"hr"</span>, τr_f<span class="op">=</span><span class="fl">6</span>u<span class="st">"hr"</span>) <span class="op">=</span> τr_i <span class="op">*</span> (t <span class="op">&lt;</span> t0) <span class="op">+</span> τr_f <span class="op">*</span> (t <span class="op">&gt;=</span> t0)</span>
+<span id="cb39-260"><a href="#cb39-260" aria-hidden="true" tabindex="-1"></a><span class="in">tau_r(t, t0; τr_i=1u"hr", τr_f=6u"hr") = τr_i * (t &lt; t0) + τr_f * (t &gt;= t0)</span></span>
 <span id="cb39-261"><a href="#cb39-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-262"><a href="#cb39-262" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">compute_Wmd</span>(dDst_dt, Dst, AE, time, time2transition)</span>
-<span id="cb39-263"><a href="#cb39-263" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Time-varying tau_r (assume split between initial and late storm)</span></span>
-<span id="cb39-264"><a href="#cb39-264" aria-hidden="true" tabindex="-1"></a>    τ_r <span class="op">=</span> <span class="fu">tau_r</span>(time, time2transition)</span>
-<span id="cb39-265"><a href="#cb39-265" aria-hidden="true" tabindex="-1"></a>    factor <span class="op">=</span> u<span class="st">"erg/s"</span> <span class="op">/</span> u<span class="st">"nT"</span></span>
-<span id="cb39-266"><a href="#cb39-266" aria-hidden="true" tabindex="-1"></a>    Wmd_dDstodt <span class="op">=</span> <span class="op">-</span><span class="fl">4e20</span> <span class="op">*</span> dDst_dt <span class="op">*</span> factor <span class="op">*</span> <span class="fl">1</span>u<span class="st">"s"</span></span>
-<span id="cb39-267"><a href="#cb39-267" aria-hidden="true" tabindex="-1"></a>    Wmd_dstotau <span class="op">=</span> <span class="op">-</span><span class="fl">4e20</span> <span class="op">*</span> Dst <span class="op">/</span> τ_r <span class="op">*</span> factor <span class="op">*</span> <span class="fl">1</span>u<span class="st">"s"</span></span>
-<span id="cb39-268"><a href="#cb39-268" aria-hidden="true" tabindex="-1"></a>    Wmd_AE <span class="op">=</span> <span class="fl">3e15</span> <span class="op">*</span> AE <span class="op">*</span> factor</span>
-<span id="cb39-269"><a href="#cb39-269" aria-hidden="true" tabindex="-1"></a>    Wmd_all <span class="op">=</span> Wmd_dDstodt <span class="op">+</span> Wmd_dstotau <span class="op">+</span> Wmd_AE</span>
-<span id="cb39-270"><a href="#cb39-270" aria-hidden="true" tabindex="-1"></a>    <span class="co"># return (; Wmd_dDstodt, Wmd_dstotau, Wmd_AE, Wmd_all)</span></span>
-<span id="cb39-271"><a href="#cb39-271" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Wmd_all</span>
-<span id="cb39-272"><a href="#cb39-272" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-262"><a href="#cb39-262" aria-hidden="true" tabindex="-1"></a><span class="in">function compute_Wmd(dDst_dt, Dst, AE, time, time2transition)</span></span>
+<span id="cb39-263"><a href="#cb39-263" aria-hidden="true" tabindex="-1"></a><span class="in">    # Time-varying tau_r (assume split between initial and late storm)</span></span>
+<span id="cb39-264"><a href="#cb39-264" aria-hidden="true" tabindex="-1"></a><span class="in">    τ_r = tau_r(time, time2transition)</span></span>
+<span id="cb39-265"><a href="#cb39-265" aria-hidden="true" tabindex="-1"></a><span class="in">    factor = u"erg/s" / u"nT"</span></span>
+<span id="cb39-266"><a href="#cb39-266" aria-hidden="true" tabindex="-1"></a><span class="in">    Wmd_dDstodt = -4e20 * dDst_dt * factor * 1u"s"</span></span>
+<span id="cb39-267"><a href="#cb39-267" aria-hidden="true" tabindex="-1"></a><span class="in">    Wmd_dstotau = -4e20 * Dst / τ_r * factor * 1u"s"</span></span>
+<span id="cb39-268"><a href="#cb39-268" aria-hidden="true" tabindex="-1"></a><span class="in">    Wmd_AE = 3e15 * AE * factor</span></span>
+<span id="cb39-269"><a href="#cb39-269" aria-hidden="true" tabindex="-1"></a><span class="in">    Wmd_all = Wmd_dDstodt + Wmd_dstotau + Wmd_AE</span></span>
+<span id="cb39-270"><a href="#cb39-270" aria-hidden="true" tabindex="-1"></a><span class="in">    # return (; Wmd_dDstodt, Wmd_dstotau, Wmd_AE, Wmd_all)</span></span>
+<span id="cb39-271"><a href="#cb39-271" aria-hidden="true" tabindex="-1"></a><span class="in">    return Wmd_all</span></span>
+<span id="cb39-272"><a href="#cb39-272" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-273"><a href="#cb39-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-274"><a href="#cb39-274" aria-hidden="true" tabindex="-1"></a><span class="fu">item</span>(ts) <span class="op">=</span> <span class="fu">values</span>(ts)[<span class="fl">1</span>]</span>
+<span id="cb39-274"><a href="#cb39-274" aria-hidden="true" tabindex="-1"></a><span class="in">item(ts) = values(ts)[1]</span></span>
 <span id="cb39-275"><a href="#cb39-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-276"><a href="#cb39-276" aria-hidden="true" tabindex="-1"></a>omni_AE <span class="op">=</span> omni_hro_ds.AE_INDEX <span class="op">.*</span> u<span class="st">"nT"</span></span>
+<span id="cb39-276"><a href="#cb39-276" aria-hidden="true" tabindex="-1"></a><span class="in">omni_AE = omni_hro_ds.AE_INDEX .* u"nT"</span></span>
 <span id="cb39-277"><a href="#cb39-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-278"><a href="#cb39-278" aria-hidden="true" tabindex="-1"></a>Wmd_all_ts <span class="op">=</span> <span class="kw">let</span> Dst <span class="op">=</span> omni_Dst_corrected, AE <span class="op">=</span> omni_AE, time2transition <span class="op">=</span> <span class="fu">Date</span>(<span class="st">"2015-03-19"</span>)</span>
-<span id="cb39-279"><a href="#cb39-279" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> <span class="fu">timestamp</span>(Dst)</span>
-<span id="cb39-280"><a href="#cb39-280" aria-hidden="true" tabindex="-1"></a>    dts <span class="op">=</span> <span class="fu">Quantity</span>.(<span class="fu">diff</span>(times))</span>
-<span id="cb39-281"><a href="#cb39-281" aria-hidden="true" tabindex="-1"></a>    dDst_dt <span class="op">=</span> <span class="fu">diff</span>(Dst) <span class="op">./</span> dts</span>
-<span id="cb39-282"><a href="#cb39-282" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> times[<span class="fl">10</span>]</span>
-<span id="cb39-283"><a href="#cb39-283" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ([dDst_dt[times], Dst[times], AE[times]])</span></span>
-<span id="cb39-284"><a href="#cb39-284" aria-hidden="true" tabindex="-1"></a>    Wmd_all <span class="op">=</span> <span class="fu">map</span>(times[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>]) <span class="cf">do</span> time</span>
-<span id="cb39-285"><a href="#cb39-285" aria-hidden="true" tabindex="-1"></a>        <span class="fu">compute_Wmd</span>(<span class="fu">item</span>.([dDst_dt[time], Dst[time], AE[time]])<span class="op">...</span>, time, time2transition)</span>
-<span id="cb39-286"><a href="#cb39-286" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-287"><a href="#cb39-287" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TimeArray</span>(times[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>], Wmd_all, [<span class="op">:</span>Wmd], <span class="fu">Dict</span>(<span class="st">"label"</span> <span class="op">=&gt;</span> <span class="st">"Cumulative energy dissipation"</span>))</span>
-<span id="cb39-288"><a href="#cb39-288" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-278"><a href="#cb39-278" aria-hidden="true" tabindex="-1"></a><span class="in">Wmd_all_ts = let Dst = omni_Dst_corrected, AE = omni_AE, time2transition = Date("2015-03-19")</span></span>
+<span id="cb39-279"><a href="#cb39-279" aria-hidden="true" tabindex="-1"></a><span class="in">    times = timestamp(Dst)</span></span>
+<span id="cb39-280"><a href="#cb39-280" aria-hidden="true" tabindex="-1"></a><span class="in">    dts = Quantity.(diff(times))</span></span>
+<span id="cb39-281"><a href="#cb39-281" aria-hidden="true" tabindex="-1"></a><span class="in">    dDst_dt = diff(Dst) ./ dts</span></span>
+<span id="cb39-282"><a href="#cb39-282" aria-hidden="true" tabindex="-1"></a><span class="in">    time = times[10]</span></span>
+<span id="cb39-283"><a href="#cb39-283" aria-hidden="true" tabindex="-1"></a><span class="in">    # ([dDst_dt[times], Dst[times], AE[times]])</span></span>
+<span id="cb39-284"><a href="#cb39-284" aria-hidden="true" tabindex="-1"></a><span class="in">    Wmd_all = map(times[2:end]) do time</span></span>
+<span id="cb39-285"><a href="#cb39-285" aria-hidden="true" tabindex="-1"></a><span class="in">        compute_Wmd(item.([dDst_dt[time], Dst[time], AE[time]])..., time, time2transition)</span></span>
+<span id="cb39-286"><a href="#cb39-286" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-287"><a href="#cb39-287" aria-hidden="true" tabindex="-1"></a><span class="in">    TimeArray(times[2:end], Wmd_all, [:Wmd], Dict("label" =&gt; "Cumulative energy dissipation"))</span></span>
+<span id="cb39-288"><a href="#cb39-288" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-289"><a href="#cb39-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-290"><a href="#cb39-290" aria-hidden="true" tabindex="-1"></a>Uin <span class="op">=</span> <span class="fu">integrate</span>(Akasofu_epsilon_ts)</span>
-<span id="cb39-291"><a href="#cb39-291" aria-hidden="true" tabindex="-1"></a>Uout <span class="op">=</span> <span class="fu">integrate</span>(Wmd_all_ts)</span>
-<span id="cb39-292"><a href="#cb39-292" aria-hidden="true" tabindex="-1"></a><span class="fu">rename!</span>(Uout, <span class="op">:</span>Uout)</span>
-<span id="cb39-293"><a href="#cb39-293" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-290"><a href="#cb39-290" aria-hidden="true" tabindex="-1"></a><span class="in">Uin = integrate(Akasofu_epsilon_ts)</span></span>
+<span id="cb39-291"><a href="#cb39-291" aria-hidden="true" tabindex="-1"></a><span class="in">Uout = integrate(Wmd_all_ts)</span></span>
+<span id="cb39-292"><a href="#cb39-292" aria-hidden="true" tabindex="-1"></a><span class="in">rename!(Uout, :Uout)</span></span>
+<span id="cb39-293"><a href="#cb39-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-294"><a href="#cb39-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-295"><a href="#cb39-295" aria-hidden="true" tabindex="-1"></a><span class="ss">### Plot</span></span>
+<span id="cb39-295"><a href="#cb39-295" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
 <span id="cb39-296"><a href="#cb39-296" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-299"><a href="#cb39-299" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-300"><a href="#cb39-300" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">1200</span>))</span>
-<span id="cb39-301"><a href="#cb39-301" aria-hidden="true" tabindex="-1"></a>tvars2plot <span class="op">=</span> [</span>
-<span id="cb39-302"><a href="#cb39-302" aria-hidden="true" tabindex="-1"></a>    [Uin, Uout],</span>
-<span id="cb39-303"><a href="#cb39-303" aria-hidden="true" tabindex="-1"></a>    Akasofu_epsilon_ts,</span>
-<span id="cb39-304"><a href="#cb39-304" aria-hidden="true" tabindex="-1"></a>    [omni_hro_symh, OMNI2_H0_MRG1HR_ds.DST1800 <span class="op">.*</span> u<span class="st">"nT"</span>, omni_Dst_corrected],</span>
-<span id="cb39-305"><a href="#cb39-305" aria-hidden="true" tabindex="-1"></a>    [omni_AE, OMNI2_H0_MRG1HR_ds.AE1800 <span class="op">.*</span> u<span class="st">"nT"</span>],</span>
-<span id="cb39-306"><a href="#cb39-306" aria-hidden="true" tabindex="-1"></a>    [omni_mVBz, omni_hro_ds.E <span class="op">.*</span> u<span class="st">"mV/m"</span>],</span>
-<span id="cb39-307"><a href="#cb39-307" aria-hidden="true" tabindex="-1"></a>    [omni_hro_ds.Pressure <span class="op">.*</span> u<span class="st">"nPa"</span>]</span>
-<span id="cb39-308"><a href="#cb39-308" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb39-309"><a href="#cb39-309" aria-hidden="true" tabindex="-1"></a>f, axs <span class="op">=</span> <span class="fu">tplot</span>(fig, tvars2plot)</span>
-<span id="cb39-310"><a href="#cb39-310" aria-hidden="true" tabindex="-1"></a>axs[<span class="fl">3</span>].ylabel <span class="op">=</span> <span class="st">"DST"</span></span>
-<span id="cb39-311"><a href="#cb39-311" aria-hidden="true" tabindex="-1"></a>axs[<span class="fl">4</span>].ylabel <span class="op">=</span> <span class="st">"AE"</span></span>
-<span id="cb39-312"><a href="#cb39-312" aria-hidden="true" tabindex="-1"></a>axs[<span class="fl">5</span>].ylabel <span class="op">=</span> <span class="st">"Electric field"</span></span>
-<span id="cb39-313"><a href="#cb39-313" aria-hidden="true" tabindex="-1"></a>axs[<span class="fl">6</span>].ylabel <span class="op">=</span> <span class="st">"Pressure"</span></span>
-<span id="cb39-314"><a href="#cb39-314" aria-hidden="true" tabindex="-1"></a><span class="fu">axislegend</span>.(axs)</span>
-<span id="cb39-315"><a href="#cb39-315" aria-hidden="true" tabindex="-1"></a>f</span>
-<span id="cb39-316"><a href="#cb39-316" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-300"><a href="#cb39-300" aria-hidden="true" tabindex="-1"></a><span class="in">fig = Figure(; size=(1200, 1200))</span></span>
+<span id="cb39-301"><a href="#cb39-301" aria-hidden="true" tabindex="-1"></a><span class="in">tvars2plot = [</span></span>
+<span id="cb39-302"><a href="#cb39-302" aria-hidden="true" tabindex="-1"></a><span class="in">    [Uin, Uout],</span></span>
+<span id="cb39-303"><a href="#cb39-303" aria-hidden="true" tabindex="-1"></a><span class="in">    Akasofu_epsilon_ts,</span></span>
+<span id="cb39-304"><a href="#cb39-304" aria-hidden="true" tabindex="-1"></a><span class="in">    [omni_hro_symh, OMNI2_H0_MRG1HR_ds.DST1800 .* u"nT", omni_Dst_corrected],</span></span>
+<span id="cb39-305"><a href="#cb39-305" aria-hidden="true" tabindex="-1"></a><span class="in">    [omni_AE, OMNI2_H0_MRG1HR_ds.AE1800 .* u"nT"],</span></span>
+<span id="cb39-306"><a href="#cb39-306" aria-hidden="true" tabindex="-1"></a><span class="in">    [omni_mVBz, omni_hro_ds.E .* u"mV/m"],</span></span>
+<span id="cb39-307"><a href="#cb39-307" aria-hidden="true" tabindex="-1"></a><span class="in">    [omni_hro_ds.Pressure .* u"nPa"]</span></span>
+<span id="cb39-308"><a href="#cb39-308" aria-hidden="true" tabindex="-1"></a><span class="in">]</span></span>
+<span id="cb39-309"><a href="#cb39-309" aria-hidden="true" tabindex="-1"></a><span class="in">f, axs = tplot(fig, tvars2plot)</span></span>
+<span id="cb39-310"><a href="#cb39-310" aria-hidden="true" tabindex="-1"></a><span class="in">axs[3].ylabel = "DST"</span></span>
+<span id="cb39-311"><a href="#cb39-311" aria-hidden="true" tabindex="-1"></a><span class="in">axs[4].ylabel = "AE"</span></span>
+<span id="cb39-312"><a href="#cb39-312" aria-hidden="true" tabindex="-1"></a><span class="in">axs[5].ylabel = "Electric field"</span></span>
+<span id="cb39-313"><a href="#cb39-313" aria-hidden="true" tabindex="-1"></a><span class="in">axs[6].ylabel = "Pressure"</span></span>
+<span id="cb39-314"><a href="#cb39-314" aria-hidden="true" tabindex="-1"></a><span class="in">axislegend.(axs)</span></span>
+<span id="cb39-315"><a href="#cb39-315" aria-hidden="true" tabindex="-1"></a><span class="in">f</span></span>
+<span id="cb39-316"><a href="#cb39-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-317"><a href="#cb39-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-318"><a href="#cb39-318" aria-hidden="true" tabindex="-1"></a><span class="ss">## Field line resonances</span></span>
+<span id="cb39-318"><a href="#cb39-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Field line resonances</span></span>
 <span id="cb39-319"><a href="#cb39-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-320"><a href="#cb39-320" aria-hidden="true" tabindex="-1"></a><span class="ss">&gt; Obtain magnetic field data from THEMIS-A for a field line resonances observed on 2008-Sep-05 10 – 20 UT. These have periods of 10-30 mHz and can be seen in Figure 1 of Sarris et al., 2010 [@sarrisTHEMISObservationsSpatial2010]. It would be sufficient to use spin-period (FGS) data. </span></span>
+<span id="cb39-320"><a href="#cb39-320" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Obtain magnetic field data from THEMIS-A for a field line resonances observed on 2008-Sep-05 10 – 20 UT. These have periods of 10-30 mHz and can be seen in Figure 1 of Sarris et al., 2010 </span><span class="co">[</span><span class="ot">@sarrisTHEMISObservationsSpatial2010</span><span class="co">]</span><span class="at">. It would be sufficient to use spin-period (FGS) data. </span></span>
 <span id="cb39-321"><a href="#cb39-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-322"><a href="#cb39-322" aria-hidden="true" tabindex="-1"></a><span class="ss">&gt; i. Show the band-bass filtered data between fmin=1/180s and fmax=1/15s (low-pass using block average function tsmooth2 with window 61 points, subtract it from the original data to get the high-pass, then do tsmooth2 on that with 5 points). Plot the data.</span></span>
+<span id="cb39-322"><a href="#cb39-322" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; i. Show the band-bass filtered data between fmin=1/180s and fmax=1/15s (low-pass using block average function tsmooth2 with window 61 points, subtract it from the original data to get the high-pass, then do tsmooth2 on that with 5 points). Plot the data.</span></span>
 <span id="cb39-323"><a href="#cb39-323" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-326"><a href="#cb39-326" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-327"><a href="#cb39-327" aria-hidden="true" tabindex="-1"></a>tha_l2_fgm_ds <span class="op">=</span> <span class="fu">DataSet</span>(<span class="st">"THA_L2_FGM"</span>, [<span class="st">"tha_fgs_gse"</span>])</span>
-<span id="cb39-328"><a href="#cb39-328" aria-hidden="true" tabindex="-1"></a>tspan <span class="op">=</span> [<span class="st">"2008-09-05T10:00:00"</span>, <span class="st">"2008-09-05T22:00:00"</span>]</span>
-<span id="cb39-329"><a href="#cb39-329" aria-hidden="true" tabindex="-1"></a>tha_fgs_gse <span class="op">=</span> <span class="fu">load_dataset</span>(tha_l2_fgm_ds, tspan) <span class="op">|&gt;</span> TS</span>
+<span id="cb39-327"><a href="#cb39-327" aria-hidden="true" tabindex="-1"></a><span class="in">tha_l2_fgm_ds = DataSet("THA_L2_FGM", ["tha_fgs_gse"])</span></span>
+<span id="cb39-328"><a href="#cb39-328" aria-hidden="true" tabindex="-1"></a><span class="in">tspan = ["2008-09-05T10:00:00", "2008-09-05T22:00:00"]</span></span>
+<span id="cb39-329"><a href="#cb39-329" aria-hidden="true" tabindex="-1"></a><span class="in">tha_fgs_gse = load_dataset(tha_l2_fgm_ds, tspan) |&gt; TS</span></span>
 <span id="cb39-330"><a href="#cb39-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-331"><a href="#cb39-331" aria-hidden="true" tabindex="-1"></a>tha_fgs_gse.metadata[<span class="st">"long_name"</span>] <span class="op">=</span> <span class="st">"THA FGS GSE"</span></span>
-<span id="cb39-332"><a href="#cb39-332" aria-hidden="true" tabindex="-1"></a>tha_fgs_gse.metadata[<span class="st">"units"</span>] <span class="op">=</span> <span class="st">"nT"</span></span>
-<span id="cb39-333"><a href="#cb39-333" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-331"><a href="#cb39-331" aria-hidden="true" tabindex="-1"></a><span class="in">tha_fgs_gse.metadata["long_name"] = "THA FGS GSE"</span></span>
+<span id="cb39-332"><a href="#cb39-332" aria-hidden="true" tabindex="-1"></a><span class="in">tha_fgs_gse.metadata["units"] = "nT"</span></span>
+<span id="cb39-333"><a href="#cb39-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-334"><a href="#cb39-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-335"><a href="#cb39-335" aria-hidden="true" tabindex="-1"></a><span class="ss">The `smooth` (`tsmooth2` in IDL) function is implemented as follows. By using `mapslices`, the function efficiently applies the operation along the desired dimension. This approach is very general and can be used for multiple dimensions.</span></span>
+<span id="cb39-335"><a href="#cb39-335" aria-hidden="true" tabindex="-1"></a>The <span class="in">`smooth`</span> (<span class="in">`tsmooth2`</span> in IDL) function is implemented as follows. By using <span class="in">`mapslices`</span>, the function efficiently applies the operation along the desired dimension. This approach is very general and can be used for multiple dimensions.</span>
 <span id="cb39-336"><a href="#cb39-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-337"><a href="#cb39-337" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span>julia</span>
-<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">smooth</span>(da<span class="op">::</span><span class="dt">AbstractDimArray</span>, span<span class="op">::</span><span class="dt">Integer</span>; dims<span class="op">=</span>Ti, suffix<span class="op">=</span><span class="st">"_smoothed"</span>, kwargs<span class="op">...</span>)</span>
-<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a>    new_da <span class="op">=</span> <span class="fu">mapslices</span>(da; dims) <span class="cf">do</span> slice</span>
-<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>.(RollingWindowArrays.<span class="fu">rolling</span>(slice, span; kwargs<span class="op">...</span>))</span>
-<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rebuild</span>(new_da; name<span class="op">=</span><span class="fu">Symbol</span>(da.name, suffix))</span>
-<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-344"><a href="#cb39-344" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-337"><a href="#cb39-337" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
+<span id="cb39-338"><a href="#cb39-338" aria-hidden="true" tabindex="-1"></a><span class="in">function smooth(da::AbstractDimArray, span::Integer; dims=Ti, suffix="_smoothed", kwargs...)</span></span>
+<span id="cb39-339"><a href="#cb39-339" aria-hidden="true" tabindex="-1"></a><span class="in">    new_da = mapslices(da; dims) do slice</span></span>
+<span id="cb39-340"><a href="#cb39-340" aria-hidden="true" tabindex="-1"></a><span class="in">        mean.(RollingWindowArrays.rolling(slice, span; kwargs...))</span></span>
+<span id="cb39-341"><a href="#cb39-341" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
+<span id="cb39-342"><a href="#cb39-342" aria-hidden="true" tabindex="-1"></a><span class="in">    rebuild(new_da; name=Symbol(da.name, suffix))</span></span>
+<span id="cb39-343"><a href="#cb39-343" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-344"><a href="#cb39-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-345"><a href="#cb39-345" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-348"><a href="#cb39-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">amap</span>(f, a<span class="op">::</span><span class="dt">AbstractDimArray</span>, b<span class="op">::</span><span class="dt">AbstractDimArray</span>)</span>
-<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a>    shared_selectors <span class="op">=</span> <span class="fu">DimSelectors</span>(b)</span>
-<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> <span class="fu">f</span>(a[shared_selectors], b[shared_selectors])</span>
-<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-349"><a href="#cb39-349" aria-hidden="true" tabindex="-1"></a><span class="in">function amap(f, a::AbstractDimArray, b::AbstractDimArray)</span></span>
+<span id="cb39-350"><a href="#cb39-350" aria-hidden="true" tabindex="-1"></a><span class="in">    shared_selectors = DimSelectors(b)</span></span>
+<span id="cb39-351"><a href="#cb39-351" aria-hidden="true" tabindex="-1"></a><span class="in">    data = f(a[shared_selectors], b[shared_selectors])</span></span>
+<span id="cb39-352"><a href="#cb39-352" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-353"><a href="#cb39-353" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-354"><a href="#cb39-354" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-357"><a href="#cb39-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> tha_fgs_gse</span>
-<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a>da_smoothed <span class="op">=</span> <span class="fu">smooth</span>(da, <span class="fl">61</span>)</span>
-<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a>da_filtered <span class="op">=</span> <span class="fu">amap</span>(<span class="op">-</span>, da, da_smoothed)</span>
-<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a>da_filtered <span class="op">=</span> <span class="fu">rebuild</span>(da_filtered; name<span class="op">=:</span>tha_fgs_gse_filtered)</span>
-<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a>da_filtered_smoothed <span class="op">=</span> <span class="fu">smooth</span>(da_filtered, <span class="fl">5</span>)</span>
+<span id="cb39-358"><a href="#cb39-358" aria-hidden="true" tabindex="-1"></a><span class="in">da = tha_fgs_gse</span></span>
+<span id="cb39-359"><a href="#cb39-359" aria-hidden="true" tabindex="-1"></a><span class="in">da_smoothed = smooth(da, 61)</span></span>
+<span id="cb39-360"><a href="#cb39-360" aria-hidden="true" tabindex="-1"></a><span class="in">da_filtered = amap(-, da, da_smoothed)</span></span>
+<span id="cb39-361"><a href="#cb39-361" aria-hidden="true" tabindex="-1"></a><span class="in">da_filtered = rebuild(da_filtered; name=:tha_fgs_gse_filtered)</span></span>
+<span id="cb39-362"><a href="#cb39-362" aria-hidden="true" tabindex="-1"></a><span class="in">da_filtered_smoothed = smooth(da_filtered, 5)</span></span>
 <span id="cb39-363"><a href="#cb39-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1000</span>, <span class="fl">600</span>))</span>
-<span id="cb39-365"><a href="#cb39-365" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([da, da_smoothed, da_filtered_smoothed]; figure)</span>
-<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-364"><a href="#cb39-364" aria-hidden="true" tabindex="-1"></a><span class="in">figure = (; size=(1000, 600))</span></span>
+<span id="cb39-365"><a href="#cb39-365" aria-hidden="true" tabindex="-1"></a><span class="in">tplot([da, da_smoothed, da_filtered_smoothed]; figure)</span></span>
+<span id="cb39-366"><a href="#cb39-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-367"><a href="#cb39-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-368"><a href="#cb39-368" aria-hidden="true" tabindex="-1"></a><span class="ss">### Dynamic power spectrum</span></span>
+<span id="cb39-368"><a href="#cb39-368" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dynamic power spectrum</span></span>
 <span id="cb39-369"><a href="#cb39-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-370"><a href="#cb39-370" aria-hidden="true" tabindex="-1"></a><span class="ss">&gt; ii. Do a dynamic power spectrum of the unfiltered data.</span></span>
+<span id="cb39-370"><a href="#cb39-370" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ii. Do a dynamic power spectrum of the unfiltered data.</span></span>
 <span id="cb39-371"><a href="#cb39-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a><span class="ss">In this section, we implement two approaches to represent the time-frequency domain of time series data. The first approach utilizes a window function, while the second employs a wavelet transform. The functions `pspectrum` are dispatched based on the second argument, leveraging Julia's multiple dispatch mechanism.</span></span>
+<span id="cb39-372"><a href="#cb39-372" aria-hidden="true" tabindex="-1"></a>In this section, we implement two approaches to represent the time-frequency domain of time series data. The first approach utilizes a window function, while the second employs a wavelet transform. The functions <span class="in">`pspectrum`</span> are dispatched based on the second argument, leveraging Julia's multiple dispatch mechanism.</span>
 <span id="cb39-373"><a href="#cb39-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a><span class="ss">- Reference: [Matlab](https://www.mathworks.com/help/signal/ref/pspectrum.html), [PySPEDAS : pytplot.tplot_math.dpwrspc](https://github.com/PySPEDAS/PySPEDAS)</span></span>
+<span id="cb39-374"><a href="#cb39-374" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Reference: <span class="co">[</span><span class="ot">Matlab</span><span class="co">](https://www.mathworks.com/help/signal/ref/pspectrum.html)</span>, <span class="co">[</span><span class="ot">PySPEDAS : pytplot.tplot_math.dpwrspc</span><span class="co">](https://github.com/PySPEDAS/PySPEDAS)</span></span>
 <span id="cb39-375"><a href="#cb39-375" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-376"><a href="#cb39-376" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-379"><a href="#cb39-379" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SignalAnalysis</span></span>
-<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DimensionalData</span>: Where</span>
+<span id="cb39-380"><a href="#cb39-380" aria-hidden="true" tabindex="-1"></a><span class="in">using SignalAnalysis</span></span>
+<span id="cb39-381"><a href="#cb39-381" aria-hidden="true" tabindex="-1"></a><span class="in">using DimensionalData: Where</span></span>
 <span id="cb39-382"><a href="#cb39-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-383"><a href="#cb39-383" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pspectrum</span>(x<span class="op">::</span><span class="dt">AbstractDimArray</span>, spec<span class="op">::</span><span class="dt">Spectrogram</span>)</span>
-<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> SpaceTools.<span class="fu">samplingrate</span>(x)</span>
-<span id="cb39-385"><a href="#cb39-385" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">tfd</span>(x, spec; fs)</span>
-<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a>    t0 <span class="op">=</span> <span class="fu">dims</span>(x, Ti)[<span class="fl">1</span>]</span>
-<span id="cb39-387"><a href="#cb39-387" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> <span class="fu">Ti</span>(y.time <span class="op">.*</span> <span class="fl">1</span>u<span class="st">"s"</span> <span class="op">.+</span> t0)</span>
-<span id="cb39-388"><a href="#cb39-388" aria-hidden="true" tabindex="-1"></a>    freqs <span class="op">=</span> <span class="fu">𝑓</span>(y.freq <span class="op">*</span> <span class="fl">1</span>u<span class="st">"Hz"</span>)</span>
-<span id="cb39-389"><a href="#cb39-389" aria-hidden="true" tabindex="-1"></a>    y_da <span class="op">=</span> <span class="fu">DimArray</span>(y.power<span class="op">'</span>, (times, freqs))</span>
-<span id="cb39-390"><a href="#cb39-390" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-391"><a href="#cb39-391" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-383"><a href="#cb39-383" aria-hidden="true" tabindex="-1"></a><span class="in">function pspectrum(x::AbstractDimArray, spec::Spectrogram)</span></span>
+<span id="cb39-384"><a href="#cb39-384" aria-hidden="true" tabindex="-1"></a><span class="in">    fs = SpaceTools.samplingrate(x)</span></span>
+<span id="cb39-385"><a href="#cb39-385" aria-hidden="true" tabindex="-1"></a><span class="in">    y = tfd(x, spec; fs)</span></span>
+<span id="cb39-386"><a href="#cb39-386" aria-hidden="true" tabindex="-1"></a><span class="in">    t0 = dims(x, Ti)[1]</span></span>
+<span id="cb39-387"><a href="#cb39-387" aria-hidden="true" tabindex="-1"></a><span class="in">    times = Ti(y.time .* 1u"s" .+ t0)</span></span>
+<span id="cb39-388"><a href="#cb39-388" aria-hidden="true" tabindex="-1"></a><span class="in">    freqs = 𝑓(y.freq * 1u"Hz")</span></span>
+<span id="cb39-389"><a href="#cb39-389" aria-hidden="true" tabindex="-1"></a><span class="in">    y_da = DimArray(y.power', (times, freqs))</span></span>
+<span id="cb39-390"><a href="#cb39-390" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-391"><a href="#cb39-391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-392"><a href="#cb39-392" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-395"><a href="#cb39-395" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ContinuousWavelets</span></span>
+<span id="cb39-396"><a href="#cb39-396" aria-hidden="true" tabindex="-1"></a><span class="in">using ContinuousWavelets</span></span>
 <span id="cb39-397"><a href="#cb39-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-398"><a href="#cb39-398" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-399"><a href="#cb39-399" aria-hidden="true" tabindex="-1"></a><span class="st">    pspectrum(x, wt; kwargs...)</span></span>
+<span id="cb39-398"><a href="#cb39-398" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-399"><a href="#cb39-399" aria-hidden="true" tabindex="-1"></a><span class="in">    pspectrum(x, wt; kwargs...)</span></span>
 <span id="cb39-400"><a href="#cb39-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-401"><a href="#cb39-401" aria-hidden="true" tabindex="-1"></a><span class="st">Returns the power spectrum of `x` in the time-frequency domains</span></span>
-<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pspectrum</span>(x<span class="op">::</span><span class="dt">AbstractDimArray</span>, wt<span class="op">::</span><span class="dt">CWT</span>)</span>
-<span id="cb39-404"><a href="#cb39-404" aria-hidden="true" tabindex="-1"></a>    fs <span class="op">=</span> SpaceTools.<span class="fu">samplingrate</span>(x)</span>
-<span id="cb39-405"><a href="#cb39-405" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> <span class="fu">cwt</span>(x, wt)</span>
-<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a>    power <span class="op">=</span> <span class="fu">abs</span>.(res) <span class="op">.^</span> <span class="fl">2</span></span>
-<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(<span class="fu">dims</span>(x, Ti))</span>
-<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a>    times <span class="op">=</span> <span class="fu">dims</span>(x, Ti)</span>
-<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a>    freqs <span class="op">=</span> <span class="fu">𝑓</span>(<span class="fu">getMeanFreq</span>(<span class="fu">computeWavelets</span>(n, wt)[<span class="fl">1</span>], fs) <span class="op">*</span> <span class="fl">1</span>u<span class="st">"Hz"</span>)</span>
-<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a>    <span class="fu">DimArray</span>(power, (times, freqs))</span>
-<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-401"><a href="#cb39-401" aria-hidden="true" tabindex="-1"></a><span class="in">Returns the power spectrum of `x` in the time-frequency domains</span></span>
+<span id="cb39-402"><a href="#cb39-402" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-403"><a href="#cb39-403" aria-hidden="true" tabindex="-1"></a><span class="in">function pspectrum(x::AbstractDimArray, wt::CWT)</span></span>
+<span id="cb39-404"><a href="#cb39-404" aria-hidden="true" tabindex="-1"></a><span class="in">    fs = SpaceTools.samplingrate(x)</span></span>
+<span id="cb39-405"><a href="#cb39-405" aria-hidden="true" tabindex="-1"></a><span class="in">    res = cwt(x, wt)</span></span>
+<span id="cb39-406"><a href="#cb39-406" aria-hidden="true" tabindex="-1"></a><span class="in">    power = abs.(res) .^ 2</span></span>
+<span id="cb39-407"><a href="#cb39-407" aria-hidden="true" tabindex="-1"></a><span class="in">    n = length(dims(x, Ti))</span></span>
+<span id="cb39-408"><a href="#cb39-408" aria-hidden="true" tabindex="-1"></a><span class="in">    times = dims(x, Ti)</span></span>
+<span id="cb39-409"><a href="#cb39-409" aria-hidden="true" tabindex="-1"></a><span class="in">    freqs = 𝑓(getMeanFreq(computeWavelets(n, wt)[1], fs) * 1u"Hz")</span></span>
+<span id="cb39-410"><a href="#cb39-410" aria-hidden="true" tabindex="-1"></a><span class="in">    DimArray(power, (times, freqs))</span></span>
+<span id="cb39-411"><a href="#cb39-411" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-412"><a href="#cb39-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-413"><a href="#cb39-413" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-414"><a href="#cb39-414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-417"><a href="#cb39-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-418"><a href="#cb39-418" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> DD <span class="op">=</span> DimensionalData</span>
+<span id="cb39-418"><a href="#cb39-418" aria-hidden="true" tabindex="-1"></a><span class="in">const DD = DimensionalData</span></span>
 <span id="cb39-419"><a href="#cb39-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a><span class="st">    plot_tfr(data; kwargs...)</span></span>
+<span id="cb39-420"><a href="#cb39-420" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-421"><a href="#cb39-421" aria-hidden="true" tabindex="-1"></a><span class="in">    plot_tfr(data; kwargs...)</span></span>
 <span id="cb39-422"><a href="#cb39-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a><span class="st">Displays time frequency representation using Makie.</span></span>
-<span id="cb39-424"><a href="#cb39-424" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb39-425"><a href="#cb39-425" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">plot_tfr</span>(da<span class="op">::</span><span class="dt">DimArray</span>; colorscale<span class="op">=</span>log10, crange<span class="op">=:</span>auto, figure_kwargs<span class="op">...</span>)</span>
-<span id="cb39-426"><a href="#cb39-426" aria-hidden="true" tabindex="-1"></a>    cmid <span class="op">=</span> <span class="fu">median</span>(da)</span>
-<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a>    cmax <span class="op">=</span> cmid <span class="op">*</span> <span class="fl">10</span></span>
-<span id="cb39-428"><a href="#cb39-428" aria-hidden="true" tabindex="-1"></a>    cmin <span class="op">=</span> cmid <span class="op">/</span> <span class="fl">10</span></span>
+<span id="cb39-423"><a href="#cb39-423" aria-hidden="true" tabindex="-1"></a><span class="in">Displays time frequency representation using Makie.</span></span>
+<span id="cb39-424"><a href="#cb39-424" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
+<span id="cb39-425"><a href="#cb39-425" aria-hidden="true" tabindex="-1"></a><span class="in">function plot_tfr(da::DimArray; colorscale=log10, crange=:auto, figure_kwargs...)</span></span>
+<span id="cb39-426"><a href="#cb39-426" aria-hidden="true" tabindex="-1"></a><span class="in">    cmid = median(da)</span></span>
+<span id="cb39-427"><a href="#cb39-427" aria-hidden="true" tabindex="-1"></a><span class="in">    cmax = cmid * 10</span></span>
+<span id="cb39-428"><a href="#cb39-428" aria-hidden="true" tabindex="-1"></a><span class="in">    cmin = cmid / 10</span></span>
 <span id="cb39-429"><a href="#cb39-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-430"><a href="#cb39-430" aria-hidden="true" tabindex="-1"></a>    fig, ax, hm <span class="op">=</span> <span class="fu">heatmap</span>(da; colorscale, colorrange<span class="op">=</span>(cmin, cmax))</span>
-<span id="cb39-431"><a href="#cb39-431" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Colorbar</span>(fig[<span class="op">:</span>, <span class="kw">end</span><span class="op">+</span><span class="fl">1</span>], hm)</span>
+<span id="cb39-430"><a href="#cb39-430" aria-hidden="true" tabindex="-1"></a><span class="in">    fig, ax, hm = heatmap(da; colorscale, colorrange=(cmin, cmax))</span></span>
+<span id="cb39-431"><a href="#cb39-431" aria-hidden="true" tabindex="-1"></a><span class="in">    Colorbar(fig[:, end+1], hm)</span></span>
 <span id="cb39-432"><a href="#cb39-432" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rasterize the heatmap to reduce file size</span></span>
-<span id="cb39-434"><a href="#cb39-434" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">*</span>(<span class="fu">size</span>(da)<span class="op">...</span>) <span class="op">&gt;</span> <span class="fl">32</span><span class="op">^</span><span class="fl">2</span></span>
-<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a>        hm.rasterize <span class="op">=</span> <span class="cn">true</span></span>
-<span id="cb39-436"><a href="#cb39-436" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb39-433"><a href="#cb39-433" aria-hidden="true" tabindex="-1"></a><span class="in">    # rasterize the heatmap to reduce file size</span></span>
+<span id="cb39-434"><a href="#cb39-434" aria-hidden="true" tabindex="-1"></a><span class="in">    if *(size(da)...) &gt; 32^2</span></span>
+<span id="cb39-435"><a href="#cb39-435" aria-hidden="true" tabindex="-1"></a><span class="in">        hm.rasterize = true</span></span>
+<span id="cb39-436"><a href="#cb39-436" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
 <span id="cb39-437"><a href="#cb39-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-438"><a href="#cb39-438" aria-hidden="true" tabindex="-1"></a>    fig</span>
-<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-440"><a href="#cb39-440" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-438"><a href="#cb39-438" aria-hidden="true" tabindex="-1"></a><span class="in">    fig</span></span>
+<span id="cb39-439"><a href="#cb39-439" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-440"><a href="#cb39-440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-441"><a href="#cb39-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-442"><a href="#cb39-442" aria-hidden="true" tabindex="-1"></a><span class="ss">Applying hamming window and plotting the power spectrum</span></span>
+<span id="cb39-442"><a href="#cb39-442" aria-hidden="true" tabindex="-1"></a>Applying hamming window and plotting the power spectrum</span>
 <span id="cb39-443"><a href="#cb39-443" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-446"><a href="#cb39-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">TS</span>(tha_fgs_gse[<span class="op">:</span>, <span class="fl">3</span>])</span>
-<span id="cb39-448"><a href="#cb39-448" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">rectify_datetime</span>(da)</span>
+<span id="cb39-447"><a href="#cb39-447" aria-hidden="true" tabindex="-1"></a><span class="in">da = TS(tha_fgs_gse[:, 3])</span></span>
+<span id="cb39-448"><a href="#cb39-448" aria-hidden="true" tabindex="-1"></a><span class="in">da = rectify_datetime(da)</span></span>
 <span id="cb39-449"><a href="#cb39-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-450"><a href="#cb39-450" aria-hidden="true" tabindex="-1"></a>spec1 <span class="op">=</span> <span class="fu">Spectrogram</span>(nfft<span class="op">=</span><span class="fl">512</span>, noverlap<span class="op">=</span><span class="fl">64</span>, window<span class="op">=</span>hamming)</span>
-<span id="cb39-451"><a href="#cb39-451" aria-hidden="true" tabindex="-1"></a>res1 <span class="op">=</span> <span class="fu">pspectrum</span>(da, spec1)</span>
-<span id="cb39-452"><a href="#cb39-452" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tfr</span>(res1)</span>
-<span id="cb39-453"><a href="#cb39-453" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-450"><a href="#cb39-450" aria-hidden="true" tabindex="-1"></a><span class="in">spec1 = Spectrogram(nfft=512, noverlap=64, window=hamming)</span></span>
+<span id="cb39-451"><a href="#cb39-451" aria-hidden="true" tabindex="-1"></a><span class="in">res1 = pspectrum(da, spec1)</span></span>
+<span id="cb39-452"><a href="#cb39-452" aria-hidden="true" tabindex="-1"></a><span class="in">plot_tfr(res1)</span></span>
+<span id="cb39-453"><a href="#cb39-453" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-454"><a href="#cb39-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-455"><a href="#cb39-455" aria-hidden="true" tabindex="-1"></a><span class="ss">Applying Morlet wavelet and plotting the power spectrum</span></span>
+<span id="cb39-455"><a href="#cb39-455" aria-hidden="true" tabindex="-1"></a>Applying Morlet wavelet and plotting the power spectrum</span>
 <span id="cb39-456"><a href="#cb39-456" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-459"><a href="#cb39-459" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-460"><a href="#cb39-460" aria-hidden="true" tabindex="-1"></a>wl2 <span class="op">=</span> <span class="fu">wavelet</span>(<span class="fu">Morlet</span>(<span class="cn">π</span>), β<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb39-461"><a href="#cb39-461" aria-hidden="true" tabindex="-1"></a>res2 <span class="op">=</span> <span class="fu">pspectrum</span>(da, wl2)</span>
-<span id="cb39-462"><a href="#cb39-462" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tfr</span>(res2)</span>
-<span id="cb39-463"><a href="#cb39-463" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-460"><a href="#cb39-460" aria-hidden="true" tabindex="-1"></a><span class="in">wl2 = wavelet(Morlet(π), β=2)</span></span>
+<span id="cb39-461"><a href="#cb39-461" aria-hidden="true" tabindex="-1"></a><span class="in">res2 = pspectrum(da, wl2)</span></span>
+<span id="cb39-462"><a href="#cb39-462" aria-hidden="true" tabindex="-1"></a><span class="in">plot_tfr(res2)</span></span>
+<span id="cb39-463"><a href="#cb39-463" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-464"><a href="#cb39-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-465"><a href="#cb39-465" aria-hidden="true" tabindex="-1"></a><span class="ss">Field line resonances are more visible using window function although with lower resolution. Zoom in on the low frequencies</span></span>
+<span id="cb39-465"><a href="#cb39-465" aria-hidden="true" tabindex="-1"></a>Field line resonances are more visible using window function although with lower resolution. Zoom in on the low frequencies</span>
 <span id="cb39-466"><a href="#cb39-466" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-469"><a href="#cb39-469" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-470"><a href="#cb39-470" aria-hidden="true" tabindex="-1"></a>res1_s <span class="op">=</span> res1[𝑓<span class="op">=</span><span class="fu">Where</span>(<span class="op">&lt;=</span>(<span class="fl">0.05</span>u<span class="st">"Hz"</span>))]</span>
-<span id="cb39-471"><a href="#cb39-471" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tfr</span>(res1_s)</span>
-<span id="cb39-472"><a href="#cb39-472" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-470"><a href="#cb39-470" aria-hidden="true" tabindex="-1"></a><span class="in">res1_s = res1[𝑓=Where(&lt;=(0.05u"Hz"))]</span></span>
+<span id="cb39-471"><a href="#cb39-471" aria-hidden="true" tabindex="-1"></a><span class="in">plot_tfr(res1_s)</span></span>
+<span id="cb39-472"><a href="#cb39-472" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-473"><a href="#cb39-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-474"><a href="#cb39-474" aria-hidden="true" tabindex="-1"></a><span class="ss">### Field aligned coordinate system</span></span>
+<span id="cb39-474"><a href="#cb39-474" aria-hidden="true" tabindex="-1"></a><span class="fu">### Field aligned coordinate system</span></span>
 <span id="cb39-475"><a href="#cb39-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-476"><a href="#cb39-476" aria-hidden="true" tabindex="-1"></a><span class="ss">&gt; iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.</span></span>
+<span id="cb39-476"><a href="#cb39-476" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; iii. Transform to the field aligned coordinate system, with “Other dimension” being radially inward (minus R). This will give you 3 components: Radially inward, Azimuthal Westward, and Field aligned. Plot and confirm that the compressional component is small.</span></span>
 <span id="cb39-477"><a href="#cb39-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-478"><a href="#cb39-478" aria-hidden="true" tabindex="-1"></a><span class="ss">To confirm that the compressional component of the magnetic field is small, we need to analyze the fluctuations in the magnetic field and determine whether the component along the background field direction is significantly weaker than the perpendicular components.</span></span>
+<span id="cb39-478"><a href="#cb39-478" aria-hidden="true" tabindex="-1"></a>To confirm that the compressional component of the magnetic field is small, we need to analyze the fluctuations in the magnetic field and determine whether the component along the background field direction is significantly weaker than the perpendicular components.</span>
 <span id="cb39-479"><a href="#cb39-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-480"><a href="#cb39-480" aria-hidden="true" tabindex="-1"></a><span class="ss">`fac_matrix_make` and `rotate` could be easily implemented in few lines. Note that we implement only the `array` version (corresponding to one timestamp), and the `matrix` version could be freely got using Julia `broadcast` operators which also align with dimensions.</span></span>
+<span id="cb39-480"><a href="#cb39-480" aria-hidden="true" tabindex="-1"></a><span class="in">`fac_matrix_make`</span> and <span class="in">`rotate`</span> could be easily implemented in few lines. Note that we implement only the <span class="in">`array`</span> version (corresponding to one timestamp), and the <span class="in">`matrix`</span> version could be freely got using Julia <span class="in">`broadcast`</span> operators which also align with dimensions.</span>
 <span id="cb39-481"><a href="#cb39-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-482"><a href="#cb39-482" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span>julia</span>
-<span id="cb39-483"><a href="#cb39-483" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fac_matrix_make</span>(</span>
-<span id="cb39-484"><a href="#cb39-484" aria-hidden="true" tabindex="-1"></a>    vec<span class="op">::</span><span class="dt">AbstractVector</span>;</span>
-<span id="cb39-485"><a href="#cb39-485" aria-hidden="true" tabindex="-1"></a>    xref<span class="op">=</span>[<span class="fl">1.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]</span>
-<span id="cb39-486"><a href="#cb39-486" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-487"><a href="#cb39-487" aria-hidden="true" tabindex="-1"></a>    z0 <span class="op">=</span> <span class="fu">normalize</span>(vec)</span>
-<span id="cb39-488"><a href="#cb39-488" aria-hidden="true" tabindex="-1"></a>    y0 <span class="op">=</span> <span class="fu">normalize</span>(<span class="fu">cross</span>(z0, xref))</span>
-<span id="cb39-489"><a href="#cb39-489" aria-hidden="true" tabindex="-1"></a>    x0 <span class="op">=</span> <span class="fu">cross</span>(y0, z0)</span>
-<span id="cb39-490"><a href="#cb39-490" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">vcat</span>(x0<span class="op">'</span>, y0<span class="op">'</span>, z0<span class="op">'</span>)</span>
-<span id="cb39-491"><a href="#cb39-491" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb39-482"><a href="#cb39-482" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
+<span id="cb39-483"><a href="#cb39-483" aria-hidden="true" tabindex="-1"></a><span class="in">function fac_matrix_make(</span></span>
+<span id="cb39-484"><a href="#cb39-484" aria-hidden="true" tabindex="-1"></a><span class="in">    vec::AbstractVector;</span></span>
+<span id="cb39-485"><a href="#cb39-485" aria-hidden="true" tabindex="-1"></a><span class="in">    xref=[1.0, 0.0, 0.0]</span></span>
+<span id="cb39-486"><a href="#cb39-486" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb39-487"><a href="#cb39-487" aria-hidden="true" tabindex="-1"></a><span class="in">    z0 = normalize(vec)</span></span>
+<span id="cb39-488"><a href="#cb39-488" aria-hidden="true" tabindex="-1"></a><span class="in">    y0 = normalize(cross(z0, xref))</span></span>
+<span id="cb39-489"><a href="#cb39-489" aria-hidden="true" tabindex="-1"></a><span class="in">    x0 = cross(y0, z0)</span></span>
+<span id="cb39-490"><a href="#cb39-490" aria-hidden="true" tabindex="-1"></a><span class="in">    return vcat(x0', y0', z0')</span></span>
+<span id="cb39-491"><a href="#cb39-491" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
 <span id="cb39-492"><a href="#cb39-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-493"><a href="#cb39-493" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">rotate</span>(da, mat)</span>
-<span id="cb39-494"><a href="#cb39-494" aria-hidden="true" tabindex="-1"></a>    da <span class="op">=</span> da[<span class="fu">DimSelectors</span>(mats)]</span>
-<span id="cb39-495"><a href="#cb39-495" aria-hidden="true" tabindex="-1"></a>    da_rot <span class="op">=</span> mats <span class="op">.*</span> <span class="fu">eachrow</span>(da.data)</span>
-<span id="cb39-496"><a href="#cb39-496" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TS</span>(<span class="fu">dims</span>(da, Ti), <span class="fu">dims</span>(da, <span class="fl">2</span>), <span class="fu">hcat</span>(da_rot<span class="op">...</span>)<span class="ch">')</span></span>
-<span id="cb39-497"><a href="#cb39-497" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb39-498"><a href="#cb39-498" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-493"><a href="#cb39-493" aria-hidden="true" tabindex="-1"></a><span class="in">function rotate(da, mat)</span></span>
+<span id="cb39-494"><a href="#cb39-494" aria-hidden="true" tabindex="-1"></a><span class="in">    da = da[DimSelectors(mats)]</span></span>
+<span id="cb39-495"><a href="#cb39-495" aria-hidden="true" tabindex="-1"></a><span class="in">    da_rot = mats .* eachrow(da.data)</span></span>
+<span id="cb39-496"><a href="#cb39-496" aria-hidden="true" tabindex="-1"></a><span class="in">    TS(dims(da, Ti), dims(da, 2), hcat(da_rot...)')</span></span>
+<span id="cb39-497"><a href="#cb39-497" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb39-498"><a href="#cb39-498" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-499"><a href="#cb39-499" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-502"><a href="#cb39-502" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-503"><a href="#cb39-503" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> tha_fgs_gse</span>
-<span id="cb39-504"><a href="#cb39-504" aria-hidden="true" tabindex="-1"></a><span class="co"># smooth the data</span></span>
-<span id="cb39-505"><a href="#cb39-505" aria-hidden="true" tabindex="-1"></a>mat_da <span class="op">=</span> <span class="fu">smooth</span>(da, <span class="fl">601</span>)</span>
-<span id="cb39-506"><a href="#cb39-506" aria-hidden="true" tabindex="-1"></a><span class="co"># make the rotation matrix from the smoothed data</span></span>
-<span id="cb39-507"><a href="#cb39-507" aria-hidden="true" tabindex="-1"></a>mats <span class="op">=</span> <span class="fu">fac_matrix_make</span>.(<span class="fu">eachslice</span>(mat_da, dims<span class="op">=</span>Ti))</span>
-<span id="cb39-508"><a href="#cb39-508" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate original data</span></span>
-<span id="cb39-509"><a href="#cb39-509" aria-hidden="true" tabindex="-1"></a>da_fac <span class="op">=</span> <span class="fu">rotate</span>(da, mats)</span>
-<span id="cb39-510"><a href="#cb39-510" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([da, da_fac])</span>
-<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-503"><a href="#cb39-503" aria-hidden="true" tabindex="-1"></a><span class="in">da = tha_fgs_gse</span></span>
+<span id="cb39-504"><a href="#cb39-504" aria-hidden="true" tabindex="-1"></a><span class="in"># smooth the data</span></span>
+<span id="cb39-505"><a href="#cb39-505" aria-hidden="true" tabindex="-1"></a><span class="in">mat_da = smooth(da, 601)</span></span>
+<span id="cb39-506"><a href="#cb39-506" aria-hidden="true" tabindex="-1"></a><span class="in"># make the rotation matrix from the smoothed data</span></span>
+<span id="cb39-507"><a href="#cb39-507" aria-hidden="true" tabindex="-1"></a><span class="in">mats = fac_matrix_make.(eachslice(mat_da, dims=Ti))</span></span>
+<span id="cb39-508"><a href="#cb39-508" aria-hidden="true" tabindex="-1"></a><span class="in"># rotate original data</span></span>
+<span id="cb39-509"><a href="#cb39-509" aria-hidden="true" tabindex="-1"></a><span class="in">da_fac = rotate(da, mats)</span></span>
+<span id="cb39-510"><a href="#cb39-510" aria-hidden="true" tabindex="-1"></a><span class="in">tplot([da, da_fac])</span></span>
+<span id="cb39-511"><a href="#cb39-511" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-512"><a href="#cb39-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a><span class="ss">### Poloidal vs. toroidal</span></span>
+<span id="cb39-513"><a href="#cb39-513" aria-hidden="true" tabindex="-1"></a><span class="fu">### Poloidal vs. toroidal</span></span>
 <span id="cb39-514"><a href="#cb39-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-515"><a href="#cb39-515" aria-hidden="true" tabindex="-1"></a><span class="ss">&gt; iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.</span></span>
+<span id="cb39-515"><a href="#cb39-515" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; iv. Make dynamic power spectra of the radial and azimuthal components. Which of the two components dominates? This determines if the FLR is poloidal or toroidal. (You may use wavelet transform instead of FFT to construct the dynamic power spectrum, if you prefer and can easily do so as in IDL SPEDAS).  Report on your plots with explanations. Show all your code in addition to your plots, with comments included for clarification.</span></span>
 <span id="cb39-516"><a href="#cb39-516" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-519"><a href="#cb39-519" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-520"><a href="#cb39-520" aria-hidden="true" tabindex="-1"></a>da_x <span class="op">=</span> da_fac[<span class="op">:</span>, <span class="fl">1</span>]</span>
-<span id="cb39-521"><a href="#cb39-521" aria-hidden="true" tabindex="-1"></a>da_x <span class="op">=</span> <span class="fu">rectify_datetime</span>(da_x)</span>
+<span id="cb39-520"><a href="#cb39-520" aria-hidden="true" tabindex="-1"></a><span class="in">da_x = da_fac[:, 1]</span></span>
+<span id="cb39-521"><a href="#cb39-521" aria-hidden="true" tabindex="-1"></a><span class="in">da_x = rectify_datetime(da_x)</span></span>
 <span id="cb39-522"><a href="#cb39-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-523"><a href="#cb39-523" aria-hidden="true" tabindex="-1"></a>res_x <span class="op">=</span> <span class="fu">pspectrum</span>(da_x, spec1)</span>
-<span id="cb39-524"><a href="#cb39-524" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tfr</span>(res_x)</span>
-<span id="cb39-525"><a href="#cb39-525" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-523"><a href="#cb39-523" aria-hidden="true" tabindex="-1"></a><span class="in">res_x = pspectrum(da_x, spec1)</span></span>
+<span id="cb39-524"><a href="#cb39-524" aria-hidden="true" tabindex="-1"></a><span class="in">plot_tfr(res_x)</span></span>
+<span id="cb39-525"><a href="#cb39-525" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-526"><a href="#cb39-526" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-529"><a href="#cb39-529" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb39-530"><a href="#cb39-530" aria-hidden="true" tabindex="-1"></a>da_y <span class="op">=</span> da_fac[<span class="op">:</span>, <span class="fl">2</span>]</span>
-<span id="cb39-531"><a href="#cb39-531" aria-hidden="true" tabindex="-1"></a>da_y <span class="op">=</span> <span class="fu">rectify_datetime</span>(da_y)</span>
+<span id="cb39-530"><a href="#cb39-530" aria-hidden="true" tabindex="-1"></a><span class="in">da_y = da_fac[:, 2]</span></span>
+<span id="cb39-531"><a href="#cb39-531" aria-hidden="true" tabindex="-1"></a><span class="in">da_y = rectify_datetime(da_y)</span></span>
 <span id="cb39-532"><a href="#cb39-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-533"><a href="#cb39-533" aria-hidden="true" tabindex="-1"></a>res_y <span class="op">=</span> <span class="fu">pspectrum</span>(da_y, spec1)</span>
-<span id="cb39-534"><a href="#cb39-534" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_tfr</span>(res_y)</span>
-<span id="cb39-535"><a href="#cb39-535" aria-hidden="true" tabindex="-1"></a><span class="ss">```</span></span>
+<span id="cb39-533"><a href="#cb39-533" aria-hidden="true" tabindex="-1"></a><span class="in">res_y = pspectrum(da_y, spec1)</span></span>
+<span id="cb39-534"><a href="#cb39-534" aria-hidden="true" tabindex="-1"></a><span class="in">plot_tfr(res_y)</span></span>
+<span id="cb39-535"><a href="#cb39-535" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb39-536"><a href="#cb39-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-537"><a href="#cb39-537" aria-hidden="true" tabindex="-1"></a><span class="ss">We can see that the power spectrum of the y (azimuthal) component is much higher than the power spectrum of the x (radial) component. This indicates that the FLR is likely to be toroidal.</span></span>
+<span id="cb39-537"><a href="#cb39-537" aria-hidden="true" tabindex="-1"></a>We can see that the power spectrum of the y (azimuthal) component is much higher than the power spectrum of the x (radial) component. This indicates that the FLR is likely to be toroidal.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

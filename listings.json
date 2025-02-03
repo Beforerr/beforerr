@@ -20,13 +20,18 @@
     ]
   },
   {
-    "listing": "/docs/courses/epss263/homework/index.html",
+    "listing": "/docs/blog/index.html",
     "items": [
-      "/docs/courses/epss263/homework/epss263_hw02.html",
-      "/docs/courses/epss263/homework/epss263_hw03.html",
-      "/docs/courses/epss263/homework/epss263_hw04.html",
-      "/docs/courses/epss263/homework/epss263_hw05.html",
-      "/docs/courses/epss263/homework/epss263_hw06.html"
+      "/docs/blog/phd/2024_pre/proposal_EMIC.html",
+      "/docs/blog/phd/2024_pre/proposal_SWD.html",
+      "/docs/blog/phd/2024_pre/index.html",
+      "/docs/blog/2024_NASA_summer_school/index.html",
+      "/docs/blog/2024_NASA_summer_school/capstone.html",
+      "/docs/blog/journal_club/2024-10-16_jets/index.html",
+      "/docs/blog/phd/index.html",
+      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
+      "/docs/blog/journal_club/2024-04-23_mercury/index.html",
+      "/docs/blog/2023_AGU/index.html"
     ]
   },
   {
@@ -36,8 +41,8 @@
       "/docs/research/articles/margotSearchTechnosignatures2023/index.html",
       "/docs/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
       "/docs/research/projects/2024_Zijin_hybrid-simulation/index.html",
-      "/docs/research/projects/2024_DiscontinuityPy/index.html",
       "/docs/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
+      "/docs/research/projects/2024_DiscontinuityPy/index.html",
       "/docs/research/projects/2024_space-analysis.py/index.html",
       "/docs/research/projects/2024_Zijin_finesst/index.html",
       "/docs/research/projects/2022_Zijin_solar-wind-LMA/index.html",
@@ -50,8 +55,8 @@
     "items": [
       "/docs/projects/coding/2025_SpaceTools.jl/index.html",
       "/docs/projects/coding/2025_ChargedParticles.jl/index.html",
-      "/docs/projects/coding/2025_Speasy.jl/index.html",
-      "/docs/projects/coding/2025_PermuteArgs.jl/index.html"
+      "/docs/projects/coding/2025_PermuteArgs.jl/index.html",
+      "/docs/projects/coding/2025_Speasy.jl/index.html"
     ]
   }
 ]
