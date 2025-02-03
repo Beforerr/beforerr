@@ -311,27 +311,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>    CondaPkg Found dependencies: /Users/zijin/.julia/packages/DimensionalData/bwTLK/CondaPkg.toml
-    CondaPkg Found dependencies: /Users/zijin/.julia/dev/Speasy/CondaPkg.toml
-    CondaPkg Found dependencies: /Users/zijin/.julia/packages/PythonCall/WMWY0/CondaPkg.toml
-    CondaPkg Dependencies already up to date
-Precompiling SpaceTools...
-  10427.5 ms  ✓ SpaceTools
-  1 dependency successfully precompiled in 13 seconds. 325 already precompiled.</code></pre>
-</div>
 </div>
 <div id="4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T22:00:00"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T22:00:00"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>/Users/zijin/projects/beforerr/.CondaPkg/env/lib/python3.11/site-packages/speasy/core/data_containers.py:18: UserWarning: no explicit representation of timezones available for np.datetime64
-  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')</code></pre>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>┌ 14386×3 DimArray{Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}, 2} tha_fgs_gse ┐
 ├──────────────────────────────────────────────────────────────────────── dims ┤
@@ -370,6 +357,17 @@ Precompiling SpaceTools...
 <div id="6" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_max <span class="op">=</span> <span class="fu">maximum</span>(da)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> <span class="fu">norm</span>.(<span class="fu">eachrow</span>(da))[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ Info: 65.44341f0 nT
+[ Info: Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}[75.64841f0 nT, 75.72411f0 nT, 75.5134f0 nT, 75.73276f0 nT, 75.492195f0 nT, 75.506645f0 nT, 75.522064f0 nT, 75.78088f0 nT, 75.69144f0 nT, 75.647f0 nT]</code></pre>
+</div>
+</div>
+<div id="8" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>da1 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>da2 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/BX_GSE"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
@@ -402,23 +400,19 @@ DimensionMismatch("Lookup values for DimensionalData.Dimensions.Ti of [Dates.Dat
 <section id="unit-aware-time-series" class="level1">
 <h1>Unit-aware Time Series</h1>
 <p>Unit is not just a plot label, but also has dimensions meaning. (<code>Unitful.jl</code> integration)</p>
-<div id="8" class="cell" data-execution_count="1">
+<div id="10" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_dim <span class="op">=</span> <span class="fu">dimension</span>(da.data[<span class="fl">1</span>])</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_max <span class="op">=</span> <span class="fu">maximum</span>(da)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> <span class="fu">norm</span>.(<span class="fu">eachrow</span>(da))[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_dim <span class="op">=</span> <span class="fu">dimension</span>(da.data[<span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ Info: 𝐌 𝐈⁻¹ 𝐓⁻²
-[ Info: 65.44341f0 nT
-[ Info: Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}[75.64841f0 nT, 75.72411f0 nT, 75.5134f0 nT, 75.73276f0 nT, 75.492195f0 nT, 75.506645f0 nT, 75.522064f0 nT, 75.78088f0 nT, 75.69144f0 nT, 75.647f0 nT]</code></pre>
+<pre><code>[ Info: 𝐌 𝐈⁻¹ 𝐓⁻²</code></pre>
 </div>
 </div>
 </section>
 <section id="tplot" class="level1">
 <h1>Tplot</h1>
-<div id="12" class="cell" data-execution_count="1">
+<div id="14" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">tplot</span>([da])</span>
@@ -427,12 +421,12 @@ DimensionMismatch("Lookup values for DimensionalData.Dimensions.Ti of [Dates.Dat
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="14" class="cell" data-execution_count="1">
+<div id="16" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
@@ -444,7 +438,7 @@ DimensionMismatch("Lookup values for DimensionalData.Dimensions.Ti of [Dates.Dat
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/Pressure"</span>,</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure).figure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service
@@ -454,7 +448,7 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-2.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-9-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -462,7 +456,7 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 <section id="spectrogram" class="level2">
 <h2 class="anchored" data-anchor-id="spectrogram">Spectrogram</h2>
 <p>https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FPI_FAST_L2_DES-DIST</p>
-<div id="16" class="cell" data-execution_count="1">
+<div id="18" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ts0 <span class="op">=</span> <span class="st">"2019-01-02T15"</span> <span class="op">|&gt;</span> <span class="dt">DateTime</span></span>
@@ -481,7 +475,7 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-9-output-2.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-10-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -491,13 +485,13 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 <section id="dish-cached-time-series" class="level1">
 <h1>Dish-cached Time Series</h1>
 <p>WebServer (CDAWeb) -&gt; Files -&gt; Data structure (<code>tplot</code> variable / <code>numpy</code> array)</p>
-<p>However, loading <code>cdf</code> files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure.</p>
+<p>However, loading <code>cdf</code> files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure (<code>numpy</code> array).</p>
 <p>WebServer (CDAWeb) -&gt; Files -&gt; Disk-cached data structure -&gt; Data structure</p>
 </section>
 <section id="interactive-time-series" class="level1">
 <h1>Interactive Time Series</h1>
 <p>Use <code>GLMakie</code> to zoom in and <strong>Zoom out</strong> to explore data.</p>
-<div id="18" class="cell" data-execution_count="0">
+<div id="20" class="cell" data-execution_count="0">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,9 +507,11 @@ We love all of these languages; they are wonderful and powerful. For the work we
 We are greedy: we want more.
 We want a language that’s open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that’s homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.</p>
 </blockquote>
-<p>We wants <code>tplot</code> to understand a time series represented as a <code>vector</code>-like / <code>matrix</code>-like (series/heatmap/spectrogram) / <code>Function</code> / <code>String</code></p>
-<p>We wants <code>tplot</code> to plot multiple time series on the same figure, it wants to be interactive as well as publication-ready, and it wants to be composable.</p>
-<div id="20" class="cell" data-execution_count="1">
+<p>We want <code>tplot</code> to understand a time series represented as a <code>vector</code>-like / <code>matrix</code>-like (series/heatmap/spectrogram) / <code>Function</code> / <code>String</code></p>
+<p>We want <code>tplot</code> to plot multiple time series on the same figure;
+We want <code>tplot</code> to be interactive as well as publication-ready;
+and we want <code>tplot</code> to be composable.</p>
+<div id="22" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
@@ -536,7 +532,7 @@ We want a language that’s open source, with a liberal license. We want the spe
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-11-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
