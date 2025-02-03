@@ -48,6 +48,7 @@
   {
     "listing": "/docs/projects/index.html",
     "items": [
+      "/docs/projects/coding/2025_SpaceTools.jl/index.html",
       "/docs/projects/coding/2025_ChargedParticles.jl/index.html",
       "/docs/projects/coding/2025_Speasy.jl/index.html",
       "/docs/projects/coding/2025_PermuteArgs.jl/index.html"
