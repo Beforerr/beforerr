@@ -54,6 +54,11 @@ da = get_data("cda/THA_L2_FGM/tha_fgs_gse", t0, t1) |> DimArray
 No more need to `get_data` and `store_data`. All the functions and operations that work on abstract array would also work on the time series.
 
 ```{julia}
+@info da_max = maximum(da)
+@info norm.(eachrow(da))[1:10]
+```
+
+```{julia}
 using Test
 da1 = get_data("cda/OMNI_HRO_1MIN/flow_speed", t0, t1) |> DimArray
 da2 = get_data("cda/OMNI_HRO_1MIN/BX_GSE", t0, t1) |> DimArray
@@ -84,8 +89,6 @@ Unit is not just a plot label, but also has dimensions meaning. (`Unitful.jl` in
 
 ```{julia}
 @info da_dim = dimension(da.data[1])
-@info da_max = maximum(da)
-@info norm.(eachrow(da))[1:10]
 ```
 
 # Tplot
@@ -115,12 +118,12 @@ tvars = [
     "cda/OMNI_HRO_1MIN/Pressure",
 ]
 
-tplot(tvars, t0, t1; figure).figure
+tplot(tvars, t0, t1; figure)
 ```
 
 ## Spectrogram
 
-https://cdaweb.gsfc.nasa.gov/misc/NotesP.html#PSP_FLD_L3_RFS_LFR
+https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FPI_FAST_L2_DES-DIST
 
 ```{julia}
 ts0 = "2019-01-02T15" |> DateTime
@@ -129,25 +132,23 @@ ts1 = "2019-01-02T22" |> DateTime
 tvars = [
     "cda/MMS1_FPI_FAST_L2_DES-MOMS/mms1_des_energyspectr_omni_fast",
 ]
-tplot(tvars, ts0, ts1; figure)
+tplot(tvars, ts0, ts1)
 ```
 
 # Dish-cached Time Series
 
 WebServer (CDAWeb) -> Files -> Data structure (`tplot` variable / `numpy` array)
 
-However, loading `cdf` files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure.
+However, loading `cdf` files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure (`numpy` array).
 
 WebServer (CDAWeb) -> Files -> Disk-cached data structure -> Data structure
 
 # Interactive Time Series
 
-Zoom in and **Zoom out** to explore data.
+Use `GLMakie` to zoom in and **Zoom out** to explore data.
 
 ```{julia}
 #| eval: false
-using GLMakie
-
 tplot(tvars, t0, t1; figure)
 ```
 
@@ -161,9 +162,10 @@ tplot(tvars, t0, t1; figure)
 > We are greedy: we want more.
 > We want a language that's open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that's homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.
 
-We wants `tplot` to understand a time series represented as a `vector`-like / `matrix`-like (series/heatmap/spectrogram) / `Function` / `String`
-
-We wants `tplot` to plot multiple time series on the same figure, it wants to be interactive as well as publication-ready, and it wants to be composable.
+We want `tplot` to understand a time series represented as a `vector`-like / `matrix`-like (series/heatmap/spectrogram) / `Function` / `String`;
+We want `tplot` to plot multiple time series on the same figure;
+We want `tplot` to be interactive as well as publication-ready; 
+and we want `tplot` to be composable.
 
 ```{julia}
 using CairoMakie
