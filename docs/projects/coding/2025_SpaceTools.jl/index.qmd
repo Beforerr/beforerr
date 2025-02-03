@@ -1,0 +1,159 @@
+---
+title: SpaceTools.jl
+subtitle: Space data analysis toolbox in Julia
+date: last-modified
+categories:
+  - package
+  - Julia
+format:
+  html:
+    toc-location: left
+code-links:
+  - text: GitHub Repo
+    href: https://github.com/Beforerr/SpaceTools.jl
+    icon: github
+  - text: Documentation
+    href: https://beforerr.github.io/SpaceTools.jl/dev/
+    icon: globe
+engine: julia  
+---
+
+# Unit-aware Array-like Time Series
+
+```{julia}
+using Speasy
+spz = speasy()
+
+using CairoMakie
+using DimensionalData
+using SpaceTools
+using Dates
+using Unitful
+using LinearAlgebra
+```
+
+Unit is not just a plot label, but also have dimensions meaning. (`Unitful.jl` integration)
+
+```{julia}
+t0 = DateTime("2008-09-05T10:00:00")
+t1 = DateTime("2008-09-05T22:00:00")
+da = get_data("cda/THA_L2_FGM/tha_fgs_gse", t0, t1) |> DimArray
+```
+
+```{julia}
+@info da_dim = dimension(da.data[1])
+@info da_max = maximum(da)
+@info norm.(eachrow(da))[1:10]
+```
+
+No more need to `get_data` and `store_data`. All the functions and operations that work on abstract array would also work on the time series.
+
+```{julia}
+using Test
+da1 = get_data("cda/OMNI_HRO_1MIN/flow_speed", t0, t1) |> DimArray
+da2 = get_data("cda/OMNI_HRO_1MIN/BX_GSE", t0, t1) |> DimArray
+
+try
+    da1 + da2
+catch e
+    println(e)
+    @test e isa Unitful.DimensionError
+end
+```
+
+# Tplot
+
+```{julia}
+using AlgebraOfGraphics
+using Beforerr
+
+pub_theme = Beforerr.theme_pub(;)
+aog_theme = Theme(AlgebraOfGraphics.aog_theme())
+theme = merge(aog_theme, pub_theme)
+
+with_theme(theme) do
+    f = tplot([da])
+    f.figure
+end
+```
+
+```{julia}
+#| echo: false
+ff(s::AbstractString) = (args...) -> DimArray(get_data(s, args...))
+
+function SpaceTools.tplot(gd, tas::AbstractString, args...; kwargs...)
+    fs = ff(tas)
+    tplot(gd, fs, args...; kwargs...)
+end
+```
+
+```{julia}
+figure = (; size=(1200, 800))
+
+tvars = [
+    "cda/THA_L2_FGM/tha_fgs_gsmQ",
+    "cda/OMNI_HRO_1MIN/flow_speed",
+    "cda/OMNI_HRO_1MIN/E",
+    "cda/OMNI_HRO_1MIN/Pressure",
+]
+
+tplot(tvars, t0, t1; figure).figure
+```
+
+# Dish-cached Time Series
+
+WebServer (CDAWeb) -> Files -> Data structure (`tplot` variable / `numpy` array)
+
+However, loading `cdf` files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure.
+
+WebServer (CDAWeb) -> Files -> Disk-cached data structure -> Data structure
+
+# Interactive Time Series
+
+Zoom in and **Zoom out** to explore data.
+
+```{julia}
+#| eval: false
+using GLMakie
+
+tplot(tvars, t0, t1; figure)
+```
+
+
+# Multiple dispatch `tplot`
+
+<!-- https://julialang.org/blog/2012/02/why-we-created-julia/ -->
+
+> We are power Matlab users. Some of us are Lisp hackers. Some are Pythonistas, others Rubyists, still others Perl hackers. There are those of us who used Mathematica before we could grow facial hair. There are those who still can't grow facial hair. We've generated more R plots than any sane person should. C is our desert island programming language.
+
+> We love all of these languages; they are wonderful and powerful. For the work we do — scientific computing, machine learning, data mining, large-scale linear algebra, distributed and parallel computing — each one is perfect for some aspects of the work and terrible for others. Each one is a trade-off.
+
+> We are greedy: we want more.
+
+> We want a language that's open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that's homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.
+
+We wants `tplot` to understand a time series represented as a `vector`-like / `matrix`-like (series/heatmap/spectrogram) / `Function` / `String`
+
+We wants `tplot` to plot multiple time series on the same figure, it wants to be interactive as well as publication-ready, and it wants to be composable.
+
+```{julia}
+using CairoMakie
+# using GLMakie
+
+figure = (; size=(1600, 1200))
+f = Figure(; figure...)
+
+tvars1 = ["cda/OMNI_HRO_1MIN/flow_speed", "cda/OMNI_HRO_1MIN/E", "cda/OMNI_HRO_1MIN/Pressure"]
+tvars2 = ["cda/THA_L2_FGM/tha_fgs_gse"]
+tvars3 = ["cda/OMNI_HRO_1MIN/BX_GSE", "cda/OMNI_HRO_1MIN/BY_GSE"]
+
+tplot(f[1, 1], tvars1, t0, t1)
+tplot(f[1, 2], tvars2, t0, t1)
+tplot(f[2, 1:2], tvars3, t0, t1)
+f
+```
+
+
+# Links
+
+https://github.com/Beforerr/SpaceTools.jl

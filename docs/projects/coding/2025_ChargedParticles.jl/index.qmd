@@ -17,4 +17,4 @@ code-links:
     icon: globe
 ---
 
-Plasma physicist believe charged particles makes up 99.9% of the visible universe🌠
+Plasma physicist believe plasma makes up 99.9% of the visible universe🌠
