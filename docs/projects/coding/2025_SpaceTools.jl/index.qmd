@@ -20,6 +20,15 @@ engine: julia
 
 Think of `SPEDAS` in Julia.
 
+## Installation
+
+```julia
+using Pkg
+Pkg.add("https://github.com/SciQLop/Speasy.jl")
+Pkg.add("https://github.com/Beforerr/SpaceTools.jl")
+Pkg.add("https://github.com/Beforerr/Beforerr.jl")
+```
+
 # Getting data is easy
 
 ```{julia}
@@ -82,20 +91,6 @@ Unit is not just a plot label, but also has dimensions meaning. (`Unitful.jl` in
 # Tplot
 
 ```{julia}
-using AlgebraOfGraphics
-using Beforerr
-
-pub_theme = Beforerr.theme_pub(;)
-aog_theme = Theme(AlgebraOfGraphics.aog_theme())
-theme = merge(aog_theme, pub_theme)
-
-with_theme(theme) do
-    f = tplot([da])
-    f.figure
-end
-```
-
-```{julia}
 #| echo: false
 ff(s::AbstractString) = (args...) -> DimArray(get_data(s, args...))
 
@@ -103,6 +98,11 @@ function SpaceTools.tplot(gd, tas::AbstractString, args...; kwargs...)
     fs = ff(tas)
     tplot(gd, fs, args...; kwargs...)
 end
+```
+
+```{julia}
+f = tplot([da])
+f.figure
 ```
 
 ```{julia}
@@ -116,6 +116,20 @@ tvars = [
 ]
 
 tplot(tvars, t0, t1; figure).figure
+```
+
+## Spectrogram
+
+https://cdaweb.gsfc.nasa.gov/misc/NotesP.html#PSP_FLD_L3_RFS_LFR
+
+```{julia}
+ts0 = "2019-01-02T15" |> DateTime
+ts1 = "2019-01-02T22" |> DateTime
+
+tvars = [
+    "cda/MMS1_FPI_FAST_L2_DES-MOMS/mms1_des_energyspectr_omni_fast",
+]
+tplot(tvars, ts0, ts1; figure)
 ```
 
 # Dish-cached Time Series
