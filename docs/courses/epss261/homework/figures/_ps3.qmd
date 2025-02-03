@@ -1,0 +1,75 @@
+---
+title: Problem Set 3
+number-sections: true
+engine: julia
+---
+
+## Minimum and Maximum Variance Analysis
+
+> Minimize the variance 2 Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.
+
+## Electromagnetic ion cyclotron waves
+
+> Electromagnetic ion cyclotron waves are left-hand polarized waves excited by velocity space anisotropy (perpendicular gradients in velocity distribution function). They are typically below the ion cyclotron frequency for each species (H+, He+ or O+). MMS observations on 2015 Dec. 14, show that such waves were excited after the passage of a shock1.
+
+### Spectrogram with cyclotron frequencies
+
+> [a] Obtain MMS 1 (or 2,3,4) data between 13:27 and 13:29 UT, from the FGM instrument in GSM coordinates, and plot the spectrogram of the X or Y component between 0-2Hz. Overlay the 3 cyclotron frequencies, as shown in Fig. 5 of the paper (for subset of time). [Note: you should create a low-pass filtered version of the average field at 5-10s window to compute the cyclotron frequencies with; for that use tsmooth2 (IDL) or pyspedas.interpol (PySPEDAS) after degap/clip/deflaging the data first].
+
+```{julia}
+
+```
+
+### Band-pass filtered data
+
+> [b] Plot the GSM time series of the band-pass filtered data between 0.2 – 2 Hz (again using tsmooth2/pyspedas.interpol to first low-pass filter the data at 0.2Hz, subtract it from the original to create the high-pass residual >0.2Hz, then low-pass filter that with a 2Hz window).
+
+```{julia}
+
+```
+
+### Minimum Variance Analysis
+
+> [c] Use minvar_matrix_make (IDL or pyspedas) applied on the band-pass filtered data to obtain the minimum variance matrix, on a sliding window. You can control the width and shift of the window (see keywords). Rotate the data in i,j,k (max,int,min) coord’s using tvector_rotate (in IDL / Py - SPEDAS; see how to use it from class examples, or from cribs / readthedocs). Plot the data in that coordinate system.
+
+```{julia}
+
+```
+
+### Minvar direction
+
+> [d] The code minvar_matrix_make allows you to output the eigenvectors and eigenvalues. Plot the eigenvalues and evaluate the confidence in the minvar direction. Plot the angle between the minvar direction and the direction of the ambient magnetic field (the 5-10s average above).
+
+```{julia}
+
+```
+
+### Hodogram
+
+> [e] There are several bursts of EMIC wave power in the interval. Pick one clean burst with 5-10 cycles and plot the B-field hodogram in the plane of polarization (max,int). (Bandpass filtering first will help). Is it left-hand polarized as expected? [Note that the minvar code ensures a right-hand orthogonal system, but you may have to switch vectors around if the angle to B-field is not less than 90deg].
+
+```{julia}
+
+```
+
+## Shock crossings
+
+> Shock crossings were observed by ARTEMIS P1 (TH-B) in the solar wind on 2013-07-09 20:40UT and on 2014-06-09 16:58UT, both captured in Fast Survey and published in Fig. 3 (analysis results in Table 1 of Zhou et al., 202022). Pick one of the two to study.
+
+### Shock normal
+
+> [a] Determine, using minimum variance analysis, the shock normal, the angle between the B-field and the shock normal, and the shock-normal magnetic field component, Bn.
+
+```{julia}
+
+```
+
+### Minimum variance direction
+
+> [b] Note that there are significant waves downstream but not upstream, which is common for weak (subcritical) shocks. Starting from a small interval barely encompassing the shock (<1min in length), increase the interval by ~0.5 min and recalculate. Then increase again and recalculate. Do so for ~10-20 times until you reach ~10min encompassing the shock. The solution will initially fluctuate from one to the next choice of intervals, then stabilize, then start being jittery again because you are including the waves. Plot the minimum variance direction (two angles, elevation and azimuth, in GSE) and Bn, all as a function of the interval chosen. Pick and report the best solution, based on the shortest time interval choice when the solution becomes stable.
+
+```{julia}
+
+```
+
+[c] The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the Bn and  separately. Check if they support your choice of interval.

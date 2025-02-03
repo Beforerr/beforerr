@@ -18,21 +18,21 @@ code-links:
 engine: julia  
 ---
 
-# Unit-aware Array-like Time Series
+Think of `SPEDAS` in Julia.
+
+# Getting data is easy
 
 ```{julia}
 using Speasy
 spz = speasy()
 
-using CairoMakie
-using DimensionalData
-using SpaceTools
 using Dates
+using DimensionalData
+using CairoMakie
+using SpaceTools
 using Unitful
 using LinearAlgebra
 ```
-
-Unit is not just a plot label, but also have dimensions meaning. (`Unitful.jl` integration)
 
 ```{julia}
 t0 = DateTime("2008-09-05T10:00:00")
@@ -40,11 +40,7 @@ t1 = DateTime("2008-09-05T22:00:00")
 da = get_data("cda/THA_L2_FGM/tha_fgs_gse", t0, t1) |> DimArray
 ```
 
-```{julia}
-@info da_dim = dimension(da.data[1])
-@info da_max = maximum(da)
-@info norm.(eachrow(da))[1:10]
-```
+# Array-like Time Series
 
 No more need to `get_data` and `store_data`. All the functions and operations that work on abstract array would also work on the time series.
 
@@ -59,6 +55,28 @@ catch e
     println(e)
     @test e isa Unitful.DimensionError
 end
+
+# in different times so add would not work
+
+tspan3 = DateTime("2008-09-05T10:00:00"), DateTime("2008-09-05T11:00:00")
+tspan4 = DateTime("2008-09-05T11:00:00"), DateTime("2008-09-05T12:00:00")
+da3 = get_data("cda/OMNI_HRO_1MIN/flow_speed", tspan3...) |> DimArray
+da4 = get_data("cda/OMNI_HRO_1MIN/flow_speed", tspan4...) |> DimArray
+try
+    da3 + da4
+catch e
+    println(e)
+end
+```
+
+# Unit-aware Time Series
+
+Unit is not just a plot label, but also has dimensions meaning. (`Unitful.jl` integration)
+
+```{julia}
+@info da_dim = dimension(da.data[1])
+@info da_max = maximum(da)
+@info norm.(eachrow(da))[1:10]
 ```
 
 # Tplot
@@ -125,11 +143,8 @@ tplot(tvars, t0, t1; figure)
 <!-- https://julialang.org/blog/2012/02/why-we-created-julia/ -->
 
 > We are power Matlab users. Some of us are Lisp hackers. Some are Pythonistas, others Rubyists, still others Perl hackers. There are those of us who used Mathematica before we could grow facial hair. There are those who still can't grow facial hair. We've generated more R plots than any sane person should. C is our desert island programming language.
-
 > We love all of these languages; they are wonderful and powerful. For the work we do — scientific computing, machine learning, data mining, large-scale linear algebra, distributed and parallel computing — each one is perfect for some aspects of the work and terrible for others. Each one is a trade-off.
-
 > We are greedy: we want more.
-
 > We want a language that's open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that's homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.
 
 We wants `tplot` to understand a time series represented as a `vector`-like / `matrix`-like (series/heatmap/spectrogram) / `Function` / `String`
