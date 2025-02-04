@@ -10,14 +10,55 @@ engine: julia
 
 ## Electromagnetic ion cyclotron waves
 
-> Electromagnetic ion cyclotron waves are left-hand polarized waves excited by velocity space anisotropy (perpendicular gradients in velocity distribution function). They are typically below the ion cyclotron frequency for each species (H+, He+ or O+). MMS observations on 2015 Dec. 14, show that such waves were excited after the passage of a shock1.
+> Electromagnetic ion cyclotron waves are left-hand polarized waves excited by velocity space anisotropy (perpendicular gradients in velocity distribution function). They are typically below the ion cyclotron frequency for each species (H+, He+ or O+). MMS observations on 2015 Dec. 14, show that such waves were excited after the passage of a shock.
+
+```{julia}
+using Speasy
+spz = speasy()
+
+using Dates
+using DimensionalData
+using CairoMakie
+using SpaceTools
+using Unitful
+```
 
 ### Spectrogram with cyclotron frequencies
 
 > [a] Obtain MMS 1 (or 2,3,4) data between 13:27 and 13:29 UT, from the FGM instrument in GSM coordinates, and plot the spectrogram of the X or Y component between 0-2Hz. Overlay the 3 cyclotron frequencies, as shown in Fig. 5 of the paper (for subset of time). [Note: you should create a low-pass filtered version of the average field at 5-10s window to compute the cyclotron frequencies with; for that use tsmooth2 (IDL) or pyspedas.interpol (PySPEDAS) after degap/clip/deflaging the data first].
 
-```{julia}
+https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FGM_SRVY_L2
 
+```{julia}
+t0 = "2015-12-14T13:10:00"
+t1 = "2015-12-14T13:50:00"
+# tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_brst_l2_clean"
+tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"
+da = get_data(tvars, t0, t1) |> DimArray
+da = SpaceTools.modify_meta(da, long_name="B")
+# tplot([da])
+```
+
+```{julia}
+using SignalAnalysis
+using PlasmaFormulary
+
+p = SpaceTools.pspectrum(da[:, 1])
+
+begin
+    fig, ax, hm = tsheat(p; colorrange=(1e-7, 1), alpha=0.7)
+    ylims!(ax, 0u"Hz2π", 2u"Hz2π")
+
+    B_ts = smooth(da, 5u"s")[:, 4]
+
+    ic_H = gyrofrequency.(B_ts, :"H+")
+    ic_He = gyrofrequency.(B_ts, :"He+")
+    ic_He2 = gyrofrequency.(B_ts, :"He2+")
+    ic_O = gyrofrequency.(B_ts, :"O+")
+    tplot!(ax, [ic_H, ic_He, ic_He2, ic_O])
+
+    fig
+end
 ```
 
 ### Band-pass filtered data
@@ -25,6 +66,14 @@ engine: julia
 > [b] Plot the GSM time series of the band-pass filtered data between 0.2 – 2 Hz (again using tsmooth2/pyspedas.interpol to first low-pass filter the data at 0.2Hz, subtract it from the original to create the high-pass residual >0.2Hz, then low-pass filter that with a 2Hz window).
 
 ```{julia}
+# Band-pass filter the data between 0.2-2 Hz
+# First step: Low-pass filter at 0.2 Hz
+lp_02Hz = smooth(da, 5u"s")  # 0.2 Hz ≈ 5 second window
+# High-pass by subtracting low-pass from original
+hp_02Hz = amap(-, da, lp_02Hz)
+# Second step: Low-pass filter at 2 Hz (0.5 second window)
+bp_filtered = smooth(hp_02Hz, 0.5u"s")
+tplot([lp_02Hz, hp_02Hz, bp_filtered])
 
 ```
 
