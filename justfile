@@ -3,7 +3,7 @@ default:
 
 ensure-env: ln-bib
     pixi install
-    julia --project -e 'using Pkg; Pkg.develop([(;name="Speasy"), (;name="SpaceTools")]); Pkg.update();'
+    julia --project -e 'using Pkg; Pkg.develop([(;name="Speasy"), (;name="SpaceTools"), (;name="PlasmaFormulary")]); Pkg.update();'
 
 publish:
     quarto publish gh-pages --no-prompt --no-render
