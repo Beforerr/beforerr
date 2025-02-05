@@ -21,6 +21,7 @@ using DimensionalData
 using CairoMakie
 using SpaceTools
 using Unitful
+using DSP
 ```
 
 ### Spectrogram with cyclotron frequencies
@@ -36,7 +37,6 @@ t1 = "2015-12-14T13:50:00"
 tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"
 da = get_data(tvars, t0, t1) |> DimArray
 da = SpaceTools.modify_meta(da, long_name="B")
-# tplot([da])
 ```
 
 ```{julia}
@@ -47,14 +47,14 @@ p = SpaceTools.pspectrum(da[:, 1])
 
 begin
     fig, ax, hm = tsheat(p; colorrange=(1e-7, 1), alpha=0.7)
-    ylims!(ax, 0u"Hz2π", 2u"Hz2π")
+    ylims!(ax, 0u"Hz", 2u"Hz")
 
     B_ts = smooth(da, 5u"s")[:, 4]
 
-    ic_H = gyrofrequency.(B_ts, :"H+")
-    ic_He = gyrofrequency.(B_ts, :"He+")
-    ic_He2 = gyrofrequency.(B_ts, :"He2+")
-    ic_O = gyrofrequency.(B_ts, :"O+")
+    ic_H = gyrofrequency.(B_ts, :"H+") .|> ω2f
+    ic_He = gyrofrequency.(B_ts, :"He+") .|> ω2f
+    ic_He2 = gyrofrequency.(B_ts, :"He2+") .|> ω2f
+    ic_O = gyrofrequency.(B_ts, :"O+") .|> ω2f
     tplot!(ax, [ic_H, ic_He, ic_He2, ic_O])
 
     fig
@@ -66,23 +66,45 @@ end
 > [b] Plot the GSM time series of the band-pass filtered data between 0.2 – 2 Hz (again using tsmooth2/pyspedas.interpol to first low-pass filter the data at 0.2Hz, subtract it from the original to create the high-pass residual >0.2Hz, then low-pass filter that with a 2Hz window).
 
 ```{julia}
+time = DateTime("2015-12-14T13:20:00") .. DateTime("2015-12-14T13:30:00")
+sda = da[time, 1:3]
 # Band-pass filter the data between 0.2-2 Hz
 # First step: Low-pass filter at 0.2 Hz
-lp_02Hz = smooth(da, 5u"s")  # 0.2 Hz ≈ 5 second window
+lp_02Hz = smooth(sda, 5u"s")  # 0.2 Hz ≈ 5 second window
 # High-pass by subtracting low-pass from original
-hp_02Hz = amap(-, da, lp_02Hz)
+hp_02Hz = amap(-, sda, lp_02Hz)
 # Second step: Low-pass filter at 2 Hz (0.5 second window)
 bp_filtered = smooth(hp_02Hz, 0.5u"s")
-tplot([lp_02Hz, hp_02Hz, bp_filtered])
 
+tplot([lp_02Hz, hp_02Hz, bp_filtered])
 ```
+
+Actually, the frequency response of an $M$ point moving average filter is not a perfect low-pass filter.
+
+$$
+H[f]=\frac{\sin (\pi f M)}{M \sin (\pi f)}
+$$
+
+```{julia}
+bp_filtered2 = filtfilt(sda, 0.2u"Hz", 2u"Hz")
+tplot([hp_02Hz, bp_filtered, bp_filtered2])
+current_figure()
+```
+
 
 ### Minimum Variance Analysis
 
 > [c] Use minvar_matrix_make (IDL or pyspedas) applied on the band-pass filtered data to obtain the minimum variance matrix, on a sliding window. You can control the width and shift of the window (see keywords). Rotate the data in i,j,k (max,int,min) coord’s using tvector_rotate (in IDL / Py - SPEDAS; see how to use it from class examples, or from cribs / readthedocs). Plot the data in that coordinate system.
 
 ```{julia}
+time = DateTime("2015-12-14T13:20:00") .. DateTime("2015-12-14T13:30:00")
+B_ts = bp_filtered[time, 1:3]
+B_mva_ts = mva(B_ts, B_ts)
 
+B_ts_2 = bp_filtered2[time, 1:3]
+B_mva_ts_2 = mva(B_ts_2, B_ts_2)
+
+tplot([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])
 ```
 
 ### Minvar direction
@@ -90,15 +112,50 @@ tplot([lp_02Hz, hp_02Hz, bp_filtered])
 > [d] The code minvar_matrix_make allows you to output the eigenvectors and eigenvalues. Plot the eigenvalues and evaluate the confidence in the minvar direction. Plot the angle between the minvar direction and the direction of the ambient magnetic field (the 5-10s average above).
 
 ```{julia}
+using LinearAlgebra
+using Statistics
+using SpaceTools
+using Dates
 
+# Load magnetic field data around the shock crossing
+t0 = DateTime("2008-09-05T15:30:00")
+t1 = DateTime("2008-09-05T15:40:00")
+b_data = get_data("cda/THA_L2_FGM/tha_fgs_gse", t0, t1) |> DimArray
+B = b_data.data  # Get the magnetic field components
+
+# Get eigenvalues and eigenvectors
+F = mva_mat(B)
+
+# The minimum variance direction (shock normal)
+n̂ = F.vectors[:, 3]  # Third eigenvector corresponds to minimum variance
+
+# Calculate θBn (angle between B-field and shock normal)
+B_avg = mean(B, dims=1)[1, :]
+B_avg_norm = B_avg / norm(B_avg)
+θBn = acosd(abs(dot(B_avg_norm, n̂)))
+
+# Calculate Bn (shock-normal magnetic field component)
+Bn = dot(B_avg, n̂)
+
+println("Results of Minimum Variance Analysis:")
+println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
+println("θBn: ", round(θBn, digits=1), "°")
+println("Bn: ", Bn)
+check_mva_mat(F; =true)
+println("\nEigenvalue ratios (λ2/λ3, λ1/λ2): ", round.(λ_ratios, digits=1))
 ```
 
 ### Hodogram
 
 > [e] There are several bursts of EMIC wave power in the interval. Pick one clean burst with 5-10 cycles and plot the B-field hodogram in the plane of polarization (max,int). (Bandpass filtering first will help). Is it left-hand polarized as expected? [Note that the minvar code ensures a right-hand orthogonal system, but you may have to switch vectors around if the angle to B-field is not less than 90deg].
 
-```{julia}
+<!-- Figure 7. Three-axis plot of MMS 1 magnetic field data rotated into local field-aligned coordinates and band-pass filtered from 0.4 to 2.0 Hz, with uniform scale, from 1327:15 to 1328:15 UT on 14 December 2015. -->
 
+```{julia}
+f = tplot([bp_filtered, bp_filtered2])
+tlims!.(f.axes, "2015-12-14T13:27:15", "2015-12-14T13:28:15")
+ylims!.(f.axes, -10, 10)
+current_figure()
 ```
 
 ## Shock crossings
@@ -109,8 +166,37 @@ tplot([lp_02Hz, hp_02Hz, bp_filtered])
 
 > [a] Determine, using minimum variance analysis, the shock normal, the angle between the B-field and the shock normal, and the shock-normal magnetic field component, Bn.
 
-```{julia}
+The shock angle, $θ_{Bn}$, the angle between the directions of the upstream magnetic field and the shock normal;
 
+```{julia}
+# Load magnetic field data around the shock crossing
+t0 = DateTime("2013-07-09T20:37:00")  # Start a few minutes before the crossing
+t1 = DateTime("2013-07-09T20:45:00")  # End a few minutes after
+b_data = get_data("cda/THB_L2_FGM/thb_fgs_gse", t0, t1) |> DimArray
+tplot([b_data])
+```
+
+```{julia}
+# Perform MVA analysis using the built-in function
+F = mva_mat(b_data)
+
+# The minimum variance direction (shock normal)
+n̂ = F.vectors[:, 3]  # Third eigenvector corresponds to minimum variance
+
+# Calculate θBn (angle between B-field and shock normal)
+B_up = vec(mean(b_data[1:10, :].data; dims=1))
+θBn = angle(B_up, n̂)
+
+# Calculate Bn (shock-normal magnetic field component)
+Bn = dot(B_up, n̂)
+
+println("Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (2013-07-09):")
+println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
+println("θ_Bn: ", round(θBn, digits=1), "°")
+println("Bn: ", Bn)
+
+# Check the quality of MVA determination
+check_mva_mat(F, verbose=true)
 ```
 
 ### Minimum variance direction
@@ -118,7 +204,71 @@ tplot([lp_02Hz, hp_02Hz, bp_filtered])
 > [b] Note that there are significant waves downstream but not upstream, which is common for weak (subcritical) shocks. Starting from a small interval barely encompassing the shock (<1min in length), increase the interval by ~0.5 min and recalculate. Then increase again and recalculate. Do so for ~10-20 times until you reach ~10min encompassing the shock. The solution will initially fluctuate from one to the next choice of intervals, then stabilize, then start being jittery again because you are including the waves. Plot the minimum variance direction (two angles, elevation and azimuth, in GSE) and Bn, all as a function of the interval chosen. Pick and report the best solution, based on the shortest time interval choice when the solution becomes stable.
 
 ```{julia}
+# Central time of the shock crossing for ARTEMIS P1 (2013-07-09)
+t_start = DateTime("2013-07-09T20:39:00")
+time_shock = DateTime("2013-07-09T20:40:00")
 
+# Define a set of interval durations in seconds.
+# For example, 20 intervals from 30 seconds to 600 seconds (~10 minutes)
+n_intervals = 20
+durations = range(30, stop=600, length=n_intervals)  # in seconds
+
+# Preallocate storage for results.
+Bn_values = zeros(n_intervals)
+azimuths = zeros(n_intervals)
+elevations = zeros(n_intervals)
+# We'll also store the shock normals to compute angular differences.
+normals = Array{Float64}(undef, 3, n_intervals)
+
+# Loop over increasing interval durations.
+for (i, d) in enumerate(durations)
+    dt = Millisecond(round(Int, d*1000))  # convert seconds to milliseconds
+    t_end   = time_shock + dt/2
+    # Get data for the interval.
+    b_data_subset = b_data[t_start..t_end, :]
+    # Perform MVA analysis using the built-in mva_mat function.
+    F = mva_mat(b_data_subset)
+    n_vec = F.vectors[:, 3]  # the third eigenvector (minimum variance) is the shock normal.
+    normals[:, i] = n_vec
+    # Compute Bn: the component of the average B along the shock normal.
+    Bn_values[i] = dot(B_up, n_vec)
+    azimuths[i]  = atan(n_vec[2], n_vec[1]) * (180/pi)
+    elevations[i] = asin(n_vec[3]) * (180/pi)
+end
+
+# Compute noise estimates.
+# ΔBn: difference in Bn between consecutive intervals.
+ΔBn = abs.(diff(Bn_values))
+# Δφ: Angular difference between consecutive shock normals.
+Δφ = zeros(n_intervals-1)
+for i in 2:n_intervals
+    n1 = normals[:, i-1]
+    n2 = normals[:, i]
+    if any(isnan, n1) || any(isnan, n2)
+        Δφ[i-1] = NaN
+    else
+        Δφ[i-1] = acosd(clamp(dot(n1, n2), -1, 1))
+    end
+end
+
+# # Plot results:
+# # 1. Plot azimuth, elevation, and Bn versus interval duration (in minutes).
+# p1 = plot(durations./60, azimuths, lw=2, marker=:circle, label="Azimuth (°)",
+#           xlabel="Interval length (min)", ylabel="Angle (°)", legend=:topright)
+# plot!(p1, durations./60, elevations, lw=2, marker=:diamond, label="Elevation (°)")
+# plot!(p1, durations./60, Bn_values, lw=2, marker=:star, label="Bn (nT)",
+#       ylabel="Value", secondary_y=true)
+
+# # 2. Plot ΔBn versus interval length.
+# p2 = plot(durations[2:end]./60, ΔBn, lw=2, marker=:circle, label="ΔBn (nT)",
+#           xlabel="Interval length (min)", ylabel="ΔBn (nT)", legend=:topright)
+
+# # 3. Plot Δφ versus interval length.
+# p3 = plot(durations[2:end]./60, Δφ, lw=2, marker=:circle, label="Δφ (°)",
+#           xlabel="Interval length (min)", ylabel="Angular noise (°)", legend=:topright)
+
+# # Combine the three plots vertically.
+# plot(p1, p2, p3, layout = (3, 1), size=(800, 900))
 ```
 
 [c] The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the Bn and  separately. Check if they support your choice of interval.
