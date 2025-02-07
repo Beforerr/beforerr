@@ -33,7 +33,6 @@ https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FGM_SRVY_L2
 ```{julia}
 t0 = "2015-12-14T13:10:00"
 t1 = "2015-12-14T13:50:00"
-# tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_brst_l2_clean"
 tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"
 da = get_data(tvars, t0, t1) |> DimArray
 da = SpaceTools.modify_meta(da, long_name="B")
@@ -162,6 +161,12 @@ current_figure()
 
 > Shock crossings were observed by ARTEMIS P1 (TH-B) in the solar wind on 2013-07-09 20:40UT and on 2014-06-09 16:58UT, both captured in Fast Survey and published in Fig. 3 (analysis results in Table 1 of Zhou et al., 202022). Pick one of the two to study.
 
+```{julia}
+using LinearAlgebra
+using Statistics
+using DataFrames, TimeSeries
+```
+
 ### Shock normal
 
 > [a] Determine, using minimum variance analysis, the shock normal, the angle between the B-field and the shock normal, and the shock-normal magnetic field component, Bn.
@@ -173,7 +178,7 @@ The shock angle, $θ_{Bn}$, the angle between the directions of the upstream mag
 t0 = DateTime("2013-07-09T20:37:00")  # Start a few minutes before the crossing
 t1 = DateTime("2013-07-09T20:45:00")  # End a few minutes after
 b_data = get_data("cda/THB_L2_FGM/thb_fgs_gse", t0, t1) |> DimArray
-tplot([b_data])
+tplot(b_data; add_title=true) 
 ```
 
 ```{julia}
@@ -204,71 +209,119 @@ check_mva_mat(F, verbose=true)
 > [b] Note that there are significant waves downstream but not upstream, which is common for weak (subcritical) shocks. Starting from a small interval barely encompassing the shock (<1min in length), increase the interval by ~0.5 min and recalculate. Then increase again and recalculate. Do so for ~10-20 times until you reach ~10min encompassing the shock. The solution will initially fluctuate from one to the next choice of intervals, then stabilize, then start being jittery again because you are including the waves. Plot the minimum variance direction (two angles, elevation and azimuth, in GSE) and Bn, all as a function of the interval chosen. Pick and report the best solution, based on the shortest time interval choice when the solution becomes stable.
 
 ```{julia}
+azimuth(x) = rad2deg(atan(x[2], x[1]))
+elevation(x) = rad2deg(asin(x[3]))
+
 # Central time of the shock crossing for ARTEMIS P1 (2013-07-09)
 t_start = DateTime("2013-07-09T20:39:00")
-time_shock = DateTime("2013-07-09T20:40:00")
+time_shock = DateTime("2013-07-09T20:39:30")
 
-# Define a set of interval durations in seconds.
-# For example, 20 intervals from 30 seconds to 600 seconds (~10 minutes)
-n_intervals = 20
-durations = range(30, stop=600, length=n_intervals)  # in seconds
+n = 20
+t_ends = [time_shock + Second(30*(i-1)) for i in 1:n]
+b_data = get_data("cda/THB_L2_FGM/thb_fgs_gse", t_start, t_ends[end]) |> DimArray
 
-# Preallocate storage for results.
-Bn_values = zeros(n_intervals)
-azimuths = zeros(n_intervals)
-elevations = zeros(n_intervals)
-# We'll also store the shock normals to compute angular differences.
-normals = Array{Float64}(undef, 3, n_intervals)
-
-# Loop over increasing interval durations.
-for (i, d) in enumerate(durations)
-    dt = Millisecond(round(Int, d*1000))  # convert seconds to milliseconds
-    t_end   = time_shock + dt/2
-    # Get data for the interval.
+n̂s = map(t_ends) do t_end
     b_data_subset = b_data[t_start..t_end, :]
-    # Perform MVA analysis using the built-in mva_mat function.
     F = mva_mat(b_data_subset)
-    n_vec = F.vectors[:, 3]  # the third eigenvector (minimum variance) is the shock normal.
-    normals[:, i] = n_vec
-    # Compute Bn: the component of the average B along the shock normal.
-    Bn_values[i] = dot(B_up, n_vec)
-    azimuths[i]  = atan(n_vec[2], n_vec[1]) * (180/pi)
-    elevations[i] = asin(n_vec[3]) * (180/pi)
+    F.vectors[:, 3]
 end
 
-# Compute noise estimates.
-# ΔBn: difference in Bn between consecutive intervals.
-ΔBn = abs.(diff(Bn_values))
-# Δφ: Angular difference between consecutive shock normals.
-Δφ = zeros(n_intervals-1)
-for i in 2:n_intervals
-    n1 = normals[:, i-1]
-    n2 = normals[:, i]
-    if any(isnan, n1) || any(isnan, n2)
-        Δφ[i-1] = NaN
-    else
-        Δφ[i-1] = acosd(clamp(dot(n1, n2), -1, 1))
-    end
-end
+Bn = dot.(Ref(B_up), n̂s)
+direction = DimArray(
+    [azimuth.(n̂s)  elevation.(n̂s)],
+    (Ti(t_ends), Y([:azimuth, :elevation]));
+    name=:direction
+)
+Bns = DimArray(Bn, Ti(t_ends); name=:Bn)
+ΔBn = abs.(diff(Bns))
+ΔBn = Base.rename(ΔBn, :ΔBn)
 
-# # Plot results:
-# # 1. Plot azimuth, elevation, and Bn versus interval duration (in minutes).
-# p1 = plot(durations./60, azimuths, lw=2, marker=:circle, label="Azimuth (°)",
-#           xlabel="Interval length (min)", ylabel="Angle (°)", legend=:topright)
-# plot!(p1, durations./60, elevations, lw=2, marker=:diamond, label="Elevation (°)")
-# plot!(p1, durations./60, Bn_values, lw=2, marker=:star, label="Bn (nT)",
-#       ylabel="Value", secondary_y=true)
-
-# # 2. Plot ΔBn versus interval length.
-# p2 = plot(durations[2:end]./60, ΔBn, lw=2, marker=:circle, label="ΔBn (nT)",
-#           xlabel="Interval length (min)", ylabel="ΔBn (nT)", legend=:topright)
-
-# # 3. Plot Δφ versus interval length.
-# p3 = plot(durations[2:end]./60, Δφ, lw=2, marker=:circle, label="Δφ (°)",
-#           xlabel="Interval length (min)", ylabel="Angular noise (°)", legend=:topright)
-
-# # Combine the three plots vertically.
-# plot(p1, p2, p3, layout = (3, 1), size=(800, 900))
+tvars = [b_data,direction,[Bns,ΔBn]]
+f, axes = tplot(tvars; add_title=true) 
+f
 ```
 
-[c] The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the Bn and  separately. Check if they support your choice of interval.
+### Error estimates
+
+> [c] The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the $ΔB_n$ and $Δφ$ separately. Check if they support your choice of interval.
+
+The angular error estimates (in radians) is 
+
+$$
+\begin{aligned}
+\left|\Delta \varphi_{i j}\right|=\left|\Delta \varphi_{j i}\right| & =\left\langle\left\langle\left(\Delta x_{i j}\right)^2\right\rangle\right\rangle^{1 / 2}=\left\langle\left\langle\left(\Delta x_{j i}\right)^2\right\rangle\right\rangle^{1 / 2} \\
+& =\sqrt{\frac{\lambda_3}{(M-1)} \frac{\left(\lambda_i+\lambda_j-\lambda_3\right)}{\left(\lambda_i-\lambda_j\right)^2}}, \quad i \neq j
+\end{aligned}
+$$
+
+The composite statistical error estimate for $\left\langle\mathbf{B} \cdot \mathbf{x}_3\right\rangle$ is
+
+$$
+\left|\Delta\left\langle\mathbf{B} \cdot \mathbf{x₃}\right\rangle\right|=\sqrt{\frac{\lambda_3}{M-1}+\left(\Delta \varphi_{32}\langle\mathbf{B}\rangle \cdot \mathbf{x}_2\right)^2+\left(\Delta \varphi_{31}\langle\mathbf{B}\rangle \cdot \mathbf{x}_1\right)^2}
+$$
+
+
+```julia
+"""
+    Δφij(λᵢ, λⱼ, λ₃, M)
+
+Calculate the phase error between components i and j according to:
+|Δφᵢⱼ| = |Δφⱼᵢ| = √(λ₃/(M-1) * (λᵢ + λⱼ - λ₃)/(λᵢ - λⱼ)²)
+
+Parameters:
+- λᵢ: eigenvalue i
+- λⱼ: eigenvalue j
+- λ₃: smallest eigenvalue (λ₃)
+- M: number of samples
+"""
+function Δφij(λᵢ, λⱼ, λ₃, M)
+    return sqrt((λ₃ / (M - 1)) * (λᵢ + λⱼ - λ₃) / (λᵢ - λⱼ)^2)
+end
+
+"""
+Calculate the composite statistical error estimate for ⟨B·x₃⟩:
+|Δ⟨B·x₃⟩| = √(λ₃/(M-1) + (Δφ₃₂⟨B⟩·x₂)² + (Δφ₃₁⟨B⟩·x₁)²)
+
+Parameters:
+- λ₁, λ₂, λ₃: eigenvalues in descending order
+- M: number of samples
+- B: mean magnetic field vector
+- x₁, x₂, x₃: eigenvectors
+"""
+function B_x3_error(λ₁, λ₂, λ₃, M, B, x₁, x₂, x₃)
+    Δφ₃₂ = Δφij(λ₃, λ₂, λ₃, M)
+    Δφ₃₁ = Δφij(λ₃, λ₁, λ₃, M)
+    B_x₂ = dot(B, x₂)
+    B_x₁ = dot(B, x₁)
+    return sqrt(λ₃ / (M - 1) + (Δφ₃₂ * B_x₂)^2 + (Δφ₃₁ * B_x₁)^2)
+end
+
+B_x3_error(F::Eigen, M, B) = 
+    B_x3_error(F.values..., M, B, eachcol(F.vectors)...)
+```
+
+```{julia}
+res = map(t_ends) do t_end
+    b_data_subset = b_data[t_start..t_end, :]
+    F = mva_mat(b_data_subset)
+    M = size(b_data_subset, 1)
+    B = mean(b_data_subset.data; dims=1)
+
+    λ₁ = F.values[1]
+    λ₂ = F.values[2]
+    λ₃ = F.values[3]
+    Δφ12 = SpaceTools.Δφij(λ₁, λ₂, λ₃, M)
+    Δφ13 = SpaceTools.Δφij(λ₁, λ₃, λ₃, M)
+    Δφ23 = SpaceTools.Δφij(λ₂, λ₃, λ₃, M)
+    B_x3_err = SpaceTools.B_x3_error(F, M, B)
+    (; time = t_end, Δφ12, Δφ13, Δφ23, B_x3_err)
+end
+
+errors = SpaceTools.nt2ds(res)
+tvars = [
+    b_data,
+    [errors.Δφ12, errors.Δφ13, errors.Δφ23], 
+    errors.B_x3_err,
+]
+tplot(tvars)
+```

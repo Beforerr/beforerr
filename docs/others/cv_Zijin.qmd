@@ -27,6 +27,8 @@ resources: cv_Zijin_clean.pdf
 
 # Education
 
+- Heliophysics Summer School, NASA's Living with a Star, UCAR/CPAESS, Boulder, Colorado, 2024
+
 - Graduate student in Planetary Science, *University of California, Los Angeles*, 2022 - present
 
 - B.Sc. in Space Physics<!--  and B.Eng. in Computer Science -->, *University of Science and Technology of China*, 2018 - 2022
@@ -42,7 +44,7 @@ resources: cv_Zijin_clean.pdf
 
 # Publications
 
-1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., Kasahara, S., Miyoshi, Y., Matsuoka, A., Kasahara, Y., Mitani, T., Yokota, S., Hori, T., Keika, K., Takashima, T., Teramoto, M., Matsuda, S., & Shinohara, I. (2024). Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections. *Journal of Geophysical Research: Space Physics*, 129(12), e2024JA033174. https://doi.org/10.1029/2024JA033174
+1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., Kasahara, S., Miyoshi, Y., Matsuoka, A., Kasahara, Y., Mitani, T., Yokota, S., Hori, T., Keika, K., Takashima, T., Teramoto, M., Matsuda, S., & Shinohara, I. (2024). Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections. *Journal of Geophysical Research: Space Physics*, 129(12), e2024JA033174. DOI: [10.1029/2024JA033174](https://doi.org/10.1029/2024JA033174)
 
 1. Margot, J.-L., Li, M. G., Pinchuk, … **Zhang, Z.**. (2023). A search for technosignatures around 11680 stars with the green bank telescope at 1.15–1.73 GHz. *Astronomical Journal*, 166(5), 206. DOI: [10.3847/1538-3881/acfda4](https://doi.org/10.3847/1538-3881/acfda4)
 
@@ -50,6 +52,8 @@ resources: cv_Zijin_clean.pdf
 
 
 # Presentations
+
+1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Velli, M. (2024, December). On the Alfvénicity of multifluid force-free current sheet. *American Geophysical Union*.
 
 1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Chen, S. (2023, December 14). Solar wind discontinuities spatial evolution and energetic ion scattering. *American Geophysical Union*. DOI: [10.13140/RG.2.2.12905.67682](https://doi.org/10.13140/RG.2.2.12905.67682)
 

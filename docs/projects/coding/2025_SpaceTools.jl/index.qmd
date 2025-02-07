@@ -130,9 +130,10 @@ ts0 = "2019-01-02T15" |> DateTime
 ts1 = "2019-01-02T22" |> DateTime
 
 tvars = [
+    "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gse_srvy_l2_clean",
     "cda/MMS1_FPI_FAST_L2_DES-MOMS/mms1_des_energyspectr_omni_fast",
 ]
-tplot(tvars, ts0, ts1)
+tplot(tvars, ts0, ts1; add_title=true)
 ```
 
 # Dish-cached Time Series
@@ -177,6 +178,9 @@ f = Figure(; figure...)
 tvars1 = ["cda/OMNI_HRO_1MIN/flow_speed", "cda/OMNI_HRO_1MIN/E", "cda/OMNI_HRO_1MIN/Pressure"]
 tvars2 = ["cda/THA_L2_FGM/tha_fgs_gse"]
 tvars3 = ["cda/OMNI_HRO_1MIN/BX_GSE", "cda/OMNI_HRO_1MIN/BY_GSE"]
+
+t0 = DateTime("2008-09-05T10:00:00")
+t1 = DateTime("2008-09-05T22:00:00")
 
 tplot(f[1, 1], tvars1, t0, t1)
 tplot(f[1, 2], tvars2, t0, t1)
