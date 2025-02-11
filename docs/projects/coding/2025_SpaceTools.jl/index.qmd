@@ -126,6 +126,27 @@ tvars = [
 tplot(tvars, ts0, ts1; add_title=true)
 ```
 
+## Overlay plots
+
+```{julia}
+SDS = SpaceTools.DataSet
+ts0 = DateTime("2021-01-17")
+ts1 = DateTime("2021-01-18")
+
+density_tvar = SDS(
+    "Density",
+    [
+        "cda/PSP_SWP_SPI_SF00_L3_MOM/DENS",
+        "cda/PSP_FLD_L3_RFS_LFR_QTN/N_elec",
+        "cda/PSP_FLD_L3_SQTN_RFS_V1V2/electron_density"
+    ]
+)
+
+tvars = [density_tvar]
+
+tplot(tvars, ts0, ts1; add_title=true)
+```
+
 # Disk-cached Time Series
 
 WebServer (CDAWeb) -> Files -> Data structure (`tplot` variable / `numpy` array)
@@ -159,9 +180,6 @@ We want `tplot` to be interactive as well as publication-ready;
 and we want `tplot` to be composable.
 
 ```{julia}
-using CairoMakie
-# using GLMakie
-
 figure = (; size=(1600, 1200))
 f = Figure(; figure...)
 
