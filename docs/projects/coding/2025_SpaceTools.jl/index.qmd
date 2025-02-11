@@ -94,16 +94,6 @@ Unit is not just a plot label, but also has dimensions meaning. (`Unitful.jl` in
 # Tplot
 
 ```{julia}
-#| echo: false
-ff(s::AbstractString) = (args...) -> DimArray(get_data(s, args...))
-
-function SpaceTools.tplot(gd, tas::AbstractString, args...; kwargs...)
-    fs = ff(tas)
-    tplot(gd, fs, args...; kwargs...)
-end
-```
-
-```{julia}
 f = tplot([da])
 f.figure
 ```
@@ -136,7 +126,7 @@ tvars = [
 tplot(tvars, ts0, ts1; add_title=true)
 ```
 
-# Dish-cached Time Series
+# Disk-cached Time Series
 
 WebServer (CDAWeb) -> Files -> Data structure (`tplot` variable / `numpy` array)
 
