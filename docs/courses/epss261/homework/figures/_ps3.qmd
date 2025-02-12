@@ -6,7 +6,99 @@ engine: julia
 
 ## Minimum and Maximum Variance Analysis
 
-> Minimize the variance 2 Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.
+> Minimize the variance $σ^2$ Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.
+
+$${#eq-8.4}
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+$$
+
+$${#eq-8.7}
+\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
+$$
+
+
+Expand the dot product in components:
+
+$\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,$
+
+so that
+
+$$
+\sigma^2 = \frac{1}{M} \sum_{m=1}^M \left(\sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu \right)^2 = \sum_{\mu,\nu=1}^3 n_\mu n_\nu \left[ \frac{1}{M} \sum_{m=1}^M \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) \left(B_\nu^{(m)} - \langle B_\nu \rangle\right) \right]
+$$
+
+
+Define the magnetic variance matrix
+
+$$
+M_{\mu\nu}^B \equiv \left\langle B_\mu B_\nu \right\rangle - \langle B_\mu \rangle \langle B_\nu \rangle
+$$
+
+so that
+
+$$
+\sigma^2 = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu.
+$$
+
+
+The Lagrangian is given by:
+
+$$
+L(\hat{\boldsymbol{n}}, \lambda) = \sigma^2 - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right) = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right).
+$$
+
+Differentiate with Respect to the Components $n_\alpha$ equal to zero for each component
+
+$$
+\frac{\partial}{\partial n_\alpha} \left(\sum_{\mu,\nu} n_\mu M_{\mu\nu}^B n_\nu\right) - \frac{\partial}{\partial n_\alpha} \left[\lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right)\right] = 2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu -  2\lambda n_\alpha.
+$$
+
+we get:
+
+$$
+2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu - 2\lambda n_\alpha = 0.
+$$
+
+This is exactly Equation (8.7): $\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu = \lambda n_\mu$. The equation is an eigenvalue problem for the symmetric $3\times 3$ matrix $M_{\mu\nu}^B$. The eigenvalues $\lambda$ are real, and the corresponding eigenvectors $\hat{\boldsymbol{n}}$ are orthogonal.
+
+
+<!-- 
+The minimum variance technique is designed to deal with the situation where some or all of the non-ideal effects mentioned above, except a systematic temporal change in the normal direction, $\hat{\boldsymbol{n}}$, are present. As the estimate of $\hat{\boldsymbol{n}}$, the method identifies that direction in space along which the field-component set $\left\{\boldsymbol{B}^{(m)} \cdot \hat{\boldsymbol{n}}\right\}(m=1,2,3 \ldots M)$ has minimum variance. In other words, $\hat{\boldsymbol{n}}$ is determined by minimisation of
+
+$$
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+$$
+
+where the average $\langle\boldsymbol{B}\rangle$ is defined by
+
+$$
+\langle\boldsymbol{B}\rangle \equiv \frac{1}{M} \sum_{m=1}^M \boldsymbol{B}^{(m)}
+$$
+
+and where the minimisation is subject to the normalisation constraint $|\hat{n}|^2=1$. Using a Lagrange multiplier, $\lambda$, to implement this constraint, one then seeks the solution of the set of three homogeneous linear equations
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial n_X}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Y}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Z}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0
+\end{aligned}
+$$
+
+where $\sigma^2$ is given by equation 8.4 and $\hat{\boldsymbol{n}}$ is represented in terms of its three components ( $n_X, n_Y, n_Z$ ) along the cartesian coordinate system $X, Y, Z$ (e.g., GSE or GSM) in which the field data $\left\{\boldsymbol{B}^{(m)}\right\}$ are given. When the differentiations in equation 8.6 have been performed, the resulting set of three equations can be written in matrix form as
+
+$$
+\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
+$$
+
+where the subscripts $\mu, v=1,2,3$ denote cartesian components along the $X, Y, Z$ system and
+
+$$
+M_{\mu \nu}^B \equiv\left\langle B_\mu B_\nu\right\rangle-\left\langle B_\mu\right\rangle\left\langle B_v\right\rangle
+$$
+
+is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $\lambda$ values are the eigenvalues $\lambda_1, \lambda_2, \lambda_3$ (given here in order of decreasing magnitude) of $M_{\mu \nu}^B$. Since $M_{\mu \nu}^B$ is symmetric, the eigenvalues are all real and the corresponding eigenvectors, $\boldsymbol{x}_1$, $\boldsymbol{x}_2$, and $\boldsymbol{x}_3$, are orthogonal.
+-->
 
 ## Electromagnetic ion cyclotron waves
 
