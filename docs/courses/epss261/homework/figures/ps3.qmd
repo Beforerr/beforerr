@@ -8,18 +8,20 @@ engine: julia
 
 > Minimize the variance $σ^2$ Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.
 
-$${#eq-8.4}
+$$
 \sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
-$$
+$$ {#eq-Chen84}
 
-$${#eq-8.7}
-\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
 $$
+\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
+$$ {#eq-Chen87}
 
 
 Expand the dot product in components:
 
-$\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,$
+$$
+\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,
+$$
 
 so that
 
@@ -135,9 +137,9 @@ using SignalAnalysis
 using PlasmaFormulary
 
 p = SpaceTools.pspectrum(da[:, 1])
-
 begin
-    fig, ax, hm = tsheat(p; colorrange=(1e-7, 1), alpha=0.7)
+    f = tplot(p; colorrange=(1e-7, 1), alpha=0.7)
+    ax = current_axis()
     ylims!(ax, 0u"Hz", 2u"Hz")
 
     B_ts = smooth(da, 5u"s")[:, 4]
@@ -146,9 +148,8 @@ begin
     ic_He = gyrofrequency.(B_ts, :"He+") .|> ω2f
     ic_He2 = gyrofrequency.(B_ts, :"He2+") .|> ω2f
     ic_O = gyrofrequency.(B_ts, :"O+") .|> ω2f
-    tplot!(ax, [ic_H, ic_He, ic_He2, ic_O])
-
-    fig
+    tplot_panel!.(current_axis(), [ic_H, ic_He, ic_He2, ic_O])
+    f
 end
 ```
 
@@ -177,7 +178,7 @@ H[f]=\frac{\sin (\pi f M)}{M \sin (\pi f)}
 $$
 
 ```{julia}
-bp_filtered2 = filtfilt(sda, 0.2u"Hz", 2u"Hz")
+bp_filtered2 = filtfilt(sda, 0.2u"Hz", 2u"Hz").data
 tplot([hp_02Hz, bp_filtered, bp_filtered2])
 current_figure()
 ```
@@ -232,8 +233,7 @@ println("Results of Minimum Variance Analysis:")
 println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
 println("θBn: ", round(θBn, digits=1), "°")
 println("Bn: ", Bn)
-check_mva_mat(F; =true)
-println("\nEigenvalue ratios (λ2/λ3, λ1/λ2): ", round.(λ_ratios, digits=1))
+check_mva_mat(F; verbose=true)
 ```
 
 ### Hodogram
@@ -243,11 +243,25 @@ println("\nEigenvalue ratios (λ2/λ3, λ1/λ2): ", round.(λ_ratios, digits=1))
 <!-- Figure 7. Three-axis plot of MMS 1 magnetic field data rotated into local field-aligned coordinates and band-pass filtered from 0.4 to 2.0 Hz, with uniform scale, from 1327:15 to 1328:15 UT on 14 December 2015. -->
 
 ```{julia}
-f = tplot([bp_filtered, bp_filtered2])
-tlims!.(f.axes, "2015-12-14T13:27:15", "2015-12-14T13:28:15")
-ylims!.(f.axes, -10, 10)
-current_figure()
+interval = DateTime("2015-12-14T13:40:20") .. DateTime("2015-12-14T13:40:40")
+let
+    sda = da[interval, 1:3]
+    bp_filtered = filtfilt(sda, 0.8u"Hz", 2u"Hz").data
+    B_mva_ts = mva(bp_filtered, bp_filtered)
+    f = Figure(; size=(1200, 800))
+    Bx = B_mva_ts[:, [1]]
+    By = B_mva_ts[:, [2]]
+    Bz = B_mva_ts[:, [3]]
+    tplot(f[1, 1], [sda, bp_filtered, B_mva_ts])
+    tplot(f[1, 2], [Bx, By, Bz]; link_yaxes=true)
+    time = dims(Bx, 1).val
+    color = (time .- time[1]) ./ (time[end] - time[1])
+    lines(f[1, 3], Bx[:, 1].data, By[:, 1].data, color=color)
+    f
+end
 ```
+
+Hodogram analysis indicated left handed polarization during the interval.
 
 ## Shock crossings
 
@@ -270,7 +284,7 @@ The shock angle, $θ_{Bn}$, the angle between the directions of the upstream mag
 t0 = DateTime("2013-07-09T20:37:00")  # Start a few minutes before the crossing
 t1 = DateTime("2013-07-09T20:45:00")  # End a few minutes after
 b_data = get_data("cda/THB_L2_FGM/thb_fgs_gse", t0, t1) |> DimArray
-tplot(b_data; add_title=true) 
+tplot(b_data; add_title=true)
 ```
 
 ```{julia}
@@ -291,8 +305,6 @@ println("Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (201
 println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
 println("θ_Bn: ", round(θBn, digits=1), "°")
 println("Bn: ", Bn)
-
-# Check the quality of MVA determination
 check_mva_mat(F, verbose=true)
 ```
 
@@ -309,8 +321,9 @@ t_start = DateTime("2013-07-09T20:39:00")
 time_shock = DateTime("2013-07-09T20:39:30")
 
 n = 20
-t_ends = [time_shock + Second(30*(i-1)) for i in 1:n]
+t_ends = [time_shock + Second(30 * (i - 1)) for i in 1:n]
 b_data = get_data("cda/THB_L2_FGM/thb_fgs_gse", t_start, t_ends[end]) |> DimArray
+b_data.metadata[:units] = "nT"
 
 n̂s = map(t_ends) do t_end
     b_data_subset = b_data[t_start..t_end, :]
@@ -320,18 +333,19 @@ end
 
 Bn = dot.(Ref(B_up), n̂s)
 direction = DimArray(
-    [azimuth.(n̂s)  elevation.(n̂s)],
+    [azimuth.(n̂s) elevation.(n̂s)],
     (Ti(t_ends), Y([:azimuth, :elevation]));
     name=:direction
 )
 Bns = DimArray(Bn, Ti(t_ends); name=:Bn)
 ΔBn = abs.(diff(Bns))
-ΔBn = Base.rename(ΔBn, :ΔBn)
+ΔBn = SpaceTools.rename(ΔBn, :ΔBn)
 
-tvars = [b_data,direction,[Bns,ΔBn]]
-f, axes = tplot(tvars; add_title=true) 
-f
+tvars = [b_data, direction, [Bns, ΔBn]]
+f, axes = tplot(tvars; add_title=true)
 ```
+
+The solution becomes stable around "2013-07-09T20:43:00", about 4 mins after the shock crossing. after "2013-07-09T20:45:00" the solution becomes jittery because the waves are included.
 
 ### Error estimates
 
@@ -406,14 +420,16 @@ res = map(t_ends) do t_end
     Δφ13 = SpaceTools.Δφij(λ₁, λ₃, λ₃, M)
     Δφ23 = SpaceTools.Δφij(λ₂, λ₃, λ₃, M)
     B_x3_err = SpaceTools.B_x3_error(F, M, B)
-    (; time = t_end, Δφ12, Δφ13, Δφ23, B_x3_err)
+    (; time=t_end, Δφ12, Δφ13, Δφ23, B_x3_err)
 end
 
 errors = SpaceTools.nt2ds(res)
 tvars = [
     b_data,
-    [errors.Δφ12, errors.Δφ13, errors.Δφ23], 
+    [errors.Δφ12, errors.Δφ13, errors.Δφ23],
     errors.B_x3_err,
 ]
 tplot(tvars)
 ```
+
+The error estimates support our choice of interval.
