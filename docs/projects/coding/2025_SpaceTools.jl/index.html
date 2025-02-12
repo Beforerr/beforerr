@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-02-03">
+<meta name="dcterms.date" content="2025-02-11">
 
 <title>SpaceTools.jl – beforerr</title>
 <style>
@@ -243,8 +243,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tplot" id="toc-tplot" class="nav-link" data-scroll-target="#tplot">Tplot</a>
   <ul class="collapse">
   <li><a href="#spectrogram" id="toc-spectrogram" class="nav-link" data-scroll-target="#spectrogram">Spectrogram</a></li>
+  <li><a href="#overlay-plots" id="toc-overlay-plots" class="nav-link" data-scroll-target="#overlay-plots">Overlay plots</a></li>
+  <li><a href="#complex-requests-and-flexible-layout" id="toc-complex-requests-and-flexible-layout" class="nav-link" data-scroll-target="#complex-requests-and-flexible-layout">Complex requests and flexible layout</a></li>
   </ul></li>
-  <li><a href="#dish-cached-time-series" id="toc-dish-cached-time-series" class="nav-link" data-scroll-target="#dish-cached-time-series">Dish-cached Time Series</a></li>
+  <li><a href="#disk-cached-time-series" id="toc-disk-cached-time-series" class="nav-link" data-scroll-target="#disk-cached-time-series">Disk-cached Time Series</a></li>
   <li><a href="#interactive-time-series" id="toc-interactive-time-series" class="nav-link" data-scroll-target="#interactive-time-series">Interactive Time Series</a></li>
   <li><a href="#multiple-dispatch-tplot" id="toc-multiple-dispatch-tplot" class="nav-link" data-scroll-target="#multiple-dispatch-tplot">Multiple dispatch <code>tplot</code></a></li>
   <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
@@ -276,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2025</p>
+      <p class="date">February 11, 2025</p>
     </div>
   </div>
   
@@ -311,27 +313,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    CondaPkg Found dependencies: /Users/zijin/.julia/packages/DimensionalData/M9vEC/CondaPkg.toml
+    CondaPkg Found dependencies: /Users/zijin/.julia/dev/Speasy/CondaPkg.toml
+    CondaPkg Found dependencies: /Users/zijin/.julia/packages/PythonCall/WMWY0/CondaPkg.toml
+    CondaPkg Found dependencies: /Users/zijin/.julia/dev/PlasmaFormulary/CondaPkg.toml
+    CondaPkg Dependencies already up to date</code></pre>
+</div>
 </div>
 <div id="4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T22:00:00"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T22:00:00"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>/Users/zijin/projects/beforerr/.CondaPkg/env/lib/python3.12/site-packages/speasy/core/data_containers.py:18: UserWarning: no explicit representation of timezones available for np.datetime64
+  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')
+[ Info: Cannot parse unit nT*GSE*(All*Qs)</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>┌ 14386×3 DimArray{Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}, 2} tha_fgs_gse ┐
-├──────────────────────────────────────────────────────────────────────── dims ┤
+<pre><code>┌ 14386×3 DimArray{Float32, 2} tha_fgs_gse ┐
+├──────────────────────────────────────────┴───────────────────────────── dims ┐
   ↓ Ti          Sampled{Dates.DateTime} [2008-09-05T10:00:02, …, 2008-09-05T21:59:59.307] ForwardOrdered Irregular Points,
   → tha_fgs_gse Categorical{Symbol} [Symbol("Bx FGS-D"), Symbol("By FGS-D"), Symbol("Bz FGS-D")] ForwardOrdered
 ├──────────────────────────────────────────────────────────────────── metadata ┤
-  Dict{String, Any} with 27 entries:
+  Dict{Any, Any} with 27 entries:
   "FILLVAL"          =&gt; Any[-1.0e30]
   "DEPEND_EPOCH0"    =&gt; "tha_fgs_epoch0"
   "FIELDNAM"         =&gt; "BXYZ GSE Coordinate, nT units"
   "VALIDMAX"         =&gt; Any[25000.0, 25000.0, 25000.0]
   "SI_CONVERSION"    =&gt; "1e-9&gt;T"
-  "axes"             =&gt; VariableAxis[VariableAxis(&lt;py speasy.core.data_containe…
+  "axes"             =&gt; VariableAxis[Speasy.VariableAxis:…
   "TENSOR_ORDER"     =&gt; "1"
   "SC_ID"            =&gt; "d"
   "DEPEND_1"         =&gt; "tha_fgs_compno"
@@ -357,39 +371,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="6" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_max <span class="op">=</span> <span class="fu">maximum</span>(da)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> <span class="fu">norm</span>.(<span class="fu">eachrow</span>(da))[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_max <span class="op">=</span> <span class="fu">maximum</span>(da)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> <span class="fu">norm</span>.(<span class="fu">eachrow</span>(da))[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ Info: 65.44341f0 nT
-[ Info: Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}[75.64841f0 nT, 75.72411f0 nT, 75.5134f0 nT, 75.73276f0 nT, 75.492195f0 nT, 75.506645f0 nT, 75.522064f0 nT, 75.78088f0 nT, 75.69144f0 nT, 75.647f0 nT]</code></pre>
+<pre><code>[ Info: 65.44341
+[ Info: Float32[75.64841, 75.72411, 75.5134, 75.73276, 75.492195, 75.506645, 75.522064, 75.78088, 75.69144, 75.647]</code></pre>
 </div>
 </div>
 <div id="8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>da1 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>da2 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/BX_GSE"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>try</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    da1 <span class="op">+</span> da2</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>catch <span class="cn">e</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="cn">e</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="cn">e</span> isa Unitful.DimensionError</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># in different times so add would not work</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>tspan3 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>), <span class="fu">DateTime</span>(<span class="st">"2008-09-05T11:00:00"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>tspan4 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T11:00:00"</span>), <span class="fu">DateTime</span>(<span class="st">"2008-09-05T12:00:00"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>da3 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, tspan3<span class="op">...</span>) <span class="op">|&gt;</span> DimArray</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>da4 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, tspan4<span class="op">...</span>) <span class="op">|&gt;</span> DimArray</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>try</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    da3 <span class="op">+</span> da4</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>catch <span class="cn">e</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="cn">e</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Test</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>da1 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>da2 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/BX_GSE"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>try</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    da1 <span class="op">+</span> da2</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>catch <span class="cn">e</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="cn">e</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@test</span> <span class="cn">e</span> isa Unitful.DimensionError</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># in different times so add would not work</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>tspan3 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>), <span class="fu">DateTime</span>(<span class="st">"2008-09-05T11:00:00"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>tspan4 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T11:00:00"</span>), <span class="fu">DateTime</span>(<span class="st">"2008-09-05T12:00:00"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>da3 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, tspan3<span class="op">...</span>) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>da4 <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, tspan4<span class="op">...</span>) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>try</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    da3 <span class="op">+</span> da4</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>catch <span class="cn">e</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="cn">e</span>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unitful.DimensionError(522.0f0 km s⁻¹, 4.01f0 nT)
@@ -403,47 +417,77 @@ DimensionMismatch("Lookup values for DimensionalData.Dimensions.Ti of [Dates.Dat
 <div id="10" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_dim <span class="op">=</span> <span class="fu">dimension</span>(da.data[<span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@info</span> da_dim <span class="op">=</span> <span class="fu">dimension</span>(da.data[<span class="fl">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ Info: 𝐌 𝐈⁻¹ 𝐓⁻²</code></pre>
+<pre><code>[ Info: NoDims</code></pre>
 </div>
 </div>
 </section>
 <section id="tplot" class="level1">
 <h1>Tplot</h1>
-<div id="14" class="cell" data-execution_count="1">
+<div id="12" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">tplot</span>([da])</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>f.figure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">tplot</span>([da])</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f.figure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="16" class="cell" data-execution_count="1">
+<div id="14" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/THA_L2_FGM/tha_fgs_gsmQ"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/E"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/Pressure"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/THA_L2_FGM/tha_fgs_gsmQ"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/E"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/OMNI_HRO_1MIN/Pressure"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service
+[ Info: Cannot parse unit nT*GSM
 Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service
-Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service</code></pre>
+[ Info: Cannot parse unit nT*GSM
+[ Info: Data resampled to 10000 points</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="spectrogram" class="level2">
+<h2 class="anchored" data-anchor-id="spectrogram">Spectrogram</h2>
+<p>https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FPI_FAST_L2_DES-DIST</p>
+<div id="16" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ts0 <span class="op">=</span> <span class="st">"2019-01-02T15"</span> <span class="op">|&gt;</span> <span class="dt">DateTime</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ts1 <span class="op">=</span> <span class="st">"2019-01-02T22"</span> <span class="op">|&gt;</span> <span class="dt">DateTime</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gse_srvy_l2_clean"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/MMS1_FPI_FAST_L2_DES-MOMS/mms1_des_energyspectr_omni_fast"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, ts0, ts1; add_title<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Can't get MMS1_FGM_SRVY_L2/mms1_fgm_b_gse_srvy_l2_clean without web service, switching to web service
+Can't get MMS1_FGM_SRVY_L2/mms1_fgm_b_gse_srvy_l2_clean without web service, switching to web service
+[ Info: Data resampled to 10000 points</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
@@ -453,37 +497,78 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 </div>
 </div>
 </div>
-<section id="spectrogram" class="level2">
-<h2 class="anchored" data-anchor-id="spectrogram">Spectrogram</h2>
-<p>https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FPI_FAST_L2_DES-DIST</p>
+</section>
+<section id="overlay-plots" class="level2">
+<h2 class="anchored" data-anchor-id="overlay-plots">Overlay plots</h2>
 <div id="18" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ts0 <span class="op">=</span> <span class="st">"2019-01-02T15"</span> <span class="op">|&gt;</span> <span class="dt">DateTime</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ts1 <span class="op">=</span> <span class="st">"2019-01-02T22"</span> <span class="op">|&gt;</span> <span class="dt">DateTime</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cda/MMS1_FPI_FAST_L2_DES-MOMS/mms1_des_energyspectr_omni_fast"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, ts0, ts1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>SDS <span class="op">=</span> SpaceTools.DataSet</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ts0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2021-01-17"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ts1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2021-01-18"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>density_tvar <span class="op">=</span> <span class="fu">SDS</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Density"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cda/PSP_SWP_SPI_SF00_L3_MOM/DENS"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cda/PSP_FLD_L3_RFS_LFR_QTN/N_elec"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"cda/PSP_FLD_L3_SQTN_RFS_V1V2/electron_density"</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [density_tvar]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, ts0, ts1; add_title<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="complex-requests-and-flexible-layout" class="level2">
+<h2 class="anchored" data-anchor-id="complex-requests-and-flexible-layout">Complex requests and flexible layout</h2>
+<div id="20" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="kw">let</span> intervals <span class="op">=</span> [<span class="st">"2019-01-02T15"</span>, <span class="st">"2019-01-02T16"</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    products <span class="op">=</span> [</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.FGM.MMS1_FGM_SRVY_L2.mms1_fgm_b_gse_srvy_l2_clean,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.SCM.MMS1_SCM_SRVY_L2_SCSRVY.mms1_scm_acb_gse_scsrvy_srvy_l2,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.DES.MMS1_FPI_FAST_L2_DES_MOMS.mms1_des_bulkv_gse_fast,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.DES.MMS1_FPI_FAST_L2_DES_MOMS.mms1_des_temppara_fast,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.DES.MMS1_FPI_FAST_L2_DES_MOMS.mms1_des_tempperp_fast,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.DES.MMS1_FPI_FAST_L2_DES_MOMS.mms1_des_energyspectr_omni_fast,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        spz.inventories.tree.cda.MMS.MMS1.DIS.MMS1_FPI_FAST_L2_DIS_MOMS.mms1_dis_energyspectr_omni_fast</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">get_data</span>(products, intervals)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">1200</span>)), add_title <span class="op">=</span> <span class="cn">true</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">Figure</span>(; figure<span class="op">...</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">1</span>], data[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]; add_title)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">2</span>], [data[<span class="fl">4</span><span class="op">:</span><span class="fl">5</span>], data[<span class="fl">6</span><span class="op">:</span><span class="fl">7</span>]<span class="op">...</span>]; add_title)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ Info: Cannot parse unit keV/(cm^2 s sr keV)
-[ Info: Cannot parse unit keV/(cm^2 s sr keV)
-[ Info: Cannot parse unit keV/(cm^2 s sr keV)</code></pre>
+<pre><code>Can't get MMS1_FGM_SRVY_L2/mms1_fgm_b_gse_srvy_l2_clean without web service, switching to web service</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-10-output-2.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-11-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="dish-cached-time-series" class="level1">
-<h1>Dish-cached Time Series</h1>
+<section id="disk-cached-time-series" class="level1">
+<h1>Disk-cached Time Series</h1>
 <p>WebServer (CDAWeb) -&gt; Files -&gt; Data structure (<code>tplot</code> variable / <code>numpy</code> array)</p>
 <p>However, loading <code>cdf</code> files is moderately slow, especially for large data. We can improve the performance by disk-caching the data structure (<code>numpy</code> array).</p>
 <p>WebServer (CDAWeb) -&gt; Files -&gt; Disk-cached data structure -&gt; Data structure</p>
@@ -491,10 +576,10 @@ Can't get THA_L2_FGM/tha_fgs_gsmQ without web service, switching to web service<
 <section id="interactive-time-series" class="level1">
 <h1>Interactive Time Series</h1>
 <p>Use <code>GLMakie</code> to zoom in and <strong>Zoom out</strong> to explore data.</p>
-<div id="20" class="cell" data-execution_count="0">
+<div id="22" class="cell" data-execution_count="0">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars, t0, t1; figure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -507,32 +592,37 @@ We love all of these languages; they are wonderful and powerful. For the work we
 We are greedy: we want more.
 We want a language that’s open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that’s homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.</p>
 </blockquote>
-<p>We want <code>tplot</code> to understand a time series represented as a <code>vector</code>-like / <code>matrix</code>-like (series/heatmap/spectrogram) / <code>Function</code> / <code>String</code></p>
-<p>We want <code>tplot</code> to plot multiple time series on the same figure;
+<p>We want <code>tplot</code> to understand a time series represented as a <code>vector</code>-like / <code>matrix</code>-like (series/heatmap/spectrogram) / <code>Function</code> / <code>String</code>;
+We want <code>tplot</code> to plot multiple time series on the same figure;
 We want <code>tplot</code> to be interactive as well as publication-ready;
 and we want <code>tplot</code> to be composable.</p>
-<div id="22" class="cell" data-execution_count="1">
+<div id="24" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using GLMakie</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1600</span>, <span class="fl">1200</span>))</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">Figure</span>(; figure<span class="op">...</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>tvars1 <span class="op">=</span> [<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, <span class="st">"cda/OMNI_HRO_1MIN/E"</span>, <span class="st">"cda/OMNI_HRO_1MIN/Pressure"</span>]</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tvars2 <span class="op">=</span> [<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>]</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>tvars3 <span class="op">=</span> [<span class="st">"cda/OMNI_HRO_1MIN/BX_GSE"</span>, <span class="st">"cda/OMNI_HRO_1MIN/BY_GSE"</span>]</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">1</span>], tvars1, t0, t1)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">2</span>], tvars2, t0, t1)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], tvars3, t0, t1)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> (; size<span class="op">=</span>(<span class="fl">1600</span>, <span class="fl">1200</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">Figure</span>(; figure<span class="op">...</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>tvars1 <span class="op">=</span> [<span class="st">"cda/OMNI_HRO_1MIN/flow_speed"</span>, <span class="st">"cda/OMNI_HRO_1MIN/E"</span>, <span class="st">"cda/OMNI_HRO_1MIN/Pressure"</span>]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>tvars2 <span class="op">=</span> [<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>tvars3 <span class="op">=</span> [<span class="st">"cda/OMNI_HRO_1MIN/BX_GSE"</span>, <span class="st">"cda/OMNI_HRO_1MIN/BY_GSE"</span>]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T10:00:00"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T22:00:00"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">1</span>], tvars1, t0, t1)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">2</span>], tvars2, t0, t1)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(f[<span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>], tvars3, t0, t1)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ Info: Cannot parse unit nT*GSE*(All*Qs)
+[ Info: Cannot parse unit nT*GSE*(All*Qs)
+[ Info: Data resampled to 10000 points</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-13-output-2.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
