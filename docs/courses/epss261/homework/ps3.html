@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.13">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Problem Set 3 – beforerr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/courses/astr145/index.html" rel="next">
+<link href="../../../../docs/courses/epss261/homework/ps2.html" rel="prev">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-66ab7fd5e73b7f0a764e0d49b3e29ab1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">beforerr</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Others</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/blog/index.html">
+ <span class="dropdown-text">Blog</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/courses/index.html">
+ <span class="dropdown-text">Courses</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Beforerr/beforerr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/index.html">EPSS 261</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/homework/ps1.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/homework/ps3.html">Problem Set 3</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Courses</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/epss261/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EPSS 261</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss261/homework/ps1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss261/homework/ps2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss261/homework/ps3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Problem Set 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/astr145/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ASTR 145</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/astr145/homework/ps8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/epss263/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EPSS M263</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/epss263/homework/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss263/homework/epss263_hw02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss263/homework/epss263_hw03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss263/homework/epss263_hw04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss263/homework/epss263_hw05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss263/homework/epss263_hw06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 06</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/phys231/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PHYSICS 231A</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 06</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/phys231/phys231_hw09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework 09</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/epss265/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EPSS 265</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/courses/epss265/homeworks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/homeworks/epss265_hw02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 - FGM Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/homeworks/epss265_hw03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03 - SCM Noise Curves</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/homeworks/epss265_hw04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04 - EFI Calibration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/homeworks/epss265_hw05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05 - LEP Principles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/homeworks/epss265_hw06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06 - FPI</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/courses/epss265/project/project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Poor man’s magnetometer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#minimum-and-maximum-variance-analysis" id="toc-minimum-and-maximum-variance-analysis" class="nav-link active" data-scroll-target="#minimum-and-maximum-variance-analysis"><span class="header-section-number">1</span> Minimum and Maximum Variance Analysis</a></li>
+  <li><a href="#electromagnetic-ion-cyclotron-waves" id="toc-electromagnetic-ion-cyclotron-waves" class="nav-link" data-scroll-target="#electromagnetic-ion-cyclotron-waves"><span class="header-section-number">2</span> Electromagnetic ion cyclotron waves</a>
+  <ul class="collapse">
+  <li><a href="#spectrogram-with-cyclotron-frequencies" id="toc-spectrogram-with-cyclotron-frequencies" class="nav-link" data-scroll-target="#spectrogram-with-cyclotron-frequencies"><span class="header-section-number">2.1</span> Spectrogram with cyclotron frequencies</a></li>
+  <li><a href="#band-pass-filtered-data" id="toc-band-pass-filtered-data" class="nav-link" data-scroll-target="#band-pass-filtered-data"><span class="header-section-number">2.2</span> Band-pass filtered data</a></li>
+  <li><a href="#minimum-variance-analysis" id="toc-minimum-variance-analysis" class="nav-link" data-scroll-target="#minimum-variance-analysis"><span class="header-section-number">2.3</span> Minimum Variance Analysis</a></li>
+  <li><a href="#minvar-direction" id="toc-minvar-direction" class="nav-link" data-scroll-target="#minvar-direction"><span class="header-section-number">2.4</span> Minvar direction</a></li>
+  <li><a href="#hodogram" id="toc-hodogram" class="nav-link" data-scroll-target="#hodogram"><span class="header-section-number">2.5</span> Hodogram</a></li>
+  </ul></li>
+  <li><a href="#shock-crossings" id="toc-shock-crossings" class="nav-link" data-scroll-target="#shock-crossings"><span class="header-section-number">3</span> Shock crossings</a>
+  <ul class="collapse">
+  <li><a href="#shock-normal" id="toc-shock-normal" class="nav-link" data-scroll-target="#shock-normal"><span class="header-section-number">3.1</span> Shock normal</a></li>
+  <li><a href="#minimum-variance-direction" id="toc-minimum-variance-direction" class="nav-link" data-scroll-target="#minimum-variance-direction"><span class="header-section-number">3.2</span> Minimum variance direction</a></li>
+  <li><a href="#error-estimates" id="toc-error-estimates" class="nav-link" data-scroll-target="#error-estimates"><span class="header-section-number">3.3</span> Error estimates</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/epss261/homework/ps3.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ps3.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/courses/index.html">Courses</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/index.html">EPSS 261</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/homework/ps1.html">Homework</a></li><li class="breadcrumb-item"><a href="../../../../docs/courses/epss261/homework/ps3.html">Problem Set 3</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Problem Set 3</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="minimum-and-maximum-variance-analysis" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="minimum-and-maximum-variance-analysis"><span class="header-section-number">1</span> Minimum and Maximum Variance Analysis</h2>
+<blockquote class="blockquote">
+<p>Minimize the variance <span class="math inline">\(σ^2\)</span> Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.</p>
+</blockquote>
+<p><span id="eq-Chen84"><span class="math display">\[
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+\tag{1}\]</span></span></p>
+<p><span id="eq-Chen87"><span class="math display">\[
+\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
+\tag{2}\]</span></span></p>
+<p>Expand the dot product in components:</p>
+<p><span class="math display">\[
+\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,
+\]</span></p>
+<p>so that</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{1}{M} \sum_{m=1}^M \left(\sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu \right)^2 = \sum_{\mu,\nu=1}^3 n_\mu n_\nu \left[ \frac{1}{M} \sum_{m=1}^M \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) \left(B_\nu^{(m)} - \langle B_\nu \rangle\right) \right]
+\]</span></p>
+<p>Define the magnetic variance matrix</p>
+<p><span class="math display">\[
+M_{\mu\nu}^B \equiv \left\langle B_\mu B_\nu \right\rangle - \langle B_\mu \rangle \langle B_\nu \rangle
+\]</span></p>
+<p>so that</p>
+<p><span class="math display">\[
+\sigma^2 = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu.
+\]</span></p>
+<p>The Lagrangian is given by:</p>
+<p><span class="math display">\[
+L(\hat{\boldsymbol{n}}, \lambda) = \sigma^2 - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right) = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right).
+\]</span></p>
+<p>Differentiate with Respect to the Components <span class="math inline">\(n_\alpha\)</span> equal to zero for each component</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial n_\alpha} \left(\sum_{\mu,\nu} n_\mu M_{\mu\nu}^B n_\nu\right) - \frac{\partial}{\partial n_\alpha} \left[\lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right)\right] = 2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu -  2\lambda n_\alpha.
+\]</span></p>
+<p>we get:</p>
+<p><span class="math display">\[
+2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu - 2\lambda n_\alpha = 0.
+\]</span></p>
+<p>This is exactly Equation (8.7): <span class="math inline">\(\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu = \lambda n_\mu\)</span>. The equation is an eigenvalue problem for the symmetric <span class="math inline">\(3\times 3\)</span> matrix <span class="math inline">\(M_{\mu\nu}^B\)</span>. The eigenvalues <span class="math inline">\(\lambda\)</span> are real, and the corresponding eigenvectors <span class="math inline">\(\hat{\boldsymbol{n}}\)</span> are orthogonal.</p>
+<!-- 
+The minimum variance technique is designed to deal with the situation where some or all of the non-ideal effects mentioned above, except a systematic temporal change in the normal direction, $\hat{\boldsymbol{n}}$, are present. As the estimate of $\hat{\boldsymbol{n}}$, the method identifies that direction in space along which the field-component set $\left\{\boldsymbol{B}^{(m)} \cdot \hat{\boldsymbol{n}}\right\}(m=1,2,3 \ldots M)$ has minimum variance. In other words, $\hat{\boldsymbol{n}}$ is determined by minimisation of
+
+$$
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+$$
+
+where the average $\langle\boldsymbol{B}\rangle$ is defined by
+
+$$
+\langle\boldsymbol{B}\rangle \equiv \frac{1}{M} \sum_{m=1}^M \boldsymbol{B}^{(m)}
+$$
+
+and where the minimisation is subject to the normalisation constraint $|\hat{n}|^2=1$. Using a Lagrange multiplier, $\lambda$, to implement this constraint, one then seeks the solution of the set of three homogeneous linear equations
+
+$$
+\begin{aligned}
+\frac{\partial}{\partial n_X}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Y}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Z}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0
+\end{aligned}
+$$
+
+where $\sigma^2$ is given by equation 8.4 and $\hat{\boldsymbol{n}}$ is represented in terms of its three components ( $n_X, n_Y, n_Z$ ) along the cartesian coordinate system $X, Y, Z$ (e.g., GSE or GSM) in which the field data $\left\{\boldsymbol{B}^{(m)}\right\}$ are given. When the differentiations in equation 8.6 have been performed, the resulting set of three equations can be written in matrix form as
+
+$$
+\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
+$$
+
+where the subscripts $\mu, v=1,2,3$ denote cartesian components along the $X, Y, Z$ system and
+
+$$
+M_{\mu \nu}^B \equiv\left\langle B_\mu B_\nu\right\rangle-\left\langle B_\mu\right\rangle\left\langle B_v\right\rangle
+$$
+
+is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $\lambda$ values are the eigenvalues $\lambda_1, \lambda_2, \lambda_3$ (given here in order of decreasing magnitude) of $M_{\mu \nu}^B$. Since $M_{\mu \nu}^B$ is symmetric, the eigenvalues are all real and the corresponding eigenvectors, $\boldsymbol{x}_1$, $\boldsymbol{x}_2$, and $\boldsymbol{x}_3$, are orthogonal.
+-->
+</section>
+<section id="electromagnetic-ion-cyclotron-waves" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="electromagnetic-ion-cyclotron-waves"><span class="header-section-number">2</span> Electromagnetic ion cyclotron waves</h2>
+<blockquote class="blockquote">
+<p>Electromagnetic ion cyclotron waves are left-hand polarized waves excited by velocity space anisotropy (perpendicular gradients in velocity distribution function). They are typically below the ion cyclotron frequency for each species (H+, He+ or O+). MMS observations on 2015 Dec.&nbsp;14, show that such waves were excited after the passage of a shock.</p>
+</blockquote>
+<div id="2" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Speasy</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spz <span class="op">=</span> <span class="fu">speasy</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DimensionalData</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpaceTools</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DSP</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    CondaPkg Found dependencies: /Users/zijin/.julia/packages/DimensionalData/M9vEC/CondaPkg.toml
+    CondaPkg Found dependencies: /Users/zijin/.julia/dev/Speasy/CondaPkg.toml
+    CondaPkg Found dependencies: /Users/zijin/.julia/packages/PythonCall/WMWY0/CondaPkg.toml
+    CondaPkg Dependencies already up to date</code></pre>
+</div>
+</div>
+<section id="spectrogram-with-cyclotron-frequencies" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="spectrogram-with-cyclotron-frequencies"><span class="header-section-number">2.1</span> Spectrogram with cyclotron frequencies</h3>
+<blockquote class="blockquote">
+<p>[a] Obtain MMS 1 (or 2,3,4) data between 13:27 and 13:29 UT, from the FGM instrument in GSM coordinates, and plot the spectrogram of the X or Y component between 0-2Hz. Overlay the 3 cyclotron frequencies, as shown in Fig. 5 of the paper (for subset of time). [Note: you should create a low-pass filtered version of the average field at 5-10s window to compute the cyclotron frequencies with; for that use tsmooth2 (IDL) or pyspedas.interpol (PySPEDAS) after degap/clip/deflaging the data first].</p>
+</blockquote>
+<p>https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FGM_SRVY_L2</p>
+<div id="4" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="st">"2015-12-14T13:10:00"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="st">"2015-12-14T13:50:00"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> <span class="st">"cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(tvars, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> SpaceTools.<span class="fu">modify_meta</span>(da, long_name<span class="op">=</span><span class="st">"B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Can't get MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean without web service, switching to web service
+/Users/zijin/projects/beforerr/.CondaPkg/env/lib/python3.11/site-packages/speasy/core/data_containers.py:18: UserWarning: no explicit representation of timezones available for np.datetime64
+  return np.searchsorted(time, np.datetime64(key, 'ns'), side='left')</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>┌ 19199×4 DimArray{Unitful.Quantity{Float32, 𝐌 𝐈⁻¹ 𝐓⁻², Unitful.FreeUnits{(nT,), 𝐌 𝐈⁻¹ 𝐓⁻², nothing}}, 2} mms1_fgm_b_gsm_srvy_l2_clean ┐
+├──────────────────────────────────────────────────────────────────────── dims ┤
+  ↓ Ti                           Sampled{Dates.DateTime} [2015-12-14T13:10:00, …, 2015-12-14T13:49:59.783] ForwardOrdered Irregular Points,
+  → mms1_fgm_b_gsm_srvy_l2_clean Categorical{Symbol} [Symbol("Bx GSM"), Symbol("By GSM"), Symbol("Bz GSM"), :Bt] Unordered
+├──────────────────────────────────────────────────────────────────── metadata ┤
+  Dict{Any, Any} with 19 entries:
+  "REPRESENTATION_1"  =&gt; "represent_vec_tot"
+  "SCALETYP"          =&gt; "linear"
+  "FILLVAL"           =&gt; Any[-1.0e31]
+  "DEPEND_0"          =&gt; "Epoch"
+  "FIELDNAM"          =&gt; "Magnetic field vector in GSM plus Btotal (8 or 16 S/s…
+  "VALIDMAX"          =&gt; Any[17000.0, 17000.0, 17000.0, 17000.0]
+  "SI_CONVERSION"     =&gt; "1.0e-9&gt;T"
+  "LABL_PTR_1"        =&gt; Any["Bx GSM", "By GSM", "Bz GSM", "Bt    "]
+  "TENSOR_ORDER"      =&gt; Any[1]
+  "axes"              =&gt; VariableAxis[Speasy.VariableAxis:…
+  "COORDINATE_SYSTEM" =&gt; "GSM"
+  "FORMAT"            =&gt; "E13.5"
+  "VAR_TYPE"          =&gt; "data"
+  "CATDESC"           =&gt; "Magnetic field vector in Geocentric Solar Magnetosphe…
+  :long_name          =&gt; "B"
+  "DISPLAY_TYPE"      =&gt; "time_series"
+  "VALIDMIN"          =&gt; Any[-17000.0, -17000.0, -17000.0, 0.0]
+  "DIM_SIZES"         =&gt; Any[4]
+  "UNITS"             =&gt; "nT"
+└──────────────────────────────────────────────────────────────────────────────┘
+ ⋮      ⋱  </code></pre>
+</div>
+</div>
+<div id="6" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SignalAnalysis</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">PlasmaFormulary</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> SpaceTools.<span class="fu">pspectrum</span>(da[<span class="op">:</span>, <span class="fl">1</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">begin</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">tplot</span>(p; colorrange<span class="op">=</span>(<span class="fl">1e-7</span>, <span class="fl">1</span>), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> <span class="fu">current_axis</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylims!</span>(ax, <span class="fl">0</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    B_ts <span class="op">=</span> <span class="fu">smooth</span>(da, <span class="fl">5</span>u<span class="st">"s"</span>)[<span class="op">:</span>, <span class="fl">4</span>]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    ic_H <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"H+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ic_He <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"He+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    ic_He2 <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"He2+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ic_O <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"O+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot_panel!</span>.(<span class="fu">current_axis</span>(), [ic_H, ic_He, ic_He2, ic_O])</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007986138746711634)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21
+┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007986138746711634)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-4-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="band-pass-filtered-data" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="band-pass-filtered-data"><span class="header-section-number">2.2</span> Band-pass filtered data</h3>
+<blockquote class="blockquote">
+<p>[b] Plot the GSM time series of the band-pass filtered data between 0.2 – 2 Hz (again using tsmooth2/pyspedas.interpol to first low-pass filter the data at 0.2Hz, subtract it from the original to create the high-pass residual &gt;0.2Hz, then low-pass filter that with a 2Hz window).</p>
+</blockquote>
+<div id="8" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:20:00"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:30:00"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sda <span class="op">=</span> da[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Band-pass filter the data between 0.2-2 Hz</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First step: Low-pass filter at 0.2 Hz</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>lp_02Hz <span class="op">=</span> <span class="fu">smooth</span>(sda, <span class="fl">5</span>u<span class="st">"s"</span>)  <span class="co"># 0.2 Hz ≈ 5 second window</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># High-pass by subtracting low-pass from original</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>hp_02Hz <span class="op">=</span> <span class="fu">amap</span>(<span class="op">-</span>, sda, lp_02Hz)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Second step: Low-pass filter at 2 Hz (0.5 second window)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>bp_filtered <span class="op">=</span> <span class="fu">smooth</span>(hp_02Hz, <span class="fl">0.5</span>u<span class="st">"s"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([lp_02Hz, hp_02Hz, bp_filtered])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007984877076234697)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21
+┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007984753171800809)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Actually, the frequency response of an <span class="math inline">\(M\)</span> point moving average filter is not a perfect low-pass filter.</p>
+<p><span class="math display">\[
+H[f]=\frac{\sin (\pi f M)}{M \sin (\pi f)}
+\]</span></p>
+<div id="10" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bp_filtered2 <span class="op">=</span> <span class="fu">filtfilt</span>(sda, <span class="fl">0.2</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>).data</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([hp_02Hz, bp_filtered, bp_filtered2])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">current_figure</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007984877076234697)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-6-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="minimum-variance-analysis" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="minimum-variance-analysis"><span class="header-section-number">2.3</span> Minimum Variance Analysis</h3>
+<blockquote class="blockquote">
+<p>[c] Use minvar_matrix_make (IDL or pyspedas) applied on the band-pass filtered data to obtain the minimum variance matrix, on a sliding window. You can control the width and shift of the window (see keywords). Rotate the data in i,j,k (max,int,min) coord’s using tvector_rotate (in IDL / Py - SPEDAS; see how to use it from class examples, or from cribs / readthedocs). Plot the data in that coordinate system.</p>
+</blockquote>
+<div id="12" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:20:00"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:30:00"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>B_ts <span class="op">=</span> bp_filtered[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>B_mva_ts <span class="op">=</span> <span class="fu">mva</span>(B_ts, B_ts)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>B_ts_2 <span class="op">=</span> bp_filtered2[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>B_mva_ts_2 <span class="op">=</span> <span class="fu">mva</span>(B_ts_2, B_ts_2)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="minvar-direction" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="minvar-direction"><span class="header-section-number">2.4</span> Minvar direction</h3>
+<blockquote class="blockquote">
+<p>[d] The code minvar_matrix_make allows you to output the eigenvectors and eigenvalues. Plot the eigenvalues and evaluate the confidence in the minvar direction. Plot the angle between the minvar direction and the direction of the ambient magnetic field (the 5-10s average above).</p>
+</blockquote>
+<div id="14" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpaceTools</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load magnetic field data around the shock crossing</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T15:30:00"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T15:40:00"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> b_data.data  <span class="co"># Get the magnetic field components</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Get eigenvalues and eigenvectors</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">mva_mat</span>(B)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># The minimum variance direction (shock normal)</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>n̂ <span class="op">=</span> F.vectors[<span class="op">:</span>, <span class="fl">3</span>]  <span class="co"># Third eigenvector corresponds to minimum variance</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate θBn (angle between B-field and shock normal)</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>B_avg <span class="op">=</span> <span class="fu">mean</span>(B, dims<span class="op">=</span><span class="fl">1</span>)[<span class="fl">1</span>, <span class="op">:</span>]</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>B_avg_norm <span class="op">=</span> B_avg <span class="op">/</span> <span class="fu">norm</span>(B_avg)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>θBn <span class="op">=</span> <span class="fu">acosd</span>(<span class="fu">abs</span>(<span class="fu">dot</span>(B_avg_norm, n̂)))</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Bn (shock-normal magnetic field component)</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>(B_avg, n̂)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Results of Minimum Variance Analysis:"</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Shock normal (GSE coordinates): "</span>, <span class="fu">round</span>.(n̂, digits<span class="op">=</span><span class="fl">3</span>))</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"θBn: "</span>, <span class="fu">round</span>(θBn, digits<span class="op">=</span><span class="fl">1</span>), <span class="st">"°"</span>)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Bn: "</span>, Bn)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="fu">check_mva_mat</span>(F; verbose<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ Info: Cannot parse unit nT*GSE*(All*Qs)
+Results of Minimum Variance Analysis:
+Shock normal (GSE coordinates): Float32[-0.215, -0.966, 0.143]
+θBn: 61.5°
+Bn: 26.65665
+Float32[0.0060435473 0.97663194 -0.21483368; 0.14459603 -0.21343324 -0.9661977; 0.9894723 0.025224842 0.14250703]
+Ratio of intermediate variance to minimum variance = 1.8064607
+┌ Warning: Take the MVA result with a grain of salt!
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/cotrans/mva.jl:82</code></pre>
+</div>
+</div>
+</section>
+<section id="hodogram" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="hodogram"><span class="header-section-number">2.5</span> Hodogram</h3>
+<blockquote class="blockquote">
+<p>[e] There are several bursts of EMIC wave power in the interval. Pick one clean burst with 5-10 cycles and plot the B-field hodogram in the plane of polarization (max,int). (Bandpass filtering first will help). Is it left-hand polarized as expected? [Note that the minvar code ensures a right-hand orthogonal system, but you may have to switch vectors around if the angle to B-field is not less than 90deg].</p>
+</blockquote>
+<!-- Figure 7. Three-axis plot of MMS 1 magnetic field data rotated into local field-aligned coordinates and band-pass filtered from 0.4 to 2.0 Hz, with uniform scale, from 1327:15 to 1328:15 UT on 14 December 2015. -->
+<div id="16" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>interval <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:40:20"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:40:40"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    sda <span class="op">=</span> da[interval, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    bp_filtered <span class="op">=</span> <span class="fu">filtfilt</span>(sda, <span class="fl">0.8</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>).data</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    B_mva_ts <span class="op">=</span> <span class="fu">mva</span>(bp_filtered, bp_filtered)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    Bx <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">1</span>]]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    By <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">2</span>]]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    Bz <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">3</span>]]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">1</span>], [sda, bp_filtered, B_mva_ts])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">2</span>], [Bx, By, Bz]; link_yaxes<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> <span class="fu">dims</span>(Bx, <span class="fl">1</span>).val</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> (time <span class="op">.-</span> time[<span class="fl">1</span>]) <span class="op">./</span> (time[<span class="kw">end</span>] <span class="op">-</span> time[<span class="fl">1</span>])</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(f[<span class="fl">1</span>, <span class="fl">3</span>], Bx[<span class="op">:</span>, <span class="fl">1</span>].data, By[<span class="op">:</span>, <span class="fl">1</span>].data, color<span class="op">=</span>color)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>┌ Warning: Time resolution is is not approximately constant (relerr ≈ 0.007949285570537276)
+└ @ SpaceTools ~/.julia/dev/SpaceTools/src/timeseries.jl:21</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-9-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hodogram analysis indicated left handed polarization during the interval.</p>
+</section>
+</section>
+<section id="shock-crossings" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="shock-crossings"><span class="header-section-number">3</span> Shock crossings</h2>
+<blockquote class="blockquote">
+<p>Shock crossings were observed by ARTEMIS P1 (TH-B) in the solar wind on 2013-07-09 20:40UT and on 2014-06-09 16:58UT, both captured in Fast Survey and published in Fig. 3 (analysis results in Table 1 of Zhou et al., 202022). Pick one of the two to study.</p>
+</blockquote>
+<div id="18" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">TimeSeries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="shock-normal" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="shock-normal"><span class="header-section-number">3.1</span> Shock normal</h3>
+<blockquote class="blockquote">
+<p>[a] Determine, using minimum variance analysis, the shock normal, the angle between the B-field and the shock normal, and the shock-normal magnetic field component, Bn.</p>
+</blockquote>
+<p>The shock angle, <span class="math inline">\(θ_{Bn}\)</span>, the angle between the directions of the upstream magnetic field and the shock normal;</p>
+<div id="20" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load magnetic field data around the shock crossing</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:37:00"</span>)  <span class="co"># Start a few minutes before the crossing</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:45:00"</span>)  <span class="co"># End a few minutes after</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THB_L2_FGM/thb_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(b_data; add_title<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ Info: Cannot parse unit nT*GSE*(All*Qs)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-11-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="22" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform MVA analysis using the built-in function</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The minimum variance direction (shock normal)</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>n̂ <span class="op">=</span> F.vectors[<span class="op">:</span>, <span class="fl">3</span>]  <span class="co"># Third eigenvector corresponds to minimum variance</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate θBn (angle between B-field and shock normal)</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>B_up <span class="op">=</span> <span class="fu">vec</span>(<span class="fu">mean</span>(b_data[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">:</span>].data; dims<span class="op">=</span><span class="fl">1</span>))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>θBn <span class="op">=</span> <span class="fu">angle</span>(B_up, n̂)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Bn (shock-normal magnetic field component)</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>(B_up, n̂)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (2013-07-09):"</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Shock normal (GSE coordinates): "</span>, <span class="fu">round</span>.(n̂, digits<span class="op">=</span><span class="fl">3</span>))</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"θ_Bn: "</span>, <span class="fu">round</span>(θBn, digits<span class="op">=</span><span class="fl">1</span>), <span class="st">"°"</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Bn: "</span>, Bn)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="fu">check_mva_mat</span>(F, verbose<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (2013-07-09):
+Shock normal (GSE coordinates): Float32[0.923, 0.347, 0.164]
+θ_Bn: 75.4°
+Bn: 2.5922403
+Float32[-0.27282175 0.2701564 0.9233546; 0.29161265 -0.8913902 0.3469665; 0.91680443 0.36392197 0.16440956]
+Ratio of intermediate variance to minimum variance = 10.369079
+[ Info: Seems to be a proper MVA attempt!</code></pre>
+</div>
+</div>
+</section>
+<section id="minimum-variance-direction" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="minimum-variance-direction"><span class="header-section-number">3.2</span> Minimum variance direction</h3>
+<blockquote class="blockquote">
+<p>[b] Note that there are significant waves downstream but not upstream, which is common for weak (subcritical) shocks. Starting from a small interval barely encompassing the shock (&lt;1min in length), increase the interval by ~0.5 min and recalculate. Then increase again and recalculate. Do so for ~10-20 times until you reach ~10min encompassing the shock. The solution will initially fluctuate from one to the next choice of intervals, then stabilize, then start being jittery again because you are including the waves. Plot the minimum variance direction (two angles, elevation and azimuth, in GSE) and Bn, all as a function of the interval chosen. Pick and report the best solution, based on the shortest time interval choice when the solution becomes stable.</p>
+</blockquote>
+<div id="24" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">azimuth</span>(x) <span class="op">=</span> <span class="fu">rad2deg</span>(<span class="fu">atan</span>(x[<span class="fl">2</span>], x[<span class="fl">1</span>]))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">elevation</span>(x) <span class="op">=</span> <span class="fu">rad2deg</span>(<span class="fu">asin</span>(x[<span class="fl">3</span>]))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Central time of the shock crossing for ARTEMIS P1 (2013-07-09)</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:39:00"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>time_shock <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:39:30"</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>t_ends <span class="op">=</span> [time_shock <span class="op">+</span> <span class="fu">Second</span>(<span class="fl">30</span> <span class="op">*</span> (i <span class="op">-</span> <span class="fl">1</span>)) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n]</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THB_L2_FGM/thb_fgs_gse"</span>, t_start, t_ends[<span class="kw">end</span>]) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>b_data.metadata[<span class="op">:</span>units] <span class="op">=</span> <span class="st">"nT"</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>n̂s <span class="op">=</span> <span class="fu">map</span>(t_ends) <span class="cf">do</span> t_end</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    b_data_subset <span class="op">=</span> b_data[t_start<span class="op">..</span>t_end, <span class="op">:</span>]</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data_subset)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    F.vectors[<span class="op">:</span>, <span class="fl">3</span>]</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>.(<span class="fu">Ref</span>(B_up), n̂s)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>direction <span class="op">=</span> <span class="fu">DimArray</span>(</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    [<span class="fu">azimuth</span>.(n̂s) <span class="fu">elevation</span>.(n̂s)],</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">Ti</span>(t_ends), <span class="fu">Y</span>([<span class="op">:</span>azimuth, <span class="op">:</span>elevation]));</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>direction</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>Bns <span class="op">=</span> <span class="fu">DimArray</span>(Bn, <span class="fu">Ti</span>(t_ends); name<span class="op">=:</span>Bn)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>ΔBn <span class="op">=</span> <span class="fu">abs</span>.(<span class="fu">diff</span>(Bns))</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>ΔBn <span class="op">=</span> SpaceTools.<span class="fu">rename</span>(ΔBn, <span class="op">:</span>ΔBn)</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [b_data, direction, [Bns, ΔBn]]</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>f, axes <span class="op">=</span> <span class="fu">tplot</span>(tvars; add_title<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ Info: Cannot parse unit nT*GSE*(All*Qs)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-13-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The solution becomes stable around “2013-07-09T20:43:00”, about 4 mins after the shock crossing. after “2013-07-09T20:45:00” the solution becomes jittery because the waves are included.</p>
+</section>
+<section id="error-estimates" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="error-estimates"><span class="header-section-number">3.3</span> Error estimates</h3>
+<blockquote class="blockquote">
+<p>[c] The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the <span class="math inline">\(ΔB_n\)</span> and <span class="math inline">\(Δφ\)</span> separately. Check if they support your choice of interval.</p>
+</blockquote>
+<p>The angular error estimates (in radians) is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left|\Delta \varphi_{i j}\right|=\left|\Delta \varphi_{j i}\right| &amp; =\left\langle\left\langle\left(\Delta x_{i j}\right)^2\right\rangle\right\rangle^{1 / 2}=\left\langle\left\langle\left(\Delta x_{j i}\right)^2\right\rangle\right\rangle^{1 / 2} \\
+&amp; =\sqrt{\frac{\lambda_3}{(M-1)} \frac{\left(\lambda_i+\lambda_j-\lambda_3\right)}{\left(\lambda_i-\lambda_j\right)^2}}, \quad i \neq j
+\end{aligned}
+\]</span></p>
+<p>The composite statistical error estimate for <span class="math inline">\(\left\langle\mathbf{B} \cdot \mathbf{x}_3\right\rangle\)</span> is</p>
+<p><span class="math display">\[
+\left|\Delta\left\langle\mathbf{B} \cdot \mathbf{x₃}\right\rangle\right|=\sqrt{\frac{\lambda_3}{M-1}+\left(\Delta \varphi_{32}\langle\mathbf{B}\rangle \cdot \mathbf{x}_2\right)^2+\left(\Delta \varphi_{31}\langle\mathbf{B}\rangle \cdot \mathbf{x}_1\right)^2}
+\]</span></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="st">    Δφij(λᵢ, λⱼ, λ₃, M)</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the phase error between components i and j according to:</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="st">|Δφᵢⱼ| = |Δφⱼᵢ| = √(λ₃/(M-1) * (λᵢ + λⱼ - λ₃)/(λᵢ - λⱼ)²)</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="st">Parameters:</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="st">- λᵢ: eigenvalue i</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="st">- λⱼ: eigenvalue j</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="st">- λ₃: smallest eigenvalue (λ₃)</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="st">- M: number of samples</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Δφij</span>(λᵢ, λⱼ, λ₃, M)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sqrt</span>((λ₃ <span class="op">/</span> (M <span class="op">-</span> <span class="fl">1</span>)) <span class="op">*</span> (λᵢ <span class="op">+</span> λⱼ <span class="op">-</span> λ₃) <span class="op">/</span> (λᵢ <span class="op">-</span> λⱼ)<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the composite statistical error estimate for ⟨B·x₃⟩:</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="st">|Δ⟨B·x₃⟩| = √(λ₃/(M-1) + (Δφ₃₂⟨B⟩·x₂)² + (Δφ₃₁⟨B⟩·x₁)²)</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="st">Parameters:</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="st">- λ₁, λ₂, λ₃: eigenvalues in descending order</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="st">- M: number of samples</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="st">- B: mean magnetic field vector</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="st">- x₁, x₂, x₃: eigenvectors</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">B_x3_error</span>(λ₁, λ₂, λ₃, M, B, x₁, x₂, x₃)</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    Δφ₃₂ <span class="op">=</span> <span class="fu">Δφij</span>(λ₃, λ₂, λ₃, M)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    Δφ₃₁ <span class="op">=</span> <span class="fu">Δφij</span>(λ₃, λ₁, λ₃, M)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>    B_x₂ <span class="op">=</span> <span class="fu">dot</span>(B, x₂)</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>    B_x₁ <span class="op">=</span> <span class="fu">dot</span>(B, x₁)</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sqrt</span>(λ₃ <span class="op">/</span> (M <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> (Δφ₃₂ <span class="op">*</span> B_x₂)<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> (Δφ₃₁ <span class="op">*</span> B_x₁)<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="fu">B_x3_error</span>(F<span class="op">::</span><span class="dt">Eigen</span>, M, B) <span class="op">=</span> </span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">B_x3_error</span>(F.values<span class="op">...</span>, M, B, <span class="fu">eachcol</span>(F.vectors)<span class="op">...</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="26" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">map</span>(t_ends) <span class="cf">do</span> t_end</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    b_data_subset <span class="op">=</span> b_data[t_start<span class="op">..</span>t_end, <span class="op">:</span>]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data_subset)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="fu">size</span>(b_data_subset, <span class="fl">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fu">mean</span>(b_data_subset.data; dims<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    λ₁ <span class="op">=</span> F.values[<span class="fl">1</span>]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    λ₂ <span class="op">=</span> F.values[<span class="fl">2</span>]</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    λ₃ <span class="op">=</span> F.values[<span class="fl">3</span>]</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">12</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₁, λ₂, λ₃, M)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">13</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₁, λ₃, λ₃, M)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">23</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₂, λ₃, λ₃, M)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    B_x3_err <span class="op">=</span> SpaceTools.<span class="fu">B_x3_error</span>(F, M, B)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    (; time<span class="op">=</span>t_end, Δφ<span class="fl">12</span>, Δφ<span class="fl">13</span>, Δφ<span class="fl">23</span>, B_x3_err)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>errors <span class="op">=</span> SpaceTools.<span class="fu">nt2ds</span>(res)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    b_data,</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    [errors.Δφ<span class="fl">12</span>, errors.Δφ<span class="fl">13</span>, errors.Δφ<span class="fl">23</span>],</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    errors.B_x3_err,</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="ps3_files/figure-html/cell-14-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The error estimates support our choice of interval.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/courses/epss261/homework/ps2.html" class="pagination-link" aria-label="Problem Set 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Problem Set 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/courses/astr145/index.html" class="pagination-link" aria-label="ASTR 145">
+        <span class="nav-page-text">ASTR 145</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Problem Set 3</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> julia</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Minimum and Maximum Variance Analysis</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Minimize the variance $σ^2$ Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>$$ {#eq-Chen84}</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>$$ {#eq-Chen87}</span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>Expand the dot product in components:</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>so that</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>\sigma^2 = \frac{1}{M} \sum_{m=1}^M \left(\sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu \right)^2 = \sum_{\mu,\nu=1}^3 n_\mu n_\nu \left<span class="co">[</span><span class="ot"> \frac{1}{M} \sum_{m=1}^M \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) \left(B_\nu^{(m)} - \langle B_\nu \rangle\right) \right</span><span class="co">]</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>Define the magnetic variance matrix</span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>M_{\mu\nu}^B \equiv \left\langle B_\mu B_\nu \right\rangle - \langle B_\mu \rangle \langle B_\nu \rangle</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>so that</span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>\sigma^2 = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu.</span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>The Lagrangian is given by:</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>L(\hat{\boldsymbol{n}}, \lambda) = \sigma^2 - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right) = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right).</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>Differentiate with Respect to the Components $n_\alpha$ equal to zero for each component</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>\frac{\partial}{\partial n_\alpha} \left(\sum_{\mu,\nu} n_\mu M_{\mu\nu}^B n_\nu\right) - \frac{\partial}{\partial n_\alpha} \left<span class="co">[</span><span class="ot">\lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right)\right</span><span class="co">]</span> = 2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu -  2\lambda n_\alpha.</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>we get:</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu - 2\lambda n_\alpha = 0.</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>This is exactly Equation (8.7): $\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu = \lambda n_\mu$. The equation is an eigenvalue problem for the symmetric $3\times 3$ matrix $M_{\mu\nu}^B$. The eigenvalues $\lambda$ are real, and the corresponding eigenvectors $\hat{\boldsymbol{n}}$ are orthogonal.</span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- </span></span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a><span class="co">The minimum variance technique is designed to deal with the situation where some or all of the non-ideal effects mentioned above, except a systematic temporal change in the normal direction, $\hat{\boldsymbol{n}}$, are present. As the estimate of $\hat{\boldsymbol{n}}$, the method identifies that direction in space along which the field-component set $\left\{\boldsymbol{B}^{(m)} \cdot \hat{\boldsymbol{n}}\right\}(m=1,2,3 \ldots M)$ has minimum variance. In other words, $\hat{\boldsymbol{n}}$ is determined by minimisation of</span></span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a><span class="co">\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2</span></span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a><span class="co">where the average $\langle\boldsymbol{B}\rangle$ is defined by</span></span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a><span class="co">\langle\boldsymbol{B}\rangle \equiv \frac{1}{M} \sum_{m=1}^M \boldsymbol{B}^{(m)}</span></span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a><span class="co">and where the minimisation is subject to the normalisation constraint $|\hat{n}|^2=1$. Using a Lagrange multiplier, $\lambda$, to implement this constraint, one then seeks the solution of the set of three homogeneous linear equations</span></span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a><span class="co">\begin{aligned}</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a><span class="co">\frac{\partial}{\partial n_X}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) &amp; =0 \\</span></span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a><span class="co">\frac{\partial}{\partial n_Y}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) &amp; =0 \\</span></span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a><span class="co">\frac{\partial}{\partial n_Z}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) &amp; =0</span></span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a><span class="co">\end{aligned}</span></span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a><span class="co">where $\sigma^2$ is given by equation 8.4 and $\hat{\boldsymbol{n}}$ is represented in terms of its three components ( $n_X, n_Y, n_Z$ ) along the cartesian coordinate system $X, Y, Z$ (e.g., GSE or GSM) in which the field data $\left\{\boldsymbol{B}^{(m)}\right\}$ are given. When the differentiations in equation 8.6 have been performed, the resulting set of three equations can be written in matrix form as</span></span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a><span class="co">\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu</span></span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a><span class="co">where the subscripts $\mu, v=1,2,3$ denote cartesian components along the $X, Y, Z$ system and</span></span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a><span class="co">M_{\mu \nu}^B \equiv\left\langle B_\mu B_\nu\right\rangle-\left\langle B_\mu\right\rangle\left\langle B_v\right\rangle</span></span>
+<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a><span class="co">$$</span></span>
+<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a><span class="co">is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $\lambda$ values are the eigenvalues $\lambda_1, \lambda_2, \lambda_3$ (given here in order of decreasing magnitude) of $M_{\mu \nu}^B$. Since $M_{\mu \nu}^B$ is symmetric, the eigenvalues are all real and the corresponding eigenvectors, $\boldsymbol{x}_1$, $\boldsymbol{x}_2$, and $\boldsymbol{x}_3$, are orthogonal.</span></span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a><span class="co">--&gt;</span></span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Electromagnetic ion cyclotron waves</span></span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Electromagnetic ion cyclotron waves are left-hand polarized waves excited by velocity space anisotropy (perpendicular gradients in velocity distribution function). They are typically below the ion cyclotron frequency for each species (H+, He+ or O+). MMS observations on 2015 Dec. 14, show that such waves were excited after the passage of a shock.</span></span>
+<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Speasy</span></span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a>spz <span class="op">=</span> <span class="fu">speasy</span>()</span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DimensionalData</span></span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
+<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpaceTools</span></span>
+<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
+<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DSP</span></span>
+<span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spectrogram with cyclotron frequencies</span></span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">a</span><span class="co">]</span><span class="at"> Obtain MMS 1 (or 2,3,4) data between 13:27 and 13:29 UT, from the FGM instrument in GSM coordinates, and plot the spectrogram of the X or Y component between 0-2Hz. Overlay the 3 cyclotron frequencies, as shown in Fig. 5 of the paper (for subset of time). </span><span class="co">[</span><span class="ot">Note: you should create a low-pass filtered version of the average field at 5-10s window to compute the cyclotron frequencies with; for that use tsmooth2 (IDL) or pyspedas.interpol (PySPEDAS) after degap/clip/deflaging the data first</span><span class="co">]</span><span class="at">.</span></span>
+<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a>https://cdaweb.gsfc.nasa.gov/misc/NotesM.html#MMS1_FGM_SRVY_L2</span>
+<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="st">"2015-12-14T13:10:00"</span></span>
+<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="st">"2015-12-14T13:50:00"</span></span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> <span class="st">"cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"</span></span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fu">get_data</span>(tvars, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> SpaceTools.<span class="fu">modify_meta</span>(da, long_name<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SignalAnalysis</span></span>
+<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">PlasmaFormulary</span></span>
+<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> SpaceTools.<span class="fu">pspectrum</span>(da[<span class="op">:</span>, <span class="fl">1</span>])</span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a><span class="cf">begin</span></span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">tplot</span>(p; colorrange<span class="op">=</span>(<span class="fl">1e-7</span>, <span class="fl">1</span>), alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> <span class="fu">current_axis</span>()</span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylims!</span>(ax, <span class="fl">0</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>)</span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a>    B_ts <span class="op">=</span> <span class="fu">smooth</span>(da, <span class="fl">5</span>u<span class="st">"s"</span>)[<span class="op">:</span>, <span class="fl">4</span>]</span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>    ic_H <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"H+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>    ic_He <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"He+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a>    ic_He2 <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"He2+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>    ic_O <span class="op">=</span> <span class="fu">gyrofrequency</span>.(B_ts, <span class="op">:</span><span class="st">"O+"</span>) <span class="op">.|&gt;</span> ω<span class="fl">2</span>f</span>
+<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot_panel!</span>.(<span class="fu">current_axis</span>(), [ic_H, ic_He, ic_He2, ic_O])</span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Band-pass filtered data</span></span>
+<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">b</span><span class="co">]</span><span class="at"> Plot the GSM time series of the band-pass filtered data between 0.2 – 2 Hz (again using tsmooth2/pyspedas.interpol to first low-pass filter the data at 0.2Hz, subtract it from the original to create the high-pass residual &gt;0.2Hz, then low-pass filter that with a 2Hz window).</span></span>
+<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:20:00"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:30:00"</span>)</span>
+<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a>sda <span class="op">=</span> da[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a><span class="co"># Band-pass filter the data between 0.2-2 Hz</span></span>
+<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a><span class="co"># First step: Low-pass filter at 0.2 Hz</span></span>
+<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>lp_02Hz <span class="op">=</span> <span class="fu">smooth</span>(sda, <span class="fl">5</span>u<span class="st">"s"</span>)  <span class="co"># 0.2 Hz ≈ 5 second window</span></span>
+<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a><span class="co"># High-pass by subtracting low-pass from original</span></span>
+<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>hp_02Hz <span class="op">=</span> <span class="fu">amap</span>(<span class="op">-</span>, sda, lp_02Hz)</span>
+<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a><span class="co"># Second step: Low-pass filter at 2 Hz (0.5 second window)</span></span>
+<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a>bp_filtered <span class="op">=</span> <span class="fu">smooth</span>(hp_02Hz, <span class="fl">0.5</span>u<span class="st">"s"</span>)</span>
+<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([lp_02Hz, hp_02Hz, bp_filtered])</span>
+<span id="cb26-180"><a href="#cb26-180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-181"><a href="#cb26-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a>Actually, the frequency response of an $M$ point moving average filter is not a perfect low-pass filter.</span>
+<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a>H<span class="co">[</span><span class="ot">f</span><span class="co">]</span>=\frac{\sin (\pi f M)}{M \sin (\pi f)}</span>
+<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a>bp_filtered2 <span class="op">=</span> <span class="fu">filtfilt</span>(sda, <span class="fl">0.2</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>).data</span>
+<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([hp_02Hz, bp_filtered, bp_filtered2])</span>
+<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a><span class="fu">current_figure</span>()</span>
+<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a><span class="fu">### Minimum Variance Analysis</span></span>
+<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">c</span><span class="co">]</span><span class="at"> Use minvar_matrix_make (IDL or pyspedas) applied on the band-pass filtered data to obtain the minimum variance matrix, on a sliding window. You can control the width and shift of the window (see keywords). Rotate the data in i,j,k (max,int,min) coord’s using tvector_rotate (in IDL / Py - SPEDAS; see how to use it from class examples, or from cribs / readthedocs). Plot the data in that coordinate system.</span></span>
+<span id="cb26-200"><a href="#cb26-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:20:00"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:30:00"</span>)</span>
+<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>B_ts <span class="op">=</span> bp_filtered[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a>B_mva_ts <span class="op">=</span> <span class="fu">mva</span>(B_ts, B_ts)</span>
+<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>B_ts_2 <span class="op">=</span> bp_filtered2[time, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>B_mva_ts_2 <span class="op">=</span> <span class="fu">mva</span>(B_ts_2, B_ts_2)</span>
+<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])</span>
+<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a><span class="fu">### Minvar direction</span></span>
+<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">d</span><span class="co">]</span><span class="at"> The code minvar_matrix_make allows you to output the eigenvectors and eigenvalues. Plot the eigenvalues and evaluate the confidence in the minvar direction. Plot the angle between the minvar direction and the direction of the ambient magnetic field (the 5-10s average above).</span></span>
+<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SpaceTools</span></span>
+<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
+<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Load magnetic field data around the shock crossing</span></span>
+<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T15:30:00"</span>)</span>
+<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2008-09-05T15:40:00"</span>)</span>
+<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THA_L2_FGM/tha_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> b_data.data  <span class="co"># Get the magnetic field components</span></span>
+<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Get eigenvalues and eigenvectors</span></span>
+<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">mva_mat</span>(B)</span>
+<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a><span class="co"># The minimum variance direction (shock normal)</span></span>
+<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>n̂ <span class="op">=</span> F.vectors[<span class="op">:</span>, <span class="fl">3</span>]  <span class="co"># Third eigenvector corresponds to minimum variance</span></span>
+<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate θBn (angle between B-field and shock normal)</span></span>
+<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a>B_avg <span class="op">=</span> <span class="fu">mean</span>(B, dims<span class="op">=</span><span class="fl">1</span>)[<span class="fl">1</span>, <span class="op">:</span>]</span>
+<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a>B_avg_norm <span class="op">=</span> B_avg <span class="op">/</span> <span class="fu">norm</span>(B_avg)</span>
+<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>θBn <span class="op">=</span> <span class="fu">acosd</span>(<span class="fu">abs</span>(<span class="fu">dot</span>(B_avg_norm, n̂)))</span>
+<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-243"><a href="#cb26-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Bn (shock-normal magnetic field component)</span></span>
+<span id="cb26-244"><a href="#cb26-244" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>(B_avg, n̂)</span>
+<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Results of Minimum Variance Analysis:"</span>)</span>
+<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Shock normal (GSE coordinates): "</span>, <span class="fu">round</span>.(n̂, digits<span class="op">=</span><span class="fl">3</span>))</span>
+<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"θBn: "</span>, <span class="fu">round</span>(θBn, digits<span class="op">=</span><span class="fl">1</span>), <span class="st">"°"</span>)</span>
+<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Bn: "</span>, Bn)</span>
+<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a><span class="fu">check_mva_mat</span>(F; verbose<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hodogram</span></span>
+<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">e</span><span class="co">]</span><span class="at"> There are several bursts of EMIC wave power in the interval. Pick one clean burst with 5-10 cycles and plot the B-field hodogram in the plane of polarization (max,int). (Bandpass filtering first will help). Is it left-hand polarized as expected? </span><span class="co">[</span><span class="ot">Note that the minvar code ensures a right-hand orthogonal system, but you may have to switch vectors around if the angle to B-field is not less than 90deg</span><span class="co">]</span><span class="at">.</span></span>
+<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Figure 7. Three-axis plot of MMS 1 magnetic field data rotated into local field-aligned coordinates and band-pass filtered from 0.4 to 2.0 Hz, with uniform scale, from 1327:15 to 1328:15 UT on 14 December 2015. --&gt;</span></span>
+<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a>interval <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:40:20"</span>) <span class="op">..</span> <span class="fu">DateTime</span>(<span class="st">"2015-12-14T13:40:40"</span>)</span>
+<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span></span>
+<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a>    sda <span class="op">=</span> da[interval, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span>
+<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a>    bp_filtered <span class="op">=</span> <span class="fu">filtfilt</span>(sda, <span class="fl">0.8</span>u<span class="st">"Hz"</span>, <span class="fl">2</span>u<span class="st">"Hz"</span>).data</span>
+<span id="cb26-266"><a href="#cb26-266" aria-hidden="true" tabindex="-1"></a>    B_mva_ts <span class="op">=</span> <span class="fu">mva</span>(bp_filtered, bp_filtered)</span>
+<span id="cb26-267"><a href="#cb26-267" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">1200</span>, <span class="fl">800</span>))</span>
+<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a>    Bx <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">1</span>]]</span>
+<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a>    By <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">2</span>]]</span>
+<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a>    Bz <span class="op">=</span> B_mva_ts[<span class="op">:</span>, [<span class="fl">3</span>]]</span>
+<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">1</span>], [sda, bp_filtered, B_mva_ts])</span>
+<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tplot</span>(f[<span class="fl">1</span>, <span class="fl">2</span>], [Bx, By, Bz]; link_yaxes<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a>    time <span class="op">=</span> <span class="fu">dims</span>(Bx, <span class="fl">1</span>).val</span>
+<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> (time <span class="op">.-</span> time[<span class="fl">1</span>]) <span class="op">./</span> (time[<span class="kw">end</span>] <span class="op">-</span> time[<span class="fl">1</span>])</span>
+<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(f[<span class="fl">1</span>, <span class="fl">3</span>], Bx[<span class="op">:</span>, <span class="fl">1</span>].data, By[<span class="op">:</span>, <span class="fl">1</span>].data, color<span class="op">=</span>color)</span>
+<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a>Hodogram analysis indicated left handed polarization during the interval.</span>
+<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a><span class="fu">## Shock crossings</span></span>
+<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Shock crossings were observed by ARTEMIS P1 (TH-B) in the solar wind on 2013-07-09 20:40UT and on 2014-06-09 16:58UT, both captured in Fast Survey and published in Fig. 3 (analysis results in Table 1 of Zhou et al., 202022). Pick one of the two to study.</span></span>
+<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span>, <span class="bu">TimeSeries</span></span>
+<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a><span class="fu">### Shock normal</span></span>
+<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">a</span><span class="co">]</span><span class="at"> Determine, using minimum variance analysis, the shock normal, the angle between the B-field and the shock normal, and the shock-normal magnetic field component, Bn.</span></span>
+<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a>The shock angle, $θ_{Bn}$, the angle between the directions of the upstream magnetic field and the shock normal;</span>
+<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a><span class="co"># Load magnetic field data around the shock crossing</span></span>
+<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:37:00"</span>)  <span class="co"># Start a few minutes before the crossing</span></span>
+<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:45:00"</span>)  <span class="co"># End a few minutes after</span></span>
+<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THB_L2_FGM/thb_fgs_gse"</span>, t0, t1) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(b_data; add_title<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-309"><a href="#cb26-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform MVA analysis using the built-in function</span></span>
+<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data)</span>
+<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a><span class="co"># The minimum variance direction (shock normal)</span></span>
+<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a>n̂ <span class="op">=</span> F.vectors[<span class="op">:</span>, <span class="fl">3</span>]  <span class="co"># Third eigenvector corresponds to minimum variance</span></span>
+<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate θBn (angle between B-field and shock normal)</span></span>
+<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>B_up <span class="op">=</span> <span class="fu">vec</span>(<span class="fu">mean</span>(b_data[<span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">:</span>].data; dims<span class="op">=</span><span class="fl">1</span>))</span>
+<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a>θBn <span class="op">=</span> <span class="fu">angle</span>(B_up, n̂)</span>
+<span id="cb26-322"><a href="#cb26-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-323"><a href="#cb26-323" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Bn (shock-normal magnetic field component)</span></span>
+<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>(B_up, n̂)</span>
+<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (2013-07-09):"</span>)</span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Shock normal (GSE coordinates): "</span>, <span class="fu">round</span>.(n̂, digits<span class="op">=</span><span class="fl">3</span>))</span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"θ_Bn: "</span>, <span class="fu">round</span>(θBn, digits<span class="op">=</span><span class="fl">1</span>), <span class="st">"°"</span>)</span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Bn: "</span>, Bn)</span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a><span class="fu">check_mva_mat</span>(F, verbose<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a><span class="fu">### Minimum variance direction</span></span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">b</span><span class="co">]</span><span class="at"> Note that there are significant waves downstream but not upstream, which is common for weak (subcritical) shocks. Starting from a small interval barely encompassing the shock (&lt;1min in length), increase the interval by ~0.5 min and recalculate. Then increase again and recalculate. Do so for ~10-20 times until you reach ~10min encompassing the shock. The solution will initially fluctuate from one to the next choice of intervals, then stabilize, then start being jittery again because you are including the waves. Plot the minimum variance direction (two angles, elevation and azimuth, in GSE) and Bn, all as a function of the interval chosen. Pick and report the best solution, based on the shortest time interval choice when the solution becomes stable.</span></span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-339"><a href="#cb26-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-340"><a href="#cb26-340" aria-hidden="true" tabindex="-1"></a><span class="fu">azimuth</span>(x) <span class="op">=</span> <span class="fu">rad2deg</span>(<span class="fu">atan</span>(x[<span class="fl">2</span>], x[<span class="fl">1</span>]))</span>
+<span id="cb26-341"><a href="#cb26-341" aria-hidden="true" tabindex="-1"></a><span class="fu">elevation</span>(x) <span class="op">=</span> <span class="fu">rad2deg</span>(<span class="fu">asin</span>(x[<span class="fl">3</span>]))</span>
+<span id="cb26-342"><a href="#cb26-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-343"><a href="#cb26-343" aria-hidden="true" tabindex="-1"></a><span class="co"># Central time of the shock crossing for ARTEMIS P1 (2013-07-09)</span></span>
+<span id="cb26-344"><a href="#cb26-344" aria-hidden="true" tabindex="-1"></a>t_start <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:39:00"</span>)</span>
+<span id="cb26-345"><a href="#cb26-345" aria-hidden="true" tabindex="-1"></a>time_shock <span class="op">=</span> <span class="fu">DateTime</span>(<span class="st">"2013-07-09T20:39:30"</span>)</span>
+<span id="cb26-346"><a href="#cb26-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-347"><a href="#cb26-347" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">20</span></span>
+<span id="cb26-348"><a href="#cb26-348" aria-hidden="true" tabindex="-1"></a>t_ends <span class="op">=</span> [time_shock <span class="op">+</span> <span class="fu">Second</span>(<span class="fl">30</span> <span class="op">*</span> (i <span class="op">-</span> <span class="fl">1</span>)) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n]</span>
+<span id="cb26-349"><a href="#cb26-349" aria-hidden="true" tabindex="-1"></a>b_data <span class="op">=</span> <span class="fu">get_data</span>(<span class="st">"cda/THB_L2_FGM/thb_fgs_gse"</span>, t_start, t_ends[<span class="kw">end</span>]) <span class="op">|&gt;</span> DimArray</span>
+<span id="cb26-350"><a href="#cb26-350" aria-hidden="true" tabindex="-1"></a>b_data.metadata[<span class="op">:</span>units] <span class="op">=</span> <span class="st">"nT"</span></span>
+<span id="cb26-351"><a href="#cb26-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-352"><a href="#cb26-352" aria-hidden="true" tabindex="-1"></a>n̂s <span class="op">=</span> <span class="fu">map</span>(t_ends) <span class="cf">do</span> t_end</span>
+<span id="cb26-353"><a href="#cb26-353" aria-hidden="true" tabindex="-1"></a>    b_data_subset <span class="op">=</span> b_data[t_start<span class="op">..</span>t_end, <span class="op">:</span>]</span>
+<span id="cb26-354"><a href="#cb26-354" aria-hidden="true" tabindex="-1"></a>    F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data_subset)</span>
+<span id="cb26-355"><a href="#cb26-355" aria-hidden="true" tabindex="-1"></a>    F.vectors[<span class="op">:</span>, <span class="fl">3</span>]</span>
+<span id="cb26-356"><a href="#cb26-356" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb26-357"><a href="#cb26-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-358"><a href="#cb26-358" aria-hidden="true" tabindex="-1"></a>Bn <span class="op">=</span> <span class="fu">dot</span>.(<span class="fu">Ref</span>(B_up), n̂s)</span>
+<span id="cb26-359"><a href="#cb26-359" aria-hidden="true" tabindex="-1"></a>direction <span class="op">=</span> <span class="fu">DimArray</span>(</span>
+<span id="cb26-360"><a href="#cb26-360" aria-hidden="true" tabindex="-1"></a>    [<span class="fu">azimuth</span>.(n̂s) <span class="fu">elevation</span>.(n̂s)],</span>
+<span id="cb26-361"><a href="#cb26-361" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">Ti</span>(t_ends), <span class="fu">Y</span>([<span class="op">:</span>azimuth, <span class="op">:</span>elevation]));</span>
+<span id="cb26-362"><a href="#cb26-362" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=:</span>direction</span>
+<span id="cb26-363"><a href="#cb26-363" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-364"><a href="#cb26-364" aria-hidden="true" tabindex="-1"></a>Bns <span class="op">=</span> <span class="fu">DimArray</span>(Bn, <span class="fu">Ti</span>(t_ends); name<span class="op">=:</span>Bn)</span>
+<span id="cb26-365"><a href="#cb26-365" aria-hidden="true" tabindex="-1"></a>ΔBn <span class="op">=</span> <span class="fu">abs</span>.(<span class="fu">diff</span>(Bns))</span>
+<span id="cb26-366"><a href="#cb26-366" aria-hidden="true" tabindex="-1"></a>ΔBn <span class="op">=</span> SpaceTools.<span class="fu">rename</span>(ΔBn, <span class="op">:</span>ΔBn)</span>
+<span id="cb26-367"><a href="#cb26-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-368"><a href="#cb26-368" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [b_data, direction, [Bns, ΔBn]]</span>
+<span id="cb26-369"><a href="#cb26-369" aria-hidden="true" tabindex="-1"></a>f, axes <span class="op">=</span> <span class="fu">tplot</span>(tvars; add_title<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb26-370"><a href="#cb26-370" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-371"><a href="#cb26-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-372"><a href="#cb26-372" aria-hidden="true" tabindex="-1"></a>The solution becomes stable around "2013-07-09T20<span class="sc">:43:</span>00", about 4 mins after the shock crossing. after "2013-07-09T20<span class="sc">:45:</span>00" the solution becomes jittery because the waves are included.</span>
+<span id="cb26-373"><a href="#cb26-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-374"><a href="#cb26-374" aria-hidden="true" tabindex="-1"></a><span class="fu">### Error estimates</span></span>
+<span id="cb26-375"><a href="#cb26-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-376"><a href="#cb26-376" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">c</span><span class="co">]</span><span class="at"> The noise in Bn and the minimum variance directions (angular noise) are tabulated in equations 8.24 and 8.23 of Chapter 8. Plot the $ΔB_n$ and $Δφ$ separately. Check if they support your choice of interval.</span></span>
+<span id="cb26-377"><a href="#cb26-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-378"><a href="#cb26-378" aria-hidden="true" tabindex="-1"></a>The angular error estimates (in radians) is </span>
+<span id="cb26-379"><a href="#cb26-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-380"><a href="#cb26-380" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-381"><a href="#cb26-381" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb26-382"><a href="#cb26-382" aria-hidden="true" tabindex="-1"></a>\left|\Delta \varphi_{i j}\right|=\left|\Delta \varphi_{j i}\right| &amp; =\left\langle\left\langle\left(\Delta x_{i j}\right)^2\right\rangle\right\rangle^{1 / 2}=\left\langle\left\langle\left(\Delta x_{j i}\right)^2\right\rangle\right\rangle^{1 / 2} <span class="sc">\\</span></span>
+<span id="cb26-383"><a href="#cb26-383" aria-hidden="true" tabindex="-1"></a>&amp; =\sqrt{\frac{\lambda_3}{(M-1)} \frac{\left(\lambda_i+\lambda_j-\lambda_3\right)}{\left(\lambda_i-\lambda_j\right)^2}}, \quad i \neq j</span>
+<span id="cb26-384"><a href="#cb26-384" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb26-385"><a href="#cb26-385" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-386"><a href="#cb26-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-387"><a href="#cb26-387" aria-hidden="true" tabindex="-1"></a>The composite statistical error estimate for $\left\langle\mathbf{B} \cdot \mathbf{x}_3\right\rangle$ is</span>
+<span id="cb26-388"><a href="#cb26-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-389"><a href="#cb26-389" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-390"><a href="#cb26-390" aria-hidden="true" tabindex="-1"></a>\left|\Delta\left\langle\mathbf{B} \cdot \mathbf{x₃}\right\rangle\right|=\sqrt{\frac{\lambda_3}{M-1}+\left(\Delta \varphi_{32}\langle\mathbf{B}\rangle \cdot \mathbf{x}_2\right)^2+\left(\Delta \varphi_{31}\langle\mathbf{B}\rangle \cdot \mathbf{x}_1\right)^2}</span>
+<span id="cb26-391"><a href="#cb26-391" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-392"><a href="#cb26-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-393"><a href="#cb26-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-394"><a href="#cb26-394" aria-hidden="true" tabindex="-1"></a><span class="in">```julia</span></span>
+<span id="cb26-395"><a href="#cb26-395" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb26-396"><a href="#cb26-396" aria-hidden="true" tabindex="-1"></a><span class="st">    Δφij(λᵢ, λⱼ, λ₃, M)</span></span>
+<span id="cb26-397"><a href="#cb26-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-398"><a href="#cb26-398" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the phase error between components i and j according to:</span></span>
+<span id="cb26-399"><a href="#cb26-399" aria-hidden="true" tabindex="-1"></a><span class="st">|Δφᵢⱼ| = |Δφⱼᵢ| = √(λ₃/(M-1) * (λᵢ + λⱼ - λ₃)/(λᵢ - λⱼ)²)</span></span>
+<span id="cb26-400"><a href="#cb26-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-401"><a href="#cb26-401" aria-hidden="true" tabindex="-1"></a><span class="st">Parameters:</span></span>
+<span id="cb26-402"><a href="#cb26-402" aria-hidden="true" tabindex="-1"></a><span class="st">- λᵢ: eigenvalue i</span></span>
+<span id="cb26-403"><a href="#cb26-403" aria-hidden="true" tabindex="-1"></a><span class="st">- λⱼ: eigenvalue j</span></span>
+<span id="cb26-404"><a href="#cb26-404" aria-hidden="true" tabindex="-1"></a><span class="st">- λ₃: smallest eigenvalue (λ₃)</span></span>
+<span id="cb26-405"><a href="#cb26-405" aria-hidden="true" tabindex="-1"></a><span class="st">- M: number of samples</span></span>
+<span id="cb26-406"><a href="#cb26-406" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb26-407"><a href="#cb26-407" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Δφij</span>(λᵢ, λⱼ, λ₃, M)</span>
+<span id="cb26-408"><a href="#cb26-408" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sqrt</span>((λ₃ <span class="op">/</span> (M <span class="op">-</span> <span class="fl">1</span>)) <span class="op">*</span> (λᵢ <span class="op">+</span> λⱼ <span class="op">-</span> λ₃) <span class="op">/</span> (λᵢ <span class="op">-</span> λⱼ)<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb26-409"><a href="#cb26-409" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-410"><a href="#cb26-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-411"><a href="#cb26-411" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb26-412"><a href="#cb26-412" aria-hidden="true" tabindex="-1"></a><span class="st">Calculate the composite statistical error estimate for ⟨B·x₃⟩:</span></span>
+<span id="cb26-413"><a href="#cb26-413" aria-hidden="true" tabindex="-1"></a><span class="st">|Δ⟨B·x₃⟩| = √(λ₃/(M-1) + (Δφ₃₂⟨B⟩·x₂)² + (Δφ₃₁⟨B⟩·x₁)²)</span></span>
+<span id="cb26-414"><a href="#cb26-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-415"><a href="#cb26-415" aria-hidden="true" tabindex="-1"></a><span class="st">Parameters:</span></span>
+<span id="cb26-416"><a href="#cb26-416" aria-hidden="true" tabindex="-1"></a><span class="st">- λ₁, λ₂, λ₃: eigenvalues in descending order</span></span>
+<span id="cb26-417"><a href="#cb26-417" aria-hidden="true" tabindex="-1"></a><span class="st">- M: number of samples</span></span>
+<span id="cb26-418"><a href="#cb26-418" aria-hidden="true" tabindex="-1"></a><span class="st">- B: mean magnetic field vector</span></span>
+<span id="cb26-419"><a href="#cb26-419" aria-hidden="true" tabindex="-1"></a><span class="st">- x₁, x₂, x₃: eigenvectors</span></span>
+<span id="cb26-420"><a href="#cb26-420" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb26-421"><a href="#cb26-421" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">B_x3_error</span>(λ₁, λ₂, λ₃, M, B, x₁, x₂, x₃)</span>
+<span id="cb26-422"><a href="#cb26-422" aria-hidden="true" tabindex="-1"></a>    Δφ₃₂ <span class="op">=</span> <span class="fu">Δφij</span>(λ₃, λ₂, λ₃, M)</span>
+<span id="cb26-423"><a href="#cb26-423" aria-hidden="true" tabindex="-1"></a>    Δφ₃₁ <span class="op">=</span> <span class="fu">Δφij</span>(λ₃, λ₁, λ₃, M)</span>
+<span id="cb26-424"><a href="#cb26-424" aria-hidden="true" tabindex="-1"></a>    B_x₂ <span class="op">=</span> <span class="fu">dot</span>(B, x₂)</span>
+<span id="cb26-425"><a href="#cb26-425" aria-hidden="true" tabindex="-1"></a>    B_x₁ <span class="op">=</span> <span class="fu">dot</span>(B, x₁)</span>
+<span id="cb26-426"><a href="#cb26-426" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sqrt</span>(λ₃ <span class="op">/</span> (M <span class="op">-</span> <span class="fl">1</span>) <span class="op">+</span> (Δφ₃₂ <span class="op">*</span> B_x₂)<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> (Δφ₃₁ <span class="op">*</span> B_x₁)<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb26-427"><a href="#cb26-427" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb26-428"><a href="#cb26-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-429"><a href="#cb26-429" aria-hidden="true" tabindex="-1"></a><span class="fu">B_x3_error</span>(F<span class="op">::</span><span class="dt">Eigen</span>, M, B) <span class="op">=</span> </span>
+<span id="cb26-430"><a href="#cb26-430" aria-hidden="true" tabindex="-1"></a>    <span class="fu">B_x3_error</span>(F.values<span class="op">...</span>, M, B, <span class="fu">eachcol</span>(F.vectors)<span class="op">...</span>)</span>
+<span id="cb26-431"><a href="#cb26-431" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-432"><a href="#cb26-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-435"><a href="#cb26-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
+<span id="cb26-436"><a href="#cb26-436" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="fu">map</span>(t_ends) <span class="cf">do</span> t_end</span>
+<span id="cb26-437"><a href="#cb26-437" aria-hidden="true" tabindex="-1"></a>    b_data_subset <span class="op">=</span> b_data[t_start<span class="op">..</span>t_end, <span class="op">:</span>]</span>
+<span id="cb26-438"><a href="#cb26-438" aria-hidden="true" tabindex="-1"></a>    F <span class="op">=</span> <span class="fu">mva_mat</span>(b_data_subset)</span>
+<span id="cb26-439"><a href="#cb26-439" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> <span class="fu">size</span>(b_data_subset, <span class="fl">1</span>)</span>
+<span id="cb26-440"><a href="#cb26-440" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="fu">mean</span>(b_data_subset.data; dims<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb26-441"><a href="#cb26-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-442"><a href="#cb26-442" aria-hidden="true" tabindex="-1"></a>    λ₁ <span class="op">=</span> F.values[<span class="fl">1</span>]</span>
+<span id="cb26-443"><a href="#cb26-443" aria-hidden="true" tabindex="-1"></a>    λ₂ <span class="op">=</span> F.values[<span class="fl">2</span>]</span>
+<span id="cb26-444"><a href="#cb26-444" aria-hidden="true" tabindex="-1"></a>    λ₃ <span class="op">=</span> F.values[<span class="fl">3</span>]</span>
+<span id="cb26-445"><a href="#cb26-445" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">12</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₁, λ₂, λ₃, M)</span>
+<span id="cb26-446"><a href="#cb26-446" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">13</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₁, λ₃, λ₃, M)</span>
+<span id="cb26-447"><a href="#cb26-447" aria-hidden="true" tabindex="-1"></a>    Δφ<span class="fl">23</span> <span class="op">=</span> SpaceTools.<span class="fu">Δφij</span>(λ₂, λ₃, λ₃, M)</span>
+<span id="cb26-448"><a href="#cb26-448" aria-hidden="true" tabindex="-1"></a>    B_x3_err <span class="op">=</span> SpaceTools.<span class="fu">B_x3_error</span>(F, M, B)</span>
+<span id="cb26-449"><a href="#cb26-449" aria-hidden="true" tabindex="-1"></a>    (; time<span class="op">=</span>t_end, Δφ<span class="fl">12</span>, Δφ<span class="fl">13</span>, Δφ<span class="fl">23</span>, B_x3_err)</span>
+<span id="cb26-450"><a href="#cb26-450" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb26-451"><a href="#cb26-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-452"><a href="#cb26-452" aria-hidden="true" tabindex="-1"></a>errors <span class="op">=</span> SpaceTools.<span class="fu">nt2ds</span>(res)</span>
+<span id="cb26-453"><a href="#cb26-453" aria-hidden="true" tabindex="-1"></a>tvars <span class="op">=</span> [</span>
+<span id="cb26-454"><a href="#cb26-454" aria-hidden="true" tabindex="-1"></a>    b_data,</span>
+<span id="cb26-455"><a href="#cb26-455" aria-hidden="true" tabindex="-1"></a>    [errors.Δφ<span class="fl">12</span>, errors.Δφ<span class="fl">13</span>, errors.Δφ<span class="fl">23</span>],</span>
+<span id="cb26-456"><a href="#cb26-456" aria-hidden="true" tabindex="-1"></a>    errors.B_x3_err,</span>
+<span id="cb26-457"><a href="#cb26-457" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb26-458"><a href="#cb26-458" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(tvars)</span>
+<span id="cb26-459"><a href="#cb26-459" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-460"><a href="#cb26-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-461"><a href="#cb26-461" aria-hidden="true" tabindex="-1"></a>The error estimates support our choice of interval.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/courses/epss261/homework/ps3.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
