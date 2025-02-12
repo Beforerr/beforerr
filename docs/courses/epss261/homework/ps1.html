@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.36">
+<meta name="generator" content="quarto-1.7.13">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -86,15 +86,16 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../../../">
 <link href="../../../../docs/courses/epss261/homework/ps2.html" rel="next">
 <link href="../../../../docs/courses/epss261/index.html" rel="prev">
-<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-66ab7fd5e73b7f0a764e0d49b3e29ab1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-1322888c997fad56b0b4d776d35cf542.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -158,10 +159,6 @@ div.csl-indent {
     <a class="nav-link" href="../../../../docs/research/index.html"> 
 <span class="menu-text">Research</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/projects/index.html"> 
-<span class="menu-text">Projects</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Others</span>
@@ -174,6 +171,10 @@ div.csl-indent {
         <li>
     <a class="dropdown-item" href="../../../../docs/courses/index.html">
  <span class="dropdown-text">Courses</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/projects/index.html">
+ <span class="dropdown-text">Projects</span></a>
   </li>  
     </ul>
   </li>
@@ -1827,35 +1828,35 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>First we register and download the data dependencies using the <span class="in">`DataDeps`</span> package.</span>
 <span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="in">using CairoMakie</span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="in">using DataDeps</span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="in">using CSV, DelimitedFiles</span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="in">using TimeSeries</span></span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="in">using DataFrames</span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="in">using Dates</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataDeps</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CSV</span>, <span class="bu">DelimitedFiles</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TimeSeries</span></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DataFrames</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Dates</span></span>
 <span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="in">register(DataDep("AE Index",</span></span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="in">    Dataset: AE Index</span></span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="in">    Website: https://wdc.kugi.kyoto-u.ac.jp/aeasy/index.html</span></span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="in">    """,</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="in">    "https://wdc.kugi.kyoto-u.ac.jp///aeasy///wwwtmp/WWW_aeasy04087001.dat"</span></span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a><span class="in">))</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="fu">register</span>(<span class="fu">DataDep</span>(<span class="st">"AE Index"</span>,</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="st">    Dataset: AE Index</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="st">    Website: https://wdc.kugi.kyoto-u.ac.jp/aeasy/index.html</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span>,</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://wdc.kugi.kyoto-u.ac.jp///aeasy///wwwtmp/WWW_aeasy04087001.dat"</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="in">register(DataDep("Dst Index",</span></span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="in">    Dataset: Dst Index</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">    Website: https://wdc.kugi.kyoto-u.ac.jp/dstae/index.html</span></span>
-<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="in">    """,</span></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="in">    "https://wdc.kugi.kyoto-u.ac.jp///dstae///wwwtmp/WWW_dstae04096902.dat"</span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="in">))</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="fu">register</span>(<span class="fu">DataDep</span>(<span class="st">"Dst Index"</span>,</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="st">    Dataset: Dst Index</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="st">    Website: https://wdc.kugi.kyoto-u.ac.jp/dstae/index.html</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span>,</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://wdc.kugi.kyoto-u.ac.jp///dstae///wwwtmp/WWW_dstae04096902.dat"</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="in"># Step 1: Download data</span></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="in">println("Downloading AE index data...")</span></span>
-<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a><span class="in">ae_file = readdir(datadep"AE Index", join=true)[1]</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Download data</span></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Downloading AE index data..."</span>)</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>ae_file <span class="op">=</span> <span class="fu">readdir</span>(datadep<span class="st">"AE Index"</span>, join<span class="op">=</span><span class="cn">true</span>)[<span class="fl">1</span>]</span>
 <span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="in">println("Downloading Dst index data...")</span></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="in">dst_file = readdir(datadep"Dst Index", join=true)[1]</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Downloading Dst index data..."</span>)</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>dst_file <span class="op">=</span> <span class="fu">readdir</span>(datadep<span class="st">"Dst Index"</span>, join<span class="op">=</span><span class="cn">true</span>)[<span class="fl">1</span>]</span>
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>The data is downloaded as text files in IAGA-2002 format. Sample data looks like this:</span>
@@ -1879,73 +1880,73 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>We then parse the data into TimeSeries using <span class="in">`DelimitedFiles`</span> and <span class="in">`TimeSeries`</span>.</span>
 <span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a><span class="in">start_time = "2015-03-01T00:00:00"</span></span>
-<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="in">end_time = "2015-03-31T23:59:59"</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> <span class="st">"2015-03-01T00:00:00"</span></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> <span class="st">"2015-03-31T23:59:59"</span></span>
 <span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="in"># Step 2: Parse AE data</span></span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="in">function load_ae_data(filename)</span></span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a><span class="in">    meta = Dict(</span></span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="in">        "unit" =&gt; "nT",</span></span>
-<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="in">        "label" =&gt; "AE Index"</span></span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Parse AE data</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">load_ae_data</span>(filename)</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>    meta <span class="op">=</span> <span class="fu">Dict</span>(</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unit"</span> <span class="op">=&gt;</span> <span class="st">"nT"</span>,</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>        <span class="st">"label"</span> <span class="op">=&gt;</span> <span class="st">"AE Index"</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="in">    # Skip the header lines (first 14 lines)</span></span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a><span class="in">    data, header = readdlm(filename, skipstart=14, header=true)</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Skip the header lines (first 14 lines)</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>    data, header <span class="op">=</span> <span class="fu">readdlm</span>(filename, skipstart<span class="op">=</span><span class="fl">14</span>, header<span class="op">=</span><span class="cn">true</span>)</span>
 <span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="in">    # Convert date and time columns to DateTime</span></span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a><span class="in">    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])</span></span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert date and time columns to DateTime</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>    datetime <span class="op">=</span> <span class="fu">DateTime</span>.(data[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">.*</span> <span class="st">"T"</span> <span class="op">.*</span> data[<span class="op">:</span>, <span class="fl">2</span>])</span>
 <span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="in">    TimeArray(datetime, data[:, 4:7], header[4:7], meta)</span></span>
-<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TimeArray</span>(datetime, data[<span class="op">:</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">7</span>], header[<span class="fl">4</span><span class="op">:</span><span class="fl">7</span>], meta)</span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="in">function load_dst_data(filename)</span></span>
-<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="in">    meta = Dict(</span></span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="in">        "unit" =&gt; "nT",</span></span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="in">        "label" =&gt; "Dst Index"</span></span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">load_dst_data</span>(filename)</span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>    meta <span class="op">=</span> <span class="fu">Dict</span>(</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>        <span class="st">"unit"</span> <span class="op">=&gt;</span> <span class="st">"nT"</span>,</span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>        <span class="st">"label"</span> <span class="op">=&gt;</span> <span class="st">"Dst Index"</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="in">    # Skip the header lines (first 17 lines)</span></span>
-<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="in">    data, header = readdlm(filename, skipstart=17, header=true)</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Skip the header lines (first 17 lines)</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>    data, header <span class="op">=</span> <span class="fu">readdlm</span>(filename, skipstart<span class="op">=</span><span class="fl">17</span>, header<span class="op">=</span><span class="cn">true</span>)</span>
 <span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="in">    # Convert date and time columns to DateTime</span></span>
-<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="in">    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert date and time columns to DateTime</span></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>    datetime <span class="op">=</span> <span class="fu">DateTime</span>.(data[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">.*</span> <span class="st">"T"</span> <span class="op">.*</span> data[<span class="op">:</span>, <span class="fl">2</span>])</span>
 <span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a><span class="in">    TimeArray(datetime, data[:, 4:4], header[4:4], meta)</span></span>
-<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TimeArray</span>(datetime, data[<span class="op">:</span>, <span class="fl">4</span><span class="op">:</span><span class="fl">4</span>], header[<span class="fl">4</span><span class="op">:</span><span class="fl">4</span>], meta)</span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="in">println("Parsing AE data...")</span></span>
-<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="in">ae_data = load_ae_data(ae_file)</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Parsing AE data..."</span>)</span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>ae_data <span class="op">=</span> <span class="fu">load_ae_data</span>(ae_file)</span>
 <span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="in">println("Parsing Dst data...")</span></span>
-<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a><span class="in">dst_data = load_dst_data(dst_file)</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Parsing Dst data..."</span>)</span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>dst_data <span class="op">=</span> <span class="fu">load_dst_data</span>(dst_file)</span>
 <span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>Plot the data using CairoMakie.</span>
 <span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="in">Makie.convert_arguments(P::Type{&lt;:Lines}, ta::TimeArray) = convert_arguments(P, timestamp(ta), values(ta))</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>Makie.<span class="fu">convert_arguments</span>(P<span class="op">::</span><span class="dt">Type{&lt;:Lines}</span>, ta<span class="op">::</span><span class="dt">TimeArray</span>) <span class="op">=</span> <span class="fu">convert_arguments</span>(P, <span class="fu">timestamp</span>(ta), <span class="fu">values</span>(ta))</span>
 <span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="in">ylabel(ta::TimeArray) = meta(ta)["label"] * (isnothing(meta(ta)["unit"]) || meta(ta)["unit"] == "" ? "" : " (" * meta(ta)["unit"] * ")")</span></span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel</span>(ta<span class="op">::</span><span class="dt">TimeArray</span>) <span class="op">=</span> <span class="fu">meta</span>(ta)[<span class="st">"label"</span>] <span class="op">*</span> (<span class="fu">isnothing</span>(<span class="fu">meta</span>(ta)[<span class="st">"unit"</span>]) <span class="op">||</span> <span class="fu">meta</span>(ta)[<span class="st">"unit"</span>] <span class="op">==</span> <span class="st">""</span> ? <span class="st">""</span> <span class="op">:</span> <span class="st">" ("</span> <span class="op">*</span> <span class="fu">meta</span>(ta)[<span class="st">"unit"</span>] <span class="op">*</span> <span class="st">")"</span>)</span>
 <span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="in">function tplot(tas; linkxaxes=true, figure=(;), kwargs...)</span></span>
-<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a><span class="in">    f = Figure(; figure...)</span></span>
-<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a><span class="in">    axs = []</span></span>
-<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a><span class="in">    for (i, ta) in enumerate(tas)</span></span>
-<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a><span class="in">        ax = Axis(f[i, 1]; ylabel=ylabel(ta))</span></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tplot</span>(tas; linkxaxes<span class="op">=</span><span class="cn">true</span>, figure<span class="op">=</span>(;), kwargs<span class="op">...</span>)</span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="fu">Figure</span>(; figure<span class="op">...</span>)</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>    axs <span class="op">=</span> []</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i, ta) <span class="kw">in</span> <span class="fu">enumerate</span>(tas)</span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>        ax <span class="op">=</span> <span class="fu">Axis</span>(f[i, <span class="fl">1</span>]; ylabel<span class="op">=</span><span class="fu">ylabel</span>(ta))</span>
 <span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a><span class="in">        for p in propertynames(ta)</span></span>
-<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a><span class="in">            lines!(ax, getproperty(ta, p); label=p)</span></span>
-<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a><span class="in">        end</span></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> p <span class="kw">in</span> <span class="fu">propertynames</span>(ta)</span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines!</span>(ax, <span class="fu">getproperty</span>(ta, p); label<span class="op">=</span>p)</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a><span class="in">        # Hide redundant x labels</span></span>
-<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a><span class="in">        linkxaxes &amp;&amp; i != length(tas) &amp;&amp; hidexdecorations!(ax, grid=false)</span></span>
-<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a><span class="in">        push!(axs, ax)</span></span>
-<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a><span class="in">    end</span></span>
-<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a><span class="in">    linkxaxes &amp;&amp; linkxaxes!(axs...)</span></span>
-<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a><span class="in">    f</span></span>
-<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Hide redundant x labels</span></span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>        linkxaxes <span class="op">&amp;&amp;</span> i <span class="op">!=</span> <span class="fu">length</span>(tas) <span class="op">&amp;&amp;</span> <span class="fu">hidexdecorations!</span>(ax, grid<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(axs, ax)</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>    linkxaxes <span class="op">&amp;&amp;</span> <span class="fu">linkxaxes!</span>(axs<span class="op">...</span>)</span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>    f</span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a><span class="in">f = tplot([ae_data.AE, dst_data])</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">tplot</span>([ae_data.AE, dst_data])</span>
 <span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a></span>
@@ -1958,22 +1959,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>We use a web service client to load the data (https://kp.gfz-potsdam.de/en/data) from json format into the TimeArray.</span>
 <span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="in">using JSON3</span></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JSON3</span></span>
 <span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="in">Download 'Kp', 'ap', 'Ap', 'Cp', 'C9', 'Hp30', 'Hp60', 'ap30', 'ap60', 'SN', 'Fobs' or 'Fadj' index data from kp.gfz-potsdam.de</span></span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a><span class="st">Download 'Kp', 'ap', 'Ap', 'Cp', 'C9', 'Hp30', 'Hp60', 'ap30', 'ap60', 'SN', 'Fobs' or 'Fadj' index data from kp.gfz-potsdam.de</span></span>
 <span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="in"># Notes</span></span>
-<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a><span class="in">- 'start_time' and 'end_time': date format 'YYYY-MM-DDThh:mm:ss'</span></span>
-<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="in">"""</span></span>
-<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="in">function load_Kp_data(start_time, end_time, index=:Kp)</span></span>
-<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="in">    url = "https://kp.gfz-potsdam.de/app/json/?start=$(start_time)Z&amp;end=$(end_time)Z&amp;index=$(index)"</span></span>
-<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a><span class="in">    data = JSON3.read(download(url))</span></span>
-<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a><span class="in">    datetime = DateTime.(data[:datetime], "yyyy-mm-ddTHH:MM:SSZ")</span></span>
-<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="in">    TimeArray(datetime, Float64.(data[index]), [index], Dict("unit" =&gt; "", "label" =&gt; string(index)))</span></span>
-<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a><span class="st"># Notes</span></span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a><span class="st">- 'start_time' and 'end_time': date format 'YYYY-MM-DDThh:mm:ss'</span></span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">load_Kp_data</span>(start_time, end_time, index<span class="op">=:</span>Kp)</span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">"https://kp.gfz-potsdam.de/app/json/?start=</span><span class="sc">$</span>(start_time)<span class="st">Z&amp;end=</span><span class="sc">$</span>(end_time)<span class="st">Z&amp;index=</span><span class="sc">$</span>(index)<span class="st">"</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> JSON3.<span class="fu">read</span>(<span class="fu">download</span>(url))</span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a>    datetime <span class="op">=</span> <span class="fu">DateTime</span>.(data[<span class="op">:</span>datetime], <span class="st">"yyyy-mm-ddTHH:MM:SSZ"</span>)</span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>    <span class="fu">TimeArray</span>(datetime, <span class="fu">Float64</span>.(data[index]), [index], <span class="fu">Dict</span>(<span class="st">"unit"</span> <span class="op">=&gt;</span> <span class="st">""</span>, <span class="st">"label"</span> <span class="op">=&gt;</span> <span class="fu">string</span>(index)))</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a><span class="in">kp_data = load_Kp_data(start_time, end_time)</span></span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a>kp_data <span class="op">=</span> <span class="fu">load_Kp_data</span>(start_time, end_time)</span>
 <span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
@@ -1981,7 +1982,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">c</span><span class="co">]</span><span class="at"> Plot all 3 indices in a single plot with common time, UT in usual units </span><span class="co">[</span><span class="ot">2015-03-01 00:00</span><span class="co">]</span><span class="at">. If you cannot plot in this format, simply plot in decimal day or decimal hour.</span></span>
 <span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a><span class="in">f = tplot([ae_data.AE, dst_data, kp_data])</span></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fu">tplot</span>([ae_data.AE, dst_data, kp_data])</span>
 <span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Galileo Magnetometer PDS</span></span>
@@ -1992,7 +1993,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; In a short paragraph explain: What is the coordinate system and how did you download and plot?</span></span>
 <span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>Dataset about Galileo (https://pds-ppi.igpp.ucla.edu/mission/Galileo) flyby of Ganymede is available in the Planetary Data System (PDS) https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede <span class="co">[</span><span class="ot">@10.17189/gch4-8w75</span><span class="co">]</span>. Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00.</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>Dataset about Galileo (https://pds-ppi.igpp.ucla.edu/mission/Galileo) flyby of Ganymede is available in the Planetary Data System (PDS) https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede <span class="co">[</span><span class="ot">@10.17189/gch4-8w75</span><span class="co">]</span>. Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby cover 1997-05-07T15<span class="sc">:36:</span>00 to 1997-05-07T16<span class="sc">:22:</span>00.</span>
 <span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>The dataset contains data in the following coordinate systems:</span>
 <span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a></span>
@@ -2004,17 +2005,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a>The data is downloaded as CSV format, read and plot using Julia.</span>
 <span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a><span class="in">register(DataDep("ORB08_GAN_GPHIO",</span></span>
-<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a><span class="in">    Dataset: ORB08_GAN_GPHIO</span></span>
-<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="in">    Website: https://pds-ppi.igpp.ucla.edu/mission/Galileo</span></span>
-<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a><span class="in">    """,</span></span>
-<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a><span class="in">    "https://pds-ppi.igpp.ucla.edu/ditdos/write?id=urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0&amp;f=csv"</span></span>
-<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a><span class="in">))</span></span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a><span class="fu">register</span>(<span class="fu">DataDep</span>(<span class="st">"ORB08_GAN_GPHIO"</span>,</span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a><span class="st">    Dataset: ORB08_GAN_GPHIO</span></span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="st">    Website: https://pds-ppi.igpp.ucla.edu/mission/Galileo</span></span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span>,</span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://pds-ppi.igpp.ucla.edu/ditdos/write?id=urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0&amp;f=csv"</span></span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a><span class="in">GAN_file = readdir(datadep"ORB08_GAN_GPHIO", join=true)[1]</span></span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>GAN_file <span class="op">=</span> <span class="fu">readdir</span>(datadep<span class="st">"ORB08_GAN_GPHIO"</span>, join<span class="op">=</span><span class="cn">true</span>)[<span class="fl">1</span>]</span>
 <span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a><span class="in">data = CSV.File(GAN_file) |&gt; DataFrame</span></span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> CSV.<span class="fu">File</span>(GAN_file) <span class="op">|&gt;</span> DataFrame</span>
 <span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
@@ -2022,42 +2023,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Plot XYZ components and magnitude of the field in four panels. Use a 5th panel in the same plot to show all four traces with different colors, say: Blue, Green, Red, Black for X,Y,Z,T.</span></span>
 <span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a><span class="in"># Create the plot with multiple panels</span></span>
-<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a><span class="in">fig = Figure(; size=(600, 600))</span></span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot with multiple panels</span></span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(; size<span class="op">=</span>(<span class="fl">600</span>, <span class="fl">600</span>))</span>
 <span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a><span class="in">time = data."SPACECRAFT EVENT TIME"</span></span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> data.<span class="st">"SPACECRAFT EVENT TIME"</span></span>
 <span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a><span class="in"># Panel for BX</span></span>
-<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a><span class="in">ax1 = Axis(fig[1, 1], title="BX Component", xlabel="Time", ylabel="BX (nT)")</span></span>
-<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax1, time, data[!, "BX"], color=:blue)</span></span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel for BX</span></span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"BX Component"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"BX (nT)"</span>)</span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax1, time, data[!, <span class="st">"BX"</span>], color<span class="op">=:</span>blue)</span>
 <span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a><span class="in"># Panel for BY</span></span>
-<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a><span class="in">ax2 = Axis(fig[2, 1], title="BY Component", xlabel="Time", ylabel="BY (nT)")</span></span>
-<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax2, time, data[!, "BY"], color=:green)</span></span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel for BY</span></span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">2</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"BY Component"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"BY (nT)"</span>)</span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax2, time, data[!, <span class="st">"BY"</span>], color<span class="op">=:</span>green)</span>
 <span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a><span class="in"># Panel for BZ</span></span>
-<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="in">ax3 = Axis(fig[3, 1], title="BZ Component", xlabel="Time", ylabel="BZ (nT)")</span></span>
-<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax3, time, data[!, "BZ"], color=:red)</span></span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel for BZ</span></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">3</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"BZ Component"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"BZ (nT)"</span>)</span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax3, time, data[!, <span class="st">"BZ"</span>], color<span class="op">=:</span>red)</span>
 <span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a><span class="in"># Panel for B-FIELD MAGNITUDE</span></span>
-<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a><span class="in">ax4 = Axis(fig[4, 1], title="B-Field Magnitude", xlabel="Time", ylabel="Magnitude (nT)")</span></span>
-<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax4, time, data[!, "B-FIELD MAGNITUDE"], color=:black)</span></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel for B-FIELD MAGNITUDE</span></span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>ax4 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">4</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"B-Field Magnitude"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"Magnitude (nT)"</span>)</span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax4, time, data[!, <span class="st">"B-FIELD MAGNITUDE"</span>], color<span class="op">=:</span>black)</span>
 <span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a><span class="in"># Panel for all traces</span></span>
-<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a><span class="in">ax5 = Axis(fig[5, 1], title="All Components", xlabel="Time", ylabel="B (nT)")</span></span>
-<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax5, time, data[!, "BX"], color=:blue, label="BX")</span></span>
-<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax5, time, data[!, "BY"], color=:green, label="BY")</span></span>
-<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax5, time, data[!, "BZ"], color=:red, label="BZ")</span></span>
-<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(ax5, time, data[!, "B-FIELD MAGNITUDE"], color=:black, label="Magnitude")</span></span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel for all traces</span></span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a>ax5 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">5</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"All Components"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"B (nT)"</span>)</span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax5, time, data[!, <span class="st">"BX"</span>], color<span class="op">=:</span>blue, label<span class="op">=</span><span class="st">"BX"</span>)</span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax5, time, data[!, <span class="st">"BY"</span>], color<span class="op">=:</span>green, label<span class="op">=</span><span class="st">"BY"</span>)</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax5, time, data[!, <span class="st">"BZ"</span>], color<span class="op">=:</span>red, label<span class="op">=</span><span class="st">"BZ"</span>)</span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(ax5, time, data[!, <span class="st">"B-FIELD MAGNITUDE"</span>], color<span class="op">=:</span>black, label<span class="op">=</span><span class="st">"Magnitude"</span>)</span>
 <span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a><span class="in">for ax in [ax1, ax2, ax3, ax4]</span></span>
-<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a><span class="in">    hidexdecorations!(ax, grid=false)</span></span>
-<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> [ax1, ax2, ax3, ax4]</span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>    <span class="fu">hidexdecorations!</span>(ax, grid<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
 <span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a><span class="in">linkxaxes!(ax1, ax2, ax3, ax4, ax5)</span></span>
-<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a><span class="in">axislegend(ax5)</span></span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a><span class="fu">linkxaxes!</span>(ax1, ax2, ax3, ax4, ax5)</span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a><span class="fu">axislegend</span>(ax5)</span>
 <span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a><span class="in">fig</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>fig</span>
 <span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Voyager 2 Heliospheric termination shock</span></span>
@@ -2072,62 +2073,62 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a><span class="al">![](figures/VOYAGER2_COHO1HR_MERGED_MAG_PLASMA_1657876_000.png)</span>{width=63%}</span>
 <span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>We utilize the combined COHOWeb dataset (VOYAGER2_COHO1HR_MERGED_MAG_PLASMA, https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA) <span class="co">[</span><span class="ot">@nessVoyager2Hourly2023</span><span class="co">]</span>. The plot was generated using "CDAWeb Data Explorer" by selecting the “Plot Data” option and choosing the appropriate data variable. We select time range from 2007/08/01 00:00:00.000 to 2007/09/30 00:00:00.000.</span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>We utilize the combined COHOWeb dataset (VOYAGER2_COHO1HR_MERGED_MAG_PLASMA, https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA) <span class="co">[</span><span class="ot">@nessVoyager2Hourly2023</span><span class="co">]</span>. The plot was generated using "CDAWeb Data Explorer" by selecting the “Plot Data” option and choosing the appropriate data variable. We select time range from 2007/08/01 00<span class="sc">:00:</span>00.000 to 2007/09/30 00<span class="sc">:00:</span>00.000.</span>
 <span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>Around the end of August 31, we observe a significant decrease in bulk flow velocity accompanied by increases in proton density and temperature, corresponding to the shock crossing. Additionally, the magnetic field exhibits a slight increase. These changes are consistent with shock crossings, as shocks typically cause reductions in downstream flow velocity and simultaneous enhancements in plasma density, temperature, and magnetic field strength.</span>
 <span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="co">[</span><span class="ot">b</span><span class="co">]</span><span class="at"> What is the change in pressure, including dynamic pressure, across the shock (assume the crossing is along the shock normal)? To do this also ignore the electron thermal pressure (just use ion thermal pressure) and plot the quantity: N*V^2 + Pt, where Pt is the sum of magnetic and thermal pressures. Do this using your own tools (not SPEDAS) after downloading the data from SPDF.</span></span>
 <span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{julia}</span></span>
-<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="in">using Unitful</span></span>
-<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a><span class="in">using Unitful: μ0, k, mp</span></span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span></span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Unitful</span>: μ0, k, mp</span>
 <span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="in">register(DataDep("VOYAGER2_COHO1HR_MERGED_MAG_PLASMA",</span></span>
-<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="in">    Dataset: VOYAGER2_COHO1HR_MERGED_MAG_PLASMA</span></span>
-<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a><span class="in">    Website: https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA</span></span>
-<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a><span class="in">    """,</span></span>
-<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a><span class="in">    "https://cdaweb.gsfc.nasa.gov/tmp/cweb_B6vad1PhkF/VOYAGER2_COHO1HR_MERGED_MAG_PLASMA_1663093.csv"</span></span>
-<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="in">))</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="fu">register</span>(<span class="fu">DataDep</span>(<span class="st">"VOYAGER2_COHO1HR_MERGED_MAG_PLASMA"</span>,</span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a>    <span class="st">"""</span></span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="st">    Dataset: VOYAGER2_COHO1HR_MERGED_MAG_PLASMA</span></span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a><span class="st">    Website: https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA</span></span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span>,</span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://cdaweb.gsfc.nasa.gov/tmp/cweb_B6vad1PhkF/VOYAGER2_COHO1HR_MERGED_MAG_PLASMA_1663093.csv"</span></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a>))</span>
 <span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="in"># Read the CSV file</span></span>
-<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="in">VIM_file = readdir(datadep"VOYAGER2_COHO1HR_MERGED_MAG_PLASMA", join=true)[1]</span></span>
-<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="in">data = CSV.File(VIM_file; comment="#") |&gt; DataFrame</span></span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file</span></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a>VIM_file <span class="op">=</span> <span class="fu">readdir</span>(datadep<span class="st">"VOYAGER2_COHO1HR_MERGED_MAG_PLASMA"</span>, join<span class="op">=</span><span class="cn">true</span>)[<span class="fl">1</span>]</span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> CSV.<span class="fu">File</span>(VIM_file; comment<span class="op">=</span><span class="st">"#"</span>) <span class="op">|&gt;</span> DataFrame</span>
 <span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="in">allowmissing!(data)</span></span>
-<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="in">data[!, "time"] = DateTime.(data."EPOCH_yyyy-mm-ddThh:mm:ss.sssZ", "yyyy-mm-ddTHH:MM:SS.sssZ")</span></span>
-<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="in">for c ∈ eachcol(data)</span></span>
-<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a><span class="in">    replace!(c, -1.0e31 =&gt; missing)</span></span>
-<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a><span class="in">end</span></span>
-<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a><span class="in">dropmissing!(data)</span></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="fu">allowmissing!</span>(data)</span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a>data[!, <span class="st">"time"</span>] <span class="op">=</span> <span class="fu">DateTime</span>.(data.<span class="st">"EPOCH_yyyy-mm-ddThh:mm:ss.sssZ"</span>, <span class="st">"yyyy-mm-ddTHH:MM:SS.sssZ"</span>)</span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="op">∈</span> <span class="fu">eachcol</span>(data)</span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replace!</span>(c, <span class="op">-</span><span class="fl">1.0e31</span> <span class="op">=&gt;</span> <span class="cn">missing</span>)</span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a><span class="fu">dropmissing!</span>(data)</span>
 <span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a><span class="in">N = data[!, "SW_PROTON_DENS_n/cc"] * u"cm^-3"</span></span>
-<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a><span class="in">V = data[!, "BULK_FLOW_SPEED_km/s"] * u"km/s"</span></span>
-<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a><span class="in">B = data[!, "FIELD_MAGNITUDE_AVG._nT"] * u"nT"</span></span>
-<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a><span class="in">T = data[!, "RADIAL_PROTON_TEMP_deg_k"] * u"K"</span></span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> data[!, <span class="st">"SW_PROTON_DENS_n/cc"</span>] <span class="op">*</span> u<span class="st">"cm^-3"</span></span>
+<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> data[!, <span class="st">"BULK_FLOW_SPEED_km/s"</span>] <span class="op">*</span> u<span class="st">"km/s"</span></span>
+<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> data[!, <span class="st">"FIELD_MAGNITUDE_AVG._nT"</span>] <span class="op">*</span> u<span class="st">"nT"</span></span>
+<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> data[!, <span class="st">"RADIAL_PROTON_TEMP_deg_k"</span>] <span class="op">*</span> u<span class="st">"K"</span></span>
 <span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="in"># Calculate the pressure</span></span>
-<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a><span class="in">pB = B .^ 2 / μ0 / 2 ./ 1u"nPa" .|&gt; NoUnits</span></span>
-<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a><span class="in">pT = k * N .* T ./ u"nPa" .|&gt; NoUnits</span></span>
-<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="in">pRam = mp * N .* V .^ 2 ./ u"nPa" .|&gt; NoUnits</span></span>
-<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a><span class="in">pressure = pRam .+ pB .+ pT</span></span>
-<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a><span class="in">beta = pT ./ pB</span></span>
-<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a><span class="in">time = data."time"</span></span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the pressure</span></span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>pB <span class="op">=</span> B <span class="op">.^</span> <span class="fl">2</span> <span class="op">/</span> μ<span class="fl">0</span> <span class="op">/</span> <span class="fl">2</span> <span class="op">./</span> <span class="fl">1</span>u<span class="st">"nPa"</span> <span class="op">.|&gt;</span> NoUnits</span>
+<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a>pT <span class="op">=</span> k <span class="op">*</span> N <span class="op">.*</span> T <span class="op">./</span> u<span class="st">"nPa"</span> <span class="op">.|&gt;</span> NoUnits</span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>pRam <span class="op">=</span> mp <span class="op">*</span> N <span class="op">.*</span> V <span class="op">.^</span> <span class="fl">2</span> <span class="op">./</span> u<span class="st">"nPa"</span> <span class="op">.|&gt;</span> NoUnits</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>pressure <span class="op">=</span> pRam <span class="op">.+</span> pB <span class="op">.+</span> pT</span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> pT <span class="op">./</span> pB</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> data.<span class="st">"time"</span></span>
 <span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a><span class="in"># Plot the data</span></span>
-<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a><span class="in">fig = Figure()</span></span>
-<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a><span class="in">ax = Axis(fig[1, 1], title="Pressure Across Shock", xlabel="Time", ylabel="Pressure (nPa)")</span></span>
-<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(time, pRam, color=:blue, label="Ram Pressure")</span></span>
-<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(time, pB, color=:green, label="Magnetic Pressure")</span></span>
-<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(time, pT, color=:red, label="Thermal Pressure")</span></span>
-<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(time, pressure, color=:black, label="Total Pressure")</span></span>
-<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a><span class="in">axislegend(ax)</span></span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>()</span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], title<span class="op">=</span><span class="st">"Pressure Across Shock"</span>, xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"Pressure (nPa)"</span>)</span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(time, pRam, color<span class="op">=:</span>blue, label<span class="op">=</span><span class="st">"Ram Pressure"</span>)</span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(time, pB, color<span class="op">=:</span>green, label<span class="op">=</span><span class="st">"Magnetic Pressure"</span>)</span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(time, pT, color<span class="op">=:</span>red, label<span class="op">=</span><span class="st">"Thermal Pressure"</span>)</span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(time, pressure, color<span class="op">=:</span>black, label<span class="op">=</span><span class="st">"Total Pressure"</span>)</span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a><span class="fu">axislegend</span>(ax)</span>
 <span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a><span class="in">ax2 = Axis(fig[2, 1], xlabel="Time", ylabel="Beta")</span></span>
-<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a><span class="in">lines!(time, beta)</span></span>
+<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">2</span>, <span class="fl">1</span>], xlabel<span class="op">=</span><span class="st">"Time"</span>, ylabel<span class="op">=</span><span class="st">"Beta"</span>)</span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a><span class="fu">lines!</span>(time, beta)</span>
 <span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a><span class="in">hidexdecorations!(ax, grid=false)</span></span>
-<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a><span class="in">fig</span></span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a><span class="fu">hidexdecorations!</span>(ax, grid<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a>fig</span>
 <span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
