@@ -1,0 +1,51 @@
+---
+title: Problem Set 4
+number-sections: true
+engine: julia
+---
+
+## Barycentric coordinates
+
+> [1] We discussed barycentric coordinates in Lecture 08, pp. 11-12, and they are covered in Ch. 14 (Chanteur) in the ISSI book pp. 350-351. They are defined based on equation: $\left(\sum_{α=1}^4 μ_α\right) \mathbf{r}=\sum_{α=1}^4\left(μ_α \mathbf{r}_α\right)$ with the constraint $\sum_{α=1}^4 μ_α=1$. We said that this physically means $μ_α(\mathbf{r})=1+\mathbf{k}_α \cdot\left(\mathbf{r}-\mathbf{r}_α\right)$, a linear decrease of the weight with increasing distance from the vertex $r_α$ of the tetrahedron, scaled according to the reciprocal vector (the inverted distance of vertex to plane across it).
+
+> Prove that $μ_α(\mathbf{r})=1+\mathbf{k}_α \cdot\left(\mathbf{r}-\mathbf{r}_α\right)$ by using the inverse transformation: $\mathbf{μ}=\mathbf{T}^{-1}\left(\mathbf{r}-\mathbf{r}_4\right)$.
+
+In barycentric coordinates we have
+$$
+\mathbf{r}-\mathbf{r}_4
+    = \sum_{α=1}^4(μ_α \mathbf{r}_α) -  (\sum_{α=1}^4 μ_α) \mathbf{r}_4
+    = μ_1 \mathbf{d}_1 + μ_2 \mathbf{d}_2 + μ_3\mathbf{d}_3.
+$$
+
+A geometric way to see the first row of $T^{-1}$ is to note that
+
+$$
+\mathbf{k}_1 = \frac{\mathbf{d}_2\times\mathbf{d}_3} {\mathbf{d}_1\cdot(\mathbf{d}_2\times\mathbf{d}_3)}
+$$
+
+is the unique “reciprocal vector” satisfying $\mathbf{k}_1\cdot\mathbf{d}_1=1$ and $\mathbf{k}_1\cdot\mathbf{d}_2= \mathbf{k}_1\cdot\mathbf{d}_3=0$ .
+
+so
+
+$$
+T^{-1} = \left(\begin{array}{l}
+\mathbf{k}_1 \\
+\mathbf{k}_2 \\
+\mathbf{k}_3
+\end{array}\right)
+$$
+
+with $\mathbf{k}_2,\mathbf{k}_3$ defined similarly by the appropriate cross products and normalization.
+
+Therefore from $\mathbf{μ}=\mathbf{T}^{-1}\left(\mathbf{r}-\mathbf{r}_4\right)$, we have $μ_i = \mathbf{k}_i\cdot(\mathbf{r}-\mathbf{r}_{4})$, where $i=1,2,3$.
+
+Notice that $\mathbf{r}-\mathbf{r}_{4} = (\mathbf{r}-\mathbf{r}_1) + \underbrace{(\mathbf{r}_1-\mathbf{r}_{4})}_{=\mathbf{d}_1}$ and by construction $\mathbf{k}_1\cdot\mathbf{d}_1=1$.
+
+Therefore
+
+$$
+μ_1 = \mathbf{k}_1 \cdot(\mathbf{r}-\mathbf{r}_1) + \mathbf{k}_1 \cdot\mathbf{d}_1
+    = 1 + \mathbf{k}_1 \cdot(\mathbf{r}-\mathbf{r}_1)
+$$
+
+By identical reasoning, $μ_α = 1 + \mathbf{k}_α \cdot (\mathbf{r}-\mathbf{r}_α)$.
