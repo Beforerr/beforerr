@@ -44,6 +44,8 @@ resources: cv_Zijin_clean.pdf
 
 # Publications
 
+<!-- APA style -->
+
 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., Kasahara, S., Miyoshi, Y., Matsuoka, A., Kasahara, Y., Mitani, T., Yokota, S., Hori, T., Keika, K., Takashima, T., Teramoto, M., Matsuda, S., & Shinohara, I. (2024). Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections. *Journal of Geophysical Research: Space Physics*, 129(12), e2024JA033174. DOI: [10.1029/2024JA033174](https://doi.org/10.1029/2024JA033174)
 
 1. Margot, J.-L., Li, M. G., Pinchuk, … **Zhang, Z.**. (2023). A search for technosignatures around 11680 stars with the green bank telescope at 1.15–1.73 GHz. *Astronomical Journal*, 166(5), 206. DOI: [10.3847/1538-3881/acfda4](https://doi.org/10.3847/1538-3881/acfda4)
@@ -60,6 +62,11 @@ resources: cv_Zijin_clean.pdf
 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, December 12). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *American Geophysical Union*. DOI: [10.13140/RG.2.2.33038.33607](https://doi.org/10.13140/RG.2.2.33038.33607)
 
 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, June 22). Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections. *Geospace Environment Modeling*. DOI: [10.13140/RG.2.2.33038.33607](http://dx.doi.org/10.13140/RG.2.2.33038.33607)
+
+# Software
+
+1. **Zhang, Z.** (2025). discontinuitypy: A python package for identifying and analyzing discontinuities for time series (Version v0.4.0) [Computer software]. Zenodo. DOI: [10.5281/ZENODO.14868016](https://doi.org/10.5281/ZENODO.14868016)
+
 
 # Research Experience
 
