@@ -49,3 +49,34 @@ $$
 $$
 
 By identical reasoning, $μ_α = 1 + \mathbf{k}_α \cdot (\mathbf{r}-\mathbf{r}_α)$.
+
+## Cluster magnetopause crossing
+
+> [2] For a CLUSTER magnetopause crossing on 2001/06/11 other than the one in the crib, compute Qsr, Elongation, Planarity and then the magnetopause normal and velocity. 
+> - Compute the current density, and field curvature at that location. 
+> - Compute the magnetopause thickness. 
+> - Compare with table below from Keyser et al. (original from Dunlop and Balogh, 2004).
+> - Create and discuss plots of data, satellite positions, table of results from the “simple” and from either the “symmetric” or the “relative timing” methods. See next page for details.
+
+> Details: 
+> - I have released a crib sheet (Hwk04_02.pro) to help. It is not to be executed and run. Take it as a cheat-sheet: a collection of command-line steps to aid your construction of your own code. I brought over the Cluster CDFs, which you can read using IDL or Python tools or spd_gui. (The data does not exist in SPDF, I had to get it from the Cluster Active Archive. Perhaps AMDA can help you read it.). Use ChatGPT widely to help you, but review documentation when unsure.
+> - The IDL code above uses helper functions for the linear gradient estimation and timing analysis which we discussed in class, and I include in the zip file. You may rewrite them in Python if you wish or use them directly in IDL (they are very simple). They are called lingradest.pro and mptiming.pro.
+
+Loading the data
+
+```{julia}
+using Speasy
+spz = speasy()
+
+using SpaceTools
+
+trange = ["2001-06-11T20:10:30", "2001-06-11T20:12:30"]
+
+# get_data("csa/C2_CP_FGM_FULL/B_vec_xyz_gse", trange)
+get_data("csa/C1_CP_FGM_5VPS_ISR2/B_vec_xyz_isr2", trange)
+# get_data("csa/C3_CP_WBD_WAVEFORM_BM2/B__C3_CP_WBD_WAVEFORM_BM2", trange)
+```
+
+## Wave polarization
+
+> [3] Show (see Lecture 09 p. 31) that in the plane of polarization of an elliptically polarized  wave the ellipticity $ε=tan(β)$, and direction of polarization $φ$, can be obtained from the amplitudes ${B_{x0}}', {B_{y0}}'$ and the phase difference, $ψ$, between the y’ and x’ components from  the equations:  $sin(2β)=sin(ψ) 2 {B_{x0}}' {B_{y0}}'/({B_{x0}}'^2 + {B_{y0}}'^2)$, and: $tan(2φ)=cos(ψ) 2 {B_{x0}}' {B_{y0}}'/({B_{x0}}'^2 - {B_{y0}}'^2)$  This is the origin of the wave polarization analysis using minimum variance techniques. They are used both in exploration geophysics and in space physics, so it is good to be convinced of their origin.
