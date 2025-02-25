@@ -1,0 +1,60 @@
+---
+title: Problem Set 5
+---
+
+## A whistler mode chorus event
+
+> Obtain and analyze DC and AC wave data for an event, including wave polarization and Poynting flux. A whistler mode chorus event observed by THEMIS, occurred on TH-E (P5) at ~10:00-10:15 UT on 2008-12-15 (referenced in the class notes in Lecture 10, p.5) taken from the paper by Li et al., JGR 2011.
+
+@liModulationWhistlerMode2011
+
+> In the overview plots (here and here), E & B wavepower is significant during significant velocity oscillations. A different whistler mode chorus event was observed by MMS on 2019-08-16 at ~09:32:00UT within a flux pileup region shown in Fig. 2 of Fu et al., GRL 2025. MMS overview plot is here. Follow the structure of Hwk05_01.pro (just an example). Work in either IDL or PySPEDAS, for either the THEMIS or the MMS event to:
+
+> - Fig. 1. Identify the event in overview plots and point out the wave power related to it
+> - Fig. 2. Get the Electric Field (Double-Probe) Instruments (EFI) data, remove offsets, show ExB velocity, using E*B=0 approximation
+> - Fig. 3. Plot on-board computed spectra. Overplot fce, 1⁄2 fce
+> - Fig. 4. Recognize (wave)burst times in the waveforms and plot them and the spectra
+> - Fig. 5. Introduce E and B and show ground computed spectra (wavelet and Fourier)
+> - Fig. 6. Rotate into FAC coord’s and feed waveforms into wave analysis program. Plot results. Read the section of the relevant paper and explain the role/significance of the whistler waves in their respective setting.
+> - Fig. 7. Show the Poynting flux for the band-passed signal. Do this is time domain (process time series in real space) and in frequency domain (using the available tools).  
+
+> Deliver a report explaining what you did, and your code.
+
+### Identification in overview plots
+
+
+### Electric field data
+
+- https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro
+
+```{julia}
+using Speasy
+speasy()
+
+using Dates
+using SpaceTools
+using LinearAlgebra
+using Statistics
+
+# Define time intervals for the analysis
+# 09:55 and 10:18
+trange = ["2008-12-15T09:55:00" "2008-12-15T10:20:00"]
+
+get_data("cda/THE_L2_FGM/the_fgs_dsl", trange)
+```
+
+### On-board computed spectra
+
+
+```{julia}
+```
+
+### Waveburst and spectra
+
+```{julia}
+```
+
+### Ground computed spectra
+
+```{julia}
+```
