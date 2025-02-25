@@ -1,0 +1,53 @@
+## Selective decay of magnetic helicity
+
+1. Prove that in the limit of small resistivity, magnetic helicity
+
+$$
+H=\int_{\mathcal{V}} \vec{A} \cdot \vec{B} d V
+$$
+
+decays much more slowly than magnetic energy
+
+$$
+E=\int_{\mathcal{V}}|\vec{B}|^2 d V
+$$
+
+Hint: use the Schwarz inequality for $\vec{J}$ and $\vec{B}$, i.e. $|\vec{J} \cdot \vec{B}|^2 \leq|\vec{J}|^2|\vec{B}|^2$.
+
+@schnackLecturesMagnetohydrodynamics2009
+
+## The conservation of cross helicity
+
+2. Prove equation 2.66 of Biskamp, (without the dissipative terms):
+
+$$
+\frac{d H_c}{d t}=-\int_S \vec{F}_C \cdot d \vec{S}
+$$
+
+where
+
+$$
+\vec{H}_c=\int_{\mathcal{V}} \vec{v} \cdot \vec{B} d V
+$$
+
+and
+
+$$
+F_C=\vec{v} \times(\vec{v} \times \vec{B})+\vec{B}\left(\frac{\gamma p}{(\gamma-1) \rho}+\phi_g\right) .
+$$
+
+$\phi_g$ is the gravitational potential $\left(-\nabla \phi_g\right.$ is the gravitational acceleration and $p, \rho$ are pressure and density. $\vec{v}, \vec{B}$ are velocity and magnetic field. $S$ is the whole surface bounding the plasma volume.
+
+## Nonlinear term in Fourier space 
+
+> Write the Nonlinear Term for the evolution of Elsasser variables, in incompressible MHD, in the Fourier representation for the components
+
+$$
+\left(\frac{\partial \vec{z}_i^{ \pm}(\vec{k})}{\partial t}\right)_{N L}=? ?
+$$
+
+where
+
+$$
+\vec{z}_i^{ \pm}(\vec{k})=\frac{1}{(2 \pi)^3} \int_{\mathcal{V}} \vec{z}_i^{ \pm}(\vec{x}) e^{(-i \vec{k} \cdot \vec{x})} d V
+$$

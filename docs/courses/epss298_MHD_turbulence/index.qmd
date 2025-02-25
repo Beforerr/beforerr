@@ -1,0 +1,47 @@
+---
+title: EPSS 298
+subtitle: MHD Turbulence and Magnetic reconnection
+---
+
+This is an advanced course for graduate students already familiar with space and plasma physics. It is intended for students who have taken an introductory plasma course and have a good background in classical mechanics and electrodynamics. 
+
+Textbooks:
+
+- Biskamp, MHD Turbulence; 
+- Landau Lifschitz Vol. 6; Landau Lifschitz Vol 8; 
+- Biskamp, Magnetic reconnection; 
+- Schnack, Lectures in Magnetohydrodynamics; 
+- Frisch, Turbulence, the legacy of A. N. Komogorov. 
+
+And some of the original papers on MHD and resistive MHD stability that we will distribute in class.
+
+Applications will be discussed throughout the course (mainly the Sun, Solar corona, Solar and stellar winds, the Earth’s magnetosphere and some astrophysical applications).
+
+Grading will be based on weekly/biweekly HW assignments and a final presentation on contemporary research.
+
+Topics (details to be adapted according to the audience):
+
+1. Hydrodynamics; Invariants in Hydrodynamics; 
+2. Magnetohydrodynamics (MHD); Invariants in ideal MHD; 
+3. Hydrodynamic and MHD Stability (energy principle and instabilities in ideal and resistive MHD); 
+4. Magnetic reconnection; Resistive instabilities; 
+5. Transition to turbulence in hydrodynamics; 
+6. Experimental laws of fully developed turbulence; 
+7. The Kolmogorov 1941 theory; Intermittency; 
+8. MHD Turbulence; Isotropy, anisotropy, and weak vs strong MHD turbulence; 
+9. Magnetic field generation and self-organization;
+10. MHD turbulence and reconnection in the solar wind; 
+11. Reconnection observations and theoretical advances in magnetospheric dynamics;
+12. Dissipation range of MHD turbulence: kinetic scales and particle heating and acceleration.
+
+
+
+
+
+
+
+
+
+$$
+\frac{\partial z^{\pm}}{\partial t}+z^{\mp} \cdot \nabla z^{\pm}=-\nabla P
+$$
