@@ -17,36 +17,91 @@ title: Problem Set 5
 > - Fig. 5. Introduce E and B and show ground computed spectra (wavelet and Fourier)
 > - Fig. 6. Rotate into FAC coord’s and feed waveforms into wave analysis program. Plot results. Read the section of the relevant paper and explain the role/significance of the whistler waves in their respective setting.
 > - Fig. 7. Show the Poynting flux for the band-passed signal. Do this is time domain (process time series in real space) and in frequency domain (using the available tools).  
-
 > Deliver a report explaining what you did, and your code.
+
+https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=the&type=overview
+https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=thefb&type=inner
 
 ### Identification in overview plots
 
 
 ### Electric field data
 
-- https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro
 
 ```{julia}
 using Speasy
 speasy()
 
+using GLMakie
+
 using Dates
 using SpaceTools
 using LinearAlgebra
 using Statistics
+using DimensionalData
+using Unitful
+```
 
+```{julia}
 # Define time intervals for the analysis
-# 09:55 and 10:18
-trange = ["2008-12-15T09:55:00" "2008-12-15T10:20:00"]
+trange = ["2008-12-15T09:55:00", "2008-12-15T10:20:00"]
 
-get_data("cda/THE_L2_FGM/the_fgs_dsl", trange)
+"""
+- https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro
+"""
+function thm_load_fit(probe, timerange; vars=("fgs_dsl", "efs_dsl", "efs_0_dsl", "efs_dot0_dsl"))
+    dataset = "TH$(uppercase(probe))_L2_FIT"
+    vars = "th$(lowercase(probe))_" .* vars
+    ids = "cda/$dataset/" .* vars
+    DimArray.(get_data(ids, timerange))
+end
+
+data = thm_load_fit("e", trange)
+
+# tplot(data)
+```
+
+Compute $V= E × B/B^2$
+
+```{julia}
+E = data[end]
+B = data[1]
+B_int = tinterp(B, E)
+V = tcross(E, B_int) ./ tdot(B_int, B_int) |> tstack .|> u"km/s"
+V = modify_meta(V, long_name="Velocity", labels=("Vx", "Vy", "Vz"))
+tplot([B, E, V])
 ```
 
 ### On-board computed spectra
 
+`ffw_16_eac34` and `ffp_16_eac34` `ffp_16_scm3` data are not available for this event.
 
 ```{julia}
+
+function thm_load_fbk(probe, timerange; vars=("fb_edc12", "fb_scm1"))
+    dataset = "TH$(uppercase(probe))_L2_FBK"
+    vars = "th$(lowercase(probe))_" .* vars
+    ids = "cda/$dataset/" .* vars
+    DimArray.(get_data(ids, timerange))
+end
+
+function thm_load_fft(probe, timerange; vars=("ffw_16_eac34", "ffp_16_eac34", "ffp_16_scm3"))
+    dataset = "TH$(uppercase(probe))_L2_FFT"
+    vars = "th$(lowercase(probe))_" .* vars
+    ids = "cda/$dataset/" .* vars
+    DimArray.(get_data(ids, timerange))
+end
+
+fb_edc12, fb_scm1 = thm_load_fbk("e", trange)
+try
+    ffw_16_eac34 = get_data("cda/THE_L2_FFT/the_ffw_16_eac34", trange)
+    ffp_16_scm3 = get_data("cda/THE_L2_FFT/the_ffp_16_scm3", trange)
+    ffp_16_eac34 = get_data("cda/THE_L2_FFT/the_ffp_16_eac34", trange)
+catch
+    @warn "Data not available"
+end
+
+tplot(SpaceTools.set_colorrange.([fb_edc12, fb_scm1]); add_title=true)
 ```
 
 ### Waveburst and spectra
@@ -54,7 +109,16 @@ get_data("cda/THE_L2_FGM/the_fgs_dsl", trange)
 ```{julia}
 ```
 
+
 ### Ground computed spectra
 
 ```{julia}
+
+
+edges_x = 1:6
+center_x = 1:5
+edges_y = 7:12
+data = reshape(1:25, 5, 5)
+
+heatmap(center_x, edges_y, data)
 ```
