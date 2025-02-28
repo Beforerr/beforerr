@@ -33,14 +33,14 @@ Pkg.add("https://github.com/Beforerr/Beforerr.jl")
 
 ```{julia}
 using Speasy
-spz = speasy()
-
 using Dates
 using DimensionalData
 using CairoMakie
 using SpaceTools
 using Unitful
 using LinearAlgebra
+
+const spz = speasy
 ```
 
 ```{julia}
