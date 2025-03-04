@@ -30,8 +30,6 @@ https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&
 
 ```{julia}
 using Speasy
-speasy()
-
 using GLMakie
 
 using Dates
@@ -92,7 +90,7 @@ function thm_load_fft(probe, timerange; vars=("ffw_16_eac34", "ffp_16_eac34", "f
     DimArray.(get_data(ids, timerange))
 end
 
-fb_edc12, fb_scm1 = thm_load_fbk("e", trange)
+thm_fb_edc12, thm_fb_scm1 = thm_load_fbk("e", trange)
 try
     ffw_16_eac34 = get_data("cda/THE_L2_FFT/the_ffw_16_eac34", trange)
     ffp_16_scm3 = get_data("cda/THE_L2_FFT/the_ffp_16_scm3", trange)
@@ -101,7 +99,7 @@ catch
     @warn "Data not available"
 end
 
-tplot(SpaceTools.set_colorrange.([fb_edc12, fb_scm1]); add_title=true)
+tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
 ```
 
 ### Waveburst and spectra
@@ -113,12 +111,56 @@ tplot(SpaceTools.set_colorrange.([fb_edc12, fb_scm1]); add_title=true)
 ### Ground computed spectra
 
 ```{julia}
+using PySPEDAS
+
+themis.efi(trange, level="l1",probe="d")
 
 
-edges_x = 1:6
-center_x = 1:5
-edges_y = 7:12
-data = reshape(1:25, 5, 5)
-
-heatmap(center_x, edges_y, data)
 ```
+
+```{julia}
+tvars = [
+    "cda/THD_L2_FGM/thd_fgs_gsm",
+    # "cda/THD_L2_EFI/thd_efs_dot0_gsm",
+    "cda/THD_L2_FIT/thd_efs_dot0_gsm",
+    "cda/THD_L2_SCM/thd_scw_dsl",
+    "cda/THD_L2_EFI/thd_scw_dsl"
+]
+
+thm_fgs_gsm, thm_efs_dot0_gsm, thm_scw_dsl = get_data.(
+    tvars,
+    trange,
+) .|> DimArray
+
+
+thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl)
+
+tplot([
+    thm_fgs_gsm,
+    thm_efs_dot0_gsm,
+    thm_efw_dsl_x_dpwrspc,
+    thm_scw_dsl_x_dpwrspc,
+    thm_fb_edc12
+]
+)
+
+
+# tplot,['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm', 'thd_efw_clean_dsl_x_dpwrspc','thd_scw_dsl_x_dpwrspc',$
+#   'thd_fb_edc12','thd_fb_scm1','thd_ffw_16_eac34','thd_ffw_16_scm3','thd_ffp_16_eac34','thd_ffp_16_scm3']
+
+# tplot(['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm'])
+```
+
+
+## References
+
+Search Coil Magnetometer (SCM) science data
+
+- WB waveforms (scw) [8192 S/s]
+
+Electric Field Instruments (EFI) science data
+
+- PB waveforms (efp, vap) [128 S/s; Allocation ~ 1.2h]  
+- WB waveforms (efw, vaw) [8192 S/s; Allocation ~ 43s]
+
+- https://themis.ssl.berkeley.edu/instrument_efi.shtml

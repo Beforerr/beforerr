@@ -2,3 +2,5 @@ format:
   html:
     code-tools: true
   typst: default
+number-sections: true
+engine: julia
