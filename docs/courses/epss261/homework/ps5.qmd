@@ -30,6 +30,7 @@ https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&
 
 ```{julia}
 using Speasy
+using PySPEDAS
 using GLMakie
 
 using Dates
@@ -43,7 +44,9 @@ using Unitful
 ```{julia}
 # Define time intervals for the analysis
 trange = ["2008-12-15T09:55:00", "2008-12-15T10:20:00"]
+```
 
+```{julia}
 """
 - https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro
 """
@@ -111,11 +114,11 @@ tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
 ### Ground computed spectra
 
 ```{julia}
-using PySPEDAS
+using PySPEDAS.Projects
 
-themis.efi(trange, level="l1",probe="d")
-
-
+thd_efw_dsl = PySPEDAS.get_data(
+    themis.efi(trange, level="l1", probe="d", varnames=["thd_efw_dsl"])
+)
 ```
 
 ```{julia}
@@ -124,25 +127,25 @@ tvars = [
     # "cda/THD_L2_EFI/thd_efs_dot0_gsm",
     "cda/THD_L2_FIT/thd_efs_dot0_gsm",
     "cda/THD_L2_SCM/thd_scw_dsl",
-    "cda/THD_L2_EFI/thd_scw_dsl"
+    "cda/THD_L1_EFI/thd_efw_dsl"
 ]
 
 thm_fgs_gsm, thm_efs_dot0_gsm, thm_scw_dsl = get_data.(
     tvars,
-    trange,
+    Ref(trange),
 ) .|> DimArray
 
 
-thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl)
+# thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl)
 
-tplot([
-    thm_fgs_gsm,
-    thm_efs_dot0_gsm,
-    thm_efw_dsl_x_dpwrspc,
-    thm_scw_dsl_x_dpwrspc,
-    thm_fb_edc12
-]
-)
+# tplot([
+#     thm_fgs_gsm,
+#     thm_efs_dot0_gsm,
+#     thm_efw_dsl_x_dpwrspc,
+#     thm_scw_dsl_x_dpwrspc,
+#     thm_fb_edc12
+# ]
+# )
 
 
 # tplot,['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm', 'thd_efw_clean_dsl_x_dpwrspc','thd_scw_dsl_x_dpwrspc',$

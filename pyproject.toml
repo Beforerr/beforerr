@@ -1,10 +1,7 @@
 [project]
 name = "bpy"
 version = "0.1.0"
-dependencies = [
-    "numpy",
-    "astropy",
-]
+dependencies = ["numpy", "astropy", "speasy"]
 
 [build-system]
 requires = ["pdm-backend"]
