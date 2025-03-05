@@ -35,14 +35,17 @@ using GLMakie
 
 using Dates
 using SpaceTools
+using SpaceTools: tplot
 using LinearAlgebra
 using Statistics
 using DimensionalData
 using Unitful
+using SignalAnalysis
 ```
 
 ```{julia}
 # Define time intervals for the analysis
+trange_plus = ["2008-12-15T09:45:00", "2008-12-15T10:30:00"]
 trange = ["2008-12-15T09:55:00", "2008-12-15T10:20:00"]
 ```
 
@@ -116,44 +119,47 @@ tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
 ```{julia}
 using PySPEDAS.Projects
 
-thd_efw_dsl = PySPEDAS.get_data(
-    themis.efi(trange, level="l1", probe="d", varnames=["thd_efw_dsl"])
-)
+thd_efw_dsl = themis.efi(trange, level="l1", probe="d")
+
+thd_efw = DimArray(thd_efw_dsl.thd_efw)
 ```
 
 ```{julia}
 tvars = [
-    "cda/THD_L2_FGM/thd_fgs_gsm",
-    # "cda/THD_L2_EFI/thd_efs_dot0_gsm",
-    "cda/THD_L2_FIT/thd_efs_dot0_gsm",
-    "cda/THD_L2_SCM/thd_scw_dsl",
-    "cda/THD_L1_EFI/thd_efw_dsl"
+    "cda/THE_L2_FGM/the_fgs_gsm",
+    "cda/THE_L2_FIT/the_efs_dot0_gsm",
+    "cda/THE_L2_SCM/the_scw_dsl",
+    # "cda/THD_L1_EFI/thd_efw_dsl"
 ]
 
-thm_fgs_gsm, thm_efs_dot0_gsm, thm_scw_dsl = get_data.(
+thm_fgs_gsm, thm_efs_dot0_gsm, thm_scw_dsl = Speasy.get_data.(
     tvars,
-    Ref(trange),
+    Ref(trange_plus),
 ) .|> DimArray
 
 
-# thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl)
+# thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
+thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl[:, 3]) |> SpaceTools.set_colorrange
+# thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
 
-# tplot([
-#     thm_fgs_gsm,
-#     thm_efs_dot0_gsm,
-#     thm_efw_dsl_x_dpwrspc,
-#     thm_scw_dsl_x_dpwrspc,
-#     thm_fb_edc12
-# ]
-# )
-
+f = tplot([
+    thm_fgs_gsm,
+    thm_scw_dsl,
+    thm_scw_dsl_x_dpwrspc,
+    thm_efs_dot0_gsm,
+    thm_fgs_gsm_x_dpwrspc
+    # thm_efw_dsl_x_dpwrspc,
+    # thm_fb_edc12
+]
+)
+tlims!(trange)
+f
 
 # tplot,['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm', 'thd_efw_clean_dsl_x_dpwrspc','thd_scw_dsl_x_dpwrspc',$
 #   'thd_fb_edc12','thd_fb_scm1','thd_ffw_16_eac34','thd_ffw_16_scm3','thd_ffp_16_eac34','thd_ffp_16_scm3']
 
 # tplot(['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm'])
 ```
-
 
 ## References
 

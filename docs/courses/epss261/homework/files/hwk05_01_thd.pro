@@ -136,9 +136,9 @@ tlimit,timeofint
 tplot,['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm', 'thd_efw_clean_dsl_x_dpwrspc','thd_scw_dsl_x_dpwrspc',$
   'thd_fb_edc12','thd_fb_scm1','thd_ffw_16_eac34','thd_ffw_16_scm3','thd_ffp_16_eac34','thd_ffp_16_scm3']
 tplot_apply_databar
-;
-stop
-;
+
+
+;------------------------------------------------------------
 ; rotate E,B to FAC coord's
 ;
 thm_load_fgm,probe=sclet,datatype='fgh',coord='dsl',suff='_dsl'
@@ -280,7 +280,8 @@ store_data,'efw_fft_z',data={x:t,y:abs(efw_fft[*,0:nfft/2,2])^2/bw,v:freq},lim=e
 store_data,'scw_fft_x',data={x:t,y:abs(scw_fft[*,0:nfft/2,0])^2/bw,v:freq},lim=scwlim
 store_data,'scw_fft_y',data={x:t,y:abs(scw_fft[*,0:nfft/2,1])^2/bw,v:freq},lim=scwlim
 store_data,'scw_fft_z',data={x:t,y:abs(scw_fft[*,0:nfft/2,2])^2/bw,v:freq},lim=scwlim
-;
+
+
 ; Calculate Poynting flux (frequency domain)
 Sx= double(efw_fft[*,*,1]*conj(scw_fft[*,*,2])-efw_fft[*,*,2]*conj(scw_fft[*,*,1]))*S_conversion
 Sy=-double(efw_fft[*,*,0]*conj(scw_fft[*,*,2])-efw_fft[*,*,2]*conj(scw_fft[*,*,0]))*S_conversion
