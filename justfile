@@ -3,7 +3,19 @@ default:
 
 ensure-env: ln-bib
     pixi install
-    julia --project -e 'using Pkg; Pkg.develop([(;name="Speasy"), (;name="SpaceTools"), (;name="PlasmaFormulary")]); Pkg.update();'
+
+install-julia-deps:
+    #!/usr/bin/env -S julia --threads=auto --project=.
+    using Pkg
+    Pkg.develop([
+        PackageSpec(url="https://github.com/Beforerr/Beforerr.jl"),
+        PackageSpec(url="https://github.com/Beforerr/SpaceTools.jl"),
+        PackageSpec(url="https://github.com/SciQLop/Speasy.jl"),
+        PackageSpec(url="https://github.com/Beforerr/PySPEDAS.jl"),
+        PackageSpec(url="https://github.com/Beforerr/Discontinuity.jl"),
+        PackageSpec(url="https://github.com/JuliaPlasma/PlasmaFormulary.jl"),
+    ])
+    Pkg.instantiate()
 
 publish:
     quarto publish gh-pages --no-prompt --no-render

@@ -30,7 +30,6 @@ https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&
 
 ```{julia}
 using Speasy
-using PySPEDAS
 using GLMakie
 
 using Dates
@@ -42,6 +41,7 @@ using DimensionalData
 using Unitful
 using SignalAnalysis
 
+using Speasy: get_data
 SpaceTools.DEFAULTS.add_title = true
 ```
 
@@ -113,18 +113,26 @@ tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
 ### Waveburst and spectra
 
 ```{julia}
+trange_wb = ["2008-12-15T10:13:10", "2008-12-15T10:13:18"]
+thm_scw_dsl = get_data("cda/THE_L2_SCM/the_scw_dsl", trange_wb)
 ```
 
 
 ### Ground computed spectra
 
-```{julia}
+```
 using PySPEDAS.Projects
 
-thd_efw_dsl = themis.efi(trange, level="l1", probe="d")
+thm_efi_ds = themis.efi(trange, level="l1", probe="e")
 
-thd_efw = DimArray(thd_efw_dsl.thd_efw)
+thm_efw = DimArray(thm_efi_ds.the_efw)
 ```
+
+```{julia}
+the_efw_l1_index = speasy.inventories.data_tree.archive.spdf.THEMIS.THE.L1.EFW.the_efw_l1
+thm_efw = get_data(the_efw_l1_index.the_efw, trange) |> DimArray
+```
+
 
 ```{julia}
 tvars = [
@@ -132,7 +140,6 @@ tvars = [
     "cda/THE_L2_FIT/the_efs_dot0_gsm",
     "cda/THE_L2_SCM/the_scp_dsl",
     "cda/THE_L2_SCM/the_scw_dsl",
-    # "cda/THD_L1_EFI/thd_efw_dsl"
 ]
 
 thm_fgs_gsm, thm_efs_dot0_gsm, thm_scp_dsl, thm_scw_dsl = Speasy.get_data.(
@@ -144,13 +151,16 @@ thm_fgs_gsm, thm_efs_dot0_gsm, thm_scp_dsl, thm_scw_dsl = Speasy.get_data.(
 # thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
 thm_scp_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
 # thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
+```
 
+```{julia}
 f = tplot([
     thm_fgs_gsm,
     thm_scp_dsl,
     thm_scw_dsl,
     thm_scp_dsl_x_dpwrspc,
     thm_efs_dot0_gsm,
+    thm_efw,
     # thm_fgs_gsm_x_dpwrspc
     # thm_efw_dsl_x_dpwrspc,
     # thm_fb_edc12
@@ -195,17 +205,55 @@ The comparison clearly shows that the amplitude of whistler mode waves (Figure 3
 
 ###  Poynting flux
 
+- [thm_crib_poynting_flux.pro](https://github.com/spedas/bleeding_edge/blob/master/projects/themis/examples/advanced/thm_crib_poynting_flux.pro)
+- [thm_efi_clean_efw.pro](https://github.com/spedas/bleeding_edge/blob/8714f1b9c390780619403f2c56c35f5be675b34b/projects/themis/spacecraft/fields/LASP/thm_efi_clean_efw.pro)
 
 ```{julia}
 using DSP         # for FIR filter design and filtering
-using FFTW        # for Fast Fourier Transforms
+# using FFTW        # for Fast Fourier Transforms
 using LinearAlgebra
+```
 
+From top to bottom, we present the original data, the cleaned data with spikes removed, and the filtered data.
+
+```{julia}
+begin
+    E = tclip(thm_efw, trange_wb) |> standardize |> timeshift
+    E_clean = replace_outliers(E; window=128)
+    E_sm = tfilter(E, 64u"Hz")
+
+    tvars = [E, E_clean, E_sm]
+    f = Figure()
+    tplot(f[1, 1], tvars)
+    fa2 = tplot(f[1, 2], tvars)
+    tlims!.(fa2.axes, 3.44u"s", 3.48u"s")
+end
+```
+
+```{julia}
 Poynting_vector(E, B) = tcross(E, B) ./ Unitful.μ0
 
-#------------------------------------------------------------------------------
-# Time-Domain Calculation of Poynting Flux
-#------------------------------------------------------------------------------
+begin
+    B = tclip(thm_scw_dsl, trange_wb)
+    E = tclip(thm_efw, trange_wb) |> standardize
+    B = B[DimSelectors(E; selectors=Near())]
+
+    E_clean = replace_outliers(E; window=128)
+    B_sm = tfilter(B, 64u"Hz")
+    E_clean_sm = tfilter(E_clean, 64u"Hz")
+
+    S = Poynting_vector(B, E)
+    S_sm = Poynting_vector(B_sm, E_clean_sm)
+
+    f = Figure()
+    tplot(f[1, 1], [thm_scw_dsl, thm_efw])
+    tplot(f[1, 2], [B, E, S])
+    tplot(f[1, 3], [B_sm, E_clean_sm, S_sm])
+    f
+end
+```
+
+```{julia}
 """
     calculate_poynting_flux_time(E, B, fsmin, scwtres)
 
@@ -215,15 +263,14 @@ Compute the time-domain Poynting flux from electric (E) and magnetic (B) field d
 - `E::Array{Float64,2}`: Electric field data as an N×3 array ([Ex, Ey, Ez]).
 - `B::Array{Float64,2}`: Magnetic field data as an N×3 array ([Bx, By, Bz]).
 - `fsmin::Float64`: Minimum frequency for the bandpass filter [Hz].
-- `scwtres::Float64`: Time resolution of the data (sampling interval) [s].
 
 # Returns
 - `S::Array{Float64,2}`: Poynting flux time series (N×3 array).
 """
-function calculate_poynting_flux_time(E, B, fsmin::Float64, scwtres::Float64)
+function calculate_poynting_flux_time(E, B, fsmin::Float64)
     # Sampling parameters
     fs = 1 / scwtres         # sampling frequency [Hz]
-    fnyquist = fs / 2        # Nyquist frequency [Hz]
+    fnyquist = samplingrate(E) / 2        # Nyquist frequency [Hz]
     fsmax = fnyquist         # maximum frequency to pass
     npntswin = Int(round(fs * (1 / fsmin)))  # window length (number of points)
 
