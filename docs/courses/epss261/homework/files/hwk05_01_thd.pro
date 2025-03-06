@@ -249,12 +249,10 @@ tlimit,twaveburst_narrow
 tplot,['thd_fgh_gsmt','thd_efw_clean_dsl_?_wvlt_pow','thd_scw_dsl_?_wvlt_pow',$
   'thd_scw_dsl_rot_powspec','thd_scs_dsl_rot_degpol','thd_scw_dsl_rot_waveangle','thd_scw_dsl_rot_elliptict', $
   'thd_scw_dsl_rot_helict','S_timeseries','S_timeseries_z_wv_pow','S_timeseries_x_wv_pow']
-tplot_apply_databar
-;
-stop
-;
+
+
+
 ; Do the same in frequency domain
-; 
 ; Perform FFTs for frequency-domain calculation
 nfft=npntswin
 stride=nfft/4

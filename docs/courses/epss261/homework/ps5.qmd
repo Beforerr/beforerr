@@ -128,26 +128,28 @@ thd_efw = DimArray(thd_efw_dsl.thd_efw)
 tvars = [
     "cda/THE_L2_FGM/the_fgs_gsm",
     "cda/THE_L2_FIT/the_efs_dot0_gsm",
+    "cda/THE_L2_SCM/the_scp_dsl",
     "cda/THE_L2_SCM/the_scw_dsl",
     # "cda/THD_L1_EFI/thd_efw_dsl"
 ]
 
-thm_fgs_gsm, thm_efs_dot0_gsm, thm_scw_dsl = Speasy.get_data.(
+thm_fgs_gsm, thm_efs_dot0_gsm, thm_scp_dsl, thm_scw_dsl = Speasy.get_data.(
     tvars,
     Ref(trange_plus),
 ) .|> DimArray
 
 
 # thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
-thm_scw_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl[:, 3]) |> SpaceTools.set_colorrange
+thm_scp_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
 # thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
 
 f = tplot([
     thm_fgs_gsm,
+    thm_scp_dsl,
     thm_scw_dsl,
-    thm_scw_dsl_x_dpwrspc,
+    thm_scp_dsl_x_dpwrspc,
     thm_efs_dot0_gsm,
-    thm_fgs_gsm_x_dpwrspc
+    # thm_fgs_gsm_x_dpwrspc
     # thm_efw_dsl_x_dpwrspc,
     # thm_fb_edc12
 ]
@@ -161,11 +163,167 @@ f
 # tplot(['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm'])
 ```
 
+
+###  Poynting flux
+
+
+```{julia}
+using DSP         # for FIR filter design and filtering
+using FFTW        # for Fast Fourier Transforms
+using LinearAlgebra
+
+Poynting_vector(E, B) = tcross(E, B) ./ Unitful.μ0
+
+#------------------------------------------------------------------------------
+# Time-Domain Calculation of Poynting Flux
+#------------------------------------------------------------------------------
+"""
+    calculate_poynting_flux_time(E, B, fsmin, scwtres)
+
+Compute the time-domain Poynting flux from electric (E) and magnetic (B) field data.
+
+# Arguments
+- `E::Array{Float64,2}`: Electric field data as an N×3 array ([Ex, Ey, Ez]).
+- `B::Array{Float64,2}`: Magnetic field data as an N×3 array ([Bx, By, Bz]).
+- `fsmin::Float64`: Minimum frequency for the bandpass filter [Hz].
+- `scwtres::Float64`: Time resolution of the data (sampling interval) [s].
+
+# Returns
+- `S::Array{Float64,2}`: Poynting flux time series (N×3 array).
+"""
+function calculate_poynting_flux_time(E, B, fsmin::Float64, scwtres::Float64)
+    # Sampling parameters
+    fs = 1 / scwtres         # sampling frequency [Hz]
+    fnyquist = fs / 2        # Nyquist frequency [Hz]
+    fsmax = fnyquist         # maximum frequency to pass
+    npntswin = Int(round(fs * (1 / fsmin)))  # window length (number of points)
+
+    # Normalized cutoff frequencies (for FIR filter design)
+    lowcut = fsmin / fnyquist
+    highcut = fsmax / fnyquist
+    order = 50   # Filter order
+
+    # Design a bandpass FIR filter using a Kaiser window
+    filt_coeffs = firwin(order + 1, (lowcut, highcut),
+        window=kaiser(order + 1, 8.0),
+        passband=:bandpass)
+
+    N = size(E, 1)
+    E_filt = zeros(size(E))
+    B_filt = zeros(size(B))
+    for i in 1:3
+        # Here we use a simple causal filtering (filt) for each component.
+        # For zero-phase filtering you might use filtfilt (if available).
+        E_filt[:, i] = filt(filt_coeffs, E[:, i])
+        B_filt[:, i] = filt(filt_coeffs, B[:, i])
+    end
+
+    # Compute the cross product S = E x B at each time point.
+    S = Poynting_vector(E_filt, B_filt)
+    return S
+end
+
+#------------------------------------------------------------------------------
+# Frequency-Domain Calculation of Poynting Flux
+#------------------------------------------------------------------------------
+"""
+    calculate_poynting_flux_freq(E, B, scwtres, fsmin)
+
+Compute the frequency-domain Poynting flux using sliding-window FFTs.
+
+# Arguments
+- `E::Array{Float64,2}`: Electric field data as an N×3 array.
+- `B::Array{Float64,2}`: Magnetic field data as an N×3 array.
+- `scwtres::Float64`: Time resolution [s].
+- `fsmin::Float64`: Minimum frequency for determining the window length [Hz].
+
+# Returns
+- `Sx, Sy, Sz::Array{Float64,2}`: Frequency-domain Poynting flux components for each window.
+- `freq::Vector{Float64}`: Frequency axis corresponding to the FFT bins.
+"""
+function calculate_poynting_flux_freq(E::Array{Float64,2},
+    B::Array{Float64,2},
+    scwtres::Float64,
+    fsmin::Float64)
+    fs = 1 / scwtres         # Sampling frequency [Hz]
+    fnyquist = fs / 2
+    npntswin = Int(round(fs * (1 / fsmin)))  # Window length in points
+    nfft = npntswin
+    stride = div(nfft, 4)
+    N = size(E, 1)
+    n_windows = div(N - nfft, stride) + 1
+
+    # Preallocate arrays for FFT-based calculation (one row per window)
+    Sx = zeros(n_windows, nfft)
+    Sy = zeros(n_windows, nfft)
+    Sz = zeros(n_windows, nfft)
+
+    # Define a Hanning window and normalize to preserve energy.
+    win = hanning(nfft)
+    win = win / mean(win .^ 2)
+
+    # Process each window
+    for i in 0:(n_windows-1)
+        start_index = i * stride + 1
+        window_range = start_index:(start_index+nfft-1)
+
+        # Apply the window to each field component
+        E_win = E[window_range, :] .* win
+        B_win = B[window_range, :] .* win
+
+        # Compute the FFT along the time axis (for each component)
+        E_fft = fft(E_win, 1)
+        B_fft = fft(B_win, 1)
+
+        # Compute cross-spectral density for Poynting flux:
+        # Sx = E_y * conj(B_z) - E_z * conj(B_y)
+        # Sy = - (E_x * conj(B_z) - E_z * conj(B_x))
+        # Sz = E_x * conj(B_y) - E_y * conj(B_x)
+        Sx[i+1, :] = real(E_fft[:, 2] .* conj(B_fft[:, 3]) -
+                          E_fft[:, 3] .* conj(B_fft[:, 2]))
+        Sy[i+1, :] = -real(E_fft[:, 1] .* conj(B_fft[:, 3]) -
+                           E_fft[:, 3] .* conj(B_fft[:, 1]))
+        Sz[i+1, :] = real(E_fft[:, 1] .* conj(B_fft[:, 2]) -
+                          E_fft[:, 2] .* conj(B_fft[:, 1]))
+    end
+    # Construct the frequency axis [Hz]
+    freq = (0:nfft-1) .* (fs / nfft)
+    return Sx, Sy, Sz, freq
+end
+
+#------------------------------------------------------------------------------
+# Example Usage
+#------------------------------------------------------------------------------
+# To use these functions, you need electric (E) and magnetic (B) field data.
+# For example, suppose you have:
+fsmin = 64.0           # Minimum frequency [Hz]
+scwtres = 1 / 8192         # Time resolution (s) corresponding to a sampling rate of 8192 Hz
+#
+# You might simulate some sample data as follows:
+#
+# using Random
+N = 8192 * 10   # 10 seconds of data
+E = randn(N, 3)  # Simulated electric field data (Nx3)
+B = randn(N, 3)  # Simulated magnetic field data (Nx3)
+#
+# Time-domain Poynting flux:
+S_time = calculate_poynting_flux_time(E, B, 64.0, 1 / 8192)
+#
+# Frequency-domain Poynting flux:
+Sx, Sy, Sz, freq = calculate_poynting_flux_freq(E, B, 1 / 8192, 64.0)
+#
+# You can then proceed to visualize or further process the results as needed.
+```
+
+
+
 ## References
 
 Search Coil Magnetometer (SCM) science data
 
 - WB waveforms (scw) [8192 S/s]
+
+- https://themis.igpp.ucla.edu/scm_dataflow.shtml
 
 Electric Field Instruments (EFI) science data
 
