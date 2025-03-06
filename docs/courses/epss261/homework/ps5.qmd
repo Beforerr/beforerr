@@ -41,6 +41,8 @@ using Statistics
 using DimensionalData
 using Unitful
 using SignalAnalysis
+
+SpaceTools.DEFAULTS.add_title = true
 ```
 
 ```{julia}
@@ -162,6 +164,33 @@ f
 
 # tplot(['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm'])
 ```
+
+### FAC coordinate
+
+> Rotate into FAC coord’s and feed waveforms into wave analysis program. Plot results. Read the section of the relevant paper and explain the role/significance of the whistler waves in their respective setting.
+
+```{julia}
+tvars = ["cda/THE_L2_FGM/the_fgs_dsl"]
+thm_fgs_dsl = Speasy.get_data(tvars, trange_plus) |> DimArray
+fac_mats = tfac_mat(thm_fgs_dsl)
+thm_scw_dsl_fac = select_rotate(thm_scw_dsl, fac_mats, "FAC")
+
+tplot([
+    thm_fgs_dsl,
+    thm_scw_dsl,
+    thm_scw_dsl_fac,
+])
+```
+
+Zoom into a shorter time range, we can see that the electric field mainly oscillates at the plane normal to the magnetic field.
+
+```{julia}
+tlims!("2008-12-15T10:13:10", "2008-12-15T10:13:18")
+```
+
+first‐order cyclotron resonance with the parallel propagating whistler mode waves,
+
+The comparison clearly shows that the amplitude of whistler mode waves (Figure 3g) positively correlates with variations in the total electron density (Figure 3a), and resonant electron flux (Figure 3e), and negatively correlates with the total magnetic field (Figure 3b) and the minimum resonant energy (Figure 3f)
 
 
 ###  Poynting flux
