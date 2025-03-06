@@ -6,8 +6,6 @@ title: Problem Set 5
 
 > Obtain and analyze DC and AC wave data for an event, including wave polarization and Poynting flux. A whistler mode chorus event observed by THEMIS, occurred on TH-E (P5) at ~10:00-10:15 UT on 2008-12-15 (referenced in the class notes in Lecture 10, p.5) taken from the paper by Li et al., JGR 2011.
 
-@liModulationWhistlerMode2011
-
 > In the overview plots (here and here), E & B wavepower is significant during significant velocity oscillations. A different whistler mode chorus event was observed by MMS on 2019-08-16 at ~09:32:00UT within a flux pileup region shown in Fig. 2 of Fu et al., GRL 2025. MMS overview plot is here. Follow the structure of Hwk05_01.pro (just an example). Work in either IDL or PySPEDAS, for either the THEMIS or the MMS event to:
 
 > - Fig. 1. Identify the event in overview plots and point out the wave power related to it
@@ -19,10 +17,15 @@ title: Problem Set 5
 > - Fig. 7. Show the Poynting flux for the band-passed signal. Do this is time domain (process time series in real space) and in frequency domain (using the available tools).  
 > Deliver a report explaining what you did, and your code.
 
+
 https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=the&type=overview
 https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=thefb&type=inner
 
 ### Identification in overview plots
+
+@liModulationWhistlerMode2011
+
+![](https://themis.ssl.berkeley.edu/themisdata/overplots/2008/12/15/the_l2_overview_20081215_1012.png)
 
 
 ### Electric field data
@@ -49,6 +52,7 @@ SpaceTools.DEFAULTS.add_title = true
 # Define time intervals for the analysis
 trange_plus = ["2008-12-15T09:45:00", "2008-12-15T10:30:00"]
 trange = ["2008-12-15T09:55:00", "2008-12-15T10:20:00"]
+trange_wb = ["2008-12-15T10:13:10", "2008-12-15T10:13:18"]
 ```
 
 ```{julia}
@@ -113,19 +117,28 @@ tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
 ### Waveburst and spectra
 
 ```{julia}
-trange_wb = ["2008-12-15T10:13:10", "2008-12-15T10:13:18"]
 thm_scw_dsl = get_data("cda/THE_L2_SCM/the_scw_dsl", trange_wb)
 ```
 
 
 ### Ground computed spectra
 
-```
+```julia
 using PySPEDAS.Projects
-
 thm_efi_ds = themis.efi(trange, level="l1", probe="e")
-
 thm_efw = DimArray(thm_efi_ds.the_efw)
+```
+
+Loading `efw` data using `PySPEDAS` is somehow quite slow, instead we define a configuration file and load the `efw` data from the SPDF.
+
+```{yaml}
+the_efw_l1:
+  inventory_path: spdf/THEMIS/THE/L1/EFW
+  master_cdf: https://spdf.gsfc.nasa.gov/pub/data/themis/the/l1/efw/2021/the_l1_efw_20210102_v01.cdf
+  split_frequency: daily
+  split_rule: regular
+  url_pattern: https://spdf.gsfc.nasa.gov/pub/data/themis/the/l1/efw/{Y}/the_l1_efw_{Y}{M:02d}{D:02d}_v\d+.cdf
+  use_file_list: true
 ```
 
 ```{julia}
@@ -146,14 +159,13 @@ thm_fgs_gsm, thm_efs_dot0_gsm, thm_scp_dsl, thm_scw_dsl = Speasy.get_data.(
     tvars,
     Ref(trange_plus),
 ) .|> DimArray
-
-
-# thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
-thm_scp_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
-# thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
 ```
 
 ```{julia}
+# thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
+thm_scp_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
+# thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
+
 f = tplot([
     thm_fgs_gsm,
     thm_scp_dsl,
@@ -198,7 +210,7 @@ Zoom into a shorter time range, we can see that the electric field mainly oscill
 tlims!("2008-12-15T10:13:10", "2008-12-15T10:13:18")
 ```
 
-first‐order cyclotron resonance with the parallel propagating whistler mode waves,
+first-order cyclotron resonance with the parallel propagating whistler mode waves,
 
 The comparison clearly shows that the amplitude of whistler mode waves (Figure 3g) positively correlates with variations in the total electron density (Figure 3a), and resonant electron flux (Figure 3e), and negatively correlates with the total magnetic field (Figure 3b) and the minimum resonant energy (Figure 3f)
 
@@ -208,30 +220,28 @@ The comparison clearly shows that the amplitude of whistler mode waves (Figure 3
 - [thm_crib_poynting_flux.pro](https://github.com/spedas/bleeding_edge/blob/master/projects/themis/examples/advanced/thm_crib_poynting_flux.pro)
 - [thm_efi_clean_efw.pro](https://github.com/spedas/bleeding_edge/blob/8714f1b9c390780619403f2c56c35f5be675b34b/projects/themis/spacecraft/fields/LASP/thm_efi_clean_efw.pro)
 
-```{julia}
-using DSP         # for FIR filter design and filtering
-# using FFTW        # for Fast Fourier Transforms
-using LinearAlgebra
-```
-
 From top to bottom, we present the original data, the cleaned data with spikes removed, and the filtered data.
+
+We can see that removing spikes is essential for the accuracy of the filtered data.
 
 ```{julia}
 begin
-    E = tclip(thm_efw, trange_wb) |> standardize |> timeshift
+    E = tclip(thm_efw, trange_wb) |> standardize
     E_clean = replace_outliers(E; window=128)
     E_sm = tfilter(E, 64u"Hz")
+    E_clean_sm = tfilter(tinterp_nans(E_clean), 64u"Hz")
 
-    tvars = [E, E_clean, E_sm]
+    tvars = [E, E_clean, E_sm, E_clean_sm] .|> timeshift
     f = Figure()
     tplot(f[1, 1], tvars)
-    fa2 = tplot(f[1, 2], tvars)
+    fa2 = tplot(f[1, 2], tvars; link_yaxes=true)
     tlims!.(fa2.axes, 3.44u"s", 3.48u"s")
+    f
 end
 ```
 
 ```{julia}
-Poynting_vector(E, B) = tcross(E, B) ./ Unitful.μ0
+Poynting_vector(E, B) = tstack(tcross(E, B) ./ Unitful.μ0)
 
 begin
     B = tclip(thm_scw_dsl, trange_wb)
@@ -240,155 +250,29 @@ begin
 
     E_clean = replace_outliers(E; window=128)
     B_sm = tfilter(B, 64u"Hz")
-    E_clean_sm = tfilter(E_clean, 64u"Hz")
+    E_clean_sm = tfilter(tinterp_nans(E_clean), 64u"Hz")
 
     S = Poynting_vector(B, E)
     S_sm = Poynting_vector(B_sm, E_clean_sm)
 
     f = Figure()
-    tplot(f[1, 1], [thm_scw_dsl, thm_efw])
-    tplot(f[1, 2], [B, E, S])
-    tplot(f[1, 3], [B_sm, E_clean_sm, S_sm])
+    tplot(f[1, 1:2], [thm_scw_dsl, thm_efw])
+    tplot(f[2:4, 1], [B, E, S])
+    tplot(f[2:4, 2], [B_sm, E_clean_sm, S_sm])
     f
 end
 ```
 
+#### Frequency-Domain Calculation of Poynting Flux
+
 ```{julia}
-"""
-    calculate_poynting_flux_time(E, B, fsmin, scwtres)
-
-Compute the time-domain Poynting flux from electric (E) and magnetic (B) field data.
-
-# Arguments
-- `E::Array{Float64,2}`: Electric field data as an N×3 array ([Ex, Ey, Ez]).
-- `B::Array{Float64,2}`: Magnetic field data as an N×3 array ([Bx, By, Bz]).
-- `fsmin::Float64`: Minimum frequency for the bandpass filter [Hz].
-
-# Returns
-- `S::Array{Float64,2}`: Poynting flux time series (N×3 array).
-"""
-function calculate_poynting_flux_time(E, B, fsmin::Float64)
-    # Sampling parameters
-    fs = 1 / scwtres         # sampling frequency [Hz]
-    fnyquist = samplingrate(E) / 2        # Nyquist frequency [Hz]
-    fsmax = fnyquist         # maximum frequency to pass
-    npntswin = Int(round(fs * (1 / fsmin)))  # window length (number of points)
-
-    # Normalized cutoff frequencies (for FIR filter design)
-    lowcut = fsmin / fnyquist
-    highcut = fsmax / fnyquist
-    order = 50   # Filter order
-
-    # Design a bandpass FIR filter using a Kaiser window
-    filt_coeffs = firwin(order + 1, (lowcut, highcut),
-        window=kaiser(order + 1, 8.0),
-        passband=:bandpass)
-
-    N = size(E, 1)
-    E_filt = zeros(size(E))
-    B_filt = zeros(size(B))
-    for i in 1:3
-        # Here we use a simple causal filtering (filt) for each component.
-        # For zero-phase filtering you might use filtfilt (if available).
-        E_filt[:, i] = filt(filt_coeffs, E[:, i])
-        B_filt[:, i] = filt(filt_coeffs, B[:, i])
-    end
-
-    # Compute the cross product S = E x B at each time point.
-    S = Poynting_vector(E_filt, B_filt)
-    return S
+let S = tnorm_combine(S_sm)
+    S_dpwrspc = pspectrum(S; nfft=512) |> SpaceTools.set_colorrange
+    f = tplot([
+        S,
+        eachslice(S_dpwrspc; dims=Y())...
+    ])
 end
-
-#------------------------------------------------------------------------------
-# Frequency-Domain Calculation of Poynting Flux
-#------------------------------------------------------------------------------
-"""
-    calculate_poynting_flux_freq(E, B, scwtres, fsmin)
-
-Compute the frequency-domain Poynting flux using sliding-window FFTs.
-
-# Arguments
-- `E::Array{Float64,2}`: Electric field data as an N×3 array.
-- `B::Array{Float64,2}`: Magnetic field data as an N×3 array.
-- `scwtres::Float64`: Time resolution [s].
-- `fsmin::Float64`: Minimum frequency for determining the window length [Hz].
-
-# Returns
-- `Sx, Sy, Sz::Array{Float64,2}`: Frequency-domain Poynting flux components for each window.
-- `freq::Vector{Float64}`: Frequency axis corresponding to the FFT bins.
-"""
-function calculate_poynting_flux_freq(E::Array{Float64,2},
-    B::Array{Float64,2},
-    scwtres::Float64,
-    fsmin::Float64)
-    fs = 1 / scwtres         # Sampling frequency [Hz]
-    fnyquist = fs / 2
-    npntswin = Int(round(fs * (1 / fsmin)))  # Window length in points
-    nfft = npntswin
-    stride = div(nfft, 4)
-    N = size(E, 1)
-    n_windows = div(N - nfft, stride) + 1
-
-    # Preallocate arrays for FFT-based calculation (one row per window)
-    Sx = zeros(n_windows, nfft)
-    Sy = zeros(n_windows, nfft)
-    Sz = zeros(n_windows, nfft)
-
-    # Define a Hanning window and normalize to preserve energy.
-    win = hanning(nfft)
-    win = win / mean(win .^ 2)
-
-    # Process each window
-    for i in 0:(n_windows-1)
-        start_index = i * stride + 1
-        window_range = start_index:(start_index+nfft-1)
-
-        # Apply the window to each field component
-        E_win = E[window_range, :] .* win
-        B_win = B[window_range, :] .* win
-
-        # Compute the FFT along the time axis (for each component)
-        E_fft = fft(E_win, 1)
-        B_fft = fft(B_win, 1)
-
-        # Compute cross-spectral density for Poynting flux:
-        # Sx = E_y * conj(B_z) - E_z * conj(B_y)
-        # Sy = - (E_x * conj(B_z) - E_z * conj(B_x))
-        # Sz = E_x * conj(B_y) - E_y * conj(B_x)
-        Sx[i+1, :] = real(E_fft[:, 2] .* conj(B_fft[:, 3]) -
-                          E_fft[:, 3] .* conj(B_fft[:, 2]))
-        Sy[i+1, :] = -real(E_fft[:, 1] .* conj(B_fft[:, 3]) -
-                           E_fft[:, 3] .* conj(B_fft[:, 1]))
-        Sz[i+1, :] = real(E_fft[:, 1] .* conj(B_fft[:, 2]) -
-                          E_fft[:, 2] .* conj(B_fft[:, 1]))
-    end
-    # Construct the frequency axis [Hz]
-    freq = (0:nfft-1) .* (fs / nfft)
-    return Sx, Sy, Sz, freq
-end
-
-#------------------------------------------------------------------------------
-# Example Usage
-#------------------------------------------------------------------------------
-# To use these functions, you need electric (E) and magnetic (B) field data.
-# For example, suppose you have:
-fsmin = 64.0           # Minimum frequency [Hz]
-scwtres = 1 / 8192         # Time resolution (s) corresponding to a sampling rate of 8192 Hz
-#
-# You might simulate some sample data as follows:
-#
-# using Random
-N = 8192 * 10   # 10 seconds of data
-E = randn(N, 3)  # Simulated electric field data (Nx3)
-B = randn(N, 3)  # Simulated magnetic field data (Nx3)
-#
-# Time-domain Poynting flux:
-S_time = calculate_poynting_flux_time(E, B, 64.0, 1 / 8192)
-#
-# Frequency-domain Poynting flux:
-Sx, Sy, Sz, freq = calculate_poynting_flux_freq(E, B, 1 / 8192, 64.0)
-#
-# You can then proceed to visualize or further process the results as needed.
 ```
 
 
