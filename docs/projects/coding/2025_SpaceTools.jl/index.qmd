@@ -94,8 +94,7 @@ Unit is not just a plot label, but also has dimensions meaning. (`Unitful.jl` in
 # Tplot
 
 ```{julia}
-f = tplot([da])
-f.figure
+f = tplot(da)
 ```
 
 ```{julia}

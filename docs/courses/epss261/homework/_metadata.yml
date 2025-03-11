@@ -1,6 +1,8 @@
 format:
   html:
     code-tools: true
+    fig-width: 10
+    fig-height: 7
   typst: default
 number-sections: true
 engine: julia

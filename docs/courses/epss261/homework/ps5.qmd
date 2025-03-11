@@ -1,5 +1,6 @@
 ---
 title: Problem Set 5
+engine: julia
 ---
 
 ## A whistler mode chorus event
@@ -17,24 +18,26 @@ title: Problem Set 5
 > - Fig. 7. Show the Poynting flux for the band-passed signal. Do this is time domain (process time series in real space) and in frequency domain (using the available tools).  
 > Deliver a report explaining what you did, and your code.
 
-
-https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=the&type=overview
-https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=thefb&type=inner
-
 ### Identification in overview plots
 
 @liModulationWhistlerMode2011
 
-![](https://themis.ssl.berkeley.edu/themisdata/overplots/2008/12/15/the_l2_overview_20081215_1012.png)
+![[overview summary](https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=the&type=overview)](https://themis.ssl.berkeley.edu/themisdata/overplots/2008/12/15/the_l2_overview_20081215_1012.png)
 
+We can clearly observe from the overview plot, specifically in the final panel, that the FBK exhibits wave activity within the frequency range of approximately 10–100 Hz. Additionally, it is evident that this wave activity is modulated with a period of roughly 10 seconds.
+
+![[moms summary](https://themis.ssl.berkeley.edu/summary.php?year=2008&month=12&day=15&hour=1012&sumType=the&type=moms)](https://themis.ssl.berkeley.edu/themisdata/overplots/2008/12/15/the_l2_moms_20081215_1012.png)
+
+Similarly, the pressure, magnetic field, temperature, and electron density measurements also exhibit oscillations with a comparable period.
 
 ### Electric field data
 
+> Get the Electric Field (Double-Probe) Instruments (EFI) data, remove offsets, show ExB velocity, using E*B=0 approximation
 
 ```{julia}
 using Speasy
+using CairoMakie
 using GLMakie
-
 using Dates
 using SpaceTools
 using SpaceTools: tplot
@@ -42,52 +45,111 @@ using LinearAlgebra
 using Statistics
 using DimensionalData
 using Unitful
+using PlasmaFormulary
 using SignalAnalysis
-
 using Speasy: get_data
 SpaceTools.DEFAULTS.add_title = true
 ```
 
 ```{julia}
 # Define time intervals for the analysis
-trange_plus = ["2008-12-15T09:45:00", "2008-12-15T10:30:00"]
-trange = ["2008-12-15T09:55:00", "2008-12-15T10:20:00"]
-trange_wb = ["2008-12-15T10:13:10", "2008-12-15T10:13:18"]
+trange_plus = TimeRange("2008-12-15T09:45:00", "2008-12-15T10:30:00")
+trange = TimeRange("2008-12-15T09:55:00", "2008-12-15T10:20:00")
 ```
 
 ```{julia}
+#| column: page
 """
-- https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro
+Reference: [SPEDAS](https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro)
 """
 function thm_load_fit(probe, timerange; vars=("fgs_dsl", "efs_dsl", "efs_0_dsl", "efs_dot0_dsl"))
     dataset = "TH$(uppercase(probe))_L2_FIT"
     vars = "th$(lowercase(probe))_" .* vars
     ids = "cda/$dataset/" .* vars
-    DimArray.(get_data(ids, timerange))
+    das = DimArray.(get_data(ids, timerange))
+    return NamedTuple{Tuple(Symbol.(vars))}(das)
 end
 
 data = thm_load_fit("e", trange)
 
-# tplot(data)
+tplot(data)
 ```
 
-Compute $V= E × B/B^2$
+Here's the Julia equivalent of the provided IDL code for removing offsets and calculating electric field components:
 
 ```{julia}
-E = data[end]
-B = data[1]
-B_int = tinterp(B, E)
-V = tcross(E, B_int) ./ tdot(B_int, B_int) |> tstack .|> u"km/s"
-V = modify_meta(V, long_name="Velocity", labels=("Vx", "Vy", "Vz"))
-tplot([B, E, V])
+#| column: page
+# Get Ez (dsl) and ExB
+let B = data.the_fgs_dsl, E = data.the_efs_dsl, angle = 20.0  # degrees
+    # First get Ex/y offsets
+    println("Select 2 times (Start/Stop) for obtaining Ex, Ey offsets")
+    trange4offset = ["2008-12-15T10:30:00", "2008-12-15T10:40:00"]
+
+    data_offset = thm_load_fit("e", trange4offset)
+    Eoffsets = tmean(data_offset.the_efs_dsl)
+    @info "Eoffsets" Eoffsets.data
+
+    # Set angle threshold
+    tanangle = tan(angle * π / 180.0)
+
+    # Calculate the condition for each data point
+    B = B[DimSelectors(E)]
+    bxy_magnitude = sqrt.(B[:, 1] .^ 2 + B[:, 2] .^ 2)
+    angle_condition = abs.(B[:, 3] ./ bxy_magnitude) .>= tanangle
+    igood = findall(angle_condition)
+    ibad = findall(.!angle_condition)
+    janygood = length(igood)
+    janybad = length(ibad)
+    @info "janygood" janygood
+    @info "janybad" janybad
+    # Apply offsets to Ex and Ey components
+    E_corrected = deepcopy(E)
+    E_corrected[:, 1] .-= Eoffsets[1]
+    E_corrected[:, 2] .-= Eoffsets[2]
+
+    # Set bad data points to NaN
+    if janybad >= 1
+        for i in ibad
+            E_corrected[i, :] .= NaN
+        end
+    end
+
+    if janygood < 1
+        println("*****WARNING: NO GOOD 3D ExB data")
+    else
+        for i in igood
+            E_corrected[i, 3] =
+                -(E_corrected[i, 1] * B[i, 1] +
+                  E_corrected[i, 2] * B[i, 2]) /
+                B[i, 3]
+        end
+    end
+
+    f = Figure()
+    tplot(f[1, 1], data_offset)
+    tplot(f[1, 2:4], [B, E, E_corrected, data.the_efs_0_dsl, data.the_efs_dot0_dsl])
+    f
+end
 ```
+
+In the left panel, we present the data utilized for the offset analysis. In the right panel, arranged sequentially from top to bottom, we display the magnetic field data, the electric field data, the electric field data corrected using our offset analysis, and finally, the corresponding electric field data extracted from the L2 dataset `efs_0_dsl` and `efs_dot0_dsl`.
+
+```{julia}
+let E = data.the_efs_dot0_dsl, B = data.the_fgs_dsl
+    B_int = tinterp(B, E)
+    V = tcross(E, B_int) ./ tdot(B_int, B_int) .|> u"km/s"
+    V = modify_meta(V, long_name="Velocity", labels=("Vx", "Vy", "Vz"))
+    tplot([B, E, V])
+end
+```
+
+Computed $V= E × B/B^2$ is shown in the last panel.
 
 ### On-board computed spectra
 
-`ffw_16_eac34` and `ffp_16_eac34` `ffp_16_scm3` data are not available for this event.
+> Plot on-board computed spectra. Overplot fce, 1⁄2 fce
 
 ```{julia}
-
 function thm_load_fbk(probe, timerange; vars=("fb_edc12", "fb_scm1"))
     dataset = "TH$(uppercase(probe))_L2_FBK"
     vars = "th$(lowercase(probe))_" .* vars
@@ -95,6 +157,24 @@ function thm_load_fbk(probe, timerange; vars=("fb_edc12", "fb_scm1"))
     DimArray.(get_data(ids, timerange))
 end
 
+thm_fb_edc12, thm_fb_scm1 = thm_load_fbk("e", trange) .|> SpaceTools.set_colorrange
+```
+
+The three lines in Figures represent 1 fce (blue), 0.5 fce (orange), and 0.1 fce (green).
+
+```{julia}
+let B = tnorm(data.the_fgs_dsl)
+    fce = gyrofrequency.(B, :e) .|> ω2f
+    fce = modify_meta(fce, scale=log10) ./ 1u"Hz"
+    f = tplot([thm_fb_edc12, thm_fb_scm1]; add_title=true, alpha=0.7)
+    tplot_panel!.(f.axes, Ref([fce, fce / 2, fce / 10]))
+    f
+end
+```
+
+`ffw_16_eac34` and `ffp_16_eac34` `ffp_16_scm3` data are not available for this event.
+
+```{julia}
 function thm_load_fft(probe, timerange; vars=("ffw_16_eac34", "ffp_16_eac34", "ffp_16_scm3"))
     dataset = "TH$(uppercase(probe))_L2_FFT"
     vars = "th$(lowercase(probe))_" .* vars
@@ -102,26 +182,54 @@ function thm_load_fft(probe, timerange; vars=("ffw_16_eac34", "ffp_16_eac34", "f
     DimArray.(get_data(ids, timerange))
 end
 
-thm_fb_edc12, thm_fb_scm1 = thm_load_fbk("e", trange)
-try
-    ffw_16_eac34 = get_data("cda/THE_L2_FFT/the_ffw_16_eac34", trange)
-    ffp_16_scm3 = get_data("cda/THE_L2_FFT/the_ffp_16_scm3", trange)
-    ffp_16_eac34 = get_data("cda/THE_L2_FFT/the_ffp_16_eac34", trange)
-catch
-    @warn "Data not available"
-end
+fft_tvars = [
+    "cda/THE_L2_FFT/the_ffp_16_eac34",
+    "cda/THE_L2_FFT/the_ffp_16_scm3",
+    "cda/THE_L2_FFT/the_ffw_16_eac34",
+    "cda/THE_L2_FFT/the_ffw_16_scm3",
+]
 
-tplot(SpaceTools.set_colorrange.([thm_fb_edc12, thm_fb_scm1]); add_title=true)
+fft_data = get_data.(fft_tvars, trange)
+all(ismissing.(fft_data)) && @warn "Data not available"
 ```
+
 
 ### Waveburst and spectra
 
+> Recognize (wave)burst times in the waveforms and plot them and the spectra.
+
 ```{julia}
-thm_scw_dsl = get_data("cda/THE_L2_SCM/the_scw_dsl", trange_wb)
+tvars = [
+    "cda/THE_L2_SCM/the_scp_dsl",
+    "cda/THE_L2_SCM/the_scw_dsl",
+]
+
+thm_scp_dsl, thm_scw_dsl = get_data.(tvars, trange_plus) .|> DimArray
+f = Figure()
+tplot(f[1, 1], [thm_scp_dsl, thm_scw_dsl])
+f
+```
+
+We see a waveburst around 2008-12-15T10:13:10.
+
+```{julia}
+#| column: page
+tvars_wb = [
+    "cda/THE_L2_SCM/the_scp_dsl",
+    "cda/THE_L2_SCM/the_scw_dsl",
+    "cda/THE_L2_FBK/the_fb_scm1",
+]
+trange_wb = TimeRange("2008-12-15T10:13:10", "2008-12-15T10:13:20")
+trange_wb_s = TimeRange("2008-12-15T10:13:10", "2008-12-15T10:13:17")
+data_wb = get_data.(tvars_wb, trange_wb) .|> DimArray
+tplot(f[1, 2], data_wb)
+tlims!(trange_wb_s)
 ```
 
 
 ### Ground computed spectra
+
+> Introduce E and B and show ground computed spectra (wavelet and Fourier)
 
 ```julia
 using PySPEDAS.Projects
@@ -143,77 +251,98 @@ the_efw_l1:
 
 ```{julia}
 the_efw_l1_index = speasy.inventories.data_tree.archive.spdf.THEMIS.THE.L1.EFW.the_efw_l1
-thm_efw = get_data(the_efw_l1_index.the_efw, trange) |> DimArray
-```
-
-
-```{julia}
 tvars = [
     "cda/THE_L2_FGM/the_fgs_gsm",
-    "cda/THE_L2_FIT/the_efs_dot0_gsm",
+    "cda/THE_L2_FGM/the_fgh_gsm",
     "cda/THE_L2_SCM/the_scp_dsl",
-    "cda/THE_L2_SCM/the_scw_dsl",
+    "cda/THE_L2_SCM/the_scw_dsl"
 ]
-
-thm_fgs_gsm, thm_efs_dot0_gsm, thm_scp_dsl, thm_scw_dsl = Speasy.get_data.(
-    tvars,
-    Ref(trange_plus),
-) .|> DimArray
+thm_fgs_gsm, thm_fgh_gsm, thm_scp_dsl, thm_scw_dsl = get_data(tvars, trange_plus) .|> DimArray
 ```
 
 ```{julia}
-# thm_efw_dsl_x_dpwrspc = SpaceTools.pspectrum(thd_efw[:, 1])
-thm_scp_dsl_x_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
-# thm_fgs_gsm_x_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]) |> SpaceTools.set_colorrange
+#| column: page
+thm_fgs_gsm_z_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]; nfft=64) |> SpaceTools.set_colorrange
+thm_scp_dsl_z_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
+thm_fgh_gsm_z_dpwrspc = SpaceTools.pspectrum(thm_fgh_gsm[:, 3]) |> SpaceTools.set_colorrange
 
-f = tplot([
-    thm_fgs_gsm,
-    thm_scp_dsl,
-    thm_scw_dsl,
-    thm_scp_dsl_x_dpwrspc,
-    thm_efs_dot0_gsm,
-    thm_efw,
-    # thm_fgs_gsm_x_dpwrspc
-    # thm_efw_dsl_x_dpwrspc,
-    # thm_fb_edc12
+tvars_wb = [
+    the_efw_l1_index.the_efw,
+    "cda/THE_L2_SCM/the_scw_dsl"
 ]
-)
-tlims!(trange)
-f
 
-# tplot,['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm', 'thd_efw_clean_dsl_x_dpwrspc','thd_scw_dsl_x_dpwrspc',$
-#   'thd_fb_edc12','thd_fb_scm1','thd_ffw_16_eac34','thd_ffw_16_scm3','thd_ffp_16_eac34','thd_ffp_16_scm3']
+thm_efw, thm_scw_dsl = get_data.(tvars_wb, trange_wb) .|> DimArray
 
-# tplot(['thd_fgs_gsm','thd_efs_dot0_gsm','thd_Vexb_dot0_gsm'])
+thm_scw_dsl_z_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl[:, 3]) |> SpaceTools.set_colorrange
+thm_efw_z_dpwrspc = SpaceTools.pspectrum(thm_efw[:, 3]) |> SpaceTools.set_colorrange
+
+f = Figure()
+tplot(f[1, 1], [
+    thm_fgs_gsm, thm_fgs_gsm_z_dpwrspc,
+    thm_fgh_gsm, thm_fgh_gsm_z_dpwrspc,
+    thm_scp_dsl, thm_scp_dsl_z_dpwrspc,
+])
+
+tplot(f[1, 2], [
+    thm_scw_dsl, thm_scw_dsl_z_dpwrspc,
+    thm_efw, thm_efw_z_dpwrspc,
+])
 ```
+
+During the interval when we have wavebursts, the whistle wave is clearly identifiable in the SCP data. However, in the higher-frequency data product, it becomes difficult to discern any distinct signatures within the spectrogram.
 
 ### FAC coordinate
 
 > Rotate into FAC coord’s and feed waveforms into wave analysis program. Plot results. Read the section of the relevant paper and explain the role/significance of the whistler waves in their respective setting.
 
 ```{julia}
-tvars = ["cda/THE_L2_FGM/the_fgs_dsl"]
-thm_fgs_dsl = Speasy.get_data(tvars, trange_plus) |> DimArray
-fac_mats = tfac_mat(thm_fgs_dsl)
-thm_scw_dsl_fac = select_rotate(thm_scw_dsl, fac_mats, "FAC")
+#| column: page
+tvars = [
+    "cda/THE_L2_FGM/the_fgs_dsl",
+    "cda/THE_L2_FGM/the_fgh_dsl",
+    "cda/THE_L2_SCM/the_scp_dsl",
+]
+_trange = ["2008-12-15T09:59", "2008-12-15T10:13"]
 
-tplot([
+thm_fgs_dsl, thm_fgh_dsl, thm_scp_dsl = Speasy.get_data(tvars, _trange) .|> DimArray
+
+fac_mats = tfac_mat(thm_fgs_dsl)
+thm_scp_fac = select_rotate(thm_scp_dsl, fac_mats, "FAC")
+thm_fgh_fac = select_rotate(thm_fgh_dsl, fac_mats, "FAC")
+
+f = Figure()
+
+tplot(f[1, 1], [
     thm_fgs_dsl,
-    thm_scw_dsl,
-    thm_scw_dsl_fac,
+    thm_fgh_dsl,
+    thm_scp_dsl,
+])
+tplot(f[1, 2], [
+    thm_fgh_fac,
+    thm_scp_fac,
 ])
 ```
 
-Zoom into a shorter time range, we can see that the electric field mainly oscillates at the plane normal to the magnetic field.
+#### Wave polarization analysis
 
 ```{julia}
-tlims!("2008-12-15T10:13:10", "2008-12-15T10:13:18")
+#| column: page
+#| fig-width: 15
+f = Figure(;)
+tplot(f[1, 1], thm_fgh_fac)
+tplot(f[2:6, 1], twavpol(thm_fgh_fac))
+tplot(f[1, 2], thm_scp_fac)
+tplot(f[2:6, 2], twavpol(thm_scp_fac))
 ```
 
-first-order cyclotron resonance with the parallel propagating whistler mode waves,
+Compressional pulsations are associated with modulations of resonant electron fluxes and chorus intensity.
 
-The comparison clearly shows that the amplitude of whistler mode waves (Figure 3g) positively correlates with variations in the total electron density (Figure 3a), and resonant electron flux (Figure 3e), and negatively correlates with the total magnetic field (Figure 3b) and the minimum resonant energy (Figure 3f)
+We have developed a high-performance wave polarization program implemented in Julia, achieving a significant speedup of approximately 100 times compared to its Python counterpart. Furthermore, our implementation is more generalizable, extending the original program’s capabilities to accommodate data in n dimensions. The program is accessible via the following link:
 
+- https://beforerr.github.io/SpaceTools.jl/dev/explanations/waves/
+- https://beforerr.github.io/SpaceTools.jl/dev/validation/pyspedas/
+
+Core part is attached in the appendix.
 
 ###  Poynting flux
 
@@ -222,9 +351,12 @@ The comparison clearly shows that the amplitude of whistler mode waves (Figure 3
 
 From top to bottom, we present the original data, the cleaned data with spikes removed, and the filtered data.
 
+The right panel provides a magnified view of the data presented in the left panel
+
 We can see that removing spikes is essential for the accuracy of the filtered data.
 
 ```{julia}
+#| column: page
 begin
     E = tclip(thm_efw, trange_wb) |> standardize
     E_clean = replace_outliers(E; window=128)
@@ -241,7 +373,8 @@ end
 ```
 
 ```{julia}
-Poynting_vector(E, B) = tstack(tcross(E, B) ./ Unitful.μ0)
+#| column: page
+Poynting_vector(E, B) = tcross(E, B) ./ Unitful.μ0
 
 begin
     B = tclip(thm_scw_dsl, trange_wb)
@@ -265,7 +398,10 @@ end
 
 #### Frequency-Domain Calculation of Poynting Flux
 
+From top to bottom, the panels show the Poynting flux and its corresponding frequency spectra in the x, y, z directions and magnitude, respectively.
+
 ```{julia}
+#| column: page
 let S = tnorm_combine(S_sm)
     S_dpwrspc = pspectrum(S; nfft=512) |> SpaceTools.set_colorrange
     f = tplot([
@@ -275,6 +411,166 @@ let S = tnorm_combine(S_sm)
 end
 ```
 
+
+## Appendix
+
+Core codes is pasted here for reference (which is readable to some extent:).
+
+```julia
+"""
+    spectral_matrix(X, window)
+"""
+function spectral_matrix(X::AbstractMatrix, window::AbstractVector=ones(size(X, 1)))
+    n_samples, n = size(X)
+
+    # Apply the window to each component
+    Xw = X .* window
+
+    # Compute FFTs and normalize
+    Xf = fft(Xw, 1) ./ sqrt(n_samples)
+
+    # Only keep the positive frequencies
+    Nfreq = div(n_samples, 2)
+    Xf = Xf[1:Nfreq, :]
+
+    S = Array{ComplexF64,3}(undef, Nfreq, n, n)
+    for i in 1:n, j in 1:n
+        @. S[:, i, j] = Xf[:, i] * conj(Xf[:, j])
+    end
+
+    return S
+end
+
+"""
+    wavpol(ct, X; nfft=256, noverlap=nfft÷2, bin_freq=3)
+
+Perform polarization analysis of `n`-component time series data.
+
+Assumes the data are in a right-handed, field-aligned coordinate system 
+(with Z along the ambient magnetic field).
+
+For each FFT window (with specified overlap), the routine:
+  1. Computes the FFT and constructs the spectral matrix ``S(f)``.
+  2. Applies frequency smoothing using a window (of length `bin_freq`).
+  3. Computes the wave power, degree of polarization, wave normal angle,
+     ellipticity, and helicity.
+
+# Returns
+A tuple: where each parameter (except `freqline`) is an array with one row per FFT window.
+"""
+function wavpol(ct, X; nfft=256, noverlap=div(nfft, 2), bin_freq=3)
+    # Ensure the smoothing window length is odd.
+    iseven(bin_freq) && (bin_freq += 1)
+
+    N = size(X, 1)
+    samp_freq = samplingrate(ct)
+    Nfreq = div(nfft, 2)
+    fs = (samp_freq / nfft) * (0:(Nfreq-1))
+
+    # Define the number of FFT windows and times (center time of each window)
+    nsteps = floor(Int, (N - nfft) / noverlap) + 1
+    times = similar(ct, nsteps)
+
+    # Define the FFT window (here a smooth window similar to Hanning)
+    window = 0.08 .+ 0.46 .* (1 .- cos.(2π .* (0:(nfft-1)) ./ nfft))
+    half = div(nfft, 2)
+    # Use a Hamming window for frequency smoothing.
+    smooth_win = 0.54 .- 0.46 * cos.(2π .* (0:(bin_freq-1)) ./ (bin_freq - 1))
+    smooth_win = smooth_win / sum(smooth_win)
+
+    # Preallocate arrays for the results.
+    power = zeros(Float64, nsteps, Nfreq)
+    degpol = zeros(Float64, nsteps, Nfreq)
+    waveangle = zeros(Float64, nsteps, Nfreq)
+    ellipticity = zeros(Float64, nsteps, Nfreq)
+    helicity = zeros(Float64, nsteps, Nfreq)
+
+    # Process each FFT window.
+    Threads.@threads for j in 1:nsteps
+        start_idx = 1 + (j - 1) * noverlap
+        end_idx = start_idx + nfft - 1
+        if end_idx > N
+            continue
+        end
+        S = spectral_matrix(@view(X[start_idx:end_idx, :]), window)
+        S_smooth = smooth_spectral_matrix(S, smooth_win)
+        params = compute_polarization_parameters(S_smooth)
+
+        # Store the results.
+        power[j, :] = params.power
+        degpol[j, :] = params.degpol
+        waveangle[j, :] = params.waveangle
+        ellipticity[j, :] = params.ellipticity
+        helicity[j, :] = params.helicity
+        times[j] = ct[start_idx+half] # Set the times at the center of the FFT window.
+    end
+    return (; times, fs, power, degpol, waveangle, ellipticity, helicity)
+end
+```
+
+```julia
+function wpol_helicity(S::AbstractMatrix{ComplexF64}, waveangle::Number)
+    # Preallocate arrays for 3 polarization components
+    helicity_comps = zeros(Float64, 3)
+    ellip_comps = zeros(Float64, 3)
+
+    for comp in 1:3
+        # Build state vector λ_u for this polarization component
+        alph = sqrt(real(S[comp, comp]))
+        alph == 0.0 && continue
+        if comp == 1
+            lam_u = [
+                alph,
+                (real(S[1, 2]) / alph) + im * (-imag(S[1, 2]) / alph),
+                (real(S[1, 3]) / alph) + im * (-imag(S[1, 3]) / alph)
+            ]
+        elseif comp == 2
+            lam_u = [
+                (real(S[2, 1]) / alph) + im * (-imag(S[2, 1]) / alph),
+                alph,
+                (real(S[2, 3]) / alph) + im * (-imag(S[2, 3]) / alph)
+            ]
+        else
+            lam_u = [
+                (real(S[3, 1]) / alph) + im * (-imag(S[3, 1]) / alph),
+                (real(S[3, 2]) / alph) + im * (-imag(S[3, 2]) / alph),
+                alph
+            ]
+        end
+
+        # Compute the phase rotation (gammay) for this state vector
+        lam_y = phase_factor(lam_u) * lam_u
+
+        # Helicity: ratio of the norm of the imaginary part to the real part
+        norm_real = norm(real(lam_y))
+        norm_imag = norm(imag(lam_y))
+        helicity_comps[comp] = (norm_imag != 0) ? norm_imag / norm_real : NaN
+
+        # For ellipticity, use only the first two components
+        u1 = lam_y[1]
+        u2 = lam_y[2]
+
+        # TODO: why there is no 2 in front of uppere?
+        uppere = imag(u1) * real(u1) + imag(u2) * real(u2)
+        lowere = (-imag(u1)^2 + real(u1)^2 - imag(u2)^2 + real(u2)^2)
+        gammarot = atan(uppere, lowere)
+        lam_urot = exp(-1im * 0.5 * gammarot) * [u1, u2]
+
+        num = norm(imag(lam_urot))
+        den = norm(real(lam_urot))
+        ellip_val = (den != 0) ? num / den : NaN
+        # Adjust sign using the off-diagonal of ematspec and the wave normal angle
+        sign_factor = sign(imag(S[1, 2]) * sin(waveangle))
+        ellip_comps[comp] = ellip_val * sign_factor
+    end
+
+    # Average the three computed values
+    helicity = mean(helicity_comps)
+    ellipticity = mean(ellip_comps)
+
+    return helicity, ellipticity
+end
+```
 
 
 ## References
