@@ -45,4 +45,8 @@ format:
     toc: true
     code-fold: true
 
+julia:
+  env:
+    - QUARTO_ENABLE_REVISE=true
+
 wrap: preserve
