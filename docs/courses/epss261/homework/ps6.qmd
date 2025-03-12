@@ -14,6 +14,7 @@ for two magnetopause crossings of MMS2 on 16 October 2015.
 using Speasy
 using DimensionalData
 using SpaceTools
+using SpaceTools.MMS
 using GLMakie
 # using CairoMakie
 
@@ -21,34 +22,19 @@ SpaceTools.DEFAULTS.add_title = true
 ```
 
 ```{julia}
-"""
-Fast Plasma Investigation (FPI)
-"""
-function mms_load_fpi(trange; data_rate="fast", data_type="des")
+trange = ("2015-10-16T13:05:30", "2015-10-16T13:07:30")
+tr_mpause = ("2015-10-16T13:05:40", "2015-10-16T13:06:09")
 
-    ds = "MMS2_FPI_$(uppercase(data_rate))_L2_$(uppercase(data_type))-MOMS"
+probe = 2
+data_rate = "brst"
+fpi_des_ds = FPIDataSet(; probe, data_rate, data_type="des")
+fpi_dis_ds = FPIDataSet(; probe, data_rate, data_type="dis")
 
-    tvars = [
-        "cda/$ds/mms2_$(data_type)_energyspectr_omni_$data_rate",
-        "cda/$ds/mms2_$(data_type)_numberdensity_$data_rate",
-        "cda/$ds/mms2_$(data_type)_bulkv_gse_$data_rate",
-    ]
-    get_data(tvars, trange) .|> DimArray
-end
-```
-
-```{julia}
-
-trange = TimeRange("2015-10-16T13:05:30", "2015-10-16T13:07:30")
-tr_mpause = TimeRange("2015-10-16T13:05:40", "2015-10-16T13:06:09")
-
+des_omni, des_n, des_bulkv_gse = get_data(fpi_des_ds, trange) .|> DimArray
+dis_omni, dis_n, dis_bulkv_gse = get_data(fpi_dis_ds, trange) .|> DimArray
 tvars = [
     "cda/MMS2_FGM_SRVY_L2/mms2_fgm_b_gse_srvy_l2_clean",
 ]
-
-data_rate = "brst"
-dis_omni, dis_n, dis_bulkv_gse = mms_load_fpi(trange; data_rate, data_type="dis")
-des_omni, des_n, des_bulkv_gse = mms_load_fpi(trange; data_rate, data_type="des")
 B_gse, = get_data(tvars, trange) .|> DimArray
 
 dis_bulkv_gse = tclip(dis_bulkv_gse, B_gse)
@@ -60,7 +46,6 @@ dis_bulkv_perp_mag = toproj(dis_bulkv_gse, B_gse_int_dis) |> tnorm
 des_bulkv_perp_mag = toproj(des_bulkv_gse, B_gse_int_des) |> tnorm
 
 tplot([
-    B_gse,
     B_gse,
     dis_omni,
     des_omni,
