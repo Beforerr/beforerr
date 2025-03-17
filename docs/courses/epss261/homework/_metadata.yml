@@ -3,6 +3,7 @@ format:
     code-tools: true
     fig-width: 10
     fig-height: 7
+    toc-depth: 4
   typst: default
 number-sections: true
 engine: julia

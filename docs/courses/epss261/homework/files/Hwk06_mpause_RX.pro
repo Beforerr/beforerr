@@ -113,9 +113,6 @@ tplot,mysc+'_'+['fgm_b_lmn_srvy_l2_bvect','dis_energyspectr_omni_fast', 'des_ene
 tplot_apply_databar
 
 
-
-
-stop
 ;
 ; now plot the para, perp and anti-parallel spectra of electrons
 ; 
@@ -125,10 +122,10 @@ tplot,mysc+'_'+['fgm_b_lmn_srvy_l2_bvect','dis_energyspectr_omni_fast', 'des_ene
   'des_temppxxx_fast','edp_dce_lmn_fast_l2', $
   'des_energyspectr_par_fast','des_energyspectr_perp_fast','des_energyspectr_anti_fast']
 tplot_apply_databar
-;
 makepng,'Hwk06_mpause_RX_Fig1'
-;
-stop
+
+
+
 ;
 ; Introduce FPI burst data (this example only shows survey data).
 ; 
@@ -141,13 +138,13 @@ mms_load_edp, datatype='scpot', probes=sclet
 mms_part_getspec,mysc+'_'+'des_dist_brst',outputs='moments energy',sc_pot_name=mysc+'_'+'edp_scpot_fast_l2'
 ;
 mms_part_getspec,mysc+'_'+'dis_dist_brst',outputs='moments energy',sc_pot_name=mysc+'_'+'edp_scpot_fast_l2'
-;
 ylim,'*dis*bulkv*',-400,400,0
 ylim,'*des*bulkv*',0,0,0
+
 store_data,mysc+'_'+'dxs_numberdensities_brst',data=mysc+'_'+['dis_numberdensity_brst','des_numberdensity_brst']
 ylim,'*numberdens*',0.1,50.,1
 options,'*numberdensities*','colors',['b','r']
-;
+
 store_data,'mms2_des_energyspectr_omni_brst_pot',data='mms2_des_energyspectr_omni_brst mms2_edp_scpot_fast_l2'
 ylim,'mms2_des_energyspectr_omni_brst_pot',12,25000.,1
 ;
