@@ -4,7 +4,7 @@
     "href": "docs/courses/index.html",
     "title": "Courses",
     "section": "",
-    "text": "ASTR 145\n\n\nHigh Energy Astrophysics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 261\n\n\nData Analysis Methods in Space Physics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 265\n\n\nInstrumentation, Data Processing and Data Analysis in Space Physics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 298\n\n\nMHD Turbulence and Magnetic reconnection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS M263\n\n\nSolar System Magnetohydrodynamics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPHYSICS 231A\n\n\nMethods of Mathematical Physics\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "ASTR 145\n\n\nHigh Energy Astrophysics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 261\n\n\nData Analysis Methods in Space Physics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 261 Homework\n\n\nData Analysis Methods in Space Physics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 265\n\n\nInstrumentation, Data Processing and Data Analysis in Space Physics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS 298\n\n\nMHD Turbulence and Magnetic reconnection\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEPSS M263\n\n\nSolar System Magnetohydrodynamics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPHYSICS 231A\n\n\nMethods of Mathematical Physics\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Courses"
     ]
@@ -2194,6 +2194,18 @@
       "EPSS 261",
       "Homework",
       "Problem Set 6"
+    ]
+  },
+  {
+    "objectID": "docs/courses/epss261/homework/index.html",
+    "href": "docs/courses/epss261/homework/index.html",
+    "title": "EPSS 261 Homework",
+    "section": "",
+    "text": "Problem Set 6: Electron-scale measurements of magnetic reconnection : features plasma data, energy spectra analysis using Magnetospheric Multiscale Mission (MMS) spacecraft.",
+    "crumbs": [
+      "Courses",
+      "EPSS 261",
+      "EPSS 261 Homework"
     ]
   }
 ]
