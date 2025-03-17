@@ -1,0 +1,6 @@
+---
+title: EPSS 261 Homework
+subtitle: Data Analysis Methods in Space Physics
+---
+
+- [Problem Set 6: Electron-scale measurements of magnetic reconnection](ps6.qmd) : features plasma data, energy spectra analysis using Magnetospheric Multiscale Mission (MMS) spacecraft.
