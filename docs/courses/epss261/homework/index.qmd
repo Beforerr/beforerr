@@ -3,4 +3,11 @@ title: EPSS 261 Homework
 subtitle: Data Analysis Methods in Space Physics
 ---
 
+- [Problem Set 1: Geomagnetic Indices, Galileo and Voyager](ps1.qmd) : features retrieving and processing data from different remote sources (e.g. WDC-C in Kyoto, Kp index from GFZ Potsdam, Galileo data from Planetary Data System, and Voyager data from CDAWeb).
+- [Problem Set 2: Storm energy and field line resonances](ps2.qmd) : features basic timeseries arithmetics, processing, and visualization and field aligned coordinate transformation using `Speasy.jl`.
+- [Problem Set 3: Minimum and Maximum Variance Analysis](ps3.qmd) : features using minimum and maximum variance technique to analyze electromagnetic waves and shock crossings.
+- [Problem Set 4: Magnetopause crossing](ps4.qmd) : features multi-spacecraft analysis (reciprocal vectors technique) to determine boundary normal and velocity, and estimate spatial gradients using Cluster spacecraft.
+- [Problem Set 5: A whistler mode chorus event](ps5.qmd) : features Electric Field Instruments (EFI) data, wave polarization, time-frequency, and Poynting flux analysis using THEMIS spacecraft.
 - [Problem Set 6: Electron-scale measurements of magnetic reconnection](ps6.qmd) : features plasma data, energy spectra analysis using Magnetospheric Multiscale Mission (MMS) spacecraft.
+
+Note that `SpaceTools.jl` has been renamed to [`SPEDAS.jl`: Julia-based Space Physics Environment Data Analysis Software](https://github.com/Beforerr/SPEDAS.jl).

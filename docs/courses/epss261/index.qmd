@@ -2,3 +2,5 @@
 title: EPSS 261
 subtitle: Data Analysis Methods in Space Physics
 ---
+
+On-line Description: Topics in Magnetospheric Plasma Physics. Lectures, discussions, and exercises on specific advanced topics in magnetospheric plasma physics. Previous courses examined magnetic storms, magnetospheric substorms, ultralow frequency waves, and adiabatic particle motion in Earth's radiation belts.
