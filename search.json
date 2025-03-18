@@ -2201,11 +2201,22 @@
     "href": "docs/courses/epss261/homework/index.html",
     "title": "EPSS 261 Homework",
     "section": "",
-    "text": "Problem Set 6: Electron-scale measurements of magnetic reconnection : features plasma data, energy spectra analysis using Magnetospheric Multiscale Mission (MMS) spacecraft.",
+    "text": "Problem Set 1: Geomagnetic Indices, Galileo and Voyager : features retrieving and processing data from different remote sources (e.g. WDC-C in Kyoto, Kp index from GFZ Potsdam, Galileo data from Planetary Data System, and Voyager data from CDAWeb).\nProblem Set 2: Storm energy and field line resonances : features basic timeseries arithmetics, processing, and visualization and field aligned coordinate transformation using Speasy.jl.\nProblem Set 3: Minimum and Maximum Variance Analysis : features using minimum and maximum variance technique to analyze electromagnetic waves and shock crossings.\nProblem Set 4: Magnetopause crossing : features multi-spacecraft analysis (reciprocal vectors technique) to determine boundary normal and velocity, and estimate spatial gradients using Cluster spacecraft.\nProblem Set 5: A whistler mode chorus event : features Electric Field Instruments (EFI) data, wave polarization, time-frequency, and Poynting flux analysis using THEMIS spacecraft.\nProblem Set 6: Electron-scale measurements of magnetic reconnection : features plasma data, energy spectra analysis using Magnetospheric Multiscale Mission (MMS) spacecraft.\n\nNote that SpaceTools.jl has been renamed to SPEDAS.jl: Julia-based Space Physics Environment Data Analysis Software.",
     "crumbs": [
       "Courses",
       "EPSS 261",
       "EPSS 261 Homework"
+    ]
+  },
+  {
+    "objectID": "docs/courses/epss261/index.html",
+    "href": "docs/courses/epss261/index.html",
+    "title": "EPSS 261",
+    "section": "",
+    "text": "On-line Description: Topics in Magnetospheric Plasma Physics. Lectures, discussions, and exercises on specific advanced topics in magnetospheric plasma physics. Previous courses examined magnetic storms, magnetospheric substorms, ultralow frequency waves, and adiabatic particle motion in Earth’s radiation belts.",
+    "crumbs": [
+      "Courses",
+      "EPSS 261"
     ]
   }
 ]
