@@ -119,7 +119,7 @@ $$
 
 In other words, if $\lambda>\lambda_{t r, 1}$, the most unstable mode in the current sheet is an FKR mode; if the opposite is true,
 
-### FKR regime
+## Tearing instability (FKR regime)
 
 For the $N=1$ mode, the growth rate is
 
@@ -136,7 +136,7 @@ $$
 
 We see that $\lambda_{c r, 1}<\lambda_{t r, 1}$, implying that _the modes that will become critical are not FKR modes_, but rather Coppi modes.
 
-### Coppi regime
+## Tearing instability (Coppi regime)
 
 The largest growth rate is
 
@@ -191,7 +191,7 @@ This defines the scaling of the energy spectrum: $\alpha=5/2$.
 
 ## Spectrum of turbulence governed by the tearing instability
 
-@boldyrevCalculationsTheoryTearing2018
+@boldyrevCalculationsTheoryTearing2018 considered the general case of an arbitrary tearing parameter, and found these parameters depend on the assumed magnetic shear profile, and they are not universal.
 
 Replacing the nonlinear turnover time by the tearing time $b_a^2 γ=\varepsilon$
 

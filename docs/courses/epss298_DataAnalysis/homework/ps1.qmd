@@ -1,0 +1,146 @@
+---
+title: Problem Set 1
+number-sections: true
+engine: julia
+---
+
+<!-- activate ./docs/courses/epss298_DataAnalysis/-->
+
+The attached file contains experimental data showing a spectral line observed in a laboratory. Your task is to perform a Bayesian analysis on a grid to adjust the amplitude A of the spectral line and the background flux B. Assume that the spectral line has a Gaussian shape. For physical reasons, the value of A is constrained to be between 0 and 1000 a priori. The value of B is constrained to be between 0 and 3000 a priori. Use a uniform “prior” on A and B on a linear scale.
+
+## Exercise 2
+
+- Test the function provided to you for the physics model of the spectral line. What is the 
+vector of return values for A=200, B=1860? Copy the values into your document. 
+
+```{julia}
+using Distributions
+using GLMakie
+
+# Define the model function
+function model(A, B, x; xpos=10)
+    d = Normal(xpos, 1.0)
+    return B .+ A .* pdf.(d, x)
+end
+
+# Define the data
+data = [1837.00283015, 1811.76260793, 1877.0602172, 1923.04345098,
+    1810.09024628, 1898.42037995, 1784.35363285, 1866.72588538,
+    1826.22446702, 1896.58934977, 2043.89952533, 1946.20171261,
+    1842.25394544, 1803.83175398, 1803.74949885, 1844.61491832,
+    1828.0670997, 1816.13580618, 1885.88536203, 1846.00959492]
+
+# Set up the x values
+l = length(data)
+x = 0:(l-1)
+
+# Test the model function with A=200, B=1860
+theta_test = [200, 1860]
+model_values = model(theta_test, x)
+println("Model values for A=200, B=1860:")
+println(model_values)
+
+# Plot the data and model
+f = Figure()
+ax = Axis(f[1, 1], xlabel="Pixel", ylabel="Photons Collected")
+stairs!(ax, x, data, label="Data")
+stairs!(ax, x, model_values, label="Model (A=$(theta_test[1]), B=$(theta_test[2]))")
+f
+```
+
+- Code a function "prior" returning prior pdf p(A,B|I) for a given set of parameters (A, B).  What is the return value for A=200, B=1860? Ideally, write the function in a vectorized form that can return the likelihood values with A and B values given on 2D grids.
+
+```{julia}
+# Define the prior function
+function prior(A, B)
+    if 0 <= A <= 1000 && 0 <= B <= 3000
+        return 1.0 / (1000 * 3000)  # Normalized uniform prior
+    else
+        return 0.0
+    end
+end
+
+prior(theta) = prior(theta[1], theta[2])
+
+# Test the prior function with A=200, B=1860
+theta_test = [200, 1860]
+prior_value = prior(theta_test)
+println("Prior value for A=200, B=1860: ", prior_value)
+```
+
+- Code a function "like" returning the likelihood function p(data|A,B,I) for a given set of parameters. What is the return value for A=200, B=1860? Ideally, write the function in a vectorized form that can return the likelihood values with A and B values given on 2D grids. 
+
+```{julia}
+# Define the likelihood function
+function like(theta, data, x; xpos=10, sigma=30.0)
+    # Calculate the model prediction
+    m = model(theta, x, xpos=xpos)
+    # Calculate the likelihood assuming Gaussian errors
+    probs = @. pdf(Normal(m, sigma), data)
+    return prod(probs)
+end
+
+# Test the likelihood function with A=200, B=1860
+theta_test = [200, 1860]
+likelihood_value = like(theta_test, data, x)
+println("Likelihood value for A=200, B=1860: ", likelihood_value)
+```
+
+- Code a function "like_times_prior" returning the products of the values of the likelihood and prior for a given set of parameters. That is the numerator of Bayes' Law. What is the return value for A=200, B=1860?
+
+```{julia}
+# Define the function for the numerator of Bayes' Law
+function like_times_prior(theta, data, x; xpos=10, sigma=30.0)
+    return like(theta, data, x, xpos=xpos, sigma=sigma) * prior(theta)
+end
+
+# Test the function with A=200, B=1860
+theta_test = [200, 1860]
+posterior_numerator = like_times_prior(theta_test, data, x)
+println("Posterior numerator for A=200, B=1860: ", posterior_numerator)
+```
+
+## Exercise 3: 
+
+a) Add to the code to calculate the joint posterior probability density p(A,B|data,I) of A and B on a 300x300 grid spanning A and B. Note: Use np.meshgrid to generate a 2D grid for the values of A and B. 
+
+```{julia}
+# Create a grid of A and B values
+f = Figure()
+A_values = range(0, 900, length=200) |> collect
+B_values = range(1780, 1940, length=300) |> collect
+
+# Calculate the posterior (unnormalized) for each grid point
+posterior_grid = zeros(length(A_values), length(B_values))
+for (i, A) in enumerate(A_values)
+    for (j, B) in enumerate(B_values)
+        posterior_grid[i, j] = like_times_prior([A, B], data, x)
+    end
+end
+
+posterior_grid = posterior_grid ./ sum(posterior_grid)
+
+# Find the maximum posterior and its location
+max_posterior = maximum(posterior_grid)
+max_idx = argmax(posterior_grid)
+max_A = A_values[max_idx[1]]
+max_B = B_values[max_idx[2]]
+
+println("Maximum posterior value: ", max_posterior)
+println("Maximum posterior at A = ", max_A, ", B = ", max_B)
+
+# Plot the posterior
+ax = Axis(f[1, 1], xlabel="Amplitude (A)", ylabel="Background (B)", title="Posterior Probability")
+hm = heatmap!(ax, A_values, B_values, (posterior_grid))
+Colorbar(f[1, 1][1, 2], hm)
+f
+```
+
+b) Make a graph of the posterior distribution in 2D using ax.pcolormesh(). Label the axes. Use a 
+300x300 grid over the entire parameter space. Label the axes. Include a color bar with the label. 
+c) Draw the same graph as in a) but use a 300x300 grid spanning only the non-zero probability 
+region. Label the axes. Include a color bar with the label. 
+d) Show the point of maximum probability with a star symbol (marker=“*”) on the posterior of 
+2c). Include a color bar with the label. 
+e) Make a new graph identical to the one in Step 1 and show the best fit by superimposing the best 
+fit model on the data. Write down the maximum probability values of A and B.
