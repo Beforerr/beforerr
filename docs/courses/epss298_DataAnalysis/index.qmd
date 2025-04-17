@@ -1,0 +1,7 @@
+---
+title: EPSS 298
+subtitle: Modern Data Analysis and Machine Learning  for EPSS and Astronomy
+---
+
+
+Instructor: Prof. Björn Benneke

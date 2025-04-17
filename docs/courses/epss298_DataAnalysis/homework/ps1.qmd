@@ -4,8 +4,6 @@ number-sections: true
 engine: julia
 ---
 
-<!-- activate ./docs/courses/epss298_DataAnalysis/-->
-
 The attached file contains experimental data showing a spectral line observed in a laboratory. Your task is to perform a Bayesian analysis on a grid to adjust the amplitude A of the spectral line and the background flux B. Assume that the spectral line has a Gaussian shape. For physical reasons, the value of A is constrained to be between 0 and 1000 a priori. The value of B is constrained to be between 0 and 3000 a priori. Use a uniform “prior” on A and B on a linear scale.
 
 ## Exercise 2
@@ -15,7 +13,7 @@ vector of return values for A=200, B=1860? Copy the values into your document.
 
 ```{julia}
 using Distributions
-using GLMakie
+using CairoMakie
 
 # Define the model function
 function model(A, B, x; xpos=10)
@@ -35,8 +33,9 @@ l = length(data)
 x = 0:(l-1)
 
 # Test the model function with A=200, B=1860
-theta_test = [200, 1860]
-model_values = model(theta_test, x)
+A = 200
+B = 1860
+model_values = model(A, B, x)
 println("Model values for A=200, B=1860:")
 println(model_values)
 
@@ -44,7 +43,7 @@ println(model_values)
 f = Figure()
 ax = Axis(f[1, 1], xlabel="Pixel", ylabel="Photons Collected")
 stairs!(ax, x, data, label="Data")
-stairs!(ax, x, model_values, label="Model (A=$(theta_test[1]), B=$(theta_test[2]))")
+stairs!(ax, x, model_values, label="Model (A=$(A), B=$(B))")
 f
 ```
 
@@ -60,11 +59,7 @@ function prior(A, B)
     end
 end
 
-prior(theta) = prior(theta[1], theta[2])
-
-# Test the prior function with A=200, B=1860
-theta_test = [200, 1860]
-prior_value = prior(theta_test)
+prior_value = prior(A, B)
 println("Prior value for A=200, B=1860: ", prior_value)
 ```
 
@@ -72,17 +67,16 @@ println("Prior value for A=200, B=1860: ", prior_value)
 
 ```{julia}
 # Define the likelihood function
-function like(theta, data, x; xpos=10, sigma=30.0)
+function like(A, B, data, x; xpos=10, sigma=30.0)
     # Calculate the model prediction
-    m = model(theta, x, xpos=xpos)
+    m = model(A, B, x, xpos=xpos)
     # Calculate the likelihood assuming Gaussian errors
     probs = @. pdf(Normal(m, sigma), data)
     return prod(probs)
 end
 
 # Test the likelihood function with A=200, B=1860
-theta_test = [200, 1860]
-likelihood_value = like(theta_test, data, x)
+likelihood_value = like(A, B, data, x)
 println("Likelihood value for A=200, B=1860: ", likelihood_value)
 ```
 
@@ -90,13 +84,12 @@ println("Likelihood value for A=200, B=1860: ", likelihood_value)
 
 ```{julia}
 # Define the function for the numerator of Bayes' Law
-function like_times_prior(theta, data, x; xpos=10, sigma=30.0)
-    return like(theta, data, x, xpos=xpos, sigma=sigma) * prior(theta)
+function like_times_prior(A, B, data, x; xpos=10, sigma=30.0)
+    return like(A, B, data, x, xpos=xpos, sigma=sigma) * prior(A, B)
 end
 
 # Test the function with A=200, B=1860
-theta_test = [200, 1860]
-posterior_numerator = like_times_prior(theta_test, data, x)
+posterior_numerator = like_times_prior(A, B, data, x)
 println("Posterior numerator for A=200, B=1860: ", posterior_numerator)
 ```
 
@@ -114,7 +107,7 @@ B_values = range(1780, 1940, length=300) |> collect
 posterior_grid = zeros(length(A_values), length(B_values))
 for (i, A) in enumerate(A_values)
     for (j, B) in enumerate(B_values)
-        posterior_grid[i, j] = like_times_prior([A, B], data, x)
+        posterior_grid[i, j] = like_times_prior(A, B, data, x)
     end
 end
 

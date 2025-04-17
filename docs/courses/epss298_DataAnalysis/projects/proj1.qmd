@@ -2,8 +2,6 @@
 title: Project 1
 subtitle: Transiting Exoplanet
 engine: julia
-julia:
-  exeflags: ["--project=./docs/courses/epss298_DataAnalysis"]
 ---
 
 > Your team detected a planet candidate in the data from the Transiting Exoplanet Survey Satellite (TESS). The data is very noisy, but you are relatively confident the planet is there.  
@@ -20,15 +18,28 @@ julia:
 
 ```{julia}
 dir = "docs/courses/epss298_DataAnalysis"
-isdir(dir) && cd(dir) && Pkg.activate(".")
+if isdir(dir)
+    cd(dir)
+    Pkg.activate(".")
+    Pkg.instantiate()
+    cd("projects")
+end
+```
+
+
+```{julia}
 using CondaPkg
+using PythonCall
 CondaPkg.add("batman-package")
+
+const batman = pyimport("batman")
+const pyTransitModel = batman.TransitModel
 ```
 
 ```{julia}
 using CSV, DataFrames
 using CairoMakie
-path = "projects/Project1_JWST_data.csv"
+path = "./Project1_JWST_data.csv"
 data = CSV.read(path, DataFrame)
 
 f = Figure()
@@ -37,11 +48,8 @@ f
 ```
 
 ```{julia}
-using PythonCall
 using DrWatson
 
-batman = pyimport("batman")
-pyTransitModel = batman.TransitModel
 function TransitParams(; ecc = 0.0, w = 0.0, limb_dark = "quadratic", kwargs...)
     params = batman.TransitParams()
     for (key, value) in merge(kwargs, @dict(ecc, w, limb_dark))
