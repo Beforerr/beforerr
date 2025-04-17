@@ -1,5 +1,5 @@
 ---
-title: SpaceTools.jl
+title: SPEDAS.jl
 subtitle: Space data analysis toolbox in Julia
 date: last-modified
 categories:
@@ -10,10 +10,10 @@ format:
     toc-location: left
 code-links:
   - text: GitHub Repo
-    href: https://github.com/Beforerr/SpaceTools.jl
+    href: https://github.com/Beforerr/SPEDAS.jl
     icon: github
   - text: Documentation
-    href: https://beforerr.github.io/SpaceTools.jl/dev/
+    href: https://beforerr.github.io/SPEDAS.jl/dev/
     icon: globe
 engine: julia  
 ---
@@ -22,11 +22,9 @@ Think of `SPEDAS` in Julia.
 
 ## Installation
 
-```julia
+```{julia}
 using Pkg
-Pkg.add("https://github.com/SciQLop/Speasy.jl")
-Pkg.add("https://github.com/Beforerr/SpaceTools.jl")
-Pkg.add("https://github.com/Beforerr/Beforerr.jl")
+Pkg.add(["Speasy", "SPEDAS", "DimensionalData", "Dates", "Unitful", "LinearAlgebra", "CairoMakie"])
 ```
 
 # Getting data is easy
@@ -36,7 +34,7 @@ using Speasy
 using Dates
 using DimensionalData
 using CairoMakie
-using SpaceTools
+using SPEDAS
 using Unitful
 using LinearAlgebra
 
@@ -128,7 +126,7 @@ tplot(tvars, ts0, ts1; add_title=true)
 ## Overlay plots
 
 ```{julia}
-SDS = SpaceTools.DataSet
+SDS = SPEDAS.DataSet
 ts0 = DateTime("2021-01-17")
 ts1 = DateTime("2021-01-18")
 
@@ -218,8 +216,3 @@ tplot(f[1, 2], tvars2, t0, t1)
 tplot(f[2, 1:2], tvars3, t0, t1)
 f
 ```
-
-
-# Links
-
-https://github.com/Beforerr/SpaceTools.jl
