@@ -5,16 +5,19 @@ engine: julia
 ---
 
 > Your team detected a planet candidate in the data from the Transiting Exoplanet Survey Satellite (TESS). The data is very noisy, but you are relatively confident the planet is there.  
- 
 > Based on the TESS data, you can predict that the center of the next transit will be between the  time t = 1.212 days and t = 1.362 days [Note: t is measured relative to an arbitrary reference time]. The TESS data also tell you that the radius of the planet is between 1% and 10% the radius of the star. Unfortunately, you don't know where the planet crosses the star, i.e. the impact  parameter is unconstrained between 0 and 1. Assume that the orbital period is exactly known to be 3.0 days. 
- 
 > You wrote a proposal and successfully convinced the time allocation committee of the James Webb Space Telescope (JWST) to obtain new very precise data for you. YAY!!! 
- 
 > You receive the data in Project1_JWST_data.csv. The errors are 10-4=0.01% on each data point in the light curve. 
- 
 > From these data, you want to determine new estimates with uncertainties for the transit time, the planet-to-star radius ratio, and the impact parameter. 
 
 > Batman: https://lkreidberg.github.io/batman/docs/html/index.html 
+> [joshspeagle/dynesty: Dynamic Nested Sampling package for computing Bayesian posteriors and evidences](https://github.com/joshspeagle/dynesty)
+
+Julia packages:
+
+> [chalk-lab/NestedSamplers.jl: Implementations of single and multi-ellipsoid nested sampling](https://github.com/chalk-lab/NestedSamplers.jl)
+
+## Introduction
 
 ```{julia}
 dir = "docs/courses/epss298_DataAnalysis"
@@ -24,16 +27,6 @@ if isdir(dir)
     Pkg.instantiate()
     cd("projects")
 end
-```
-
-
-```{julia}
-using CondaPkg
-using PythonCall
-CondaPkg.add("batman-package")
-
-const batman = pyimport("batman")
-const pyTransitModel = batman.TransitModel
 ```
 
 ```{julia}
@@ -47,9 +40,23 @@ plot(f[1, 1], data.time, data.flux)
 f
 ```
 
-```{julia}
-using DrWatson
+### Julia interface to Python and Batman
 
+```{julia}
+using CondaPkg
+using PythonCall
+pkg = "batman-package"
+deps = CondaPkg.read_deps()["deps"]
+haskey(deps, pkg) || CondaPkg.add(pkg)
+
+const batman = pyimport("batman")
+const pyTransitModel = batman.TransitModel
+```
+
+```{julia}
+using DrWatson: @dict
+
+"""Like `batman.TransitParams` in Python, but with some keyword arguments for convenience."""
 function TransitParams(; ecc=0.0, w=0.0, limb_dark="quadratic", kwargs...)
     params = batman.TransitParams()
     for (key, value) in merge(kwargs, @dict(ecc, w, limb_dark))
@@ -65,114 +72,95 @@ function light_curve(params, time)
     flux = m.light_curve(params)
     return PyArray(flux)
 end
+
+light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 ```
 
 ## Part A
  
 ### Step 1: Define the physical model 
-Write a function for your physical "forward" model that takes in a vector with these three parameters: 
+
+> Write a function for your physical "forward" model that takes in a vector with these three parameters: 
 
 ```{julia}
-t0 = 1.311544
-rp = 0.01
-b = 0.1
-
-per = 3
-a = 15
-inc = acosd(b / a)
-params = TransitParams(; t0, per, rp, a, inc, u=[0.3, 0.3])
-flux = light_curve(params, data.time)        #calculates light curve
+flux = let rp = 0.01, t0 = 1.311544, b = 0.1
+    per = 3
+    a = 15
+    u = [0.3, 0.3]
+    inc = acosd(b / a)
+    light_curve(data.time; t0, per, rp, a, inc, u)
+end
 plot(f[2, 1], data.time, flux)
 f
 ```
 
 ### Step 2: Define the Bayesian analysis 
 
-1. Write the given prior information as a log-prior function
-2. Write a log-likelihood function
-3. Write a log-probability function
+> 1. Write the given prior information as a log-prior function
+> 2. Write a log-likelihood function
+> 3. Write a log-probability function
 
 ```{julia}
-# Define the log-prior function
-function log_prior(params)
-    t0, rp, b = params
-    # Prior constraints from problem description:
-    # Transit time between 1.212 and 1.362 days
-    # Planet radius between 1% and 10% of star radius
-    # Impact parameter between 0 and 1
+# Transit time between 1.212 and 1.362 days
+# Planet radius between 1% and 10% of star radius
+# Impact parameter between 0 and 1
+function log_prior(t0, rp, b)
     if 1.212 <= t0 <= 1.362 && 0.01 <= rp <= 0.10 && 0 <= b <= 1
-        return 0.0  # Log of 1, uniform prior within constraints
+        0.0  # Log of 1, uniform prior within constraints
     else
-        return -Inf  # Log of 0, zero probability outside constraints
+        -Inf  # Log of 0, zero probability outside constraints
     end
 end
 
-# Define the log-likelihood function
-function log_likelihood(params, time, observed_flux, error)
+log_prior(params) = log_prior(params...)
+
+function log_likelihood(params, time, obs, error;
+    per=3.0, # Period in days
+    a=15.0, # Semi-major axis in stellar radii
+    u=[0.3, 0.3] # Limb darkening coefficients
+)
     t0, rp, b = params
-
-    # Fixed parameters
-    per = 3.0  # Period in days
-    a = 15.0   # Semi-major axis in stellar radii
     inc = acosd(b / a)  # Inclination in degrees
-    u = [0.3, 0.3]    # Limb darkening coefficients
-
-    # Create transit parameters
-    transit_params = TransitParams(; t0, per, rp, a, inc, u)
-    model_flux = light_curve(transit_params, time)
+    model_flux = light_curve(time; t0, per, rp, a, inc, u)
 
     # Calculate log-likelihood (assuming Gaussian errors)
-    # log(L) = -0.5 * sum((observed - model)^2 / sigma^2) - 0.5 * N * log(2π) - sum(log(sigma))
-    # Since sigma is constant, we can simplify
-    residuals = observed_flux .- model_flux
+    residuals = obs .- model_flux
     chi_squared = sum((residuals ./ error) .^ 2)
-    return -0.5 * chi_squared
+    -0.5 * chi_squared
 end
 
-# Define the log-probability function (posterior)
-function log_probability(params, time, observed_flux, error)
-    return log_prior(params) + log_likelihood(params, time, observed_flux, error)
+function log_probability(params, time, obs, error)
+    log_prior(params) + log_likelihood(params, time, obs, error)
 end
 ```
 
-## Step 3: Demonstrate solution on a grid 
+### Step 3: Demonstrate solution on a grid 
 
-Determine new estimates with uncertainties of the planet-to-star radius ratio and the impact parameter. Fix the transit mid-time to t0 = 1.311544 days. Make a 50x50 grid that explores planet-to-star radius ratios between 0.05275 and 0.53505 as well as impact parameters between 0 and 0.3.
+> Determine new estimates with uncertainties of the planet-to-star radius ratio and the impact parameter. Fix the transit mid-time to t0 = 1.311544 days. Make a 50x50 grid that explores planet-to-star radius ratios between 0.05275 and 0.53505 as well as impact parameters between 0 and 0.3.
 
-1. Plot the joint posterior distribution with plt.pmeshcolor and mark the best fit with a marker 
-2. Plot the marginalized posterior distributions for the planet-to-star radius ratio and the impact parameters.  
-3. Calculate the mean and +/-1 sigma uncertainties for both parameters. Mark the mean value with a solid vertical line in the figure created in Step 3.2. Make the +/-1 sigma uncertainties with dashed vertical lines. Report the best estimates (mean and uncertainty) for both parameters quantitatively. 
-4. Calculate the covariance matrix that best represents the joint posterior distribution. What is the correlation coefficient between the planet-to-star radius ratios and the impact parameter? Plot the 68% and 95% confidence regions onto the figure created in Step 3.1.
-
+#### 1. Plot the joint posterior distribution with and mark the best fit with a marker 
 
 ```{julia}
 using LinearAlgebra  # For eigen decomposition and other matrix operations
 using Statistics     # For statistical functions
+using StatsBase
 
 # Fix transit mid-time to t0 = 1.311544 days
 fixed_t0 = 1.311544
 
 # Create a 50x50 grid for rp and b
 n_grid = 50
-rp_grid = range(0.05275, 0.53505, length=n_grid)
-b_grid = range(0.0, 0.3, length=n_grid)
-
-# Initialize the posterior grid
-posterior_grid = zeros(n_grid, n_grid)
+rp_grid = range(0.05275, 0.053505, length=n_grid)
+b_grid = range(0.0, 0.3, length=n_grid - 10)
 
 # Calculate the log posterior for each grid point
-for (i, rp) in enumerate(rp_grid)
-    for (j, b) in enumerate(b_grid)
-        params = [fixed_t0, rp, b]
-        # Use fixed error value of 1e-4 (0.01%) as mentioned in the problem
-        posterior_grid[i, j] = log_probability(params, data.time, data.flux, 1e-4)
-    end
-end
+log_posterior_grid = [
+    log_probability([fixed_t0, rp, b], data.time, data.flux, 1e-4)
+    for rp in rp_grid, b in b_grid
+]
 
-# Convert log posterior to posterior (subtract max to avoid numerical issues)
-posterior_grid = exp.(posterior_grid .- maximum(posterior_grid))
-# Normalize the posterior
-posterior_grid = posterior_grid ./ sum(posterior_grid)
+posterior_grid = exp.(log_posterior_grid .- maximum(log_posterior_grid)) # (subtract max to avoid numerical issues)
+posterior_grid = posterior_grid ./ sum(posterior_grid) # Normalize the posterior
 
 # Find the maximum posterior point
 max_idx = argmax(posterior_grid)
@@ -180,141 +168,270 @@ best_rp = rp_grid[max_idx[1]]
 best_b = b_grid[max_idx[2]]
 println("Best fit values: rp = $(best_rp), b = $(best_b)")
 
-# 1. Plot the joint posterior distribution
+
+b_label = "Impact parameter (b)"
+rp_label = "Planet-to-star radius ratio (rp)"
 fig = Figure(size=(1000, 800))
+ax1 = Axis(fig[1, 1], xlabel=rp_label, ylabel=b_label, title="Joint Posterior Distribution")
 
-# Joint posterior plot
-ax1 = Axis(fig[1, 1],
-    xlabel="Planet-to-star radius ratio (rp)",
-    ylabel="Impact parameter (b)",
-    title="Joint Posterior Distribution")
-
-hm = heatmap!(ax1, rp_grid, b_grid, posterior_grid', colormap=:viridis)
+hm = heatmap!(ax1, rp_grid, b_grid, posterior_grid)
 scatter!(ax1, [best_rp], [best_b], color=:red, markersize=15)
-Colorbar(fig[1, 2], hm, label="Posterior Probability")
+Colorbar(fig[1, 1, Right()], hm, label="Posterior Probability")
+fig
+```
 
-# # 2. Plot the marginalized posterior distributions
-# # Marginalize over b to get posterior for rp
-# rp_posterior = vec(sum(posterior_grid, dims=2))
-# rp_posterior ./= sum(rp_posterior)  # Normalize
+#### 2. Marginalized posterior distributions 
 
-# # Marginalize over rp to get posterior for b
-# b_posterior = vec(sum(posterior_grid, dims=1))
-# b_posterior ./= sum(b_posterior)  # Normalize
+> Plot the marginalized posterior distributions for the planet-to-star radius ratio and the impact parameters.
 
-# # Plot marginalized posterior for rp
-# ax2 = Axis(fig[2, 1],
-#     xlabel="Planet-to-star radius ratio (rp)",
-#     ylabel="Probability",
-#     title="Marginalized Posterior for rp")
-# lines!(ax2, rp_grid, rp_posterior)
+```{julia}
+rp_posterior = vec(sum(posterior_grid, dims=2))
+rp_posterior = weights(rp_posterior ./ sum(rp_posterior))  # Normalize
 
-# # Plot marginalized posterior for b
-# ax3 = Axis(fig[2, 2],
-#     xlabel="Impact parameter (b)",
-#     ylabel="Probability",
-#     title="Marginalized Posterior for b")
-# lines!(ax3, b_grid, b_posterior)
+b_posterior = vec(sum(posterior_grid, dims=1))
+b_posterior = weights(b_posterior ./ sum(b_posterior))  # Normalize
 
-# # 3. Calculate mean and uncertainties
-# # For rp
-# rp_mean = sum(rp_grid .* rp_posterior)
-# rp_var = sum((rp_grid .- rp_mean) .^ 2 .* rp_posterior)
-# rp_std = sqrt(rp_var)
+ax2 = Axis(fig[2, 1], xlabel=rp_label, ylabel="Probability")
+lines!(ax2, rp_grid, rp_posterior)
+ax3 = Axis(fig[1, 2], xlabel=b_label, ylabel="Probability")
+lines!(ax3, b_grid, b_posterior)
+fig
+```
 
-# # For b
-# b_mean = sum(b_grid .* b_posterior)
-# b_var = sum((b_grid .- b_mean) .^ 2 .* b_posterior)
-# b_std = sqrt(b_var)
+#### 3. Best estimates and uncertainties
 
-# # Add mean and +/- 1 sigma to the marginalized plots
-# vlines!(ax2, [rp_mean], color=:black, linewidth=2)
-# vlines!(ax2, [rp_mean - rp_std, rp_mean + rp_std], color=:black, linestyle=:dash)
+> Calculate the mean and +/-1 sigma uncertainties for both parameters. Mark the mean value with a solid vertical line in the figure created in Step 3.2. Make the +/-1 sigma uncertainties with dashed vertical lines. Report the best estimates (mean and uncertainty) for both parameters quantitatively. 
 
-# vlines!(ax3, [b_mean], color=:black, linewidth=2)
-# vlines!(ax3, [b_mean - b_std, b_mean + b_std], color=:black, linestyle=:dash)
+```{julia}
+# For rp
+rp_mean = mean(rp_grid, rp_posterior)
+rp_std = std(rp_grid, rp_posterior)
 
-# # Print the results
-# println("Planet-to-star radius ratio (rp):")
-# println("Mean: $(rp_mean), Uncertainty: ±$(rp_std)")
-# println("Impact parameter (b):")
-# println("Mean: $(b_mean), Uncertainty: ±$(b_std)")
+# For b
+b_mean = mean(b_grid, b_posterior)
+b_std = std(b_grid, b_posterior)
 
-# # 4. Calculate the covariance matrix
-# # Create meshgrid for the 2D parameter space
-# rp_2d = repeat(rp_grid, 1, n_grid)
-# b_2d = repeat(b_grid', n_grid, 1)
+# Add mean and +/- 1 sigma to the marginalized plots
+vlines!(ax2, [rp_mean], color=:black, linewidth=2)
+vlines!(ax2, [rp_mean - rp_std, rp_mean + rp_std], color=:black, linestyle=:dash)
 
-# # Calculate covariance matrix elements
-# cov_rp_rp = sum((rp_2d .- rp_mean) .^ 2 .* posterior_grid)
-# cov_b_b = sum((b_2d .- b_mean) .^ 2 .* posterior_grid)
-# cov_rp_b = sum((rp_2d .- rp_mean) .* (b_2d .- b_mean) .* posterior_grid)
+vlines!(ax3, [b_mean], color=:black, linewidth=2)
+vlines!(ax3, [b_mean - b_std, b_mean + b_std], color=:black, linestyle=:dash)
 
-# cov_matrix = [cov_rp_rp cov_rp_b; cov_rp_b cov_b_b]
-# println("Covariance matrix:")
-# println(cov_matrix)
+# Print the results
+println("Planet-to-star radius ratio (rp):")
+println("Mean: $(rp_mean), Uncertainty: ±$(rp_std)")
+println("Impact parameter (b):")
+println("Mean: $(b_mean), Uncertainty: ±$(b_std)")
+fig
+```
 
-# # Calculate correlation coefficient
-# corr_coef = cov_rp_b / (sqrt(cov_rp_rp) * sqrt(cov_b_b))
-# println("Correlation coefficient: $(corr_coef)")
+#### 4. Covariance matrix and confidence regions
 
-# # Add confidence regions to joint posterior plot
-# # Helper function to create confidence ellipses
-# function confidence_ellipse(cov_matrix, mean, confidence=0.68)
-#     # For 2D, 68% confidence = 2.3, 95% confidence = 6.0
-#     scale = confidence == 0.68 ? 2.3 : 6.0
+> Calculate the covariance matrix that best represents the joint posterior distribution. What is the correlation coefficient between the planet-to-star radius ratios and the impact parameter? Plot the 68% and 95% confidence regions onto the figure created in Step 3.1.
 
-#     # Eigendecomposition of covariance matrix
-#     eigvals, eigvecs = eigen(cov_matrix)
+```{julia}
+"""Calculate covariance matrix elements"""
+function covariance_matrix(p, x, y)
+    x_2d = repeat(x, 1, length(y))
+    y_2d = repeat(y', length(x), 1)
+    wp = weights(p)
+    x_mean = mean(x_2d, wp)
+    y_mean = mean(y_2d, wp)
 
-#     # Create ellipse points
-#     theta = range(0, 2π, length=100)
-#     ellipse = zeros(length(theta), 2)
+    # Calculate covariance matrix elements
+    cov_x_x = mean((x_2d .- x_mean) .^ 2, wp)
+    cov_y_y = mean((y_2d .- y_mean) .^ 2, wp)
+    cov_x_y = mean((x_2d .- x_mean) .* (y_2d .- y_mean), wp)
+    return [cov_x_x cov_x_y; cov_x_y cov_y_y]
+end
 
-#     for (i, t) in enumerate(theta)
-#         # Create the ellipse using the eigenvalues and eigenvectors
-#         ellipse[i, :] = mean .+ sqrt(scale) .* (sqrt.(eigvals) .* [cos(t), sin(t)]) * eigvecs'
-#     end
+cov_matrix = covariance_matrix(posterior_grid, rp_grid, b_grid)
+@info "Covariance matrix:" cov_matrix
 
-#     return ellipse[:, 1], ellipse[:, 2]
-# end
+# Calculate correlation coefficient
+corr_coef = cov_matrix[1, 2] / (sqrt(cov_matrix[1, 1]) * sqrt(cov_matrix[2, 2]))
+@info "Correlation coefficient:" corr_coef
+```
 
-# # Add 68% confidence ellipse
-# # x_68, y_68 = confidence_ellipse(cov_matrix, [rp_mean, b_mean], 0.68)
-# # lines!(ax1, x_68, y_68, color=:white, linewidth=2, label="68% confidence")
+```{julia}
+function getellipsepoints(cx, cy, rx, ry, θ; length=100)
+    t = range(0, 2π; length)
+    ellipse_x_r = @. rx * cos(t)
+    ellipse_y_r = @. ry * sin(t)
+    R = [cos(θ) sin(θ); -sin(θ) cos(θ)]
+    r_ellipse = [ellipse_x_r ellipse_y_r] * R
+    x = @. cx + r_ellipse[:, 1]
+    y = @. cy + r_ellipse[:, 2]
+    (x, y)
+end
 
-# # Add 95% confidence ellipse
-# # x_95, y_95 = confidence_ellipse(cov_matrix, [rp_mean, b_mean], 0.95)
-# # lines!(ax1, x_95, y_95, color=:red, linewidth=2, label="95% confidence")
+function getellipsepoints(μ, Σ, confidence=0.95)
+    quant = quantile(Chisq(2), confidence) |> sqrt
 
-# # Add legend to joint plot1
-# axislegend(ax1, position=:lt)
+    egvs = eigvals(Σ)
+    if egvs[1] > egvs[2]
+        idxmax = 1
+        largestegv = egvs[1]
+        smallesttegv = egvs[2]
+    else
+        idxmax = 2
+        largestegv = egvs[2]
+        smallesttegv = egvs[1]
+    end
 
+    rx = quant * sqrt(largestegv)
+    ry = quant * sqrt(smallesttegv)
+
+    eigvecmax = eigvecs(Σ)[:, idxmax]
+    θ = atan(eigvecmax[2] / eigvecmax[1])
+    if θ < 0
+        θ += 2π
+    end
+    getellipsepoints(μ..., rx, ry, θ)
+end
+```
+
+
+```{julia}
+μ = [rp_mean, b_mean]
+Σ = cov_matrix
+
+lines!(ax1, getellipsepoints(μ, Σ)..., label="95% confidence interval")
+lines!(ax1, getellipsepoints(μ, Σ, 0.5)..., label="50% confidence interval")
 fig
 ```
 
 ## Part B
  
-Step 4: Solve the full problem using MCMC and Nested Sampling 
-Determine new estimates with uncertainties of the transit time, the planet-to-star radius ratio, and 
-the impact parameter 
-1. Using Emcee. Make all possible plots and quantitative assessments to convince the reviewer that your results are converged 
-2. Using Dynesty. Make all possible plots and quantitative assessments to convince the reviewer  that your results are converged  
+### Step 4: Solve the full problem using MCMC and Nested Sampling 
+
+> Determine new estimates with uncertainties of the transit time, the planet-to-star radius ratio, and the impact parameter.
+> 1. Using Emcee. Make all possible plots and quantitative assessments to convince the reviewer that your results are converged 
+> 2. Using Dynesty. Make all possible plots and quantitative assessments to convince the reviewer  that your results are converged  
+
+Here we use [Turing.jl](https://github.com/TuringLang/Turing.jl) with dynamic Hamiltonian Monte Carlo (HMC) [tpapp/DynamicHMC.jl: Implementation of robust dynamic Hamiltonian Monte Carlo methods (NUTS) in Julia](https://github.com/tpapp/DynamicHMC.jl) to sample the posterior distribution instead.
+
+```{julia}
+using Turing
+
+# Define our model
+@model function transit_model(time, flux, flux_error=1e-4; per=3.0, a=15.0, u=[0.3, 0.3])
+    # Priors
+    t0 ~ Uniform(1.212, 1.362)
+    rp ~ Uniform(0.01, 0.10)
+    b ~ Uniform(0.0, 1.0)
+    # Calculate inclination
+    inc = acosd(b / a)
+    @info rp
+    params = TransitParams(; t0, rp, inc, per, a, u)
+    model_flux = Array(light_curve(params, time))
+    for i in eachindex(time)
+        flux[i] ~ Normal(model_flux[i], flux_error)
+    end
+    return flux
+end
+
+# Sample using dynamic HMC
+model = transit_model(data.time, data.flux)
+chain = sample(model, NUTS(), 2000)
+
+# Plot the traces and posterior distributions
+# plot(chain)
+```
+
+```{julia}
+# Summary statistics
+summary_stats = summarystats(chain)
+display(summary_stats)
+
+# Extract samples for further analysis
+samples = Array(chain)
+t0_samples = samples[:, 1]
+rp_samples = samples[:, 2]
+b_samples = samples[:, 3]
+
+# Plot joint posterior distributions
+scatter(rp_samples, b_samples, alpha=0.3,
+    xlabel="Planet-to-star radius ratio (rp)",
+    ylabel="Impact parameter (b)",
+    title="Joint posterior distribution")
+
+# Calculate the MAP (maximum a posteriori) estimates
+map_idx = argmax(chain[:lp])
+t0_map = t0_samples[map_idx]
+rp_map = rp_samples[map_idx]
+b_map = b_samples[map_idx]
+
+# Mark the MAP estimate on the joint posterior plot
+scatter!([rp_map], [b_map], color=:red, markersize=10, label="MAP")
+
+# Plot the best-fit model
+best_params = TransitParams(;
+    t0=t0_map,
+    per=3.0,
+    rp=rp_map,
+    a=15.0,
+    inc=acosd(b_map / 15.0),
+    u=[0.3, 0.3]
+)
+best_model = light_curve(best_params, data.time)
+
+# Plot data with best-fit model
+p = scatter(data.time, data.flux,
+    label="Data",
+    xlabel="Time (days)",
+    ylabel="Relative flux",
+    title="Transit light curve with best-fit model")
+plot!(p, data.time, best_model, linewidth=2, label="Best-fit model")
+
+# Convergence diagnostics
+gelmandiag = gelmandiag(chain)
+display(gelmandiag)
+
+# Autocorrelation plots
+autocorplot(chain)
+
+# Effective sample size
+ess = ess_rhat(chain)
+display(ess)
+
+# Print the parameter estimates with uncertainties
+println("Parameter estimates with uncertainties:")
+println("Transit time (t0) = $(round(mean(t0_samples), digits=6)) ± $(round(std(t0_samples), digits=6)) days")
+println("Planet-to-star radius ratio (rp) = $(round(mean(rp_samples), digits=6)) ± $(round(std(rp_samples), digits=6))")
+println("Impact parameter (b) = $(round(mean(b_samples), digits=6)) ± $(round(std(b_samples), digits=6))")
+
+# Calculate 95% credible intervals
+t0_interval = quantile(t0_samples, [0.025, 0.975])
+rp_interval = quantile(rp_samples, [0.025, 0.975])
+b_interval = quantile(b_samples, [0.025, 0.975])
+
+println("95% credible intervals:")
+println("Transit time (t0): ($(round(t0_interval[1], digits=6)), $(round(t0_interval[2], digits=6)))")
+println("Planet-to-star radius ratio (rp): ($(round(rp_interval[1], digits=6)), $(round(rp_interval[2], digits=6)))")
+println("Impact parameter (b): ($(round(b_interval[1], digits=6)), $(round(b_interval[2], digits=6)))")
+```
+
+### Step 5: Investigate whether you model is a good fit to the data 
+
+> Investigate the residuals. What do you think? Quantitatively and graphically assess whether your model is a good fit to the data. 
  
-Step 5: Investigate whether you model is a good fit to the data 
-Investigate the residuals. What do you think? Quantitatively and graphically assess whether your model is a good fit to the data. 
- 
-Step 6: Refine your physical model 
-1. What could explain your findings in Part 4? Tip: When a distant observer sees a transit of the Earth in front of the sun, would it only be the Earth that is transiting at that time? 
-2. Code a new physical "forward" model and log-likelihood function that better explains the data.  
-3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters. 
-4. Make plots to convince the reviewer that your results are converged  
-5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon? 
+### Step 6: Refine your physical model 
+
+> 1. What could explain your findings in Part 4? Tip: When a distant observer sees a transit of the Earth in front of the sun, would it only be the Earth that is transiting at that time? 
+
+
+> 2. Code a new physical "forward" model and log-likelihood function that better explains the data.  
+> 3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters. 
+> 4. Make plots to convince the reviewer that your results are converged  
+> 5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon? 
 6. Summarize your results for the parameters for each object? 
 7. Why do you get a multi-modal solution? What could you do to avoid this in this simple example? 
  
-Step 7: 
-Describe in a few sentences one example for a problem or data set that you could analogously solve in your research domain? 
+### Step 7: 
+
+> Describe in a few sentences one example for a problem or data set that you could analogously solve in your research domain? 
 
 
 ## Reference
