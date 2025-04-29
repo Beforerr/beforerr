@@ -1,4 +1,8 @@
-# Implementation of a Markov Chain Monte Carlo (MCMC) with the Metropolis algorithm.
+---
+title: Lecture lab
+subtitle: Implementation of MCMC- with the Metropolis algorithm.
+engine: julia
+---
 
 We will follow the steps described in the excellent article in introduction to the MCMC of David W. Hogg and Daniel Foreman-Mackey, available [here](https://ui.adsabs.harvard.edu/abs/2018ApJS..236...11H/abstract).
 Section 3 will be particularly useful for this example.

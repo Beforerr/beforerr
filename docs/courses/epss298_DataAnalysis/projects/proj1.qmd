@@ -15,7 +15,9 @@ engine: julia
 
 Julia packages:
 
+> [madsjulia/AffineInvariantMCMC.jl: Affine Invariant Markov Chain Monte Carlo (MCMC) Ensemble sampler](https://github.com/madsjulia/AffineInvariantMCMC.jl)
 > [chalk-lab/NestedSamplers.jl: Implementations of single and multi-ellipsoid nested sampling](https://github.com/chalk-lab/NestedSamplers.jl)
+> [bat/BAT.jl: A Bayesian Analysis Toolkit in Julia](https://github.com/bat/BAT.jl)
 
 ## Introduction
 
@@ -43,36 +45,42 @@ f
 ### Julia interface to Python and Batman
 
 ```{julia}
+#| output: false
 using CondaPkg
 using PythonCall
+import PythonCall: Py
 pkg = "batman-package"
 deps = CondaPkg.read_deps()["deps"]
 haskey(deps, pkg) || CondaPkg.add(pkg)
 
 const batman = pyimport("batman")
-const pyTransitModel = batman.TransitModel
 ```
 
 ```{julia}
 using DrWatson: @dict
 
-"""Like `batman.TransitParams` in Python, but with some keyword arguments for convenience."""
-function TransitParams(; ecc=0.0, w=0.0, limb_dark="quadratic", kwargs...)
-    params = batman.TransitParams()
-    for (key, value) in merge(kwargs, @dict(ecc, w, limb_dark))
+function set_params!(params; kwargs...)
+    for (key, value) in kwargs
         setproperty!(params, key, value)
     end
     return params
 end
 
-TransitModel(params, time) = pyTransitModel(params, Py(time).to_numpy())
-
-function light_curve(params, time)
-    m = TransitModel(params, time)
-    flux = m.light_curve(params)
-    return PyArray(flux)
+"""Like `batman.TransitParams` in Python, but with some keyword arguments for convenience."""
+function TransitParams(; ecc=0.0, w=0.0, limb_dark="quadratic", kwargs...)
+    params = batman.TransitParams()
+    set_params!(params; ecc, w, limb_dark)
+    set_params!(params; kwargs...)
+    return params
 end
 
+TransitModel(params, time) = batman.TransitModel(params, Py(time).to_numpy())
+
+light_curve(model::Py, params::Py) = PyArray(model.light_curve(params))
+function light_curve(params, time)
+    m = TransitModel(params, time)
+    return light_curve(m, params)
+end
 light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 ```
 
@@ -83,10 +91,18 @@ light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 > Write a function for your physical "forward" model that takes in a vector with these three parameters: 
 
 ```{julia}
-flux = let rp = 0.01, t0 = 1.311544, b = 0.1
-    per = 3
-    a = 15
-    u = [0.3, 0.3]
+inc(a, b) = acosd(b / a)
+
+a_i = 15
+u_i = [0.3, 0.3]
+per_i = 3
+
+rp_i = 0.01
+b_i = 0.1
+t0_i = 1.311544
+inc_i = acosd(b_i / a_i)
+
+flux = let rp = rp_i, t0 = t0_i, b = b_i, a = a_i, u = u_i, per = per_i
     inc = acosd(b / a)
     light_curve(data.time; t0, per, rp, a, inc, u)
 end
@@ -255,6 +271,8 @@ corr_coef = cov_matrix[1, 2] / (sqrt(cov_matrix[1, 1]) * sqrt(cov_matrix[2, 2]))
 ```
 
 ```{julia}
+using Distributions
+
 function getellipsepoints(cx, cy, rx, ry, θ; length=100)
     t = range(0, 2π; length)
     ellipse_x_r = @. rx * cos(t)
@@ -310,107 +328,35 @@ fig
 > 1. Using Emcee. Make all possible plots and quantitative assessments to convince the reviewer that your results are converged 
 > 2. Using Dynesty. Make all possible plots and quantitative assessments to convince the reviewer  that your results are converged  
 
-Here we use [Turing.jl](https://github.com/TuringLang/Turing.jl) with dynamic Hamiltonian Monte Carlo (HMC) [tpapp/DynamicHMC.jl: Implementation of robust dynamic Hamiltonian Monte Carlo methods (NUTS) in Julia](https://github.com/tpapp/DynamicHMC.jl) to sample the posterior distribution instead.
+Here we use [Turing.jl](https://github.com/TuringLang/Turing.jl) to sample the posterior distribution instead.
 
 ```{julia}
+#| output: false
 using Turing
+```
 
-# Define our model
-@model function transit_model(time, flux, flux_error=1e-4; per=3.0, a=15.0, u=[0.3, 0.3])
+```{julia}
+inc(p::Py, b) = inc(pyconvert(Any, p.a), b)
+
+@model function transit_model(time, flux, params, trans_model=TransitModel(params, data.time); error=1e-4)
     # Priors
     t0 ~ Uniform(1.212, 1.362)
     rp ~ Uniform(0.01, 0.10)
     b ~ Uniform(0.0, 1.0)
-    # Calculate inclination
-    inc = acosd(b / a)
-    @info rp
-    params = TransitParams(; t0, rp, inc, per, a, u)
-    model_flux = Array(light_curve(params, time))
-    for i in eachindex(time)
-        flux[i] ~ Normal(model_flux[i], flux_error)
-    end
-    return flux
+    params = set_params!(params; t0, rp, inc=inc(params, b))
+    model_flux = light_curve(trans_model, params)
+    return flux ~ MvNormal(model_flux, error)
 end
 
-# Sample using dynamic HMC
-model = transit_model(data.time, data.flux)
-chain = sample(model, NUTS(), 2000)
-
-# Plot the traces and posterior distributions
-# plot(chain)
+params = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
+model = transit_model(data.time, data.flux, params)
+chain = sample(model, Emcee(16), 2000; progress=false)
 ```
 
 ```{julia}
-# Summary statistics
-summary_stats = summarystats(chain)
-display(summary_stats)
-
-# Extract samples for further analysis
-samples = Array(chain)
-t0_samples = samples[:, 1]
-rp_samples = samples[:, 2]
-b_samples = samples[:, 3]
-
-# Plot joint posterior distributions
-scatter(rp_samples, b_samples, alpha=0.3,
-    xlabel="Planet-to-star radius ratio (rp)",
-    ylabel="Impact parameter (b)",
-    title="Joint posterior distribution")
-
-# Calculate the MAP (maximum a posteriori) estimates
-map_idx = argmax(chain[:lp])
-t0_map = t0_samples[map_idx]
-rp_map = rp_samples[map_idx]
-b_map = b_samples[map_idx]
-
-# Mark the MAP estimate on the joint posterior plot
-scatter!([rp_map], [b_map], color=:red, markersize=10, label="MAP")
-
-# Plot the best-fit model
-best_params = TransitParams(;
-    t0=t0_map,
-    per=3.0,
-    rp=rp_map,
-    a=15.0,
-    inc=acosd(b_map / 15.0),
-    u=[0.3, 0.3]
-)
-best_model = light_curve(best_params, data.time)
-
-# Plot data with best-fit model
-p = scatter(data.time, data.flux,
-    label="Data",
-    xlabel="Time (days)",
-    ylabel="Relative flux",
-    title="Transit light curve with best-fit model")
-plot!(p, data.time, best_model, linewidth=2, label="Best-fit model")
-
-# Convergence diagnostics
-gelmandiag = gelmandiag(chain)
-display(gelmandiag)
-
-# Autocorrelation plots
-autocorplot(chain)
-
-# Effective sample size
-ess = ess_rhat(chain)
-display(ess)
-
-# Print the parameter estimates with uncertainties
-println("Parameter estimates with uncertainties:")
-println("Transit time (t0) = $(round(mean(t0_samples), digits=6)) ± $(round(std(t0_samples), digits=6)) days")
-println("Planet-to-star radius ratio (rp) = $(round(mean(rp_samples), digits=6)) ± $(round(std(rp_samples), digits=6))")
-println("Impact parameter (b) = $(round(mean(b_samples), digits=6)) ± $(round(std(b_samples), digits=6))")
-
-# Calculate 95% credible intervals
-t0_interval = quantile(t0_samples, [0.025, 0.975])
-rp_interval = quantile(rp_samples, [0.025, 0.975])
-b_interval = quantile(b_samples, [0.025, 0.975])
-
-println("95% credible intervals:")
-println("Transit time (t0): ($(round(t0_interval[1], digits=6)), $(round(t0_interval[2], digits=6)))")
-println("Planet-to-star radius ratio (rp): ($(round(rp_interval[1], digits=6)), $(round(rp_interval[2], digits=6)))")
-println("Impact parameter (b): ($(round(b_interval[1], digits=6)), $(round(b_interval[2], digits=6)))")
+using StatsPlots
+# Plot the traces and posterior distributions
+StatsPlots.plot(chain)
 ```
 
 ### Step 5: Investigate whether you model is a good fit to the data 
@@ -437,3 +383,6 @@ println("Impact parameter (b): ($(round(b_interval[1], digits=6)), $(round(b_int
 ## Reference
 
 - [DACE tutorial on photometry](https://dace.unige.ch/tutorials/?tutorialId=32)
+
+- Dynamic Hamiltonian Monte Carlo (HMC)
+    - [tpapp/DynamicHMC.jl: Implementation of robust dynamic Hamiltonian Monte Carlo methods (NUTS) in Julia](https://github.com/tpapp/DynamicHMC.jl)
