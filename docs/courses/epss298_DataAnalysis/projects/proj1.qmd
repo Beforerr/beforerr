@@ -27,61 +27,19 @@ if isdir(dir)
     cd(dir)
     Pkg.activate(".")
     Pkg.instantiate()
-    cd("projects")
 end
 ```
 
 ```{julia}
 using CSV, DataFrames
 using CairoMakie
-path = "./Project1_JWST_data.csv"
+path = "projects/Project1_JWST_data.csv"
 data = CSV.read(path, DataFrame)
 
 f = Figure()
-plot(f[1, 1], data.time, data.flux)
+markersize = 4
+scatterlines(f[1, 1], data.time, data.flux; markersize)
 f
-```
-
-### Julia interface to Python and Batman
-
-```{julia}
-#| output: false
-using CondaPkg
-using PythonCall
-import PythonCall: Py
-pkg = "batman-package"
-deps = CondaPkg.read_deps()["deps"]
-haskey(deps, pkg) || CondaPkg.add(pkg)
-
-const batman = pyimport("batman")
-```
-
-```{julia}
-using DrWatson: @dict
-
-function set_params!(params; kwargs...)
-    for (key, value) in kwargs
-        setproperty!(params, key, value)
-    end
-    return params
-end
-
-"""Like `batman.TransitParams` in Python, but with some keyword arguments for convenience."""
-function TransitParams(; ecc=0.0, w=0.0, limb_dark="quadratic", kwargs...)
-    params = batman.TransitParams()
-    set_params!(params; ecc, w, limb_dark)
-    set_params!(params; kwargs...)
-    return params
-end
-
-TransitModel(params, time) = batman.TransitModel(params, Py(time).to_numpy())
-
-light_curve(model::Py, params::Py) = PyArray(model.light_curve(params))
-function light_curve(params, time)
-    m = TransitModel(params, time)
-    return light_curve(m, params)
-end
-light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 ```
 
 ## Part A
@@ -91,22 +49,21 @@ light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 > Write a function for your physical "forward" model that takes in a vector with these three parameters: 
 
 ```{julia}
-inc(a, b) = acosd(b / a)
+using Orbits
+using Transits
 
-a_i = 15
-u_i = [0.3, 0.3]
 per_i = 3
-
-rp_i = 0.01
-b_i = 0.1
 t0_i = 1.311544
-inc_i = acosd(b_i / a_i)
+a_i = 15
+b_i = 0.1
+ecc_i = 0.0
+u_i = [0.3, 0.3]
+rp_i = 0.01
 
-flux = let rp = rp_i, t0 = t0_i, b = b_i, a = a_i, u = u_i, per = per_i
-    inc = acosd(b / a)
-    light_curve(data.time; t0, per, rp, a, inc, u)
-end
-plot(f[2, 1], data.time, flux)
+orbit = KeplerianOrbit(period=per_i, t0=t0_i, a=a_i, b=b_i, ecc=ecc_i)
+ld = QuadLimbDark(u_i)
+fluxes = @. ld(orbit, data.time, rp_i)
+scatterlines!(f[1, 1], data.time, flux; markersize)
 f
 ```
 
@@ -342,15 +299,31 @@ inc(p::Py, b) = inc(pyconvert(Any, p.a), b)
     # Priors
     t0 ~ Uniform(1.212, 1.362)
     rp ~ Uniform(0.01, 0.10)
-    b ~ Uniform(0.0, 1.0)
+    b ~ Uniform(0.0, 0.99)
     params = set_params!(params; t0, rp, inc=inc(params, b))
     model_flux = light_curve(trans_model, params)
     return flux ~ MvNormal(model_flux, error)
 end
 
 params = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
+trans_model = TransitModel(params, data.time)
 model = transit_model(data.time, data.flux, params)
-chain = sample(model, Emcee(16), 2000; progress=false)
+chain = sample(model, Emcee(100), 10000; progress=false)
+```
+
+
+```{julia}
+@model function transit_model(time, flux; ld=QuadLimbDark(u_i), period=per_i, error=1e-4, a=a_i)
+    t0 ~ Uniform(1.212, 1.362)
+    rp ~ Uniform(0.01, 0.10)
+    b ~ Uniform(0.0, 0.99)
+    orbit = KeplerianOrbit(; period, t0, b, a)
+    model_flux = @. ld(orbit, time, rp)
+    return flux ~ MvNormal(model_flux, error)
+end
+
+model = transit_model(data.time, data.flux)
+chain = sample(model, Emcee(16), 10000; progress=false)
 ```
 
 ```{julia}
@@ -363,13 +336,75 @@ StatsPlots.plot(chain)
 
 > Investigate the residuals. What do you think? Quantitatively and graphically assess whether your model is a good fit to the data. 
  
+```{julia}
+using Statistics
+
+t0_fit = median(chain[:t0])
+rp_fit = median(chain[:rp])
+b_fit = median(chain[:b])
+inc_fit = inc(params, b_fit)
+params_fit = set_params!(params; t0=t0_fit, rp=rp_fit, inc=inc_fit)
+model_flux = light_curve(trans_model, params_fit)
+residuals = data.flux .- model_flux
+
+f1 = Figure()
+markersize = 4
+scatterlines(f1[1, 1], data.time, data.flux; markersize)
+scatterlines!(f1[1, 1], data.time, model_flux; markersize)
+
+Axis(f1[2, 1], xlabel="Time", ylabel="Residuals", title="Residuals vs. Time")
+scatter!(f1[2, 1], data.time, residuals)
+Axis(f1[3, 1], xlabel="Residual", ylabel="Count", title="Histogram of Residuals")
+hist!(f1[3, 1], residuals, bins=30)
+display(f1)
+
+@info "Mean residual: " mean(residuals)
+@info "Std of residuals: " std(residuals)
+```
+
 ### Step 6: Refine your physical model 
 
 > 1. What could explain your findings in Part 4? Tip: When a distant observer sees a transit of the Earth in front of the sun, would it only be the Earth that is transiting at that time? 
 
+There is a increase in the residuals at the time of the $1.33$. This could be due to the presence of another object transiting the star. For example, if the system contains both a planet and a moon (or another planet), the observed light curve would show additional dips or asymmetries not explained by a single-object model.
 
 > 2. Code a new physical "forward" model and log-likelihood function that better explains the data.  
-> 3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters. 
+
+```{julia}
+@model function transit_model_two_bodies(time, flux, params1, trans_model1, params2, trans_model2; error=1e-4)
+    # Priors for planet
+    t0_1 ~ Uniform(1.212, 1.362)
+    rp_1 ~ Uniform(0.01, 0.10)
+    b_1 ~ Uniform(0.0, 0.99)
+    # Priors for moon (or second planet)
+    t0_2 ~ Uniform(1.212, 1.362)
+    rp_2 ~ Uniform(0.01, 0.10)
+    b_2 ~ Uniform(0.0, 0.99)
+
+    params1 = set_params!(params1; t0=t0_1, rp=rp_1, inc=inc(params1, b_1))
+    params2 = set_params!(params2; t0=t0_2, rp=rp_2, inc=inc(params2, b_2))
+    model_flux1 = light_curve(trans_model1, params1)
+    model_flux2 = light_curve(trans_model2, params2)
+    combined_flux = model_flux1 .* model_flux2
+    return flux ~ MvNormal(combined_flux, error)
+end
+```
+
+> 3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters.
+
+```{julia}
+params1 = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
+params2 = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
+trans_model1 = TransitModel(params1, data.time)
+trans_model2 = TransitModel(params2, data.time)
+model = transit_model_two_bodies(data.time, data.flux, params1, trans_model1, params2, trans_model2)
+chain = sample(model, Emcee(100), 10000; progress=false)
+```
+
+```{julia}
+StatsPlots.plot(chain)
+```
+
 > 4. Make plots to convince the reviewer that your results are converged  
 > 5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon? 
 6. Summarize your results for the parameters for each object? 
@@ -380,9 +415,63 @@ StatsPlots.plot(chain)
 > Describe in a few sentences one example for a problem or data set that you could analogously solve in your research domain? 
 
 
+## Old codes (using `Batman`)
+
+
+### Julia interface to Python and Batman
+
+```julia
+#| output: false
+using CondaPkg
+using PythonCall
+import PythonCall: Py
+pkg = "batman-package"
+deps = CondaPkg.read_deps()["deps"]
+haskey(deps, pkg) || CondaPkg.add(pkg)
+# CondaPkg.add("corner")
+
+const batman = pyimport("batman")
+const corner = pyimport("corner")
+const np = pyimport("numpy")
+```
+
+```julia
+using DrWatson: @dict
+
+function set_params!(params; kwargs...)
+    for (key, value) in kwargs
+        setproperty!(params, key, value)
+    end
+    return params
+end
+
+"""Like `batman.TransitParams` in Python, but with some keyword arguments for convenience."""
+function TransitParams(; ecc=0.0, w=0.0, limb_dark="quadratic", kwargs...)
+    params = batman.TransitParams()
+    set_params!(params; ecc, w, limb_dark)
+    set_params!(params; kwargs...)
+    return params
+end
+
+TransitModel(params, time) = batman.TransitModel(params, Py(time).to_numpy())
+
+light_curve(model::Py, params::Py) = PyArray(model.light_curve(params))
+function light_curve(params, time)
+    m = TransitModel(params, time)
+    return light_curve(m, params)
+end
+light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
+```
+
+
 ## Reference
 
 - [DACE tutorial on photometry](https://dace.unige.ch/tutorials/?tutorialId=32)
 
 - Dynamic Hamiltonian Monte Carlo (HMC)
     - [tpapp/DynamicHMC.jl: Implementation of robust dynamic Hamiltonian Monte Carlo methods (NUTS) in Julia](https://github.com/tpapp/DynamicHMC.jl)
+
+
+
+
+
