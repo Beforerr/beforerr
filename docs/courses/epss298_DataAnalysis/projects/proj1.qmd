@@ -19,6 +19,10 @@ Julia packages:
 > [chalk-lab/NestedSamplers.jl: Implementations of single and multi-ellipsoid nested sampling](https://github.com/chalk-lab/NestedSamplers.jl)
 > [bat/BAT.jl: A Bayesian Analysis Toolkit in Julia](https://github.com/bat/BAT.jl)
 
+::: {.callout-note}
+In the updated version of the project, we use `Transits.jl` instead of `batman`, which is more performant and provides features like automatic differentiation.
+:::
+
 ## Introduction
 
 ```{julia}
@@ -27,18 +31,20 @@ if isdir(dir)
     cd(dir)
     Pkg.activate(".")
     Pkg.instantiate()
+    cd("projects")
 end
 ```
 
 ```{julia}
 using CSV, DataFrames
 using CairoMakie
-path = "projects/Project1_JWST_data.csv"
+path = "Project1_JWST_data.csv"
 data = CSV.read(path, DataFrame)
 
 f = Figure()
 markersize = 4
-scatterlines(f[1, 1], data.time, data.flux; markersize)
+ax = Axis(f[1, 1], xlabel="Time", ylabel="Flux")
+scatterlines!(ax, data.time, data.flux; markersize)
 f
 ```
 
@@ -52,19 +58,33 @@ f
 using Orbits
 using Transits
 
-per_i = 3
 t0_i = 1.311544
-a_i = 15
 b_i = 0.1
-ecc_i = 0.0
-u_i = [0.3, 0.3]
 rp_i = 0.01
 
-orbit = KeplerianOrbit(period=per_i, t0=t0_i, a=a_i, b=b_i, ecc=ecc_i)
-ld = QuadLimbDark(u_i)
-fluxes = @. ld(orbit, data.time, rp_i)
+create_orbit(t0, b; a=15, per=3, kw...) = KeplerianOrbit(; period=per, t0, a, b, kw...)
+create_orbit(t::Tuple; kw...) = create_orbit(t[1], t[2]; kw...)
+
+function light_curve(time, t0, b, rp; u=[0.3, 0.3], kwargs...)
+    orbit = create_orbit(t0, b; kwargs...)
+    ld = QuadLimbDark(u)
+    return @. ld(orbit, time, rp)
+end
+
+flux = light_curve(data.time, t0_i, b_i, rp_i)
 scatterlines!(f[1, 1], data.time, flux; markersize)
 f
+```
+
+```{julia}
+function light_curve_n(time, params::NTuple{N}; ld=QuadLimbDark([0.3, 0.3]), kwargs...) where {N}
+    rps = getindex.(params, 3)
+    orbits = create_orbit.(params; kwargs...)
+    map(time) do t
+        s = reduce(+, ntuple(i -> ld(orbits[i], t, rps[i]), N))
+        s - (N - 1) * one(s)
+    end
+end
 ```
 
 ### Step 2: Define the Bayesian analysis 
@@ -73,19 +93,17 @@ f
 > 2. Write a log-likelihood function
 > 3. Write a log-probability function
 
-```{julia}
+Vanilla log-prior, log-likelihood, and log-probability functions could be written as:
+
+```julia
+log_prior(x, (lb, ub)) = lb <= x <= ub ? 0.0 : -Inf
+
 # Transit time between 1.212 and 1.362 days
 # Planet radius between 1% and 10% of star radius
 # Impact parameter between 0 and 1
-function log_prior(t0, rp, b)
-    if 1.212 <= t0 <= 1.362 && 0.01 <= rp <= 0.10 && 0 <= b <= 1
-        0.0  # Log of 1, uniform prior within constraints
-    else
-        -Inf  # Log of 0, zero probability outside constraints
-    end
-end
-
-log_prior(params) = log_prior(params...)
+log_prior(t0, rp, b) = log_prior(t0, (1.212, 1.362)) + 
+    log_prior(rp, (0.01, 0.10)) + 
+    log_prior(b, (0.0, 1.0))
 
 function log_likelihood(params, time, obs, error;
     per=3.0, # Period in days
@@ -102,9 +120,23 @@ function log_likelihood(params, time, obs, error;
     -0.5 * chi_squared
 end
 
-function log_probability(params, time, obs, error)
-    log_prior(params) + log_likelihood(params, time, obs, error)
+log_probability(params, time, obs, error) = log_prior(params) + log_likelihood(params, time, obs, error)
+```
+
+Using [`Turing.jl`](https://github.com/TuringLang/Turing.jl), we can write the same model more compactly:
+
+```{julia}
+using Turing
+
+@model function transit_model(time, flux; error=1e-4)
+    t0 ~ Uniform(1.212, 1.362)
+    rp ~ Uniform(0.01, 0.10)
+    b ~ Uniform(0.0, 0.8)
+    model_flux = light_curve(time, t0, b, rp)
+    return flux ~ MvNormal(model_flux, error)
 end
+
+model = transit_model(data.time, data.flux)
 ```
 
 ### Step 3: Demonstrate solution on a grid 
@@ -118,17 +150,14 @@ using LinearAlgebra  # For eigen decomposition and other matrix operations
 using Statistics     # For statistical functions
 using StatsBase
 
-# Fix transit mid-time to t0 = 1.311544 days
 fixed_t0 = 1.311544
 
-# Create a 50x50 grid for rp and b
 n_grid = 50
 rp_grid = range(0.05275, 0.053505, length=n_grid)
 b_grid = range(0.0, 0.3, length=n_grid - 10)
 
-# Calculate the log posterior for each grid point
 log_posterior_grid = [
-    log_probability([fixed_t0, rp, b], data.time, data.flux, 1e-4)
+    logjoint(model, (; rp, b, t0=fixed_t0))
     for rp in rp_grid, b in b_grid
 ]
 
@@ -139,8 +168,7 @@ posterior_grid = posterior_grid ./ sum(posterior_grid) # Normalize the posterior
 max_idx = argmax(posterior_grid)
 best_rp = rp_grid[max_idx[1]]
 best_b = b_grid[max_idx[2]]
-println("Best fit values: rp = $(best_rp), b = $(best_b)")
-
+@info "Best fit values" best_rp best_b
 
 b_label = "Impact parameter (b)"
 rp_label = "Planet-to-star radius ratio (rp)"
@@ -176,13 +204,16 @@ fig
 > Calculate the mean and +/-1 sigma uncertainties for both parameters. Mark the mean value with a solid vertical line in the figure created in Step 3.2. Make the +/-1 sigma uncertainties with dashed vertical lines. Report the best estimates (mean and uncertainty) for both parameters quantitatively. 
 
 ```{julia}
+using Measurements
 # For rp
 rp_mean = mean(rp_grid, rp_posterior)
 rp_std = std(rp_grid, rp_posterior)
+rp = measurement(rp_mean, rp_std)
 
 # For b
 b_mean = mean(b_grid, b_posterior)
 b_std = std(b_grid, b_posterior)
+b = measurement(b_mean, b_std)
 
 # Add mean and +/- 1 sigma to the marginalized plots
 vlines!(ax2, [rp_mean], color=:black, linewidth=2)
@@ -191,11 +222,8 @@ vlines!(ax2, [rp_mean - rp_std, rp_mean + rp_std], color=:black, linestyle=:dash
 vlines!(ax3, [b_mean], color=:black, linewidth=2)
 vlines!(ax3, [b_mean - b_std, b_mean + b_std], color=:black, linestyle=:dash)
 
-# Print the results
-println("Planet-to-star radius ratio (rp):")
-println("Mean: $(rp_mean), Uncertainty: ±$(rp_std)")
-println("Impact parameter (b):")
-println("Mean: $(b_mean), Uncertainty: ±$(b_std)")
+@info "Planet-to-star radius ratio" rp
+@info "Impact parameter" b
 fig
 ```
 
@@ -285,52 +313,63 @@ fig
 > 1. Using Emcee. Make all possible plots and quantitative assessments to convince the reviewer that your results are converged 
 > 2. Using Dynesty. Make all possible plots and quantitative assessments to convince the reviewer  that your results are converged  
 
-Here we use [Turing.jl](https://github.com/TuringLang/Turing.jl) to sample the posterior distribution instead.
+#### Affine Invariant MCMC (Emcee-like)
 
 ```{julia}
-#| output: false
-using Turing
-```
-
-```{julia}
-inc(p::Py, b) = inc(pyconvert(Any, p.a), b)
-
-@model function transit_model(time, flux, params, trans_model=TransitModel(params, data.time); error=1e-4)
-    # Priors
-    t0 ~ Uniform(1.212, 1.362)
-    rp ~ Uniform(0.01, 0.10)
-    b ~ Uniform(0.0, 0.99)
-    params = set_params!(params; t0, rp, inc=inc(params, b))
-    model_flux = light_curve(trans_model, params)
-    return flux ~ MvNormal(model_flux, error)
-end
-
-params = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
-trans_model = TransitModel(params, data.time)
-model = transit_model(data.time, data.flux, params)
-chain = sample(model, Emcee(100), 10000; progress=false)
-```
-
-
-```{julia}
-@model function transit_model(time, flux; ld=QuadLimbDark(u_i), period=per_i, error=1e-4, a=a_i)
-    t0 ~ Uniform(1.212, 1.362)
-    rp ~ Uniform(0.01, 0.10)
-    b ~ Uniform(0.0, 0.99)
-    orbit = KeplerianOrbit(; period, t0, b, a)
-    model_flux = @. ld(orbit, time, rp)
-    return flux ~ MvNormal(model_flux, error)
-end
-
-model = transit_model(data.time, data.flux)
-chain = sample(model, Emcee(16), 10000; progress=false)
+chain = sample(model, Emcee(20), MCMCThreads(), 1000, 4; progress=false)
 ```
 
 ```{julia}
 using StatsPlots
-# Plot the traces and posterior distributions
 StatsPlots.plot(chain)
 ```
+
+#### NestedSamplers (Dynesty-like)
+
+> [chalk-lab/NestedSamplers.jl: Implementations of single and multi-ellipsoid nested sampling](https://github.com/chalk-lab/NestedSamplers.jl)
+
+```{julia}
+using NestedSamplers
+
+loglike = let m = model
+    (X) -> loglikelihood(m, (t0=X[1], rp=X[2], b=X[3]))
+end
+
+priors = [Uniform(1.212, 1.362), Uniform(0.01, 0.10), Uniform(0.0, 0.8)]
+nmodel = NestedModel(loglike, priors)
+
+sampler = Nested(3, 2000)
+chain, state = sample(nmodel, sampler, progress=false)
+```
+
+```{julia}
+StatsPlots.plot(chain)
+```
+
+#### Hamiltonian Monte Carlo (HMC)
+
+Since now the light curve is auto-differentiated, we can use algorithms like `No U-Turn Sampler (NUTS)` which uses Hamiltonian dynamics (very efficient).
+
+```{julia}
+chain = sample(model, NUTS(), 2000, progress=false)
+StatsPlots.plot(chain)
+```
+
+```{julia}
+using PairPlots: pairplot
+pairplot(chain)
+```
+
+#### Performance comparison
+
+```{julia}
+using Chairmarks
+display(@b sample(model, NUTS(), 2000; progress=false))
+display(@b sample(model, Emcee(16), 2000; progress=false))
+display(@b sample(nmodel, sampler, progress=false))
+```
+
+We can see that NUTS is the fastest, followed by Emcee, and then NestedSamplers. Also NUTS seems to converge faster than Emcee and NestedSamplers.
 
 ### Step 5: Investigate whether you model is a good fit to the data 
 
@@ -342,9 +381,7 @@ using Statistics
 t0_fit = median(chain[:t0])
 rp_fit = median(chain[:rp])
 b_fit = median(chain[:b])
-inc_fit = inc(params, b_fit)
-params_fit = set_params!(params; t0=t0_fit, rp=rp_fit, inc=inc_fit)
-model_flux = light_curve(trans_model, params_fit)
+model_flux = light_curve(data.time, t0_fit, b_fit, rp_fit)
 residuals = data.flux .- model_flux
 
 f1 = Figure()
@@ -371,49 +408,92 @@ There is a increase in the residuals at the time of the $1.33$. This could be du
 > 2. Code a new physical "forward" model and log-likelihood function that better explains the data.  
 
 ```{julia}
-@model function transit_model_two_bodies(time, flux, params1, trans_model1, params2, trans_model2; error=1e-4)
+@model function transit_model_two_bodies(time, flux; error=1e-4)
     # Priors for planet
     t0_1 ~ Uniform(1.212, 1.362)
     rp_1 ~ Uniform(0.01, 0.10)
-    b_1 ~ Uniform(0.0, 0.99)
+    b_1 ~ Uniform(0.0, 0.8)
     # Priors for moon (or second planet)
     t0_2 ~ Uniform(1.212, 1.362)
     rp_2 ~ Uniform(0.01, 0.10)
-    b_2 ~ Uniform(0.0, 0.99)
+    b_2 ~ Uniform(0.0, 0.8)
 
-    params1 = set_params!(params1; t0=t0_1, rp=rp_1, inc=inc(params1, b_1))
-    params2 = set_params!(params2; t0=t0_2, rp=rp_2, inc=inc(params2, b_2))
-    model_flux1 = light_curve(trans_model1, params1)
-    model_flux2 = light_curve(trans_model2, params2)
-    combined_flux = model_flux1 .* model_flux2
-    return flux ~ MvNormal(combined_flux, error)
+    model_flux = light_curve_n(time, ((t0_1, b_1, rp_1), (t0_2, b_2, rp_2)))
+    return flux ~ MvNormal(model_flux, error)
 end
 ```
 
 > 3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters.
 
+For performance reason, we use `NUTS` instead of `NestedSamplers`.
+
 ```{julia}
-params1 = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
-params2 = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
-trans_model1 = TransitModel(params1, data.time)
-trans_model2 = TransitModel(params2, data.time)
-model = transit_model_two_bodies(data.time, data.flux, params1, trans_model1, params2, trans_model2)
-chain = sample(model, Emcee(100), 10000; progress=false)
+model2 = transit_model_two_bodies(data.time, data.flux)
+chain2 = sample(model2, NUTS(), 3000, progress=false)
 ```
 
 ```{julia}
-StatsPlots.plot(chain)
+StatsPlots.plot(chain2) |> display
+pairplot(chain2)
 ```
 
 > 4. Make plots to convince the reviewer that your results are converged  
-> 5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon? 
+
+The figure below shows the trace and autocorrelation plots for all parameters. The chains appear well-mixed and stationary, indicating convergence. The Monte Carlo standard error is small further supporting convergence.
+
+Reference: [Autocorrelation analysis & convergence — emcee](https://emcee.readthedocs.io/en/stable/tutorials/autocorr/)
+
+```{julia}
+@info "Monte Carlo standard error" mcse(chain2)
+autocorplot(chain2)
+```
+
+> 5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon?
+
+Here we do a posterior predictive checks to compare how well each model reproduces the observed data
+
+```{julia}
+t0_1 = median(chain2[:t0_1])
+rp_1 = median(chain2[:rp_1])
+b_1 = median(chain2[:b_1])
+t0_2 = median(chain2[:t0_2])
+rp_2 = median(chain2[:rp_2])
+b_2 = median(chain2[:b_2])
+model_flux2 = light_curve_n(data.time, ((t0_1, b_1, rp_1), (t0_2, b_2, rp_2)))
+residuals2 = data.flux .- model_flux2
+
+scatterlines!(f1[1, 1], data.time, model_flux2; markersize)
+scatter!(f1[2, 1], data.time, residuals2)
+hist!(f1[3, 1], residuals2, bins=30)
+display(f1)
+
+@info "Mean residual: " mean(residuals2)
+@info "Std of residuals: " std(residuals2)
+```
+
+The two-body yields lower residuals than the single-body model, indicating a better fit.
+
 6. Summarize your results for the parameters for each object? 
+
+The summary statistics for the two-body model are shown below:
+
+```{julia}
+chain2
+```
+
 7. Why do you get a multi-modal solution? What could you do to avoid this in this simple example? 
- 
+
+It seems that using `NUTS` sampler with only one chain could avoid the multi-modal solution. Multi-modal arises when there are multiple chains and the modes switch between chains.
+
+> This is because it’s possible for either model parameter to be assigned to either of the corresponding true means, and this assignment need not be consistent between chains. That is, the posterior is fundamentally multimodal, and different chains can end up in different modes, complicating inference. One solution here is to enforce an ordering on our parameters, requiring for all. `Bijectors.jl` provides an easy transformation (ordered()) for this purpose
+
+Another solution is to post-process the chain to exchange parameters to enforce ordering.
+
 ### Step 7: 
 
 > Describe in a few sentences one example for a problem or data set that you could analogously solve in your research domain? 
 
+In plasma physics, particle velocity distributions are often non-Maxwellian and may be composed of several populations (core, halo, beam). By modeling the observed distribution as the sum of several Maxwellian or kappa distributions, and using Bayesian inference to fit the parameters (density, temperature, drift speed for each component), you can determine how many components are justified and estimate their properties, just as you determine the number of transiting bodies in the exoplanet problem.
 
 ## Old codes (using `Batman`)
 
@@ -463,6 +543,37 @@ end
 light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 ```
 
+```julia
+inc(a, b) = acosd(b / a)
+inc_i = acosd(b_i / a_i)
+
+flux = let rp = rp_i, t0 = t0_i, b = b_i, a = a_i, u = u_i, per = per_i
+    inc = acosd(b / a)
+    light_curve(data.time; t0, per, rp, a, inc, u)
+end
+```
+
+Emcee sampler
+
+```julia
+inc(p::Py, b) = inc(pyconvert(Any, p.a), b)
+
+@model function transit_model(time, flux, params, trans_model=TransitModel(params, data.time); error=1e-4)
+    # Priors
+    t0 ~ Uniform(1.212, 1.362)
+    rp ~ Uniform(0.01, 0.10)
+    b ~ Uniform(0.0, 0.99)
+    params = set_params!(params; t0, rp, inc=inc(params, b))
+    model_flux = light_curve(trans_model, params)
+    return flux ~ MvNormal(model_flux, error)
+end
+
+params = TransitParams(; rp=rp_i, t0=t0_i, per=3.0, a=a_i, u=u_i, inc=inc_i)
+trans_model = TransitModel(params, data.time)
+model = transit_model(data.time, data.flux, params)
+chain = sample(model, Emcee(100), 10000; progress=false)
+```
+
 
 ## Reference
 
@@ -470,8 +581,3 @@ light_curve(time; kwargs...) = light_curve(TransitParams(; kwargs...), time)
 
 - Dynamic Hamiltonian Monte Carlo (HMC)
     - [tpapp/DynamicHMC.jl: Implementation of robust dynamic Hamiltonian Monte Carlo methods (NUTS) in Julia](https://github.com/tpapp/DynamicHMC.jl)
-
-
-
-
-
