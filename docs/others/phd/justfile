@@ -1,0 +1,2 @@
+render:
+    quarto render docs/others/phd/2025_atc/prospectus.qmd --to typst 
