@@ -21,6 +21,7 @@ website:
       - text: "Others"
         menu:
           - href: docs/blog/index.qmd
+          - href: docs/others/phd/index.qmd
           - href: docs/courses/index.qmd
     tools:
       - icon: github

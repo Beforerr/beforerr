@@ -1,0 +1,295 @@
+---
+title: Thesis Prospectus
+author: Zijin Zhang
+date: last-modified
+format: 
+    html: default
+    typst: default
+---
+
+<!--
+Thesis prospectus requirements: summarizing the abstract, thesis overall plan, work completed, and work remaining. Explain the significance well, upfront, and at the end explain what we learn and what opportunities exist for future work once the thesis is completed (relevance to the field and to other areas as well).
+-->
+
+## Motivation and Significance (Summary)
+
+Solar energetic particles (SEPs), originating from solar flares and coronal mass ejections, pose significant risks to satellite operations, human spaceflight, and communication systems. Accurate prediction of SEP events and their propagation through the heliosphere requires a detailed understanding of particle transport mechanisms in turbulent solar wind environments. 
+
+Traditionally, theoretical studies and numerical models of particle transport in the solar wind have focused on turbulence characterized by broadband, low-amplitude, random-phase magnetic fluctuations described by power-law spectra [@jokipiiCosmicRayPropagationCharged1966; @jokipiiCosmicRayPropagationIi1967]. However, observations consistently reveal the abundance of intermittent, meso-scale, coherent structures within this turbulent medium, notably current sheets—thin plasma boundaries marked by abrupt magnetic field changes. These current sheets deviate significantly from classical magnetohydrodynamic (MHD) picture due to their kinetic-scale features and strong local magnetic gradients.
+
+Recent theoretical and numerical studies suggest that these coherent structures play a critical role in particle scattering, potentially surpassing the scattering efficiencies predicted by traditional quasilinear theories [@malaraChargedparticleChaoticDynamics2021; @artemyevSuperfastIonScattering2020]. Current sheets, generated naturally through nonlinear turbulence cascades, provide localized regions of intense electromagnetic interactions, leading to enhanced scattering and modification of the particle's spatial distribution. Despite their demonstrated importance, a quantitative and systematic understanding of how these structures influence SEP transport remains incomplete.
+
+Addressing this critical gap, this dissertation aims to rigorously investigate and quantify the impact of solar wind current sheets on SEP transport processes. Specifically, this research seeks to:
+
+1. Characterize the properties and occurrence of current sheets throughout different regions of the heliosphere.
+2. Develop and validate theoretical models that describe particle scattering induced by these coherent structures.
+3. Provide a more comprehensive understanding of SEP dynamics, thereby improving predictive capabilities and contributing significantly to space weather modeling.
+
+The motivation for this research lies in the critical need for improved SEP transport models that accurately reflect real-world solar wind conditions. By integrating observational data and advanced theoretical frameworks, this dissertation will provide novel insights into heliospheric particle dynamics, ultimately enhancing our ability to predict and mitigate the risks associated with SEP events.
+
+## Research Context and Background
+
+### Solar Energetic Particles
+
+[@kleinAccelerationPropagationSolar2017; @desaiLargeGradualSolar2016]
+
+Solar energetic particles (SEPs) are high-energy ions and electrons originating at or near the Sun. They span a broad energy spectrum, from Solar energetic particles (SEPs) consist of high-energy ions and electrons originating at or near the Sun. Unlike the solar wind and galactic cosmic rays (GCRs), solar energetic particles (SEPs) manifest as discrete episodic events  with intensities that can vary dramatically—by several orders of magnitude—in just minutes. Additionally, SEP events exhibit significant variations in heavy ion composition, spectral shape, and spatial distribution. 
+
+SEPs are primarily accelerated through two distinct mechanisms: (1) magnetic reconnection-driven processes during solar flares, producing impulsive SEP events, and (2) shock-wave acceleration associated with fast coronal mass ejections (CMEs), resulting in large gradual SEP events.
+
+Impulsive SEP events typically have short durations, lasting from minutes to a few hours, and feature characteristically high electron-to-proton ratios and enrichments of heavy ions. In contrast, gradual SEP events are longer-lasting (several days) and are predominantly proton-rich, often associated with fast CMEs driving shocks in the solar corona and interplanetary space. These shocks accelerate particles over extended regions, producing widespread and intense radiation storms.
+
+![The two-class picture for SEP events. @desaiLargeGradualSolar2016](20250510233731.png)
+
+### Turbulent Magnetic Fluctuations
+
+Solar wind turbulence spans scales from the large‑scale coherence length (∼0.01 AU) down to kinetic dissipation scales on the order of the thermal ion gyro‑radius (∼100 km). Of particular importance for energetic particle transport is the turbulence at intermediate scales, often referred to as inertial-range turbulence whose corresponding energy range is about 1 GeV to 1 keV assuming a 5 nT magnetic field. This covers nearly all SEPs as the gyro-radii of almost all SEPs are smaller than the coherence scale and larger than the dissipation scale.
+
+The transport of SEPs through the heliosphere is fundamentally shaped by the properties of magnetic turbulence.  Key parameters—such as the spatial inhomogeneity, turbulence level ($δB/B₀$), spectral index, and anisotropy of wave vectors [@pucciEnergeticParticleTransport2016] —strongly influence how particles scatter in velocity space. These properties govern both parallel and perpendicular transport through mechanisms including pitch-angle diffusion, magnetic field-line meandering, and gradient or curvature drift.
+
+Classical scattering theories and numerical models of particle transport [@giacaloneTransportCosmicRays1999] typically model turbulence as a sea of random, phase-uncorrelated fluctuations (common constructions of magnetic fluctuations for the slab component $δ𝐁^s$ and two-dimensional component $δ𝐁^{2D}$ are shown below in @eq-δ𝐁). However, this idealized view neglects the intricate internal nonlinear structures of turbulence. Increasingly, observations and simulations show that solar wind turbulence is highly intermittent and populated with coherent structures—especially current sheets—that arise naturally through nonlinear cascade processes. These localized structures, often characterized by sharp magnetic field gradients, can trigger rapid and large pitch-angle deflections in energetic particles, significantly enhancing scattering beyond quasilinear predictions.
+
+$$
+\begin{aligned}
+& δ𝐁^s=\sum_{n=1}^{N_m} A_n\left[\cos \alpha_n\left(\cos \phi_n \hat{x}+\sin \phi_n \hat{y}\right)+i \sin \alpha_n(-\right.\left.\left.\sin \phi_n \hat{x}+\cos \phi_n \hat{y}\right)\right] \\
+& \times \exp \left(i k_n z+i \beta_n\right) \\
+& δ𝐁^{2 D}=\sum_{n=1}^{N_m} A_n i\left(-\sin \phi_n \hat{x}+\cos \phi_n \hat{y}\right) \\
+& \times \exp \left[i k_n\left(\cos \phi_n x+\sin \phi_n y\right)+i \beta_n\right]
+\end{aligned}
+$$ {#eq-δ𝐁}
+
+Therefore, understanding SEP transport requires more than bulk statistical descriptions of turbulence; it demands detailed knowledge of its intermittent nature and the embedded coherent structures that mediate particle scattering. Accurately characterizing these features is essential for developing realistic models of SEP propagation throughout the heliosphere.
+
+### Charged Particle Transport and Turbulence Transport Models
+
+The large-scale behavior of energetic charged particles in the heliosphere is commonly described using a diffusive approximation, justified when the particle scattering time is short compared to the timescale of interest. Under this assumption, the evolution of an approximately isotropic particle distribution is governed by the Parker transport equation [@parkerPassageEnergeticCharged1965]. This foundational framework accounts for four main transport processes: spatial diffusion due to particle scattering, advection with the solar wind, drifts (such as gradient and curvature drifts due to variations in the large-scale magnetic field), and adiabatic acceleration:
+
+$$
+\frac{∂ f}{∂ t}=\frac{∂}{∂ x_i}\left[\kappa_{i j} \frac{∂ f}{∂ x_j}\right]-U_i \frac{∂ f}{∂ x_i}-V_{d, i} \frac{∂ f}{∂ x_i}+\frac{1}{3} \frac{∂ U_i}{∂ x_i}\left[\frac{∂ f}{∂ \ln p}\right]+ \text{Sources} - \text{Losses},
+$$ {#eq-parker}
+
+where $f$ is the phase-space distribution as a function of the particle momentum, $p$, position, $x_i$, and time, $t$; $\kappa_{i j}$ is the symmetric part of the diffusion coefficient tensor; $U_i$ is the bulk plasma velocity; $V_{d, i}$ is the drift velocity. We note that the The drift velocity can be formally derived  from the drift motion for a single particle in guiding center approximation. 
+
+distribution function is related to the differential intensity, $d J / d E$, which is commonly used in representations of SEP energy spectra, by $d J / d E=p^2 f$.
+
+
+To better capture the anisotropic nature of particle motion, particularly at early times or near boundaries, the focused transport equation (Roelof, 1969; Skilling, 1971) extends this framework by retaining pitch-angle dependence. This enables a more accurate description of the transition from ballistic to diffusive regimes, especially in regions of strong magnetic field gradients or turbulence. The parallel diffusion coefficient \kappa_\parallel is typically related to the pitch-angle diffusion rate D_{\mu\mu}, while the perpendicular diffusion coefficient \kappa_\perp is influenced by magnetic field line random walk, field inhomogeneity, and drift effects (Jokipii, 1966; Giacalone & Jokipii, 1999). Although \kappa_\perp is often assumed to be a small fraction of \kappa_\parallel, recent studies and simulations reveal that perpendicular transport can be significant and energy-dependent.
+
+Moreover, deviations from classical diffusion—such as superdiffusive or subdiffusive behavior—have been observed in SEP events and near interplanetary shocks, challenging the standard Gaussian diffusion paradigm. These non-diffusive transport regimes reflect the complex structure of heliospheric turbulence and often require generalized models based on fractional kinetics or Lévy statistics (Zimbardo et al., 2012; Perri & Zimbardo, 2012; Tautz & Shalchi, 2010). Consequently, the development of accurate turbulence-informed transport models remains central to predicting SEP propagation, especially when accounting for coherent structures and intermittent fluctuations in the solar wind.
+
+
+### Current Sheets in the Solar Wind
+
+Current sheets are characterized by sharp gradients in the magnetic field and plasma properties. Observational studies from spacecraft missions such as Wind, ARTEMIS, and Parker Solar Probe (PSP) consistently detect these structures throughout the heliosphere, from near-Sun regions (~0.1 AU) to the outer heliosphere (~5 AU).
+
+These sheets often exhibit non-ideal behaviors, with kinetic processes such as magnetic reconnection and wave-particle interactions playing essential roles. Understanding the kinetic-scale dynamics within current sheets is therefore vital to fully characterize their impact on particle transport.
+
+## Objectives and Thesis Plan
+
+The overall goal of this thesis is to quantify and model the impact of solar wind current sheets on energetic particle transport. This research is structured around two primary objectives:
+
+Observational characterization of solar wind current sheets across the heliosphere
+
+Development and validation of theoretical models for current sheet-induced particle scattering
+
+## Work Completed
+
+### Observational Analysis of Current Sheets
+
+I have conducted extensive observational analyses using data from spacecraft missions including Juno, Wind, ARTEMIS, and Parker Solar Probe. Key findings include:
+
+Statistical characterization of current sheet occurrence rates, thicknesses, current densities, and magnetic field rotations at multiple radial distances (0.1–5 AU).
+
+Demonstration of persistent and efficient particle scattering by current sheets throughout the inner heliosphere.
+
+Identification of radial scaling laws governing current sheet properties, revealing consistent kinetic-scale behaviors despite changes in heliospheric conditions.
+
+### Quantitative Modeling of Particle Scattering
+
+Leveraging the observational data, I developed a theoretical and numerical framework to quantify the efficiency of pitch-angle scattering induced by current sheets. Achievements in this area include:
+
+Formulation of an analytical Hamiltonian model coupled with numerical simulations to evaluate pitch-angle diffusion rates.
+
+Validation of this model using spacecraft observations, confirming significant scattering rates for 100 keV–1 MeV protons.
+
+Demonstration that scattering processes driven by current sheets substantially exceed predictions from classical quasilinear theories, thus revising our understanding of particle transport dynamics.
+
+### Multifuid Model for Current Sheet Alfvénicity
+
+To address discrepancies observed in the classical single-fluid MHD description of current sheets, I developed a multifluid model that accounts for kinetic properties of plasma populations. This model:
+
+Explains observed variations in Alfvénicity (the ratio of plasma velocity jump to Alfvén velocity jump) in solar wind current sheets.
+
+Illustrates the transition from single-fluid dominance near the Sun to a multifluid regime at 1 AU, better matching observational data.
+
+## Proposed Research Direction
+
+### Spatial Diffusion Model Refinement
+
+Building on previous results, the next phase of research will extend the pitch-angle scattering framework to comprehensively model spatial diffusion processes (both parallel and perpendicular). This extension is crucial for accurately capturing the full scope of SEP transport influenced by current sheets.
+
+### Methodology
+
+The following methodological steps will guide the refinement of the diffusion model:
+
+Data Integration: Incorporate comprehensive multi-spacecraft datasets spanning radial distances from 0.1 to 5 AU to calibrate and validate the spatial diffusion model.
+
+Numerical Simulation: Utilize advanced particle-in-cell (PIC) and test-particle simulations to systematically quantify spatial diffusion coefficients under realistic solar wind conditions.
+
+Analytical Development: Extend existing analytical frameworks to predict spatial diffusion behaviors informed by numerical simulation results.
+
+### Timeline
+
+Months 1–4:
+
+Refine the pitch-angle scattering model to include parallel and perpendicular spatial diffusion.
+
+Perform detailed numerical simulations incorporating observational data from multiple spacecraft.
+
+Months 5–7:
+
+Validate the refined spatial diffusion model using observational data.
+
+Conduct comprehensive statistical analyses to quantify diffusion coefficients at various radial distances.
+
+Months 8–10:
+
+Finalize model development, analyze implications for SEP transport, and prepare dissertation chapters.
+
+Integrate observational and theoretical findings into comprehensive thesis documentation.
+
+### Relevance and Broader Implications
+
+This thesis substantially advances our understanding of particle transport mechanisms within turbulent space plasmas, offering significant enhancements to SEP prediction models. By accurately quantifying the influence of coherent structures such as current sheets, the research outcomes have direct applications to improving space weather forecasting, enhancing spacecraft operational safety, and contributing to the broader understanding of plasma turbulence.
+
+### Opportunities for Future Research
+
+Completion of this thesis opens several avenues for future investigations:
+
+Exploration of current sheet interactions in other astrophysical environments, such as supernova remnants and planetary magnetospheres.
+
+Advanced integration of machine learning techniques with numerical simulations to further refine SEP transport models.
+
+Expanded observational campaigns utilizing upcoming spacecraft missions designed to probe heliospheric turbulence and particle dynamics at unprecedented resolution.
+
+<!-- Draft
+
+Research Context & Motivation:
+My dissertation will focus on studying solar wind current sheets and their effect on the transport of energetic particles (more specifically, Solar Energetic Particles, or SEPs). Particle transport is significantly influenced by electromagnetic turbulence, where properties such as fluctuation amplitude, spectral index, and wave vector anisotropy play crucial roles in determining particle scattering rates. Traditional theories of particle scattering have largely relied on models of random magnetic field fluctuations. However, recent studies suggest that turbulence is not merely a superposition of random fluctuations but also involves coherent structures—specifically, current sheets—that can efficiently scatter energetic particles. These structures, formed during turbulent cascades, may dominate scattering efficiency compared to classical quasilinear models. My research aims to bridge this gap by quantifying how current sheets govern particle scattering and spatial diffusion, ultimately improving models of solar energetic particle (SEP) transport.
+
+Progress to Date:
+1. So far, I have analyzed the properties of current sheets using data from multiple satellites including Juno, Artemis, Wind, and PSP. This work has enabled me to study the evolution of current sheet properties that are important for particle scattering across the inner heliosphere (from approximately 0.1 AU near the Sun to about 5 AU near Jupiter). Additionally, I developed a theoretical multifluid model that effectively explains the observed Alfvénicity in these regions.
+
+2. Leveraging detailed statistical analyses, I have incorporated realistic solar wind parameters into pitch-angle scattering models, which enabled me to quantify the scattering rates produced by current sheets at 1 AU
+
+Proposed Research Direction:
+Building on this foundation, my next objective is to develop an observation-based model of SEP transport that can be integrated into global SEP transport frameworks. I plan to extend the current pitch-angle scattering model to account for both parallel and perpendicular spatial diffusion of energetic particles. By incorporating solar wind measurements at various radial distances, I aim to formalize the scattering efficiency and spatial diffusion coefficients attributed to solar wind current sheets. This enhanced model will provide a more comprehensive understanding of how coherent structures influence SEP transport from their origin near the Sun to further out in the heliosphere.
+
+Methodology & Timeline:
+• Methodology: I will refine the existing pitch-angle scattering model by incorporating spatial diffusion processes and integrating multi-satellite observational data to calibrate and validate the extended model.
+• Timeline: I plan to complete the model refinement over the next several months, followed by a phase of validation and integration into broader global SEP transport models.
+-->
+
+<!--
+"""
+\begin{document}
+\title{Quantification of ion scattering by solar wind current sheets: pitch-angle diffusion rates}
+
+\begin{abstract}
+The transport of energetic particles in the heliosphere is profoundly influenced by interactions with coherent structures in the turbulent magnetic field of the solar wind, particularly current sheets. While prior studies have largely relied on idealized turbulence models, this work quantifies the role of solar wind current sheets (quasi-1D plasma structures characterized by strong magnetic field gradients) in driving pitch-angle scattering. We present an analytical Hamiltonian framework coupled with test particle simulations, informed by observational data from the ARTEMIS and Wind missions, to model particle dynamics through current sheets with realistic parameters. Our results demonstrate that the scattering efficiency depends critically on the current sheet's shear angle, relative magnitude of the magnetic field component directed along the normal to the current sheet surface, and the ratio of the particle gyroradius to the current sheet thickness. Large pitch-angle jumps, arising from non-adiabatic separatrix crossings in phase space, lead to rapid chaotization, whereas diffusive scattering broadens the pitch-angle distributions. Statistical analysis of solar wind current sheets at 1 AU reveals significant scattering rates for 100 keV-1 MeV protons, with implications for particle transport and shock acceleration mechanisms. The derived diffusion rates enable the inclusion of coherent structures into global transport models for a more accurate modeling of energetic particle dynamics in the heliosphere. These findings underscore the importance of current sheets in shaping energetic particle spatial distributions and provide practical methods for incorporating them in space and astrophysical plasmas.
+\end{abstract}
+
+\section{Conclusion}\label{sec-conclusion}
+
+In this study, we have investigated the scattering of energetic particles by current sheets in the solar wind and developed a model that incorporates the rotational effects $β$, the magnetic field magnitude $B_0$, and the current sheet thickness $L$. Our findings indicate that current sheets characterized by large rotation angles or relatively small characteristic velocities, defined as $\tilde{v}_B = \frac{q B_0 L}{m c^2}$, can effectively scatter energetic particles. These scattering effects go beyond the conventional diffusion framework, as large pitch-angle jumps lead to rapid particle mixing in pitch-angles. Leveraging extensive observations of solar wind current sheets at 1 AU, we have provided a statistical estimate that quantifies the long-term scattering rate of energetic particles due to current sheets.
+
+In the heliosphere, beyond 1AU, the background magnetic field strength decreases approximately as $\sim 1/r$ with increasing radial distance, where the azimuthal component $B_{\phi}$ dominates and $B \approx B_{\phi}\sim 1/r$. The magnitude of the current sheet magnetic field ($B_0$) scales accordingly  with the background field \cite{zhangSolarWindDiscontinuities2025}. Based on recent observations, the current sheet thickness, $L$, scales with the ion inertial length, $d_i \propto 1/\sqrt{N}$, which increases with radial distance due to the decline in plasma density, $N\propto 1/r^2$ \cite{marucaTransHeliosphericSurveyRadial2023}. Consequently, the characteristic velocity $\tilde{v}_B \propto B_0 L$ remains nearly constant with the radial distance, implying that energetic particles consistently undergo significant scattering by current sheets as they propagate through the heliosphere. The higher occurrence rate of current sheets closer to the Sun \cite{liuCharacteristicsInterplanetaryDiscontinuities2021, lotekarKineticscaleCurrentSheets2022} implies an even more pronounced impact on the transport of solar energetic particles.
+
+These findings may have significant implications for the dynamics of energetic particles in both space and astrophysical plasmas. Efficient pitch-angle scattering enhances the ability of particles to reverse direction along magnetic field lines, thereby reducing their tendency to stream freely and limiting parallel transport. In quasilinear theory, the parallel spatial diffusion coefficient is approximately inversely proportional to the pitch-angle diffusion coefficient for resonant interactions \cite{engelbrechtTheoryCosmicRay2022, jokipiiCosmicRayPropagationCharged1966, jokipiiAddendumErratumCosmicRay1968}. As a result, stronger pitch-angle scattering leads to shorter acceleration timescales in diffusive shock acceleration mechanisms \cite{katouTheoryStochasticShock2019, malkovNonlinearTheoryDiffusive2001}. Additionally, observations frequently reveal broad spatial distributions of solar energetic particles and the formation of particle reservoirs \citep{cohenSolarEnergeticParticles2021}, suggesting either reduced diffusion rates along magnetic field lines or highly efficient cross-field diffusion \citep{zhangPropagationSolarEnergetic2009}. Our results indicate that the pitch-angle scattering due to current sheets can significantly affect parallel and perpendicular transport, and this point will be addressed in future work.
+
+\end{document}
+"""
+
+"""
+\begin{document}
+\title{Solar wind discontinuities in the outer heliosphere: spatial distribution between 1 and 5 AU}
+
+\begin{keypoints}
+\item We provide statistics of solar wind discontinuities observed between 1 and 5 AU
+\item Current density and thickness of discontinuities evolve with the radial distance as Alfvén current density and proton inertial length
+\item The occurrence rate of discontinuities decreases with radial distance from the Sun, following a $1/r$ relationship
+\end{keypoints}
+
+\begin{abstract}
+Solar wind discontinuities (SWDs) are kinetic plasma structures that significantly contribute to the spectrum of magnetic field fluctuations and solar wind heating. Using Juno spacecraft data from 1 AU to 5 AU, combined with measurements from Wind, ARTEMIS, and STEREO at 1 AU, we disentangle spatial (radial) and temporal (solar activity) variations of SWD properties. We find that (1) the occurrence rate of SWDs decreases with radial distance from the Sun, following a $1/r$ relationship; (2) the SWD thickness increases with radial distance, but when normalized to the ion inertial length, the thickness remains almost unchanged within $[1,5]$AU; (3) the SWD current density decreases with radial distance, but when normalized to the Alfvén current ($J_A = e N V_A$, where symbols have their usual definitions), the current density remains almost unchanged within $[1,5]$AU; (4) the probability distributions of SWD normalized thickness and current density remain constant over time (in the five year period of Juno cruise phase) at $1$ AU. We discuss these results in the context of theories of the origin and dynamics of SWDs.
+
+%Solar wind discontinuities (SWDs), also known as current sheets, are kinetic plasma structures that significantly contribute to the spectrum of magnetic field fluctuations and solar wind heating. The properties of SWDs change considerably with the radial distance away from the Sun, and investigating their radial variance is crucial to understanding their origin and their role in solar wind plasma processes. In this study, we utilize a unique dataset from the Juno spacecraft's observations of SWDs during its cruise phase, when Juno traveled from Earth  ($\sim 1$AU) to Jupiter ($\sim 5$AU). We combine Juno measurements with Wind, ARTEMIS, and STEREO measurements of SWDs around $\sim 1$AU, and this combination allows us to separate temporal (with solar activity) and spatial (with radial distance) variations of SWD properties. We find that (1) the normalized to $1$AU occurrence rate of SWDs decreases with radial distance from the Sun, following a $1/r$ relationship; (2) the SWD thickness increases with radial distance, but when normalized to the ion inertial length, the thickness remains almost unchanged within $[1,5]$AU; (3) the SWD current density decreases with radial distance, but when normalized to the Alfvén current, the current density remains almost unchanged within $[1,5]$AU; (4) the distribution of SWD normalized thickness and current density remain constant over time (five-year period of Juno cruise phase) at $1$ AU. We discuss these results in the context of theories on the origin and dynamics of SWDs.
+\end{abstract}
+
+% \section{Plain Language Summary}\label{plain-language-summary}
+
+\section{Introduction}\label{introduction}
+
+Solar wind discontinuities (SWDs), commonly defined as localized transient rotations or abrupt changes in the magnetic field \cite{colburnDiscontinuitiesSolarWind1966}, are micro-scale plasma structures of ion kinetic scales. They are observed throughout the heliosphere, from the inner heliosphere \cite{liuCategorizingMHDDiscontinuities2022, lotekarKineticscaleCurrentSheets2022} to the heliosheath \cite{burlagaCurrentSheetsHeliosheath2011}. Despite being discovered over half a century ago, their specific origins and the circumstances of their formation remain subjects of ongoing debate \cite<see discussion in>[and references therein]{vaskoKineticscaleCurrentSheets2022,vaskoKineticScaleCurrentSheets2024}.
+Historically, SWDs were thought to originate inside 1 AU, probably near or at the Sun, and are then passively convected outward by the solar wind \cite{tsurutaniInterplanetaryDiscontinuitiesTemporal1979, sodingRadialLatitudinalDependencies2001, borovskyFluxTubeTexture2008}. However, the good agreement observed in the waiting-time analysis between solar wind data and magnetohydrodynamic (MHD) turbulence simulations \cite{grecoStatisticalAnalysisDiscontinuities2009} indicates that a significant portion of these current sheet-like structures constitute the sharp boundaries between the magnetic flux tubes, intermittent structures arising spontaneously and forming rapidly and locally within MHD turbulence.
+The annihilation mechanisms for these discontinuities are also uncertain. They may be unstable and some could rapidly wane or decay \cite{neugebauerTangentialDiscontinuitiesSolar1986}. Magnetic reconnection may be a a natural process that destroys them \cite<e.g.,>{Gosling12,Wilson16:cs,Phan20}. 
+Further complicating this picture is the presence of different types of discontinuities in interplanetary space - specifically tangential and rotational discontinuities \cite<see discussion in>{Neugebauer06,artemyevKineticPropertiesSolar2019,wangSolarWindCurrent2024}, which are classically regarded as static solutions to the MHD equations \cite{hudsonDiscontinuitiesAnisotropicPlasma1970}. These distinct types may arise from different sources and may undergo unique evolutionary paths. Investigating discontinuities across large radial distances has the potential to address these fundamental questions about their origin and evolution.
+
+Discontinuities have long been recognized as key signatures of intermittency in solar wind turbulence, where they contribute to the non-Gaussian character of magnetic field fluctuations \cite{borovskyContributionStrongDiscontinuities2010, grecoPartialVarianceIncrements2017}. Often localized at kinetic scales, these discontinuities are central to understanding solar wind heating and how energy cascades from larger MHD scales down to ion and electron scales \cite{osmanIntermittencyLocalHeating2012, tesseinAssociationSuprathermalParticles2013}. In particular, \citeA{tesseinAssociationSuprathermalParticles2013} used ACE data to show that intense magnetic discontinuities are more strongly correlated with suprathermal particles than interplanetary shocks, indicating that multiple mechanisms, including localized coherent structures, can accelerate these suprathermals. Likewise, \citeA{osmanIntermittencyLocalHeating2012} found that although coherent structures constitute only 19\% of the data, they contribute around 50\% of the total plasma internal energy, underscoring the importance of intermittent heating in current sheets. Numerical simulations further reinforce these observations: \citeA{dmitrukTestParticleEnergization2004} demonstrated that electrons tend to be energized along discontinuities by parallel electric fields, whereas protons gain perpendicular energy from large-scale velocity shears, offering a multiscale picture of how discontinuities drive local heating. Observations also suggest that magnetic reconnection in discontinuities (effectively 1D current sheets) is associated with localized plasma heating \cite{Gosling12}. From a theoretical standpoint, numerous studies and MHD simulations have linked the formation and destruction of discontinuities to the nonlinear dynamics of Alfvén waves and Alfvénic turbulence \cite{lerchePropagationMagneticDisturbances1975, medvedevDissipativeDynamicsCollisionless1997, grecoIntermittentMHDStructures2008, yangFormationRotationalDiscontinuities2015}, producing strong departures from the otherwise adiabatic evolution of solar wind flow \cite{matteiniIonKineticsSolar2012, tsurutaniReviewAlfvenicTurbulence2018}. Indeed, spacecraft observations reveal that the solar wind's magnetic field follows the Parker model only on average \cite{svirzhevskyHeliosphericMagneticField2021}, whereas localized current sheets, often far more intense than Parker theory predicts, are ubiquitous \cite{colburnDiscontinuitiesSolarWind1966, burlagaMicroscaleStructuresInterplanetary1968, turnerOrientationsRotationalTangential1971}. Consequently, understanding how the thickness, current density, and other properties of SWDs evolve with radial distance from the Sun is crucial for revealing their role in solar wind thermodynamics and turbulence. Addressing whether these discontinuities maintain their kinetic-scale character (e.g., remain a few ion inertial lengths wide) and whether their current density weakens in tandem with the radial drop in magnetic field can help constrain theories of their local generation, annihilation, and their overall impact on energy dissipation throughout the heliosphere.
+
+Investigation of the evolution of SWD properties with radial distance (or alternatively, investigation of properties of SWD generation at different radial distances) has mostly been limited to comparison of SWD statistics obtained from different missions during varying phases of solar activity \cite<e.g.,>[]{marianiVariationsOccurrenceRate1973, tsurutaniInterplanetaryDiscontinuitiesTemporal1979, sodingRadialLatitudinalDependencies2001}. However, the data used in these studies were rarely compared with measurements at fixed radial distances, and the methods employed to identify discontinuities were not necessarily optimized for studying discontinuities with weak magnetic fields and long durations, such as those encountered at large radial distances. Furthermore, some measurements at different radial distances were significantly separated in time, with limited time ranges covered \cite{sodingRadialLatitudinalDependencies2001}. Consequently, there are still some ambiguities in interpreting the results of these studies. For example, it is unclear how much of the observed variation in SWD properties is caused by radial distance itself versus changing solar wind conditions. 
+This study presents a statistical analysis of discontinuities observed from Earth's orbit ($\sim 1$ AU) to Jupiter's orbit ($\sim 5$ AU). We utilize data collected by the Juno spacecraft \cite{boltonJunoMission2017} during its cruise phases (2011-2016), with its orbits shown in Panel (a) of Figure~\ref{fig-overview}. Our primary goal is to investigate the radial dependence of the SWD occurrence rate and properties to gain insights into their evolution and origin. Continuous measurements of SWDs at 1 AU from missions such as Wind \cite{acunaGlobalGeospaceScience1995}, ARTEMIS \cite{angelopoulosARTEMISMission2011}, and STEREO \cite{kaiserSTEREOMissionIntroduction2008} have been utilized to distinguish temporal effects from spatial variations by examining the characteristics of discontinuities at two radial distances ($1$ AU and at Juno location) simultaneously. This distinction is crucial because temporal variations could easily be misinterpreted as spatial variations \cite<see discussion in>[]{tsurutaniInterplanetaryDiscontinuitiesTemporal1979}. Due to the potential misidentification of the SWD normal direction with single spacecraft \cite<see discussion in>[]{hausmanDeterminingNatureOrientation2004, liuFailuresMinimumVariance2023, wangSolarWindCurrent2024}, we do not differentiate between shocks and different types of discontinuities, whether they are tangential, rotational, or either \cite{neugebauerReexaminationRotationalTangential1984}.
+
+\section{Conclusion}\label{conclusion}
+
+We have collected 5 years of solar wind discontinuity data from Juno, Wind, THEMIS-B, and STEREO-A. The results of our analysis can be summarized as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The occurrence rate (normalized to that at 1 AU) of SWDs decreases with radial distance from the Sun, following a $1/r$ law within $[1,5]$ AU.
+\item
+  The thickness of SWDs increases with radial distance from the Sun; however, after normalization to ion inertial length, the thickness slightly decreases or remains almost constant within the 1-sigma spread of the distribution. The thickness distribution remains almost constant over a one-year observation period.
+\item
+  The current density of SWDs decreases with radial distance from the Sun, but after normalization to the Alfvén current, it slightly increases or remains almost constant well within the 1-sigma spread of the distribution. The current density distribution slightly increases from 2011 to 2016, but after normalization, it remains identical across the five years, indicating that there is no effect of long-term (i.e., solar cycle) temporal variations on the normalized current density.
+\end{enumerate}
+
+These findings provide key observational constraints for future models of SWD gener-
+ation, evolution, and dissipation. Our study advances previous research by systematically
+characterizing SWD properties across multiple radial distances using single spacecraft (Juno)
+with the continuous verification with multi-spacecraft data at 1AU. By revealing consistent
+normalization behaviors (such as thickness and current density relative to ion inertial length
+and Alfvén current, respectively), we clarify the evolutionary trends of SWDs in the helio-
+sphere. We conclude that the majority of SWDs likely originate close to the Sun and subse-
+quently evolve dynamically as they propagate outward, with their persistence and structure
+strongly influenced by both geometric spreading and physical dissipation processes. These
+insights significantly enhance our understanding of SWD origins and their influence on solar
+wind dynamics, offering a robust framework for future theoretical and observational studies.
+\end{document}
+"""
+
+"""
+\begin{document}
+\title{On the Alfvénicity of multifluid force-free current sheets}
+
+\begin{abstract}
+The solar wind plasma is replete with transient, intense current sheets - also known as solar wind discontinuities - that play a crucial role in solar wind heating and energetic particle scattering. While these discontinuities share similarities with the classical magnetohydrodynamic (MHD) model of rotational discontinuities, they also exhibit complex kinetic behavior beyond single-species fluid models. A particularly puzzling characteristic is their Alfvénicity, hereby defined as the ratio of the plasma velocity jump to the Alfvén velocity jump across the discontinuity. This ratio is expected to approach ±1 in the MHD framework, yet observations consistently show much lower values. By altering the effective Alfvén speed, plasma thermal anisotropy can partially reconcile theory with observation. However, it alone is not sufficient to fully explain the above discrepancy. This study presents a theoretical model in which the stress balance and velocity difference are described by the kinetics of interpenetrating ion beams crossing the current sheet. Incorporating a nonzero normal and a guide magnetic field, this multifluid model is more advanced and realistic and can be readily compared with observations. We employ this model to explain the Alfvénicity of discontinuities observed in the inner heliosphere.
+\end{abstract}
+
+\section{Introduction}\label{introduction}
+
+Solar wind discontinuities are highly localized, transient, and intense coherent structures widely observed in the solar wind \cite{Vasquez07,Greco16,Podesta17,Vasko22:apjl}. These discontinuities exhibit characteristics similar to nonlinear Alfvén waves, as evidenced by the strong correlation between variations in plasma and Alfvén speeds \cite{deKeyser98:grl,Paschmann13:angeo,artemyevKineticPropertiesSolar2019, damicisAlfvenicSlowWind2021}. Theoretical models predict that discontinuities may originate from Alfvén wave nonlinear evolution \cite{Medvedev97:prl,Medvedev96:pop} or plasma turbulence \cite{Servidio11}. The magnetic field configurations of most solar wind discontinuities are best described as force-free current sheets, characterized by a constant magnetic field magnitude $B$, and a strong rotation of magnetic field direction \cite{Neukirch20:jpp}. Similar current sheets have been observed in the night-side magnetospheres of Earth\cite{Nakamura08,Kamaletdinov24:jgr:CS1}, Mars \cite{DiBraccio15,Artemyev17:jgr:mars}, Venus \cite{Rong15:venus}, Mercury \cite{Rong18:mercury}, and Jupiter \cite{Artemyev14:pss}, as well as at magnetosphere boundaries (magnetopause) \cite{Panov11:magnetopause,Lukin20}. Being quasi-1D plasma structures, force-free current sheets (discontinuities) contain two main magnetic field components, $B_x(z)$ reversing across the discontinuity, and $B_y(z)$ reaching a local maximum at $B_x$ reversal, where $z$ denotes the current sheet normal. This specific magnetic field configuration is of particular interest for magnetic reconnection \cite{Wilson16:cs,Shi21:jgr:tearing} and for scattering of energetic charged particles \cite{Artemyev20:pre,malaraChargedparticleChaoticDynamics2021,malaraEnergeticParticleDynamics2023}.
+
+
+Figure \ref{fig-examples} presents three examples of current sheets observed in the solar wind and at Earth's distant magnetotail. All three examples show the same force-free magnetic field configuration with $B_x$ reversal and $B_y$ peak compensating for the drop in magnetic pressure, $B_x^2/8\pi$ (i.e., the stress balance across the sheet is $B_x^2+B_y^2=const$). Several models describe force-free current sheets with $B_z=0$, where the current sheet configuration resembles a tangential discontinuity (see, e.g., Refs. \onlinecite{Harrison09:prl,Allanson15,Allanson16:jpp,Neukirch20}). However, when $B_z\ne 0$, the tangential discontinuity models are no longer applicable and an additional stress balance (besides $B_x^2+B_y^2=const$) should be satisfied: $\Delta v_{A,x}=\Delta U_x$, where $\Delta$ denotes the change across the discontinuity \cite{Hudson70} for Alfvén and plasma speeds in the $x$ direction. This balance is not fully satisfied in most observed force-free current sheets (see Fig. \ref{fig-examples} and Refs. \onlinecite{deKeyser98:grl,Paschmann13:angeo,artemyevKineticPropertiesSolar2019}). Therefore, the current sheet model should be refined and generalized to incorporate properties beyond the overly simplistic single-fluid MHD discontinuity solution. 
+
+A natural next step in the generalization of the single-fluid MHD discontinuity solution is the inclusion of plasma anisotropy, where field-aligned and cross-field plasma pressure components differ, i.e. $P_\| \ne P_\perp$. Indeed, such anisotropy can significantly influence both the structure \cite{Hudson70} and the dynamics \cite{Tenerani17,Tenerani18} of discontinuities. In anisotropic plasmas, the Alfvén speed is modified to $v_A'=v_A\sqrt{1-μ(P_\|-P_\perp)/ B^2}$ (see, e.g., Ref. \onlinecite{AbrahamShrauner67}). As $P_\parallel$ approaches $P_\perp+B^2/μ $, corresponding to the firehose instability threshold \cite{Parker58:firehose,Sagdeev&Shafranov61}, the variation $\Delta v_A \propto \sqrt{1-μ(P_\parallel-P_\perp)/B^2}$ tends to zero. This suggests that the low $\Delta U_x$ magnitudes observed in solar wind discontinuities \cite{deKeyser98:grl,Paschmann13:angeo,artemyevKineticPropertiesSolar2019} could be attributed to sufficiently large field-aligned anisotropy. However, spacecraft observations cannot detect the anisotropy levels required \cite{Artemyev20:apjl,Shen24:apj} to fully account for the observed discrepancy with theoretical predication $\Delta v_{A,x}'=\Delta U_x$. This inconsistency indicates the need for further generalization of the single-fluid MHD model. One such generalization involves considering a multi-component plasma, where counter-streaming ion populations may significantly reduce the required $\Delta U_x$ to achieve stress balance \cite{Vasko14:angeo_by}. In this study, we develop a multifluid model to describe the 1D structure of force-free current sheets (discontinuities with $B_z\ne0$), and compare the model predictions with observations in the solar wind.
+
+\section{Discussion}
+This work presents a multifluid model of force-free current sheets with an arbitrary level of Alfvénicity. The primary application of this model is to describe current sheets in the solar wind \cite{Artemyev19:grl:solarwind} and planetary magnetotails \cite{Kamaletdinov24:jgr:CS2}. 
+
+In the context of our model, these observations shown in Figure \ref{fig-vRatioStats} reveal distinct solar wind behaviors at different heliocentric distances. Near the Sun, the velocity ratio (Alfvénicity) is significantly higher, indicating that the configuration of current sheets closely resembles that of a single-fluid discontinuity. Within our model framework, this corresponds to a less balanced state between ion populations, characterized by $n_1 \gg n_2$. In contrast, at 1 AU, as evidenced by the ARTEMIS and Wind datasets, the current sheets exhibit considerably lower Alfvénicity, with $Δ U_x/Δ v_{A,x} <0.5$ (this is a quite typical value for $1$ AU; see Refs. \onlinecite{deKeyser98,artemyevKineticPropertiesSolar2019}). Within our model, such low Alfvénicity suggests more balanced densities of two ion populations, with $n_1 \approx n_2$. Therefore, interpreting the observational dataset within the framework of our model, we propose that as the solar wind propagates outward and transports current sheets, the balance between the densities of ion populations ($n_1$ and $n_2$) evolves. This transition occurs from a single-fluid-dominated regime near the Sun to a more balanced multifluid regime at greater distances. This conclusion, of course, is based on a simplified treatment of the model equations. However, in contrast to single-fluid models (with and without anisotropy), our multifluid approach offers a potential explanation for the observed low Alfvénicity in the distant solar wind.
+
+\end{document}
+"""
+-->
