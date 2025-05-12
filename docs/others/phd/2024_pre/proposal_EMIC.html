@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux – beforerr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-443ac161e34e8c1eedb78f958e3d9213.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-5d4dd9db148681779f63c031488aa21a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">beforerr</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/projects/index.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-others" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Others</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-others">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/blog/index.html">
+ <span class="dropdown-text">Blog</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/others/phd/index.html">
+ <span class="dropdown-text">PhD</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/courses/index.html">
+ <span class="dropdown-text">Courses</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Beforerr/beforerr" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#background-and-motivation" id="toc-background-and-motivation" class="nav-link" data-scroll-target="#background-and-motivation">Background and Motivation</a></li>
+  <li><a href="#proposed-data-and-detailed-analysis-approach" id="toc-proposed-data-and-detailed-analysis-approach" class="nav-link" data-scroll-target="#proposed-data-and-detailed-analysis-approach">Proposed Data and Detailed Analysis Approach</a>
+  <ul class="collapse">
+  <li><a href="#data-acquisition-and-sources" id="toc-data-acquisition-and-sources" class="nav-link" data-scroll-target="#data-acquisition-and-sources">Data Acquisition and Sources</a></li>
+  <li><a href="#analysis-approach" id="toc-analysis-approach" class="nav-link" data-scroll-target="#analysis-approach">Analysis Approach</a></li>
+  <li><a href="#expected-contributions" id="toc-expected-contributions" class="nav-link" data-scroll-target="#expected-contributions">Expected Contributions</a></li>
+  </ul></li>
+  <li><a href="#discussion-and-future-work" id="toc-discussion-and-future-work" class="nav-link" data-scroll-target="#discussion-and-future-work">Discussion and Future Work</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures">Figures</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/others/phd/2024_pre/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="proposal_EMIC.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>PhD Candidate: Zijin Zhang</strong></p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>Electromagnetic Ion Cyclotron (EMIC) waves and whistler (chorus) waves are fundamental plasma wave phenomena in Earth’s magnetosphere, influencing the dynamics of radiation belts through interactions with energetic electrons. Electron interactions with these waves often lead to significant modulation of electron fluxes, with chorus waves accelerating electrons to relativistic energies <span class="citation" data-cites="miyoshiRebuildingProcessOuter2003">(<a href="#ref-miyoshiRebuildingProcessOuter2003" role="doc-biblioref">Miyoshi et al. 2003</a>)</span> and EMIC &amp; chorus waves causing electron losses through pitch angle scattering <span class="citation" data-cites="summersRelativisticElectronPitchangle2003 summersTimescalesRadiationBelt2007">(<a href="#ref-summersRelativisticElectronPitchangle2003" role="doc-biblioref">Summers and Thorne 2003</a>; <a href="#ref-summersTimescalesRadiationBelt2007" role="doc-biblioref">Summers, Ni, and Meredith 2007</a>)</span>.
+This project focuses on leveraging ELFIN satellite measurements to investigate the role of EMIC-driven precipitation during storm-time events, specifically analyzing how EMIC waves contribute to the shaping of energetic electron spectra. Traditionally, these spectra have been modeled considering primarily whistler-mode waves and plasma injections. By integrating ELFIN data with complementary observations from Van Allen Probes, ERG (Arase) and MMS, alongside advanced simulations, we aim to refine the understanding of EMIC wave contributions to relativistic electron dynamics, enhancing current radiation belt models.
+<!-- This project aims to deepen the understanding of how these waves, in concert with other phenomena like plasma sheet injections, impact the behavior of radiation belt electrons during storm-time events. Leveraging extensive datasets from satellites such as the Van Allen Probes, ERG (Arase), MMS, and ELFIN, we will conduct a comprehensive analysis of wave properties, and the resulting effects on electron fluxes. By integrating observational data with advanced simulation techniques, the project seeks to enhance current models of radiation belt dynamics. --></p>
+</section>
+<section id="background-and-motivation" class="level1">
+<h1>Background and Motivation</h1>
+<p>There are six important physical processes that affect the dynamics of relativistic (<span class="math inline">\(&gt;0.3\)</span> MeV) electrons trapped in the Earth’s outer radiation belt: (a) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with electromagnetic ion cyclotron (EMIC) waves , (b) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with whistler-mode waves , (c) electron flux increases due to chorus wave-driven acceleration of <span class="math inline">\(\approx100-300\)</span> keV “seed” electrons provided by recurrent strong injections , (d) electron losses due to magnetopause shadowing and outward radial diffusion , (e) electron flux increase due to inward radial diffusion by ULF waves , and (f) electron flux increase due to direct injections of <span class="math inline">\(\sim0.5-1.5\)</span> MeV electrons in the outer belt . These mechanisms collectively shape the distribution of radiation belt electrons, with varying influences depending on geomagnetic conditions and wave activity.</p>
+<p>Among these, EMIC wave-driven electron precipitation stands out as a key mechanism for electron losses at energies above the minimum threshold for cyclotron resonance with such waves, typically <span class="math inline">\(E_{\min}\sim 0.5-1\)</span> MeV . EMIC waves induce much higher electron pitch angle scattering rates near the loss cone at relativistic energies than those driven by chorus waves . Numerical simulations of the outer radiation belt dynamics , alongside data-model comparisons , have confirmed that EMIC waves efficiently scatter relativistic electrons, leading to rapid depletion of their fluxes in the outer radiation belt.</p>
+<p>However, for energies below ultra-relativistic levels (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering primarily affects low pitch angle electrons (equatorial <span class="math inline">\(\alpha_{eq}&lt;30^\circ\)</span>) . Additional scattering of high pitch angle (<span class="math inline">\(\alpha_{eq}&gt;30^\circ\)</span>) electrons by whistler-mode waves has been suggested to assist EMIC waves in the precipitation of the near-equatorial (trapped) electron population . Studies have shown that the combination of EMIC and whistler-mode wave scattering at the same <span class="math inline">\(L\)</span>-shell (even at different longitudes) can result in very effective electron flux depletion . Verifying this electron loss mechanism requires coordinated observations from satellites near the equator (to measure waves and equatorial pitch-angle fluxes) and at low-altitude (to capture precipitating electron fluxes).</p>
+<p>EMIC waves are typically generated by anisotropic ion populations from plasma sheet injections . These injections also produce anisotropic “seed” electrons , which provide the free energy for whistler-mode chorus wave generation . Chorus waves can then accelerate the same seed electrons to relativistic energies <span class="citation" data-cites="miyoshiRebuildingProcessOuter2003 thorneRapidLocalAcceleration2013 mourenasApproximateAnalyticalSolutions2014 allisonLocalHeatingRadiation2020">(<a href="#ref-miyoshiRebuildingProcessOuter2003" role="doc-biblioref">Miyoshi et al. 2003</a>; <a href="#ref-thorneRapidLocalAcceleration2013" role="doc-biblioref">Thorne et al. 2013</a>; <a href="#ref-mourenasApproximateAnalyticalSolutions2014" role="doc-biblioref">Mourenas et al. 2014</a>; <a href="#ref-allisonLocalHeatingRadiation2020" role="doc-biblioref">Allison and Shprits 2020</a>)</span>. A competition emerges between electron acceleration driven by whistler-mode waves, supported by adiabatic heating during injections <span class="citation" data-cites="sorathiaModelingDepletionRecovery2018">(e.g., <a href="#ref-sorathiaModelingDepletionRecovery2018" role="doc-biblioref">Sorathia et al. 2018</a>)</span>, and electron precipitation induced by EMIC and chorus waves. This competition ultimately shapes the energy spectrum of radiation belt electrons following plasma sheet injections. Recent publications suggest that the electron energy spectrum reaches an upper flux limit, resulting from a balance between electron injections and precipitation losses governed by whistler-mode waves <span class="citation" data-cites="oliferTaleTwoRadiation2021 oliferNaturalLimitSpectral2022">(<a href="#ref-oliferTaleTwoRadiation2021" role="doc-biblioref">Olifer et al. 2021</a>, <a href="#ref-oliferNaturalLimitSpectral2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>This upper flux limit, first predicted by <span class="citation" data-cites="kennelLimitStablyTrapped1966">Kennel and Petschek (<a href="#ref-kennelLimitStablyTrapped1966" role="doc-biblioref">1966</a>)</span> and later extended for relativistic electrons <span class="citation" data-cites="summersLimitStablyTrapped2009 summersLimitingEnergySpectrum2014">(<a href="#ref-summersLimitStablyTrapped2009" role="doc-biblioref">Summers, Tang, and Thorne 2009</a>; <a href="#ref-summersLimitingEnergySpectrum2014" role="doc-biblioref">Summers and Shi 2014</a>)</span>, is based on the concept that injected electrons generate whistler-mode waves, which grow exponentially as electron fluxes exceed the flux limit. These waves, in turn, scatter the injected electrons into the atmosphere. The dynamic interplay between linearly increasing anisotropic electron fluxes and exponentially faster electron losses results in a stationary solution within the Fokker-Planck equation that describes electron flux dynamics/ When EMIC wave-driven losses are incorporated into this framework, the upper limit for the differential electron flux at higher energies is further reduced <span class="citation" data-cites="mourenasExtremeEnergySpectra2022">(<a href="#ref-mourenasExtremeEnergySpectra2022" role="doc-biblioref">Mourenas et al. 2022</a>)</span>. This adjustment highlights the important contribution of EMIC waves to electron precipitation, particularly at higher energies, where they significantly enhance overall electron losses.</p>
+<p>The significant role of EMIC waves in regulating radiation belt electron loss complements the more widely studied effects of whistler-mode waves and other mechanisms like plasma injections and magnetopause shadowing. Understanding the concurrent operation of EMIC waves alongside these processes during storm-time plasma sheet injections remains a critical challenge. The proposed study seeks to clarify the relative contributions of EMIC waves by combining detailed observational data from missions such as ELFIN, Van Allen Probes, and ERG (Arase) with advanced theoretical modeling. This enhanced understanding will improve our ability to interpret radiation belt behavior during geomagnetic storms and advance the current models of radiation belt dynamics.</p>
+</section>
+<section id="proposed-data-and-detailed-analysis-approach" class="level1">
+<h1>Proposed Data and Detailed Analysis Approach</h1>
+<section id="data-acquisition-and-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-acquisition-and-sources">Data Acquisition and Sources</h3>
+<p><strong>ELFIN CubeSat:</strong> Employ low-altitude measurements from the ELFIN CubeSat to quantify the effects of EMIC waves on electron precipitation. ELFIN’s unique orbital characteristics and full energy (16 channels within <span class="math inline">\([50,6000]\)</span> keV) and pitch-angle (8 channels within <span class="math inline">\([0,180^\circ]\)</span>) resolution allow it to measure loss cone distributions and provide a direct measure of wave-driven electron losses.</p>
+<p><strong>Van Allen Probes:</strong> Utilize extensive datasets from the Van Allen Probes, which include electric and magnetic field measurements, plasma wave spectra, and particle detection (electron and ion fluxes) across different energy ranges. These data are essential for directly observing EMIC waves and assessing their interactions with radiation belt electrons during different geomagnetic conditions.</p>
+<p><strong>ERG (Arase) Satellite:</strong> Draw upon high-resolution data from the ERG satellite, which offers crucial insights into the inner magnetosphere’s dynamics. ERG’s suite of instruments provides critical measurements of electron density, electric fields, and magnetic fields that help identify the conditions conducive to EMIC wave generation and propagation.</p>
+<p><strong>Magnetospheric Multiscale (MMS) Mission:</strong> Analyze high-resolution data from the MMS mission, which is key for understanding the microphysics of wave-particle interactions, especially during short-duration events and smaller spatial scales that are not resolved by other satellites.</p>
+<p>We highlight a candidate conjunction event, as illustrated in <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a>. Equatorial and low-altitude satellites allow direct observations of electron loss due to scattering by EMIC and whistler-mode waves, electron acceleration by whistler-mode waves, and plasma sheet injections.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig1_orbit_multi_mission_conjunctions.png" class="img-fluid figure-img" style="width:67.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: (top) An overview of the mission orbits recorded on April 17, 2021. The orbits of the various missions are projected onto the MLT and <span class="math inline">\(L\)</span>-shell plane, using Tsyganenko model. (bottom) Sym-H and SME indices during this event.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="analysis-approach" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-approach">Analysis Approach</h2>
+<p>First, we will identify specific events during which intense EMIC wave activity coincides with significant changes in electron fluxes. These events will be used as case studies to analyze the interaction mechanisms in detail, employing cross-spectral analysis to examine the coherence between EMIC waves and electron flux oscillations.</p>
+<div id="fig-elfin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_elfin_j_ratio.png" class="img-fluid figure-img" style="width:67.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Two ELFIN CubeSats observations of EMIC wave-driven electron precipitation, where the precipitating flux reaches the trapped flux in high-energy channels, over an interval exceeding three hours, from 02:42 to 05:53 UT. The locations are projected to the equatorial L-Shell and MLT, using the Tsyganenko89 magnetic field model. Panels (a), (b), and (d) show data from ELFIN-B, while panel (c) features observations from ELFIN-A.
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-elfin" class="quarto-xref">Figure&nbsp;2</a> (adapted from Fig 5 of <span class="citation" data-cites="angelopoulosEnergeticElectronPrecipitation2023">Angelopoulos et al. (<a href="#ref-angelopoulosEnergeticElectronPrecipitation2023" role="doc-biblioref">2023</a>)</span>) shows a clear example of the EMIC wave-driven electron precipitation observed by ELFIN CubeSats. We observe a high precipitating-to-trapped flux ratio <span class="math inline">\(j_{prec}/j_{trap}\)</span> during four ELFIN orbits.
+Within <span class="math inline">\(L \in [5,6]\)</span> there is a peak of precipitating-to-trapped flux ratio above <span class="math inline">\(300\)</span> keV. This peak moves from <span class="math inline">\(L \sim 6\)</span> around 02:45 UT to <span class="math inline">\(L \sim 5\)</span> at 05:15 UT. Only EMIC wave-driven precipitation may have a low-energy cut-off of scattering fluxes around <span class="math inline">\(\sim 500\)</span> keV, which is a typical minimum resonance energy for EMIC waves <span class="citation" data-cites="anNonresonantScatteringRelativistic2022 angelopoulosEnergeticElectronPrecipitation2023">(see the identification of other EMIC wave-driven precipitation events with similar precipitating-to-trapped ratios in <a href="#ref-anNonresonantScatteringRelativistic2022" role="doc-biblioref">An et al. 2022</a>; <a href="#ref-angelopoulosEnergeticElectronPrecipitation2023" role="doc-biblioref">Angelopoulos et al. 2023</a>)</span>. Note that the efficient precipitation (large <span class="math inline">\(j_{prec}/j_{trap}\)</span>) observed at <span class="math inline">\(L&gt;6.5\)</span> is likely due to a combination of whistler-mode wave-driven precipitation <span class="citation" data-cites="shiRoleULFWaves2022">(<a href="#ref-shiRoleULFWaves2022" role="doc-biblioref">Shi et al. 2022</a>)</span> and precipitation due to the curvature scattering <span class="citation" data-cites="wilkinsStatisticalCharacteristicsElectron2023">(<a href="#ref-wilkinsStatisticalCharacteristicsElectron2023" role="doc-biblioref">Wilkins et al. 2023</a>)</span>, while precipitation of <span class="math inline">\(&lt;300\)</span> keV electrons at <span class="math inline">\(L&lt;5\)</span> is driven by whistler-mode wave scattering <span class="citation" data-cites="artemyevRoleDuctingRelativistic2021">(see similar examples of quasi-periodical precipitation on the dusk flank in <a href="#ref-artemyevRoleDuctingRelativistic2021" role="doc-biblioref">Artemyev et al. 2021</a>)</span>.
+Therefore, <a href="#fig-elfin" class="quarto-xref">Figure&nbsp;2</a> demonstrates that during at least three hours, ELFIN observed continuous EMIC wave-driven losses of relativistic electrons. As <span class="math inline">\(j_{prec}/j_{trap}\)</span> for <span class="math inline">\(\sim\)</span> 0.3–1 MeV electrons reaches one, the strong diffusion regime, one may expect a significant depletion of equatorial electron flux in this energy range, at least at low pitch-angles.</p>
+<p>To further confirm the role of EMIC waves in driving electron precipitation, we will utilize phase space density calculations and quasi-linear theory to analyze how EMIC waves scatter radiation belt electrons into the loss cone, leading to precipitation. By quantifying the diffusion coefficients, we can better understand the rate and extent of changes in electron flux.</p>
+<p>In the limit of near-equilibrium of the electron distribution near the loss-cone <span class="citation" data-cites="kennelLimitStablyTrapped1966">(<a href="#ref-kennelLimitStablyTrapped1966" role="doc-biblioref">Kennel and Petschek 1966</a>)</span> the average precipitating electron flux measured within the loss-cone by ELFIN CubeSats at low altitude, <span class="math inline">\(j_{prec}\)</span>, can be expressed as a function of the trapped flux measured at an equatorial pitch-angle <span class="math inline">\(5\)</span>% above the loss-cone angle <span class="math inline">\(\alpha_{LC}\)</span>, denoted <span class="math inline">\(j_{trap}\)</span> <span class="citation" data-cites="mourenasUpperLimitOuter2023">(<a href="#ref-mourenasUpperLimitOuter2023" role="doc-biblioref">Mourenas et al. 2023</a>)</span>. In the ELFIN data products, <span class="math inline">\(j_{prec}\)</span> is averaged over the loss cone weighted by solid angle, giving <span class="math inline">\(j_{prec}/j_{trap}\approx 1.3/(z_0+z_0^2/200)\)</span> with <span class="math inline">\(z_0=2\alpha_{LC}/(\tau_B D_{\alpha\alpha})^{1/2}\)</span> and <span class="math inline">\(\tau_B\)</span> the electron bounce period, valid for <span class="math inline">\(j_{prec}/j_{trap}\in[0.001,0.85]\)</span>.
+Accordingly, <span class="math inline">\(D_{\alpha\alpha}\)</span> at <span class="math inline">\(\alpha_0=\alpha_{LC}\)</span> can be inferred from the measured ratio <span class="math inline">\(j_{prec}/j_{trap}\)</span> at ELFIN, giving <span class="math inline">\(D_{\alpha\alpha} \approx \frac{{\alpha_{LC}^2}}{{2500\, \tau_B }} \left(\sqrt{1+ \frac{{ j_{trap} }}{{ 38.5\, j_{prec} }} } -1 \right)^{-2}\)</span>.
+The diffusion rates <span class="math inline">\(D_{\alpha\alpha}\)</span> inferred, using the above Equation, from time-averaged ELFIN measurements of precipitating and trapped electron fluxes are displayed in <a href="#fig-Daa_EMIC" class="quarto-xref">Figure&nbsp;3</a> for different electron energies and different <span class="math inline">\(L\)</span>. In the noon-dusk sector of the plasmaspheric plume, despite the theoretical impossibility of cyclotron resonance between 0.5-2 MeV electrons and typical EMIC wave frequencies, observed electron precipitation at these energies continues, particularly for low-energy electrons via scattering with high-frequency, low-amplitude H-band EMIC waves.
+These results suggest the presence of duskside EMIC wave bursts with peak amplitudes <span class="math inline">\(B_w\approx 0.5\)</span> nT and a low-amplitude component at frequencies above those of peak-amplitude.</p>
+<p>This estimate of electron lifetime by EMIC waves is based on analytical quasi-linear diffusion theory with realistic wave and plasma parameters, which allows us to simplify the dispersion relation and the diffusion coefficients. However, in general, quasi-linear diffusion by EMIC waves alone cannot lead to strong and fast dropouts of 2–6 MeV electrons up to high pitch angles, as there is no cyclotron resonance between these electrons and EMIC waves above the maximum resonance pitch angle <span class="math inline">\(\alpha_{0,\max}\)</span>. This prevents the majority of the electron population from being scattered toward the loss cone, except if the bottleneck in the bounce-averaged pitch angle diffusion rate <span class="math inline">\(D_{\alpha\alpha}(\text{EMIC})\)</span> at high <span class="math inline">\(\alpha_0\)</span> can be filled by other kinds of waves. Therefore, in the proposed study, we will extend the quasi-linear diffusion analysis to chorus waves and further investigate the combined effects of EMIC and chorus waves on radiation belt electrons. By utilizing the observed wave properties with the aid of theoretical predictions, we aim to elucidate the underlying mechanisms that drive electron dynamics during storm-time events.</p>
+<!-- ## Research Questions Addressed -->
+<!-- 1. **Mechanism Elucidation:** How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains? -->
+<!-- 2. **Modeling Improvements:** Can the integration of enhanced EMIC wave models into simulation frameworks improve the accuracy of forecasts regarding electron dynamics in the radiation belts? -->
+<!-- 3. **Predictive Capabilities:** How effectively can the refined models predict changes in electron fluxes during geomagnetic storms, and what improvements are necessary to achieve better predictive reliability? -->
+<!-- By addressing these questions through a detailed analytical and simulation-based approach, the proposed research aims to significantly advance our understanding of EMIC waves' role in radiation belt dynamics. -->
+</section>
+<section id="expected-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="expected-contributions">Expected Contributions</h2>
+<p>This project aims to quantify the impact of EMIC waves on the electron energy spectrum, previously thought to be shaped mainly by plasma injections and whistler-mode waves. Using data from satellite missions like ELFIN, Van Allen Probes, and ERG (Arase), we will examine how EMIC waves alter electron fluxes during storms, particularly alongside whistler-mode waves. By analyzing case studies and applying diffusion coefficients, we aim to assess how EMIC waves influence electron pitch angles and precipitation. Ultimately, this study seeks to compare the effects of EMIC and whistler-mode waves to determine when EMIC waves dominate electron loss processes.</p>
+<!-- This research project aims to advance our understanding of how EMIC or/and whistler waves influence radiation belt electrons. By integrating empirical data from multiple satellite sources with advanced theoretical modeling, we seek to establish a robust analytical framework capable of unraveling the complex interactions within Earth's magnetosphere.
+
+This will include detailed case studies where EMIC wave activity is correlated with significant changes in electron fluxes, enhancing our empirical understanding of these critical interactions. Specifically, we try to answer the following question:
+
+**How exactly do these waves together influence electron pitch angles and energies, and under what specific conditions do these interactions lead to net electron losses or gains?**
+
+Utilizing analytic diffusion coefficients for EMIC waves, chorus waves, or a combination thereof, we intend to ascertain the rate and extent of changes in electron fluxes during storm-time events and elucidate the role these waves play in driving electron precipitation. -->
+<!-- 2. Advanced Theoretical Modeling: The development and enhancement of diffusion models that incorporate refined EMIC wave characteristics will offer new theoretical insights into the mechanisms driving electron dynamics in the radiation belts. This will facilitate a better understanding of the conditions under which EMIC waves lead to electron acceleration or loss, filling a significant gap in the current scientific literature. -->
+<!-- 3. **Improved Predictive Capabilities for Space Weather:** By refining simulation models to better predict the impacts of EMIC waves on radiation belt dynamics, this research will enhance our ability to forecast space weather effects, thereby contributing to more effective mitigation strategies for protecting satellites and other space-based technologies from adverse effects. -->
+<!-- 4. **Publications and Dissemination:** The findings from this study are expected to be disseminated through several peer-reviewed scientific papers, presentations at major international conferences, and integrations into global space weather modeling tools, reaching both academic audiences and space weather practitioners. -->
+</section>
+</section>
+<section id="discussion-and-future-work" class="level1">
+<h1>Discussion and Future Work</h1>
+<p>The findings of this research will deepen our comprehension of radiation belt electron dynamics in the presence of multiple waves during storm time. However, several questions are likely to arise from this study, guiding future research efforts:</p>
+<ul>
+<li><p>Wave Source Regions and Propagation: Further investigations may be required to identify the specific source regions of EMIC waves and their propagation characteristics through the magnetosphere. Understanding these aspects could enhance predictions of when and where EMIC waves will impact electron populations.</p></li>
+<li><p>Interactions with Other Wave Modes: While this project focuses on EMIC waves, the magnetosphere contains multiple interacting wave modes. Future work could explore the interactions between EMIC waves and other wave types, such as ULF and VLF waves, to provide a more holistic view of the dynamics governing radiation belt electron fluxes.</p></li>
+</ul>
+<!-- - Technological Applications: The development of real-time monitoring tools based on the findings from this research could be explored. These tools would use satellite data to provide immediate assessments of EMIC wave activity and its potential impacts, offering valuable information for satellite operators and space weather forecasters. -->
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>The proposed research is designed to tackle some of the most pressing questions in space physics regarding the impact of EMIC&amp;whistler waves on radiation belt dynamics. Through a combination of detailed empirical analysis and advanced theoretical modeling, this project aims to provide significant insights and tools for predicting space weather, thereby contributing to our ability to safeguard and optimize the operation of space-based technologies.</p>
+</section>
+<section id="figures" class="level1">
+<h1>Figures</h1>
+<div id="fig-Daa_EMIC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Daa_EMIC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_Daa.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Daa_EMIC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Panel (a) Diffusion rates <span class="math inline">\(D_{\alpha\alpha}\)</span> of electrons near the loss-cone inferred, using Equation 2, from ELFIN measurements of precipitating and trapped electron fluxes in the dusk sector near 16 MLT, at <span class="math inline">\(L=5\)</span> (solid red) and <span class="math inline">\(L=6\)</span> (solid black) as a function of electron energy <span class="math inline">\(E\)</span>. Diffusion rates <span class="math inline">\(D_{\alpha\alpha}\)</span> near the loss-cone evaluated based on analytical estimates for H-band EMIC waves with typical wave and plasma parameters at <span class="math inline">\(L=5\)</span> (red) and <span class="math inline">\(L=6\)</span> (black) in a noon-dusk plasmaspheric plume, as a function of energy <span class="math inline">\(E\)</span> are shown for a typical ratio <span class="math inline">\(f_{pe}/f_{ce}=20\)</span>, a peak wave amplitude of <span class="math inline">\(B_w=0.5\)</span> nT at <span class="math inline">\(\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.4\)</span>, and a (minimum) frequency <span class="math inline">\(\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.45\)</span> for cyclotron resonance with <span class="math inline">\(\sim2\)</span> MeV electrons (dashed lines). (b) Same as (a) with analytical estimates of <span class="math inline">\(D_{\alpha\alpha}\)</span> shown for H-band EMIC waves with a peak wave amplitude of <span class="math inline">\(B_w=0.5\)</span> nT at <span class="math inline">\(\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.4\)</span> and a (minimum) frequency <span class="math inline">\(\omega_{\text{EMIC}}/\Omega_{cp}\sim 0.7\)</span> for cyclotron resonance with <span class="math inline">\(\sim0.75\)</span> MeV electrons (dashed lines).
+</figcaption>
+</figure>
+</div>
+<!-- # Appendix
+
+## Simulation and Modeling
+
+In our simulation and modeling efforts, we focus on enhancing diffusion models by integrating the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This involves updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. Additionally, we implement a model validation and iterative refinement process. This systematic approach compares simulated results with satellite observations to enhance the reliability and accuracy of predictive models. The iterative refinement process ensures that our models remain robust and effective across a wide range of space weather scenarios. -->
+<!-- - Diffusion Model Enhancement: Integrate the latest empirical models of EMIC wave properties into existing radiation belt simulation frameworks. This will involve updating the wave spectral characteristics and amplitudes based on observed data, thus refining the models used to predict electron dynamics under various space weather conditions. -->
+<!-- - **Numerical Simulations:** Conduct particle-in-cell and test particle simulations to model the interactions of electrons with EMIC waves, validating the theoretical predictions with observational data. This approach provides a dynamic simulation environment where theoretical assumptions can be rigorously tested against real-world data. -->
+<!-- - Model Validation and Iterative Refinement: Employ a systematic approach to compare simulated results with satellite observations. This iterative process of validation and refinement is essential to improve the reliability and accuracy of predictive models, ensuring they are robust under a wide range of space weather scenarios. -->
+<div style="page-break-after: always;"></div>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-allisonLocalHeatingRadiation2020" class="csl-entry" role="listitem">
+Allison, Hayley J., and Yuri Y. Shprits. 2020. <span>“Local Heating of Radiation Belt Electrons to Ultra-Relativistic Energies.”</span> <em>Nature Communications</em> 11 (September): 4533. <a href="https://doi.org/10.1038/s41467-020-18053-z">https://doi.org/10.1038/s41467-020-18053-z</a>.
+</div>
+<div id="ref-anNonresonantScatteringRelativistic2022" class="csl-entry" role="listitem">
+An, Xin, Anton Artemyev, Vassilis Angelopoulos, Xiaojia Zhang, Didier Mourenas, and Jacob Bortnik. 2022. <span>“Nonresonant <span>Scattering</span> of <span>Relativistic Electrons</span> by <span>Electromagnetic Ion Cyclotron Waves</span> in <span>Earth</span>’s <span>Radiation Belts</span>.”</span> <em>Physical Review Letters</em> 129 (September): 135101. <a href="https://doi.org/10.1103/PhysRevLett.129.135101">https://doi.org/10.1103/PhysRevLett.129.135101</a>.
+</div>
+<div id="ref-angelopoulosEnergeticElectronPrecipitation2023" class="csl-entry" role="listitem">
+Angelopoulos, V., X. -J. Zhang, A. V. Artemyev, D. Mourenas, E. Tsai, C. Wilkins, A. Runov, et al. 2023. <span>“Energetic <span>Electron Precipitation Driven</span> by <span>Electromagnetic Ion Cyclotron Waves</span> from <span>ELFIN</span>’s <span>Low Altitude Perspective</span>.”</span> <em>Space Science Reviews</em> 219 (August): 37. <a href="https://doi.org/10.1007/s11214-023-00984-w">https://doi.org/10.1007/s11214-023-00984-w</a>.
+</div>
+<div id="ref-artemyevRoleDuctingRelativistic2021" class="csl-entry" role="listitem">
+Artemyev, A. V., A. G. Demekhov, X. -J. Zhang, V. Angelopoulos, D. Mourenas, Yu V. Fedorenko, J. Maninnen, et al. 2021. <span>“Role of <span>Ducting</span> in <span>Relativistic Electron Loss</span> by <span>Whistler-Mode Wave Scattering</span>.”</span> <em>Journal of Geophysical Research (Space Physics)</em> 126 (November): e29851. <a href="https://doi.org/10.1029/2021JA029851">https://doi.org/10.1029/2021JA029851</a>.
+</div>
+<div id="ref-kennelLimitStablyTrapped1966" class="csl-entry" role="listitem">
+Kennel, C. F., and H. E. Petschek. 1966. <span>“Limit on Stably Trapped Particle Fluxes.”</span> <em>Journal of Geophysical Research (1896-1977)</em> 71 (1): 1–28. <a href="https://doi.org/10.1029/JZ071i001p00001">https://doi.org/10.1029/JZ071i001p00001</a>.
+</div>
+<div id="ref-miyoshiRebuildingProcessOuter2003" class="csl-entry" role="listitem">
+Miyoshi, Yoshizumi, Akira Morioka, Hiroaki Misawa, Takahiro Obara, Tsugunobu Nagai, and Yoshiya Kasahara. 2003. <span>“Rebuilding Process of the Outer Radiation Belt During the 3 <span>November</span> 1993 Magnetic Storm: <span>NOAA</span> and <span>Exos-D</span> Observations.”</span> <em>Journal of Geophysical Research: Space Physics</em> 108 (A1): SMP 3-1-SMP 3-15. <a href="https://doi.org/10.1029/2001JA007542">https://doi.org/10.1029/2001JA007542</a>.
+</div>
+<div id="ref-mourenasApproximateAnalyticalSolutions2014" class="csl-entry" role="listitem">
+Mourenas, D., A. V. Artemyev, O. V. Agapitov, V. Krasnoselskikh, and W. Li. 2014. <span>“Approximate Analytical Solutions for the Trapped Electron Distribution Due to Quasi-Linear Diffusion by Whistler Mode Waves.”</span> <em>Journal of Geophysical Research (Space Physics)</em> 119 (December): 9962–77. <a href="https://doi.org/10.1002/2014JA020443">https://doi.org/10.1002/2014JA020443</a>.
+</div>
+<div id="ref-mourenasExtremeEnergySpectra2022" class="csl-entry" role="listitem">
+Mourenas, D., A. V. Artemyev, X.-J. Zhang, and V. Angelopoulos. 2022. <span>“Extreme <span>Energy Spectra</span> of <span>Relativistic Electron Flux</span> in the <span>Outer Radiation Belt</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 127 (11): e2022JA031038. <a href="https://doi.org/10.1029/2022JA031038">https://doi.org/10.1029/2022JA031038</a>.
+</div>
+<div id="ref-mourenasUpperLimitOuter2023" class="csl-entry" role="listitem">
+———. 2023. <span>“Upper <span>Limit</span> on <span>Outer Radiation Belt Electron Flux Based</span> on <span>Dynamical Equilibrium</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 128 (8): e2023JA031676. <a href="https://doi.org/10.1029/2023JA031676">https://doi.org/10.1029/2023JA031676</a>.
+</div>
+<div id="ref-oliferNaturalLimitSpectral2022" class="csl-entry" role="listitem">
+Olifer, L., I. R. Mann, S. G. Claudepierre, D. N. Baker, H. E. Spence, and L. G. Ozeke. 2022. <span>“A <span>Natural Limit</span> to the <span>Spectral Hardness</span> of <span>Worst Case Electron Radiation</span> in the <span>Terrestrial Van Allen Belt</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 127 (8): e2022JA030506. <a href="https://doi.org/10.1029/2022JA030506">https://doi.org/10.1029/2022JA030506</a>.
+</div>
+<div id="ref-oliferTaleTwoRadiation2021" class="csl-entry" role="listitem">
+Olifer, L., I. R. Mann, A. Kale, B. H. Mauk, S. G. Claudepierre, D. N. Baker, H. E. Spence, and L. G. Ozeke. 2021. <span>“A <span>Tale</span> of <span>Two Radiation Belts</span>: <span>The Energy-Dependence</span> of <span>Self-Limiting Electron Space Radiation</span>.”</span> <em>Geophysical Research Letters</em> 48 (20): e2021GL095779. <a href="https://doi.org/10.1029/2021GL095779">https://doi.org/10.1029/2021GL095779</a>.
+</div>
+<div id="ref-shiRoleULFWaves2022" class="csl-entry" role="listitem">
+Shi, Xiaofei, Xiao-Jia Zhang, Anton Artemyev, Vassilis Angelopoulos, Michael D. Hartinger, Ethan Tsai, and Colin Wilkins. 2022. <span>“On the <span>Role</span> of <span>ULF Waves</span> in the <span>Spatial</span> and <span>Temporal Periodicity</span> of <span>Energetic Electron Precipitation</span>.”</span> <em>Journal of Geophysical Research (Space Physics)</em> 127 (December): e2022JA030932. <a href="https://doi.org/10.1029/2022JA030932">https://doi.org/10.1029/2022JA030932</a>.
+</div>
+<div id="ref-sorathiaModelingDepletionRecovery2018" class="csl-entry" role="listitem">
+Sorathia, Kareem A., Aleksandr Y. Ukhorskiy, Viacheslav G. Merkin, Joseph F. Fennell, and Seth G. Claudepierre. 2018. <span>“Modeling the <span>Depletion</span> and <span>Recovery</span> of the <span>Outer Radiation Belt During</span> a <span>Geomagnetic Storm</span>: <span>Combined MHD</span> and <span>Test Particle Simulations</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 123 (7): 5590–5609. <a href="https://doi.org/10.1029/2018JA025506">https://doi.org/10.1029/2018JA025506</a>.
+</div>
+<div id="ref-summersTimescalesRadiationBelt2007" class="csl-entry" role="listitem">
+Summers, Danny, Binbin Ni, and Nigel P. Meredith. 2007. <span>“Timescales for Radiation Belt Electron Acceleration and Loss Due to Resonant Wave-Particle Interactions: 2. <span>Evaluation</span> for <span>VLF</span> Chorus, <span>ELF</span> Hiss, and Electromagnetic Ion Cyclotron Waves.”</span> <em>Journal of Geophysical Research: Space Physics</em> 112 (A4). <a href="https://doi.org/10.1029/2006JA011993">https://doi.org/10.1029/2006JA011993</a>.
+</div>
+<div id="ref-summersLimitingEnergySpectrum2014" class="csl-entry" role="listitem">
+Summers, Danny, and Run Shi. 2014. <span>“Limiting Energy Spectrum of an Electron Radiation Belt.”</span> <em>Journal of Geophysical Research: Space Physics</em> 119 (8): 6313–26. <a href="https://doi.org/10.1002/2014JA020250">https://doi.org/10.1002/2014JA020250</a>.
+</div>
+<div id="ref-summersLimitStablyTrapped2009" class="csl-entry" role="listitem">
+Summers, Danny, Rongxin Tang, and Richard M. Thorne. 2009. <span>“Limit on Stably Trapped Particle Fluxes in Planetary Magnetospheres.”</span> <em>Journal of Geophysical Research: Space Physics</em> 114 (A10). <a href="https://doi.org/10.1029/2009JA014428">https://doi.org/10.1029/2009JA014428</a>.
+</div>
+<div id="ref-summersRelativisticElectronPitchangle2003" class="csl-entry" role="listitem">
+Summers, Danny, and Richard M. Thorne. 2003. <span>“Relativistic Electron Pitch-Angle Scattering by Electromagnetic Ion Cyclotron Waves During Geomagnetic Storms.”</span> <em>Journal of Geophysical Research: Space Physics</em> 108 (A4). <a href="https://doi.org/10.1029/2002JA009489">https://doi.org/10.1029/2002JA009489</a>.
+</div>
+<div id="ref-thorneRapidLocalAcceleration2013" class="csl-entry" role="listitem">
+Thorne, R. M., W. Li, B. Ni, Q. Ma, J. Bortnik, L. Chen, D. N. Baker, et al. 2013. <span>“Rapid Local Acceleration of Relativistic Radiation-Belt Electrons by Magnetospheric Chorus.”</span> <em>Nature</em> 504 (December): 411–14. <a href="https://doi.org/10.1038/nature12889">https://doi.org/10.1038/nature12889</a>.
+</div>
+<div id="ref-wilkinsStatisticalCharacteristicsElectron2023" class="csl-entry" role="listitem">
+Wilkins, C., V. Angelopoulos, A. Runov, A. Artemyev, X. -J. Zhang, J. Liu, and E. Tsai. 2023. <span>“Statistical <span>Characteristics</span> of the <span>Electron Isotropy Boundary</span>.”</span> <em>Journal of Geophysical Research (Space Physics)</em> 128 (October): e2023JA031774. <a href="https://doi.org/10.1029/2023JA031774">https://doi.org/10.1029/2023JA031774</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../about.html">
+<p>About</p>
+</a>
+  </li>  
+</ul>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/others/phd/2024_pre/proposal_EMIC.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
