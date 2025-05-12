@@ -2,6 +2,7 @@
 title: Project 1
 subtitle: Transiting Exoplanet
 engine: julia
+toc-depth: 4
 ---
 
 > Your team detected a planet candidate in the data from the Transiting Exoplanet Survey Satellite (TESS). The data is very noisy, but you are relatively confident the planet is there.  
@@ -10,14 +11,18 @@ engine: julia
 > You receive the data in Project1_JWST_data.csv. The errors are 10-4=0.01% on each data point in the light curve. 
 > From these data, you want to determine new estimates with uncertainties for the transit time, the planet-to-star radius ratio, and the impact parameter. 
 
-> Batman: https://lkreidberg.github.io/batman/docs/html/index.html 
-> [joshspeagle/dynesty: Dynamic Nested Sampling package for computing Bayesian posteriors and evidences](https://github.com/joshspeagle/dynesty)
+We use the following Julia packages:
 
-Julia packages:
+- [Transits.jl](https://juliaastro.org/Transits.jl): flexible and powerful occultation curves with limb darkening. 
+- [Turing.jl](https://github.com/TuringLang/Turing.jl): Bayesian inference with probabilistic programming
+- [madsjulia/AffineInvariantMCMC.jl](https://github.com/madsjulia/AffineInvariantMCMC.jl): Affine Invariant Markov Chain Monte Carlo (MCMC) Ensemble sampler
+- [chalk-lab/NestedSamplers.jl](https://github.com/chalk-lab/NestedSamplers.jl): Implementations of single and multi-ellipsoid nested sampling
+- [bat/BAT.jl](https://github.com/bat/BAT.jl): A Bayesian Analysis Toolkit in Julia
 
-> [madsjulia/AffineInvariantMCMC.jl: Affine Invariant Markov Chain Monte Carlo (MCMC) Ensemble sampler](https://github.com/madsjulia/AffineInvariantMCMC.jl)
-> [chalk-lab/NestedSamplers.jl: Implementations of single and multi-ellipsoid nested sampling](https://github.com/chalk-lab/NestedSamplers.jl)
-> [bat/BAT.jl: A Bayesian Analysis Toolkit in Julia](https://github.com/bat/BAT.jl)
+Reference Python packages:
+
+- [batman](https://lkreidberg.github.io/batman/docs/html/index.html): a Python package for fast calculation of exoplanet transit light curves
+- [dynesty](https://github.com/joshspeagle/dynesty): Dynamic Nested Sampling package for computing Bayesian posteriors and evidences
 
 ::: {.callout-note}
 In the updated version of the project, we use `Transits.jl` instead of `batman`, which is more performant and provides features like automatic differentiation.
@@ -30,6 +35,7 @@ dir = "docs/courses/epss298_DataAnalysis"
 if isdir(dir)
     cd(dir)
     Pkg.activate(".")
+    Pkg.resolve()
     Pkg.instantiate()
     cd("projects")
 end
@@ -63,7 +69,7 @@ b_i = 0.1
 rp_i = 0.01
 
 create_orbit(t0, b; a=15, per=3, kw...) = KeplerianOrbit(; period=per, t0, a, b, kw...)
-create_orbit(t::Tuple; kw...) = create_orbit(t[1], t[2]; kw...)
+create_orbit(nt; kw...) = create_orbit(nt[1], nt[2]; kw...)
 
 function light_curve(time, t0, b, rp; u=[0.3, 0.3], kwargs...)
     orbit = create_orbit(t0, b; kwargs...)
@@ -77,7 +83,7 @@ f
 ```
 
 ```{julia}
-function light_curve_n(time, params::NTuple{N}; ld=QuadLimbDark([0.3, 0.3]), kwargs...) where {N}
+function light_curve_n(time, params::Vararg{Union{Tuple,NamedTuple},N}; ld=QuadLimbDark([0.3, 0.3]), kwargs...) where {N}
     rps = getindex.(params, 3)
     orbits = create_orbit.(params; kwargs...)
     map(time) do t
@@ -130,8 +136,8 @@ using Turing
 
 @model function transit_model(time, flux; error=1e-4)
     t0 ~ Uniform(1.212, 1.362)
-    rp ~ Uniform(0.01, 0.10)
     b ~ Uniform(0.0, 0.8)
+    rp ~ Uniform(0.01, 0.10)
     model_flux = light_curve(time, t0, b, rp)
     return flux ~ MvNormal(model_flux, error)
 end
@@ -378,19 +384,31 @@ We can see that NUTS is the fastest, followed by Emcee, and then NestedSamplers.
 ```{julia}
 using Statistics
 
-t0_fit = median(chain[:t0])
-rp_fit = median(chain[:rp])
-b_fit = median(chain[:b])
-model_flux = light_curve(data.time, t0_fit, b_fit, rp_fit)
+function selected_params(chain)
+    parameters = tuple(chain.name_map.parameters...)
+    values = map(p -> median(chain[p]), parameters)
+    return NamedTuple{parameters}(values)
+end
+
+function split_namedtuple(nt, every)
+    ks = keys(nt)
+    map(1:length(nt)/every) do i
+        indices = (i-1)*every+1:i*every
+        nt[ks[indices]]
+    end
+end
+
+model_flux = light_curve(data.time, selected_params(chain)...)
 residuals = data.flux .- model_flux
 
 f1 = Figure()
 markersize = 4
-scatterlines(f1[1, 1], data.time, data.flux; markersize)
-scatterlines!(f1[1, 1], data.time, model_flux; markersize)
+ax1 = Axis(f1[1, 1], ylabel="Flux")
+scatterlines!(ax1, data.time, data.flux; markersize, label="Data")
+scatterlines!(ax1, data.time, model_flux; markersize, label="One-body Model")
 
-Axis(f1[2, 1], xlabel="Time", ylabel="Residuals", title="Residuals vs. Time")
-scatter!(f1[2, 1], data.time, residuals)
+ax2 = Axis(f1[2, 1], xlabel="Time", ylabel="Residuals")
+scatter!(ax2, data.time, residuals; label="One-body Model")
 Axis(f1[3, 1], xlabel="Residual", ylabel="Count", title="Histogram of Residuals")
 hist!(f1[3, 1], residuals, bins=30)
 display(f1)
@@ -405,25 +423,29 @@ display(f1)
 
 There is a increase in the residuals at the time of the $1.33$. This could be due to the presence of another object transiting the star. For example, if the system contains both a planet and a moon (or another planet), the observed light curve would show additional dips or asymmetries not explained by a single-object model.
 
+#### New physical "forward" model
+
 > 2. Code a new physical "forward" model and log-likelihood function that better explains the data.  
 
 ```{julia}
 @model function transit_model_two_bodies(time, flux; error=1e-4)
     # Priors for planet
     t0_1 ~ Uniform(1.212, 1.362)
-    rp_1 ~ Uniform(0.01, 0.10)
     b_1 ~ Uniform(0.0, 0.8)
+    rp_1 ~ Uniform(0.01, 0.10)
     # Priors for moon (or second planet)
     t0_2 ~ Uniform(1.212, 1.362)
-    rp_2 ~ Uniform(0.01, 0.10)
     b_2 ~ Uniform(0.0, 0.8)
+    rp_2 ~ Uniform(0.01, 0.10)
 
-    model_flux = light_curve_n(time, ((t0_1, b_1, rp_1), (t0_2, b_2, rp_2)))
+    model_flux = light_curve_n(time, (t0_1, b_1, rp_1), (t0_2, b_2, rp_2))
     return flux ~ MvNormal(model_flux, error)
 end
 ```
 
-> 3. Use Dynesty to find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters.
+#### Find the constraints of both objects
+
+> 3. Find the constraints of both objects. Treat the moon like another body transiting shortly before or after. Use the same prior for the moon. That makes six parameters.
 
 For performance reason, we use `NUTS` instead of `NestedSamplers`.
 
@@ -437,6 +459,8 @@ StatsPlots.plot(chain2) |> display
 pairplot(chain2)
 ```
 
+#### Convergence assessment
+
 > 4. Make plots to convince the reviewer that your results are converged  
 
 The figure below shows the trace and autocorrelation plots for all parameters. The chains appear well-mixed and stationary, indicating convergence. The Monte Carlo standard error is small further supporting convergence.
@@ -448,23 +472,27 @@ Reference: [Autocorrelation analysis & convergence — emcee](https://emcee.read
 autocorplot(chain2)
 ```
 
+#### Model comparison
+
 > 5. Determine quantitatively whether the model justifies applying this more complex model? How confident are you that you detected a moon?
 
 Here we do a posterior predictive checks to compare how well each model reproduces the observed data
 
 ```{julia}
-t0_1 = median(chain2[:t0_1])
-rp_1 = median(chain2[:rp_1])
-b_1 = median(chain2[:b_1])
-t0_2 = median(chain2[:t0_2])
-rp_2 = median(chain2[:rp_2])
-b_2 = median(chain2[:b_2])
-model_flux2 = light_curve_n(data.time, ((t0_1, b_1, rp_1), (t0_2, b_2, rp_2)))
+function maximum_likelihood_test(model1, chain1, model2, chain2)
+    logjoint(model1, selected_params(chain1)) / logjoint(model2, selected_params(chain2))
+end
+
+@info "Model 2 is more likely than model 1 by a factor of " 1 / maximum_likelihood_test(model, chain, model2, chain2)
+
+model_flux2 = light_curve_n(data.time, split_namedtuple(selected_params(chain2), 3)...)
 residuals2 = data.flux .- model_flux2
 
-scatterlines!(f1[1, 1], data.time, model_flux2; markersize)
-scatter!(f1[2, 1], data.time, residuals2)
+scatterlines!(f1[1, 1], data.time, model_flux2; markersize, label="Two-body Model")
+scatter!(f1[2, 1], data.time, residuals2, label="Two-body Model")
 hist!(f1[3, 1], residuals2, bins=30)
+axislegend(ax1)
+axislegend(ax2)
 display(f1)
 
 @info "Mean residual: " mean(residuals2)
@@ -473,7 +501,9 @@ display(f1)
 
 The two-body yields lower residuals than the single-body model, indicating a better fit.
 
-6. Summarize your results for the parameters for each object? 
+#### Summary
+
+> 6. Summarize your results for the parameters for each object? 
 
 The summary statistics for the two-body model are shown below:
 
@@ -481,7 +511,9 @@ The summary statistics for the two-body model are shown below:
 chain2
 ```
 
-7. Why do you get a multi-modal solution? What could you do to avoid this in this simple example? 
+#### Multi-modal solution
+
+> 7. Why do you get a multi-modal solution? What could you do to avoid this in this simple example? 
 
 It seems that using `NUTS` sampler with only one chain could avoid the multi-modal solution. Multi-modal arises when there are multiple chains and the modes switch between chains.
 
@@ -489,14 +521,13 @@ It seems that using `NUTS` sampler with only one chain could avoid the multi-mod
 
 Another solution is to post-process the chain to exchange parameters to enforce ordering.
 
-### Step 7: 
+### Step 7: Application
 
 > Describe in a few sentences one example for a problem or data set that you could analogously solve in your research domain? 
 
 In plasma physics, particle velocity distributions are often non-Maxwellian and may be composed of several populations (core, halo, beam). By modeling the observed distribution as the sum of several Maxwellian or kappa distributions, and using Bayesian inference to fit the parameters (density, temperature, drift speed for each component), you can determine how many components are justified and estimate their properties, just as you determine the number of transiting bodies in the exoplanet problem.
 
 ## Old codes (using `Batman`)
-
 
 ### Julia interface to Python and Batman
 

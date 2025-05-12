@@ -15,4 +15,4 @@ Transits = "2e59a628-7bac-4d38-8059-3a73ba0928ab"
 Turing = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
 
 [sources]
-NestedSamplers = {url = "https://github.com/astropassion/NestedSamplers.jl.git"}
+NestedSamplers = { url = "https://github.com/chalk-lab/NestedSamplers.jl" }
