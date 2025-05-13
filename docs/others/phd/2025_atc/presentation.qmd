@@ -1,0 +1,40 @@
+---
+title: "Energetic Particle Transport Mediated by Coherent Structures in Solar Wind Turbulence"
+format:
+  html: default
+  pptx: default
+---
+
+- Graduate Student: Zijin Zhang
+- Supervisor: Vassilis Angelopoulos
+- Committee Members: Marco Velli, Hao Cao, Paulo Alves, Anton Artemyev
+
+> “ The dinosaurs became extinct because they didn’t have a space programme. ” - Larry Niven
+
+---
+
+## Part 0: Research Context and Background
+
+> “ You don’t have to know everything. You simply need to know where to find it when necessary. ” - John Brunner
+
+
+## Turbulent Magnetic Fluctuations
+
+---
+
+## Part 1: Work Completed
+
+> “ Wanderer, there is no path the path is forged as you wander. ” - Antonio Machado
+
+---
+
+## Part 2: Proposed Research
+
+> “ But still try, for who knows what is possible? ” - Michael Faraday
+
+---
+
+## Conclusion
+
+> “ Still round the corner there may wait
+>  A new road or a secret gate ” - J. R. R. Tolkien

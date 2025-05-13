@@ -1,7 +1,12 @@
+---
+title: Oral Qualifying Examination & ATC
+---
+
 
 Links:
 - [Report on Oral Qualifying Examination & ATC Request | UCLA Graduate Programs](https://grad.ucla.edu/academics/doctoral-studies/report-on-oral-qualifying-examination-atc-request/)
 
 > University Written and Oral Qualifying Examination: After passing the departmental qualifying examination, students must consult their faculty adviser and the graduate adviser regarding nomination of the doctoral committee. In consultation with the doctoral committee, students arrange a time for the oral qualifying examination. This examination is normally taken in the spring quarter of the third year, and must be taken no later than the spring quarter of the fourth year. At least 10 days before this examination, students must provide each member of the doctoral committee with a written prospectus of their proposed dissertation research, including a summary of research objectives, methodologies, and a timeline for completion. In addition to the proposed research, the committee may examine the student’s fundamental knowledge in the discipline. Repetition of a failed examination is at the option of the doctoral committee.
 
-- [prospectus](prospectus.qmd)
+- [Prospectus](prospectus.qmd)
+- [Presentation](./presentation.qmd)
