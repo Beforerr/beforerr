@@ -1,5 +1,6 @@
 ---
-title: Thesis Prospectus
+title: "Kinetic-scale solar wind current sheets: statistical characteristics and their role in energetic particle transport"
+subtitle: Thesis Prospectus
 author: Zijin Zhang
 date: last-modified
 number-sections: true
@@ -94,7 +95,7 @@ where $f= f(z,\mu,t)$ is the phase-space distribution, $\mu$ is the pitch-angle 
 
 Beyond classical diffusion, observations in SEP events and near interplanetary shocks often reveal anomalous transport behavior [@zimbardoSuperdiffusiveSubdiffusiveTransport2006], characterized by subdiffusive or superdiffusive scaling of particle displacement [@zimbardoSuperdiffusiveTransportLaboratory2015]. These deviations from Gaussian diffusion are attributed to the intermittent and structured nature of solar wind turbulence, and are better described using generalized frameworks such as fractional diffusion models [@del-castillo-negreteNondiffusiveTransportPlasma2005] or Lévy statistics [@zaburdaevLevyWalks2015].
 
-### Current sheet's role in particle transport {#sec-cs}
+### The Role of Current Sheets in Particle Transport {#sec-cs}
 
 Across all major transport models, current sheets emerge as a critical feature influencing energetic particle dynamics. In the Parker equation framework, current sheets modify the pitch-angle scattering rate and hence directly affect $\kappa_\parallel$. In the context of the focused transport equation, they introduce strong pitch-angle dependencies and rapid scattering events. Moreover, current sheets can induce memory effects that violate the Markov assumption [@zimbardoNonMarkovianPitchangleScattering2020] of classical diffusion models and contribute to anomalous diffusion regimes.
 
@@ -118,7 +119,7 @@ The overall goal of this thesis is to quantify and model the impact of solar win
 
 ## Work Completed
 
-### Observational Analysis of Current Sheets
+### Observational Analysis of Current Sheets {#sec-obs}
 
 **Context:** A critical first step in understanding the role of current sheets in energetic particle transport is to characterize their statistical properties and quantify the parameters most relevant to particle scattering. Although current sheets have been extensively observed—especially near $1$ AU—our knowledge of how their properties evolve across heliocentric distances, and how key scattering-related parameters vary with radial distance, has remained incomplete. Previous studies often lacked simultaneous, multi-point measurements and did not adequately separate temporal variability from spatial trends, leading to persistent uncertainties regarding the role in particle transport, their origin, evolution within the turbulent solar wind.
 
@@ -128,13 +129,13 @@ The overall goal of this thesis is to quantify and model the impact of solar win
 
 **Results:** Our analysis reveals that solar wind discontinuities maintain kinetic-scale thicknesses throughout the inner heliosphere, with occurrence rates decreasing approximately as $1/r$ with radial distance between 1 and 5 AU. When normalized to the local ion inertial length and Alfvén current, both the current density and thickness of these structures remain nearly constant over the range from 0.1 to 5 AU (see @fig-juno-distribution-r-sw). This suggests that current sheets consistently influence energetic particle transport across heliocentric distances, with their higher occurrence rates closer to the Sun indicating a more pronounced role in shaping particle dynamics in the inner heliosphere. Furthermore, by leveraging simultaneous observations from spacecraft at different radial distances, we demonstrate that the observed radial trends reflect genuine spatial evolution rather than temporal or solar-cycle effects. In particular, we propose a new interpretation of the reduced occurrence rate of current sheets at larger distances as being partly due to a geometric effect—namely, the decreasing likelihood of spacecraft intersecting inclined structures at greater heliocentric distances.
 
-Together, these results provide critical empirical constraints for particle transport modeling and establish a robust observational foundation for the theoretical and numerical components of this thesis.
+Together, these results provide critical empirical constraints for particle transport modeling and establish a robust observational foundation for the theoretical and numerical components of this thesis. This work is presented in *"Solar wind discontinuities in the outer heliosphere: Spatial distribution between 1 and 5 AU"* (Zhang et al., submitted to JGR Space Physics, 2025, manuscript is available at [10.22541/essoar.174431869.93012071/v1](https://www.authorea.com/users/814634/articles/1283652-solar-wind-discontinuities-in-the-outer-heliosphere-spatial-distribution-between-1-and-5-au)).
 
 ![Distribution of various SWD properties observed by Juno, grouped by radial distance from the Sun (with colors shown at the top). Panel (a) thickness, (b) current density, (c) normalized thickness, (d) normalized current density.](figures/juno_distribution_r_sw.png){#fig-juno-distribution-r-sw}
 
 ![Comparison of solar wind property and discontinuity property between model (x-axis) and JADE observations (y-axis). (a-d) Solar wind velocity, density, temperature, and plasma beta. (e-h) Discontinuity thickness, current density, normalized thickness, and normalized current density. Blue dots indicate values derived using the cross-product normal method, while yellow dots correspond to values obtained using minimum variance analysis.](figures/fig_juno_sw_comparision.png){#fig-juno-sw-comparision}
 
-### Quantitative Modeling of Particle Scattering
+### Quantitative Modeling of Particle Scattering {#sec-modeling}
 
 **Context:** While it is well established that turbulence governs energetic particle transport in the heliosphere, the specific role of coherent structures—particularly current sheets—in shaping scattering processes remained poorly quantified. A central objective of this thesis was to develop a physics-based, observation-informed model that directly links solar wind current sheet properties to pitch-angle scattering rates of energetic particles.
 
@@ -148,7 +149,7 @@ where $B_0$ is the magnitude of the magnetic field, $θ$ is the azimuthal angle 
 
 **Results:** Using a newly formulated Hamiltonian framework (see dimensionless form in Equation @eq-Hamiltonian) that incorporates the effects of magnetic field shear angle $\beta$ and particle energy $H$, we demonstrate that scattering rates depend strongly on the current density—which is directly tied to $\beta$—as well as on the ratio of the particle gyroradius to the current sheet thickness. Notably, our results show that current sheets can induce rapid, non-diffusive pitch-angle jumps, particularly for SEPs in the 100 keV to 1 MeV energy ranges (see @fig-example-subset). This behavior deviates significantly from classical quasilinear predictions and highlights the need to account for coherent structures in transport models. To describe long-term pitch-angle evolution, we developed a simplified probabilistic model of pitch-angle scattering due to current sheets and derived an effective pitch-angle diffusion coefficient $D_{\mu\mu}$ (see @fig-mixing-rate).
 
-These findings enables direct comparison with other scattering mechanisms, facilitates the incorporation of SWD-induced scattering into global SEP transport models, and directly support the broader goal of this thesis: to improve our understanding of how energetic particles interact with turbulence in the solar wind.
+These findings enables direct comparison with other scattering mechanisms, facilitates the incorporation of SWD-induced scattering into global SEP transport models, and directly support the broader goal of this thesis: to improve our understanding of how energetic particles interact with turbulence in the solar wind. This work is presented in "Quantification of Ion Scattering by Solar Wind Current Sheets: Pitch-Angle Diffusion Rates"  (Zhang et al., submitted to Physical Review E, 2025, manuscript is available at [GitHub](https://github.com/Beforerr/ion_scattering_by_SWD/blob/ec33d3d082bcd463faf7a233ba80138414231b51/files/2024PRE_Scattering_Zijin.pdf)).
 
 $$
 \begin{aligned}
@@ -166,7 +167,7 @@ $$ {#eq-Hamiltonian}
 
 ![Second moment of the pitch-angle distribution, $M_2(n)$, as a function of interaction number ($n$) for different particle energies (\textasciitilde100 eV, \textasciitilde5 keV, \textasciitilde100 keV, \textasciitilde1 MeV), The estimated mixing rates, $D_{μμ}$, are indicated in the legend.](figures/mixing_rate.png){#fig-mixing-rate width=60%}
 
-### Multifuid Model for Current Sheet Alfvénicity
+### Multifuid Model for Current Sheet Alfvénicity {#sec-multifuid}
 
 **Context:** Early in this thesis, we identified a consistent radial trend in the Alfvénicity of solar wind current sheets—defined as the ratio of the plasma velocity jump to the Alfvén speed jump. While current sheets near the Sun exhibit high Alfvénicity, this value systematically decreases with increasing heliocentric distance. This raised a fundamental question: why do current sheets appear increasingly non-Alfvénic with distance, despite their force-free magnetic structure? Understanding the internal structure, stability, and evolution of current sheets is crucial, as it directly relates to their role in modulating the transport of energetic particles across the heliosphere.
 
@@ -175,6 +176,8 @@ $$ {#eq-Hamiltonian}
 **Approach:** While classical single-fluid MHD models, even when extended to include pressure anisotropy, provide useful insights, they fall short of capturing the full physical complexity observed in current sheets. A natural and necessary extension is to adopt a multifluid framework, which allows for a more realistic treatment of multiple ion populations.
 
 **Results:** To address this challenge, we developed a multifluid theoretical model that includes both a nonzero normal magnetic field and a guide field, and explicitly accounts for the dynamics of counter-streaming ion populations (see @fig-profiles). The model reveals a clear physical interpretation: close to the Sun, current sheets are dominated by a single ion population, leading to high Alfvénicity, while at larger radial distances, the ion populations become more balanced, resulting in reduced Alfvénicity (see @fig-velocity-profiles). By bridging the gap between overly simplified single-fluid models and fully kinetic treatments, this multifluid model offers a physically consistent and computationally tractable framework. It establishes a critical connection between the macroscopic evolution of current sheets and the microscopic processes relevant to energetic particle scattering—thus advancing the broader thesis goal of modeling SEP transport in a realistic, structure-rich solar wind.
+
+This work is presented in "On the Alfvénicity of Multifuild Force-Free Current Sheets" (Zhang et al., submitted to Physics of Plasmas, 2025, manuscript is available at [GitHub](https://github.com/Beforerr/cs_theory/blob/3812b6f1e62b4c954b7b1aa7dcbf092df23834bb/files/2025PoP_Model_Zijin.pdf)).
 
 ![Magnetic field, ion density, and ion bulk velocity for the case where $n_1 = 1.5 n_2, u_1 = -u_2$ and $L=d_i, \sum_α Γ_α= \Delta n V_A=1, B_0 = 2 B_z$](figures/profiles_n1Inf=0.6.svg){#fig-profiles width=60%}
 
@@ -202,10 +205,13 @@ f
 
 ![Example code snippet and resulting output from the Julia implementation of the widely used tplot function.](figures/spedas_jl.png)
 
+{{< pagebreak >}}
 
 ## Proposed Research Direction
 
 ### Spatial Diffusion Model Refinement
+
+The work completed in this thesis has established that solar wind current sheets are persistent, kinetic-scale structures whose statistical properties evolve predictably with heliocentric distance (see @sec-obs). We have demonstrated—both theoretically and through numerical modeling—that SWDs play a significant role in modulating particle transport, particularly by enhancing pitch-angle scattering beyond quasilinear expectations (see @sec-modeling). Furthermore, we have shown that their internal structure, including multifluid effects and Alfvénicity variations, are essential to understanding their properties and thereby their transport-modifying capacity (see @sec-multifuid).
 
 Building on previous results, the next phase of research will extend the pitch-angle scattering framework to comprehensively model spatial diffusion processes (both parallel and perpendicular). This extension is crucial for accurately capturing the full scope of SEP transport influenced by current sheets.
 
@@ -259,7 +265,7 @@ $$
 
 The key parameters—$v_{\parallel,1}$, $T_{cs}$, $\Delta s_\perp$, and $\Delta t$—are directly extracted from test-particle simulations, while quantities such as the current sheet separation distance $s_{fs}$, thickness, shear angle, and normal orientation are treated as system parameters derived from solar wind observations. Together, these inputs enable a systematic and physically grounded estimation of spatial diffusion coefficients under realistic heliospheric conditions.
 
-![Example trajectory of a particle interacting with a current sheet](figures/dR_perp.png)
+![Example trajectory of a particle interacting with a current sheet](figures/dR_perp.png){#fig-dR-perp width=70%}
 
 **Data-Integrated Analytical Modeling:** To ensure consistency with heliospheric observations, these results will be calibrated using multi-spacecraft datasets spanning radial distances from 0.1 to 5 AU. The derived diffusion coefficients will then be incorporated into turbulence-based transport models, providing a current-sheet-informed extension to global energetic particle transport frameworks.
 
@@ -296,6 +302,8 @@ Completion of this thesis opens several avenues for future investigations:
 - Advanced integration of mapping techniques with numerical simulations to further refine SEP transport models.
 
 - Expanded observational campaigns utilizing upcoming spacecraft missions designed to probe heliospheric turbulence and particle dynamics at unprecedented resolution.
+
+{{< pagebreak >}}
 
 ## References
 
