@@ -5,8 +5,12 @@ author: Zijin Zhang
 date: last-modified
 number-sections: true
 format: 
-    html: default
-    typst: default
+  html: default
+  typst: 
+    include-in-header:
+      - text: |
+          #show link: set text(fill: rgb("#239dad"))       
+# #show cite: set text(fill: rgb("#239dad"))
 # citeproc: true
 bibliographystyle: apa
 ---
@@ -46,7 +50,7 @@ Gradual SEP events typically last for several days and are predominantly proton-
 
 In the decay phase of large gradual SEP events, a characteristic phenomenon known as the **reservoir effect** frequently occurs, where particle intensities measured by widely separated spacecraft become nearly uniform across large regions and exhibit similar temporal evolutions. One traditional explanation for reservoir formation suggests that particles become trapped behind a CME-driven magnetic structure, resulting in spatially uniform spectra that adiabatically decrease in intensity as the confining magnetic bottle expands. However, high heliolatitude observations from the Ulysses mission revealed the three-dimensional character of the reservoir effect and favor the cross-field diffusion explanation [@larioHeliosphericEnergeticParticle2010; @dallaPropertiesHighHeliolatitude2003].
 
-In contrast to these smooth, widespread distributions, certain impulsive SEP events demonstrate remarkably sharp spatial variations (abrupt depletions) in particle intensity , known as dropout events [@tesseinEffectCoherentStructures2015; @neugebauerEnergeticParticlesTangential2015a]. Such behavior is attributed to spacecraft traversing alternating particle-filled and particle-empty magnetic flux tubes, suggesting extremely limited lateral transport of particles across magnetic fields [@mazurInterplanetaryMagneticField2000]. This phenomenon is typically interpreted as resulting from particles being effectively confined within distinct magnetic flux tubes, due to minimal cross-field diffusion. The sharply defined spatial gradients scales observed in dropout events, are often comparable to particle gyro-radii.
+In contrast to these smooth, widespread distributions, certain impulsive SEP events demonstrate remarkably sharp spatial variations (abrupt depletions) in particle intensity, known as dropout events [@tesseinEffectCoherentStructures2015; @neugebauerEnergeticParticlesTangential2015a]. Such behavior is attributed to spacecraft traversing alternating particle-filled and particle-empty magnetic flux tubes, suggesting extremely limited lateral transport of particles across magnetic fields [@mazurInterplanetaryMagneticField2000]. This phenomenon is typically interpreted as resulting from particles being effectively confined within distinct magnetic flux tubes, due to minimal cross-field diffusion. The sharply defined spatial gradients scales observed in dropout events, are often comparable to particle gyro-radii.
 
 Together, these contrasting observations—extensive spatial uniformity in gradual SEP events (reservoir effects) versus sharp intensity variations in impulsive events (dropouts)—underscore the complexity of SEP transport mechanisms, motivating ongoing studies to reconcile these phenomena within comprehensive transport models.
 

@@ -1,2 +1,4 @@
 render:
     quarto render docs/others/phd/2025_atc/thesis_outline.qmd --to typst 
+    quarto render docs/others/phd/2025_atc/presentation.qmd --to pptx
+    # open _site/docs/others/phd/2025_atc/presentation.pptx
