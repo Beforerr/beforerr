@@ -1,0 +1,428 @@
+---
+# title: "Energetic Particle Transport Mediated by Coherent Structures in Solar Wind Turbulence"
+title: "Kinetic-scale solar wind current sheets"
+subtitle: "Statistical characteristics and their role in energetic particle transport"
+format:
+  html: default
+  pptx:
+    slide-level: 3
+    toc: true
+    toc-depth: 2
+---
+
+- Graduate Student: Zijin Zhang
+- Supervisor: Vassilis Angelopoulos
+- Committee: Marco Velli, Hao Cao, Paulo Alves, Anton Artemyev
+
+> “ The dinosaurs became extinct because they didn’t have a space programme. ” - Larry Niven
+
+---
+
+## Part 0: Research Context and Background
+
+> “ You don’t have to know everything. You simply need to know where to find it when necessary. ” - John Brunner
+
+Understanding how energetic particles are transported in the heliosphere (and accelerated) remains one of the central problems in space physics & astrophysics. Despite decades of research, many long-standing questions persist.
+
+- solar energetic particles (SEPs)
+- cosmic ray (CRs)
+
+Parker transport equation (TE) [@parkerPassageEnergeticCharged1965]:
+
+$$
+\frac{∂ f}{∂ t}=\frac{∂}{∂ x_i}\left[κ_{i j} \frac{∂ f}{∂ x_j}\right]-U_i \frac{∂ f}{∂ x_i}-V_{d, i} \frac{∂ f}{∂ x_i}+\frac{1}{3} \frac{∂ U_i}{∂ x_i}\left[\frac{∂ f}{∂ \ln p}\right]+ \text{Sources} - \text{Losses},
+$$ {#eq-parker}
+
+It captures four main transport processes:
+
+- spatial diffusion (particle scattering)
+- advection with the solar wind
+- drifts (such as gradient and curvature drifts)
+- adiabatic energy change
+
+However, these frameworks struggle to explain all the dynamics observed.
+
+### Dropouts
+
+![Time profiles of lowenergy He ion intensities recorded by the Wind/LEMT sensor showing a gradual SEP event beginning on 1997 November 6. A dropout in ion intensity lasting about 2 hr can be seen during the decay phase of the gradual event. [@tanTurbulentOriginsParticle2023]](./figures/tanTurbulentOriginsParticle2023-fig1b.png)
+
+![dropout period having $θ_{BV} \sim 0°$](./figures/tanTurbulentOriginsParticle2023-fig4.png)
+
+### Reservoir
+
+A region where the intensities and energy spectra throughout much of the inner heliosphere (see Fig. 52: top right panel) at different azimuthal, radial, and latitudinal locations are nearly identical
+
+![Intensity-time profiles for protons in the 1979 March 1 event at 3 spacecraft are shown in the upper left panel with times of shock passage indicated by S for each. Energy spectra in the “reservoir” at time R are shown in the upper right panel while the paths of the spacecraft through a sketch of the CME are shown below [@reamesTwoSourcesSolar2013]](figures/reamesTwoSourcesSolar2013-fig6.png)
+
+Effective cross-field and non-diffusive transport [@larioHeliosphericEnergeticParticle2010]
+
+### Anomalous transport and non-Markovian phenomena
+
+$$
+\left\langle\Delta x^2(t)\right\rangle \propto t^α
+$$
+
+@perriEvidenceSuperdiffusiveTransport2007
+
+### Turbulent Magnetic Fluctuations
+
+
+![PDF of the out-of-plane electric current density $J_z$ from a 2D MHD simulation, compared to a reference Gaussian (standard deviation $σ$). For each region I, II, and III, magnetic field lines (contours of constant magnetic potential $A_z$: > 0 solid, < 0 dashed) are shown; the colored (red) regions are places where the selected band (I, II, or III) contributes. [@grecoPartialVarianceIncrements2017]](./figures/grecoPartialVarianceIncrements2017-fig1.png)
+
+::: {.notes}
+A physically appealing interpretation emerges: region I consists of very low values of fluctuations that lie mainly in the lanes between magnetic islands. Region II consists of sub-Gaussian current cores that populate the central regions of the magnetic islands (or flux tubes). Region III is composed of the coherent small-scale current sheet-like structures that form the sharp boundaries between the magnetic flux tubes. This classification provides a real-space picture of the nature of intermittent MHD turbulence.
+:::
+
+<!-- 
+[Cover image: A direct numerical simulation of incompressible magnetohydrodynamic plasma turbulence in the presence of a strong guide field. The resolution of the simulation is 2048x2048x128. The image shows the presence and development of strong current sheets and instabilities in the current density, in one of the planes perpendicular to the guide field. Overlaid on this is an image of a solar prominence eruption observed by the NASA Solar Dynamics Observatory (SDO) on March 16, 2013. Simulation image is provided by Dr. Romain Meyrand and the SDO image is from the SDO Gallery, image 187 [http://sdo.gsfc.nasa.gov/gallery/main/item/187].](https://royalsocietypublishing.org/cms/asset/b9ab350a-66a0-4764-bcbc-d28f1b4f757c/rsta.373.issue-2041.largecover.jpeg)
+-->
+
+---
+
+Current sheets, rotational discontinuities (RDs), tangential discontinuities (TDs), magnetic holes,
+
+<!-- SBs are more frequent at shorter distances from the Su -->
+
+![During encounter 1, PSP connected magnetically to a small negative-polarity equatorial coronal hole. [@baleHighlyStructuredSlow2019]](figures/baleHighlyStructuredSlow2019-fig5.png)
+
+### Turbulence Transport Models (TTMs)
+
+Broadband, low-amplitude, random-phase magnetic fluctuations
+
+$$
+\begin{aligned}
+& δ𝐁^s=\sum_{n=1}^{N_m} A_n\left[\cos α_n\left(\cos \phi_n \hat{x}+\sin \phi_n \hat{y}\right)+i \sin α_n(-\sin \phi_n \hat{x}+\cos \phi_n \hat{y})\right] \times \exp \left(i k_n z+i β_n\right) \\
+& δ𝐁^{2 D}=\sum_{n=1}^{N_m} A_n i\left(-\sin \phi_n \hat{x}+\cos \phi_n \hat{y}\right) \times \exp \left[i k_n\left(\cos \phi_n x+\sin \phi_n y\right)+i β_n\right]
+\end{aligned}
+$$ {#eq-δ𝐁}
+
+Wavelet-based synthetic turbulence model [@junejaSyntheticTurbulence1994] similar to p-model [@meneveauSimpleMultifractalCascade1987].
+
+@pucciEnergeticParticleTransport2016 studied the influence of spectral extension and intermittency on particle transport.
+
+### The Role of Current Sheets in Particle Transport
+
+![Trajectories of three particles of 1 MeV SEP interaction with switchback (two SDWs shown by red dashed lines) @malaraEnergeticParticleDynamics2023](./figures/malaraEnergeticParticleDynamics2023-fig8.png)
+
+### Main Scientific Objective
+
+Motivation / Gap : No prior studies systematically characterize particle interactions with solar wind current sheets 
+
+Quantitative understanding of how these structures influence energetic particles transport
+
+This objective leads to two main tasks:  
+
+1. Observational characterization of solar wind current sheets across the heliosphere
+2. Development of data-driven theoretical models for current sheet-induced particle scattering and transport
+
+---
+
+## Part 1: Observational Analysis of Current Sheets
+
+> “ Wanderer, there is no path the path is forged as you wander. ” - Antonio Machado
+
+### What are the properties of current sheets that are most relevant to particle transport? 
+
+Similar to the role of turbulence level, spectral index, anisotropy and intermittency in turbulence transport models
+
+As a first-order model, we use a simple magnetic field configuration:
+
+$$
+\begin{aligned}
+\mathbf{B} &= B_0 (\cos θ \ \mathbf{e_z} + \sin θ ( \sin φ(z) \ \mathbf{e_x} + \cos φ (z) \ \mathbf{e_y})) 
+\\
+φ(z) &= β \tanh(z/L)
+\end{aligned}
+$$
+
+![Current sheets detected by PSP, Juno, STEREO and near-Earth ARTEMIS satellite: red, blue, and black lines are $B_l$, $B_m$, and $|\mathbf{B}|$. ](https://github.com/Beforerr/finesst_solar_wind_discontinuities/blob/e3a573abca54aa0c7bf3f19a28b058fc68f42060/figures/fig-ids_examples.png?raw=true)
+
+---
+
+### Hamiltonian formalism
+
+The motion of particle after simplification and normalization:
+
+$$
+\begin{aligned}
+\tilde{H} &= \frac{1}{2} \left(\left(\tilde{p_x}-f_1(z)\right)^2+\left(\tilde{x} \cot θ + f_2(z)\right)^2+\tilde{p_z}^2\right)
+\\
+f_1(z) &=\frac{1}{2} \cos β \ \left(\text{Ci}\left(βs_+(z)  \right)-\text{Ci}\left(βs_-(z)\right)\right) +  \frac{1}{2} \sin β \ \left(\text{Si}\left(βs_+(z) \right)-\text{Si}\left(βs_-(z)\right)\right),
+\\
+f_2(z) &=\frac{1}{2}  \sin β \ \left(\text{Ci}\left(β s_+(z) \right)+\text{Ci}\left(β s_-(z)\right)\right) -\frac{1}{2} \cos β \ \left(\text{Si}\left(β s_+(z)  \right)+\text{Si}\left(β s_-(z)\right)\right)
+\end{aligned}
+$$ {#eq-Hamiltonian}
+
+Four key parameters: 
+
+- Occurrence rate
+- Shear angle $\beta$ => $J_m = - \frac{1}{\mu_0 V_n} \frac{d B_l}{d t}$ Current density
+- Normal direction $θ$
+- Current sheet thickness (compared to the particle gyroradius)
+
+![Example of a current sheet observed by ARTEMIS. Top: magnetic field in the current sheet $\textbf{lmn}$ coordinate system where $l$ represents the maximum variance direcction ($B_x=B_t\sin φ$ in our model), $m$ the intermediate variance direction ($B_y=B_t\cos φ$), and $n$ the minimum variance direction ($B_z=B_0\cos θ$). Here, $B_t$ and $B_0$ represent the tangential and total magnetic fields, respectively. Bottom: variations of the azimuthal angle $φ$ and the azimuthal angle $θ$ across the current sheet. Vertical lines indicate the current sheet boundaries, and the horizontal line represents $\pi/2$](./figures/fig_thc.pdf)
+
+### What do we know about these parameters across the heliosphere?
+
+Past studies [@sodingRadialLatitudinalDependencies2001, @lotekarKineticscaleCurrentSheets2022, @liuCharacteristicsInterplanetaryDiscontinuities2021, @vaskoKineticscaleCurrentSheets2022, @vaskoKineticScaleCurrentSheets2024] often lacked simultaneous multi-point measurements, employed different identification and quantification methods, and did not sufficiently separate temporal variability from spatial trends—contributing to significant uncertainties.
+
+From inner heliosphere (Parker Solar Probe, PSP) to 1 AU (ARTEMIS, Wind) to outer heliosphere (Juno).
+
+### Dataset and Methods
+
+![Comparison of solar wind properties (top) and discontinuity properties (bottom) between / using model (x-axis) and JADE observations (y-axis). (a-d) Solar wind velocity, density, temperature, and plasma beta. (e-h) Discontinuity thickness, current density, normalized thickness, and normalized current density. Blue dots indicate values derived using the cross-product normal method, while yellow dots correspond to values obtained using minimum variance analysis.](figures/fig_juno_sw_comparision.png){#fig-juno-sw-comparision}
+
+![Overview of solar wind properties during encounter 8 (when PSP is aligned with Earth observations)](figures/fig_psp_overview.png)
+
+### Discontinuity Properties
+
+Occurrence rate
+
+![Waiting time probability density functions $p(\tau)$ for Juno at 1 AU in 2011 (top) and 5 AU in 2016 (bottom). Observed data (black) are fitted with Weibull (blue) and exponential (orange) distributions. Vertical dashed lines denote the mean waiting times for each fitted distribution.](figures/fig_wt_dist_no_duplicates.pdf)
+
+![Left: the occurrence rate of discontinuities measured by Juno, STEREO-A, THEMIS-B, and Wind. Right: the normalized occurrence rate as a function of radial distance.](figures/fig_occurence_rate.pdf){#fig-rate}
+
+---
+
+Current density and thickness
+
+![Distribution of various SWD properties observed by Juno, grouped by radial distance from the Sun (with colors shown at the top). Panel (a) thickness, (b) current density, (c) normalized thickness, (d) normalized current density.](figures/juno_distribution_r_sw.pdf){#fig-juno-distribution-r-sw}
+
+Critical empirical constraints for particle transport modeling
+
+### Results and Implications
+
+- solar wind current sheets maintain kinetic-scale thicknesses throughout the inner heliosphere
+- normalized thickness and current density remain nearly constant over the range from 0.1 to 5 AU
+- occurrence rates decreases approximately as $1/r$ with radial distance between 1 and 5 AU (geometric effect)
+
+![3D density plots of the azimuthal angle $θ$, in-plane rotation angle $ω_{in}$, and logarithm of the characteristic velocity $\log \tilde{v}_B$. The left panel corresponds to cases where the MVAB accuracy conditions are satisfied, while the right panel represents cases where they are not satisfied.](figures/fig_wind_hist3d.png){#fig-windHist3D}
+
+
+### Summary 
+
+This work is presented in *"Solar wind discontinuities in the outer heliosphere: Spatial distribution between 1 and 5 AU"* (Zhang et al., submitted to JGR Space Physics, 2025, manuscript is available at [10.22541/essoar.174431869.93012071/v1](https://www.authorea.com/users/814634/articles/1283652-solar-wind-discontinuities-in-the-outer-heliosphere-spatial-distribution-between-1-and-5-au)).
+
+![](figures/zhangSolarWindDiscontinuities2025.png)
+
+## Part 2: Quantitative Modeling of Particle Scattering
+
+> In physics, you don't have to go around making trouble for yourself – nature does it for you.   - Frank Wilczek
+
+**Question**: What is the specific role of coherent structures—particularly current sheets—in shaping scattering processes (as a function of particle energy and current sheet geometry)?
+
+**Approach:** Combined statistical measurements of current sheets at 1 AU with a Hamiltonian analytical framework and test particle simulations.
+
+
+$$
+\tilde{H} = \frac{1}{2} \left(\left(\tilde{p_x}-f_1(z)\right)^2+\left(\tilde{x} \cot θ + f_2(z)\right)^2+\tilde{p_z}^2\right)
+$$
+
+### Adiabatic invariant and its violation at separatrix crossings
+
+
+(a) Phase portraits of the Hamiltonian in the plane of $(z,p_z)$ at fixed $(κx, p_x)$ for $β = 1$. Each curve corresponds to a specific $H$, indicated on the plots. The left panel corresponds to $\kappa x = 4$, $p_x = 1$, while the right panel corresponds to $\kappa x = 0$, $p_x = 0.5$. (b) Phase plane of the Hamiltonian in the $(κx,p_x)$ space. The red line represents the uncertainty curve and the blue line delineates the boundary encompassing all possible phase points. (c) Potential energy profiles defined by $U (z) = H − p_z^2 /2$ at different locations in the $(κx, p_x)$ place, corresponding to the labeled positions (\#) in panel (b).
+
+
+## Part 1.5: Multifluid Model for Current Sheet Alfvénicity
+
+> The goal of physics is to find the simplest possible description that accounts for all observations.
+
+**Question**: Why do current sheets appear increasingly non-Alfvénic with distance, despite their force-free magnetic structure?
+
+![Statistics of the asymptotic velocity ratio from PSP, Wind, and ARTEMIS spacecraft observations during PSP encounter 7 period from 2021-01-14 to 2021-01-21.](figures/vl_ratio.png){width=60%}
+
+---
+
+$$
+\left(\sum_α Γ_α m_α\right) Δ v_{A,x} = \sqrt{\sum_α  m_α n_α(∞) \sum_α\frac{m_α Γ_α^2 }{n_α(∞)}} ΔU_x
+$$ {#eq-vRatio}
+
+where $Γ_α = n_α u_{αz}$ is constant parameter from the conservation of fluid mass.
+
+- For a single-fluid plasma, this expression reduces to the simpler $\Delta v_{A,x}=\Delta U_x$ f
+- For two counter-streaming ion fluids with $m_1 = m_2, u_{z,1}(∞) = -u_{z,2}(∞)$, the above expression can be further simplified to:
+
+$$
+|n_1(∞) - n_2(∞)|  Δ v_{A,x}  =   (n_1(∞) +  n_2(∞)) ΔU_x
+$$
+
+---
+
+![Magnetic field, ion density, and ion bulk velocity for the case where $n_1 = 1.5 n_2$ and $L=d_i, B_0 = 2 B_z$. Here, $z$ is the distance from the center of the 1-D current sheet, $n_α$ denotes the number density of ion species $α$, $d_i$ is the asymptotic ion inertial length, and $B_0$ is the in-plane magnetic field strength.](figures/profiles_n1Inf=0.6.svg){#fig-profiles width=60%}
+
+![Ion bulk velocity in the $x$ direction (maximum variance direction) $U_x$ profiles normalized by local Alfvén velocity $v_{A,x}(z) = B_x(z) / \sqrt{μ_0 m_p n(z)}$ for different $n_1(∞)$](figures/UxNormBx.svg){#fig-velocity-profiles width=60%}
+
+## Part 0: Software Development
+
+> Programming is not about typing, it's about thinking. - Rich Hickey
+<!-- > "Science is what we understand well enough to explain to a computer. Art is everything else we do." - Donald Knuth -->
+
+`PlasmaFormulary.jl`: Calculation done performantly, flexibly and right. <=> `plasmapy.formulary`
+
+```julia
+julia> gyrofrequency(0.01u"T", :e) ≈ gyrofrequency("electron", 1e7u"nT")
+1.7588200107721632e9 rad s⁻¹
+```
+
+`ChargedParticles.jl`: representing charged particles with type (memory-efficient, ready to use in test particle / PIC simulations).
+
+```julia
+julia> p = particle("Fe")
+julia> p.element
+```
+
+![](figures/ChargedParticles.jl.png)
+
+---
+
+`SpaceDataModel.jl`: Data model for handling space/heliospheric science data: plain configuration and hierarchical abstractions. <=> `SPASE` metadata model.
+
+```toml
+name = "Magnetospheric Multiscale"
+
+[metadata]
+abbreviation = "MMS"
+
+# Instruments
+[instruments.fpi]
+name = "Fast Plasma Investigation"
+datasets = ["fpi_moms"]
+
+[datasets.fpi_moms]
+format = "MMS{probe}_FPI_{data_rate}_L2_{data_type}-MOMS"
+...
+```
+
+```toml
+[datasets.fpi_moms.metadata]
+probes = [1, 2, 3, 4]
+data_rates = ["fast", "brst"]
+data_types = ["des", "dis"]
+
+[datasets.fpi_moms.parameters]
+numberdensity = "mms{probe}_{data_type}_numberdensity_{data_rate}"
+bulkv_gse = "mms{probe}_{data_type}_bulkv_gse_{data_rate}"
+temppara = "mms{probe}_{data_type}_temppara_{data_rate}"
+tempperp = "mms{probe}_{data_type}_tempperp_{data_rate}"
+energyspectr_omni = "mms{probe}_{data_type}_energyspectr_omni_{data_rate}"
+```
+
+---
+
+`Speasy.jl`: get data from main Space Physics WebServices.
+`PySPEDAS.jl`: A Julia wrapper around PySPEDAS.
+`HAPIClient.jl`: A Julia client for the Heliophysics Application Programmer's Interface (HAPI).
+
+```julia
+using SPEDAS, HAPIClient, Speasy
+
+tplot("CDAWeb/AC_H0_MFI/Magnitude,BGSEc", "2001-1-2", "2001-1-2T12")
+
+n = DataSet("Density",
+    [
+        SpeasyProduct("PSP_SWP_SPI_SF00_L3_MOM/DENS"; labels=["SPI Proton"]),
+        Base.Fix2(*, u"cm^-3") ∘ SpeasyProduct("PSP_SWP_SPC_L3I/np_moment"; labels=["SPC Proton"]),
+        SpeasyProduct("PSP_FLD_L3_RFS_LFR_QTN/N_elec"; labels=["RFS Electron"]),
+        SpeasyProduct("PSP_FLD_L3_SQTN_RFS_V1V2/electron_density"; labels=["SQTN Electron"])
+    ]
+)
+
+tplot(n, "2021-08-09T06", "2021-08-10T18")
+```
+
+![Get data using Heliophysics Application Programmer's Interface (HAPI)](figures/hapi.png)
+
+![Get data using `Speasy.jl`](figures/speasy.jl.png)
+
+### `SPEDAS.jl` : Julia-based Space Physics Environment Data Analysis Software framework.
+
+![Azimuthal field line visualization](figures/spedas_field_line.png)
+
+![`SPEDAS.jl`: Plotting multiple time series on a single figure](figures/spedas.jl.png)
+
+---
+
+## Part 3: Proposed Research
+
+> “ But still try, for who knows what is possible? ” - Michael Faraday
+
+The total time between two consecutive current sheet encounters is modeled as the sum of the time spent inside the current sheet $T_{cs}$, and the time spent free-streaming between sheets $T_{fs}$, given by:
+
+$$
+T = T_{cs} + T_{fs}, \quad T_{fs} = \frac{s_{fs}}{|v_{∥,1}|}
+$$
+
+where $v_{∥,0}$, $v_{∥,1}$ are the particle's changed parallel velocity before and after interacting with the current sheet, respectively.
+
+In the absence of scattering, the particle would follow the field line and travel a distance:
+
+$$
+s_0 = |v_{∥,0}| \cdot T = |v_{∥,0}| \left( T_{cs} + \frac{s_{fs}}{|v_{∥,1}|} \right).
+$$
+
+However, when scattering occurs, the total distance traveled becomes:
+
+$$
+s = s_{cs}^* + \text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) s_{fs} \approx \text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) s_{fs}
+$$
+
+under the approximation that $s_{cs}^* << s_{fs}$, where $s_{cs}^*$ is the effective parallel distance the particle travels within the current sheet. The net displacement compared to the unperturbed case is then:
+
+$$
+Δ s_∥ = s - s_0 = s_{fs} \left(\text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) - \frac{|v_{∥,0}|}{|v_{∥,1}|} \right) - |v_{∥,0}| T_{cs}
+$$
+
+The parallel spatial diffusion coefficient is then expressed as:
+
+$$
+κ_∥ = \frac{(Δ s_∥)^2}{Δ t}
+$$
+
+Similarly, for the perpendicular direction:
+
+$$
+κ_\perp = \frac{(Δ s_\perp)^2}{T_{cs} + | s_{fs} / v_{∥,1} |}.
+$$
+
+![Example trajectory of a particle interacting with a current sheet](figures/dR_perp.png){#fig-dR-perp width=70%}
+
+---
+
+## Conclusion
+
+> “ Still round the corner there may wait
+>  A new road or a secret gate ” - J. R. R. Tolkien
+
+### Timeline
+
+**Months 1–4:**
+	
+  - Refine the pitch-angle scattering model to incorporate both parallel and perpendicular spatial diffusion effects.
+	
+  - Conduct detailed test-particle simulations using solar wind parameters derived from multi-spacecraft observations (PSP, Wind, Juno, etc.).
+
+**Months 5–7:**
+
+  - Identify observational signatures supporting the proposed scattering model.
+
+  - Examine how current sheet properties influence SEP scattering across different heliocentric distances.
+
+**Months 8–10:**
+
+  - Finalize the spatial diffusion model and assess its implications for large-scale SEP propagation.
+
+  - Synthesize simulation results and observational insights into dissertation chapters. Integrate observational and theoretical findings into comprehensive thesis documentation.
+
+### Opportunities for Future Research
+
+Completion of this thesis opens several avenues for future investigations:
+
+- Exploration of current sheet interactions in other astrophysical environments, such as planetary magnetospheres.
+
+- Advanced integration of mapping techniques with numerical simulations to further refine SEP transport models.
+
+- Expanded observational campaigns utilizing upcoming spacecraft missions designed to probe heliospheric turbulence and particle dynamics at unprecedented resolution.
+
+
+## References
