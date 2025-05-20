@@ -1,0 +1,12 @@
+
+
+[GaussianProcesses.jl](https://github.com/STOR-i/GaussianProcesses.jl): A Julia package for Gaussian Processes
+
+[AbstractGPs.jl](https://juliagaussianprocesses.github.io/AbstractGPs.jl/dev/): Abstract types and methods for Gaussian Processes.
+
+
+https://en.wikipedia.org/wiki/Gaussian_process
+
+```{julia}
+using AbstractGPs
+```
