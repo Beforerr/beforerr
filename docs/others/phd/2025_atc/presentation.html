@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.1">
+<meta name="generator" content="quarto-1.7.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Energetic Particle Transport Mediated by Coherent Structures in Solar Wind Turbulence – beforerr</title>
+<title>Kinetic-scale solar wind current sheets – beforerr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,10 +91,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-443ac161e34e8c1eedb78f958e3d9213.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-5d4dd9db148681779f63c031488aa21a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +123,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -140,11 +224,42 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-0-research-context-and-background" id="toc-part-0-research-context-and-background" class="nav-link active" data-scroll-target="#part-0-research-context-and-background">Part 0: Research Context and Background</a></li>
+  <li><a href="#part-0-research-context-and-background" id="toc-part-0-research-context-and-background" class="nav-link active" data-scroll-target="#part-0-research-context-and-background">Part 0: Research Context and Background</a>
+  <ul class="collapse">
+  <li><a href="#dropouts" id="toc-dropouts" class="nav-link" data-scroll-target="#dropouts">Dropouts</a></li>
+  <li><a href="#reservoir" id="toc-reservoir" class="nav-link" data-scroll-target="#reservoir">Reservoir</a></li>
+  <li><a href="#anomalous-transport-and-non-markovian-phenomena" id="toc-anomalous-transport-and-non-markovian-phenomena" class="nav-link" data-scroll-target="#anomalous-transport-and-non-markovian-phenomena">Anomalous transport and non-Markovian phenomena</a></li>
   <li><a href="#turbulent-magnetic-fluctuations" id="toc-turbulent-magnetic-fluctuations" class="nav-link" data-scroll-target="#turbulent-magnetic-fluctuations">Turbulent Magnetic Fluctuations</a></li>
-  <li><a href="#part-1-work-completed" id="toc-part-1-work-completed" class="nav-link" data-scroll-target="#part-1-work-completed">Part 1: Work Completed</a></li>
-  <li><a href="#part-2-proposed-research" id="toc-part-2-proposed-research" class="nav-link" data-scroll-target="#part-2-proposed-research">Part 2: Proposed Research</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#turbulence-transport-models-ttms" id="toc-turbulence-transport-models-ttms" class="nav-link" data-scroll-target="#turbulence-transport-models-ttms">Turbulence Transport Models (TTMs)</a></li>
+  <li><a href="#the-role-of-current-sheets-in-particle-transport" id="toc-the-role-of-current-sheets-in-particle-transport" class="nav-link" data-scroll-target="#the-role-of-current-sheets-in-particle-transport">The Role of Current Sheets in Particle Transport</a></li>
+  <li><a href="#main-scientific-objective" id="toc-main-scientific-objective" class="nav-link" data-scroll-target="#main-scientific-objective">Main Scientific Objective</a></li>
+  </ul></li>
+  <li><a href="#part-1-observational-analysis-of-current-sheets" id="toc-part-1-observational-analysis-of-current-sheets" class="nav-link" data-scroll-target="#part-1-observational-analysis-of-current-sheets">Part 1: Observational Analysis of Current Sheets</a>
+  <ul class="collapse">
+  <li><a href="#what-are-the-properties-of-current-sheets-that-are-most-relevant-to-particle-transport" id="toc-what-are-the-properties-of-current-sheets-that-are-most-relevant-to-particle-transport" class="nav-link" data-scroll-target="#what-are-the-properties-of-current-sheets-that-are-most-relevant-to-particle-transport">What are the properties of current sheets that are most relevant to particle transport?</a></li>
+  <li><a href="#hamiltonian-formalism" id="toc-hamiltonian-formalism" class="nav-link" data-scroll-target="#hamiltonian-formalism">Hamiltonian formalism</a></li>
+  <li><a href="#what-do-we-know-about-these-parameters-across-the-heliosphere" id="toc-what-do-we-know-about-these-parameters-across-the-heliosphere" class="nav-link" data-scroll-target="#what-do-we-know-about-these-parameters-across-the-heliosphere">What do we know about these parameters across the heliosphere?</a></li>
+  <li><a href="#dataset-and-methods" id="toc-dataset-and-methods" class="nav-link" data-scroll-target="#dataset-and-methods">Dataset and Methods</a></li>
+  <li><a href="#discontinuity-properties" id="toc-discontinuity-properties" class="nav-link" data-scroll-target="#discontinuity-properties">Discontinuity Properties</a></li>
+  <li><a href="#results-and-implications" id="toc-results-and-implications" class="nav-link" data-scroll-target="#results-and-implications">Results and Implications</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#part-2-quantitative-modeling-of-particle-scattering" id="toc-part-2-quantitative-modeling-of-particle-scattering" class="nav-link" data-scroll-target="#part-2-quantitative-modeling-of-particle-scattering">Part 2: Quantitative Modeling of Particle Scattering</a>
+  <ul class="collapse">
+  <li><a href="#adiabatic-invariant-and-its-violation-at-separatrix-crossings" id="toc-adiabatic-invariant-and-its-violation-at-separatrix-crossings" class="nav-link" data-scroll-target="#adiabatic-invariant-and-its-violation-at-separatrix-crossings">Adiabatic invariant and its violation at separatrix crossings</a></li>
+  </ul></li>
+  <li><a href="#part-1.5-multifluid-model-for-current-sheet-alfvénicity" id="toc-part-1.5-multifluid-model-for-current-sheet-alfvénicity" class="nav-link" data-scroll-target="#part-1.5-multifluid-model-for-current-sheet-alfvénicity">Part 1.5: Multifluid Model for Current Sheet Alfvénicity</a></li>
+  <li><a href="#part-0-software-development" id="toc-part-0-software-development" class="nav-link" data-scroll-target="#part-0-software-development">Part 0: Software Development</a>
+  <ul class="collapse">
+  <li><a href="#spedas.jl-julia-based-space-physics-environment-data-analysis-software-framework." id="toc-spedas.jl-julia-based-space-physics-environment-data-analysis-software-framework." class="nav-link" data-scroll-target="#spedas.jl-julia-based-space-physics-environment-data-analysis-software-framework."><code>SPEDAS.jl</code> : Julia-based Space Physics Environment Data Analysis Software framework.</a></li>
+  </ul></li>
+  <li><a href="#part-3-proposed-research" id="toc-part-3-proposed-research" class="nav-link" data-scroll-target="#part-3-proposed-research">Part 3: Proposed Research</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">Timeline</a></li>
+  <li><a href="#opportunities-for-future-research" id="toc-opportunities-for-future-research" class="nav-link" data-scroll-target="#opportunities-for-future-research">Opportunities for Future Research</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/Beforerr/beforerr/blob/main/docs/others/phd/2025_atc/presentation.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/Beforerr/beforerr/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="presentation.pptx"><i class="bi bi-file-slides"></i>Powerpoint</a></li></ul></div></nav>
     </div>
@@ -153,7 +268,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Energetic Particle Transport Mediated by Coherent Structures in Solar Wind Turbulence</h1>
+<h1 class="title">Kinetic-scale solar wind current sheets</h1>
+<p class="subtitle lead">Statistical characteristics and their role in energetic particle transport</p>
 </div>
 
 
@@ -173,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Graduate Student: Zijin Zhang</li>
 <li>Supervisor: Vassilis Angelopoulos</li>
-<li>Committee Members: Marco Velli, Hao Cao, Paulo Alves, Anton Artemyev</li>
+<li>Committee: Marco Velli, Hao Cao, Paulo Alves, Anton Artemyev</li>
 </ul>
 <blockquote class="blockquote">
 <p>“ The dinosaurs became extinct because they didn’t have a space programme. ” - Larry Niven</p>
@@ -184,23 +300,433 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>“ You don’t have to know everything. You simply need to know where to find it when necessary. ” - John Brunner</p>
 </blockquote>
+<p>Understanding how energetic particles are transported in the heliosphere (and accelerated) remains one of the central problems in space physics &amp; astrophysics. Despite decades of research, many long-standing questions persist.</p>
+<ul>
+<li>solar energetic particles (SEPs)</li>
+<li>cosmic ray (CRs)</li>
+</ul>
+<p>Parker transport equation (TE) <span class="citation" data-cites="parkerPassageEnergeticCharged1965">(<a href="#ref-parkerPassageEnergeticCharged1965" role="doc-biblioref">Parker 1965</a>)</span>:</p>
+<p><span id="eq-parker"><span class="math display">\[
+\frac{∂ f}{∂ t}=\frac{∂}{∂ x_i}\left[κ_{i j} \frac{∂ f}{∂ x_j}\right]-U_i \frac{∂ f}{∂ x_i}-V_{d, i} \frac{∂ f}{∂ x_i}+\frac{1}{3} \frac{∂ U_i}{∂ x_i}\left[\frac{∂ f}{∂ \ln p}\right]+ \text{Sources} - \text{Losses},
+\tag{1}\]</span></span></p>
+<p>It captures four main transport processes:</p>
+<ul>
+<li>spatial diffusion (particle scattering)</li>
+<li>advection with the solar wind</li>
+<li>drifts (such as gradient and curvature drifts)</li>
+<li>adiabatic energy change</li>
+</ul>
+<p>However, these frameworks struggle to explain all the dynamics observed.</p>
+<section id="dropouts" class="level3">
+<h3 class="anchored" data-anchor-id="dropouts">Dropouts</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/tanTurbulentOriginsParticle2023-fig1b.png" class="img-fluid figure-img"></p>
+<figcaption>Time profiles of lowenergy He ion intensities recorded by the Wind/LEMT sensor showing a gradual SEP event beginning on 1997 November 6. A dropout in ion intensity lasting about 2 hr can be seen during the decay phase of the gradual event. <span class="citation" data-cites="tanTurbulentOriginsParticle2023">(<a href="#ref-tanTurbulentOriginsParticle2023" role="doc-biblioref">Tan 2023</a>)</span></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/tanTurbulentOriginsParticle2023-fig4.png" class="img-fluid figure-img"></p>
+<figcaption>dropout period having <span class="math inline">\(θ_{BV} \sim 0°\)</span></figcaption>
+</figure>
+</div>
 </section>
-<section id="turbulent-magnetic-fluctuations" class="level2">
-<h2 class="anchored" data-anchor-id="turbulent-magnetic-fluctuations">Turbulent Magnetic Fluctuations</h2>
+<section id="reservoir" class="level3">
+<h3 class="anchored" data-anchor-id="reservoir">Reservoir</h3>
+<p>A region where the intensities and energy spectra throughout much of the inner heliosphere (see Fig. 52: top right panel) at different azimuthal, radial, and latitudinal locations are nearly identical</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/reamesTwoSourcesSolar2013-fig6.png" class="img-fluid figure-img"></p>
+<figcaption>Intensity-time profiles for protons in the 1979 March 1 event at 3 spacecraft are shown in the upper left panel with times of shock passage indicated by S for each. Energy spectra in the “reservoir” at time R are shown in the upper right panel while the paths of the spacecraft through a sketch of the CME are shown below <span class="citation" data-cites="reamesTwoSourcesSolar2013">(<a href="#ref-reamesTwoSourcesSolar2013" role="doc-biblioref">Reames 2013</a>)</span></figcaption>
+</figure>
+</div>
+<p>Effective cross-field and non-diffusive transport <span class="citation" data-cites="larioHeliosphericEnergeticParticle2010">(<a href="#ref-larioHeliosphericEnergeticParticle2010" role="doc-biblioref">Lario 2010</a>)</span></p>
+</section>
+<section id="anomalous-transport-and-non-markovian-phenomena" class="level3">
+<h3 class="anchored" data-anchor-id="anomalous-transport-and-non-markovian-phenomena">Anomalous transport and non-Markovian phenomena</h3>
+<p><span class="math display">\[
+\left\langle\Delta x^2(t)\right\rangle \propto t^α
+\]</span></p>
+<p><span class="citation" data-cites="perriEvidenceSuperdiffusiveTransport2007">Perri and Zimbardo (<a href="#ref-perriEvidenceSuperdiffusiveTransport2007" role="doc-biblioref">2007</a>)</span></p>
+</section>
+<section id="turbulent-magnetic-fluctuations" class="level3">
+<h3 class="anchored" data-anchor-id="turbulent-magnetic-fluctuations">Turbulent Magnetic Fluctuations</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/grecoPartialVarianceIncrements2017-fig1.png" class="img-fluid figure-img"></p>
+<figcaption>PDF of the out-of-plane electric current density <span class="math inline">\(J_z\)</span> from a 2D MHD simulation, compared to a reference Gaussian (standard deviation <span class="math inline">\(σ\)</span>). For each region I, II, and III, magnetic field lines (contours of constant magnetic potential <span class="math inline">\(A_z\)</span>: &gt; 0 solid, &lt; 0 dashed) are shown; the colored (red) regions are places where the selected band (I, II, or III) contributes. <span class="citation" data-cites="grecoPartialVarianceIncrements2017">(<a href="#ref-grecoPartialVarianceIncrements2017" role="doc-biblioref">Greco et al. 2017</a>)</span></figcaption>
+</figure>
+</div>
+<div class="notes">
+<p>A physically appealing interpretation emerges: region I consists of very low values of fluctuations that lie mainly in the lanes between magnetic islands. Region II consists of sub-Gaussian current cores that populate the central regions of the magnetic islands (or flux tubes). Region III is composed of the coherent small-scale current sheet-like structures that form the sharp boundaries between the magnetic flux tubes. This classification provides a real-space picture of the nature of intermittent MHD turbulence.</p>
+</div>
+<!-- 
+[Cover image: A direct numerical simulation of incompressible magnetohydrodynamic plasma turbulence in the presence of a strong guide field. The resolution of the simulation is 2048x2048x128. The image shows the presence and development of strong current sheets and instabilities in the current density, in one of the planes perpendicular to the guide field. Overlaid on this is an image of a solar prominence eruption observed by the NASA Solar Dynamics Observatory (SDO) on March 16, 2013. Simulation image is provided by Dr. Romain Meyrand and the SDO image is from the SDO Gallery, image 187 [http://sdo.gsfc.nasa.gov/gallery/main/item/187].](https://royalsocietypublishing.org/cms/asset/b9ab350a-66a0-4764-bcbc-d28f1b4f757c/rsta.373.issue-2041.largecover.jpeg)
+-->
+<hr>
+<p>Current sheets, rotational discontinuities (RDs), tangential discontinuities (TDs), magnetic holes,</p>
+<!-- SBs are more frequent at shorter distances from the Su -->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/baleHighlyStructuredSlow2019-fig5.png" class="img-fluid figure-img"></p>
+<figcaption>During encounter 1, PSP connected magnetically to a small negative-polarity equatorial coronal hole. <span class="citation" data-cites="baleHighlyStructuredSlow2019">(<a href="#ref-baleHighlyStructuredSlow2019" role="doc-biblioref">Bale et al. 2019</a>)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="turbulence-transport-models-ttms" class="level3">
+<h3 class="anchored" data-anchor-id="turbulence-transport-models-ttms">Turbulence Transport Models (TTMs)</h3>
+<p>Broadband, low-amplitude, random-phase magnetic fluctuations</p>
+<p><span id="eq-δ𝐁"><span class="math display">\[
+\begin{aligned}
+&amp; δ𝐁^s=\sum_{n=1}^{N_m} A_n\left[\cos α_n\left(\cos \phi_n \hat{x}+\sin \phi_n \hat{y}\right)+i \sin α_n(-\sin \phi_n \hat{x}+\cos \phi_n \hat{y})\right] \times \exp \left(i k_n z+i β_n\right) \\
+&amp; δ𝐁^{2 D}=\sum_{n=1}^{N_m} A_n i\left(-\sin \phi_n \hat{x}+\cos \phi_n \hat{y}\right) \times \exp \left[i k_n\left(\cos \phi_n x+\sin \phi_n y\right)+i β_n\right]
+\end{aligned}
+\tag{2}\]</span></span></p>
+<p>Wavelet-based synthetic turbulence model <span class="citation" data-cites="junejaSyntheticTurbulence1994">(<a href="#ref-junejaSyntheticTurbulence1994" role="doc-biblioref">Juneja et al. 1994</a>)</span> similar to p-model <span class="citation" data-cites="meneveauSimpleMultifractalCascade1987">(<a href="#ref-meneveauSimpleMultifractalCascade1987" role="doc-biblioref">Meneveau and Sreenivasan 1987</a>)</span>.</p>
+<p><span class="citation" data-cites="pucciEnergeticParticleTransport2016">Pucci et al. (<a href="#ref-pucciEnergeticParticleTransport2016" role="doc-biblioref">2016</a>)</span> studied the influence of spectral extension and intermittency on particle transport.</p>
+</section>
+<section id="the-role-of-current-sheets-in-particle-transport" class="level3">
+<h3 class="anchored" data-anchor-id="the-role-of-current-sheets-in-particle-transport">The Role of Current Sheets in Particle Transport</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./figures/malaraEnergeticParticleDynamics2023-fig8.png" class="img-fluid figure-img"></p>
+<figcaption>Trajectories of three particles of 1 MeV SEP interaction with switchback (two SDWs shown by red dashed lines) <span class="citation" data-cites="malaraEnergeticParticleDynamics2023">Malara et al. (<a href="#ref-malaraEnergeticParticleDynamics2023" role="doc-biblioref">2023</a>)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="main-scientific-objective" class="level3">
+<h3 class="anchored" data-anchor-id="main-scientific-objective">Main Scientific Objective</h3>
+<p>Motivation / Gap : No prior studies systematically characterize particle interactions with solar wind current sheets</p>
+<p>Quantitative understanding of how these structures influence energetic particles transport</p>
+<p>This objective leads to two main tasks:</p>
+<ol type="1">
+<li>Observational characterization of solar wind current sheets across the heliosphere</li>
+<li>Development of data-driven theoretical models for current sheet-induced particle scattering and transport</li>
+</ol>
 <hr>
 </section>
-<section id="part-1-work-completed" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-work-completed">Part 1: Work Completed</h2>
+</section>
+<section id="part-1-observational-analysis-of-current-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-observational-analysis-of-current-sheets">Part 1: Observational Analysis of Current Sheets</h2>
 <blockquote class="blockquote">
 <p>“ Wanderer, there is no path the path is forged as you wander. ” - Antonio Machado</p>
 </blockquote>
+<section id="what-are-the-properties-of-current-sheets-that-are-most-relevant-to-particle-transport" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-the-properties-of-current-sheets-that-are-most-relevant-to-particle-transport">What are the properties of current sheets that are most relevant to particle transport?</h3>
+<p>Similar to the role of turbulence level, spectral index, anisotropy and intermittency in turbulence transport models</p>
+<p>As a first-order model, we use a simple magnetic field configuration:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{B} &amp;= B_0 (\cos θ \ \mathbf{e_z} + \sin θ ( \sin φ(z) \ \mathbf{e_x} + \cos φ (z) \ \mathbf{e_y}))
+\\
+φ(z) &amp;= β \tanh(z/L)
+\end{aligned}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://github.com/Beforerr/finesst_solar_wind_discontinuities/blob/e3a573abca54aa0c7bf3f19a28b058fc68f42060/figures/fig-ids_examples.png?raw=true" class="img-fluid figure-img"></p>
+<figcaption>Current sheets detected by PSP, Juno, STEREO and near-Earth ARTEMIS satellite: red, blue, and black lines are <span class="math inline">\(B_l\)</span>, <span class="math inline">\(B_m\)</span>, and <span class="math inline">\(|\mathbf{B}|\)</span>.</figcaption>
+</figure>
+</div>
 <hr>
 </section>
-<section id="part-2-proposed-research" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-proposed-research">Part 2: Proposed Research</h2>
+<section id="hamiltonian-formalism" class="level3">
+<h3 class="anchored" data-anchor-id="hamiltonian-formalism">Hamiltonian formalism</h3>
+<p>The motion of particle after simplification and normalization:</p>
+<p><span id="eq-Hamiltonian"><span class="math display">\[
+\begin{aligned}
+\tilde{H} &amp;= \frac{1}{2} \left(\left(\tilde{p_x}-f_1(z)\right)^2+\left(\tilde{x} \cot θ + f_2(z)\right)^2+\tilde{p_z}^2\right)
+\\
+f_1(z) &amp;=\frac{1}{2} \cos β \ \left(\text{Ci}\left(βs_+(z)  \right)-\text{Ci}\left(βs_-(z)\right)\right) +  \frac{1}{2} \sin β \ \left(\text{Si}\left(βs_+(z) \right)-\text{Si}\left(βs_-(z)\right)\right),
+\\
+f_2(z) &amp;=\frac{1}{2}  \sin β \ \left(\text{Ci}\left(β s_+(z) \right)+\text{Ci}\left(β s_-(z)\right)\right) -\frac{1}{2} \cos β \ \left(\text{Si}\left(β s_+(z)  \right)+\text{Si}\left(β s_-(z)\right)\right)
+\end{aligned}
+\tag{3}\]</span></span></p>
+<p>Four key parameters:</p>
+<ul>
+<li>Occurrence rate</li>
+<li>Shear angle <span class="math inline">\(\beta\)</span> =&gt; <span class="math inline">\(J_m = - \frac{1}{\mu_0 V_n} \frac{d B_l}{d t}\)</span> Current density</li>
+<li>Normal direction <span class="math inline">\(θ\)</span></li>
+<li>Current sheet thickness (compared to the particle gyroradius)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="./figures/fig_thc.pdf" class="img-fluid"></p>
+<figcaption>Example of a current sheet observed by ARTEMIS. Top: magnetic field in the current sheet <span class="math inline">\(\textbf{lmn}\)</span> coordinate system where <span class="math inline">\(l\)</span> represents the maximum variance direcction (<span class="math inline">\(B_x=B_t\sin φ\)</span> in our model), <span class="math inline">\(m\)</span> the intermediate variance direction (<span class="math inline">\(B_y=B_t\cos φ\)</span>), and <span class="math inline">\(n\)</span> the minimum variance direction (<span class="math inline">\(B_z=B_0\cos θ\)</span>). Here, <span class="math inline">\(B_t\)</span> and <span class="math inline">\(B_0\)</span> represent the tangential and total magnetic fields, respectively. Bottom: variations of the azimuthal angle <span class="math inline">\(φ\)</span> and the azimuthal angle <span class="math inline">\(θ\)</span> across the current sheet. Vertical lines indicate the current sheet boundaries, and the horizontal line represents <span class="math inline">\(\pi/2\)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="what-do-we-know-about-these-parameters-across-the-heliosphere" class="level3">
+<h3 class="anchored" data-anchor-id="what-do-we-know-about-these-parameters-across-the-heliosphere">What do we know about these parameters across the heliosphere?</h3>
+<p>Past studies <span class="citation" data-cites="sodingRadialLatitudinalDependencies2001">Vasko et al. (<a href="#ref-vaskoKineticScaleCurrentSheets2024" role="doc-biblioref">2024</a>)</span> often lacked simultaneous multi-point measurements, employed different identification and quantification methods, and did not sufficiently separate temporal variability from spatial trends—contributing to significant uncertainties.</p>
+<p>From inner heliosphere (Parker Solar Probe, PSP) to 1 AU (ARTEMIS, Wind) to outer heliosphere (Juno).</p>
+</section>
+<section id="dataset-and-methods" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-and-methods">Dataset and Methods</h3>
+<div id="fig-juno-sw-comparision" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-juno-sw-comparision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_juno_sw_comparision.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-juno-sw-comparision-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Comparison of solar wind properties (top) and discontinuity properties (bottom) between / using model (x-axis) and JADE observations (y-axis). (a-d) Solar wind velocity, density, temperature, and plasma beta. (e-h) Discontinuity thickness, current density, normalized thickness, and normalized current density. Blue dots indicate values derived using the cross-product normal method, while yellow dots correspond to values obtained using minimum variance analysis.
+</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig_psp_overview.png" class="img-fluid figure-img"></p>
+<figcaption>Overview of solar wind properties during encounter 8 (when PSP is aligned with Earth observations)</figcaption>
+</figure>
+</div>
+</section>
+<section id="discontinuity-properties" class="level3">
+<h3 class="anchored" data-anchor-id="discontinuity-properties">Discontinuity Properties</h3>
+<p>Occurrence rate</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="figures/fig_wt_dist_no_duplicates.pdf" class="img-fluid"></p>
+<figcaption>Waiting time probability density functions <span class="math inline">\(p(\tau)\)</span> for Juno at 1 AU in 2011 (top) and 5 AU in 2016 (bottom). Observed data (black) are fitted with Weibull (blue) and exponential (orange) distributions. Vertical dashed lines denote the mean waiting times for each fitted distribution.</figcaption>
+</figure>
+</div>
+<div id="fig-rate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="figures/fig_occurence_rate.pdf" class="img-fluid">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Left: the occurrence rate of discontinuities measured by Juno, STEREO-A, THEMIS-B, and Wind. Right: the normalized occurrence rate as a function of radial distance.
+</figcaption>
+</figure>
+</div>
+<hr>
+<p>Current density and thickness</p>
+<div id="fig-juno-distribution-r-sw" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-juno-distribution-r-sw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="figures/juno_distribution_r_sw.pdf" class="img-fluid">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-juno-distribution-r-sw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Distribution of various SWD properties observed by Juno, grouped by radial distance from the Sun (with colors shown at the top). Panel (a) thickness, (b) current density, (c) normalized thickness, (d) normalized current density.
+</figcaption>
+</figure>
+</div>
+<p>Critical empirical constraints for particle transport modeling</p>
+</section>
+<section id="results-and-implications" class="level3">
+<h3 class="anchored" data-anchor-id="results-and-implications">Results and Implications</h3>
+<ul>
+<li>solar wind current sheets maintain kinetic-scale thicknesses throughout the inner heliosphere</li>
+<li>normalized thickness and current density remain nearly constant over the range from 0.1 to 5 AU</li>
+<li>occurrence rates decreases approximately as <span class="math inline">\(1/r\)</span> with radial distance between 1 and 5 AU (geometric effect)</li>
+</ul>
+<div id="fig-windHist3D" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-windHist3D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fig_wind_hist3d.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-windHist3D-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: 3D density plots of the azimuthal angle <span class="math inline">\(θ\)</span>, in-plane rotation angle <span class="math inline">\(ω_{in}\)</span>, and logarithm of the characteristic velocity <span class="math inline">\(\log \tilde{v}_B\)</span>. The left panel corresponds to cases where the MVAB accuracy conditions are satisfied, while the right panel represents cases where they are not satisfied.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>This work is presented in <em>“Solar wind discontinuities in the outer heliosphere: Spatial distribution between 1 and 5 AU”</em> (Zhang et al., submitted to JGR Space Physics, 2025, manuscript is available at <a href="https://www.authorea.com/users/814634/articles/1283652-solar-wind-discontinuities-in-the-outer-heliosphere-spatial-distribution-between-1-and-5-au">10.22541/essoar.174431869.93012071/v1</a>).</p>
+<p><img src="figures/zhangSolarWindDiscontinuities2025.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="part-2-quantitative-modeling-of-particle-scattering" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-quantitative-modeling-of-particle-scattering">Part 2: Quantitative Modeling of Particle Scattering</h2>
+<blockquote class="blockquote">
+<p>In physics, you don’t have to go around making trouble for yourself – nature does it for you. - Frank Wilczek</p>
+</blockquote>
+<p><strong>Question</strong>: What is the specific role of coherent structures—particularly current sheets—in shaping scattering processes (as a function of particle energy and current sheet geometry)?</p>
+<p><strong>Approach:</strong> Combined statistical measurements of current sheets at 1 AU with a Hamiltonian analytical framework and test particle simulations.</p>
+<p><span class="math display">\[
+\tilde{H} = \frac{1}{2} \left(\left(\tilde{p_x}-f_1(z)\right)^2+\left(\tilde{x} \cot θ + f_2(z)\right)^2+\tilde{p_z}^2\right)
+\]</span></p>
+<section id="adiabatic-invariant-and-its-violation-at-separatrix-crossings" class="level3">
+<h3 class="anchored" data-anchor-id="adiabatic-invariant-and-its-violation-at-separatrix-crossings">Adiabatic invariant and its violation at separatrix crossings</h3>
+<ol type="a">
+<li>Phase portraits of the Hamiltonian in the plane of <span class="math inline">\((z,p_z)\)</span> at fixed <span class="math inline">\((κx, p_x)\)</span> for <span class="math inline">\(β = 1\)</span>. Each curve corresponds to a specific <span class="math inline">\(H\)</span>, indicated on the plots. The left panel corresponds to <span class="math inline">\(\kappa x = 4\)</span>, <span class="math inline">\(p_x = 1\)</span>, while the right panel corresponds to <span class="math inline">\(\kappa x = 0\)</span>, <span class="math inline">\(p_x = 0.5\)</span>. (b) Phase plane of the Hamiltonian in the <span class="math inline">\((κx,p_x)\)</span> space. The red line represents the uncertainty curve and the blue line delineates the boundary encompassing all possible phase points. (c) Potential energy profiles defined by <span class="math inline">\(U (z) = H − p_z^2 /2\)</span> at different locations in the <span class="math inline">\((κx, p_x)\)</span> place, corresponding to the labeled positions (#) in panel (b).</li>
+</ol>
+</section>
+</section>
+<section id="part-1.5-multifluid-model-for-current-sheet-alfvénicity" class="level2">
+<h2 class="anchored" data-anchor-id="part-1.5-multifluid-model-for-current-sheet-alfvénicity">Part 1.5: Multifluid Model for Current Sheet Alfvénicity</h2>
+<blockquote class="blockquote">
+<p>The goal of physics is to find the simplest possible description that accounts for all observations.</p>
+</blockquote>
+<p><strong>Question</strong>: Why do current sheets appear increasingly non-Alfvénic with distance, despite their force-free magnetic structure?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/vl_ratio.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Statistics of the asymptotic velocity ratio from PSP, Wind, and ARTEMIS spacecraft observations during PSP encounter 7 period from 2021-01-14 to 2021-01-21.</figcaption>
+</figure>
+</div>
+<hr>
+<p><span id="eq-vRatio"><span class="math display">\[
+\left(\sum_α Γ_α m_α\right) Δ v_{A,x} = \sqrt{\sum_α  m_α n_α(∞) \sum_α\frac{m_α Γ_α^2 }{n_α(∞)}} ΔU_x
+\tag{4}\]</span></span></p>
+<p>where <span class="math inline">\(Γ_α = n_α u_{αz}\)</span> is constant parameter from the conservation of fluid mass.</p>
+<ul>
+<li>For a single-fluid plasma, this expression reduces to the simpler <span class="math inline">\(\Delta v_{A,x}=\Delta U_x\)</span> f</li>
+<li>For two counter-streaming ion fluids with <span class="math inline">\(m_1 = m_2, u_{z,1}(∞) = -u_{z,2}(∞)\)</span>, the above expression can be further simplified to:</li>
+</ul>
+<p><span class="math display">\[
+|n_1(∞) - n_2(∞)|  Δ v_{A,x}  =   (n_1(∞) +  n_2(∞)) ΔU_x
+\]</span></p>
+<hr>
+<div id="fig-profiles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/profiles_n1Inf=0.6.svg" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Magnetic field, ion density, and ion bulk velocity for the case where <span class="math inline">\(n_1 = 1.5 n_2\)</span> and <span class="math inline">\(L=d_i, B_0 = 2 B_z\)</span>. Here, <span class="math inline">\(z\)</span> is the distance from the center of the 1-D current sheet, <span class="math inline">\(n_α\)</span> denotes the number density of ion species <span class="math inline">\(α\)</span>, <span class="math inline">\(d_i\)</span> is the asymptotic ion inertial length, and <span class="math inline">\(B_0\)</span> is the in-plane magnetic field strength.
+</figcaption>
+</figure>
+</div>
+<div id="fig-velocity-profiles" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-velocity-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/UxNormBx.svg" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-velocity-profiles-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Ion bulk velocity in the <span class="math inline">\(x\)</span> direction (maximum variance direction) <span class="math inline">\(U_x\)</span> profiles normalized by local Alfvén velocity <span class="math inline">\(v_{A,x}(z) = B_x(z) / \sqrt{μ_0 m_p n(z)}\)</span> for different <span class="math inline">\(n_1(∞)\)</span>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="part-0-software-development" class="level2">
+<h2 class="anchored" data-anchor-id="part-0-software-development">Part 0: Software Development</h2>
+<blockquote class="blockquote">
+<p>Programming is not about typing, it’s about thinking. - Rich Hickey
+<!-- > "Science is what we understand well enough to explain to a computer. Art is everything else we do." - Donald Knuth --></p>
+</blockquote>
+<p><code>PlasmaFormulary.jl</code>: Calculation done performantly, flexibly and right. &lt;=&gt; <code>plasmapy.formulary</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="fu">gyrofrequency</span>(<span class="fl">0.01</span>u<span class="st">"T"</span>, <span class="op">:</span><span class="cn">e</span>) <span class="op">≈</span> <span class="fu">gyrofrequency</span>(<span class="st">"electron"</span>, <span class="fl">1e7</span>u<span class="st">"nT"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.7588200107721632e9</span> rad s⁻¹</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ChargedParticles.jl</code>: representing charged particles with type (memory-efficient, ready to use in test particle / PIC simulations).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p <span class="op">=</span> <span class="fu">particle</span>(<span class="st">"Fe"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p.element</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figures/ChargedParticles.jl.png" class="img-fluid"></p>
+<hr>
+<p><code>SpaceDataModel.jl</code>: Data model for handling space/heliospheric science data: plain configuration and hierarchical abstractions. &lt;=&gt; <code>SPASE</code> metadata model.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Magnetospheric Multiscale"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">[metadata]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">abbreviation</span> <span class="op">=</span> <span class="st">"MMS"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Instruments</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">[instruments.fpi]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Fast Plasma Investigation"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">datasets</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fpi_moms"</span><span class="op">]</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">format</span> <span class="op">=</span> <span class="st">"MMS{probe}_FPI_{data_rate}_L2_{data_type}-MOMS"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms.metadata]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">probes</span> <span class="op">=</span> <span class="op">[</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">data_rates</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fast"</span><span class="op">,</span> <span class="st">"brst"</span><span class="op">]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">data_types</span> <span class="op">=</span> <span class="op">[</span><span class="st">"des"</span><span class="op">,</span> <span class="st">"dis"</span><span class="op">]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms.parameters]</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="dt">numberdensity</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_numberdensity_{data_rate}"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">bulkv_gse</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_bulkv_gse_{data_rate}"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">temppara</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_temppara_{data_rate}"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">tempperp</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_tempperp_{data_rate}"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">energyspectr_omni</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_energyspectr_omni_{data_rate}"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><code>Speasy.jl</code>: get data from main Space Physics WebServices.
+<code>PySPEDAS.jl</code>: A Julia wrapper around PySPEDAS.
+<code>HAPIClient.jl</code>: A Julia client for the Heliophysics Application Programmer’s Interface (HAPI).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SPEDAS</span>, <span class="bu">HAPIClient</span>, <span class="bu">Speasy</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(<span class="st">"CDAWeb/AC_H0_MFI/Magnitude,BGSEc"</span>, <span class="st">"2001-1-2"</span>, <span class="st">"2001-1-2T12"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fu">DataSet</span>(<span class="st">"Density"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">SpeasyProduct</span>(<span class="st">"PSP_SWP_SPI_SF00_L3_MOM/DENS"</span>; labels<span class="op">=</span>[<span class="st">"SPI Proton"</span>]),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Base</span>.<span class="fu">Fix2</span>(<span class="op">*</span>, u<span class="st">"cm^-3"</span>) <span class="op">∘</span> <span class="fu">SpeasyProduct</span>(<span class="st">"PSP_SWP_SPC_L3I/np_moment"</span>; labels<span class="op">=</span>[<span class="st">"SPC Proton"</span>]),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">SpeasyProduct</span>(<span class="st">"PSP_FLD_L3_RFS_LFR_QTN/N_elec"</span>; labels<span class="op">=</span>[<span class="st">"RFS Electron"</span>]),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">SpeasyProduct</span>(<span class="st">"PSP_FLD_L3_SQTN_RFS_V1V2/electron_density"</span>; labels<span class="op">=</span>[<span class="st">"SQTN Electron"</span>])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(n, <span class="st">"2021-08-09T06"</span>, <span class="st">"2021-08-10T18"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/hapi.png" class="img-fluid figure-img"></p>
+<figcaption>Get data using Heliophysics Application Programmer’s Interface (HAPI)</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/speasy.jl.png" class="img-fluid figure-img"></p>
+<figcaption>Get data using <code>Speasy.jl</code></figcaption>
+</figure>
+</div>
+<section id="spedas.jl-julia-based-space-physics-environment-data-analysis-software-framework." class="level3">
+<h3 class="anchored" data-anchor-id="spedas.jl-julia-based-space-physics-environment-data-analysis-software-framework."><code>SPEDAS.jl</code> : Julia-based Space Physics Environment Data Analysis Software framework.</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/spedas_field_line.png" class="img-fluid figure-img"></p>
+<figcaption>Azimuthal field line visualization</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/spedas.jl.png" class="img-fluid figure-img"></p>
+<figcaption><code>SPEDAS.jl</code>: Plotting multiple time series on a single figure</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-3-proposed-research" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-proposed-research">Part 3: Proposed Research</h2>
 <blockquote class="blockquote">
 <p>“ But still try, for who knows what is possible? ” - Michael Faraday</p>
 </blockquote>
+<p>The total time between two consecutive current sheet encounters is modeled as the sum of the time spent inside the current sheet <span class="math inline">\(T_{cs}\)</span>, and the time spent free-streaming between sheets <span class="math inline">\(T_{fs}\)</span>, given by:</p>
+<p><span class="math display">\[
+T = T_{cs} + T_{fs}, \quad T_{fs} = \frac{s_{fs}}{|v_{∥,1}|}
+\]</span></p>
+<p>where <span class="math inline">\(v_{∥,0}\)</span>, <span class="math inline">\(v_{∥,1}\)</span> are the particle’s changed parallel velocity before and after interacting with the current sheet, respectively.</p>
+<p>In the absence of scattering, the particle would follow the field line and travel a distance:</p>
+<p><span class="math display">\[
+s_0 = |v_{∥,0}| \cdot T = |v_{∥,0}| \left( T_{cs} + \frac{s_{fs}}{|v_{∥,1}|} \right).
+\]</span></p>
+<p>However, when scattering occurs, the total distance traveled becomes:</p>
+<p><span class="math display">\[
+s = s_{cs}^* + \text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) s_{fs} \approx \text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) s_{fs}
+\]</span></p>
+<p>under the approximation that <span class="math inline">\(s_{cs}^* &lt;&lt; s_{fs}\)</span>, where <span class="math inline">\(s_{cs}^*\)</span> is the effective parallel distance the particle travels within the current sheet. The net displacement compared to the unperturbed case is then:</p>
+<p><span class="math display">\[
+Δ s_∥ = s - s_0 = s_{fs} \left(\text{sign}\left(\frac{v_{∥,1}}{v_{∥,0}}\right) - \frac{|v_{∥,0}|}{|v_{∥,1}|} \right) - |v_{∥,0}| T_{cs}
+\]</span></p>
+<p>The parallel spatial diffusion coefficient is then expressed as:</p>
+<p><span class="math display">\[
+κ_∥ = \frac{(Δ s_∥)^2}{Δ t}
+\]</span></p>
+<p>Similarly, for the perpendicular direction:</p>
+<p><span class="math display">\[
+κ_\perp = \frac{(Δ s_\perp)^2}{T_{cs} + | s_{fs} / v_{∥,1} |}.
+\]</span></p>
+<div id="fig-dR-perp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dR-perp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dR_perp.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dR-perp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Example trajectory of a particle interacting with a current sheet
+</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 <section id="conclusion" class="level2">
@@ -209,11 +735,91 @@ ul.task-list li input[type="checkbox"] {
 <p>“ Still round the corner there may wait
 A new road or a secret gate ” - J. R. R. Tolkien</p>
 </blockquote>
+<section id="timeline" class="level3">
+<h3 class="anchored" data-anchor-id="timeline">Timeline</h3>
+<p><strong>Months 1–4:</strong></p>
+<ul>
+<li><p>Refine the pitch-angle scattering model to incorporate both parallel and perpendicular spatial diffusion effects.</p></li>
+<li><p>Conduct detailed test-particle simulations using solar wind parameters derived from multi-spacecraft observations (PSP, Wind, Juno, etc.).</p></li>
+</ul>
+<p><strong>Months 5–7:</strong></p>
+<ul>
+<li><p>Identify observational signatures supporting the proposed scattering model.</p></li>
+<li><p>Examine how current sheet properties influence SEP scattering across different heliocentric distances.</p></li>
+</ul>
+<p><strong>Months 8–10:</strong></p>
+<ul>
+<li><p>Finalize the spatial diffusion model and assess its implications for large-scale SEP propagation.</p></li>
+<li><p>Synthesize simulation results and observational insights into dissertation chapters. Integrate observational and theoretical findings into comprehensive thesis documentation.</p></li>
+</ul>
+</section>
+<section id="opportunities-for-future-research" class="level3">
+<h3 class="anchored" data-anchor-id="opportunities-for-future-research">Opportunities for Future Research</h3>
+<p>Completion of this thesis opens several avenues for future investigations:</p>
+<ul>
+<li><p>Exploration of current sheet interactions in other astrophysical environments, such as planetary magnetospheres.</p></li>
+<li><p>Advanced integration of mapping techniques with numerical simulations to further refine SEP transport models.</p></li>
+<li><p>Expanded observational campaigns utilizing upcoming spacecraft missions designed to probe heliospheric turbulence and particle dynamics at unprecedented resolution.</p></li>
+</ul>
+</section>
+</section>
+<section id="references" class="level2">
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-baleHighlyStructuredSlow2019" class="csl-entry" role="listitem">
+Bale, S. D., S. T. Badman, J. W. Bonnell, T. A. Bowen, D. Burgess, A. W. Case, C. A. Cattell, et al. 2019. <span>“Highly Structured Slow Solar Wind Emerging from an Equatorial Coronal Hole.”</span> <em>Nature</em> 576 (7786): 237–42. <a href="https://doi.org/10.1038/s41586-019-1818-7">https://doi.org/10.1038/s41586-019-1818-7</a>.
+</div>
+<div id="ref-grecoPartialVarianceIncrements2017" class="csl-entry" role="listitem">
+Greco, A., W. H. Matthaeus, S. Perri, K. T. Osman, S. Servidio, M. Wan, and P. Dmitruk. 2017. <span>“Partial Variance of Increments Method in Solar Wind Observations and Plasma Simulations.”</span> <em>Space Science Reviews</em> 214 (1): 1. <a href="https://doi.org/10.1007/s11214-017-0435-8">https://doi.org/10.1007/s11214-017-0435-8</a>.
+</div>
+<div id="ref-junejaSyntheticTurbulence1994" class="csl-entry" role="listitem">
+Juneja, A., D. P. Lathrop, K. R. Sreenivasan, and G. Stolovitzky. 1994. <span>“Synthetic Turbulence.”</span> <em>Physical Review E</em> 49 (6): 5179–94. <a href="https://doi.org/10.1103/PhysRevE.49.5179">https://doi.org/10.1103/PhysRevE.49.5179</a>.
+</div>
+<div id="ref-larioHeliosphericEnergeticParticle2010" class="csl-entry" role="listitem">
+Lario, D. 2010. <span>“Heliospheric Energetic Particle Reservoirs: Ulysses and <span>ACE</span> 175-315 <span class="nocase">keV</span> Electron Observations.”</span> In <em>Twelfth <span>International Solar Wind Conference</span></em>, 1216:625–28. AIP. <a href="https://doi.org/10.1063/1.3395944">https://doi.org/10.1063/1.3395944</a>.
+</div>
+<div id="ref-liuCharacteristicsInterplanetaryDiscontinuities2021" class="csl-entry" role="listitem">
+Liu, Y. Y., H. S. Fu, J. B. Cao, C. M. Liu, Z. Wang, Z. Z. Guo, Y. Xu, S. D. Bale, and J. C. Kasper. 2021. <span>“Characteristics of Interplanetary Discontinuities in the Inner Heliosphere Revealed by Parker Solar Probe.”</span> <em>Astrophysical Journal</em> 916 (2): 65. <a href="https://doi.org/10.3847/1538-4357/ac06a1">https://doi.org/10.3847/1538-4357/ac06a1</a>.
+</div>
+<div id="ref-lotekarKineticscaleCurrentSheets2022" class="csl-entry" role="listitem">
+Lotekar, A. B., I. Y. Vasko, T. Phan, S. D. Bale, T. A. Bowen, J. Halekas, A. V. Artemyev, Yu V. Khotyaintsev, and F. S. Mozer. 2022. <span>“Kinetic-Scale <span>Current Sheets</span> in <span>Near-Sun Solar Wind</span>: <span>Properties</span>, <span class="nocase">Scale-dependent Features</span> and <span>Reconnection Onset</span>.”</span> <em>The Astrophysical Journal</em> 929 (1): 58. <a href="https://doi.org/10.3847/1538-4357/ac5bd9">https://doi.org/10.3847/1538-4357/ac5bd9</a>.
+</div>
+<div id="ref-malaraEnergeticParticleDynamics2023" class="csl-entry" role="listitem">
+Malara, Francesco, S. Perri, J. Giacalone, and G. Zimbardo. 2023. <span>“Energetic Particle Dynamics in a Simplified Model of a Solar Wind Magnetic Switchback.”</span> <em>Astronomy &amp; Astrophysics</em> 677 (September): A69. <a href="https://doi.org/10.1051/0004-6361/202346990">https://doi.org/10.1051/0004-6361/202346990</a>.
+</div>
+<div id="ref-meneveauSimpleMultifractalCascade1987" class="csl-entry" role="listitem">
+Meneveau, C., and K. R. Sreenivasan. 1987. <span>“Simple Multifractal Cascade Model for Fully Developed Turbulence.”</span> <em>Physical Review Letters</em> 59 (13): 1424–27. <a href="https://doi.org/10.1103/PhysRevLett.59.1424">https://doi.org/10.1103/PhysRevLett.59.1424</a>.
+</div>
+<div id="ref-parkerPassageEnergeticCharged1965" class="csl-entry" role="listitem">
+Parker, E. N. 1965. <span>“The Passage of Energetic Charged Particles Through Interplanetary Space.”</span> <em>Planetary and Space Science</em> 13 (1): 9–49. <a href="https://doi.org/10.1016/0032-0633(65)90131-5">https://doi.org/10.1016/0032-0633(65)90131-5</a>.
+</div>
+<div id="ref-perriEvidenceSuperdiffusiveTransport2007" class="csl-entry" role="listitem">
+Perri, S., and G. Zimbardo. 2007. <span>“Evidence of Superdiffusive Transport of Electrons Accelerated at Interplanetary Shocks.”</span> <em>Astrophysical Journal</em> 671 (December): L177–80. <a href="https://doi.org/10.1086/525523">https://doi.org/10.1086/525523</a>.
+</div>
+<div id="ref-pucciEnergeticParticleTransport2016" class="csl-entry" role="listitem">
+Pucci, F., F. Malara, S. Perri, G. Zimbardo, L. Sorriso-Valvo, and F. Valentini. 2016. <span>“Energetic Particle Transport in the Presence of Magnetic Turbulence: Influence of Spectral Extension and Intermittency.”</span> <em>Monthly Notices of the Royal Astronomical Society</em> 459 (3): 3395–3406. <a href="https://doi.org/10.1093/mnras/stw877">https://doi.org/10.1093/mnras/stw877</a>.
+</div>
+<div id="ref-reamesTwoSourcesSolar2013" class="csl-entry" role="listitem">
+Reames, Donald V. 2013. <span>“The Two Sources of Solar Energetic Particles.”</span> <em>Space Science Reviews</em> 175 (1): 53–92. <a href="https://doi.org/10.1007/s11214-013-9958-9">https://doi.org/10.1007/s11214-013-9958-9</a>.
+</div>
+<div id="ref-sodingRadialLatitudinalDependencies2001" class="csl-entry" role="listitem">
+Söding, A., F. M. Neubauer, B. T. Tsurutani, N. F. Ness, and R. P. Lepping. 2001. <span>“Radial and Latitudinal Dependencies of Discontinuities in the Solar Wind Between 0.3 and 19 <span>AU</span> and -80<span><span class="math inline">\(^\circ\)</span></span> and +10<span><span class="math inline">\(^\circ\)</span></span>.”</span> <em>Annales Geophysicae</em> 19 (7): 667–80. <a href="https://doi.org/10.5194/angeo-19-667-2001">https://doi.org/10.5194/angeo-19-667-2001</a>.
+</div>
+<div id="ref-tanTurbulentOriginsParticle2023" class="csl-entry" role="listitem">
+Tan, Lun C. 2023. <span>“Turbulent Origins of Particle Intensity Dropout in Gradual Solar Energetic Particle Events During Solar Cycle 23.”</span> <em>Astrophysical Journal</em> 954 (1): 26. <a href="https://doi.org/10.3847/1538-4357/ace1f2">https://doi.org/10.3847/1538-4357/ace1f2</a>.
+</div>
+<div id="ref-vaskoKineticScaleCurrentSheets2024" class="csl-entry" role="listitem">
+Vasko, I. Y., K. Alimov, T. D. Phan, F. S. Mozer, and A. V. Artemyev. 2024. <span>“Kinetic-<span>Scale Current Sheets</span> in the <span>Solar Wind</span> at 5 <span>AU</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 129 (6): e2024JA032586. <a href="https://doi.org/10.1029/2024JA032586">https://doi.org/10.1029/2024JA032586</a>.
+</div>
+<div id="ref-vaskoKineticscaleCurrentSheets2022" class="csl-entry" role="listitem">
+Vasko, I. Y., K. Alimov, T. Phan, S. D. Bale, F. S. Mozer, and A. V. Artemyev. 2022. <span>“Kinetic-Scale Current Sheets in the Solar Wind at 1 Au: Scale-Dependent Properties and Critical Current Density.”</span> <em>Astrophysical Journal Letters</em> 926 (2): L19. <a href="https://doi.org/10.3847/2041-8213/ac4fc4">https://doi.org/10.3847/2041-8213/ac4fc4</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
