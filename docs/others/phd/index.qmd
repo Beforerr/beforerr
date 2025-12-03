@@ -20,3 +20,12 @@ code-links:
 
 - [First Exam](2024_pre/index.qmd)
 - [Advancement to Candidacy (ATC)](2025_atc/index.qmd)
+
+
+Committee Members:
+
+- Angelopoulos, Vassilis
+- Velli, Marco
+- Cao, Hao
+- Alves, Paulo
+- Artemyev, Anton

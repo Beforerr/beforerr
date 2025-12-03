@@ -5,3 +5,7 @@ subtitle: Modern Data Analysis and Machine Learning  for EPSS and Astronomy
 
 
 Instructor: Prof. Björn Benneke
+
+[Project 1: Transiting Exoplanet](projects/proj1.qmd)
+
+[Project 2: Galaxy Zoo](projects/proj2/index.qmd)

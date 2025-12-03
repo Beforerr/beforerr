@@ -213,7 +213,7 @@ plot_images(highest_prob_df, load_processed_img)
 ```
 
 
-## Step 3: Defining a CNN [25 points]  
+## Step 3: Defining a CNN
 
 > The data is now ready to be analyzed. Next, we need to define a CNN that will take the 64x64 images with 3 colors as input and give us a probability for the 37 classes as output. To start, define a CNN with the following elements (this is an adaptation of the CNN we used  with the FashionMNIST data):  
 
@@ -280,11 +280,12 @@ end
 
 # Initialize the model
 model = build_cnn_model()
-ps, st = Lux.setup(rng, model);
 ```
 
+Create dummy input to test the model
+
 ```{julia}
-# Create dummy input to test the model
+ps, st = Lux.setup(rng, model);
 x = rand(rng, Float32, 64, 64, 3, 2)  # (height, width, channels, batch_size)
 model(x, ps, Lux.testmode(st))
 ```
@@ -443,7 +444,7 @@ Grading scale:
 3. Rewriting a completely different architecture with a similar or larger number of parameters and at  least two hidden layers automatically earns full points (10/10)
 4. Model performance does not earn any additional points. The goal is really to get you to explore  possible modifications!  In the report, indicate what modifications you made, the effect they had, and why they had that  effect. Also include a comparison of the RMSE with the previous steps. Submit the modified  code for this section.
 
-### Implementing ResNet for Galaxy Classification
+### Using ResNet for Galaxy Classification
 
 ```{julia}
 using Boltz, Metalhead, Lux
@@ -457,7 +458,6 @@ function build_resnet_model(; num_classes=37)
     base_layers = resnet.layer.layer_1
 
     # Create a new final layer for our 37-class multi-label classification
-    # with sigmoid activation for multi-label output
     final_layer = Chain(
         AdaptiveMeanPool((1, 1)),
         FlattenLayer(; N=3),
@@ -487,21 +487,24 @@ resnet_model(x_test, resnet_ps, Lux.testmode(resnet_st))
 ### Training the ResNet Model
 
 ```{julia}
+resnet_epochs = 3
 # Evaluate initial performance
-initial_train_loss, initial_test_loss = init_evaluate_model(resnet_model, resnet_ps, resnet_st, train_loader, test_loader)
-@printf "Initial ResNet: Train Loss %4.5f, Test Loss %4.5f\n" initial_train_loss initial_test_loss
+if isfile("resnet_trained_model.jld2")
+    @load "resnet_trained_model.jld2" resnet_ps_trained resnet_st_trained resnet_train_losses resnet_test_losses
+else
+    initial_train_loss, initial_test_loss = init_evaluate_model(resnet_model, resnet_ps, resnet_st, train_loader, test_loader)
+    @printf "Initial ResNet: Train Loss %4.5f, Test Loss %4.5f\n" initial_train_loss initial_test_loss
+    # Train the ResNet model
+    resnet_train_state, resnet_train_losses, resnet_test_losses = train_model!(resnet_model, resnet_ps, resnet_st, train_loader, test_loader; op=Adam(0.0005f0), epochs=resnet_epochs)
 
-# Train the ResNet model
-resnet_epochs = 3  # Fewer epochs due to larger model
-resnet_train_state, resnet_train_losses, resnet_test_losses = train_model!(resnet_model, resnet_ps, resnet_st, train_loader, test_loader; op=Adam(0.0005f0), epochs=resnet_epochs)
+    # Prepend initial losses
+    prepend!(resnet_train_losses, initial_train_loss)
+    prepend!(resnet_test_losses, initial_test_loss)
 
-# Prepend initial losses
-prepend!(resnet_train_losses, initial_train_loss)
-prepend!(resnet_test_losses, initial_test_loss)
-
-# Save the trained model
-resnet_ps_trained, resnet_st_trained = resnet_train_state.parameters, resnet_train_state.states
-@save "resnet_trained_model.jld2" resnet_ps_trained resnet_st_trained resnet_train_losses resnet_test_losses
+    # Save the trained model
+    resnet_ps_trained, resnet_st_trained = resnet_train_state.parameters, resnet_train_state.states
+    @save "resnet_trained_model.jld2" resnet_ps_trained resnet_st_trained resnet_train_losses resnet_test_losses
+end
 ```
 
 ### Visualizing ResNet Training Results
@@ -537,9 +540,9 @@ resnet_improvement = round(((cnn_rmse - resnet_rmse) / cnn_rmse * 100), digits=2
 
 if resnet_rmse < cnn_rmse
     println("\nResNet outperforms our original CNN by $(resnet_improvement)%!")
-    println("This demonstrates the power of deeper architectures with residual connections.")
-    println("The skip connections in ResNet help with gradient flow during training,")
-    println("allowing the network to learn more complex features.")
+    println("The skip connections in ResNet help with gradient flow during training, 
+        allowing the network to learn more complex features."
+    )
 else
     println("\nResNet doesn't outperform our original CNN.")
     println("This could be due to:")
@@ -548,52 +551,6 @@ else
     println("3. The original CNN might be better suited for this specific dataset size")
 end
 ```
-
-
-# Explanation of the CNN architecture
-
-## CNN Architecture Explanation
-
-### Convolutional Layers
-1. **First Convolutional Layer**:
-   - Input: 64×64 RGB images (3 channels)
-   - 6 filters with 5×5 kernel size and padding of 3
-   - Followed by batch normalization, ReLU activation, and 2×2 max pooling
-   - This layer detects basic features like edges and textures
-
-2. **Second Convolutional Layer**:
-   - 16 filters with 5×5 kernel size and padding of 3
-   - Followed by batch normalization, ReLU activation, and 2×2 max pooling
-   - This layer detects more complex patterns by combining features from the first layer
-
-### Fully Connected Layers
-3. **First Fully Connected Layer**:
-   - 120 neurons
-   - ReLU activation
-   - Combines features from convolutional layers to recognize higher-level patterns
-
-4. **Second Fully Connected Layer**:
-   - 84 neurons
-   - ReLU activation
-   - Further refines the features for classification
-
-5. **Output Layer**:
-   - 37 neurons (one for each class)
-   - Sigmoid activation to convert logits to probabilities
-   - Since the classes are not mutually exclusive, we use sigmoid instead of softmax
-
-### Activation Functions
-- **ReLU (Rectified Linear Unit)**: Used after convolutional and fully connected layers to introduce non-linearity
-- **Sigmoid**: Used at the output layer to convert logits to probabilities between 0 and 1
-
-### Batch Normalization
-- Normalizes the outputs of convolutional layers
-- Helps with faster training and reduces sensitivity to initialization
-
-### Pooling
-- Max pooling with 2×2 kernel size reduces spatial dimensions while preserving important features
-- Helps with translation invariance and reduces computation
-
 
 ## References
 
