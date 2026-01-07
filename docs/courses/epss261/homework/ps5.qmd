@@ -35,43 +35,49 @@ Similarly, the pressure, magnetic field, temperature, and electron density measu
 > Get the Electric Field (Double-Probe) Instruments (EFI) data, remove offsets, show ExB velocity, using E*B=0 approximation
 
 ```{julia}
+dir = "docs/courses/epss261/homework"
+if isdir(dir)
+    cd(dir)
+    Pkg.activate(".")
+    Pkg.resolve()
+    Pkg.instantiate()
+end
+```
+
+```{julia}
 using Speasy
 using CairoMakie
-using GLMakie
 using Dates
-using SpaceTools
-using SpaceTools: tplot
+using SpacePhysicsMakie
 using LinearAlgebra
 using Statistics
 using DimensionalData
 using Unitful
 using PlasmaFormulary
 using SignalAnalysis
+using SPEDAS, TimeseriesUtilities
 using Speasy: get_data
-SpaceTools.DEFAULTS.add_title = true
+SpacePhysicsMakie.DEFAULTS.add_title = true
 ```
 
 ```{julia}
-# Define time intervals for the analysis
-trange_plus = TimeRange("2008-12-15T09:45:00", "2008-12-15T10:30:00")
-trange = TimeRange("2008-12-15T09:55:00", "2008-12-15T10:20:00")
+trange_plus = ("2008-12-15T09:45:00", "2008-12-15T10:30:00")
+trange = ("2008-12-15T09:55:00", "2008-12-15T10:20:00")
 ```
 
 ```{julia}
 #| column: page
 """
-Reference: [SPEDAS](https://github.com/spedas/bleeding_edge/blob/master/projects/themis/spacecraft/fields/thm_load_fit.pro)
+Reference: [SPEDAS](https://github.com/spedas/bleeding_edge/blob/master/idl/projects/themis/spacecraft/fields/thm_load_fit.pro)
 """
-function thm_load_fit(probe, timerange; vars=("fgs_dsl", "efs_dsl", "efs_0_dsl", "efs_dot0_dsl"))
+function thm_load_fit(probe, timerange; vars=["fgs_dsl", "efs_dsl", "efs_0_dsl", "efs_dot0_dsl"])
     dataset = "TH$(uppercase(probe))_L2_FIT"
     vars = "th$(lowercase(probe))_" .* vars
     ids = "cda/$dataset/" .* vars
-    das = DimArray.(get_data(ids, timerange))
-    return NamedTuple{Tuple(Symbol.(vars))}(das)
+    return map(DimArray, get_data(NamedTuple, ids, timerange))
 end
 
 data = thm_load_fit("e", trange)
-
 tplot(data)
 ```
 
@@ -103,7 +109,7 @@ let B = data.the_fgs_dsl, E = data.the_efs_dsl, angle = 20.0  # degrees
     @info "janygood" janygood
     @info "janybad" janybad
     # Apply offsets to Ex and Ey components
-    E_corrected = deepcopy(E)
+    E_corrected = copy(E)
     E_corrected[:, 1] .-= Eoffsets[1]
     E_corrected[:, 2] .-= Eoffsets[2]
 
@@ -137,8 +143,8 @@ In the left panel, we present the data utilized for the offset analysis. In the 
 ```{julia}
 let E = data.the_efs_dot0_dsl, B = data.the_fgs_dsl
     B_int = tinterp(B, E)
-    V = tcross(E, B_int) ./ tdot(B_int, B_int) .|> u"km/s"
-    V = modify_meta(V, long_name="Velocity", labels=("Vx", "Vy", "Vz"))
+    V = tcross(E, B_int) ./ tdot(B_int, B_int) * 1000u"km/s"
+    V = setmeta(V, "LABLAXIS" => "Velocity", "UNITS" => "km/s"; labels=("Vx", "Vy", "Vz"))
     tplot([B, E, V])
 end
 ```
@@ -157,15 +163,15 @@ function thm_load_fbk(probe, timerange; vars=("fb_edc12", "fb_scm1"))
     DimArray.(get_data(ids, timerange))
 end
 
-thm_fb_edc12, thm_fb_scm1 = thm_load_fbk("e", trange) .|> SpaceTools.set_colorrange
+thm_fb_edc12, thm_fb_scm1 = thm_load_fbk("e", trange)
 ```
 
 The three lines in Figures represent 1 fce (blue), 0.5 fce (orange), and 0.1 fce (green).
 
 ```{julia}
-let B = tnorm(data.the_fgs_dsl)
+let B = tnorm(data.the_fgs_dsl) * 1u"nT"
     fce = gyrofrequency.(B, :e) .|> ω2f
-    fce = modify_meta(fce, scale=log10) ./ 1u"Hz"
+    fce = setmeta(fce, scale=log10) ./ 1u"Hz"
     f = tplot([thm_fb_edc12, thm_fb_scm1]; add_title=true, alpha=0.7)
     tplot_panel!.(f.axes, Ref([fce, fce / 2, fce / 10]))
     f
@@ -189,7 +195,7 @@ fft_tvars = [
     "cda/THE_L2_FFT/the_ffw_16_scm3",
 ]
 
-fft_data = get_data.(fft_tvars, trange)
+fft_data = get_data.(fft_tvars, (trange,))
 all(ismissing.(fft_data)) && @warn "Data not available"
 ```
 
@@ -204,7 +210,7 @@ tvars = [
     "cda/THE_L2_SCM/the_scw_dsl",
 ]
 
-thm_scp_dsl, thm_scw_dsl = get_data.(tvars, trange_plus) .|> DimArray
+thm_scp_dsl, thm_scw_dsl = get_data.(tvars, (trange_plus,)) .|> DimArray
 f = Figure()
 tplot(f[1, 1], [thm_scp_dsl, thm_scw_dsl])
 f
@@ -219,11 +225,13 @@ tvars_wb = [
     "cda/THE_L2_SCM/the_scw_dsl",
     "cda/THE_L2_FBK/the_fb_scm1",
 ]
-trange_wb = TimeRange("2008-12-15T10:13:10", "2008-12-15T10:13:20")
-trange_wb_s = TimeRange("2008-12-15T10:13:10", "2008-12-15T10:13:17")
-data_wb = get_data.(tvars_wb, trange_wb) .|> DimArray
+trange_wb = DateTime.(("2008-12-15T10:13:10", "2008-12-15T10:13:20"))
+trange_wb_s = ("2008-12-15T10:13:10", "2008-12-15T10:13:17")
+data_wb = get_data.(tvars_wb, (trange_wb,)) .|> DimArray
+# tplot(f[1, 2], data_wb)
 tplot(f[1, 2], data_wb)
 tlims!(trange_wb_s)
+f
 ```
 
 
@@ -262,19 +270,20 @@ thm_fgs_gsm, thm_fgh_gsm, thm_scp_dsl, thm_scw_dsl = get_data(tvars, trange_plus
 
 ```{julia}
 #| column: page
-thm_fgs_gsm_z_dpwrspc = SpaceTools.pspectrum(thm_fgs_gsm[:, 3]; nfft=64) |> SpaceTools.set_colorrange
-thm_scp_dsl_z_dpwrspc = SpaceTools.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpaceTools.set_colorrange
-thm_fgh_gsm_z_dpwrspc = SpaceTools.pspectrum(thm_fgh_gsm[:, 3]) |> SpaceTools.set_colorrange
+thm_fgs_gsm_z_dpwrspc = SPEDAS.pspectrum(thm_fgs_gsm[:, 3]; nfft=64) |> SpacePhysicsMakie.set_colorrange!
+thm_scp_dsl_z_dpwrspc = SPEDAS.pspectrum(thm_scp_dsl[:, 3]; nfft=512) |> SpacePhysicsMakie.set_colorrange!
+thm_fgh_gsm_z_dpwrspc = SPEDAS.pspectrum(thm_fgh_gsm[:, 3]) |> SpacePhysicsMakie.set_colorrange!
+# SpaceTools.set_colorrange
 
 tvars_wb = [
     the_efw_l1_index.the_efw,
     "cda/THE_L2_SCM/the_scw_dsl"
 ]
 
-thm_efw, thm_scw_dsl = get_data.(tvars_wb, trange_wb) .|> DimArray
+thm_efw, thm_scw_dsl = get_data.(tvars_wb, (trange_wb,)) .|> DimArray
 
-thm_scw_dsl_z_dpwrspc = SpaceTools.pspectrum(thm_scw_dsl[:, 3]) |> SpaceTools.set_colorrange
-thm_efw_z_dpwrspc = SpaceTools.pspectrum(thm_efw[:, 3]) |> SpaceTools.set_colorrange
+thm_scw_dsl_z_dpwrspc = SPEDAS.pspectrum(thm_scw_dsl[:, 3]) |> SpacePhysicsMakie.set_colorrange!
+thm_efw_z_dpwrspc = SPEDAS.pspectrum(thm_efw[:, 3]) |> SpacePhysicsMakie.set_colorrange!
 
 f = Figure()
 tplot(f[1, 1], [
@@ -330,9 +339,9 @@ tplot(f[1, 2], [
 #| fig-width: 15
 f = Figure(;)
 tplot(f[1, 1], thm_fgh_fac)
-tplot(f[2:6, 1], twavpol(thm_fgh_fac))
+tplot(f[2:6, 1], twavpol(tresample(thm_fgh_fac)))
 tplot(f[1, 2], thm_scp_fac)
-tplot(f[2:6, 2], twavpol(thm_scp_fac))
+tplot(f[2:6, 2], twavpol(tresample(thm_scp_fac)))
 ```
 
 Compressional pulsations are associated with modulations of resonant electron fluxes and chorus intensity.
@@ -357,16 +366,19 @@ We can see that removing spikes is essential for the accuracy of the filtered da
 
 ```{julia}
 #| column: page
+using TimeseriesUtilities: tfilter
 begin
-    E = tclip(thm_efw, trange_wb) |> standardize
-    E_clean = replace_outliers(E; window=128)
+    window = 128
+    E = Float64.(tclip(thm_efw, trange_wb))
+    E_clean = replace_outliers(E; window)
     E_sm = tfilter(E, 64u"Hz")
     E_clean_sm = tfilter(tinterp_nans(E_clean), 64u"Hz")
 
-    tvars = [E, E_clean, E_sm, E_clean_sm] .|> timeshift
+    tvars = [E, E_clean, E_sm, E_clean_sm] .|> tshift
     f = Figure()
     tplot(f[1, 1], tvars)
     fa2 = tplot(f[1, 2], tvars; link_yaxes=true)
+    t0 = E_clean |> tminimum
     tlims!.(fa2.axes, 3.44u"s", 3.48u"s")
     f
 end
@@ -374,11 +386,11 @@ end
 
 ```{julia}
 #| column: page
-Poynting_vector(E, B) = tcross(E, B) ./ Unitful.μ0
+Poynting_vector(E, B) = setmeta(tcross(E, B) ./ Unitful.μ0, "LABL_PTR_1" => ["Sx", "Sy", "Sz"], "UNITS" => "nW/m^2")
 
 begin
     B = tclip(thm_scw_dsl, trange_wb)
-    E = tclip(thm_efw, trange_wb) |> standardize
+    E = Float64.(tclip(thm_efw, trange_wb))
     B = B[DimSelectors(E; selectors=Near())]
 
     E_clean = replace_outliers(E; window=128)
@@ -403,7 +415,7 @@ From top to bottom, the panels show the Poynting flux and its corresponding freq
 ```{julia}
 #| column: page
 let S = tnorm_combine(S_sm)
-    S_dpwrspc = pspectrum(S; nfft=512) |> SpaceTools.set_colorrange
+    S_dpwrspc = pspectrum(S; nfft=512) |> SpacePhysicsMakie.set_colorrange!
     f = tplot([
         S,
         eachslice(S_dpwrspc; dims=Y())...

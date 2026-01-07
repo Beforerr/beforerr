@@ -1,0 +1,107 @@
+cv:
+  name: Zijin Zhang
+  # location: Los Angeles, CA
+  email: zijin@ucla.edu
+  website: https://beforerr.github.io/beforerr/
+  social_networks:
+    - network: ORCID
+      username: 0000-0002-9968-067X
+    - network: GitHub
+      username: Beforerr
+
+  sections:
+    education:
+      - institution: University of California, Los Angeles
+        area: Planetary Science
+        degree: Ph.D.
+        start_date: 2022
+        end_date: present
+        highlights:
+          - "Thesis: Kinetic-scale solar wind current sheets: statistical characteristics and their role in energetic particle transport"
+
+      - institution: University of Science and Technology of China
+        area: Space Physics
+        degree: B.Sc.
+        start_date: 2018
+        end_date: 2022
+        highlights:
+          - "Thesis: Kinetic simulation of the interaction between the Moon's magnetic anomalies and the solar wind (DOI: [10.13140/RG.2.2.15841.68968](http://dx.doi.org/10.13140/RG.2.2.15841.68968))"
+          - "Advisor: Prof. Xin Tao"
+
+      - institution: University Corporation for Atmospheric Research
+        area: NASA's Living with a Star Heliophysics Summer School
+        # location: Boulder, Colorado
+        date: 2024
+
+    research_interests:
+      - bullet: "Heliophysics: Solar wind current sheets and energetic particle transport"
+      - bullet: "Magnetosphere-ionosphere coupling: energetic particle precipitation"
+      - bullet: "Computational plasma physics and space physics environment data analysis"
+
+    publications:
+      # - title: "Peculiarities of precipitating electron spectra: DMPS & ELFIN combined dataset"
+      # authors:
+      # - "**Zhang, Z.**"
+      # - Artemyev, A. V.
+      # - Angelopoulos, V.
+      # date: In preparation
+
+      - title: "Quantification of ion scattering by solar-wind current sheets: Pitch-angle diffusion rates"
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+        journal: Physical Review E
+        date: 2025
+        doi: 10.1103/pkzv-k5t3
+
+      - title: "Solar wind discontinuities in the outer heliosphere: Spatial distribution between 1 and 5 AU"
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+          - Vasko, I.
+        journal: "Journal of Geophysical Research: Space Physics"
+        date: 2025
+        doi: 10.1029/2025JA034039
+
+      - title: "Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections"
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A.
+          - Mourenas, D.
+          - Angelopoulos, V.
+          - Zhang, X.-J.
+          - et al.
+        journal: "Journal of Geophysical Research: Space Physics"
+        date: 2024
+        doi: 10.1029/2024JA033174
+
+      - title: "A search for technosignatures around 11680 stars with the green bank telescope at 1.15–1.73 GHz"
+        authors:
+          - Margot, J.-L.
+          - Li, M. G.
+          - Pinchuk, P.
+          - "... **Zhang, Z.**"
+        journal: Astronomical Journal
+        date: 2023
+        doi: 10.3847/1538-3881/acfda4
+
+    software:
+      - label: "SPEDAS.jl"
+        details: "Julia-based space physics environment data analysis software (DOI: [10.5281/zenodo.15181866](https://doi.org/10.5281/zenodo.15181866))"
+
+      - label: "PlasmaBO.jl"
+        details: "Efficient plasma electromagnetic dispersion-relation solver (DOI: [10.5281/zenodo.18058843](https://doi.org/10.5281/zenodo.18058843))"
+
+    other_research_experience:
+      - company: Artificial Intelligence of Things Lab
+        position: Undergraduate Research Assistant
+        start_date: 2021
+        end_date: 2022
+        highlights:
+          - "Implemented a distributed system to monitor edge devices and automate IT deployment and management"
+
+    # other_activities:
+    # - bullet: "学生主席, 中国科学技术大学学生科学考察探险协会"
+    # - bullet: "科考领队, 库布齐沙漠和毛乌素沙地，探访沙漠治理情况"

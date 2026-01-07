@@ -13,7 +13,6 @@ install-julia-deps:
         PackageSpec(url="https://github.com/SciQLop/Speasy.jl"),
         PackageSpec(url="https://github.com/Beforerr/PySPEDAS.jl"),
         PackageSpec(url="https://github.com/JuliaPlasma/PlasmaFormulary.jl"),
-        PackageSpec(url="https://github.com/Beforerr/HAPIClient.jl"),
     ])
     Pkg.instantiate()
 
@@ -27,3 +26,6 @@ preview:
 ln-bib:
     mkdir -p files/bibliography
     [ -e files/bibliography/research.bib ] || ln -s ~/projects/share/bibliography/research.bib files/bibliography/research.bib
+
+cv:
+    rendercv render docs/others/cv_Zijin.yaml

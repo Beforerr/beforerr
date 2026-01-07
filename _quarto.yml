@@ -47,3 +47,5 @@ format:
     code-fold: true
 
 wrap: preserve
+
+engines: [julia]

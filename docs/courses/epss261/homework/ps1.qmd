@@ -1,7 +1,6 @@
 ---
 title: Problem Set 1
 number-sections: true
-engine: julia
 ---
 
 ## AE, Dst, Kp
@@ -15,21 +14,34 @@ engine: julia
 
 The AE index (Auroral Electrojet index) and Dst index (Disturbance Storm-Time index) are geomagnetic indices used to measure different aspects of Earth’s magnetic activity. The AE index quantifies the intensity of auroral electrojets, currents flowing in the auroral regions, and is derived from horizontal magnetic field variations measured by magnetometers distributed around the auroral zone. It provides insight into substorm activity and is calculated using the difference between maximum and minimum horizontal components recorded at these stations. The Dst index, on the other hand, measures the intensity of the ring current, a system of charged particles trapped in Earth’s magnetosphere. It is derived from the average horizontal magnetic field variations observed by low-latitude magnetometers. The Dst index is commonly used to assess geomagnetic storms, with negative values indicating stronger disturbances.
 
-We use julia to download and plot the AE and Dst indices directly from their official site, WDC-C in Kyoto. 
+We can use julia to download and plot the AE and Dst indices directly from their official site, WDC-C in Kyoto. 
 
 - https://wdc.kugi.kyoto-u.ac.jp/aeasy/index.html
 
 - https://wdc.kugi.kyoto-u.ac.jp/dstae/index.html / http://wdc.kugi.kyoto-u.ac.jp/dst_final/201503
 
-First we register and download the data dependencies using the `DataDeps` package.
 
 ```{julia}
-using CairoMakie
+dir = "docs/courses/epss261/homework"
+if isdir(dir)
+    cd(dir)
+    Pkg.activate(".")
+    Pkg.resolve()
+    Pkg.instantiate()
+end
+
 using DataDeps
+using Dates
+using CairoMakie, SpacePhysicsMakie
+using DimensionalData
+using CSV, DataFrames
+```
+
+First we register and download the data dependencies using the `DataDeps` package.
+
+```julia
 using CSV, DelimitedFiles
 using TimeSeries
-using DataFrames
-using Dates
 
 register(DataDep("AE Index",
     """
@@ -48,10 +60,7 @@ register(DataDep("Dst Index",
 ))
 
 # Step 1: Download data
-println("Downloading AE index data...")
 ae_file = readdir(datadep"AE Index", join=true)[1]
-
-println("Downloading Dst index data...")
 dst_file = readdir(datadep"Dst Index", join=true)[1]
 ```
 
@@ -73,76 +82,23 @@ DATE       TIME         DOY     DST                                  |
 2015-03-01 03:00:00.000 060       -31.00
 ```
 
-We then parse the data into TimeSeries using `DelimitedFiles` and `TimeSeries`.
+Since the above url is not persistent, we use `CDAWeb.jl` to download the data.
 
 ```{julia}
+using CDAWeb
+
 start_time = "2015-03-01T00:00:00"
 end_time = "2015-03-31T23:59:59"
 
-# Step 2: Parse AE data
-function load_ae_data(filename)
-    meta = Dict(
-        "unit" => "nT",
-        "label" => "AE Index"
-    )
-
-    # Skip the header lines (first 14 lines)
-    data, header = readdlm(filename, skipstart=14, header=true)
-
-    # Convert date and time columns to DateTime
-    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
-
-    TimeArray(datetime, data[:, 4:7], header[4:7], meta)
-end
-
-function load_dst_data(filename)
-    meta = Dict(
-        "unit" => "nT",
-        "label" => "Dst Index"
-    )
-
-    # Skip the header lines (first 17 lines)
-    data, header = readdlm(filename, skipstart=17, header=true)
-
-    # Convert date and time columns to DateTime
-    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
-
-    TimeArray(datetime, data[:, 4:4], header[4:4], meta)
-end
-
-println("Parsing AE data...")
-ae_data = load_ae_data(ae_file)
-
-println("Parsing Dst data...")
-dst_data = load_dst_data(dst_file)
+dataset = CDAWeb.get_data("OMNI2_H0_MRG1HR", start_time, end_time; clip=true)
+ae_data = dataset["AE"] |> DimArray
+dst_data = dataset["DST"] |> DimArray
 ```
 
 Plot the data using CairoMakie.
 
 ```{julia}
-Makie.convert_arguments(P::Type{<:Lines}, ta::TimeArray) = convert_arguments(P, timestamp(ta), values(ta))
-
-ylabel(ta::TimeArray) = meta(ta)["label"] * (isnothing(meta(ta)["unit"]) || meta(ta)["unit"] == "" ? "" : " (" * meta(ta)["unit"] * ")")
-
-function tplot(tas; linkxaxes=true, figure=(;), kwargs...)
-    f = Figure(; figure...)
-    axs = []
-    for (i, ta) in enumerate(tas)
-        ax = Axis(f[i, 1]; ylabel=ylabel(ta))
-
-        for p in propertynames(ta)
-            lines!(ax, getproperty(ta, p); label=p)
-        end
-
-        # Hide redundant x labels
-        linkxaxes && i != length(tas) && hidexdecorations!(ax, grid=false)
-        push!(axs, ax)
-    end
-    linkxaxes && linkxaxes!(axs...)
-    f
-end
-
-f = tplot([ae_data.AE, dst_data])
+f = tplot([ae_data, dst_data])
 ```
 
 
@@ -152,25 +108,10 @@ f = tplot([ae_data.AE, dst_data])
 
 The Kp index is a global geomagnetic activity index that quantifies disturbances in Earth’s magnetic field caused by solar activity. Kp is calculated from the K values or the geomagnetic recordings of 13 mid-latitude geomagnetic observatories.
 
-We use a web service client to load the data (https://kp.gfz-potsdam.de/en/data) from json format into the TimeArray.
-
 ```{julia}
-using JSON3
+using SpaceWeather
 
-"""
-Download 'Kp', 'ap', 'Ap', 'Cp', 'C9', 'Hp30', 'Hp60', 'ap30', 'ap60', 'SN', 'Fobs' or 'Fadj' index data from kp.gfz-potsdam.de
-
-# Notes
-- 'start_time' and 'end_time': date format 'YYYY-MM-DDThh:mm:ss'
-"""
-function load_Kp_data(start_time, end_time, index=:Kp)
-    url = "https://kp.gfz-potsdam.de/app/json/?start=$(start_time)Z&end=$(end_time)Z&index=$(index)"
-    data = JSON3.read(download(url))
-    datetime = DateTime.(data[:datetime], "yyyy-mm-ddTHH:MM:SSZ")
-    TimeArray(datetime, Float64.(data[index]), [index], Dict("unit" => "", "label" => string(index)))
-end
-
-kp_data = load_Kp_data(start_time, end_time)
+kp_data = SpaceWeather.Kp(start_time, end_time)
 ```
 
 ### Plot
@@ -178,7 +119,7 @@ kp_data = load_Kp_data(start_time, end_time)
 > [c] Plot all 3 indices in a single plot with common time, UT in usual units [2015-03-01 00:00]. If you cannot plot in this format, simply plot in decimal day or decimal hour.
 
 ```{julia}
-f = tplot([ae_data.AE, dst_data, kp_data])
+f = tplot([ae_data, dst_data, identity.(kp_data)])
 ```
 
 ## Galileo Magnetometer PDS
@@ -189,7 +130,7 @@ f = tplot([ae_data.AE, dst_data, kp_data])
 
 > In a short paragraph explain: What is the coordinate system and how did you download and plot?
 
-Dataset about Galileo (https://pds-ppi.igpp.ucla.edu/mission/Galileo) flyby of Ganymede is available in the Planetary Data System (PDS) https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede [@10.17189/gch4-8w75]. Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00.
+Dataset about Galileo (https://pds-ppi.igpp.ucla.edu/mission/Galileo) flyby of Ganymede is available in the Planetary Data System (PDS) https://pds-ppi.igpp.ucla.edu/collection/urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede [@kivelsonGalileoJupiterMAG2022]. Galileo calibrated MAG high-resolution magnetic field and trajectory data from the Ganymede 8 orbit Ganymede flyby cover 1997-05-07T15:36:00 to 1997-05-07T16:22:00.
 
 The dataset contains data in the following coordinate systems:
 
@@ -206,7 +147,7 @@ register(DataDep("ORB08_GAN_GPHIO",
     Dataset: ORB08_GAN_GPHIO
     Website: https://pds-ppi.igpp.ucla.edu/mission/Galileo
     """,
-    "https://pds-ppi.igpp.ucla.edu/ditdos/write?id=urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.0&f=csv"
+    "https://pds-ppi.igpp.ucla.edu/ditdos/write?id=urn:nasa:pds:galileo-mag-jup-calibrated:data-highres-ganymede:orb08_gan_gphio::1.1&f=csv"
 ))
 
 GAN_file = readdir(datadep"ORB08_GAN_GPHIO", join=true)[1]
@@ -276,6 +217,98 @@ Around the end of August 31, we observe a significant decrease in bulk flow velo
 > [b] What is the change in pressure, including dynamic pressure, across the shock (assume the crossing is along the shock normal)? To do this also ignore the electron thermal pressure (just use ion thermal pressure) and plot the quantity: N*V^2 + Pt, where Pt is the sum of magnetic and thermal pressures. Do this using your own tools (not SPEDAS) after downloading the data from SPDF.
 
 ```{julia}
+using CDAWeb
+using SpaceDataModel: setmeta
+using Unitful
+using Unitful: μ0, k, mp
+
+t0 = "2007-08-01"
+t1 = "2007-09-30"
+dataset = CDAWeb.get_data("VOYAGER2_COHO1HR_MERGED_MAG_PLASMA", t0, t1)
+N = DimArray(dataset["protonDensity"]) * u"cm^-3"
+V = DimArray(dataset["V"]) * u"km/s"
+B = DimArray(dataset["ABS_B"]) * u"nT"
+T = DimArray(dataset["protonTemp"]) * u"K"
+```
+
+```{julia}
+# Calculate the pressure
+pB = @. B^2 / μ0 / 2 / 1u"nPa" |> NoUnits
+pT = @. k * N * T / u"nPa" |> NoUnits
+pRam = @. mp * N * V^2 / u"nPa" |> NoUnits
+beta = pT ./ pB
+
+pB = setmeta(pB, "LABL_PTR_1" => "Magnetic Pressure")
+pT = setmeta(pT, "LABL_PTR_1" => "Thermal Pressure")
+pRam = setmeta(pRam, "LABL_PTR_1" => "Ram Pressure")
+pressure = setmeta(pRam .+ pB .+ pT, "LABL_PTR_1" => "Total Pressure")
+beta = setmeta(beta, "UNITS" => "", "LABLAXIS" => "Beta")
+tplot([[pRam, pB, pT, pressure], beta]; plottype=ScatterLines)
+```
+
+## Archived code
+
+Parsing the data into TimeSeries using `DelimitedFiles` and `TimeSeries`.
+
+```julia
+function load_ae_data(filename)
+    meta = Dict(
+        "unit" => "nT",
+        "label" => "AE Index"
+    )
+
+    # Skip the header lines (first 14 lines)
+    data, header = readdlm(filename, skipstart=14, header=true)
+
+    # Convert date and time columns to DateTime
+    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
+
+    TimeArray(datetime, data[:, 4:7], header[4:7], meta)
+end
+
+function load_dst_data(filename)
+    meta = Dict(
+        "unit" => "nT",
+        "label" => "Dst Index"
+    )
+
+    # Skip the header lines (first 17 lines)
+    data, header = readdlm(filename, skipstart=17, header=true)
+
+    # Convert date and time columns to DateTime
+    datetime = DateTime.(data[:, 1] .* "T" .* data[:, 2])
+
+    TimeArray(datetime, data[:, 4:4], header[4:4], meta)
+end
+
+ae_data = load_ae_data(ae_file)
+dst_data = load_dst_data(dst_file)
+```
+
+Using a web service client to load the data (https://kp.gfz-potsdam.de/en/data) from json format into the TimeArray.
+
+```julia
+using JSON3
+
+"""
+Download 'Kp', 'ap', 'Ap', 'Cp', 'C9', 'Hp30', 'Hp60', 'ap30', 'ap60', 'SN', 'Fobs' or 'Fadj' index data from kp.gfz-potsdam.de
+
+# Notes
+- 'start_time' and 'end_time': date format 'YYYY-MM-DDThh:mm:ss'
+"""
+function load_Kp_data(start_time, end_time, index=:Kp)
+    url = "https://kp.gfz-potsdam.de/app/json/?start=$(start_time)Z&end=$(end_time)Z&index=$(index)"
+    data = JSON3.read(download(url))
+    datetime = DateTime.(data[:datetime], "yyyy-mm-ddTHH:MM:SSZ")
+    TimeArray(datetime, Float64.(data[index]), [index], Dict("unit" => "", "label" => string(index)))
+end
+
+kp_data = load_Kp_data(start_time, end_time)
+```
+
+Using a web service client to load the data (https://cdaweb.gsfc.nasa.gov/misc/NotesV.html#VOYAGER2_COHO1HR_MERGED_MAG_PLASMA) from csv format.
+
+```julia
 using Unitful
 using Unitful: μ0, k, mp
 
@@ -302,27 +335,4 @@ N = data[!, "SW_PROTON_DENS_n/cc"] * u"cm^-3"
 V = data[!, "BULK_FLOW_SPEED_km/s"] * u"km/s"
 B = data[!, "FIELD_MAGNITUDE_AVG._nT"] * u"nT"
 T = data[!, "RADIAL_PROTON_TEMP_deg_k"] * u"K"
-
-# Calculate the pressure
-pB = B .^ 2 / μ0 / 2 ./ 1u"nPa" .|> NoUnits
-pT = k * N .* T ./ u"nPa" .|> NoUnits
-pRam = mp * N .* V .^ 2 ./ u"nPa" .|> NoUnits
-pressure = pRam .+ pB .+ pT
-beta = pT ./ pB
-time = data."time"
-
-# Plot the data
-fig = Figure()
-ax = Axis(fig[1, 1], title="Pressure Across Shock", xlabel="Time", ylabel="Pressure (nPa)")
-lines!(time, pRam, color=:blue, label="Ram Pressure")
-lines!(time, pB, color=:green, label="Magnetic Pressure")
-lines!(time, pT, color=:red, label="Thermal Pressure")
-lines!(time, pressure, color=:black, label="Total Pressure")
-axislegend(ax)
-
-ax2 = Axis(fig[2, 1], xlabel="Time", ylabel="Beta")
-lines!(time, beta)
-
-hidexdecorations!(ax, grid=false)
-fig
 ```

@@ -7,14 +7,12 @@ author:
 address: Earth, Planetary and Space Sciences, University of California, Los Angeles, CA 90095
 format:
   html: default
-  latex:
-    number-sections: false
 code-links:
-  - href: https://www.overleaf.com/project/65acd9becf5caed2b8e9089a
-    text: Overleaf
-  - href: cv_Zijin_clean.pdf
+  # - href: https://www.overleaf.com/project/65acd9becf5caed2b8e9089a
+    # text: Overleaf
+  - href: rendercv_output/Zijin_Zhang_CV.pdf
     text: PDF
-resources: cv_Zijin_clean.pdf
+resources: rendercv_output/Zijin_Zhang_CV.pdf
 ---
 
 \begin{center}
@@ -36,15 +34,19 @@ resources: cv_Zijin_clean.pdf
 
 # Research Interests
 
-- Solar wind and wave‑particle interactions
+- Heliophysics: Solar wind current sheets and energetic particle transport
 
-- Computational plasma physics and application of data science in space science
+- Magnetosphere–ionosphere coupling: 
 
-- Solar physics, heliophysics and experimental space science
+- Computational plasma physics and space physics environment data analysis
 
 # Publications
 
 <!-- APA style -->
+
+1. Zhang, Z., Artemyev, A. V., & Angelopoulos, V. (2025). Quantification of ion scattering by solar-wind current sheets: Pitch-angle diffusion rates. Physical Review E, 112(1), 15209. https://doi.org/10.1103/pkzv-k5t3
+
+1. Zhang, Z., Artemyev, A. V., Angelopoulos, V., & Vasko, I. (2025). Solar wind discontinuities in the outer heliosphere: Spatial distribution between 1 and 5 AU. Journal of Geophysical Research: Space Physics, 130(7), e2025JA034039. https://doi.org/10.1029/2025JA034039
 
 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., Zhang, X.-J., Kasahara, S., Miyoshi, Y., Matsuoka, A., Kasahara, Y., Mitani, T., Yokota, S., Hori, T., Keika, K., Takashima, T., Teramoto, M., Matsuda, S., & Shinohara, I. (2024). Relativistic Electron Flux Decay and Recovery: Relative Roles of EMIC Waves, Chorus Waves, and Electron Injections. *Journal of Geophysical Research: Space Physics*, 129(12), e2024JA033174. DOI: [10.1029/2024JA033174](https://doi.org/10.1029/2024JA033174)
 
@@ -53,25 +55,29 @@ resources: cv_Zijin_clean.pdf
 1. **Zhang, Z.**, & Tao, X. (2022). The kinetic simulation of the interaction between the Moon’s magnetic anomalies and the solar wind. *Undergraduate Thesis* [University of Science and Technology of China]. DOI: [10.13140/RG.2.2.15841.68968](http://dx.doi.org/10.13140/RG.2.2.15841.68968)
 
 
-# Presentations
+<!-- # Presentations -->
 
-1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Velli, M. (2024, December). On the Alfvénicity of multifluid force-free current sheet. *American Geophysical Union*.
+<!-- 1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Velli, M. (2024, December). On the Alfvénicity of multifluid force-free current sheet. *American Geophysical Union*. -->
 
-1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Chen, S. (2023, December 14). Solar wind discontinuities spatial evolution and energetic ion scattering. *American Geophysical Union*. DOI: [10.13140/RG.2.2.12905.67682](https://doi.org/10.13140/RG.2.2.12905.67682)
+<!-- 1. **Zhang, Z.**, Artemyev, A., Angelopoulos, V., & Chen, S. (2023, December 14). Solar wind discontinuities spatial evolution and energetic ion scattering. *American Geophysical Union*. DOI: [10.13140/RG.2.2.12905.67682](https://doi.org/10.13140/RG.2.2.12905.67682) -->
 
-1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, December 12). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *American Geophysical Union*. DOI: [10.13140/RG.2.2.33038.33607](https://doi.org/10.13140/RG.2.2.33038.33607)
+<!-- 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, December 12). Relativistic electron flux decay and recovery: Relative roles of EMIC waves, whistler-mode waves, and plasmasheet injections. *American Geophysical Union*. DOI: [10.13140/RG.2.2.33038.33607](https://doi.org/10.13140/RG.2.2.33038.33607) -->
 
-1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, June 22). Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections. *Geospace Environment Modeling*. DOI: [10.13140/RG.2.2.33038.33607](http://dx.doi.org/10.13140/RG.2.2.33038.33607)
+<!-- 1. **Zhang, Z.**, Artemyev, A., Mourenas, D., Angelopoulos, V., & Zhang, X.-J. (2023, June 22). Relativistic electron flux decay and recovery: Relative role of EMIC waves, whistler-mode waves, and plasmasheet injections. *Geospace Environment Modeling*. DOI: [10.13140/RG.2.2.33038.33607](http://dx.doi.org/10.13140/RG.2.2.33038.33607) -->
 
 # Software
+
+1. Zhang, Z., & Angelopoulos, V. (2025). SPEDAS.jl: Julia-based space physics environment data analysis software [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.15181866
+
+1. Zhang, Z. (2025). JuliaSpacePhysics/PlasmaBO.jl: Efficient plasma electromagnetic dispersion-relation solver (Version v0.2.0) [Computer software]. Zenodo. https://doi.org/10.5281/ZENODO.18058843
 
 1. **Zhang, Z.** (2025). discontinuitypy: A python package for identifying and analyzing discontinuities for time series (Version v0.4.0) [Computer software]. Zenodo. DOI: [10.5281/ZENODO.14868016](https://doi.org/10.5281/ZENODO.14868016)
 
 
-# Research Experience
+# Other Research Experience
 
-- Graduate Student Researcher, *Experimental Space Physics Group*, 2022-present\
-Study energetic ion scattering by solar wind discontinuities. 2022-present. [Project website](https://beforerr.github.io/ion_scattering_by_SWD).
+<!-- - Graduate Student Researcher, *Experimental Space Physics Group*, 2022-present\ -->
+<!-- Study energetic ion scattering by solar wind discontinuities. 2022-present. [Project website](https://beforerr.github.io/ion_scattering_by_SWD). -->
 
 - Undergraduate Research Assistant, *Artificial Intelligence of Things Lab*, 2021-2022\
 Implemented a distributed system to monitor edge devices and automate IT deployment and management 

@@ -7,7 +7,7 @@ format:
   pptx: default
 code-links:
   - text: PowerPoint (modified)
-    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2024-10-16_jets/index.pptx
+    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2024-10-16_jets/index_m.pptx
 categories:
   - "#journal club"
 date: last-modified

@@ -1,4 +1,5 @@
 % Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
@@ -7,21 +8,22 @@
   letterpaper,
   DIV=11,
   numbers=noendperiod]{scrartcl}
-
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -39,9 +41,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -67,8 +66,7 @@
 \makeatother
 
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -80,17 +78,35 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
 
 \usepackage{sidecap}
 \KOMAoption{captions}{tableheading}
@@ -135,16 +151,9 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\usepackage[]{natbib}
-\bibliographystyle{plainnat}
 \usepackage{bookmark}
-
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux},
   colorlinks=true,
@@ -158,7 +167,6 @@
 \title{Relative role of EMIC waves, chorus waves, and electron injections on relativistic electron flux}
 \author{}
 \date{}
-
 \begin{document}
 \maketitle
 
@@ -174,11 +182,11 @@ This project focuses on leveraging ELFIN satellite measurements to investigate t
 
 \section{Background and Motivation}\label{background-and-motivation}
 
-There are six important physical processes that affect the dynamics of relativistic (\(>0.3\) MeV) electrons trapped in the Earth's outer radiation belt: (a) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with electromagnetic ion cyclotron (EMIC) waves \cite{Thorne&Kennel71, Miyoshi08, Ross21, Summers&Thorne03, Millan&Thorne07, Miyoshi08,Shprits08:JASTP_local, Angelopoulos23:ssr}, (b) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with whistler-mode waves \cite{Horne05JGR, Mourenas14}, (c) electron flux increases due to chorus wave-driven acceleration of \(\approx100-300\) keV ``seed'' electrons \cite{Miyoshi03, Thorne13:nature, Li14:storm, Mourenas14:fluxes,Allison&Shprits20, Jaynes15:seedelectrons} provided by recurrent strong injections \cite{Hua2022, Mourenas23:jgr:upper_limit}, (d) electron losses due to magnetopause shadowing and outward radial diffusion \cite{Shprits06:magnetopause, Boynton16, Boynton17, Olifer18}, (e) electron flux increase due to inward radial diffusion by ULF waves \cite{Ozeke14, Ozeke2020}, and (f) electron flux increase due to direct injections of \(\sim0.5-1.5\) MeV electrons in the outer belt \cite{Kim21, Tang22}. These mechanisms collectively shape the distribution of radiation belt electrons, with varying influences depending on geomagnetic conditions and wave activity.
+There are six important physical processes that affect the dynamics of relativistic (\(>0.3\) MeV) electrons trapped in the Earth's outer radiation belt: (a) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with electromagnetic ion cyclotron (EMIC) waves \citep{Thorne&Kennel71, Miyoshi08, Ross21, Summers&Thorne03, Millan&Thorne07, Miyoshi08,Shprits08:JASTP_local, Angelopoulos23:ssr}, (b) electron losses due to pitch angle scattering toward the loss cone via resonant interactions with whistler-mode waves \citep{Horne05JGR, Mourenas14}, (c) electron flux increases due to chorus wave-driven acceleration of \(\approx100-300\) keV ``seed'' electrons \citep{Miyoshi03, Thorne13:nature, Li14:storm, Mourenas14:fluxes,Allison&Shprits20, Jaynes15:seedelectrons} provided by recurrent strong injections \citep{Hua2022, Mourenas23:jgr:upper_limit}, (d) electron losses due to magnetopause shadowing and outward radial diffusion \citep{Shprits06:magnetopause, Boynton16, Boynton17, Olifer18}, (e) electron flux increase due to inward radial diffusion by ULF waves \citep{Ozeke14, Ozeke2020}, and (f) electron flux increase due to direct injections of \(\sim0.5-1.5\) MeV electrons in the outer belt \citep{Kim21, Tang22}. These mechanisms collectively shape the distribution of radiation belt electrons, with varying influences depending on geomagnetic conditions and wave activity.
 
-Among these, EMIC wave-driven electron precipitation stands out as a key mechanism for electron losses at energies above the minimum threshold for cyclotron resonance with such waves, typically \(E_{\min}\sim 0.5-1\) MeV \cite{Summers&Thorne03, Summers07:theory, Usanova14, Kurita18:emic, Nakamura22:emic}. EMIC waves induce much higher electron pitch angle scattering rates near the loss cone at relativistic energies than those driven by chorus waves \cite{Glauert&Horne05, Summers07:rates, Ni15}. Numerical simulations of the outer radiation belt dynamics \cite{Ma15, Shprits16, Drozdov17}, alongside data-model comparisons \cite{Shprits17, Kim21:emic, Drozdov22:dropout, Adair22, Angelopoulos23:ssr}, have confirmed that EMIC waves efficiently scatter relativistic electrons, leading to rapid depletion of their fluxes in the outer radiation belt.
+Among these, EMIC wave-driven electron precipitation stands out as a key mechanism for electron losses at energies above the minimum threshold for cyclotron resonance with such waves, typically \(E_{\min}\sim 0.5-1\) MeV \citep{Summers&Thorne03, Summers07:theory, Usanova14, Kurita18:emic, Nakamura22:emic}. EMIC waves induce much higher electron pitch angle scattering rates near the loss cone at relativistic energies than those driven by chorus waves \citep{Glauert&Horne05, Summers07:rates, Ni15}. Numerical simulations of the outer radiation belt dynamics \citep{Ma15, Shprits16, Drozdov17}, alongside data-model comparisons \citep{Shprits17, Kim21:emic, Drozdov22:dropout, Adair22, Angelopoulos23:ssr}, have confirmed that EMIC waves efficiently scatter relativistic electrons, leading to rapid depletion of their fluxes in the outer radiation belt.
 
-However, for energies below ultra-relativistic levels (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering primarily affects low pitch angle electrons (equatorial \(\alpha_{eq}<30^\circ\)) \cite{Ni15, Kersten14}. Additional scattering of high pitch angle (\(\alpha_{eq}>30^\circ\)) electrons by whistler-mode waves has been suggested to assist EMIC waves in the precipitation of the near-equatorial (trapped) electron population \cite{Mourenas16:grl, Zhang17, Drozdov20}. Studies have shown that the combination of EMIC and whistler-mode wave scattering at the same \(L\)-shell (even at different longitudes) can result in very effective electron flux depletion \cite{Mourenas16:grl, Kim21:emic, Drozdov22:dropout}. Verifying this electron loss mechanism requires coordinated observations from satellites near the equator (to measure waves and equatorial pitch-angle fluxes) and at low-altitude (to capture precipitating electron fluxes).
+However, for energies below ultra-relativistic levels (below several MeV) and for typical plasma characteristics, EMIC wave-driven electron scattering primarily affects low pitch angle electrons (equatorial \(\alpha_{eq}<30^\circ\)) \citep{Ni15, Kersten14}. Additional scattering of high pitch angle (\(\alpha_{eq}>30^\circ\)) electrons by whistler-mode waves has been suggested to assist EMIC waves in the precipitation of the near-equatorial (trapped) electron population \citep{Mourenas16:grl, Zhang17, Drozdov20}. Studies have shown that the combination of EMIC and whistler-mode wave scattering at the same \(L\)-shell (even at different longitudes) can result in very effective electron flux depletion \citep{Mourenas16:grl, Kim21:emic, Drozdov22:dropout}. Verifying this electron loss mechanism requires coordinated observations from satellites near the equator (to measure waves and equatorial pitch-angle fluxes) and at low-altitude (to capture precipitating electron fluxes).
 
 EMIC waves are typically generated by anisotropic ion populations from plasma sheet injections \citep{Jun19:emic}. These injections also produce anisotropic ``seed'' electrons \citep{Miyoshi13, Jaynes15:seedelectrons}, which provide the free energy for whistler-mode chorus wave generation \citep{Tao11, Fu14:radiation_belts, Zhang18:whistlers&injections}. Chorus waves can then accelerate the same seed electrons to relativistic energies \citep{miyoshiRebuildingProcessOuter2003, thorneRapidLocalAcceleration2013, mourenasApproximateAnalyticalSolutions2014, allisonLocalHeatingRadiation2020}. A competition emerges between electron acceleration driven by whistler-mode waves, supported by adiabatic heating during injections \citep[e.g.,][]{sorathiaModelingDepletionRecovery2018}, and electron precipitation induced by EMIC and chorus waves. This competition ultimately shapes the energy spectrum of radiation belt electrons following plasma sheet injections. Recent publications suggest that the electron energy spectrum reaches an upper flux limit, resulting from a balance between electron injections and precipitation losses governed by whistler-mode waves \citep{oliferTaleTwoRadiation2021, oliferNaturalLimitSpectral2022}.
 
@@ -204,7 +212,7 @@ We highlight a candidate conjunction event, as illustrated in Figure~\ref{fig-1}
 
 \centering{
 
-\includegraphics[width=0.67\textwidth,height=\textheight]{figures/fig1_orbit_multi_mission_conjunctions.png}
+\includegraphics[width=0.67\linewidth,height=\textheight,keepaspectratio]{figures/fig1_orbit_multi_mission_conjunctions.png}
 
 }
 
@@ -220,7 +228,7 @@ First, we will identify specific events during which intense EMIC wave activity 
 
 \centering{
 
-\includegraphics[width=0.67\textwidth,height=\textheight]{figures/fig_elfin_j_ratio.png}
+\includegraphics[width=0.67\linewidth,height=\textheight,keepaspectratio]{figures/fig_elfin_j_ratio.png}
 
 }
 
@@ -266,7 +274,7 @@ The proposed research is designed to tackle some of the most pressing questions 
 
 \centering{
 
-\includegraphics{figures/fig_Daa.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figures/fig_Daa.png}}
 
 }
 
@@ -277,6 +285,7 @@ The proposed research is designed to tackle some of the most pressing questions 
 \newpage{}
 
 
+\bibliography{../../../../files/bibliography/research.bib}
 
 
 \bibliography{files/Anton.addon.bib,files/Anton.full.bib,files/research.bib}

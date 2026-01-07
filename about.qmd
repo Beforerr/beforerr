@@ -11,7 +11,7 @@ about:
     - text: ORCID
       href: "https://orcid.org/0000-0002-9968-067X"
     - text: CV
-      href: docs/others/cv_Zijin.qmd
+      href: docs/others/rendercv_output/Zijin_Zhang_CV.pdf
 ---
 
 - 🪐 A graduate student at UCLA, majoring in space science & planetary science.

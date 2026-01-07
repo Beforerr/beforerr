@@ -9,7 +9,7 @@ format:
   pptx: default
 code-links:
   - text: PowerPoint (modified)
-    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2024-01-15_bifurcations/index.pptx
+    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2025-01-15_bifurcations/index_m.pptx
 categories:
   - "#journal club"
   - dynamical system

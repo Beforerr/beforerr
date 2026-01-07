@@ -1,7 +1,6 @@
 ---
 title: Problem Set 6
 subtitle: Electron-scale measurements of magnetic reconnection in space
-engine: julia
 ---
 
 ## MMS Science event: magnetopause reconnection at the electron diffusion region
@@ -9,17 +8,27 @@ engine: julia
 > Obtain and analyze plasma data, including spectra, for the first MMS Science event (Burch et al., Science 2016, link here) showing magnetopause reconnection at the electron diffusion region on 2016/10/16 13:07:02.2 UT. Start by using Hwk06_mpause_RX.pro, provided.  The objective of this exercise is to introduce plasma distributions from MMS (electrons and ions) and create burst spectra. In the process also create plasma moments and the plasma current and plot these along E and B. You are requested to create Figure 2 of Burch et al. plus the 3 bottom (electron) spectrograms from Figure 3 of the same paper (panels 3G, 3H and 3I). Your figure should look like the one shown on the next page, but using burst mode data in order to make it look like in Burch et al. You are requested to plot this figure at 2 time scales: the overview (2 min) timescale as in Fig. 2 of Burch et al. [‘13:05:30’,’13:07:30’] and  the zoom-in (3 sec) timescale as in Fig. 3 of Burch et al. ['13:07:00.5','13:07:03.5']. Notice that the clean and fast m’pause crossing was at 13:05:40UT, and this is used to determine N. In Fig. 2K of Burch et al. (the right-hand side of Fig. 2, the pictorial view of the MMS trajectory for the 2min interval) this initial m’pause crossing was near the start of the trajectory. The trajectory crosses the X-point at the 3 seconds of the zoom-in interval.
 
 ```{julia}
+dir = "docs/courses/epss261/homework"
+if isdir(dir)
+    cd(dir)
+    Pkg.activate(".")
+    Pkg.resolve()
+    Pkg.instantiate()
+end
+```
+
+```{julia}
+using Dates
 using Speasy
 using DimensionalData
 using SPEDAS
 using SPEDAS.MMS
-using SPEDAS: dimarrayify
 # using GLMakie
 using Unitful
-using CairoMakie
+using CairoMakie, SpacePhysicsMakie
 
 update_theme!(colormap=:rainbow1)
-SPEDAS.DEFAULTS.add_title = true;
+SpacePhysicsMakie.DEFAULTS.add_title = true;
 ```
 
 ### Overview plot
@@ -28,7 +37,7 @@ SPEDAS.DEFAULTS.add_title = true;
 
 ```{julia}
 trange = ("2015-10-16T13:05:35", "2015-10-16T13:07:25")
-tr_mpause = ("2015-10-16T13:05:40", "2015-10-16T13:06:09")
+tr_mpause = DateTime.(("2015-10-16T13:05:40", "2015-10-16T13:06:09"))
 
 probe = 2
 
@@ -37,7 +46,7 @@ tvars = [
     "cda/MMS2_EDP_FAST_L2_DCE/mms2_edp_dce_gse_fast_l2",
 ]
 B_gse, edp_dce_gse = get_data(tvars, trange) .|> DimArray
-rotMat = mva_mat(tclip(B_gse[:, 1:3], tr_mpause))
+rotMat = mva_eigen(tclip(B_gse[:, 1:3], tr_mpause))
 B_LMN = rotate(B_gse[:, 1:3], rotMat) |> set_coord("LMN") |> set_coord("Boundary-normal coordinates"; old_coords=["Geocentric Solar Ecliptic"])
 E_LMN = rotate(edp_dce_gse, rotMat) |> set_coord("LMN")
 
@@ -55,29 +64,30 @@ data_rate = "brst"
 fpi_des_ds = FPIDataSet(; probe, data_rate, data_type="des")
 fpi_dis_ds = FPIDataSet(; probe, data_rate, data_type="dis")
 
-des_data = get_data(NamedTuple, fpi_des_ds, trange) |> dimarrayify
-dis_data = get_data(NamedTuple, fpi_dis_ds, trange) |> dimarrayify
+des_data = get_data(NamedTuple, fpi_des_ds, trange)
+dis_data = get_data(NamedTuple, fpi_dis_ds, trange)
 
-des_n = modify_meta(des_data.numberdensity[:, 1], label="Ne")
-dis_bulkv_lmn = rotate(dis_data.bulkv_gse, rotMat) |> set_coord("LMN")
-des_bulkv_lmn = rotate(des_data.bulkv_gse, rotMat) |> set_coord("LMN")
-dis_n = modify_meta(dis_data.numberdensity[:, 1], label="Ni")
+des_n = setmeta(DimArray(des_data.numberdensity)[:, 1], label="Ne")
+dis_bulkv_lmn = rotate(DimArray(dis_data.bulkv_gse), rotMat) |> set_coord("LMN")
+des_bulkv_lmn = rotate(DimArray(des_data.bulkv_gse), rotMat) |> set_coord("LMN")
+dis_n = setmeta(DimArray(dis_data.numberdensity)[:, 1], label="Ni")
 ```
 
 #### Magnitudes of electron and ion convection velocities
 
 ```{julia}
-Vi_perp_mag, Ve_perp_mag = let Vi = dis_data.bulkv_gse, Ve = des_data.bulkv_gse, B = B_gse
-    Vi_clip = tclip(Vi, B)
-    Ve_clip = tclip(Ve, B)
+Vi_perp_mag, Ve_perp_mag = let Vi = DimArray(dis_data.bulkv_gse), Ve = DimArray(des_data.bulkv_gse), B = B_gse
+    tr = timerange(B)
+    Vi_clip = tclip(Vi, tr)
+    Ve_clip = tclip(Ve, tr)
 
     B_int_Vi = tinterp(B, Vi_clip)[:, 1:3]
     B_int_Ve = tinterp(B, Ve_clip)[:, 1:3]
     Vi_perp_mag = toproj(Vi_clip, B_int_Vi) |> tnorm
     Ve_perp_mag = toproj(Ve_clip, B_int_Ve) |> tnorm
 
-    modify_meta(Vi_perp_mag, ylabel="Viper_t"),
-    modify_meta(Ve_perp_mag, ylabel="Veper_t")
+    setmeta(Vi_perp_mag, ylabel="Viper_t"),
+    setmeta(Ve_perp_mag, ylabel="Veper_t")
 end
 ```
 
@@ -88,13 +98,13 @@ J = begin
     Vi = dis_bulkv_lmn
     Ve = des_bulkv_lmn
     n = dis_n
-    Ve_clip = tclip(Ve, Vi)
+    Ve_clip = tclip(Ve, timerange(Vi))
     Vi_interp = tinterp(Vi, Ve_clip)
     n_interp = tinterp(n, Ve_clip)
     J = mapslices(Vi_interp - Ve_clip; dims=Ti) do V_diff_i
-        @. Unitful.q * V_diff_i * n_interp |> u"μA*m^-2"
+        @. Unitful.q * V_diff_i * u"km/s" * n_interp * u"cm^-3" |> u"μA*m^-2"
     end
-    modify_meta(J, labels=["j_L", "j_M", "j_N"])
+    setmeta(J, labels=["j_L", "j_M", "j_N"])
 end
 ```
 
@@ -107,11 +117,11 @@ des_energyspectr_tvars = [
     "cda/MMS2_FPI_BRST_L2_DES-MOMS/mms$(probe)_des_energyspectr_anti_$(data_rate)"
 ]
 
-des_energyspectr = get_data(des_energyspectr_tvars, trange) .|> DimArray
+des_energyspectr = get_data(des_energyspectr_tvars, trange)
 des_energyspectr = replace.(des_energyspectr, 0 => NaN)
 des_energyspectr_ratio = des_energyspectr[1] ./ des_energyspectr[2]
-des_energyspectr = modify_meta.(des_energyspectr, colorrange=(1e5, 1e9))
-des_energyspectr_ratio = modify_meta(des_energyspectr_ratio,
+des_energyspectr = setmeta.(des_energyspectr, colorrange=(1e5, 1e9))
+des_energyspectr_ratio = setmeta(des_energyspectr_ratio,
     colorrange=(1e-1, 1e1), title="Ratio (Para/Perp)"
 )
 ```
@@ -173,12 +183,12 @@ Furthermore, as illustrated in the figure below, reconnection dissipation is dri
 
 ```{julia}
 B_interp = tinterp(B_LMN, J)
-E_LMN_interp = tinterp(E_LMN, J)
-J_dot_E = tdot(J, E_LMN_interp) |> modify_meta(label="j ⋅ E")
-E_parp = tsproj(E_LMN_interp, B_interp) |> modify_meta(label="E∥")
+E_LMN_interp = tinterp(E_LMN, J) * u"mV/m"
+J_dot_E = setmeta(tdot(J, E_LMN_interp), labels="j ⋅ E")
+E_parp = setmeta(tsproj(E_LMN_interp, B_interp), ylabel="E∥ (mV/m)")
 J_parp = tsproj(J, B_interp)
-J_dot_E_para = tdot(J_parp, E_parp) |> modify_meta(label="j∥ ⋅ E∥")
-J_dot_E_perp = tdot(toproj(J, B_interp), toproj(E_LMN_interp, B_interp)) |> modify_meta(label="j⊥ ⋅ E⊥")
+J_dot_E_para = setmeta(tdot(J_parp, E_parp), labels="j∥ ⋅ E∥")
+J_dot_E_perp = setmeta(tdot(toproj(J, B_interp), toproj(E_LMN_interp, B_interp)), labels="j⊥ ⋅ E⊥")
 ```
 
 J · E is the total energy transfer (energy conversion) rate, which is a key quantity in reconnection studies. Since reconnection is known to be a dissipative process that converts magnetic energy to heat and particle kinetic energy, the dissipation quantity could help identify a physically relevant, small-scale region surrounding the reconnection.

@@ -155,6 +155,7 @@ model = transit_model(data.time, data.flux)
 using LinearAlgebra  # For eigen decomposition and other matrix operations
 using Statistics     # For statistical functions
 using StatsBase
+using CairoMakie: heatmap!, scatter!
 
 fixed_t0 = 1.311544
 
@@ -178,12 +179,12 @@ best_b = b_grid[max_idx[2]]
 
 b_label = "Impact parameter (b)"
 rp_label = "Planet-to-star radius ratio (rp)"
-fig = Figure(size=(1000, 800))
+fig = Figure()
 ax1 = Axis(fig[1, 1], xlabel=rp_label, ylabel=b_label, title="Joint Posterior Distribution")
 
 hm = heatmap!(ax1, rp_grid, b_grid, posterior_grid)
 scatter!(ax1, [best_rp], [best_b], color=:red, markersize=15)
-Colorbar(fig[1, 1, Right()], hm, label="Posterior Probability")
+Colorbar(fig[1, 1, Right()], hm, label="Posterior Probability", alignmode=Outside())
 fig
 ```
 

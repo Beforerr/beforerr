@@ -7,7 +7,7 @@ author:
   - F. Fiuza
 code-links:
   - text: PowerPoint (modified)
-    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2025-04-16_kink_instability/index.pptx
+    href: https://github.com/Beforerr/beforerr/tree/main/docs/blog/journal_club/2025-04-16_kink_instability/index_m.pptx
 categories:
   - "#journal club"
 date: last-modified
