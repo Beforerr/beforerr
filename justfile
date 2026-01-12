@@ -28,4 +28,7 @@ ln-bib:
     [ -e files/bibliography/research.bib ] || ln -s ~/projects/share/bibliography/research.bib files/bibliography/research.bib
 
 cv:
-    rendercv render docs/others/cv_Zijin.yaml
+    rendercv render docs/others/cv_Zijin.yaml -nomd -nohtml -nopng
+
+thesis:
+    quarto render docs/others/phd/2026_grad/thesis.qmd --to typst
