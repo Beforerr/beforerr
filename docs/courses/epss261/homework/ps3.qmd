@@ -113,7 +113,7 @@ spz = speasy()
 using Dates
 using DimensionalData
 using CairoMakie
-using SpaceTools
+using SPEDAS
 using Unitful
 using DSP
 ```
@@ -136,7 +136,7 @@ da = SpaceTools.modify_meta(da, long_name="B")
 using SignalAnalysis
 using PlasmaFormulary
 
-p = SpaceTools.pspectrum(da[:, 1])
+p = SPEDAS.pspectrum(da[:, 1])
 begin
     f = tplot(p; colorrange=(1e-7, 1), alpha=0.7)
     ax = current_axis()
@@ -206,7 +206,6 @@ tplot([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])
 ```{julia}
 using LinearAlgebra
 using Statistics
-using SpaceTools
 using Dates
 
 # Load magnetic field data around the shock crossing
@@ -339,7 +338,7 @@ direction = DimArray(
 )
 Bns = DimArray(Bn, Ti(t_ends); name=:Bn)
 ΔBn = abs.(diff(Bns))
-ΔBn = SpaceTools.rename(ΔBn, :ΔBn)
+ΔBn = rebuild(ΔBn; name=:ΔBn)
 
 tvars = [b_data, direction, [Bns, ΔBn]]
 f, axes = tplot(tvars; add_title=true)
@@ -366,47 +365,31 @@ $$
 \left|\Delta\left\langle\mathbf{B} \cdot \mathbf{x₃}\right\rangle\right|=\sqrt{\frac{\lambda_3}{M-1}+\left(\Delta \varphi_{32}\langle\mathbf{B}\rangle \cdot \mathbf{x}_2\right)^2+\left(\Delta \varphi_{31}\langle\mathbf{B}\rangle \cdot \mathbf{x}_1\right)^2}
 $$
 
-
-```julia
-"""
-    Δφij(λᵢ, λⱼ, λ₃, M)
-
-Calculate the phase error between components i and j according to:
-|Δφᵢⱼ| = |Δφⱼᵢ| = √(λ₃/(M-1) * (λᵢ + λⱼ - λ₃)/(λᵢ - λⱼ)²)
-
-Parameters:
-- λᵢ: eigenvalue i
-- λⱼ: eigenvalue j
-- λ₃: smallest eigenvalue (λ₃)
-- M: number of samples
-"""
-function Δφij(λᵢ, λⱼ, λ₃, M)
-    return sqrt((λ₃ / (M - 1)) * (λᵢ + λⱼ - λ₃) / (λᵢ - λⱼ)^2)
-end
-
-"""
-Calculate the composite statistical error estimate for ⟨B·x₃⟩:
-|Δ⟨B·x₃⟩| = √(λ₃/(M-1) + (Δφ₃₂⟨B⟩·x₂)² + (Δφ₃₁⟨B⟩·x₁)²)
-
-Parameters:
-- λ₁, λ₂, λ₃: eigenvalues in descending order
-- M: number of samples
-- B: mean magnetic field vector
-- x₁, x₂, x₃: eigenvectors
-"""
-function B_x3_error(λ₁, λ₂, λ₃, M, B, x₁, x₂, x₃)
-    Δφ₃₂ = Δφij(λ₃, λ₂, λ₃, M)
-    Δφ₃₁ = Δφij(λ₃, λ₁, λ₃, M)
-    B_x₂ = dot(B, x₂)
-    B_x₁ = dot(B, x₁)
-    return sqrt(λ₃ / (M - 1) + (Δφ₃₂ * B_x₂)^2 + (Δφ₃₁ * B_x₁)^2)
-end
-
-B_x3_error(F::Eigen, M, B) = 
-    B_x3_error(F.values..., M, B, eachcol(F.vectors)...)
-```
+See [MinimumVarianceAnalysis.jl](https://juliaspacephysics.github.io/MinimumVarianceAnalysis.jl/dev/) for more details.
 
 ```{julia}
+using SPEDAS.MinimumVarianceAnalysis: Δφij, B_x3_error
+
+"""
+    nt2ds(nt_arr, dim; fields=propertynames(first(nt_arr)))
+
+Convert a NamedTuple array to a DimStack of DimArrays.
+"""
+function nt2ds(nt_arr, dim; fields=propertynames(first(nt_arr)))
+    DimStack([
+        DimArray(getfield.(nt_arr, field), dim; name=field)
+        for field in fields
+    ])
+end
+
+function nt2ds(nt_arr; sym=:time)
+    dim = Dim{sym}(getfield.(nt_arr, sym))
+    # filter the time dimension
+    fields = propertynames(first(nt_arr))
+    fields = filter(field -> field != sym, fields)
+    nt2ds(nt_arr, dim; fields)
+end
+
 res = map(t_ends) do t_end
     b_data_subset = b_data[t_start..t_end, :]
     F = mva_mat(b_data_subset)
@@ -416,14 +399,14 @@ res = map(t_ends) do t_end
     λ₁ = F.values[1]
     λ₂ = F.values[2]
     λ₃ = F.values[3]
-    Δφ12 = SpaceTools.Δφij(λ₁, λ₂, λ₃, M)
-    Δφ13 = SpaceTools.Δφij(λ₁, λ₃, λ₃, M)
-    Δφ23 = SpaceTools.Δφij(λ₂, λ₃, λ₃, M)
-    B_x3_err = SpaceTools.B_x3_error(F, M, B)
+    Δφ12 = Δφij(λ₁, λ₂, λ₃, M)
+    Δφ13 = Δφij(λ₁, λ₃, λ₃, M)
+    Δφ23 = Δφij(λ₂, λ₃, λ₃, M)
+    B_x3_err = B_x3_error(F, M, B)
     (; time=t_end, Δφ12, Δφ13, Δφ23, B_x3_err)
 end
 
-errors = SpaceTools.nt2ds(res)
+errors = nt2ds(res)
 tvars = [
     b_data,
     [errors.Δφ12, errors.Δφ13, errors.Δφ23],
