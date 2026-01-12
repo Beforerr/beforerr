@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.9.12">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -52,14 +52,15 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,7 +103,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -233,7 +234,7 @@ window.Quarto = {
 <section id="introduction-and-background" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-and-background">Introduction and Background</h2>
 <p>Solar wind magnetic discontinuities, characterized by rapid variations in interplanetary magnetic fields, are pivotal in understanding key phenomena in heliophysics. These discontinuities, manifesting as localized transient rotations or jumps in the magnetic field, are among the first discoveries in solar wind investigations <span class="citation" data-cites="colburnDiscontinuitiesSolarWind1966">(<a href="#ref-colburnDiscontinuitiesSolarWind1966" role="doc-biblioref">Colburn and Sonett 1966</a>)</span>. Theoretical models suggest that the formation and destruction of discontinuities are closely related to the nonlinear dynamics of Alfvén waves. These nonlinear processes can create significant isolated disturbances to the otherwise adiabatic evolution of the solar wind flow.</p>
-<p>These discontinuities change the local direction of the interplanetary magnetic field (deviating from the average Parker spiral) and contribute significantly to the magnetic fluctuation spectrum <span class="citation" data-cites="borovskyContributionStrongDiscontinuities2010">(<a href="#ref-borovskyContributionStrongDiscontinuities2010" role="doc-biblioref">Borovsky 2010</a>)</span>. They harbor kinetic-scale structures with intense currents, which act as a source of free energy for plasma waves and instabilities, leading to energy dissipation<span class="citation" data-cites="dmitrukTestParticleEnergization2004 macbrideTurbulentCascade12008 osmanIntermittencyLocalHeating2012 tesseinAssociationSuprathermalParticles2013">(<a href="#ref-dmitrukTestParticleEnergization2004" role="doc-biblioref">Dmitruk, Matthaeus, and Seenu 2004</a>; <a href="#ref-macbrideTurbulentCascade12008" role="doc-biblioref"><strong>macbrideTurbulentCascade12008?</strong></a>; <a href="#ref-osmanIntermittencyLocalHeating2012" role="doc-biblioref">Osman et al. 2012</a>; <a href="#ref-tesseinAssociationSuprathermalParticles2013" role="doc-biblioref">Tessein et al. 2013</a>)</span>. Their formation, evolution, and destruction are believed to be closely related to solar wind heating and acceleration via magnetic reconnection <span class="citation" data-cites="dmitrukTestParticleEnergization2004">(<a href="#ref-dmitrukTestParticleEnergization2004" role="doc-biblioref">Dmitruk, Matthaeus, and Seenu 2004</a>)</span> or nonlinear wave-wave and wave-particle interaction <span class="citation" data-cites="medvedevDissipativeDynamicsCollisionless1997">(<a href="#ref-medvedevDissipativeDynamicsCollisionless1997" role="doc-biblioref">Medvedev et al. 1997</a>)</span>. Moreover, discontinuities are coherent structures in turbulent solar wind and have a nontrivial influence (distinct from random fluctuations) on energetic particles whose gyroradius is comparable to the thickness of the discontinuity <span class="citation" data-cites="malaraChargedparticleChaoticDynamics2021">(<a href="#ref-malaraChargedparticleChaoticDynamics2021" role="doc-biblioref">Malara, Perri, and Zimbardo 2021</a>)</span>. Recent investigation of the nonfluid (kinetic) properties of solar wind discontinuities <span class="citation" data-cites="artemyevKineticNatureSolar2019">(<a href="#ref-artemyevKineticNatureSolar2019" role="doc-biblioref">Artemyev et al. 2019</a>)</span> reveals that electron density and temperature vary significantly across these discontinuities, underlining the importance of kinetic effects in discontinuity structure.</p>
+<p>These discontinuities change the local direction of the interplanetary magnetic field (deviating from the average Parker spiral) and contribute significantly to the magnetic fluctuation spectrum <span class="citation" data-cites="borovskyContributionStrongDiscontinuities2010">(<a href="#ref-borovskyContributionStrongDiscontinuities2010" role="doc-biblioref">Borovsky 2010</a>)</span>. They harbor kinetic-scale structures with intense currents, which act as a source of free energy for plasma waves and instabilities, leading to energy dissipation<span class="citation" data-cites="dmitrukTestParticleEnergization2004 macbrideTurbulentCascade12008 osmanIntermittencyLocalHeating2012 tesseinAssociationSuprathermalParticles2013">(<a href="#ref-dmitrukTestParticleEnergization2004" role="doc-biblioref">Dmitruk, Matthaeus, and Seenu 2004</a>; <a href="#ref-macbrideTurbulentCascade12008" role="doc-biblioref">MacBride, Smith, and Forman 2008</a>; <a href="#ref-osmanIntermittencyLocalHeating2012" role="doc-biblioref">Osman et al. 2012</a>; <a href="#ref-tesseinAssociationSuprathermalParticles2013" role="doc-biblioref">Tessein et al. 2013</a>)</span>. Their formation, evolution, and destruction are believed to be closely related to solar wind heating and acceleration via magnetic reconnection <span class="citation" data-cites="dmitrukTestParticleEnergization2004">(<a href="#ref-dmitrukTestParticleEnergization2004" role="doc-biblioref">Dmitruk, Matthaeus, and Seenu 2004</a>)</span> or nonlinear wave-wave and wave-particle interaction <span class="citation" data-cites="medvedevDissipativeDynamicsCollisionless1997">(<a href="#ref-medvedevDissipativeDynamicsCollisionless1997" role="doc-biblioref">Medvedev et al. 1997</a>)</span>. Moreover, discontinuities are coherent structures in turbulent solar wind and have a nontrivial influence (distinct from random fluctuations) on energetic particles whose gyroradius is comparable to the thickness of the discontinuity <span class="citation" data-cites="malaraChargedparticleChaoticDynamics2021">(<a href="#ref-malaraChargedparticleChaoticDynamics2021" role="doc-biblioref">Malara, Perri, and Zimbardo 2021</a>)</span>. Recent investigation of the nonfluid (kinetic) properties of solar wind discontinuities <span class="citation" data-cites="artemyevKineticNatureSolar2019">(<a href="#ref-artemyevKineticNatureSolar2019" role="doc-biblioref">Artemyev et al. 2019</a>)</span> reveals that electron density and temperature vary significantly across these discontinuities, underlining the importance of kinetic effects in discontinuity structure.</p>
 <p>Understanding the dynamics of solar wind discontinuities is essential for elucidating the fundamental processes that govern the solar wind’s evolution as it travels through the heliosphere. As such, this study aims to address the key question:</p>
 <p><strong>“How do discontinuities evolve over radial distances from the Sun and what are the physical mechanisms behind their formation and evolution?”</strong></p>
 <p>By leveraging data from missions such as PSP and Juno, this research will generate a comprehensive data set of discontinuity configurations and investigate their spatial and temporal evolution. These statistics will aid in modeling processes like ion scattering by coherent structures and elucidate their roles in solar wind heating and particle acceleration.</p>
@@ -445,7 +446,10 @@ Greco, A., W. H. Matthaeus, S. Servidio, P. Chuychai, and P. Dmitruk. 2009. <spa
 Keebler, Timothy B., Gábor Tóth, Bertalan Zieger, and Merav Opher. 2022. <span>“<span>MSWIM2D</span>: Two-Dimensional Outer Heliosphere Solar Wind Modeling.”</span> <em>Astrophysical Journal Supplement Series</em> 260 (2): 43. <a href="https://doi.org/10.3847/1538-4365/ac67eb">https://doi.org/10.3847/1538-4365/ac67eb</a>.
 </div>
 <div id="ref-liuMagneticDiscontinuitiesSolar2022" class="csl-entry" role="listitem">
-Liu, Y. Y., H. S. Fu, J. B. Cao, Z. Wang, R. J. He, Z. Z. Guo, Y. Xu, and Y. Yu. 2022. <span>“Magnetic Discontinuities in the Solar Wind and Magnetosheath: Magnetospheric Multiscale Mission (<span>MMS</span>) Observations.”</span> <em>Astrophysical Journal</em> 930 (1): 63. <a href="https://doi.org/10.3847/1538-4357/ac62d2">https://doi.org/10.3847/1538-4357/ac62d2</a>.
+Liu, Y. Y., H. S. Fu, J. B. Cao, Z. Wang, R. J. He, Z. Z. Guo, Y. Xu, and Y. Yu. 2022. <span>“Magnetic Discontinuities in the Solar Wind and Magnetosheath: <span>Magnetospheric Multiscale Mission</span> (<span>MMS</span>) Observations.”</span> <em>Astrophysical Journal</em> 930 (1): 63. <a href="https://doi.org/10.3847/1538-4357/ac62d2">https://doi.org/10.3847/1538-4357/ac62d2</a>.
+</div>
+<div id="ref-macbrideTurbulentCascade12008" class="csl-entry" role="listitem">
+MacBride, Benjamin T., Charles W. Smith, and Miriam A. Forman. 2008. <span>“The Turbulent Cascade at 1 <span>AU</span>: Energy Transfer and the Third-Order Scaling for <span>MHD</span>.”</span> <em>Astrophysical Journal</em> 679 (June): 1644–60. <a href="https://doi.org/10.1086/529575">https://doi.org/10.1086/529575</a>.
 </div>
 <div id="ref-malaraChargedparticleChaoticDynamics2021" class="csl-entry" role="listitem">
 Malara, Francesco, Silvia Perri, and Gaetano Zimbardo. 2021. <span>“Charged-Particle Chaotic Dynamics in Rotational Discontinuities.”</span> <em>Physical Review E</em> 104 (2): 025208. <a href="https://doi.org/10.1103/PhysRevE.104.025208">https://doi.org/10.1103/PhysRevE.104.025208</a>.
@@ -454,7 +458,7 @@ Malara, Francesco, Silvia Perri, and Gaetano Zimbardo. 2021. <span>“Charged-Pa
 Mariani, F., B. Bavassano, and U. Villante. 1983. <span>“A <span>Statistical Study</span> of <span>Magnetohydrodynamic Discontinuities</span> in the <span>Inner Solar System</span> - <span>HELIOS-1</span> and <span>HELIOS-2</span>.”</span> <em>Solar Physics</em> 83 (March): 349–65. <a href="https://doi.org/10.1007/BF00148285">https://doi.org/10.1007/BF00148285</a>.
 </div>
 <div id="ref-medvedevDissipativeDynamicsCollisionless1997" class="csl-entry" role="listitem">
-Medvedev, M. V., P. H. Diamond, V. I. Shevchenko, and V. L. Galinsky. 1997. <span>“Dissipative <span>Dynamics</span> of <span class="nocase">Collisionless Nonlinear Alfv<span class="nocase">é</span>n Wave Trains</span>.”</span> <em>Physical Review Letters</em> 78 (26): 4934–37. <a href="https://doi.org/10.1103/PhysRevLett.78.4934">https://doi.org/10.1103/PhysRevLett.78.4934</a>.
+Medvedev, M. V., P. H. Diamond, V. I. Shevchenko, and V. L. Galinsky. 1997. <span>“Dissipative <span>Dynamics</span> of <span>Collisionless Nonlinear Alfvén Wave Trains</span>.”</span> <em>Physical Review Letters</em> 78 (26): 4934–37. <a href="https://doi.org/10.1103/PhysRevLett.78.4934">https://doi.org/10.1103/PhysRevLett.78.4934</a>.
 </div>
 <div id="ref-osmanIntermittencyLocalHeating2012" class="csl-entry" role="listitem">
 Osman, K. T., W. H. Matthaeus, M. Wan, and A. F. Rappazzo. 2012. <span>“Intermittency and Local Heating in the Solar Wind.”</span> <em>Physical Review Letters</em> 108 (June): 261102. <a href="https://doi.org/10.1103/PhysRevLett.108.261102">https://doi.org/10.1103/PhysRevLett.108.261102</a>.
@@ -475,7 +479,7 @@ Sonnerup, Bengt U. Ö., and Maureen Scheible. 1998. <span>“Minimum and Maximum
 Tessein, J. A., W. H. Matthaeus, M. Wan, K. T. Osman, D. Ruffolo, and J. Giacalone. 2013. <span>“Association of Suprathermal Particles with Coherent Structures and Shocks.”</span> <em>Astrophysical Journal Letters</em> 776 (1): L8. <a href="https://doi.org/10.1088/2041-8205/776/1/L8">https://doi.org/10.1088/2041-8205/776/1/L8</a>.
 </div>
 <div id="ref-tsurutaniReviewDiscontinuitiesAlfven1999" class="csl-entry" role="listitem">
-Tsurutani, Bruce T., and Christian M. Ho. 1999. <span>“A Review of Discontinuities and <span class="nocase">Alfv<span class="nocase">é</span>n</span> Waves in Interplanetary Space: <span>Ulysses</span> Results.”</span> <em>Reviews of Geophysics</em> 37 (January): 517–24. <a href="https://doi.org/10.1029/1999RG900010">https://doi.org/10.1029/1999RG900010</a>.
+Tsurutani, Bruce T., and Christian M. Ho. 1999. <span>“A Review of Discontinuities and <span>Alfvén</span> Waves in Interplanetary Space: <span>Ulysses</span> Results.”</span> <em>Reviews of Geophysics</em> 37 (January): 517–24. <a href="https://doi.org/10.1029/1999RG900010">https://doi.org/10.1029/1999RG900010</a>.
 </div>
 <div id="ref-tsurutaniNonlinearElectromagneticWaves1997" class="csl-entry" role="listitem">
 Tsurutani, Bruce T., Christian M. Ho, John K. Arballo, Gurbax S. Lakhina, Karl-Heinz Glassmeier, and Fritz M. Neubauer. 1997. <span>“Nonlinear Electromagnetic Waves and Spherical Arc-Polarized Waves in Space Plasmas.”</span> <em>Plasma Physics and Controlled Fusion</em> 39 (5A): A237. <a href="https://doi.org/10.1088/0741-3335/39/5A/022">https://doi.org/10.1088/0741-3335/39/5A/022</a>.
@@ -484,7 +488,7 @@ Tsurutani, Bruce T., Christian M. Ho, John K. Arballo, Gurbax S. Lakhina, Karl-H
 Tsurutani, Bruce T., and Edward J. Smith. 1979. <span>“Interplanetary Discontinuities: Temporal Variations and the Radial Gradient from 1 to 8.5 <span>AU</span>.”</span> <em>Journal of Geophysical Research: Space Physics</em> 84 (A6): 2773–87. <a href="https://doi.org/10.1029/JA084iA06p02773">https://doi.org/10.1029/JA084iA06p02773</a>.
 </div>
 <div id="ref-tsurutaniInterplanetaryDiscontinuitiesAlfven1995" class="csl-entry" role="listitem">
-Tsurutani, Bruce T., Edward J. Smith, Christian M. Ho, Marcia Neugebauer, Bruce E. Goldstein, John S. Mok, Andre Balogh, David Southwood, and William C. Feldman. 1995. <span>“Interplanetary Discontinuities and <span class="nocase">Alfv<span class="nocase">é</span>n</span> Waves.”</span> <em>Space Science Reviews</em> 72 (April): 205–10. <a href="https://doi.org/10.1007/BF00768781">https://doi.org/10.1007/BF00768781</a>.
+Tsurutani, Bruce T., Edward J. Smith, Christian M. Ho, Marcia Neugebauer, Bruce E. Goldstein, John S. Mok, Andre Balogh, David Southwood, and William C. Feldman. 1995. <span>“Interplanetary Discontinuities and <span>Alfvén</span> Waves.”</span> <em>Space Science Reviews</em> 72 (April): 205–10. <a href="https://doi.org/10.1007/BF00768781">https://doi.org/10.1007/BF00768781</a>.
 </div>
 <div id="ref-turnerOrientationsRotationalTangential1971" class="csl-entry" role="listitem">
 Turner, J. M., and G. L. Siscoe. 1971. <span>“Orientations of <span>‘Rotational’</span> and <span>‘Tangential’</span> Discontinuities in the Solar Wind.”</span> <em>Journal of Geophysical Research (1896-1977)</em> 76 (7): 1816–22. <a href="https://doi.org/10.1029/JA076i007p01816">https://doi.org/10.1029/JA076i007p01816</a>.
@@ -550,13 +554,14 @@ Velli, M., L. K. Harra, A. Vourlidas, N. Schwadron, O. Panasenco, P. C. Liewer, 
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -571,7 +576,7 @@ Velli, M., L. K. Harra, A. Vourlidas, N. Schwadron, O. Panasenco, P. C. Liewer, 
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Beforerr\.github\.io\/beforerr\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

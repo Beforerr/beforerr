@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.24">
+<meta name="generator" content="quarto-1.9.12">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -87,14 +87,15 @@ div.csl-indent {
 <meta name="quarto:offset" content="../../../../">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-a37c72dd2dbac68997fcdc15a3622e78.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -137,7 +138,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -608,15 +609,15 @@ Figure&nbsp;6: Ion bulk velocity in the <span class="math inline">\(x\)</span> d
 <!-- > "Science is what we understand well enough to explain to a computer. Art is everything else we do." - Donald Knuth --></p>
 </blockquote>
 <p><code>PlasmaFormulary.jl</code>: Calculation done performantly, flexibly and right. &lt;=&gt; <code>plasmapy.formulary</code></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="fu">gyrofrequency</span>(<span class="fl">0.01</span>u<span class="st">"T"</span>, <span class="op">:</span><span class="cn">e</span>) <span class="op">≈</span> <span class="fu">gyrofrequency</span>(<span class="st">"electron"</span>, <span class="fl">1e7</span>u<span class="st">"nT"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.7588200107721632e9</span> rad s⁻¹</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> <span class="fu">gyrofrequency</span>(<span class="fl">0.01</span>u<span class="st">"T"</span>, <span class="op">:</span><span class="cn">e</span>) <span class="op">≈</span> <span class="fu">gyrofrequency</span>(<span class="st">"electron"</span>, <span class="fl">1e7</span>u<span class="st">"nT"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.7588200107721632e9</span> rad s⁻¹</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>ChargedParticles.jl</code>: representing charged particles with type (memory-efficient, ready to use in test particle / PIC simulations).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p <span class="op">=</span> <span class="fu">particle</span>(<span class="st">"Fe"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p.element</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p <span class="op">=</span> <span class="fu">particle</span>(<span class="st">"Fe"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>julia<span class="op">&gt;</span> p.element</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="figures/ChargedParticles.jl.png" class="img-fluid"></p>
 <hr>
 <p><code>SpaceDataModel.jl</code>: Data model for handling space/heliospheric science data: plain configuration and hierarchical abstractions. &lt;=&gt; <code>SPASE</code> metadata model.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Magnetospheric Multiscale"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"Magnetospheric Multiscale"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">[metadata]</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">abbreviation</span> <span class="op">=</span> <span class="st">"MMS"</span></span>
@@ -628,8 +629,8 @@ Figure&nbsp;6: Ion bulk velocity in the <span class="math inline">\(x\)</span> d
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms]</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">format</span> <span class="op">=</span> <span class="st">"MMS{probe}_FPI_{data_rate}_L2_{data_type}-MOMS"</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms.metadata]</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[datasets.fpi_moms.metadata]</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">probes</span> <span class="op">=</span> <span class="op">[</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">]</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dt">data_rates</span> <span class="op">=</span> <span class="op">[</span><span class="st">"fast"</span><span class="op">,</span> <span class="st">"brst"</span><span class="op">]</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">data_types</span> <span class="op">=</span> <span class="op">[</span><span class="st">"des"</span><span class="op">,</span> <span class="st">"dis"</span><span class="op">]</span></span>
@@ -639,12 +640,12 @@ Figure&nbsp;6: Ion bulk velocity in the <span class="math inline">\(x\)</span> d
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="dt">bulkv_gse</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_bulkv_gse_{data_rate}"</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dt">temppara</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_temppara_{data_rate}"</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="dt">tempperp</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_tempperp_{data_rate}"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">energyspectr_omni</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_energyspectr_omni_{data_rate}"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="dt">energyspectr_omni</span> <span class="op">=</span> <span class="st">"mms{probe}_{data_type}_energyspectr_omni_{data_rate}"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <p><code>Speasy.jl</code>: get data from main Space Physics WebServices.
 <code>PySPEDAS.jl</code>: A Julia wrapper around PySPEDAS.
 <code>HAPIClient.jl</code>: A Julia client for the Heliophysics Application Programmer’s Interface (HAPI).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SPEDAS</span>, <span class="bu">HAPIClient</span>, <span class="bu">Speasy</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SPEDAS</span>, <span class="bu">HAPIClient</span>, <span class="bu">Speasy</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(<span class="st">"CDAWeb/AC_H0_MFI/Magnitude,BGSEc"</span>, <span class="st">"2001-1-2"</span>, <span class="st">"2001-1-2T12"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -657,7 +658,7 @@ Figure&nbsp;6: Ion bulk velocity in the <span class="math inline">\(x\)</span> d
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(n, <span class="st">"2021-08-09T06"</span>, <span class="st">"2021-08-10T18"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">tplot</span>(n, <span class="st">"2021-08-09T06"</span>, <span class="st">"2021-08-10T18"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/hapi.png" class="img-fluid figure-img"></p>
@@ -784,7 +785,7 @@ Juneja, A., D. P. Lathrop, K. R. Sreenivasan, and G. Stolovitzky. 1994. <span>�
 Lario, D. 2010. <span>“Heliospheric Energetic Particle Reservoirs: Ulysses and <span>ACE</span> 175-315 <span class="nocase">keV</span> Electron Observations.”</span> In <em>Twelfth <span>International Solar Wind Conference</span></em>, 1216:625–28. AIP. <a href="https://doi.org/10.1063/1.3395944">https://doi.org/10.1063/1.3395944</a>.
 </div>
 <div id="ref-liuCharacteristicsInterplanetaryDiscontinuities2021" class="csl-entry" role="listitem">
-Liu, Y. Y., H. S. Fu, J. B. Cao, C. M. Liu, Z. Wang, Z. Z. Guo, Y. Xu, S. D. Bale, and J. C. Kasper. 2021. <span>“Characteristics of Interplanetary Discontinuities in the Inner Heliosphere Revealed by Parker Solar Probe.”</span> <em>Astrophysical Journal</em> 916 (2): 65. <a href="https://doi.org/10.3847/1538-4357/ac06a1">https://doi.org/10.3847/1538-4357/ac06a1</a>.
+Liu, Y. Y., H. S. Fu, J. B. Cao, C. M. Liu, Z. Wang, Z. Z. Guo, Y. Xu, S. D. Bale, and J. C. Kasper. 2021. <span>“Characteristics of Interplanetary Discontinuities in the Inner Heliosphere Revealed by <span>Parker Solar Probe</span>.”</span> <em>Astrophysical Journal</em> 916 (2): 65. <a href="https://doi.org/10.3847/1538-4357/ac06a1">https://doi.org/10.3847/1538-4357/ac06a1</a>.
 </div>
 <div id="ref-lotekarKineticscaleCurrentSheets2022" class="csl-entry" role="listitem">
 Lotekar, A. B., I. Y. Vasko, T. Phan, S. D. Bale, T. A. Bowen, J. Halekas, A. V. Artemyev, Yu V. Khotyaintsev, and F. S. Mozer. 2022. <span>“Kinetic-Scale <span>Current Sheets</span> in <span>Near-Sun Solar Wind</span>: <span>Properties</span>, <span class="nocase">Scale-dependent Features</span> and <span>Reconnection Onset</span>.”</span> <em>The Astrophysical Journal</em> 929 (1): 58. <a href="https://doi.org/10.3847/1538-4357/ac5bd9">https://doi.org/10.3847/1538-4357/ac5bd9</a>.
@@ -871,13 +872,14 @@ Vasko, I. Y., K. Alimov, T. Phan, S. D. Bale, F. S. Mozer, and A. V. Artemyev. 2
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -892,7 +894,7 @@ Vasko, I. Y., K. Alimov, T. Phan, S. D. Bale, F. S. Mozer, and A. V. Artemyev. 2
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Beforerr\.github\.io\/beforerr\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

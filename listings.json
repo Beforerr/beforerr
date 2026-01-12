@@ -1,47 +1,35 @@
 [
   {
-    "listing": "/courses/epss265/homeworks/index.html",
+    "listing": "/docs/courses/epss263/homework/index.html",
     "items": [
-      "/courses/epss265/homeworks/epss265_hw02.html",
-      "/courses/epss265/homeworks/epss265_hw03.html",
-      "/courses/epss265/homeworks/epss265_hw04.html",
-      "/courses/epss265/homeworks/epss265_hw05.html",
-      "/courses/epss265/homeworks/epss265_hw06.html"
+      "/docs/courses/epss263/homework/epss263_hw02.html",
+      "/docs/courses/epss263/homework/epss263_hw03.html",
+      "/docs/courses/epss263/homework/epss263_hw04.html",
+      "/docs/courses/epss263/homework/epss263_hw05.html",
+      "/docs/courses/epss263/homework/epss263_hw06.html"
     ]
   },
   {
-    "listing": "/docs/courses/epss265/homeworks/index.html",
+    "listing": "/docs/blog/index.html",
     "items": [
-      "/docs/courses/epss265/homeworks/epss265_hw02.html",
-      "/docs/courses/epss265/homeworks/epss265_hw03.html",
-      "/docs/courses/epss265/homeworks/epss265_hw04.html",
-      "/docs/courses/epss265/homeworks/epss265_hw05.html",
-      "/docs/courses/epss265/homeworks/epss265_hw06.html"
+      "/docs/blog/journal_club/2025-12-03_radio_exoplanet/index.html",
+      "/docs/blog/2024_NASA_summer_school/index.html",
+      "/docs/blog/2024_NASA_summer_school/capstone.html",
+      "/docs/blog/journal_club/2025-04-16_kink_instability/index.html",
+      "/docs/blog/journal_club/2024-10-16_jets/index.html",
+      "/docs/blog/journal_club/2025-01-15_bifurcations/index.html",
+      "/docs/blog/journal_club/2024-04-23_mercury/index.html",
+      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
+      "/docs/blog/2023_AGU/index.html"
     ]
   },
   {
-    "listing": "/docs/courses/index.html",
+    "listing": "/docs/projects/index.html",
     "items": [
-      "/docs/courses/astr145/index.html",
-      "/docs/courses/epss261/index.html",
-      "/docs/courses/epss261/homework/index.html",
-      "/docs/courses/epss265/index.html",
-      "/docs/courses/epss298_DataAnalysis/index.html",
-      "/docs/courses/epss298_MHD_turbulence/index.html",
-      "/docs/courses/epss263/index.html",
-      "/docs/courses/phys231/index.html",
-      "/docs/courses/epss298_DataAnalysis/projects/proj2/index.html"
-    ]
-  },
-  {
-    "listing": "/research/index.html",
-    "items": [
-      "/research/articles/margotSearchTechnosignatures2023/index.html",
-      "/research/projects/2024_Zijin_finesst/index.html",
-      "/research/projects/2023_Zijin_energetic-ion-scattering/index.html",
-      "/research/projects/2023_Zijin_relativistic-electron-flux/index.html",
-      "/research/projects/2023_Zijin_solar-wind-discontinuities-evolution/index.html",
-      "/research/projects/2022_Zijin_solar-wind-LMA/index.html"
+      "/docs/projects/coding/2025_SpaceTools.jl/index.html",
+      "/docs/projects/coding/2025_ChargedParticles.jl/index.html",
+      "/docs/projects/coding/2025_PermuteArgs.jl/index.html",
+      "/docs/projects/coding/2025_Speasy.jl/index.html"
     ]
   },
   {
@@ -61,40 +49,27 @@
     ]
   },
   {
-    "listing": "/docs/blog/index.html",
+    "listing": "/docs/courses/index.html",
     "items": [
-      "/docs/blog/phd/2024_pre/presentation.html",
-      "/docs/blog/phd/2024_pre/proposal_EMIC.html",
-      "/docs/blog/phd/2024_pre/proposal_SWD.html",
-      "/docs/blog/phd/2024_pre/index.html",
-      "/docs/blog/2024_NASA_summer_school/index.html",
-      "/docs/blog/2024_NASA_summer_school/capstone.html",
-      "/docs/blog/journal_club/2025-04-16_kink_instability/index.html",
-      "/docs/blog/journal_club/2025-01-15_bifurcations/index.html",
-      "/docs/blog/journal_club/2024-10-16_jets/index.html",
-      "/docs/blog/phd/index.html",
-      "/docs/blog/journal_club/2024-04-23_mercury/index.html",
-      "/docs/blog/journal_club/2024-01-17_dynamo/index.html",
-      "/docs/blog/2023_AGU/index.html"
+      "/docs/courses/astr145/index.html",
+      "/docs/courses/epss261/index.html",
+      "/docs/courses/epss261/homework/index.html",
+      "/docs/courses/epss265/index.html",
+      "/docs/courses/epss298_DataAnalysis/index.html",
+      "/docs/courses/epss298_MHD_turbulence/index.html",
+      "/docs/courses/epss263/index.html",
+      "/docs/courses/phys231/index.html",
+      "/docs/courses/epss298_DataAnalysis/projects/proj2/index.html"
     ]
   },
   {
-    "listing": "/docs/courses/epss263/homework/index.html",
+    "listing": "/docs/courses/epss265/homeworks/index.html",
     "items": [
-      "/docs/courses/epss263/homework/epss263_hw02.html",
-      "/docs/courses/epss263/homework/epss263_hw03.html",
-      "/docs/courses/epss263/homework/epss263_hw04.html",
-      "/docs/courses/epss263/homework/epss263_hw05.html",
-      "/docs/courses/epss263/homework/epss263_hw06.html"
-    ]
-  },
-  {
-    "listing": "/docs/projects/index.html",
-    "items": [
-      "/docs/projects/coding/2025_SpaceTools.jl/index.html",
-      "/docs/projects/coding/2025_ChargedParticles.jl/index.html",
-      "/docs/projects/coding/2025_PermuteArgs.jl/index.html",
-      "/docs/projects/coding/2025_Speasy.jl/index.html"
+      "/docs/courses/epss265/homeworks/epss265_hw02.html",
+      "/docs/courses/epss265/homeworks/epss265_hw03.html",
+      "/docs/courses/epss265/homeworks/epss265_hw04.html",
+      "/docs/courses/epss265/homeworks/epss265_hw05.html",
+      "/docs/courses/epss265/homeworks/epss265_hw06.html"
     ]
   }
 ]
