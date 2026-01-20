@@ -44,15 +44,15 @@ However, these frameworks struggle to explain all the dynamics observed.
 
 ### Dropouts
 
-![Time profiles of lowenergy He ion intensities recorded by the Wind/LEMT sensor showing a gradual SEP event beginning on 1997 November 6. A dropout in ion intensity lasting about 2 hr can be seen during the decay phase of the gradual event. [@tanTurbulentOriginsParticle2023]](./figures/tanTurbulentOriginsParticle2023-fig1b.png)
+![Time profiles of lowenergy He ion intensities recorded by the Wind/LEMT sensor showing a gradual SEP event beginning on 1997 November 6. A dropout in ion intensity lasting about 2 hr can be seen during the decay phase of the gradual event. [@tanTurbulentOriginsParticle2023]](./figures/ref/tanTurbulentOriginsParticle2023-fig1b.png)
 
-![dropout period having $θ_{BV} \sim 0°$](./figures/tanTurbulentOriginsParticle2023-fig4.png)
+![dropout period having $θ_{BV} \sim 0°$](./figures/ref/tanTurbulentOriginsParticle2023-fig4.png)
 
 ### Reservoir
 
 A region where the intensities and energy spectra throughout much of the inner heliosphere (see Fig. 52: top right panel) at different azimuthal, radial, and latitudinal locations are nearly identical
 
-![Intensity-time profiles for protons in the 1979 March 1 event at 3 spacecraft are shown in the upper left panel with times of shock passage indicated by S for each. Energy spectra in the “reservoir” at time R are shown in the upper right panel while the paths of the spacecraft through a sketch of the CME are shown below [@reamesTwoSourcesSolar2013]](figures/reamesTwoSourcesSolar2013-fig6.png)
+![Intensity-time profiles for protons in the 1979 March 1 event at 3 spacecraft are shown in the upper left panel with times of shock passage indicated by S for each. Energy spectra in the “reservoir” at time R are shown in the upper right panel while the paths of the spacecraft through a sketch of the CME are shown below [@reamesTwoSourcesSolar2013]](figures/ref/reamesTwoSourcesSolar2013-fig6.png)
 
 Effective cross-field and non-diffusive transport [@larioHeliosphericEnergeticParticle2010]
 
@@ -67,7 +67,7 @@ $$
 ### Turbulent Magnetic Fluctuations
 
 
-![PDF of the out-of-plane electric current density $J_z$ from a 2D MHD simulation, compared to a reference Gaussian (standard deviation $σ$). For each region I, II, and III, magnetic field lines (contours of constant magnetic potential $A_z$: > 0 solid, < 0 dashed) are shown; the colored (red) regions are places where the selected band (I, II, or III) contributes. [@grecoPartialVarianceIncrements2017]](./figures/grecoPartialVarianceIncrements2017-fig1.png)
+![PDF of the out-of-plane electric current density $J_z$ from a 2D MHD simulation, compared to a reference Gaussian (standard deviation $σ$). For each region I, II, and III, magnetic field lines (contours of constant magnetic potential $A_z$: > 0 solid, < 0 dashed) are shown; the colored (red) regions are places where the selected band (I, II, or III) contributes. [@grecoPartialVarianceIncrements2017]](./figures/ref/grecoPartialVarianceIncrements2017-fig1.png)
 
 ::: {.notes}
 A physically appealing interpretation emerges: region I consists of very low values of fluctuations that lie mainly in the lanes between magnetic islands. Region II consists of sub-Gaussian current cores that populate the central regions of the magnetic islands (or flux tubes). Region III is composed of the coherent small-scale current sheet-like structures that form the sharp boundaries between the magnetic flux tubes. This classification provides a real-space picture of the nature of intermittent MHD turbulence.

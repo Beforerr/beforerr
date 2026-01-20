@@ -46,7 +46,7 @@ SEPs are primarily accelerated through two distinct mechanisms [@reamesTwoSource
 
 Gradual SEP events typically last for several days and are predominantly proton-rich, often associated with fast CMEs driving shocks in the solar corona and interplanetary space. These shocks accelerate particles over extended regions, producing widespread and intense radiation storms. In contrast, impulsive SEP events are related to short duration (less than 1 h) solar flares. These events typically have shorter durations, lasting from minutes to a few hours, and feature characteristically higher electron-to-proton ratios and enrichments of heavy ions (${ }^3 \mathrm{He} /{ }^4 \mathrm{He}$ and $\mathrm{Fe} / \mathrm{O}$ ratios).
 
-![The two-class picture for SEP events. @desaiLargeGradualSolar2016](figures/desaiLargeGradualSolar2016-fig3.png)
+![The two-class picture for SEP events. @desaiLargeGradualSolar2016](figures/ref/desaiLargeGradualSolar2016-fig3.png)
 
 In the decay phase of large gradual SEP events, a characteristic phenomenon known as the **reservoir effect** frequently occurs, where particle intensities measured by widely separated spacecraft become nearly uniform across large regions and exhibit similar temporal evolutions. One traditional explanation for reservoir formation suggests that particles become trapped behind a CME-driven magnetic structure, resulting in spatially uniform spectra that adiabatically decrease in intensity as the confining magnetic bottle expands. However, high heliolatitude observations from the Ulysses mission revealed the three-dimensional character of the reservoir effect and favor the cross-field diffusion explanation [@larioHeliosphericEnergeticParticle2010; @dallaPropertiesHighHeliolatitude2003].
 

@@ -16,6 +16,10 @@ install-julia-deps:
     ])
     Pkg.instantiate()
 
+install-tools:
+    chmod +x src/latex2qmd.py
+    cp src/latex2qmd.py ~/.local/bin/latex2qmd
+
 publish:
     quarto publish gh-pages --no-prompt --no-render
 
@@ -26,6 +30,7 @@ preview:
 ln-bib:
     mkdir -p files/bibliography
     [ -e files/bibliography/research.bib ] || ln -s ~/projects/share/bibliography/research.bib files/bibliography/research.bib
+    ln -s ~/projects/ion_scattering_by_SWD/overleaf/files/bibliography/full.bib files/bibliography/full.bib
 
 cv:
     rendercv render docs/others/cv_Zijin.yaml
