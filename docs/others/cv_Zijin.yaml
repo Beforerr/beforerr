@@ -18,6 +18,7 @@ cv:
         end_date: present
         highlights:
           - "Thesis: Kinetic-scale solar wind current sheets: statistical characteristics and their role in energetic particle transport"
+          - "Advisors: Prof. _Vassilis Angelopoulos_ and Prof. _Anton Artemyev_"
 
       - institution: University of Science and Technology of China
         area: Space Physics
@@ -26,7 +27,7 @@ cv:
         end_date: 2022
         highlights:
           - "Thesis: Kinetic simulation of the interaction between the Moon's magnetic anomalies and the solar wind (DOI: [10.13140/RG.2.2.15841.68968](http://dx.doi.org/10.13140/RG.2.2.15841.68968))"
-          - "Advisor: Prof. Xin Tao"
+          - "Advisor: Prof. _Xin Tao_"
 
       - institution: University Corporation for Atmospheric Research
         area: NASA's Living with a Star Heliophysics Summer School
@@ -34,17 +35,48 @@ cv:
         date: 2024
 
     research_interests:
+      - bullet: "Magnetosphere-ionosphere coupling: energetic particle precipitation and wave-particle interactions"
       - bullet: "Heliophysics: Solar wind current sheets and energetic particle transport"
-      - bullet: "Magnetosphere-ionosphere coupling: energetic particle precipitation"
       - bullet: "Computational plasma physics and space physics environment data analysis"
 
     publications:
-      # - title: "Peculiarities of precipitating electron spectra: DMPS & ELFIN combined dataset"
-      # authors:
-      # - "**Zhang, Z.**"
-      # - Artemyev, A. V.
-      # - Angelopoulos, V.
-      # date: In preparation
+      - title: "The JuliaSpacePhysics Ecosystem: High-Performance, Modular, and Scalable Software for Space Physics"
+        authors:
+          - "**Zhang, Z.**"
+          - Angelopoulos, V
+          - et al.
+        date: In preparation
+
+      - title: Energetic Particle Transport driven by Solar Wind Current Sheets
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+        date: In preparation
+
+      - title: "Peculiarities of precipitating electron spectra: a combined DMSP-ELFIN dataset"
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+          - Zhang, X.-J.
+        date: In preparation
+
+      - title: Multifluid equilibrium model of force-free current sheets
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+        date: In preparation
+
+      - title: Evolution of solar wind current sheets in the inner heliosphere
+        authors:
+          - "**Zhang, Z.**"
+          - Artemyev, A. V.
+          - Angelopoulos, V.
+          - Shi, C.
+          - Phan, T.
+        date: accepted
 
       - title: "Quantification of ion scattering by solar-wind current sheets: Pitch-angle diffusion rates"
         authors:
@@ -93,6 +125,9 @@ cv:
 
       - label: "PlasmaBO.jl"
         details: "Efficient plasma electromagnetic dispersion-relation solver (DOI: [10.5281/zenodo.18058843](https://doi.org/10.5281/zenodo.18058843))"
+
+      - label: "PlanetaryMagneticFields.jl"
+        details: "A unified framework for planetary magnetic field modeling (DOI: [10.5281/zenodo.18428922](https://doi.org/10.5281/zenodo.18428922))"
 
     other_research_experience:
       - company: Artificial Intelligence of Things Lab

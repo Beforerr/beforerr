@@ -5,7 +5,7 @@
 #show: rendercv.with(
   name: "Zijin Zhang",
   footer: context { [#emph[Zijin Zhang -- #str(here().page())\/#str(counter(page).final().first())]] },
-  top-note: [ #emph[Last updated in Jan 2026] ],
+  top-note: [ #emph[Last updated in Feb 2026] ],
   locale-catalog-language: "en",
   page-size: "us-letter",
   page-top-margin: 0.7in,
@@ -77,8 +77,8 @@
   entries-highlights-space-between-bullet-and-text: 0.5em,
   date: datetime(
     year: 2026,
-    month: 1,
-    day: 6,
+    month: 2,
+    day: 18,
   ),
 )
 
@@ -101,6 +101,8 @@
 
     - Thesis: Kinetic-scale solar wind current sheets: statistical characteristics and their role in energetic particle transport
 
+    - Advisors: Prof. #emph[Vassilis Angelopoulos] and Prof. #emph[Anton Artemyev]
+
   ],
   [
     2022 – present
@@ -117,7 +119,7 @@
 
     - Thesis: Kinetic simulation of the interaction between the Moon's magnetic anomalies and the solar wind (DOI: #link("http://dx.doi.org/10.13140/RG.2.2.15841.68968")[10.13140\/RG.2.2.15841.68968])
 
-    - Advisor: Prof. Xin Tao
+    - Advisor: Prof. #emph[Xin Tao]
 
   ],
   [
@@ -145,13 +147,78 @@
 
 == Research Interests
 
-- Heliophysics: Solar wind current sheets and energetic particle transport
+- Magnetosphere-ionosphere coupling: energetic particle precipitation and wave-particle interactions
 
-- Magnetosphere-ionosphere coupling: energetic particle precipitation
+- Heliophysics: Solar wind current sheets and energetic particle transport
 
 - Computational plasma physics and space physics environment data analysis
 
 == Publications
+
+#regular-entry(
+  [
+    #strong[The JuliaSpacePhysics Ecosystem: High-Performance, Modular, and Scalable Software for Space Physics]
+
+    #strong[Zhang, Z.], Angelopoulos, V, et al.
+
+  ],
+  [
+    In preparation
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Energetic Particle Transport driven by Solar Wind Current Sheets]
+
+    #strong[Zhang, Z.], Artemyev, A. V., Angelopoulos, V.
+
+  ],
+  [
+    In preparation
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Peculiarities of precipitating electron spectra: a combined DMPS-ELFIN dataset]
+
+    #strong[Zhang, Z.], Artemyev, A. V., Angelopoulos, V., Zhang, X.-J.
+
+  ],
+  [
+    In preparation
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Multifluid equilibrium model of force-free current sheets]
+
+    #strong[Zhang, Z.], Artemyev, A. V., Angelopoulos, V.
+
+  ],
+  [
+    In preparation
+
+  ],
+)
+
+#regular-entry(
+  [
+    #strong[Evolution of solar wind current sheets in the inner heliosphere]
+
+    #strong[Zhang, Z.], Artemyev, A. V., Angelopoulos, V., Shi, C., Phan, T.
+
+  ],
+  [
+    accepted
+
+  ],
+)
 
 #regular-entry(
   [
@@ -218,6 +285,8 @@
 #strong[SPEDAS.jl:] Julia-based space physics environment data analysis software (DOI: #link("https://doi.org/10.5281/zenodo.15181866")[10.5281\/zenodo.15181866])
 
 #strong[PlasmaBO.jl:] Efficient plasma electromagnetic dispersion-relation solver (DOI: #link("https://doi.org/10.5281/zenodo.18058843")[10.5281\/zenodo.18058843])
+
+#strong[PlanetaryMagneticFields.jl:] A unified framework for planetary magnetic field modeling (DOI: #link("https://doi.org/10.5281/zenodo.18428922")[10.5281\/zenodo.18428922])
 
 == Other Research Experience
 

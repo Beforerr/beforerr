@@ -1,15 +1,25 @@
 ---
 title: Problem Set 3
 number-sections: true
-engine: julia
 ---
+
+```{julia}
+dir = "docs/courses/epss261/homework"
+if isdir(dir)
+    cd(dir)
+    Pkg.activate(".")
+end
+
+Pkg.resolve()
+Pkg.instantiate()
+```
 
 ## Minimum and Maximum Variance Analysis
 
 > Minimize the variance $σ^2$ Eq. (8.4) of Ch. 8 by writing out the derivatives with respect to the vector components. Show that the solution is given by Equation (8.7) which is an eigenvalue problem with orthogonal eigenvectors.
 
 $$
-\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\bf{B}^{(m)}-\langle\bf{B}\rangle\right) \cdot \hat{\bf{n}}\right|^2
 $$ {#eq-Chen84}
 
 $$
@@ -20,7 +30,7 @@ $$ {#eq-Chen87}
 Expand the dot product in components:
 
 $$
-\left(\boldsymbol{B}^{(m)} - \langle \boldsymbol{B} \rangle\right) \cdot \hat{\boldsymbol{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,
+\left(\bf{B}^{(m)} - \langle \bf{B} \rangle\right) \cdot \hat{\bf{n}} = \sum_{\mu=1}^3 \left(B_\mu^{(m)} - \langle B_\mu \rangle\right) n_\mu,
 $$
 
 so that
@@ -46,7 +56,7 @@ $$
 The Lagrangian is given by:
 
 $$
-L(\hat{\boldsymbol{n}}, \lambda) = \sigma^2 - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right) = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right).
+L(\hat{\bf{n}}, \lambda) = \sigma^2 - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right) = \sum_{\mu,\nu=1}^3 n_\mu M_{\mu\nu}^B n_\nu - \lambda\left(\sum_{\mu=1}^3 n_\mu^2 - 1\right).
 $$
 
 Differentiate with Respect to the Components $n_\alpha$ equal to zero for each component
@@ -61,33 +71,33 @@ $$
 2\sum_{\nu=1}^3 M_{\alpha\nu}^B n_\nu - 2\lambda n_\alpha = 0.
 $$
 
-This is exactly Equation (8.7): $\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu = \lambda n_\mu$. The equation is an eigenvalue problem for the symmetric $3\times 3$ matrix $M_{\mu\nu}^B$. The eigenvalues $\lambda$ are real, and the corresponding eigenvectors $\hat{\boldsymbol{n}}$ are orthogonal.
+This is exactly Equation (8.7): $\sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu = \lambda n_\mu$. The equation is an eigenvalue problem for the symmetric $3\times 3$ matrix $M_{\mu\nu}^B$. The eigenvalues $\lambda$ are real, and the corresponding eigenvectors $\hat{\bf{n}}$ are orthogonal.
 
 
 <!-- 
-The minimum variance technique is designed to deal with the situation where some or all of the non-ideal effects mentioned above, except a systematic temporal change in the normal direction, $\hat{\boldsymbol{n}}$, are present. As the estimate of $\hat{\boldsymbol{n}}$, the method identifies that direction in space along which the field-component set $\left\{\boldsymbol{B}^{(m)} \cdot \hat{\boldsymbol{n}}\right\}(m=1,2,3 \ldots M)$ has minimum variance. In other words, $\hat{\boldsymbol{n}}$ is determined by minimisation of
+The minimum variance technique is designed to deal with the situation where some or all of the non-ideal effects mentioned above, except a systematic temporal change in the normal direction, $\hat{\bf{n}}$, are present. As the estimate of $\hat{\bf{n}}$, the method identifies that direction in space along which the field-component set $\left\{\bf{B}^{(m)} \cdot \hat{\bf{n}}\right\}(m=1,2,3 \ldots M)$ has minimum variance. In other words, $\hat{\bf{n}}$ is determined by minimisation of
 
 $$
-\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\boldsymbol{B}^{(m)}-\langle\boldsymbol{B}\rangle\right) \cdot \hat{\boldsymbol{n}}\right|^2
+\sigma^2=\frac{1}{M} \sum_{m=1}^M\left|\left(\bf{B}^{(m)}-\langle\bf{B}\rangle\right) \cdot \hat{\bf{n}}\right|^2
 $$
 
-where the average $\langle\boldsymbol{B}\rangle$ is defined by
+where the average $\langle\bf{B}\rangle$ is defined by
 
 $$
-\langle\boldsymbol{B}\rangle \equiv \frac{1}{M} \sum_{m=1}^M \boldsymbol{B}^{(m)}
+\langle\bf{B}\rangle \equiv \frac{1}{M} \sum_{m=1}^M \bf{B}^{(m)}
 $$
 
 and where the minimisation is subject to the normalisation constraint $|\hat{n}|^2=1$. Using a Lagrange multiplier, $\lambda$, to implement this constraint, one then seeks the solution of the set of three homogeneous linear equations
 
 $$
 \begin{aligned}
-\frac{\partial}{\partial n_X}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
-\frac{\partial}{\partial n_Y}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0 \\
-\frac{\partial}{\partial n_Z}\left(\sigma^2-\lambda\left(|\hat{\boldsymbol{n}}|^2-1\right)\right) & =0
+\frac{\partial}{\partial n_X}\left(\sigma^2-\lambda\left(|\hat{\bf{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Y}\left(\sigma^2-\lambda\left(|\hat{\bf{n}}|^2-1\right)\right) & =0 \\
+\frac{\partial}{\partial n_Z}\left(\sigma^2-\lambda\left(|\hat{\bf{n}}|^2-1\right)\right) & =0
 \end{aligned}
 $$
 
-where $\sigma^2$ is given by equation 8.4 and $\hat{\boldsymbol{n}}$ is represented in terms of its three components ( $n_X, n_Y, n_Z$ ) along the cartesian coordinate system $X, Y, Z$ (e.g., GSE or GSM) in which the field data $\left\{\boldsymbol{B}^{(m)}\right\}$ are given. When the differentiations in equation 8.6 have been performed, the resulting set of three equations can be written in matrix form as
+where $\sigma^2$ is given by equation 8.4 and $\hat{\bf{n}}$ is represented in terms of its three components ( $n_X, n_Y, n_Z$ ) along the cartesian coordinate system $X, Y, Z$ (e.g., GSE or GSM) in which the field data $\left\{\bf{B}^{(m)}\right\}$ are given. When the differentiations in equation 8.6 have been performed, the resulting set of three equations can be written in matrix form as
 
 $$
 \sum_{\nu=1}^3 M_{\mu \nu}^B n_\nu=\lambda n_\mu
@@ -99,7 +109,7 @@ $$
 M_{\mu \nu}^B \equiv\left\langle B_\mu B_\nu\right\rangle-\left\langle B_\mu\right\rangle\left\langle B_v\right\rangle
 $$
 
-is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $\lambda$ values are the eigenvalues $\lambda_1, \lambda_2, \lambda_3$ (given here in order of decreasing magnitude) of $M_{\mu \nu}^B$. Since $M_{\mu \nu}^B$ is symmetric, the eigenvalues are all real and the corresponding eigenvectors, $\boldsymbol{x}_1$, $\boldsymbol{x}_2$, and $\boldsymbol{x}_3$, are orthogonal.
+is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $\lambda$ values are the eigenvalues $\lambda_1, \lambda_2, \lambda_3$ (given here in order of decreasing magnitude) of $M_{\mu \nu}^B$. Since $M_{\mu \nu}^B$ is symmetric, the eigenvalues are all real and the corresponding eigenvectors, $\bf{x}_1$, $\bf{x}_2$, and $\bf{x}_3$, are orthogonal.
 -->
 
 ## Electromagnetic ion cyclotron waves
@@ -108,12 +118,12 @@ is the magnetic variance matrix. It is seen from equation 8.7 that the allowed $
 
 ```{julia}
 using Speasy
-spz = speasy()
+spz = speasy
 
 using Dates
 using DimensionalData
-using CairoMakie
-using SpaceTools
+using CairoMakie, SpacePhysicsMakie
+using SPEDAS
 using Unitful
 using DSP
 ```
@@ -129,25 +139,25 @@ t0 = "2015-12-14T13:10:00"
 t1 = "2015-12-14T13:50:00"
 tvars = "cda/MMS1_FGM_SRVY_L2/mms1_fgm_b_gsm_srvy_l2_clean"
 da = get_data(tvars, t0, t1) |> DimArray
-da = SpaceTools.modify_meta(da, long_name="B")
+da = SPEDAS.setmeta(da, "LABLAXIS" => "B")
 ```
 
 ```{julia}
 using SignalAnalysis
 using PlasmaFormulary
 
-p = SpaceTools.pspectrum(da[:, 1])
+p = SPEDAS.pspectrum(da[:, 1])
 begin
     f = tplot(p; colorrange=(1e-7, 1), alpha=0.7)
     ax = current_axis()
-    ylims!(ax, 0u"Hz", 2u"Hz")
+    ylims!(ax, 0, 2)
 
-    B_ts = smooth(da, 5u"s")[:, 4]
+    B_ts = smooth(da, 5u"s")[:, 4] .* 1u"nT"
 
-    ic_H = gyrofrequency.(B_ts, :"H+") .|> ω2f
-    ic_He = gyrofrequency.(B_ts, :"He+") .|> ω2f
-    ic_He2 = gyrofrequency.(B_ts, :"He2+") .|> ω2f
-    ic_O = gyrofrequency.(B_ts, :"O+") .|> ω2f
+    ic_H = gyrofrequency.(B_ts, :"H+"; to_hz = true) ./ 1u"Hz"
+    ic_He = gyrofrequency.(B_ts, :"He+"; to_hz = true) ./ 1u"Hz"
+    ic_He2 = gyrofrequency.(B_ts, :"He2+"; to_hz = true) ./ 1u"Hz"
+    ic_O = gyrofrequency.(B_ts, :"O+"; to_hz = true) ./ 1u"Hz"
     tplot_panel!.(current_axis(), [ic_H, ic_He, ic_He2, ic_O])
     f
 end
@@ -178,9 +188,9 @@ H[f]=\frac{\sin (\pi f M)}{M \sin (\pi f)}
 $$
 
 ```{julia}
-bp_filtered2 = filtfilt(sda, 0.2u"Hz", 2u"Hz").data
+using TimeseriesUtilities: tfilter
+bp_filtered2 = tfilter(sda, 0.2u"Hz", 2u"Hz")
 tplot([hp_02Hz, bp_filtered, bp_filtered2])
-current_figure()
 ```
 
 
@@ -191,10 +201,10 @@ current_figure()
 ```{julia}
 time = DateTime("2015-12-14T13:20:00") .. DateTime("2015-12-14T13:30:00")
 B_ts = bp_filtered[time, 1:3]
-B_mva_ts = mva(B_ts, B_ts)
+B_mva_ts = setmeta(mva(B_ts, B_ts), "LABL_PTR_1" => ["Bl", "Bm", "Bn"])
 
 B_ts_2 = bp_filtered2[time, 1:3]
-B_mva_ts_2 = mva(B_ts_2, B_ts_2)
+B_mva_ts_2 = setmeta(mva(B_ts_2, B_ts_2), "LABL_PTR_1" => ["Bl", "Bm", "Bn"])
 
 tplot([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])
 ```
@@ -206,7 +216,6 @@ tplot([B_ts, B_mva_ts, B_ts_2, B_mva_ts_2])
 ```{julia}
 using LinearAlgebra
 using Statistics
-using SpaceTools
 using Dates
 
 # Load magnetic field data around the shock crossing
@@ -216,7 +225,7 @@ b_data = get_data("cda/THA_L2_FGM/tha_fgs_gse", t0, t1) |> DimArray
 B = b_data.data  # Get the magnetic field components
 
 # Get eigenvalues and eigenvectors
-F = mva_mat(B)
+F = mva_eigen(B)
 
 # The minimum variance direction (shock normal)
 n̂ = F.vectors[:, 3]  # Third eigenvector corresponds to minimum variance
@@ -233,7 +242,7 @@ println("Results of Minimum Variance Analysis:")
 println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
 println("θBn: ", round(θBn, digits=1), "°")
 println("Bn: ", Bn)
-check_mva_mat(F; verbose=true)
+check_mva_eigen(F; verbose=true)
 ```
 
 ### Hodogram
@@ -246,17 +255,17 @@ check_mva_mat(F; verbose=true)
 interval = DateTime("2015-12-14T13:40:20") .. DateTime("2015-12-14T13:40:40")
 let
     sda = da[interval, 1:3]
-    bp_filtered = filtfilt(sda, 0.8u"Hz", 2u"Hz").data
+    bp_filtered = tfilter(sda, 0.8u"Hz", 2u"Hz")
     B_mva_ts = mva(bp_filtered, bp_filtered)
     f = Figure(; size=(1200, 800))
-    Bx = B_mva_ts[:, [1]]
-    By = B_mva_ts[:, [2]]
-    Bz = B_mva_ts[:, [3]]
+    Bx = B_mva_ts[:, 1]
+    By = B_mva_ts[:, 2]
+    Bz = B_mva_ts[:, 3]
     tplot(f[1, 1], [sda, bp_filtered, B_mva_ts])
     tplot(f[1, 2], [Bx, By, Bz]; link_yaxes=true)
     time = dims(Bx, 1).val
     color = (time .- time[1]) ./ (time[end] - time[1])
-    lines(f[1, 3], Bx[:, 1].data, By[:, 1].data, color=color)
+    lines(f[1, 3], Bx.data, By.data, color=color)
     f
 end
 ```
@@ -270,7 +279,7 @@ Hodogram analysis indicated left handed polarization during the interval.
 ```{julia}
 using LinearAlgebra
 using Statistics
-using DataFrames, TimeSeries
+using DataFrames
 ```
 
 ### Shock normal
@@ -289,14 +298,14 @@ tplot(b_data; add_title=true)
 
 ```{julia}
 # Perform MVA analysis using the built-in function
-F = mva_mat(b_data)
+F = mva_eigen(b_data)
 
 # The minimum variance direction (shock normal)
 n̂ = F.vectors[:, 3]  # Third eigenvector corresponds to minimum variance
 
 # Calculate θBn (angle between B-field and shock normal)
 B_up = vec(mean(b_data[1:10, :].data; dims=1))
-θBn = angle(B_up, n̂)
+θBn = SPEDAS.angle(B_up, n̂)
 
 # Calculate Bn (shock-normal magnetic field component)
 Bn = dot(B_up, n̂)
@@ -305,7 +314,7 @@ println("Results of Minimum Variance Analysis for ARTEMIS P1 shock crossing (201
 println("Shock normal (GSE coordinates): ", round.(n̂, digits=3))
 println("θ_Bn: ", round(θBn, digits=1), "°")
 println("Bn: ", Bn)
-check_mva_mat(F, verbose=true)
+check_mva_eigen(F, verbose=true)
 ```
 
 ### Minimum variance direction
@@ -327,7 +336,7 @@ b_data.metadata[:units] = "nT"
 
 n̂s = map(t_ends) do t_end
     b_data_subset = b_data[t_start..t_end, :]
-    F = mva_mat(b_data_subset)
+    F = mva_eigen(b_data_subset)
     F.vectors[:, 3]
 end
 
@@ -337,9 +346,9 @@ direction = DimArray(
     (Ti(t_ends), Y([:azimuth, :elevation]));
     name=:direction
 )
-Bns = DimArray(Bn, Ti(t_ends); name=:Bn)
+Bns = abs.(DimArray(Bn, Ti(t_ends); name=:Bn))
 ΔBn = abs.(diff(Bns))
-ΔBn = SpaceTools.rename(ΔBn, :ΔBn)
+ΔBn = rebuild(ΔBn; name=:ΔBn)
 
 tvars = [b_data, direction, [Bns, ΔBn]]
 f, axes = tplot(tvars; add_title=true)
@@ -366,64 +375,48 @@ $$
 \left|\Delta\left\langle\mathbf{B} \cdot \mathbf{x₃}\right\rangle\right|=\sqrt{\frac{\lambda_3}{M-1}+\left(\Delta \varphi_{32}\langle\mathbf{B}\rangle \cdot \mathbf{x}_2\right)^2+\left(\Delta \varphi_{31}\langle\mathbf{B}\rangle \cdot \mathbf{x}_1\right)^2}
 $$
 
-
-```julia
-"""
-    Δφij(λᵢ, λⱼ, λ₃, M)
-
-Calculate the phase error between components i and j according to:
-|Δφᵢⱼ| = |Δφⱼᵢ| = √(λ₃/(M-1) * (λᵢ + λⱼ - λ₃)/(λᵢ - λⱼ)²)
-
-Parameters:
-- λᵢ: eigenvalue i
-- λⱼ: eigenvalue j
-- λ₃: smallest eigenvalue (λ₃)
-- M: number of samples
-"""
-function Δφij(λᵢ, λⱼ, λ₃, M)
-    return sqrt((λ₃ / (M - 1)) * (λᵢ + λⱼ - λ₃) / (λᵢ - λⱼ)^2)
-end
-
-"""
-Calculate the composite statistical error estimate for ⟨B·x₃⟩:
-|Δ⟨B·x₃⟩| = √(λ₃/(M-1) + (Δφ₃₂⟨B⟩·x₂)² + (Δφ₃₁⟨B⟩·x₁)²)
-
-Parameters:
-- λ₁, λ₂, λ₃: eigenvalues in descending order
-- M: number of samples
-- B: mean magnetic field vector
-- x₁, x₂, x₃: eigenvectors
-"""
-function B_x3_error(λ₁, λ₂, λ₃, M, B, x₁, x₂, x₃)
-    Δφ₃₂ = Δφij(λ₃, λ₂, λ₃, M)
-    Δφ₃₁ = Δφij(λ₃, λ₁, λ₃, M)
-    B_x₂ = dot(B, x₂)
-    B_x₁ = dot(B, x₁)
-    return sqrt(λ₃ / (M - 1) + (Δφ₃₂ * B_x₂)^2 + (Δφ₃₁ * B_x₁)^2)
-end
-
-B_x3_error(F::Eigen, M, B) = 
-    B_x3_error(F.values..., M, B, eachcol(F.vectors)...)
-```
+See [MinimumVarianceAnalysis.jl](https://juliaspacephysics.github.io/MinimumVarianceAnalysis.jl/dev/) for more details.
 
 ```{julia}
+using SPEDAS.MinimumVarianceAnalysis: Δφij, B_x3_error
+
+"""
+    nt2ds(nt_arr, dim; fields=propertynames(first(nt_arr)))
+
+Convert a NamedTuple array to a DimStack of DimArrays.
+"""
+function nt2ds(nt_arr, dim; fields=propertynames(first(nt_arr)))
+    DimStack([
+        DimArray(getfield.(nt_arr, field), dim; name=field)
+        for field in fields
+    ])
+end
+
+function nt2ds(nt_arr; sym=:time)
+    dim = Dim{sym}(getfield.(nt_arr, sym))
+    # filter the time dimension
+    fields = propertynames(first(nt_arr))
+    fields = filter(field -> field != sym, fields)
+    nt2ds(nt_arr, dim; fields)
+end
+
 res = map(t_ends) do t_end
     b_data_subset = b_data[t_start..t_end, :]
-    F = mva_mat(b_data_subset)
+    F = mva_eigen(b_data_subset)
     M = size(b_data_subset, 1)
     B = mean(b_data_subset.data; dims=1)
 
     λ₁ = F.values[1]
     λ₂ = F.values[2]
     λ₃ = F.values[3]
-    Δφ12 = SpaceTools.Δφij(λ₁, λ₂, λ₃, M)
-    Δφ13 = SpaceTools.Δφij(λ₁, λ₃, λ₃, M)
-    Δφ23 = SpaceTools.Δφij(λ₂, λ₃, λ₃, M)
-    B_x3_err = SpaceTools.B_x3_error(F, M, B)
+    Δφ12 = Δφij(λ₁, λ₂, λ₃, M)
+    Δφ13 = Δφij(λ₁, λ₃, λ₃, M)
+    Δφ23 = Δφij(λ₂, λ₃, λ₃, M)
+    B_x3_err = B_x3_error(F, M, B)
     (; time=t_end, Δφ12, Δφ13, Δφ23, B_x3_err)
 end
 
-errors = SpaceTools.nt2ds(res)
+errors = nt2ds(res)
 tvars = [
     b_data,
     [errors.Δφ12, errors.Δφ13, errors.Δφ23],
@@ -433,3 +426,15 @@ tplot(tvars)
 ```
 
 The error estimates support our choice of interval.
+
+
+## Reproducibility
+
+::: {.callout-note collapse="true"}
+## This document was built using these direct dependencies
+
+```{julia}
+using Pkg
+Pkg.status()
+```
+:::

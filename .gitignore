@@ -188,6 +188,7 @@ pixi.lock
 
 # Julia
 Manifest.toml
+Manifest-v**.toml
 .CondaPkg
 
 **/*.quarto_ipynb
