@@ -1,0 +1,16 @@
+render:
+    quarto render thesis.qmd --to typst
+
+link_figures:
+    ln -s ~/projects/ids_spatial_evolution_juno/overleaf/figures figures/juno
+    ln -s ~/projects/ion_scattering_by_SWD/overleaf/figures figures/scattering
+    # ln -s ~/projects/spedas/overleaf/figures figures/spedas
+    ln -s ~/projects/psp_conjunction/overleaf figures/psp
+
+convert:
+    pandoc -t typst _review_current_sheet.qmd -o _review_current_sheet.typ
+
+sync:
+    rsync -av --delete thesis.typ uclathesis/
+    rsync -av --delete figures/ uclathesis/figures/
+    rsync -av ~/projects/share/bibliography/research.bib uclathesis/
