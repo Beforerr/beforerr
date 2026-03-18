@@ -6,11 +6,12 @@ link_figures:
     ln -s ~/projects/ion_scattering_by_SWD/overleaf/figures figures/scattering
     # ln -s ~/projects/spedas/overleaf/figures figures/spedas
     ln -s ~/projects/psp_conjunction/overleaf figures/psp
+    ln -s ~/projects/cs_theory/overleaf/figures figures/cs_theory
 
 convert:
     pandoc -t typst _review_current_sheet.qmd -o _review_current_sheet.typ
 
 sync:
-    rsync -av --delete thesis.typ uclathesis/
-    rsync -av --delete figures/ uclathesis/figures/
-    rsync -av ~/projects/share/bibliography/research.bib uclathesis/
+    rsync -av --delete thesis.typ UCLA-thesis/
+    rsync -av --delete figures/ UCLA-thesis/figures/
+    rsync -av ~/projects/share/bibliography/research.bib UCLA-thesis/

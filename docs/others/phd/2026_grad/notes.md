@@ -7,6 +7,8 @@
 
 To Read
 
+- [ ] @vandenbergEvaluationDifferentNumerical2024
+
 - [ ] vinogradovEmbeddedCoherentStructures2024
 - [ ] artemyevComparativeStudyElectric2021
 - [ ] neishtadtPolymorphismsAdiabaticChaos2011

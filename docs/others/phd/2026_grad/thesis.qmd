@@ -13,32 +13,12 @@ bibliographystyle: apa
 
 {{< include _acknowledgments.qmd >}}
 
-{{< include _intro.qmd >}}
-
-{{< pagebreak >}}
-
-{{< include _review_current_sheet.qmd >}}
-
 <!-- {{< include _review_origin.qmd >}} -->
 
-{{< include _review_energetic_particles.qmd >}}
+{{< include _multifluid.qmd >}}
 
-{{< pagebreak >}}
+{{< include _spedas.qmd >}}
 
-{{< include _juno.qmd >}}
-
-{{< pagebreak >}}
-
-{{< include _psp.qmd >}}
-
-{{< pagebreak >}}
-
-{{< include _scattering.qmd >}}
-
-{{< pagebreak >}}
-
-{{< include _transport.qmd >}}
-
-{{< include _summary.qmd >}}
+<!-- {{< include _summary.qmd >}} -->
 
 {{< pagebreak >}}
