@@ -32,8 +32,10 @@ ln-bib:
     [ -e files/bibliography/research.bib ] || ln -s ~/projects/share/bibliography/research.bib files/bibliography/research.bib
     ln -s ~/projects/ion_scattering_by_SWD/overleaf/files/bibliography/full.bib files/bibliography/full.bib
 
-cv:
-    rendercv render docs/others/cv_Zijin.yaml -nomd -nohtml -nopng
+cv theme="harvard":
+    uv tool update "rendercv[full]"
+    rendercv render docs/others/cv_Zijin.yaml -nomd -nohtml -nopng --design.theme {{theme}}
+    rm docs/others/rendercv_output/Zijin_Zhang_CV.typ
 
 thesis:
     quarto render docs/others/phd/2026_grad/thesis.qmd --to typst
