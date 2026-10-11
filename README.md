@@ -1,5 +1,9 @@
 ### Hi there 👋
 
+🪐 Space plasma physicist, postdoc at the University of Alberta (PhD, UCLA; Undergraduate, USTC).
+
+- 🛠️ Building [JuliaSpacePhysics](https://github.com/JuliaSpacePhysics) and [JuliaPlasma](https://github.com/JuliaPlasma): fast, composable tools for space plasma
+
 <!--
 **Beforerr/beforerr** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -14,5 +18,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-
-- 🪐 A graduate student at UCLA, majoring in space science & planetary science.
