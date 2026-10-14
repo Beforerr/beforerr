@@ -10,6 +10,14 @@ cv:
       # username: Beforerr
 
   sections:
+    positions:
+      - company: University of Alberta, Department of Physics
+        position: Postdoctoral Fellow
+        start_date: 2026-09
+        end_date: present
+        highlights:
+          - "Supervisor: Prof. _Yangyang Shen_"
+
     education:
       - institution: University of California, Los Angeles (UCLA)
         area: Planetary Science
@@ -80,6 +88,19 @@ cv:
           - Mourenas, D.
           - Angelopoulos, V.
         date: Submitted
+
+      - title: An Empirical Electron Precipitation Model During Magnetospheric Substorms
+        authors:
+          - Sun, W.
+          - Zhang, X.-J.
+          - Artemyev, A. V.
+          - Kamaletdinov, S.
+          - Liang, J.
+          - "**Zhang, Z.**"
+          - Angelopoulos, V.
+        journal: "Journal of Geophysical Research: Space Physics"
+        date: Submitted
+        summary: "CRediT contributions: Resources; Data Curation; Writing – Review and Editing."
 
       - title: Properties of current sheets in two-dimensional tearing-mediated magnetohydrodynamic turbulence
         authors:
